@@ -22,7 +22,7 @@
 
 `jivico-glass-ui` is built on top of **React**, **Material UI (MUI)**, **Emotion**, **Framer Motion**, and **Lucide Icons**.
 
-When installing `jivico-glass-ui` into any new project (e.g. `jivico-admin`, `jivico-pets`), install these peer dependencies:
+When installing `jivico-glass-ui` into any new project (e.g. `jivico-orbit`, `jivico-pets`), install these peer dependencies:
 
 ```bash
 # Core Peer Dependencies
