@@ -1,4 +1,6 @@
-import { Button, styled } from '@mui/material';
+import React from 'react';
+import { Box, Button, styled } from '@mui/material';
+import { ArrowRight } from 'lucide-react';
 
 export const MobileViewAllButton = styled(Button, {
   shouldForwardProp: (p) => p !== 'isDark',
@@ -22,3 +24,26 @@ export const MobileViewAllButton = styled(Button, {
     },
   };
 });
+
+export interface MobileViewAllProps {
+  href: string;
+  label?: string;
+  onClick?: () => void;
+}
+
+export function MobileViewAll({ href, label = 'View All', onClick }: MobileViewAllProps) {
+  const ButtonComp = MobileViewAllButton as any;
+  return (
+    <Box sx={{ display: { xs: 'block', md: 'none' }, mt: 3, px: 2 }}>
+      <ButtonComp
+        component={href ? 'a' : 'button'}
+        href={href}
+        onClick={onClick}
+        endIcon={<ArrowRight size={16} />}
+      >
+        {label}
+      </ButtonComp>
+    </Box>
+  );
+}
+

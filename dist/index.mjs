@@ -1882,6 +1882,19 @@ var MobileViewAllButton = styled(Button, {
     }
   };
 });
+function MobileViewAll({ href, label = "View All", onClick }) {
+  const ButtonComp = MobileViewAllButton;
+  return /* @__PURE__ */ jsx(Box, { sx: { display: { xs: "block", md: "none" }, mt: 3, px: 2 }, children: /* @__PURE__ */ jsx(
+    ButtonComp,
+    {
+      component: href ? "a" : "button",
+      href,
+      onClick,
+      endIcon: /* @__PURE__ */ jsx(ArrowRight, { size: 16 }),
+      children: label
+    }
+  ) });
+}
 var LiquidGlassCardRoot = styled(Box, {
   shouldForwardProp: (p) => p !== "isDark"
 })(({ theme, isDark: explicitDark }) => {
@@ -2080,6 +2093,6 @@ function JivicoThemeProvider({
   return /* @__PURE__ */ jsx(ThemeModeProvider, { defaultMode, storageKey, children: /* @__PURE__ */ jsx(InternalMuiWrapper, { enableCssBaseline, children }) });
 }
 
-export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassCardBody, GlassControlsGroup, GlassEdgeFade, GlassIconGlow, GlassNavArrowButton, GlassPanel, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JivicoFontLinks, JivicoFontPreload, JivicoThemeProvider, LiquidGlassCard, LiquidGlassCardRoot, LiquidSpotlightImageArea, MobileViewAllButton, PageRoot, Section, SectionContainer, SectionHeader, StatLabel, StatValue, SectionHeader as StudioSectionHeader, SupportedTypeChip, ThemeModeProvider, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };
+export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassCardBody, GlassControlsGroup, GlassEdgeFade, GlassIconGlow, GlassNavArrowButton, GlassPanel, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JivicoFontLinks, JivicoFontPreload, JivicoThemeProvider, LiquidGlassCard, LiquidGlassCardRoot, LiquidSpotlightImageArea, MobileViewAll, MobileViewAllButton, PageRoot, Section, SectionContainer, SectionHeader, StatLabel, StatValue, SectionHeader as StudioSectionHeader, SupportedTypeChip, ThemeModeProvider, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

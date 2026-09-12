@@ -1888,6 +1888,19 @@ var MobileViewAllButton = material.styled(material.Button, {
     }
   };
 });
+function MobileViewAll({ href, label = "View All", onClick }) {
+  const ButtonComp = MobileViewAllButton;
+  return /* @__PURE__ */ jsxRuntime.jsx(material.Box, { sx: { display: { xs: "block", md: "none" }, mt: 3, px: 2 }, children: /* @__PURE__ */ jsxRuntime.jsx(
+    ButtonComp,
+    {
+      component: href ? "a" : "button",
+      href,
+      onClick,
+      endIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ArrowRight, { size: 16 }),
+      children: label
+    }
+  ) });
+}
 var LiquidGlassCardRoot = material.styled(material.Box, {
   shouldForwardProp: (p) => p !== "isDark"
 })(({ theme, isDark: explicitDark }) => {
@@ -2125,6 +2138,7 @@ exports.JivicoThemeProvider = JivicoThemeProvider;
 exports.LiquidGlassCard = LiquidGlassCard;
 exports.LiquidGlassCardRoot = LiquidGlassCardRoot;
 exports.LiquidSpotlightImageArea = LiquidSpotlightImageArea;
+exports.MobileViewAll = MobileViewAll;
 exports.MobileViewAllButton = MobileViewAllButton;
 exports.PageRoot = PageRoot;
 exports.Section = Section;
