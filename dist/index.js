@@ -1208,6 +1208,7 @@ var getNavigationOverrides = (palette, isDark) => ({
 });
 
 // src/theme/theme.ts
+var GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
 var getHybridTheme = (mode) => {
   const isDark = mode === "dark";
   const palette = buildPalette(mode);
@@ -1232,16 +1233,17 @@ var getHybridTheme = (mode) => {
     },
     components: {
       MuiCssBaseline: {
-        styleOverrides: {
-          body: {
-            scrollBehavior: "smooth",
-            backgroundColor: palette.background.default,
-            color: palette.text.primary,
-            transition: "background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease",
-            WebkitFontSmoothing: "antialiased",
-            MozOsxFontSmoothing: "grayscale"
+        styleOverrides: `
+          @import url('${GOOGLE_SANS_FLEX_URL}');
+          body {
+            scroll-behavior: smooth;
+            background-color: ${palette.background.default};
+            color: ${palette.text.primary};
+            transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
           }
-        }
+        `
       },
       ...getInputOverrides(palette, isDark),
       ...getControlOverrides(palette, isDark),
@@ -1799,6 +1801,14 @@ var GradientContextTitle = styles.styled(material.Typography)(() => ({
   WebkitTextFillColor: "transparent",
   backgroundClip: "text"
 }));
+function JivicoFontPreload() {
+  return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx("link", { rel: "preconnect", href: "https://fonts.googleapis.com" }),
+    /* @__PURE__ */ jsxRuntime.jsx("link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" }),
+    /* @__PURE__ */ jsxRuntime.jsx("link", { href: GOOGLE_SANS_FLEX_URL, rel: "stylesheet" })
+  ] });
+}
+var JivicoFontLinks = JivicoFontPreload;
 var FreestyleBadge = material.styled(material.Chip, {
   shouldForwardProp: (p) => p !== "isDark"
 })(({ theme, isDark: explicitDark }) => {
@@ -2078,6 +2088,7 @@ exports.DecorativeBlob = DecorativeBlob;
 exports.EdgeFade = EdgeFade;
 exports.FilterChip = FilterChip;
 exports.FreestyleBadge = FreestyleBadge;
+exports.GOOGLE_SANS_FLEX_URL = GOOGLE_SANS_FLEX_URL;
 exports.GlassCardBody = GlassCardBody;
 exports.GlassControlsGroup = GlassControlsGroup;
 exports.GlassEdgeFade = GlassEdgeFade;
@@ -2102,6 +2113,8 @@ exports.HeroSection = HeroSection;
 exports.HeroStatsPanel = HeroStatsPanel;
 exports.HeroTitle = HeroTitle;
 exports.HolographicBadge = HolographicBadge;
+exports.JivicoFontLinks = JivicoFontLinks;
+exports.JivicoFontPreload = JivicoFontPreload;
 exports.JivicoThemeProvider = JivicoThemeProvider;
 exports.LiquidGlassCard = LiquidGlassCard;
 exports.LiquidGlassCardRoot = LiquidGlassCardRoot;

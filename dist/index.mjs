@@ -2,7 +2,7 @@ import { keyframes, styled as styled$1, createTheme, responsiveFontSizes, ThemeP
 import { styled, Box, Container, IconButton, Typography, AppBar, Chip, Button } from '@mui/material';
 import { ArrowRight } from 'lucide-react';
 import { createContext, useContext, useState, useEffect, useMemo } from 'react';
-import { jsx, jsxs } from 'react/jsx-runtime';
+import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import CssBaseline from '@mui/material/CssBaseline';
 
 // src/theme/colors.ts
@@ -1202,6 +1202,7 @@ var getNavigationOverrides = (palette, isDark) => ({
 });
 
 // src/theme/theme.ts
+var GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
 var getHybridTheme = (mode) => {
   const isDark = mode === "dark";
   const palette = buildPalette(mode);
@@ -1226,16 +1227,17 @@ var getHybridTheme = (mode) => {
     },
     components: {
       MuiCssBaseline: {
-        styleOverrides: {
-          body: {
-            scrollBehavior: "smooth",
-            backgroundColor: palette.background.default,
-            color: palette.text.primary,
-            transition: "background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease",
-            WebkitFontSmoothing: "antialiased",
-            MozOsxFontSmoothing: "grayscale"
+        styleOverrides: `
+          @import url('${GOOGLE_SANS_FLEX_URL}');
+          body {
+            scroll-behavior: smooth;
+            background-color: ${palette.background.default};
+            color: ${palette.text.primary};
+            transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
           }
-        }
+        `
       },
       ...getInputOverrides(palette, isDark),
       ...getControlOverrides(palette, isDark),
@@ -1793,6 +1795,14 @@ var GradientContextTitle = styled$1(Typography)(() => ({
   WebkitTextFillColor: "transparent",
   backgroundClip: "text"
 }));
+function JivicoFontPreload() {
+  return /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsx("link", { rel: "preconnect", href: "https://fonts.googleapis.com" }),
+    /* @__PURE__ */ jsx("link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" }),
+    /* @__PURE__ */ jsx("link", { href: GOOGLE_SANS_FLEX_URL, rel: "stylesheet" })
+  ] });
+}
+var JivicoFontLinks = JivicoFontPreload;
 var FreestyleBadge = styled(Chip, {
   shouldForwardProp: (p) => p !== "isDark"
 })(({ theme, isDark: explicitDark }) => {
@@ -2064,6 +2074,6 @@ function JivicoThemeProvider({
   return /* @__PURE__ */ jsx(ThemeModeProvider, { defaultMode, storageKey, children: /* @__PURE__ */ jsx(InternalMuiWrapper, { enableCssBaseline, children }) });
 }
 
-export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, EdgeFade, FilterChip, FreestyleBadge, GlassCardBody, GlassControlsGroup, GlassEdgeFade, GlassIconGlow, GlassNavArrowButton, GlassPanel, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JivicoThemeProvider, LiquidGlassCard, LiquidGlassCardRoot, LiquidSpotlightImageArea, MobileViewAllButton, PageRoot, Section, SectionContainer, SectionHeader, StatLabel, StatValue, SectionHeader as StudioSectionHeader, SupportedTypeChip, ThemeModeProvider, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };
+export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassCardBody, GlassControlsGroup, GlassEdgeFade, GlassIconGlow, GlassNavArrowButton, GlassPanel, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JivicoFontLinks, JivicoFontPreload, JivicoThemeProvider, LiquidGlassCard, LiquidGlassCardRoot, LiquidSpotlightImageArea, MobileViewAllButton, PageRoot, Section, SectionContainer, SectionHeader, StatLabel, StatValue, SectionHeader as StudioSectionHeader, SupportedTypeChip, ThemeModeProvider, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

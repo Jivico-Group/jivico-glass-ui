@@ -19,6 +19,9 @@ declare module '@mui/material/styles' {
   }
 }
 
+export const GOOGLE_SANS_FLEX_URL =
+  'https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap';
+
 /**
  * Jivico Comprehensive Design System: Apple Precision + Google Antigravity
  *
@@ -53,16 +56,17 @@ export const getHybridTheme = (mode: 'light' | 'dark'): Theme => {
     },
     components: {
       MuiCssBaseline: {
-        styleOverrides: {
-          body: {
-            scrollBehavior: 'smooth',
-            backgroundColor: palette.background.default,
-            color: palette.text.primary,
-            transition: 'background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease',
-            WebkitFontSmoothing: 'antialiased',
-            MozOsxFontSmoothing: 'grayscale',
-          },
-        },
+        styleOverrides: `
+          @import url('${GOOGLE_SANS_FLEX_URL}');
+          body {
+            scroll-behavior: smooth;
+            background-color: ${palette.background.default};
+            color: ${palette.text.primary};
+            transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+        `,
       },
       ...getInputOverrides(palette, isDark),
       ...getControlOverrides(palette, isDark),
