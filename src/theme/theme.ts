@@ -31,7 +31,9 @@ export const GOOGLE_SANS_FLEX_URL =
  *  - typography.ts    → font configuration
  *  - overrides/*      → component style overrides by category
  */
-export const getHybridTheme = (mode: 'light' | 'dark'): Theme => {
+const themeCache: Partial<Record<'light' | 'dark', Theme>> = {};
+
+function buildTheme(mode: 'light' | 'dark'): Theme {
   const isDark = mode === 'dark';
   const palette = buildPalette(mode);
 
@@ -62,7 +64,7 @@ export const getHybridTheme = (mode: 'light' | 'dark'): Theme => {
             scroll-behavior: smooth;
             background-color: ${palette.background.default};
             color: ${palette.text.primary};
-            transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+            transition: background-color 0.2s ease, color 0.2s ease;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
           }
@@ -78,6 +80,13 @@ export const getHybridTheme = (mode: 'light' | 'dark'): Theme => {
   });
 
   return responsiveFontSizes(theme);
+}
+
+export const getHybridTheme = (mode: 'light' | 'dark'): Theme => {
+  if (!themeCache[mode]) {
+    themeCache[mode] = buildTheme(mode);
+  }
+  return themeCache[mode]!;
 };
 
 export const getAppleTheme = getHybridTheme;

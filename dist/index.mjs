@@ -1203,7 +1203,8 @@ var getNavigationOverrides = (palette, isDark) => ({
 
 // src/theme/theme.ts
 var GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
-var getHybridTheme = (mode) => {
+var themeCache = {};
+function buildTheme(mode) {
   const isDark = mode === "dark";
   const palette = buildPalette(mode);
   const theme = createTheme({
@@ -1233,7 +1234,7 @@ var getHybridTheme = (mode) => {
             scroll-behavior: smooth;
             background-color: ${palette.background.default};
             color: ${palette.text.primary};
-            transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+            transition: background-color 0.2s ease, color 0.2s ease;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
           }
@@ -1248,6 +1249,12 @@ var getHybridTheme = (mode) => {
     }
   });
   return responsiveFontSizes(theme);
+}
+var getHybridTheme = (mode) => {
+  if (!themeCache[mode]) {
+    themeCache[mode] = buildTheme(mode);
+  }
+  return themeCache[mode];
 };
 var getAppleTheme = getHybridTheme;
 var getAntigravityTheme = getHybridTheme;

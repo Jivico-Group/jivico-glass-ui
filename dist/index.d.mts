@@ -337,15 +337,6 @@ declare module '@mui/material/styles' {
     }
 }
 declare const GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
-/**
- * Jivico Comprehensive Design System: Apple Precision + Google Antigravity
- *
- * Composes the full MUI theme from modular pieces:
- *  - colors.ts        → raw color constants
- *  - palette.ts       → mode-resolved palette builder
- *  - typography.ts    → font configuration
- *  - overrides/*      → component style overrides by category
- */
 declare const getHybridTheme: (mode: "light" | "dark") => Theme;
 declare const getAppleTheme: (mode: "light" | "dark") => Theme;
 declare const getAntigravityTheme: (mode: "light" | "dark") => Theme;
