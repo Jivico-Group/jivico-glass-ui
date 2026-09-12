@@ -270,73 +270,59 @@ declare const buildPalette: (mode: "light" | "dark") => {
 type JivicoPalette = ReturnType<typeof buildPalette>;
 
 /**
- * Jivico Comprehensive Design System: Apple Precision + Google Antigravity
- * Typography Scale & Font Families
+ * Shared typography configuration for the Jivico design system.
  */
 declare const typography: {
     fontFamily: string;
     h1: {
+        fontSize: string;
         fontWeight: number;
         letterSpacing: string;
         lineHeight: number;
     };
     h2: {
+        fontSize: string;
         fontWeight: number;
         letterSpacing: string;
         lineHeight: number;
     };
     h3: {
+        fontSize: string;
         fontWeight: number;
         letterSpacing: string;
         lineHeight: number;
     };
     h4: {
+        fontSize: string;
         fontWeight: number;
         letterSpacing: string;
-        lineHeight: number;
     };
     h5: {
+        fontSize: string;
         fontWeight: number;
         letterSpacing: string;
-        lineHeight: number;
     };
     h6: {
+        fontSize: string;
         fontWeight: number;
         letterSpacing: string;
-        lineHeight: number;
-    };
-    subtitle1: {
-        fontWeight: number;
-        letterSpacing: string;
-        lineHeight: number;
-    };
-    subtitle2: {
-        fontWeight: number;
-        letterSpacing: string;
-        lineHeight: number;
     };
     body1: {
-        letterSpacing: string;
+        fontSize: string;
         lineHeight: number;
+        letterSpacing: string;
+        fontWeight: number;
     };
     body2: {
-        letterSpacing: string;
+        fontSize: string;
         lineHeight: number;
+        letterSpacing: string;
     };
     button: {
-        fontWeight: number;
-        letterSpacing: string;
         textTransform: "none";
-    };
-    caption: {
-        letterSpacing: string;
-        lineHeight: number;
-    };
-    overline: {
         fontWeight: number;
         letterSpacing: string;
-        textTransform: "uppercase";
-        lineHeight: number;
+        fontSize: string;
     };
 };
 

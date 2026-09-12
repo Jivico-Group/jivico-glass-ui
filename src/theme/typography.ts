@@ -1,71 +1,29 @@
 /**
- * Jivico Comprehensive Design System: Apple Precision + Google Antigravity
- * Typography Scale & Font Families
+ * Shared typography configuration for the Jivico design system.
  */
 export const typography = {
-  fontFamily:
-    '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Google Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-  h1: {
-    fontWeight: 700,
-    letterSpacing: '-0.025em',
-    lineHeight: 1.1,
-  },
-  h2: {
-    fontWeight: 700,
-    letterSpacing: '-0.02em',
-    lineHeight: 1.15,
-  },
-  h3: {
-    fontWeight: 600,
-    letterSpacing: '-0.015em',
-    lineHeight: 1.2,
-  },
-  h4: {
-    fontWeight: 600,
-    letterSpacing: '-0.01em',
-    lineHeight: 1.25,
-  },
-  h5: {
-    fontWeight: 600,
-    letterSpacing: '-0.005em',
-    lineHeight: 1.3,
-  },
-  h6: {
-    fontWeight: 600,
-    letterSpacing: '0em',
-    lineHeight: 1.35,
-  },
-  subtitle1: {
-    fontWeight: 500,
-    letterSpacing: '-0.005em',
-    lineHeight: 1.4,
-  },
-  subtitle2: {
-    fontWeight: 500,
-    letterSpacing: '0em',
-    lineHeight: 1.4,
-  },
-  body1: {
-    letterSpacing: '-0.005em',
-    lineHeight: 1.5,
-  },
-  body2: {
-    letterSpacing: '0em',
-    lineHeight: 1.5,
-  },
+  fontFamily: [
+    '"SF Pro Display"',
+    '"SF Pro Text"',
+    '"Google Sans Flex"',
+    '"Google Sans"',
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'sans-serif',
+  ].join(','),
+  h1: { fontSize: '3.75rem', fontWeight: 600, letterSpacing: '-0.035em', lineHeight: 1.05 },
+  h2: { fontSize: '2.85rem', fontWeight: 600, letterSpacing: '-0.028em', lineHeight: 1.1 },
+  h3: { fontSize: '2.1rem', fontWeight: 600, letterSpacing: '-0.022em', lineHeight: 1.18 },
+  h4: { fontSize: '1.5rem', fontWeight: 600, letterSpacing: '-0.015em' },
+  h5: { fontSize: '1.25rem', fontWeight: 600, letterSpacing: '-0.01em' },
+  h6: { fontSize: '1rem', fontWeight: 600, letterSpacing: '-0.005em' },
+  body1: { fontSize: '1.0625rem', lineHeight: 1.5, letterSpacing: '-0.01em', fontWeight: 400 },
+  body2: { fontSize: '0.875rem', lineHeight: 1.45, letterSpacing: '-0.005em' },
   button: {
-    fontWeight: 600,
-    letterSpacing: '-0.005em',
     textTransform: 'none' as const,
-  },
-  caption: {
-    letterSpacing: '0.01em',
-    lineHeight: 1.3,
-  },
-  overline: {
-    fontWeight: 600,
-    letterSpacing: '0.06em',
-    textTransform: 'uppercase' as const,
-    lineHeight: 1.3,
+    fontWeight: 500,
+    letterSpacing: '-0.01em',
+    fontSize: '0.9375rem',
   },
 };
