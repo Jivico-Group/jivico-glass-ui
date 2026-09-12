@@ -58,17 +58,16 @@ function buildTheme(mode: 'light' | 'dark'): Theme {
     },
     components: {
       MuiCssBaseline: {
-        styleOverrides: `
-          @import url('${GOOGLE_SANS_FLEX_URL}');
-          body {
-            scroll-behavior: smooth;
-            background-color: ${palette.background.default};
-            color: ${palette.text.primary};
-            transition: background-color 0.2s ease, color 0.2s ease;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-          }
-        `,
+        styleOverrides: {
+          body: {
+            scrollBehavior: 'smooth',
+            backgroundColor: palette.background.default,
+            color: palette.text.primary,
+            transition: 'background-color 0.2s ease, color 0.2s ease',
+            WebkitFontSmoothing: 'antialiased',
+            MozOsxFontSmoothing: 'grayscale',
+          },
+        },
       },
       ...getInputOverrides(palette, isDark),
       ...getControlOverrides(palette, isDark),
