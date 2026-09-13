@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, TextField } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  TextField,
+  Autocomplete,
+} from "@mui/material";
 import { GlassPanel } from "../src/components/index";
 import { GradientText } from "../src/components/index";
 
@@ -52,12 +58,25 @@ export default function App() {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <Button variant="contained" color="primary">
+          {/* <Button variant="contained" color="primary">
             Primary Button
           </Button>
           <Button variant="outlined" color="secondary">
             Secondary Button
-          </Button>
+          </Button> */}
+          <Autocomplete
+            multiple
+            options={[
+              "Option 1",
+              "Option 2",
+              "Option 3",
+              "ajhbxahjbdxjahsbxjahsx",
+              "ajhsbxagsgajxbagsxja",
+            ]}
+            renderInput={(params) => (
+              <TextField {...params} label="Autocomplete Test" />
+            )}
+          />
         </Box>
       </GlassPanel>
     </Box>
