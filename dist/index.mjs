@@ -566,42 +566,62 @@ var getInputOverrides = (palette, isDark) => ({
         }
       },
       input: {
-        padding: "13px 18px",
         fontSize: "0.9375rem",
         color: palette.text.primary
+      },
+      multiline: {
+        padding: "13px 18px"
       }
     },
     variants: [
       {
         props: { size: "small" },
         style: {
-          height: 36,
           fontSize: "0.85rem",
-          "& .MuiInputBase-input": {
+          "&:not(.MuiInputBase-multiline)": {
+            height: 36
+          },
+          "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
             padding: "6px 14px",
             fontSize: "0.85rem"
+          },
+          "&.MuiInputBase-multiline": {
+            padding: "6px 14px",
+            alignItems: "flex-start"
           }
         }
       },
       {
         props: { size: "medium" },
         style: {
-          height: 48,
           fontSize: "0.9375rem",
-          "& .MuiInputBase-input": {
+          "&:not(.MuiInputBase-multiline)": {
+            height: 48
+          },
+          "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
             padding: "12px 18px",
             fontSize: "0.9375rem"
+          },
+          "&.MuiInputBase-multiline": {
+            padding: "12px 18px",
+            alignItems: "flex-start"
           }
         }
       },
       {
         props: { size: "large" },
         style: {
-          height: 56,
           fontSize: "1.1rem",
-          "& .MuiInputBase-input": {
+          "&:not(.MuiInputBase-multiline)": {
+            height: 56
+          },
+          "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
             padding: "16px 20px",
             fontSize: "1.1rem"
+          },
+          "&.MuiInputBase-multiline": {
+            padding: "16px 20px",
+            alignItems: "flex-start"
           }
         }
       }
