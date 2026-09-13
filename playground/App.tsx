@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Box,
   Typography,
-  Button,
+  // Button,
   TextField,
   Autocomplete,
 } from "@mui/material";
@@ -23,12 +23,12 @@ export default function App() {
         bgcolor: "background.default",
       }}
     >
-      <Typography variant="h3" fontWeight={800} textAlign="center">
+      <Typography variant="h3" sx={{ fontWeight: 800, textAlign: "center" }}>
         <GradientText>Jivico Glass UI Playground</GradientText>
       </Typography>
 
       <GlassPanel>
-        <Typography variant="h6" mb={2}>
+        <Typography variant="h6" sx={{ mb: 2 }}>
           Glass Panel Test
         </Typography>
         <Typography color="text.secondary">
@@ -38,7 +38,7 @@ export default function App() {
       </GlassPanel>
 
       <GlassPanel>
-        <Typography variant="h6" mb={2}>
+        <Typography variant="h6" sx={{ mb: 2 }}>
           Inputs Test
         </Typography>
         <Box
