@@ -581,7 +581,8 @@ var getInputOverrides = (palette, isDark) => ({
       {
         props: { size: "small" },
         style: {
-          height: 36,
+          minHeight: 36,
+          height: "auto",
           fontSize: "0.85rem",
           "& .MuiInputBase-input": {
             padding: "6px 14px",
@@ -592,7 +593,8 @@ var getInputOverrides = (palette, isDark) => ({
       {
         props: { size: "medium" },
         style: {
-          height: 48,
+          minHeight: 48,
+          height: "auto",
           fontSize: "0.9375rem",
           "& .MuiInputBase-input": {
             padding: "12px 18px",
@@ -603,7 +605,8 @@ var getInputOverrides = (palette, isDark) => ({
       {
         props: { size: "large" },
         style: {
-          height: 56,
+          minHeight: 56,
+          height: "auto",
           fontSize: "1.1rem",
           "& .MuiInputBase-input": {
             padding: "16px 20px",

@@ -327,7 +327,8 @@ export const getInputOverrides = (palette: JivicoPalette, isDark: boolean): Comp
       {
         props: { size: 'small' },
         style: {
-          height: 36,
+          minHeight: 36,
+          height: 'auto',
           fontSize: '0.85rem',
           '& .MuiInputBase-input': {
             padding: '6px 14px',
@@ -338,7 +339,8 @@ export const getInputOverrides = (palette: JivicoPalette, isDark: boolean): Comp
       {
         props: { size: 'medium' },
         style: {
-          height: 48,
+          minHeight: 48,
+          height: 'auto',
           fontSize: '0.9375rem',
           '& .MuiInputBase-input': {
             padding: '12px 18px',
@@ -349,7 +351,8 @@ export const getInputOverrides = (palette: JivicoPalette, isDark: boolean): Comp
       {
         props: { size: 'large' as any },
         style: {
-          height: 56,
+          minHeight: 56,
+          height: 'auto',
           fontSize: '1.1rem',
           '& .MuiInputBase-input': {
             padding: '16px 20px',
