@@ -4,6 +4,7 @@ import * as react from 'react';
 import react__default from 'react';
 import * as _mui_system from '@mui/system';
 import * as _mui_material from '@mui/material';
+import { BoxProps } from '@mui/material';
 import * as _mui_material_OverridableComponent from '@mui/material/OverridableComponent';
 
 /**
@@ -378,7 +379,7 @@ declare const getNavigationOverrides: (palette: JivicoPalette, isDark: boolean) 
  */
 declare const getSurfaceOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
-interface GlassPanelProps {
+interface GlassPanelProps extends BoxProps {
     isDark?: boolean;
 }
 declare const GlassPanel: _emotion_styled.StyledComponent<_mui_system.BoxOwnProps<_mui_material.Theme> & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof _mui_system.BoxOwnProps<_mui_material.Theme>> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & GlassPanelProps, {}, {}>;
