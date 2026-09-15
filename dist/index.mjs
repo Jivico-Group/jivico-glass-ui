@@ -700,8 +700,8 @@ var getControlOverrides = (palette, isDark) => ({
   MuiSwitch: {
     styleOverrides: {
       root: {
-        width: 48,
-        height: 28,
+        width: 40,
+        height: 20,
         padding: 0,
         "& .MuiSwitch-switchBase": {
           padding: 2,
@@ -716,14 +716,32 @@ var getControlOverrides = (palette, isDark) => ({
           }
         },
         "& .MuiSwitch-thumb": {
-          width: 24,
-          height: 24,
+          width: 16,
+          height: 16,
           boxShadow: palette.glass.switchShadow
         },
         "& .MuiSwitch-track": {
-          borderRadius: 28 / 2,
+          borderRadius: 20 / 2,
           backgroundColor: palette.glass.switchTrack,
           opacity: 1
+        }
+      },
+      sizeSmall: {
+        width: 32,
+        height: 18,
+        padding: 0,
+        "& .MuiSwitch-switchBase": {
+          padding: 2,
+          "&.Mui-checked": {
+            transform: "translateX(14px)"
+          }
+        },
+        "& .MuiSwitch-thumb": {
+          width: 14,
+          height: 14
+        },
+        "& .MuiSwitch-track": {
+          borderRadius: 18 / 2
         }
       }
     }

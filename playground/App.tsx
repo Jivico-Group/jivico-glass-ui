@@ -5,6 +5,7 @@ import {
   // Button,
   TextField,
   Autocomplete,
+  Switch,
 } from "@mui/material";
 import { GlassPanel } from "../src/components/index";
 import { GradientText } from "../src/components/index";
@@ -23,6 +24,8 @@ export default function App() {
         bgcolor: "background.default",
       }}
     >
+      <Switch />
+      <Switch size="small" />
       <Typography variant="h3" sx={{ fontWeight: 800, textAlign: "center" }}>
         <GradientText>Jivico Glass UI Playground</GradientText>
       </Typography>
