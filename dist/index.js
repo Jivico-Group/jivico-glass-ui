@@ -546,7 +546,7 @@ var getInputOverrides = (palette, isDark) => ({
   MuiOutlinedInput: {
     styleOverrides: {
       root: {
-        borderRadius: 16,
+        borderRadius: 12,
         backgroundColor: palette.glass.buttonBg,
         backdropFilter: "blur(8px)",
         WebkitBackdropFilter: "blur(8px)",
@@ -585,7 +585,7 @@ var getInputOverrides = (palette, isDark) => ({
         style: {
           fontSize: "0.85rem",
           "&:not(.MuiInputBase-multiline)": {
-            height: 36
+            minHeight: 36
           },
           "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
             padding: "6px 14px",
@@ -602,7 +602,7 @@ var getInputOverrides = (palette, isDark) => ({
         style: {
           fontSize: "0.9375rem",
           "&:not(.MuiInputBase-multiline)": {
-            height: 48
+            minHeight: 48
           },
           "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
             padding: "12px 18px",
@@ -619,7 +619,7 @@ var getInputOverrides = (palette, isDark) => ({
         style: {
           fontSize: "1.1rem",
           "&:not(.MuiInputBase-multiline)": {
-            height: 56
+            minHeight: 56
           },
           "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
             padding: "16px 20px",
@@ -706,8 +706,8 @@ var getControlOverrides = (palette, isDark) => ({
   MuiSwitch: {
     styleOverrides: {
       root: {
-        width: 48,
-        height: 28,
+        width: 40,
+        height: 20,
         padding: 0,
         "& .MuiSwitch-switchBase": {
           padding: 2,
@@ -722,14 +722,32 @@ var getControlOverrides = (palette, isDark) => ({
           }
         },
         "& .MuiSwitch-thumb": {
-          width: 24,
-          height: 24,
+          width: 16,
+          height: 16,
           boxShadow: palette.glass.switchShadow
         },
         "& .MuiSwitch-track": {
-          borderRadius: 28 / 2,
+          borderRadius: 20 / 2,
           backgroundColor: palette.glass.switchTrack,
           opacity: 1
+        }
+      },
+      sizeSmall: {
+        width: 32,
+        height: 18,
+        padding: 0,
+        "& .MuiSwitch-switchBase": {
+          padding: 2,
+          "&.Mui-checked": {
+            transform: "translateX(14px)"
+          }
+        },
+        "& .MuiSwitch-thumb": {
+          width: 14,
+          height: 14
+        },
+        "& .MuiSwitch-track": {
+          borderRadius: 18 / 2
         }
       }
     }

@@ -287,7 +287,7 @@ export const getInputOverrides = (palette: JivicoPalette, isDark: boolean): Comp
   MuiOutlinedInput: {
     styleOverrides: {
       root: {
-        borderRadius: 16,
+        borderRadius: 12,
         backgroundColor: palette.glass.buttonBg,
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
@@ -331,7 +331,7 @@ export const getInputOverrides = (palette: JivicoPalette, isDark: boolean): Comp
         style: {
           fontSize: '0.85rem',
           '&:not(.MuiInputBase-multiline)': {
-            height: 36,
+            minHeight: 36,
           },
           '& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)': {
             padding: '6px 14px',
@@ -348,7 +348,7 @@ export const getInputOverrides = (palette: JivicoPalette, isDark: boolean): Comp
         style: {
           fontSize: '0.9375rem',
           '&:not(.MuiInputBase-multiline)': {
-            height: 48,
+            minHeight: 48,
           },
           '& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)': {
             padding: '12px 18px',
@@ -365,7 +365,7 @@ export const getInputOverrides = (palette: JivicoPalette, isDark: boolean): Comp
         style: {
           fontSize: '1.1rem',
           '&:not(.MuiInputBase-multiline)': {
-            height: 56,
+            minHeight: 56,
           },
           '& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)': {
             padding: '16px 20px',

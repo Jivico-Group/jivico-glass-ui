@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { Box, Typography, Button, TextField } from "@mui/material";
+import { useState } from "react";
+import {
+  Box,
+  Typography,
+  // Button,
+  TextField,
+  Autocomplete,
+  Switch,
+} from "@mui/material";
 import { GlassPanel } from "../src/components/index";
 import { GradientText } from "../src/components/index";
 
@@ -17,12 +24,14 @@ export default function App() {
         bgcolor: "background.default",
       }}
     >
-      <Typography variant="h3" fontWeight={800} textAlign="center">
+      <Switch />
+      <Switch size="small" />
+      <Typography variant="h3" sx={{ fontWeight: 800, textAlign: "center" }}>
         <GradientText>Jivico Glass UI Playground</GradientText>
       </Typography>
 
       <GlassPanel>
-        <Typography variant="h6" mb={2}>
+        <Typography variant="h6" sx={{ mb: 2 }}>
           Glass Panel Test
         </Typography>
         <Typography color="text.secondary">
@@ -32,7 +41,7 @@ export default function App() {
       </GlassPanel>
 
       <GlassPanel>
-        <Typography variant="h6" mb={2}>
+        <Typography variant="h6" sx={{ mb: 2 }}>
           Inputs Test
         </Typography>
         <Box
@@ -52,12 +61,25 @@ export default function App() {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <Button variant="contained" color="primary">
+          {/* <Button variant="contained" color="primary">
             Primary Button
           </Button>
           <Button variant="outlined" color="secondary">
             Secondary Button
-          </Button>
+          </Button> */}
+          <Autocomplete
+            multiple
+            options={[
+              "Option 1",
+              "Option 2",
+              "Option 3",
+              "ajhbxahjbdxjahsbxjahsx",
+              "ajhsbxagsgajxbagsxja",
+            ]}
+            renderInput={(params) => (
+              <TextField {...params} label="Autocomplete Test" />
+            )}
+          />
         </Box>
       </GlassPanel>
     </Box>
