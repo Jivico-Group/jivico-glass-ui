@@ -330,7 +330,7 @@ var getInputOverrides = (palette, isDark) => ({
           minHeight: 48,
           borderRadius: 30,
           padding: "12px 28px",
-          fontWeight: 800,
+          fontWeight: 600,
           fontSize: "0.92rem",
           lineHeight: 1.2,
           textTransform: "none",
