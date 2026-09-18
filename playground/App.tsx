@@ -6,6 +6,9 @@ import {
   TextField,
   Autocomplete,
   Switch,
+  ButtonGroup,
+  Button,
+  Chip,
 } from "@mui/material";
 import { GlassPanel } from "../src/components/index";
 import { GradientText } from "../src/components/index";
@@ -24,6 +27,8 @@ export default function App() {
         bgcolor: "background.default",
       }}
     >
+      <Chip label="Chip Filled" />
+      <Chip label="Chip Outlined" variant="outlined" />
       <Switch />
       <Switch size="small" />
       <Typography variant="h3" sx={{ fontWeight: 800, textAlign: "center" }}>
@@ -52,6 +57,51 @@ export default function App() {
             maxWidth: 400,
           }}
         >
+          <ButtonGroup
+            size="small"
+            variant="contained"
+            aria-label="Basic button group"
+          >
+            <Button>One</Button>
+            <Button>Two</Button>
+            <Button>Three</Button>
+          </ButtonGroup>
+
+          <ButtonGroup
+            size="small"
+            variant="text"
+            aria-label="Basic button group"
+          >
+            <Button>One</Button>
+            <Button>Two</Button>
+            <Button>Three</Button>
+          </ButtonGroup>
+
+          <ButtonGroup
+            size="medium"
+            variant="outlined"
+            aria-label="Basic button group"
+          >
+            <Button>One</Button>
+            <Button>Two</Button>
+            <Button>Three</Button>
+          </ButtonGroup>
+
+          <ButtonGroup
+            size="large"
+            variant="outlined"
+            aria-label="Basic button group"
+          >
+            <Button>One</Button>
+            <Button>Two</Button>
+            <Button>Three</Button>
+          </ButtonGroup>
+
+          <TextField
+            size="small"
+            label="Standard Input"
+            placeholder="Type something..."
+          />
           <TextField label="Standard Input" placeholder="Type something..." />
           <TextField
             label="Multiline Input"
