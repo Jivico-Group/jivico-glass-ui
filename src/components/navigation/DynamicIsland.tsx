@@ -13,238 +13,326 @@ export type DynamicIslandPlacement =
   | "top-right"
   | "bottom-left"
   | "bottom-center"
-  | "bottom-right"
-  | "none";
+  | "bottom-right";
 
 export type DynamicIslandSize = "sm" | "md" | "lg";
 
-export interface DynamicIslandOffset {
-  x?: number | string;
-  y?: number | string;
-}
-
 export interface DynamicIslandProps extends BoxProps {
-  /**
-   * Floating viewport placement.
-   * If 'none' (default), renders as an inline-flex pill container.
-   * If set to a position (e.g. 'top-center'), pins the island using fixed positioning.
-   */
   placement?: DynamicIslandPlacement;
-  /**
-   * Sizing scale for the island.
-   * 'sm' ~38px height, 'md' ~48px (standard Dries Van Noten scale), 'lg' ~58px height
-   * Default: 'md'
-   */
   size?: DynamicIslandSize;
-  /**
-   * Custom offset distance from viewport edges when placement is active.
-   * Default: { x: 24, y: 20 }
-   */
-  offset?: DynamicIslandOffset;
-  /**
-   * Custom blur radius in px (default: 40px for ultra-frosted liquid diffusion)
-   */
+  offset?: number;
   blur?: number;
-  /**
-   * Explicit dark mode override. If omitted, automatically detects theme.palette.mode.
-   */
   isDark?: boolean;
-  /**
-   * If true, applies subtle elevation and glint lift on hover.
-   */
   interactive?: boolean;
 }
 
-const sizeConfig: Record<
-  DynamicIslandSize,
-  { minHeight: number; px: number; py: number; fontSize: string; gap: number }
-> = {
-  sm: { minHeight: 42, px: 1.5, py: 0.4, fontSize: "0.8125rem", gap: 1.25 },
-  md: { minHeight: 52, px: 2, py: 0.6, fontSize: "0.875rem", gap: 1.5 },
-  lg: { minHeight: 62, px: 2.5, py: 0.8, fontSize: "0.9375rem", gap: 1.75 },
-};
+const sizeConfig = {
+  sm: {
+    minHeight: 42,
+    px: 1.5,
+    py: 0.4,
+    fontSize: "0.8125rem",
+    gap: 1.25,
+  },
+
+  md: {
+    minHeight: 52,
+    px: 2,
+    py: 0.6,
+    fontSize: "0.875rem",
+    gap: 1.5,
+  },
+
+  lg: {
+    minHeight: 62,
+    px: 2.5,
+    py: 0.8,
+    fontSize: "0.9375rem",
+    gap: 1.75,
+  },
+} as const;
 
 const getPlacementStyles = (
-  placement: DynamicIslandPlacement = "none",
-  offset?: DynamicIslandOffset,
+  placement: DynamicIslandPlacement,
+  offset: number,
 ) => {
-  if (placement === "none") {
-    return {
-      position: "relative" as const,
-      display: "inline-flex" as const,
-    };
-  }
-
-  const defaultY = 10;
-  const defaultX = 20;
-
-  const topOffset = offset?.y ?? defaultY;
-  const bottomOffset = offset?.y ?? defaultY;
-  const leftOffset = offset?.x ?? defaultX;
-  const rightOffset = offset?.x ?? defaultX;
+  const topOffset = offset;
+  const bottomOffset = offset;
+  const sideOffset = 20;
 
   const baseFixed = {
     position: "fixed" as const,
-    display: "inline-flex" as const,
     zIndex: 11000,
-    willChange: "transform, opacity",
   };
 
   switch (placement) {
+    case "top-left":
+      return {
+        ...baseFixed,
+        top: topOffset,
+        left: sideOffset,
+        right: "auto",
+        width: "max-content",
+        maxWidth: "calc(100vw - 40px)",
+      };
+
     case "top-center":
       return {
         ...baseFixed,
         top: topOffset,
         left: "50%",
+        right: "auto",
+        width: "max-content",
+        maxWidth: "calc(100vw - 40px)",
         transform: "translateX(-50%)",
       };
-    case "top-left":
-      return {
-        ...baseFixed,
-        top: topOffset,
-        left: leftOffset,
-      };
+
     case "top-right":
       return {
         ...baseFixed,
         top: topOffset,
-        right: rightOffset,
+        right: sideOffset,
+        left: "auto",
+        width: "max-content",
+        maxWidth: "calc(100vw - 40px)",
       };
+
+    case "bottom-left":
+      return {
+        ...baseFixed,
+        bottom: bottomOffset,
+        left: sideOffset,
+        right: "auto",
+        width: "max-content",
+        maxWidth: "calc(100vw - 40px)",
+      };
+
     case "bottom-center":
       return {
         ...baseFixed,
         bottom: bottomOffset,
         left: "50%",
+        right: "auto",
+        width: "max-content",
+        maxWidth: "calc(100vw - 40px)",
         transform: "translateX(-50%)",
       };
-    case "bottom-left":
-      return {
-        ...baseFixed,
-        bottom: bottomOffset,
-        left: leftOffset,
-      };
+
     case "bottom-right":
       return {
         ...baseFixed,
         bottom: bottomOffset,
-        right: rightOffset,
+        right: sideOffset,
+        left: "auto",
+        width: "max-content",
+        maxWidth: "calc(100vw - 40px)",
       };
+
     default:
-      return {
-        position: "relative" as const,
-        display: "inline-flex" as const,
-      };
+      return baseFixed;
   }
 };
 
+interface StyledIslandRootProps {
+  $placement: DynamicIslandPlacement;
+  $size: DynamicIslandSize;
+  $offset: number;
+  $blur: number;
+  $isDark: boolean;
+  $interactive: boolean;
+}
+
 const StyledIslandRoot = styled(Box, {
   shouldForwardProp: (prop) =>
-    prop !== "placement" &&
-    prop !== "size" &&
-    prop !== "offset" &&
-    prop !== "blur" &&
-    prop !== "isDark" &&
-    prop !== "interactive",
-})<{
-  placement?: DynamicIslandPlacement;
-  size?: DynamicIslandSize;
-  offset?: DynamicIslandOffset;
-  blur?: number;
-  isDark?: boolean;
-  interactive?: boolean;
-}>(({
+    ![
+      "$placement",
+      "$size",
+      "$offset",
+      "$blur",
+      "$isDark",
+      "$interactive",
+    ].includes(prop as string),
+})<StyledIslandRootProps>(({
   theme,
-  placement = "none",
-  size = "md",
-  offset,
-  blur = 40,
-  isDark: explicitDark,
-  interactive,
+  $placement,
+  $size,
+  $offset,
+  $blur,
+  $isDark,
+  $interactive,
 }) => {
-  const isDark = explicitDark ?? theme.palette.mode === "dark";
-  const { minHeight, px, py, fontSize, gap } = sizeConfig[size];
-  const placementStyles = getPlacementStyles(placement, offset);
+  const config = sizeConfig[$size];
+
+  const isCentered =
+    $placement === "top-center" || $placement === "bottom-center";
 
   return {
-    ...placementStyles,
+    ...getPlacementStyles($placement, $offset),
+
+    display: "flex",
     alignItems: "center",
+    flexWrap: "nowrap",
+
+    minHeight: config.minHeight,
+
+    paddingLeft: theme.spacing(config.px),
+    paddingRight: theme.spacing(config.px),
+    paddingTop: theme.spacing(config.py),
+    paddingBottom: theme.spacing(config.py),
+
+    columnGap: theme.spacing(config.gap),
+    rowGap: theme.spacing(config.gap),
+
+    fontFamily:
+      '"SF Pro Display", "SF Pro Text", "Google Sans Flex", "Google Sans", Montserrat, "Space Grotesk", -apple-system, "system-ui", "Segoe UI", sans-serif',
+
+    fontSize: config.fontSize,
+    fontWeight: 400,
+
+    letterSpacing: "-0.01em",
+    lineHeight: 1.55,
+
     boxSizing: "border-box",
-    borderRadius: 9999,
-    minHeight,
-    padding: theme.spacing(py, px),
-    gap: theme.spacing(gap),
-    fontSize,
-    fontFamily: theme.typography.fontFamily,
 
-    // Quiet Luxury Frosted Mist Glass (Authentic Cosmos / Dries Van Noten)
-    backdropFilter: `blur(${blur}px) saturate(140%)`,
-    WebkitBackdropFilter: `blur(${blur}px) saturate(140%)`,
+    color: $isDark ? "rgba(255, 255, 255, 0.96)" : "rgb(17, 24, 39)",
 
-    backgroundColor: isDark
-      ? "rgba(255, 255, 255, 0.08)"
+    backgroundColor: $isDark
+      ? "rgba(17, 24, 39, 0.72)"
       : "rgba(255, 255, 255, 0.65)",
 
-    border: `1px solid ${
-      isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
-    }`,
+    backdropFilter: `blur(${$blur}px) saturate(1.4)`,
+    WebkitBackdropFilter: `blur(${$blur}px) saturate(1.4)`,
 
-    boxShadow: isDark
-      ? "0 8px 24px 0 rgba(0, 0, 0, 0.30)"
-      : "0 8px 24px 0 rgba(0, 0, 0, 0.05)",
+    border: $isDark
+      ? "1px solid rgba(255, 255, 255, 0.10)"
+      : "1px solid rgba(0, 0, 0, 0.08)",
 
-    color: isDark ? "#FFFFFF" : "#111827",
+    borderRadius: "9999px",
+
+    boxShadow: $isDark
+      ? "0 8px 24px rgba(0, 0, 0, 0.22)"
+      : "0 8px 24px rgba(0, 0, 0, 0.05)",
+
+    overflow: "hidden",
+
+    willChange: "transform, opacity",
+
     transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
 
-    ...(interactive && {
+    WebkitFontSmoothing: "antialiased",
+
+    scrollbarWidth: "thin",
+
+    scrollbarColor: $isDark
+      ? "rgba(255, 255, 255, 0.20) rgba(0,0,0,0)"
+      : "rgba(0, 0, 0, 0.20) rgba(0,0,0,0)",
+
+    /*
+     * Desktop / default hover behavior
+     */
+    ...($interactive && {
       cursor: "pointer",
+
       "&:hover": {
-        transform:
-          placement === "top-center" || placement === "bottom-center"
-            ? "translateX(-50%) translateY(-1.5px)"
-            : "translateY(-1.5px)",
-        backgroundColor: isDark
-          ? "rgba(255, 255, 255, 0.10)"
-          : "rgba(255, 255, 255, 0.80)",
-        borderColor: isDark
-          ? "rgba(255, 255, 255, 0.14)"
-          : "rgba(0, 0, 0, 0.12)",
-        boxShadow: isDark
-          ? "0 12px 32px 0 rgba(0, 0, 0, 0.40)"
-          : "0 12px 32px 0 rgba(0, 0, 0, 0.08)",
+        transform: isCentered
+          ? "translateX(-50%) translateY(-1.5px)"
+          : "translateY(-1.5px)",
+      },
+
+      "&:active": {
+        transform: isCentered
+          ? "translateX(-50%) translateY(0)"
+          : "translateY(0)",
       },
     }),
+
+    /*
+     * SMALL SCREENS
+     *
+     * Centered islands remain content-sized.
+     *
+     * Small content:
+     *   width = content
+     *
+     * Large content:
+     *   width grows naturally
+     *
+     * Very large content:
+     *   max-width = viewport - 20px
+     *
+     * Therefore there is always at least
+     * 10px of space on both sides.
+     */
+    "@media (max-width: 600px)": {
+      ...(isCentered && {
+        left: "50% !important",
+        right: "auto !important",
+        width: "max-content !important",
+        maxWidth: "calc(100vw - 20px) !important",
+        transform: "translateX(-50%) !important",
+      }),
+
+      ...($interactive && {
+        "&:hover": {
+          ...(isCentered
+            ? {
+                transform: "translateX(-50%) translateY(-1.5px) !important",
+              }
+            : {
+                transform: "translateY(-1.5px)",
+              }),
+        },
+
+        "&:active": {
+          ...(isCentered
+            ? {
+                transform: "translateX(-50%) translateY(0) !important",
+              }
+            : {
+                transform: "translateY(0)",
+              }),
+        },
+      }),
+    },
+
+    /*
+     * VERY SMALL PHONES
+     */
+    "@media (max-width: 380px)": {
+      ...(isCentered && {
+        left: "50% !important",
+        right: "auto !important",
+        width: "max-content !important",
+        maxWidth: "calc(100vw - 20px) !important",
+        transform: "translateX(-50%) !important",
+      }),
+    },
   };
 });
 
-/**
- * DynamicIsland — Liquid Glass floating capsule island component inspired by Apple & Dries Van Noten Cosmos.
- *
- * Accepts arbitrary children and supports viewport edge placement ('top-center', 'bottom-center', etc.)
- * or standard inline-flex flow ('none'). Automatically adapts to Light and Dark modes.
- */
 export const DynamicIsland = forwardRef<HTMLDivElement, DynamicIslandProps>(
-  (
+  function DynamicIsland(
     {
-      children,
-      placement = "none",
+      placement = "top-center",
       size = "md",
-      offset,
-      blur,
-      isDark,
+      offset = 10,
+      blur = 32,
+      isDark = false,
       interactive = false,
+      children,
       ...props
     },
     ref,
-  ) => {
+  ) {
     return (
       <StyledIslandRoot
         ref={ref}
-        placement={placement}
-        size={size}
-        offset={offset}
-        blur={blur}
-        isDark={isDark}
-        interactive={interactive}
+        $placement={placement}
+        $size={size}
+        $offset={offset}
+        $blur={blur}
+        $isDark={isDark}
+        $interactive={interactive}
         {...props}
       >
         {children}
@@ -255,123 +343,140 @@ export const DynamicIsland = forwardRef<HTMLDivElement, DynamicIslandProps>(
 
 DynamicIsland.displayName = "DynamicIsland";
 
-/* ==========================================================================
-   Companion Nested Sub-Pill Component (DynamicIslandPill)
-   Replicates the nested sub-pills like "⚪ Dries Van Noten" or "+ Create"
-   ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* Dynamic Island Pill                                                        */
+/* -------------------------------------------------------------------------- */
 
 export interface DynamicIslandPillProps extends ButtonBaseProps {
-  /**
-   * Leading icon or avatar element
-   */
-  startIcon?: React.ReactNode;
-  /**
-   * Trailing icon or chevron element
-   */
-  endIcon?: React.ReactNode;
-  /**
-   * Explicit dark mode override
-   */
   isDark?: boolean;
-  /**
-   * Active state (solid subtle highlight)
-   */
   active?: boolean;
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
 }
 
-const StyledPillButton = styled(ButtonBase, {
-  shouldForwardProp: (prop) => prop !== "isDark" && prop !== "active",
-})<{ isDark?: boolean; active?: boolean }>(({
-  theme,
-  isDark: explicitDark,
-  active,
-}) => {
-  const isDark = explicitDark ?? theme.palette.mode === "dark";
+interface StyledIslandPillProps {
+  isDark: boolean;
+  active: boolean;
+}
 
-  return {
-    borderRadius: 9999,
-    height: 36,
-    padding: "0 14px",
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: theme.spacing(0.85),
-    fontSize: "0.8125rem",
-    fontWeight: 600,
-    fontFamily: theme.typography.fontFamily,
-    lineHeight: 1,
-    color: isDark ? "#FFFFFF" : "#111827",
-    cursor: "pointer",
-    whiteSpace: "nowrap",
-    boxSizing: "border-box",
+const StyledIslandPill = styled(ButtonBase, {
+  shouldForwardProp: (prop) =>
+    prop !== "isDark" &&
+    prop !== "active" &&
+    prop !== "startIcon" &&
+    prop !== "endIcon",
+})<StyledIslandPillProps>(({ isDark, active }) => ({
+  height: 36,
 
-    backgroundColor: active
-      ? isDark
-        ? "rgba(255, 255, 255, 0.16)"
-        : "rgba(255, 255, 255, 0.95)"
-      : isDark
-        ? "rgba(255, 255, 255, 0.08)"
-        : "rgba(255, 255, 255, 0.75)",
+  minWidth: 36,
 
-    border: `1px solid ${
-      active
-        ? isDark
-          ? "rgba(255, 255, 255, 0.24)"
-          : "rgba(0, 0, 0, 0.16)"
-        : isDark
-          ? "rgba(255, 255, 255, 0.14)"
-          : "rgba(0, 0, 0, 0.08)"
-    }`,
+  padding: "0 14px",
 
-    boxShadow: isDark ? "none" : "0 1px 3px rgba(0, 0, 0, 0.04)",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
 
-    transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+  gap: "0.85rem",
 
-    "&:hover": {
-      backgroundColor: isDark
-        ? "rgba(255, 255, 255, 0.14)"
-        : "rgba(255, 255, 255, 0.95)",
-      borderColor: isDark ? "rgba(255, 255, 255, 0.24)" : "rgba(0, 0, 0, 0.15)",
-    },
+  flexShrink: 0,
 
-    "&:active": {
-      transform: "scale(0.98)",
-    },
-  };
-});
+  borderRadius: "9999px",
+
+  color: isDark ? "rgba(255, 255, 255, 0.96)" : "rgb(17, 24, 39)",
+
+  backgroundColor: active
+    ? isDark
+      ? "rgba(255, 255, 255, 0.16)"
+      : "rgba(0, 0, 0, 0.08)"
+    : isDark
+      ? "rgba(255, 255, 255, 0.08)"
+      : "rgba(255, 255, 255, 0.55)",
+
+  border: active
+    ? isDark
+      ? "1px solid rgba(255, 255, 255, 0.16)"
+      : "1px solid rgba(0, 0, 0, 0.10)"
+    : isDark
+      ? "1px solid rgba(255, 255, 255, 0.10)"
+      : "1px solid rgba(0, 0, 0, 0.06)",
+
+  font: "inherit",
+
+  whiteSpace: "nowrap",
+
+  transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+
+  "&:hover": {
+    backgroundColor: isDark
+      ? "rgba(255, 255, 255, 0.13)"
+      : "rgba(255, 255, 255, 0.78)",
+
+    transform: "translateY(-1px)",
+  },
+
+  "&:active": {
+    transform: "translateY(0)",
+  },
+
+  "&:focus-visible": {
+    outline: isDark
+      ? "2px solid rgba(255, 255, 255, 0.45)"
+      : "2px solid rgba(0, 0, 0, 0.25)",
+
+    outlineOffset: 2,
+  },
+}));
 
 export const DynamicIslandPill = forwardRef<
   HTMLButtonElement,
   DynamicIslandPillProps
->(({ children, startIcon, endIcon, isDark, active, ...props }, ref) => {
+>(function DynamicIslandPill(
+  { isDark = false, active = false, startIcon, endIcon, children, ...props },
+  ref,
+) {
   return (
-    <StyledPillButton ref={ref} isDark={isDark} active={active} {...props}>
+    <StyledIslandPill ref={ref} isDark={isDark} active={active} {...props}>
       {startIcon && (
         <Box
           component="span"
           sx={{
             display: "inline-flex",
             alignItems: "center",
-            fontSize: "1rem",
+            justifyContent: "center",
+            flexShrink: 0,
+            lineHeight: 0,
           }}
         >
           {startIcon}
         </Box>
       )}
-      {children}
+
+      <Box
+        component="span"
+        sx={{
+          display: "inline-flex",
+          alignItems: "center",
+          minWidth: 0,
+        }}
+      >
+        {children}
+      </Box>
+
       {endIcon && (
         <Box
           component="span"
           sx={{
             display: "inline-flex",
             alignItems: "center",
-            fontSize: "0.9rem",
+            justifyContent: "center",
+            flexShrink: 0,
+            lineHeight: 0,
           }}
         >
           {endIcon}
         </Box>
       )}
-    </StyledPillButton>
+    </StyledIslandPill>
   );
 });
 

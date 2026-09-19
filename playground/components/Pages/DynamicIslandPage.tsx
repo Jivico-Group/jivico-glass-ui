@@ -47,8 +47,20 @@ import {
 } from "../../../src/components/navigation/DynamicIsland.js";
 
 // Authentic Cosmos SVG Icons from reference
-const CosmosRosetteIcon = ({ size = 20, color = "currentColor" }: { size?: number; color?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+const CosmosRosetteIcon = ({
+  size = 20,
+  color = "currentColor",
+}: {
+  size?: number;
+  color?: string;
+}) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <circle cx="12" cy="4.2" r="2.2" fill={color} />
     <circle cx="18.8" cy="8.1" r="2.2" fill={color} />
     <circle cx="18.8" cy="15.9" r="2.2" fill={color} />
@@ -58,8 +70,23 @@ const CosmosRosetteIcon = ({ size = 20, color = "currentColor" }: { size?: numbe
   </svg>
 );
 
-const CosmosScanIcon = ({ size = 16, color = "currentColor" }: { size?: number; color?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+const CosmosScanIcon = ({
+  size = 16,
+  color = "currentColor",
+}: {
+  size?: number;
+  color?: string;
+}) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={color}
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <path d="M7 3H5a2 2 0 0 0-2 2v2" />
     <path d="M17 3h2a2 2 0 0 1 2 2v2" />
     <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
@@ -68,8 +95,20 @@ const CosmosScanIcon = ({ size = 16, color = "currentColor" }: { size?: number; 
   </svg>
 );
 
-const CosmosGalaxyIcon = ({ size = 16, color = "currentColor" }: { size?: number; color?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+const CosmosGalaxyIcon = ({
+  size = 16,
+  color = "currentColor",
+}: {
+  size?: number;
+  color?: string;
+}) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <circle cx="12" cy="3.5" r="1.6" fill={color} />
     <circle cx="18" cy="6" r="1.6" fill={color} fillOpacity="0.85" />
     <circle cx="20.5" cy="12" r="1.6" fill={color} fillOpacity="0.70" />
@@ -86,12 +125,18 @@ export const DynamicIslandPage: React.FC = () => {
   const isDark = mode === "dark";
 
   // Interactive Live Controls
-  const [activePlacement, setActivePlacement] = useState<DynamicIslandPlacement>("none");
+  const [activePlacement, setActivePlacement] = useState<
+    DynamicIslandPlacement | "none"
+  >("none");
   const [activeSize, setActiveSize] = useState<DynamicIslandSize>("md");
   const [liveBlur, setLiveBlur] = useState<number>(32);
-  const [activeCanvas, setActiveCanvas] = useState<"runway" | "portrait" | "obsidian">("runway");
+  const [activeCanvas, setActiveCanvas] = useState<
+    "runway" | "portrait" | "obsidian"
+  >("runway");
   const [isPlaying, setIsPlaying] = useState(false);
-  const [activeTab, setActiveTab] = useState<"for-you" | "following" | "explore" | "shop">("for-you");
+  const [activeTab, setActiveTab] = useState<
+    "for-you" | "following" | "explore" | "shop"
+  >("for-you");
   const [audioVolume, setAudioVolume] = useState<number>(75);
 
   const canvasBackground = {
@@ -157,12 +202,21 @@ export const DynamicIslandPage: React.FC = () => {
             mb: 2.5,
             p: 1.5,
             borderRadius: 3,
-            bgcolor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.02)",
+            bgcolor: isDark
+              ? "rgba(255, 255, 255, 0.03)"
+              : "rgba(0, 0, 0, 0.02)",
             border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.05)"}`,
           }}
         >
           {/* Canvas Selector */}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              flexWrap: "wrap",
+            }}
+          >
             <Typography sx={{ fontSize: "0.8rem", fontWeight: 700, mr: 0.5 }}>
               Backdrop:
             </Typography>
@@ -188,9 +242,29 @@ export const DynamicIslandPage: React.FC = () => {
           </Box>
 
           {/* Quick Theme Switcher & Blur Slider */}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, flexWrap: "wrap" }}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, minWidth: 160 }}>
-              <Typography sx={{ fontSize: "0.78rem", fontWeight: 600, whiteSpace: "nowrap" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 2.5,
+              flexWrap: "wrap",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1.5,
+                minWidth: 160,
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: "0.78rem",
+                  fontWeight: 600,
+                  whiteSpace: "nowrap",
+                }}
+              >
                 Frost: {liveBlur}px
               </Typography>
               <Slider
@@ -205,7 +279,13 @@ export const DynamicIslandPage: React.FC = () => {
 
             <DynamicIslandPill
               onClick={toggleTheme}
-              startIcon={isDark ? <Sun size={14} color="#FBBF24" /> : <Moon size={14} color="#8B5CF6" />}
+              startIcon={
+                isDark ? (
+                  <Sun size={14} color="#FBBF24" />
+                ) : (
+                  <Moon size={14} color="#8B5CF6" />
+                )
+              }
             >
               {isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
             </DynamicIslandPill>
@@ -259,42 +339,53 @@ export const DynamicIslandPage: React.FC = () => {
               >
                 <CosmosRosetteIcon size={18} />
               </Box>
-              {(["For You", "Following", "Explore", "Shop"] as const).map((tab) => {
-                const tabKey = tab.toLowerCase().replace(" ", "-") as typeof activeTab;
-                const active = activeTab === tabKey;
-                return (
-                  <Typography
-                    key={tab}
-                    onClick={() => setActiveTab(tabKey)}
-                    sx={{
-                      fontSize: "0.85rem",
-                      fontWeight: active ? 600 : 500,
-                      color: active
-                        ? isDark
-                          ? "#FFFFFF"
-                          : "#111827"
-                        : isDark
-                        ? "rgba(255, 255, 255, 0.65)"
-                        : "rgba(17, 24, 39, 0.60)",
-                      cursor: "pointer",
-                      px: 0.75,
-                      py: 0.25,
-                      borderRadius: 9999,
-                      transition: "all 0.2s ease",
-                      "&:hover": {
-                        color: isDark ? "#FFFFFF" : "#000000",
-                        bgcolor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.04)",
-                      },
-                    }}
-                  >
-                    {tab}
-                  </Typography>
-                );
-              })}
+              {(["For You", "Following", "Explore", "Shop"] as const).map(
+                (tab) => {
+                  const tabKey = tab
+                    .toLowerCase()
+                    .replace(" ", "-") as typeof activeTab;
+                  const active = activeTab === tabKey;
+                  return (
+                    <Typography
+                      key={tab}
+                      onClick={() => setActiveTab(tabKey)}
+                      sx={{
+                        fontSize: "0.85rem",
+                        fontWeight: active ? 600 : 500,
+                        color: active
+                          ? isDark
+                            ? "#FFFFFF"
+                            : "#111827"
+                          : isDark
+                            ? "rgba(255, 255, 255, 0.65)"
+                            : "rgba(17, 24, 39, 0.60)",
+                        cursor: "pointer",
+                        px: 0.75,
+                        py: 0.25,
+                        borderRadius: 9999,
+                        transition: "all 0.2s ease",
+                        "&:hover": {
+                          color: isDark ? "#FFFFFF" : "#000000",
+                          bgcolor: isDark
+                            ? "rgba(255, 255, 255, 0.08)"
+                            : "rgba(0, 0, 0, 0.04)",
+                        },
+                      }}
+                    >
+                      {tab}
+                    </Typography>
+                  );
+                },
+              )}
             </DynamicIsland>
 
             {/* Middle Island: Nested Brand Sub-Pill & Search */}
-            <DynamicIsland interactive size="md" blur={liveBlur} sx={{ flexGrow: { xs: 1, md: 0 }, minWidth: { md: 400 } }}>
+            <DynamicIsland
+              interactive
+              size="md"
+              blur={liveBlur}
+              sx={{ flexGrow: { xs: 1, md: 0 }, minWidth: { md: 400 } }}
+            >
               {/* Nested brand capsule pill */}
               <DynamicIslandPill
                 startIcon={
@@ -326,14 +417,23 @@ export const DynamicIslandPage: React.FC = () => {
                   "& input": {
                     py: 0,
                     "&::placeholder": {
-                      color: isDark ? "rgba(255, 255, 255, 0.55)" : "rgba(17, 24, 39, 0.50)",
+                      color: isDark
+                        ? "rgba(255, 255, 255, 0.55)"
+                        : "rgba(17, 24, 39, 0.50)",
                       opacity: 1,
                     },
                   },
                 }}
               />
 
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1, opacity: 0.85 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                  opacity: 0.85,
+                }}
+              >
                 <Tooltip title="Scan Lookbook QR">
                   <IconButton size="small" sx={{ p: 0.5, color: "inherit" }}>
                     <CosmosScanIcon size={16} />
@@ -349,7 +449,9 @@ export const DynamicIslandPage: React.FC = () => {
 
             {/* Right Island: Action Pill & Profile */}
             <DynamicIsland interactive size="md" blur={liveBlur}>
-              <DynamicIslandPill startIcon={<Plus size={15} strokeWidth={2.5} />}>
+              <DynamicIslandPill
+                startIcon={<Plus size={15} strokeWidth={2.5} />}
+              >
                 Create
               </DynamicIslandPill>
               <Tooltip title="Quick Actions">
@@ -365,12 +467,20 @@ export const DynamicIslandPage: React.FC = () => {
                   cursor: "pointer",
                   p: 0.25,
                   borderRadius: 9999,
-                  "&:hover": { bgcolor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.04)" },
+                  "&:hover": {
+                    bgcolor: isDark
+                      ? "rgba(255, 255, 255, 0.08)"
+                      : "rgba(0, 0, 0, 0.04)",
+                  },
                 }}
               >
                 <Avatar
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=120&auto=format&fit=crop"
-                  sx={{ width: 28, height: 28, border: "1px solid rgba(255,255,255,0.2)" }}
+                  sx={{
+                    width: 28,
+                    height: 28,
+                    border: "1px solid rgba(255,255,255,0.2)",
+                  }}
                 />
                 <ChevronDown size={14} style={{ opacity: 0.7 }} />
               </Box>
@@ -378,7 +488,14 @@ export const DynamicIslandPage: React.FC = () => {
           </Box>
 
           {/* Bottom editorial badge */}
-          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", mt: 12 }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              mt: 12,
+            }}
+          >
             <Box>
               <Typography
                 sx={{
@@ -398,7 +515,8 @@ export const DynamicIslandPage: React.FC = () => {
                   textShadow: "0 1px 8px rgba(0,0,0,0.6)",
                 }}
               >
-                Ultra-frosted liquid glass with optical diffusion over saturated background imagery.
+                Ultra-frosted liquid glass with optical diffusion over saturated
+                background imagery.
               </Typography>
             </Box>
           </Box>
@@ -414,7 +532,10 @@ export const DynamicIslandPage: React.FC = () => {
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: { xs: "repeat(2, 1fr)", sm: "repeat(4, 1fr)" },
+              gridTemplateColumns: {
+                xs: "repeat(2, 1fr)",
+                sm: "repeat(4, 1fr)",
+              },
               gap: 1.5,
             }}
           >
@@ -431,7 +552,9 @@ export const DynamicIslandPage: React.FC = () => {
               return (
                 <Box
                   key={p.value}
-                  onClick={() => setActivePlacement(p.value as DynamicIslandPlacement)}
+                  onClick={() =>
+                    setActivePlacement(p.value as DynamicIslandPlacement)
+                  }
                   sx={{
                     p: 1.75,
                     borderRadius: 3,
@@ -441,16 +564,16 @@ export const DynamicIslandPage: React.FC = () => {
                           ? "#F472B6"
                           : "#DB2777"
                         : isDark
-                        ? "rgba(255, 255, 255, 0.1)"
-                        : "rgba(0, 0, 0, 0.08)"
+                          ? "rgba(255, 255, 255, 0.1)"
+                          : "rgba(0, 0, 0, 0.08)"
                     }`,
                     bgcolor: active
                       ? isDark
                         ? "rgba(244, 114, 182, 0.12)"
                         : "rgba(219, 39, 119, 0.08)"
                       : isDark
-                      ? "rgba(255, 255, 255, 0.03)"
-                      : "rgba(0, 0, 0, 0.02)",
+                        ? "rgba(255, 255, 255, 0.03)"
+                        : "rgba(0, 0, 0, 0.02)",
                     cursor: "pointer",
                     transition: "all 0.2s ease",
                     display: "flex",
@@ -458,11 +581,17 @@ export const DynamicIslandPage: React.FC = () => {
                     justifyContent: "space-between",
                     "&:hover": {
                       transform: "translateY(-2px)",
-                      borderColor: active ? undefined : isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(0, 0, 0, 0.2)",
+                      borderColor: active
+                        ? undefined
+                        : isDark
+                          ? "rgba(255, 255, 255, 0.25)"
+                          : "rgba(0, 0, 0, 0.2)",
                     },
                   }}
                 >
-                  <Typography sx={{ fontSize: "0.84rem", fontWeight: active ? 700 : 500 }}>
+                  <Typography
+                    sx={{ fontSize: "0.84rem", fontWeight: active ? 700 : 500 }}
+                  >
                     {p.label}
                   </Typography>
                   {active && (
@@ -516,9 +645,25 @@ export const DynamicIslandPage: React.FC = () => {
         title="Accepts Any Arbitrary Children"
         description="Because DynamicIsland is an unopinionated container, you can place music player controls, notifications, quick sliders, or segmented action docks inside."
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 3, alignItems: "center", py: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 3,
+            alignItems: "center",
+            py: 2,
+          }}
+        >
           {/* Example A: Apple Music / Spotify Glass Island */}
-          <DynamicIsland interactive size="lg" sx={{ maxWidth: 520, width: "100%", justifyContent: "space-between" }}>
+          <DynamicIsland
+            interactive
+            size="lg"
+            sx={{
+              maxWidth: 520,
+              width: "100%",
+              justifyContent: "space-between",
+            }}
+          >
             <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
               <Avatar
                 variant="rounded"
@@ -526,7 +671,9 @@ export const DynamicIslandPage: React.FC = () => {
                 sx={{ width: 38, height: 38, borderRadius: 2.5 }}
               />
               <Box>
-                <Typography sx={{ fontSize: "0.84rem", fontWeight: 700, lineHeight: 1.2 }}>
+                <Typography
+                  sx={{ fontSize: "0.84rem", fontWeight: 700, lineHeight: 1.2 }}
+                >
                   Midnight City
                 </Typography>
                 <Typography sx={{ fontSize: "0.72rem", opacity: 0.65 }}>
@@ -541,14 +688,22 @@ export const DynamicIslandPage: React.FC = () => {
                 onClick={() => setIsPlaying(!isPlaying)}
                 sx={{
                   p: 0.8,
-                  bgcolor: isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.08)",
+                  bgcolor: isDark
+                    ? "rgba(255, 255, 255, 0.15)"
+                    : "rgba(0, 0, 0, 0.08)",
                   color: "inherit",
                   "&:hover": {
-                    bgcolor: isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(0, 0, 0, 0.15)",
+                    bgcolor: isDark
+                      ? "rgba(255, 255, 255, 0.25)"
+                      : "rgba(0, 0, 0, 0.15)",
                   },
                 }}
               >
-                {isPlaying ? <Pause size={16} /> : <Play size={16} fill="currentColor" />}
+                {isPlaying ? (
+                  <Pause size={16} />
+                ) : (
+                  <Play size={16} fill="currentColor" />
+                )}
               </IconButton>
               <IconButton size="small" sx={{ p: 0.8, color: "inherit" }}>
                 <SkipForward size={16} />
@@ -571,7 +726,9 @@ export const DynamicIslandPage: React.FC = () => {
                 width: 26,
                 height: 26,
                 borderRadius: "50%",
-                bgcolor: isDark ? "rgba(59, 130, 246, 0.2)" : "rgba(59, 130, 246, 0.12)",
+                bgcolor: isDark
+                  ? "rgba(59, 130, 246, 0.2)"
+                  : "rgba(59, 130, 246, 0.12)",
                 color: "#3B82F6",
                 display: "flex",
                 alignItems: "center",
@@ -633,14 +790,26 @@ export const DynamicIslandPage: React.FC = () => {
               gap: 2,
             }}
           >
-            <Typography sx={{ fontSize: "0.78rem", fontWeight: 700, color: "#64748B", textTransform: "uppercase" }}>
+            <Typography
+              sx={{
+                fontSize: "0.78rem",
+                fontWeight: 700,
+                color: "#64748B",
+                textTransform: "uppercase",
+              }}
+            >
               Forced Light Mode Surface
             </Typography>
             <DynamicIsland isDark={false} size="md">
-              <DynamicIslandPill isDark={false} startIcon={<Sparkles size={14} />}>
+              <DynamicIslandPill
+                isDark={false}
+                startIcon={<Sparkles size={14} />}
+              >
                 Dries Van Noten
               </DynamicIslandPill>
-              <Typography sx={{ fontSize: "0.82rem", color: "rgba(17,24,39,0.7)" }}>
+              <Typography
+                sx={{ fontSize: "0.82rem", color: "rgba(17,24,39,0.7)" }}
+              >
                 Search lookbook...
               </Typography>
               <DynamicIslandPill isDark={false} active>
@@ -664,14 +833,26 @@ export const DynamicIslandPage: React.FC = () => {
               gap: 2,
             }}
           >
-            <Typography sx={{ fontSize: "0.78rem", fontWeight: 700, color: "#94A3B8", textTransform: "uppercase" }}>
+            <Typography
+              sx={{
+                fontSize: "0.78rem",
+                fontWeight: 700,
+                color: "#94A3B8",
+                textTransform: "uppercase",
+              }}
+            >
               Forced Dark Mode Surface
             </Typography>
             <DynamicIsland isDark={true} size="md">
-              <DynamicIslandPill isDark={true} startIcon={<Sparkles size={14} />}>
+              <DynamicIslandPill
+                isDark={true}
+                startIcon={<Sparkles size={14} />}
+              >
                 Dries Van Noten
               </DynamicIslandPill>
-              <Typography sx={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.7)" }}>
+              <Typography
+                sx={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.7)" }}
+              >
                 Search lookbook...
               </Typography>
               <DynamicIslandPill isDark={true} active>

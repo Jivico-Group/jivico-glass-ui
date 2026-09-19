@@ -783,67 +783,22 @@ declare const TribeMemberPill: _emotion_styled.StyledComponent<_mui_system.BoxOw
 }, {}, {}>;
 declare const LiquidGlassCard: _emotion_styled.StyledComponent<_mui_system.BoxOwnProps<_mui_material.Theme> & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof _mui_system.BoxOwnProps<_mui_material.Theme>> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & LiquidGlassCardRootProps, {}, {}>;
 
-type DynamicIslandPlacement = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right" | "none";
+type DynamicIslandPlacement = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
 type DynamicIslandSize = "sm" | "md" | "lg";
-interface DynamicIslandOffset {
-    x?: number | string;
-    y?: number | string;
-}
 interface DynamicIslandProps extends BoxProps {
-    /**
-     * Floating viewport placement.
-     * If 'none' (default), renders as an inline-flex pill container.
-     * If set to a position (e.g. 'top-center'), pins the island using fixed positioning.
-     */
     placement?: DynamicIslandPlacement;
-    /**
-     * Sizing scale for the island.
-     * 'sm' ~38px height, 'md' ~48px (standard Dries Van Noten scale), 'lg' ~58px height
-     * Default: 'md'
-     */
     size?: DynamicIslandSize;
-    /**
-     * Custom offset distance from viewport edges when placement is active.
-     * Default: { x: 24, y: 20 }
-     */
-    offset?: DynamicIslandOffset;
-    /**
-     * Custom blur radius in px (default: 40px for ultra-frosted liquid diffusion)
-     */
+    offset?: number;
     blur?: number;
-    /**
-     * Explicit dark mode override. If omitted, automatically detects theme.palette.mode.
-     */
     isDark?: boolean;
-    /**
-     * If true, applies subtle elevation and glint lift on hover.
-     */
     interactive?: boolean;
 }
-/**
- * DynamicIsland — Liquid Glass floating capsule island component inspired by Apple & Dries Van Noten Cosmos.
- *
- * Accepts arbitrary children and supports viewport edge placement ('top-center', 'bottom-center', etc.)
- * or standard inline-flex flow ('none'). Automatically adapts to Light and Dark modes.
- */
 declare const DynamicIsland: react__default.ForwardRefExoticComponent<Omit<DynamicIslandProps, "ref"> & react__default.RefAttributes<HTMLDivElement>>;
 interface DynamicIslandPillProps extends ButtonBaseProps {
-    /**
-     * Leading icon or avatar element
-     */
-    startIcon?: react__default.ReactNode;
-    /**
-     * Trailing icon or chevron element
-     */
-    endIcon?: react__default.ReactNode;
-    /**
-     * Explicit dark mode override
-     */
     isDark?: boolean;
-    /**
-     * Active state (solid subtle highlight)
-     */
     active?: boolean;
+    startIcon?: react__default.ReactNode;
+    endIcon?: react__default.ReactNode;
 }
 declare const DynamicIslandPill: react__default.ForwardRefExoticComponent<Omit<DynamicIslandPillProps, "ref"> & react__default.RefAttributes<HTMLButtonElement>>;
 
@@ -869,4 +824,4 @@ interface JivicoThemeProviderProps {
 }
 declare function JivicoThemeProvider({ children, defaultMode, storageKey, enableCssBaseline, }: JivicoThemeProviderProps): react__default.JSX.Element;
 
-export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, DynamicIsland, type DynamicIslandOffset, DynamicIslandPill, type DynamicIslandPillProps, type DynamicIslandPlacement, type DynamicIslandProps, type DynamicIslandSize, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, type JivicoPalette, JivicoThemeProvider, type JivicoThemeProviderProps, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PageRoot, Section, SectionContainer, SectionHeader, type SectionHeaderProps, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, SupportedTypeChip, type ThemeContextType, type ThemeMode, ThemeModeProvider, type ThemeModeProviderProps, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };
+export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, DynamicIsland, DynamicIslandPill, type DynamicIslandPillProps, type DynamicIslandPlacement, type DynamicIslandProps, type DynamicIslandSize, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, type JivicoPalette, JivicoThemeProvider, type JivicoThemeProviderProps, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PageRoot, Section, SectionContainer, SectionHeader, type SectionHeaderProps, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, SupportedTypeChip, type ThemeContextType, type ThemeMode, ThemeModeProvider, type ThemeModeProviderProps, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };
