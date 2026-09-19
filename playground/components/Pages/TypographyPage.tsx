@@ -20,7 +20,7 @@ export const TypographyPage: React.FC = () => {
       <DemoBlock
         id="gradient-text"
         title="Gradient Text"
-        description="A specialized text component applying Apple/Antigravity specular gradients across headings."
+        description="A specialized text component applying Apple specular gradients across headings."
         code={`import { GradientText } from 'jivico-glass-ui';
 
 <Typography variant="h3">
@@ -44,7 +44,14 @@ export const TypographyPage: React.FC = () => {
 <Typography variant="h5">h5. Heading</Typography>
 <Typography variant="h6">h6. Heading</Typography>`}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, width: "100%" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 1.5,
+            width: "100%",
+          }}
+        >
           <Typography variant="h3" sx={{ fontWeight: 800 }}>
             h3. Heading (2.5rem / 40px)
           </Typography>
@@ -58,7 +65,8 @@ export const TypographyPage: React.FC = () => {
             h6. Heading (1.25rem / 20px)
           </Typography>
           <Typography variant="body1" color="text.secondary">
-            body1. Montserrat / Space Grotesk body typography with comfortable 1.6 line height and optical kerning.
+            body1. Montserrat / Space Grotesk body typography with comfortable
+            1.6 line height and optical kerning.
           </Typography>
           <Typography variant="caption" color="text.secondary">
             caption. Metadata and auxiliary text tokens.

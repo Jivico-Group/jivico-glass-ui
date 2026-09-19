@@ -1,5 +1,5 @@
 import { createTheme, responsiveFontSizes, Theme } from "@mui/material/styles";
-import { buildPalette, JivicoPalette } from "./palette.js";
+import { buildPalette } from "./palette.js";
 import { typography } from "./typography.js";
 import { getInputOverrides } from "./overrides/inputs.js";
 import { getControlOverrides } from "./overrides/controls.js";
@@ -7,6 +7,7 @@ import { getDataDisplayOverrides } from "./overrides/dataDisplay.js";
 import { getFeedbackOverrides } from "./overrides/feedback.js";
 import { getSurfaceOverrides } from "./overrides/surfaces.js";
 import { getNavigationOverrides } from "./overrides/navigation.js";
+import "./augmentations.d.ts";
 
 export const GOOGLE_SANS_FLEX_URL =
   "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
@@ -16,7 +17,7 @@ export const JIVICO_BRAND_FONTS_URL =
   "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
 
 /**
- * Jivico Comprehensive Design System: Apple Precision + Google Antigravity
+ * Jivico Comprehensive Design System
  *
  * Composes the full MUI theme from modular pieces:
  *  - colors.ts        → raw color constants
@@ -110,14 +111,14 @@ function buildTheme(mode: "light" | "dark"): Theme {
   return responsiveFontSizes(theme);
 }
 
-export const getHybridTheme = (mode: "light" | "dark"): Theme => {
+export const JivicoGlassTheme = (mode: "light" | "dark"): Theme => {
   if (!themeCache[mode]) {
     themeCache[mode] = buildTheme(mode);
   }
+
   return themeCache[mode]!;
 };
 
-export const getAppleTheme = getHybridTheme;
-export const getAntigravityTheme = getHybridTheme;
-export const createJivicoTheme = getHybridTheme;
-export default getHybridTheme("light");
+export const createJivicoTheme = JivicoGlassTheme;
+
+export default JivicoGlassTheme;

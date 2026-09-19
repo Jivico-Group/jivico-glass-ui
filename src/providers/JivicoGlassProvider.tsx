@@ -1,8 +1,12 @@
-import React, { useMemo } from 'react';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { getAntigravityTheme } from '../theme/theme.js';
-import { ThemeModeProvider, useThemeMode, ThemeMode } from '../context/ThemeContext.js';
+import React, { useMemo } from "react";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import JivicoGlassTheme from "../theme/theme.js";
+import {
+  ThemeModeProvider,
+  useThemeMode,
+  ThemeMode,
+} from "../context/ThemeContext.js";
 
 function InternalMuiWrapper({
   children,
@@ -12,7 +16,7 @@ function InternalMuiWrapper({
   enableCssBaseline?: boolean;
 }) {
   const { mode } = useThemeMode();
-  const theme = useMemo(() => getAntigravityTheme(mode), [mode]);
+  const theme = useMemo(() => JivicoGlassTheme(mode), [mode]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -22,19 +26,19 @@ function InternalMuiWrapper({
   );
 }
 
-export interface JivicoThemeProviderProps {
+export interface JivicoGlassProviderProps {
   children: React.ReactNode;
   defaultMode?: ThemeMode;
   storageKey?: string;
   enableCssBaseline?: boolean;
 }
 
-export function JivicoThemeProvider({
+export function JivicoGlassProvider({
   children,
-  defaultMode = 'light',
-  storageKey = 'jivico-theme-mode',
+  defaultMode = "light",
+  storageKey = "jivico-theme-mode",
   enableCssBaseline = true,
-}: JivicoThemeProviderProps) {
+}: JivicoGlassProviderProps) {
   return (
     <ThemeModeProvider defaultMode={defaultMode} storageKey={storageKey}>
       <InternalMuiWrapper enableCssBaseline={enableCssBaseline}>

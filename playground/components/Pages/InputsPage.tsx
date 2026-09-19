@@ -551,7 +551,7 @@ export const InputsPage: React.FC = () => {
   label="Project Notes"
   multiline
   rows={4}
-  defaultValue="Jivico Glass UI is designed with Apple Precision and Google Antigravity..."
+  defaultValue="Jivico Glass UI is designed with Apple Precision and Google..."
   fullWidth
 />`}
       >

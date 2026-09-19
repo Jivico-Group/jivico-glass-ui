@@ -189,13 +189,13 @@ export const ColorsPage: React.FC = () => {
   const { mode } = useThemeMode();
   const isDark = mode === "dark";
   const [semanticMode, setSemanticMode] = useState<"light" | "dark">(
-    isDark ? "dark" : "light"
+    isDark ? "dark" : "light",
   );
   const [primaryMode, setPrimaryMode] = useState<"light" | "dark">(
-    isDark ? "dark" : "light"
+    isDark ? "dark" : "light",
   );
   const [glassMode, setGlassMode] = useState<"light" | "dark">(
-    isDark ? "dark" : "light"
+    isDark ? "dark" : "light",
   );
 
   return (
@@ -512,7 +512,7 @@ const primaryGlow = theme.palette.primary.glow;`}
       <DemoBlock
         id="semantic-palette"
         title="Semantic Status Palette"
-        description="High-contrast status colors inspired by Google Antigravity and Apple Precision design systems. Carefully calibrated with dark mode luminescence and dedicated glow halos."
+        description="High-contrast status colors inspired by Google and Apple Precision design systems. Carefully calibrated with dark mode luminescence and dedicated glow halos."
         code={`// Access semantic tokens directly or via theme
 const successColor = theme.palette.success.main;
 const errorColor = theme.palette.error.main;`}
@@ -943,7 +943,7 @@ const glassBorder = theme.palette.glass.paperBorder;`}
         code={`import { GradientText } from "jivico-glass-ui";
 
 <GradientText variant="h2">
-  Apple Precision & Google Antigravity
+  Apple Precision & Google 
 </GradientText>`}
       >
         <Box

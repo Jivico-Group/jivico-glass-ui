@@ -447,12 +447,121 @@ declare const typography: {
  */
 declare const JIVICO_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
 
+declare module "@mui/material/styles" {
+  interface Palette {
+    glass: JivicoPalette["glass"];
+    gradients?: JivicoPalette["gradients"];
+  }
+  interface PaletteOptions {
+    glass?: JivicoPalette["glass"];
+    gradients?: JivicoPalette["gradients"];
+  }
+}
+
+declare module "@mui/material/Button" {
+  interface ButtonPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/ButtonGroup" {
+  interface ButtonGroupPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/IconButton" {
+  interface IconButtonPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Chip" {
+  interface ChipPropsColorOverrides {
+    glass: true;
+  }
+  interface ChipPropsVariantOverrides {
+    tonal: true;
+  }
+  interface ChipPropsSizeOverrides {
+    large: true;
+  }
+}
+
+declare module "@mui/material/Tabs" {
+  interface TabsPropsIndicatorColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/TextField" {
+  interface TextFieldPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/InputBase" {
+  interface InputBasePropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/FormControl" {
+  interface FormControlPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/FormLabel" {
+  interface FormLabelPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Switch" {
+  interface SwitchPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Checkbox" {
+  interface CheckboxPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Radio" {
+  interface RadioPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Slider" {
+  interface SliderPropsColorOverrides {
+    glass: true;
+    success: true;
+    warning: true;
+    error: true;
+    info: true;
+  }
+}
+
+declare module "@mui/material/Badge" {
+  interface BadgePropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Avatar" {
+  interface AvatarPropsVariantOverrides {
+    glass: true;
+  }
+}
+
 declare const GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
 /** Montserrat (subheadings/accent) + Space Grotesk (body fallback) — from brand kit */
 declare const JIVICO_BRAND_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
-declare const getHybridTheme: (mode: "light" | "dark") => Theme;
-declare const getAppleTheme: (mode: "light" | "dark") => Theme;
-declare const getAntigravityTheme: (mode: "light" | "dark") => Theme;
+declare const JivicoGlassTheme: (mode: "light" | "dark") => Theme;
 declare const createJivicoTheme: (mode: "light" | "dark") => Theme;
 
 declare const getControlOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
@@ -721,12 +830,12 @@ interface ThemeModeProviderProps {
 }
 declare function ThemeModeProvider({ children, defaultMode, storageKey, }: ThemeModeProviderProps): react__default.JSX.Element;
 
-interface JivicoThemeProviderProps {
+interface JivicoGlassProviderProps {
     children: react__default.ReactNode;
     defaultMode?: ThemeMode;
     storageKey?: string;
     enableCssBaseline?: boolean;
 }
-declare function JivicoThemeProvider({ children, defaultMode, storageKey, enableCssBaseline, }: JivicoThemeProviderProps): react__default.JSX.Element;
+declare function JivicoGlassProvider({ children, defaultMode, storageKey, enableCssBaseline, }: JivicoGlassProviderProps): react__default.JSX.Element;
 
-export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, DynamicIsland, DynamicIslandPill, type DynamicIslandPillProps, type DynamicIslandPlacement, type DynamicIslandProps, type DynamicIslandSize, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, type JivicoPalette, JivicoThemeProvider, type JivicoThemeProviderProps, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PageRoot, Section, SectionContainer, SectionHeader, type SectionHeaderProps, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, SupportedTypeChip, type ThemeContextType, type ThemeMode, ThemeModeProvider, type ThemeModeProviderProps, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };
+export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, DynamicIsland, DynamicIslandPill, type DynamicIslandPillProps, type DynamicIslandPlacement, type DynamicIslandProps, type DynamicIslandSize, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PageRoot, Section, SectionContainer, SectionHeader, type SectionHeaderProps, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, SupportedTypeChip, type ThemeContextType, type ThemeMode, ThemeModeProvider, type ThemeModeProviderProps, TribeMemberPill, buildPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };

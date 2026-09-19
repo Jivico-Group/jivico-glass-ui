@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Typography, Card, CardContent, Divider, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Card,
+  CardContent,
+  Divider,
+  Button,
+} from "@mui/material";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { GradientText } from "../../../src/components/index.js";
@@ -61,7 +68,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   return (
     <ComponentPage
       title="Overview & Brand Kit"
-      description="Jivico Glass UI combines Apple precision with Google Antigravity physics to deliver a luxury frosted glassmorphic design system for React and Material-UI v9."
+      description="Jivico Glass UI combines Apple precision with physics to deliver a luxury frosted glassmorphic design system for React and Material-UI v9."
       category="Getting Started"
       badges={["Design System", "Brand Kit", "v0.1.1"]}
     >
@@ -94,18 +101,23 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </Typography>
         <Typography
           variant="h4"
-          sx={{ fontWeight: 800, fontSize: { xs: "1.6rem", md: "2.2rem" }, mb: 2 }}
+          sx={{
+            fontWeight: 800,
+            fontSize: { xs: "1.6rem", md: "2.2rem" },
+            mb: 2,
+          }}
         >
-          Welcome to <GradientText isDark={isDark}>Jivico Glass UI</GradientText>
+          Welcome to{" "}
+          <GradientText isDark={isDark}>Jivico Glass UI</GradientText>
         </Typography>
         <Typography
           variant="body1"
           color="text.secondary"
           sx={{ maxWidth: "700px", lineHeight: 1.7, mb: 3 }}
         >
-          A comprehensive design system providing frosted glassmorphic overrides for
-          MUI Buttons, Chips, Tabs, Inputs, Switches, and Data Display components,
-          tailored to modern luxury aesthetic standards.
+          A comprehensive design system providing frosted glassmorphic overrides
+          for MUI Buttons, Chips, Tabs, Inputs, Switches, and Data Display
+          components, tailored to modern luxury aesthetic standards.
         </Typography>
 
         <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
@@ -117,11 +129,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           >
             Explore Buttons
           </Button>
-          <Button
-            variant="outlined"
-            color="glass"
-            href="#chips"
-          >
+          <Button variant="outlined" color="glass" href="#chips">
             Explore Chips
           </Button>
         </Box>
@@ -133,14 +141,18 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           Brand Kit Color Palette
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-          Our monochrome aesthetic is built around 4 carefully calibrated shades:
-          Charcoal, Cream, Sand, and Stone.
+          Our monochrome aesthetic is built around 4 carefully calibrated
+          shades: Charcoal, Cream, Sand, and Stone.
         </Typography>
 
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" },
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "1fr 1fr",
+              md: "repeat(4, 1fr)",
+            },
             gap: 2.5,
           }}
         >
@@ -189,7 +201,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
                   {c.name}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ fontSize: "0.78rem", mt: 0.5 }}>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ fontSize: "0.78rem", mt: 0.5 }}
+                >
                   {c.role}
                 </Typography>
               </CardContent>
@@ -235,7 +251,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       >
         <Box sx={{ width: "100%", py: 1 }}>
           <Typography variant="body2" color="text.secondary">
-            The provider seamlessly integrates with MUI ThemeProvider, emotion cache, and supports system/light/dark modes.
+            The provider seamlessly integrates with MUI ThemeProvider, emotion
+            cache, and supports system/light/dark modes.
           </Typography>
         </Box>
       </DemoBlock>

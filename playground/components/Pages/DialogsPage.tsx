@@ -386,8 +386,8 @@ export const DialogsPage: React.FC = () => {
                 System Architecture
               </Typography>
               <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                Crafted using Apple Precision design tokens and Google
-                Antigravity optical glassmorphism.
+                Crafted using Apple Precision design tokens and Google optical
+                glassmorphism.
               </Typography>
             </Box>
           </Box>
