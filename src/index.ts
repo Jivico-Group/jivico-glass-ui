@@ -1,3 +1,5 @@
+import "./theme/augmentations.d.ts";
+
 // Theme & Design Tokens
 export * from "./theme/index.js";
 

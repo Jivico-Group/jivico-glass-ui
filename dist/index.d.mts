@@ -8,6 +8,287 @@ import { BoxProps, ButtonBaseProps } from '@mui/material';
 import * as _mui_material_OverridableComponent from '@mui/material/OverridableComponent';
 
 /**
+ * Builds a mode-resolved palette from the raw COLORS constants.
+ * Every value is already resolved for the given mode so consumers
+ * never need to branch on `isDark` themselves.
+ */
+declare const buildPalette: (mode: "light" | "dark") => {
+    primary: {
+        main: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
+        contrastText: string;
+    };
+    secondary: {
+        main: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
+        contrastText: string;
+    };
+    success: {
+        main: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
+        contrastText: string;
+    };
+    warning: {
+        main: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
+        contrastText: string;
+    };
+    error: {
+        main: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
+        contrastText: string;
+    };
+    info: {
+        main: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
+        contrastText: string;
+    };
+    background: {
+        default: string;
+        paper: string;
+    };
+    text: {
+        primary: string;
+        secondary: string;
+    };
+    divider: string;
+    glass: {
+        main: string;
+        contrastText: string;
+        light: string;
+        dark: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
+        buttonBorder: string;
+        buttonBg: string;
+        buttonHoverBg: string;
+        buttonTextHover: string;
+        fabShadow: string;
+        inputBorderHover: string;
+        inputFocusBg: string;
+        paperBg: string;
+        paperBorder: string;
+        paperShadow: string;
+        control: string;
+        switchTrack: string;
+        switchShadow: string;
+        sliderThumbShadow: string;
+        sliderRail: string;
+        chipBg: string;
+        chipBorder: string;
+        avatarBorder: string;
+        tableBorder: string;
+        tableHeadBg: string;
+        tooltipBg: string;
+        tooltipBorder: string;
+        tooltipShadow: string;
+        dialogBg: string;
+        dialogShadow: string;
+        skeletonBg: string;
+        progressBg: string;
+        cardBg: string;
+        cardShadow: string;
+        cardHoverShadow: string;
+        elevation1: string;
+        appBarBg: string;
+        accordionBg: string;
+        drawerBg: string;
+        menuItemHover: string;
+    };
+    action: {
+        hover: string;
+        selected: string;
+    };
+    alert: {
+        success: string;
+        warning: string;
+        error: string;
+        info: string;
+    };
+    gradients: {
+        primary: string;
+        primaryHover: string;
+        accent: string;
+        accentDark: string;
+    };
+};
+type JivicoPalette = ReturnType<typeof buildPalette>;
+
+declare module "@mui/material/styles" {
+  interface Palette {
+    glass: JivicoPalette["glass"];
+    gradients?: JivicoPalette["gradients"];
+  }
+  interface PaletteOptions {
+    glass?: JivicoPalette["glass"];
+    gradients?: JivicoPalette["gradients"];
+  }
+}
+
+declare module "@mui/material/Button" {
+  interface ButtonPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/ButtonGroup" {
+  interface ButtonGroupPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/IconButton" {
+  interface IconButtonPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Chip" {
+  interface ChipPropsColorOverrides {
+    glass: true;
+  }
+  interface ChipPropsVariantOverrides {
+    tonal: true;
+  }
+  interface ChipPropsSizeOverrides {
+    large: true;
+  }
+}
+
+declare module "@mui/material/Tabs" {
+  interface TabsPropsIndicatorColorOverrides {
+    glass: true;
+  }
+  interface TabsOwnProps {
+    size?: "small" | "medium";
+  }
+}
+
+declare module "@mui/material/Tabs/Tabs" {
+  interface TabsOwnProps {
+    size?: "small" | "medium";
+  }
+}
+
+declare module "@mui/material/Tab" {
+  interface TabOwnProps {
+    size?: "small" | "medium";
+  }
+}
+
+declare module "@mui/material/Tab/Tab" {
+  interface TabOwnProps {
+    size?: "small" | "medium";
+  }
+}
+
+declare module "@mui/material" {
+  interface TabsOwnProps {
+    size?: "small" | "medium";
+  }
+  interface TabOwnProps {
+    size?: "small" | "medium";
+  }
+  interface TabsProps {
+    size?: "small" | "medium";
+  }
+  interface TabProps {
+    size?: "small" | "medium";
+  }
+}
+
+declare module "@mui/material/TextField" {
+  interface TextFieldPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/InputBase" {
+  interface InputBasePropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/FormControl" {
+  interface FormControlPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/FormLabel" {
+  interface FormLabelPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Switch" {
+  interface SwitchPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Checkbox" {
+  interface CheckboxPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Radio" {
+  interface RadioPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Slider" {
+  interface SliderPropsColorOverrides {
+    glass: true;
+    success: true;
+    warning: true;
+    error: true;
+    info: true;
+  }
+}
+
+declare module "@mui/material/Badge" {
+  interface BadgePropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Avatar" {
+  interface AvatarPropsVariantOverrides {
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Typography" {
+  interface TypographyPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+}
+
+/**
  * Jivico Studio Design System — Luxury Monochrome + Glassmorphism
  *
  * Brand Kit: Modern · Minimal · Bold · Timeless
@@ -240,133 +521,6 @@ declare const COLORS: {
 };
 
 /**
- * Builds a mode-resolved palette from the raw COLORS constants.
- * Every value is already resolved for the given mode so consumers
- * never need to branch on `isDark` themselves.
- */
-declare const buildPalette: (mode: "light" | "dark") => {
-    primary: {
-        main: string;
-        hover: string;
-        active: string;
-        disabled: string;
-        glow: string;
-        contrastText: string;
-    };
-    secondary: {
-        main: string;
-        hover: string;
-        active: string;
-        disabled: string;
-        glow: string;
-        contrastText: string;
-    };
-    success: {
-        main: string;
-        hover: string;
-        active: string;
-        disabled: string;
-        glow: string;
-        contrastText: string;
-    };
-    warning: {
-        main: string;
-        hover: string;
-        active: string;
-        disabled: string;
-        glow: string;
-        contrastText: string;
-    };
-    error: {
-        main: string;
-        hover: string;
-        active: string;
-        disabled: string;
-        glow: string;
-        contrastText: string;
-    };
-    info: {
-        main: string;
-        hover: string;
-        active: string;
-        disabled: string;
-        glow: string;
-        contrastText: string;
-    };
-    background: {
-        default: string;
-        paper: string;
-    };
-    text: {
-        primary: string;
-        secondary: string;
-    };
-    divider: string;
-    glass: {
-        main: string;
-        contrastText: string;
-        light: string;
-        dark: string;
-        hover: string;
-        active: string;
-        disabled: string;
-        glow: string;
-        buttonBorder: string;
-        buttonBg: string;
-        buttonHoverBg: string;
-        buttonTextHover: string;
-        fabShadow: string;
-        inputBorderHover: string;
-        inputFocusBg: string;
-        paperBg: string;
-        paperBorder: string;
-        paperShadow: string;
-        control: string;
-        switchTrack: string;
-        switchShadow: string;
-        sliderThumbShadow: string;
-        sliderRail: string;
-        chipBg: string;
-        chipBorder: string;
-        avatarBorder: string;
-        tableBorder: string;
-        tableHeadBg: string;
-        tooltipBg: string;
-        tooltipBorder: string;
-        tooltipShadow: string;
-        dialogBg: string;
-        dialogShadow: string;
-        skeletonBg: string;
-        progressBg: string;
-        cardBg: string;
-        cardShadow: string;
-        cardHoverShadow: string;
-        elevation1: string;
-        appBarBg: string;
-        accordionBg: string;
-        drawerBg: string;
-        menuItemHover: string;
-    };
-    action: {
-        hover: string;
-        selected: string;
-    };
-    alert: {
-        success: string;
-        warning: string;
-        error: string;
-        info: string;
-    };
-    gradients: {
-        primary: string;
-        primaryHover: string;
-        accent: string;
-        accentDark: string;
-    };
-};
-type JivicoPalette = ReturnType<typeof buildPalette>;
-
-/**
  * Jivico Studio Design System — Typography
  *
  * Font stack per Brand Kit:
@@ -446,160 +600,6 @@ declare const typography: {
  * Import this in your <head> or via a FontPreload component.
  */
 declare const JIVICO_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
-
-declare module "@mui/material/styles" {
-  interface Palette {
-    glass: JivicoPalette["glass"];
-    gradients?: JivicoPalette["gradients"];
-  }
-  interface PaletteOptions {
-    glass?: JivicoPalette["glass"];
-    gradients?: JivicoPalette["gradients"];
-  }
-}
-
-declare module "@mui/material/Button" {
-  interface ButtonPropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/ButtonGroup" {
-  interface ButtonGroupPropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/IconButton" {
-  interface IconButtonPropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Chip" {
-  interface ChipPropsColorOverrides {
-    glass: true;
-  }
-  interface ChipPropsVariantOverrides {
-    tonal: true;
-  }
-  interface ChipPropsSizeOverrides {
-    large: true;
-  }
-}
-
-declare module "@mui/material/Tabs" {
-  interface TabsPropsIndicatorColorOverrides {
-    glass: true;
-  }
-  interface TabsOwnProps {
-    size?: "small" | "medium";
-  }
-}
-
-declare module "@mui/material/Tabs/Tabs" {
-  interface TabsOwnProps {
-    size?: "small" | "medium";
-  }
-}
-
-declare module "@mui/material/Tab" {
-  interface TabOwnProps {
-    size?: "small" | "medium";
-  }
-}
-
-declare module "@mui/material/Tab/Tab" {
-  interface TabOwnProps {
-    size?: "small" | "medium";
-  }
-}
-
-declare module "@mui/material" {
-  interface TabsOwnProps {
-    size?: "small" | "medium";
-  }
-  interface TabOwnProps {
-    size?: "small" | "medium";
-  }
-  interface TabsProps {
-    size?: "small" | "medium";
-  }
-  interface TabProps {
-    size?: "small" | "medium";
-  }
-}
-
-declare module "@mui/material/TextField" {
-  interface TextFieldPropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/InputBase" {
-  interface InputBasePropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/FormControl" {
-  interface FormControlPropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/FormLabel" {
-  interface FormLabelPropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Switch" {
-  interface SwitchPropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Checkbox" {
-  interface CheckboxPropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Radio" {
-  interface RadioPropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Slider" {
-  interface SliderPropsColorOverrides {
-    glass: true;
-    success: true;
-    warning: true;
-    error: true;
-    info: true;
-  }
-}
-
-declare module "@mui/material/Badge" {
-  interface BadgePropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Avatar" {
-  interface AvatarPropsVariantOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Typography" {
-  interface TypographyPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
 
 declare const GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
 /** Montserrat (subheadings/accent) + Space Grotesk (body fallback) — from brand kit */
