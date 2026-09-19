@@ -127,7 +127,6 @@ const getPlacementStyles = (
         width: "max-content",
         maxWidth: "calc(100vw - 40px)",
       };
-
     default:
       return baseFixed;
   }
@@ -367,23 +366,15 @@ const StyledIslandPill = styled(ButtonBase, {
     prop !== "endIcon",
 })<StyledIslandPillProps>(({ isDark, active }) => ({
   height: 36,
-
   minWidth: 36,
-
   padding: "0 14px",
-
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-
   gap: "0.85rem",
-
   flexShrink: 0,
-
   borderRadius: "9999px",
-
   color: isDark ? "rgba(255, 255, 255, 0.96)" : "rgb(17, 24, 39)",
-
   backgroundColor: active
     ? isDark
       ? "rgba(255, 255, 255, 0.16)"
@@ -401,9 +392,7 @@ const StyledIslandPill = styled(ButtonBase, {
       : "1px solid rgba(0, 0, 0, 0.06)",
 
   font: "inherit",
-
   whiteSpace: "nowrap",
-
   transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
 
   "&:hover": {
