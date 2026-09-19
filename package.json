@@ -24,7 +24,7 @@
     "dev": "tsup --watch",
     "build:docs": "vite build",
     "predeploy": "npm run build:docs",
-    "deploy": "gh-pages -d dist-docs",
+    "deploy": "gh-pages -d dist-docs --nojekyll",
     "playground": "vite",
     "prepare": "npm run build"
   },
