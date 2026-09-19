@@ -444,6 +444,40 @@ var typography = {
 };
 var JIVICO_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
 
+// src/theme/overrides/glassRecipe.ts
+var glassRecipe = (isDark) => ({
+  backdropFilter: "blur(48px) saturate(200%) brightness(105%)",
+  WebkitBackdropFilter: "blur(48px) saturate(200%) brightness(105%)",
+  backgroundColor: isDark ? "rgba(20, 24, 32, 0.48)" : "rgba(255, 255, 255, 0.24)",
+  backgroundImage: isDark ? "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 100%)" : "linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(248,250,252,0.4) 100%)",
+  border: isDark ? "1px solid rgba(255,255,255,0.14)" : "1px solid rgba(255,255,255,0.6)",
+  boxShadow: isDark ? "0 12px 36px rgba(0,0,0,0.45), inset 0 1px 1.5px rgba(255,255,255,0.18)" : "0 20px 50px rgba(15,23,42,0.08), 0 8px 20px rgba(15,23,42,0.06), 0 2px 6px rgba(15,23,42,0.04), inset 0 1.5px 1.5px rgba(255,255,255,0.95)"
+});
+var glassAppBarRecipe = (isDark) => ({
+  ...glassRecipe(isDark),
+  // Override box-shadow to a slimmer version appropriate for a pinned bar
+  boxShadow: isDark ? "0 4px 24px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1)" : "0 4px 24px rgba(15,23,42,0.06), 0 1px 6px rgba(15,23,42,0.04), inset 0 1px 1px rgba(255,255,255,0.95)",
+  // AppBar has no border-radius — it spans full width
+  borderRadius: 0,
+  borderLeft: "none",
+  borderRight: "none",
+  borderTop: "none",
+  borderBottom: isDark ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(255,255,255,0.6)"
+});
+var liquidGlassPopupRecipe = (isDark) => ({
+  borderRadius: "18px !important",
+  backgroundColor: isDark ? "rgba(18, 20, 26, 0.35) !important" : "rgba(255, 255, 255, 0.08) !important",
+  backgroundImage: isDark ? "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%) !important" : "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%) !important",
+  backdropFilter: "blur(30px) saturate(190%) !important",
+  WebkitBackdropFilter: "blur(30px) saturate(190%) !important",
+  border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.08)"} !important`,
+  boxShadow: isDark ? "0 24px 50px rgba(0, 0, 0, 0.65), 0 6px 16px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important" : "0 20px 48px -4px rgba(0, 0, 0, 0.10), 0 6px 16px -2px rgba(0, 0, 0, 0.04), inset 0 1px 1px 0 rgba(255, 255, 255, 0.6) !important",
+  padding: "6px !important",
+  overflow: "hidden !important",
+  transition: "transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important",
+  transformOrigin: "top center !important"
+});
+
 // src/theme/overrides/inputs.ts
 var getInputOverrides = (palette, isDark) => ({
   // ========================================================================
@@ -865,31 +899,48 @@ var getInputOverrides = (palette, isDark) => ({
   // ========================================================================
   MuiOutlinedInput: {
     styleOverrides: {
-      root: {
-        borderRadius: 12,
-        backgroundColor: palette.glass.buttonBg,
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
-        transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
-        "& .MuiOutlinedInput-notchedOutline": {
-          borderColor: palette.divider,
-          transition: "border-color 0.2s ease"
-        },
-        "&:hover .MuiOutlinedInput-notchedOutline": {
-          borderColor: palette.glass.inputBorderHover
-        },
-        "&.Mui-focused": {
-          backgroundColor: palette.glass.inputFocusBg,
+      root: ({ ownerState }) => {
+        const colorKey = ownerState.color ? ownerState.color : "primary";
+        const activeColorGroup = palette[colorKey] || palette.primary;
+        const activeColor = activeColorGroup.main;
+        const hoverColor = activeColorGroup.hover || activeColor;
+        const glowColor = activeColorGroup.glow;
+        const isGlass = colorKey === "glass";
+        const isSemantic = colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
+        return {
+          borderRadius: 12,
+          backgroundColor: isGlass ? isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.55)" : palette.glass.buttonBg,
+          backdropFilter: isGlass ? "blur(20px) saturate(190%)" : "blur(8px)",
+          WebkitBackdropFilter: isGlass ? "blur(20px) saturate(190%)" : "blur(8px)",
+          boxShadow: isGlass ? isDark ? "inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 4px 14px rgba(0, 0, 0, 0.2)" : "inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 2px 8px rgba(0, 0, 0, 0.04)" : "none",
+          transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: palette.primary.main,
-            borderWidth: "1.5px"
+            borderColor: isGlass ? isDark ? "rgba(255, 255, 255, 0.20)" : "rgba(17, 17, 17, 0.16)" : isSemantic ? activeColor : palette.divider,
+            transition: "border-color 0.2s ease, box-shadow 0.2s ease"
+          },
+          "&:hover": {
+            ...isGlass && {
+              backgroundColor: isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.70)"
+            }
+          },
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: isGlass ? isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.32)" : isSemantic ? hoverColor : palette.glass.inputBorderHover
+          },
+          "&.Mui-focused": {
+            backgroundColor: isGlass ? isDark ? "rgba(24, 26, 32, 0.65)" : "rgba(255, 255, 255, 0.90)" : palette.glass.inputFocusBg,
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: isGlass ? isDark ? "#F6F5F2" : "#111111" : activeColor,
+              borderWidth: "1.5px",
+              boxShadow: isGlass ? isDark ? "0 0 0 3px rgba(255, 255, 255, 0.18), 0 8px 24px rgba(0,0,0,0.4)" : "0 0 0 3px rgba(17, 17, 17, 0.08), 0 8px 24px rgba(0,0,0,0.06)" : glowColor ? `0 0 0 3px ${glowColor}` : "none"
+            }
+          },
+          "&.Mui-error": {
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: palette.error.main,
+              boxShadow: `0 0 0 3px ${palette.error.glow}`
+            }
           }
-        },
-        "&.Mui-error": {
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: palette.error.main
-          }
-        }
+        };
       },
       input: {
         fontSize: "0.9375rem",
@@ -959,6 +1010,10 @@ var getInputOverrides = (palette, isDark) => ({
   MuiInputLabel: {
     styleOverrides: {
       root: ({ ownerState }) => {
+        const colorKey = ownerState.color ? ownerState.color : "primary";
+        const activeColorGroup = palette[colorKey] || palette.primary;
+        const activeColor = activeColorGroup.main;
+        const isSemantic = colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
         let translate = "translate(18px, 13px) scale(1)";
         let shrinkTranslate = "translate(18px, -9px) scale(0.75)";
         if (ownerState.size === "small") {
@@ -970,9 +1025,9 @@ var getInputOverrides = (palette, isDark) => ({
         }
         return {
           fontSize: "0.9375rem",
-          color: palette.text.secondary,
+          color: isSemantic ? activeColor : palette.text.secondary,
           "&.Mui-focused": {
-            color: palette.primary.main
+            color: activeColor
           },
           // Use explicit class targeting and !important to beat MUI's default specificity
           "&.MuiInputLabel-outlined": {
@@ -992,18 +1047,67 @@ var getInputOverrides = (palette, isDark) => ({
     }
   },
   // ========================================================================
+  // FORM HELPER TEXT
+  // ========================================================================
+  MuiFormHelperText: {
+    styleOverrides: {
+      root: ({ ownerState }) => {
+        const colorKey = ownerState?.color;
+        const isSemantic = colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
+        const semanticColor = isSemantic && palette[colorKey] ? palette[colorKey].main : palette.text.secondary;
+        return {
+          fontSize: "0.78rem",
+          marginLeft: 14,
+          marginTop: 4,
+          color: semanticColor,
+          "&.Mui-error": {
+            color: palette.error.main
+          }
+        };
+      }
+    }
+  },
+  // ========================================================================
   // SELECT
   // ========================================================================
   MuiSelect: {
     defaultProps: {
       MenuProps: {
         sx: {
+          "& .MuiPaper-root": {
+            ...liquidGlassPopupRecipe(isDark)
+          },
+          "& .MuiList-root": {
+            backgroundColor: "transparent !important",
+            backgroundImage: "none !important",
+            padding: "0 !important"
+          },
           "& .MuiMenuItem-root": {
-            minHeight: "32px !important",
-            padding: "4px 12px !important",
-            fontSize: "0.85rem !important"
+            minHeight: "34px",
+            padding: "6px 12px",
+            fontSize: "0.875rem",
+            borderRadius: "10px",
+            color: palette.text.primary,
+            transition: "all 0.15s ease",
+            "&:hover": {
+              backgroundColor: `${palette.glass.menuItemHover} !important`
+            },
+            "&.Mui-selected": {
+              backgroundColor: `${palette.action.selected} !important`,
+              color: `${palette.primary.main} !important`,
+              fontWeight: 600,
+              "&:hover": {
+                backgroundColor: `${palette.glass.menuItemHover} !important`
+              }
+            }
           }
         }
+      }
+    },
+    styleOverrides: {
+      icon: {
+        color: palette.text.secondary,
+        transition: "transform 0.2s ease, color 0.2s ease"
       }
     }
   },
@@ -1011,14 +1115,70 @@ var getInputOverrides = (palette, isDark) => ({
   // AUTOCOMPLETE
   // ========================================================================
   MuiAutocomplete: {
+    defaultProps: {
+      slotProps: {
+        paper: {
+          elevation: 0
+        }
+      }
+    },
     styleOverrides: {
+      popper: {
+        zIndex: 1400
+      },
       paper: {
-        borderRadius: 18,
-        backgroundColor: palette.glass.paperBg,
-        backdropFilter: "saturate(180%) blur(20px)",
-        WebkitBackdropFilter: "saturate(180%) blur(20px)",
-        border: `1px solid ${palette.glass.paperBorder}`,
-        boxShadow: palette.glass.paperShadow
+        ...liquidGlassPopupRecipe(isDark)
+      },
+      listbox: {
+        backgroundColor: "transparent !important",
+        backgroundImage: "none !important",
+        padding: "4px !important"
+      },
+      option: {
+        borderRadius: 10,
+        padding: "7px 12px",
+        margin: "1px 0",
+        fontSize: "0.875rem",
+        color: palette.text.primary,
+        transition: "all 0.15s ease",
+        '&[data-focus="true"]': {
+          backgroundColor: `${palette.glass.menuItemHover} !important`
+        },
+        '&[aria-selected="true"]': {
+          backgroundColor: `${palette.action.selected} !important`,
+          color: `${palette.primary.main} !important`,
+          fontWeight: 600,
+          '&[data-focus="true"]': {
+            backgroundColor: `${palette.action.selected} !important`
+          }
+        }
+      },
+      noOptions: {
+        color: palette.text.secondary,
+        fontSize: "0.875rem",
+        padding: "12px 16px",
+        backgroundColor: "transparent !important"
+      },
+      loading: {
+        color: palette.text.secondary,
+        fontSize: "0.875rem",
+        padding: "12px 16px",
+        backgroundColor: "transparent !important"
+      },
+      tag: {
+        margin: "3px"
+      },
+      clearIndicator: {
+        color: palette.text.secondary,
+        "&:hover": {
+          color: palette.text.primary
+        }
+      },
+      popupIndicator: {
+        color: palette.text.secondary,
+        "&:hover": {
+          color: palette.text.primary
+        }
       }
     }
   }
@@ -1845,7 +2005,10 @@ var getSurfaceOverrides = (palette, isDark) => ({
     styleOverrides: {
       root: {
         borderRadius: 20,
-        backgroundImage: "none"
+        backgroundImage: "none",
+        "&.MuiPopover-paper, &.MuiMenu-paper, &.MuiAutocomplete-paper": {
+          ...liquidGlassPopupRecipe(isDark)
+        }
       },
       elevation1: {
         boxShadow: palette.glass.elevation1
@@ -1883,27 +2046,6 @@ var getSurfaceOverrides = (palette, isDark) => ({
       }
     }
   }
-});
-
-// src/theme/overrides/glassRecipe.ts
-var glassRecipe = (isDark) => ({
-  backdropFilter: "blur(48px) saturate(180%)",
-  WebkitBackdropFilter: "blur(48px) saturate(180%)",
-  backgroundColor: isDark ? "rgba(28, 31, 38, 0.65)" : "rgba(255, 255, 255, 0.24)",
-  backgroundImage: isDark ? "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%)" : "linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(248,250,252,0.4) 100%)",
-  border: isDark ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(255,255,255,0.6)",
-  boxShadow: isDark ? "0 8px 32px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1)" : "0 20px 50px rgba(15,23,42,0.08), 0 8px 20px rgba(15,23,42,0.06), 0 2px 6px rgba(15,23,42,0.04), inset 0 1px 1px rgba(255,255,255,0.95)"
-});
-var glassAppBarRecipe = (isDark) => ({
-  ...glassRecipe(isDark),
-  // Override box-shadow to a slimmer version appropriate for a pinned bar
-  boxShadow: isDark ? "0 4px 24px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1)" : "0 4px 24px rgba(15,23,42,0.06), 0 1px 6px rgba(15,23,42,0.04), inset 0 1px 1px rgba(255,255,255,0.95)",
-  // AppBar has no border-radius — it spans full width
-  borderRadius: 0,
-  borderLeft: "none",
-  borderRight: "none",
-  borderTop: "none",
-  borderBottom: isDark ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(255,255,255,0.6)"
 });
 
 // src/theme/overrides/navigation.ts
@@ -2107,27 +2249,23 @@ var getNavigationOverrides = (palette, isDark) => ({
       })
     }
   },
+  MuiPopover: {
+    styleOverrides: {
+      paper: {
+        ...liquidGlassPopupRecipe(isDark)
+      }
+    }
+  },
   MuiMenu: {
     styleOverrides: {
       paper: {
-        borderRadius: 18,
-        backgroundColor: palette.glass.paperBg,
-        backdropFilter: "saturate(180%) blur(20px)",
-        border: `1px solid ${palette.glass.paperBorder}`,
-        boxShadow: palette.glass.paperShadow,
-        padding: "6px",
+        ...liquidGlassPopupRecipe(isDark),
         maxHeight: "400px",
-        overflowY: "auto",
-        "&::-webkit-scrollbar": {
-          width: "6px"
-        },
-        "&::-webkit-scrollbar-thumb": {
-          backgroundColor: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.15)",
-          borderRadius: "3px"
-        },
-        "&::-webkit-scrollbar-thumb:hover": {
-          backgroundColor: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.25)"
-        }
+        overflowY: "auto"
+      },
+      list: {
+        backgroundColor: "transparent !important",
+        backgroundImage: "none !important"
       }
     }
   },

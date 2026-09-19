@@ -1,5 +1,6 @@
 import type { Components, Theme } from '@mui/material/styles';
 import type { JivicoPalette } from '../palette.js';
+import { liquidGlassPopupRecipe } from './glassRecipe.js';
 
 /**
  * MUI component overrides — Surfaces:
@@ -47,6 +48,9 @@ export const getSurfaceOverrides = (palette: JivicoPalette, isDark: boolean): Co
       root: {
         borderRadius: 20,
         backgroundImage: 'none',
+        '&.MuiPopover-paper, &.MuiMenu-paper, &.MuiAutocomplete-paper': {
+          ...liquidGlassPopupRecipe(isDark),
+        },
       },
       elevation1: {
         boxShadow: palette.glass.elevation1,

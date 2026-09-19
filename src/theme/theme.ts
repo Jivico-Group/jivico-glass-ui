@@ -55,6 +55,30 @@ declare module '@mui/material/Tabs' {
   }
 }
 
+declare module '@mui/material/TextField' {
+  interface TextFieldPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module '@mui/material/InputBase' {
+  interface InputBasePropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module '@mui/material/FormControl' {
+  interface FormControlPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module '@mui/material/FormLabel' {
+  interface FormLabelPropsColorOverrides {
+    glass: true;
+  }
+}
+
 export const GOOGLE_SANS_FLEX_URL =
   'https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap';
 

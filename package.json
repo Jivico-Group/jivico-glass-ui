@@ -22,6 +22,9 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "build:docs": "vite build",
+    "predeploy": "npm run build:docs",
+    "deploy": "gh-pages -d dist-docs",
     "playground": "vite",
     "prepare": "npm run build"
   },
@@ -43,6 +46,7 @@
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^6.1.1",
     "framer-motion": "^12.4.7",
+    "gh-pages": "^6.3.0",
     "lucide-react": "^1.16.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
