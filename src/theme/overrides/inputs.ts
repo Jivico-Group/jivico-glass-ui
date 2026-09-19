@@ -606,9 +606,7 @@ export const getInputOverrides = (
               ? "rgba(255, 255, 255, 0.05)"
               : "rgba(255, 255, 255, 0.55)"
             : palette.glass.buttonBg,
-          backdropFilter: isGlass
-            ? "blur(20px) saturate(190%)"
-            : "blur(8px)",
+          backdropFilter: isGlass ? "blur(20px) saturate(190%)" : "blur(8px)",
           WebkitBackdropFilter: isGlass
             ? "blur(20px) saturate(190%)"
             : "blur(8px)",
@@ -661,20 +659,12 @@ export const getInputOverrides = (
                   : "#111111"
                 : activeColor,
               borderWidth: "1.5px",
-              boxShadow: isGlass
-                ? isDark
-                  ? "0 0 0 3px rgba(255, 255, 255, 0.18), 0 8px 24px rgba(0,0,0,0.4)"
-                  : "0 0 0 3px rgba(17, 17, 17, 0.08), 0 8px 24px rgba(0,0,0,0.06)"
-                : glowColor
-                  ? `0 0 0 3px ${glowColor}`
-                  : "none",
             },
           },
 
           "&.Mui-error": {
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: palette.error.main,
-              boxShadow: `0 0 0 3px ${palette.error.glow}`,
             },
           },
         };
