@@ -15,9 +15,8 @@ function InternalMuiWrapper({
   children: React.ReactNode;
   enableCssBaseline?: boolean;
 }) {
-  const { mode } = useThemeMode();
-  const theme = useMemo(() => JivicoGlassTheme(mode), [mode]);
-
+  const { resolvedMode } = useThemeMode();
+  const theme = useMemo(() => JivicoGlassTheme(resolvedMode), [resolvedMode]);
   return (
     <ThemeProvider theme={theme}>
       {enableCssBaseline && <CssBaseline />}
