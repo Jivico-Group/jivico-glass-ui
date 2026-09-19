@@ -3,10 +3,10 @@ import { Box, Typography } from "@mui/material";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { GradientText } from "../../../src/components/index.js";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const TypographyPage: React.FC = () => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
   return (

@@ -12,7 +12,7 @@ import { Copy, Check, Sun, Moon } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { COLORS } from "../../../src/theme/colors.js";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 interface ColorItemProps {
   name: string;
@@ -31,7 +31,7 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
   textColor,
   isTranslucent = false,
 }) => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
   const [copied, setCopied] = useState(false);
 
@@ -186,7 +186,7 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
 };
 
 export const ColorsPage: React.FC = () => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
   const [semanticMode, setSemanticMode] = useState<"light" | "dark">(
     isDark ? "dark" : "light",

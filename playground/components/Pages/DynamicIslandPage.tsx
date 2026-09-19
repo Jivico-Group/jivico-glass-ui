@@ -38,7 +38,7 @@ import {
 } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import {
   DynamicIsland,
   DynamicIslandPill,
@@ -121,7 +121,7 @@ const CosmosGalaxyIcon = ({
 );
 
 export const DynamicIslandPage: React.FC = () => {
-  const { mode, toggleTheme } = useThemeMode();
+  const { mode, toggleGlassMode } = useGlassMode();
   const isDark = mode === "dark";
 
   // Interactive Live Controls
@@ -278,7 +278,7 @@ export const DynamicIslandPage: React.FC = () => {
             </Box>
 
             <DynamicIslandPill
-              onClick={toggleTheme}
+              onClick={toggleGlassMode}
               startIcon={
                 isDark ? (
                   <Sun size={14} color="#FBBF24" />

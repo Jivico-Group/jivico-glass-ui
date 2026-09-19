@@ -9,9 +9,9 @@ import React, {
 export type ThemeMode = "light" | "dark" | "system";
 export type ResolvedThemeMode = "light" | "dark";
 
-export interface ThemeContextType {
+export interface GlassModeContextType {
   /**
-   * User-selected theme preference.
+   * User-selected appearance preference.
    *
    * - light  → always light
    * - dark   → always dark
@@ -20,7 +20,7 @@ export interface ThemeContextType {
   mode: ThemeMode;
 
   /**
-   * The actual theme currently being used.
+   * The actual appearance currently being used.
    *
    * Always resolves to either light or dark.
    */
@@ -29,57 +29,51 @@ export interface ThemeContextType {
   /**
    * Toggles between light and dark.
    *
-   * If currently using system, it resolves to the
-   * opposite of the current resolved theme.
+   * If currently using system, it switches from the
+   * currently resolved appearance to the opposite.
    */
-  toggleTheme: () => void;
+  toggleGlassMode: () => void;
 
   /**
-   * Sets the user's theme preference.
+   * Sets the user's appearance preference.
    */
-  setMode: (mode: ThemeMode) => void;
+  setGlassMode: (mode: ThemeMode) => void;
 }
 
-const ThemeContext = createContext<ThemeContextType>({
+const GlassModeContext = createContext<GlassModeContextType>({
   mode: "light",
   resolvedMode: "light",
-  toggleTheme: () => {},
-  setMode: () => {},
+  toggleGlassMode: () => {},
+  setGlassMode: () => {},
 });
 
-export const useThemeMode = () => useContext(ThemeContext);
+export const useGlassMode = () => useContext(GlassModeContext);
 
-export interface ThemeModeProviderProps {
+export interface GlassModeProviderProps {
   children: React.ReactNode;
   defaultMode?: ThemeMode;
   storageKey?: string;
 }
 
-export function ThemeModeProvider({
+export function GlassModeProvider({
   children,
   defaultMode = "light",
   storageKey = "jivico-theme-mode",
-}: ThemeModeProviderProps) {
-  /*
-   * This is the user's preference.
-   *
-   * It can be:
-   * light
-   * dark
-   * system
+}: GlassModeProviderProps) {
+  /**
+   * User-selected appearance preference.
    */
   const [mode, setModeState] = useState<ThemeMode>(defaultMode);
 
-  /*
-   * This is the actual theme that should be passed
-   * to JivicoGlassTheme().
+  /**
+   * Current OS/browser appearance.
    *
-   * Keep the initial value deterministic for SSR.
+   * Starts with a deterministic value for SSR.
    */
   const [systemMode, setSystemMode] = useState<ResolvedThemeMode>("light");
 
-  /*
-   * Load saved preference after hydration.
+  /**
+   * Restore the user's saved preference after hydration.
    */
   useEffect(() => {
     try {
@@ -93,11 +87,8 @@ export function ThemeModeProvider({
     }
   }, [storageKey]);
 
-  /*
-   * Watch the operating system/browser theme.
-   *
-   * This only runs in the browser because useEffect()
-   * does not run during SSR.
+  /**
+   * Watch the operating system/browser appearance.
    */
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) {
@@ -110,10 +101,8 @@ export function ThemeModeProvider({
       setSystemMode(mediaQuery.matches ? "dark" : "light");
     };
 
-    // Initial system preference.
     updateSystemMode();
 
-    // React to OS theme changes.
     mediaQuery.addEventListener("change", updateSystemMode);
 
     return () => {
@@ -121,18 +110,18 @@ export function ThemeModeProvider({
     };
   }, []);
 
-  /*
-   * Resolve the actual theme.
+  /**
+   * Resolve the actual appearance.
    */
   const resolvedMode: ResolvedThemeMode = mode === "system" ? systemMode : mode;
 
-  /*
-   * Toggle light/dark.
+  /**
+   * Toggle between light and dark.
    *
-   * If mode is "system", toggle from the currently
-   * resolved theme and explicitly switch to the opposite.
+   * When using system mode, this explicitly switches
+   * to the opposite of the currently resolved mode.
    */
-  const toggleTheme = () => {
+  const toggleGlassMode = () => {
     setModeState((previousMode) => {
       const currentResolved =
         previousMode === "system" ? systemMode : previousMode;
@@ -150,10 +139,10 @@ export function ThemeModeProvider({
     });
   };
 
-  /*
-   * Explicitly change the user's preference.
+  /**
+   * Set the user's appearance preference.
    */
-  const setMode = (newMode: ThemeMode) => {
+  const setGlassMode = (newMode: ThemeMode) => {
     setModeState(newMode);
 
     try {
@@ -163,17 +152,19 @@ export function ThemeModeProvider({
     }
   };
 
-  const value = useMemo<ThemeContextType>(
+  const value = useMemo<GlassModeContextType>(
     () => ({
       mode,
       resolvedMode,
-      toggleTheme,
-      setMode,
+      toggleGlassMode,
+      setGlassMode,
     }),
     [mode, resolvedMode],
   );
 
   return (
-    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+    <GlassModeContext.Provider value={value}>
+      {children}
+    </GlassModeContext.Provider>
   );
 }

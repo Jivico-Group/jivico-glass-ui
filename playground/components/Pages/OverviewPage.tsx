@@ -10,11 +10,11 @@ import {
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { GradientText } from "../../../src/components/index.js";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ArrowRight, Sparkles, Layers, ShieldCheck } from "lucide-react";
 
 export const OverviewPage: React.FC = () => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
   const brandColors = [

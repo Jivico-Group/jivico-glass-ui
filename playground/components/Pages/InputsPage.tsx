@@ -25,10 +25,10 @@ import {
   Check,
   Sparkles,
 } from "lucide-react";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const InputsPage: React.FC = () => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
   const [showPassword, setShowPassword] = useState(false);

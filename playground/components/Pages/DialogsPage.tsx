@@ -44,7 +44,7 @@ import {
 } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -56,7 +56,7 @@ const Transition = React.forwardRef(function Transition(
 });
 
 export const DialogsPage: React.FC = () => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
   // Dialog States
