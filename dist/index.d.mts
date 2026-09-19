@@ -492,6 +492,42 @@ declare module "@mui/material/Tabs" {
   interface TabsPropsIndicatorColorOverrides {
     glass: true;
   }
+  interface TabsOwnProps {
+    size?: "small" | "medium";
+  }
+}
+
+declare module "@mui/material/Tabs/Tabs" {
+  interface TabsOwnProps {
+    size?: "small" | "medium";
+  }
+}
+
+declare module "@mui/material/Tab" {
+  interface TabOwnProps {
+    size?: "small" | "medium";
+  }
+}
+
+declare module "@mui/material/Tab/Tab" {
+  interface TabOwnProps {
+    size?: "small" | "medium";
+  }
+}
+
+declare module "@mui/material" {
+  interface TabsOwnProps {
+    size?: "small" | "medium";
+  }
+  interface TabOwnProps {
+    size?: "small" | "medium";
+  }
+  interface TabsProps {
+    size?: "small" | "medium";
+  }
+  interface TabProps {
+    size?: "small" | "medium";
+  }
 }
 
 declare module "@mui/material/TextField" {

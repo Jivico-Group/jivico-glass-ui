@@ -8,3 +8,5 @@ export * from './overrides/feedback.js';
 export * from './overrides/inputs.js';
 export * from './overrides/navigation.js';
 export * from './overrides/surfaces.js';
+import './augmentations.d.ts';
+

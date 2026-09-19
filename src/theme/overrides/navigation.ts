@@ -57,42 +57,55 @@ export const getNavigationOverrides = (
     defaultProps: {
       textColor: "primary",
       indicatorColor: "primary",
+      size: "medium",
     },
     styleOverrides: {
-      root: ({ ownerState }) => ({
-        minHeight: 44,
-        height: "auto",
-        backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "#ECEAE5", // Brand Kit Sand #D9D9CF warm tinted track
-        borderRadius: 9999, // Brand Kit fully rounded pill track
-        padding: "4px",
-        border: `1px solid ${
-          isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.04)"
-        }`,
-        display: ownerState.variant === "fullWidth" ? "flex" : "inline-flex",
-        width: ownerState.variant === "fullWidth" ? "100%" : "fit-content",
-        boxShadow: isDark
-          ? "inset 0 1px 3px rgba(0,0,0,0.35)"
-          : "inset 0 1px 2px rgba(0,0,0,0.04)",
-        backdropFilter: "blur(14px)",
-        WebkitBackdropFilter: "blur(14px)",
-        boxSizing: "border-box",
-        position: "relative",
-        isolation: "isolate",
-        overflow: "visible",
-        "& .MuiTabs-scroller": {
+      root: ({ ownerState }) => {
+        const isSmall = (ownerState as any).size === "small";
+        return {
+          minHeight: isSmall ? 32 : 44,
+          height: isSmall ? 32 : "auto",
+          backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "#ECEAE5", // Brand Kit Sand #D9D9CF warm tinted track
+          borderRadius: 9999, // Brand Kit fully rounded pill track
+          padding: isSmall ? "3px" : "4px",
+          border: `1px solid ${
+            isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.04)"
+          }`,
+          display: ownerState.variant === "fullWidth" ? "flex" : "inline-flex",
+          width: ownerState.variant === "fullWidth" ? "100%" : "fit-content",
+          boxShadow: isDark
+            ? "inset 0 1px 3px rgba(0,0,0,0.35)"
+            : "inset 0 1px 2px rgba(0,0,0,0.04)",
+          backdropFilter: "blur(14px)",
+          WebkitBackdropFilter: "blur(14px)",
+          boxSizing: "border-box",
           position: "relative",
-          borderRadius: 9999,
-          overflow: "visible !important",
-          height: "100%",
-        },
-        "& .MuiTabs-flexContainer": {
-          position: "relative",
-          zIndex: 2,
-          gap: 0,
-          height: "100%",
-          alignItems: "center",
-        },
-      }),
+          isolation: "isolate",
+          overflow: "visible",
+          "& .MuiTabs-scroller": {
+            position: "relative",
+            borderRadius: 9999,
+            overflow: "visible !important",
+            height: "100%",
+          },
+          "& .MuiTabs-flexContainer": {
+            position: "relative",
+            zIndex: 2,
+            gap: 0,
+            height: "100%",
+            alignItems: "center",
+          },
+          ...(isSmall && {
+            "& .MuiTab-root": {
+              minHeight: 26,
+              height: 26,
+              fontSize: "0.78rem",
+              padding: "4px 14px",
+              minWidth: 64,
+            },
+          }),
+        };
+      },
       indicator: ({ ownerState }) => {
         const isGlass = (ownerState.indicatorColor as string) === "glass";
         return {
@@ -132,25 +145,27 @@ export const getNavigationOverrides = (
   MuiTab: {
     defaultProps: {
       disableRipple: true,
+      size: "medium",
     },
     styleOverrides: {
       root: ({ ownerState }) => {
         const isGlass = (ownerState.textColor as string) === "secondary";
+        const isSmall = (ownerState as any).size === "small";
         return {
           position: "relative",
           zIndex: 2,
           textTransform: "none",
           fontFamily:
             '"Montserrat", "Google Sans Flex", -apple-system, BlinkMacSystemFont, sans-serif',
-          fontSize: "0.84rem",
+          fontSize: isSmall ? "0.78rem" : "0.84rem",
           fontWeight: 500,
           letterSpacing: "0.01em",
           lineHeight: 1.2,
-          minHeight: 36,
-          height: 36,
-          minWidth: 80,
+          minHeight: isSmall ? 26 : 36,
+          height: isSmall ? 26 : 36,
+          minWidth: isSmall ? 64 : 80,
           borderRadius: 9999,
-          padding: "8px 22px",
+          padding: isSmall ? "4px 14px" : "8px 22px",
           color: isDark ? "rgba(255, 255, 255, 0.62)" : "#686868", // Brand Stone #686868
           transition:
             "color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
