@@ -1,6 +1,10 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../palette.js";
-import { glassAppBarRecipe, liquidGlassPopupRecipe } from "./glassRecipe.js";
+import {
+  glassAppBarRecipe,
+  LiquidDialogDrawerRecipe,
+  liquidGlassPopupRecipe,
+} from "./glassRecipe.js";
 
 /**
  * MUI component overrides — Navigation:
@@ -183,33 +187,7 @@ export const getNavigationOverrides = (
   MuiDrawer: {
     styleOverrides: {
       paper: ({ ownerState }) => ({
-        backgroundColor: isDark
-          ? "rgba(20, 20, 24, 0.58)"
-          : "rgba(255, 255, 255, 0.58)",
-        backdropFilter: "blur(30px) saturate(180%) brightness(110%)",
-        WebkitBackdropFilter: "blur(30px) saturate(180%) brightness(110%)",
-        backgroundImage: `
-        linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.18),
-          rgba(255, 255, 255, 0.04)
-        )
-      `,
-        border: isDark
-          ? "1px solid rgba(255, 255, 255, 0.14)"
-          : "1px solid rgba(255, 255, 255, 0.65)",
-        boxShadow: isDark
-          ? `
-          0 -12px 40px rgba(0, 0, 0, 0.35),
-          inset 0 1px 0 rgba(255, 255, 255, 0.12)
-        `
-          : `
-          0 -12px 40px rgba(0, 0, 0, 0.12),
-          inset 0 1px 0 rgba(255, 255, 255, 0.7)
-        `,
-        backgroundClip: "padding-box",
-        overflow: "hidden",
-
+        ...LiquidDialogDrawerRecipe(isDark),
         ...(ownerState.anchor === "bottom" && {
           borderBottom: "none",
           borderLeft: "none",

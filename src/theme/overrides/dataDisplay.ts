@@ -651,64 +651,183 @@ export const getDataDisplayOverrides = (
     },
 
     MuiAvatar: {
-    styleOverrides: {
-      root: {
-        borderRadius: '50%',
-        border: `1.5px solid ${palette.glass.avatarBorder}`,
-      },
-    },
-  },
-  MuiDivider: {
-    styleOverrides: {
-      root: {
-        borderColor: palette.divider,
-      },
-    },
-  },
-  MuiTable: {
-    styleOverrides: {
-      root: {
-        borderRadius: 18,
-        overflow: 'hidden',
-      },
-    },
-  },
-  MuiTableCell: {
-    styleOverrides: {
-      root: {
-        borderBottom: `1px solid ${palette.glass.tableBorder}`,
-        padding: '14px 20px',
-        color: palette.text.primary,
-      },
-      head: {
-        fontWeight: 600,
-        color: palette.text.secondary,
-        backgroundColor: palette.glass.tableHeadBg,
-        textTransform: 'uppercase',
-        fontSize: '0.75rem',
-        letterSpacing: '0.04em',
-      },
-    },
-  },
-  MuiBadge: {
-    styleOverrides: {
-      badge: ({ ownerState }) => {
-        // Exclude standard styles if variant is dot, since dot is super small, 
-        // but we can still style its bg and border.
-        const color = ownerState.color && ownerState.color !== 'default' ? ownerState.color : 'primary';
-        const colorGroup = (palette as Record<string, any>)[color] || palette.primary;
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          const isGlass = (ownerState as any).variant === "glass";
+          const isRounded = ownerState.variant === "rounded";
 
-        return {
-          backgroundColor: colorGroup.main,
-          color: colorGroup.contrastText || '#FFFFFF',
-          border: `1px solid ${isDark ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.8)'}`,
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
-          boxShadow: palette.glass.paperShadow,
-          fontWeight: 600,
-        };
+          return {
+            fontFamily: '"Google Sans Flex", "SF Pro Display", -apple-system, sans-serif',
+            fontWeight: 700,
+            fontSize: "0.9375rem",
+            letterSpacing: "-0.01em",
+            border: `1.5px solid ${
+              isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.85)"
+            }`,
+            backgroundColor: isDark
+              ? "rgba(255, 255, 255, 0.12)"
+              : "rgba(255, 255, 255, 0.65)",
+            color: isDark ? "#F6F5F2" : "#111111",
+            backdropFilter: "blur(16px) saturate(180%)",
+            WebkitBackdropFilter: "blur(16px) saturate(180%)",
+            boxShadow: isDark
+              ? "0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.18)"
+              : "0 4px 16px rgba(17, 17, 17, 0.06), inset 0 1px 1.5px rgba(255, 255, 255, 0.95)",
+            transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+            ...(isRounded && {
+              borderRadius: "28%", // Apple continuous curve squircle
+            }),
+            ...(isGlass && {
+              backgroundColor: isDark
+                ? "rgba(255, 255, 255, 0.08) !important"
+                : "rgba(255, 255, 255, 0.45) !important",
+              backdropFilter: "blur(20px) saturate(190%) !important",
+              WebkitBackdropFilter: "blur(20px) saturate(190%) !important",
+              border: `1.5px solid ${
+                isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.95)"
+              } !important`,
+            }),
+            "& .MuiAvatar-img": {
+              borderRadius: "inherit",
+            },
+          };
+        },
       },
     },
-  },
+
+    MuiAvatarGroup: {
+      styleOverrides: {
+        root: {
+          "& .MuiAvatar-root": {
+            border: `2px solid ${
+              isDark ? "rgba(20, 24, 32, 0.85)" : "rgba(255, 255, 255, 0.95)"
+            }`,
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            boxShadow: isDark
+              ? "0 2px 8px rgba(0, 0, 0, 0.4)"
+              : "0 2px 8px rgba(0, 0, 0, 0.06)",
+            marginLeft: -8,
+            "&:first-of-type": {
+              marginLeft: 0,
+            },
+          },
+          "& .MuiAvatar-root:last-child": {
+            backgroundColor: isDark
+              ? "rgba(255, 255, 255, 0.12)"
+              : "rgba(17, 17, 17, 0.08)",
+            color: palette.text.primary,
+            fontWeight: 700,
+            fontSize: "0.82rem",
+          },
+        },
+      },
+    },
+
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          borderColor: palette.divider,
+        },
+      },
+    },
+    MuiTable: {
+      styleOverrides: {
+        root: {
+          borderRadius: 18,
+          overflow: "hidden",
+        },
+      },
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          borderBottom: `1px solid ${palette.glass.tableBorder}`,
+          padding: "14px 20px",
+          color: palette.text.primary,
+        },
+        head: {
+          fontWeight: 600,
+          color: palette.text.secondary,
+          backgroundColor: palette.glass.tableHeadBg,
+          textTransform: "uppercase",
+          fontSize: "0.75rem",
+          letterSpacing: "0.04em",
+        },
+      },
+    },
+    MuiBadge: {
+      styleOverrides: {
+        badge: ({ ownerState }) => {
+          const color = (ownerState.color as string) || "primary";
+          const isGlass = color === "glass";
+          const isDot = ownerState.variant === "dot";
+          const colorGroup =
+            (palette as Record<string, any>)[color] || palette.primary;
+
+          if (isDot) {
+            const dotColor = isGlass
+              ? isDark
+                ? "#F6F5F2"
+                : "#111111"
+              : colorGroup.main;
+
+            return {
+              height: 10,
+              width: 10,
+              minWidth: 10,
+              borderRadius: "50%",
+              backgroundColor: dotColor,
+              border: `2px solid ${isDark ? "#12141A" : "#FFFFFF"}`,
+              boxShadow: isGlass
+                ? isDark
+                  ? "0 0 8px rgba(255, 255, 255, 0.5)"
+                  : "0 0 6px rgba(0, 0, 0, 0.3)"
+                : `0 0 8px ${colorGroup.glow || colorGroup.main}`,
+            };
+          }
+
+          if (isGlass) {
+            return {
+              backgroundColor: isDark
+                ? "rgba(255, 255, 255, 0.16)"
+                : "rgba(255, 255, 255, 0.75)",
+              color: isDark ? "#F6F5F2" : "#111111",
+              border: `1px solid ${
+                isDark
+                  ? "rgba(255, 255, 255, 0.25)"
+                  : "rgba(255, 255, 255, 0.9)"
+              }`,
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
+              boxShadow: isDark
+                ? "0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.25)"
+                : "0 4px 12px rgba(17, 17, 17, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95)",
+              fontWeight: 700,
+              fontSize: "0.72rem",
+              height: 20,
+              minWidth: 20,
+              borderRadius: 10,
+              padding: "0 6px",
+            };
+          }
+
+          return {
+            backgroundColor: colorGroup.main,
+            color: colorGroup.contrastText || "#FFFFFF",
+            border: `1.5px solid ${
+              isDark ? "rgba(20, 24, 32, 0.9)" : "rgba(255, 255, 255, 0.95)"
+            }`,
+            boxShadow: `0 2px 8px ${colorGroup.glow || "rgba(0, 0, 0, 0.15)"}`,
+            fontWeight: 700,
+            fontSize: "0.72rem",
+            height: 20,
+            minWidth: 20,
+            borderRadius: 10,
+            padding: "0 6px",
+          };
+        },
+      },
+    },
 };
 };

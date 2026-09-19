@@ -56,6 +56,7 @@ export const NAV_SECTIONS: NavSection[] = [
     title: "Surfaces",
     items: [
       { id: "surfaces", label: "Glass Panel & Surfaces" },
+      { id: "dialogs", label: "Dialog & Drawer", badge: "GLASS" },
     ],
   },
   {

@@ -53,7 +53,7 @@ export const glassAppBarRecipe = (isDark: boolean) => ({
 export const liquidGlassPopupRecipe = (isDark: boolean) => ({
   borderRadius: "18px !important",
   backgroundColor: isDark
-    ? "rgba(18, 20, 26, 0.35) !important"
+    ? "rgba(18, 20, 26, 0.05) !important"
     : "rgba(255, 255, 255, 0.08) !important",
   backgroundImage: isDark
     ? "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%) !important"
@@ -71,4 +71,29 @@ export const liquidGlassPopupRecipe = (isDark: boolean) => ({
   transition:
     "transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important",
   transformOrigin: "top center !important",
+});
+
+export const LiquidDialogDrawerRecipe = (isDark: boolean) => ({
+  backgroundColor: isDark
+    ? "rgba(20, 20, 24, 0.37)"
+    : "rgba(255, 255, 255, 0.34)",
+  backdropFilter: "blur(30px) saturate(180%) brightness(110%)",
+  WebkitBackdropFilter: "blur(30px) saturate(180%) brightness(110%)",
+  backgroundImage: isDark
+    ? "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%)"
+    : "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(248, 250, 252, 0.4) 100%)",
+  border: isDark
+    ? "1px solid rgba(255, 255, 255, 0.14)"
+    : "1px solid rgba(255, 255, 255, 0.65)",
+  boxShadow: isDark
+    ? `
+          0 -12px 40px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.12)
+        `
+    : `
+          0 -12px 40px rgba(0, 0, 0, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.7)
+        `,
+  backgroundClip: "padding-box",
+  overflow: "hidden",
 });

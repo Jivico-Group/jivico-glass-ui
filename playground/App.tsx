@@ -14,6 +14,7 @@ import { SurfacesPage } from "./components/Pages/SurfacesPage.js";
 import { FeedbackPage } from "./components/Pages/FeedbackPage.js";
 import { TypographyPage } from "./components/Pages/TypographyPage.js";
 import { SteppersPage } from "./components/Pages/SteppersPage.js";
+import { DialogsPage } from "./components/Pages/DialogsPage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
 const TOC_MAP: Record<string, TocItem[]> = {
@@ -74,13 +75,20 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "form-group", title: "Form Group Preferences" },
   ],
   "data-display": [
-    { id: "avatars", title: "Avatars" },
-    { id: "badges", title: "Badges" },
-    { id: "tooltips", title: "Tooltips" },
+    { id: "glass-spotlight", title: "Glass Spotlight" },
+    { id: "avatar-shapes", title: "Avatar Shapes (Squircle)" },
+    { id: "avatar-sizes", title: "Avatar Size Scale" },
+    { id: "badges-colors", title: "Liquid Glass Badges" },
+    { id: "status-dots", title: "Glowing Status Aura Dots" },
+    { id: "tooltips", title: "Glass Tooltips" },
   ],
   surfaces: [
     { id: "glass-panel", title: "Glass Panel" },
     { id: "paper-surface", title: "Paper Overrides" },
+  ],
+  dialogs: [
+    { id: "confirmation-dialog", title: "Glass Dialogs" },
+    { id: "bottom-sheet", title: "Bottom Sheet & Drawers" },
   ],
   feedback: [
     { id: "alerts", title: "Severity Levels" },
@@ -105,9 +113,7 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace(/^#/, "");
-      if (hash) {
-        setCurrentRoute(hash);
-      }
+      setCurrentRoute(hash || "overview");
     };
     window.addEventListener("hashchange", handleHashChange);
     return () => window.removeEventListener("hashchange", handleHashChange);
@@ -141,6 +147,8 @@ export default function App() {
         return <DataDisplayPage />;
       case "surfaces":
         return <SurfacesPage />;
+      case "dialogs":
+        return <DialogsPage />;
       case "feedback":
         return <FeedbackPage />;
       case "typography":
