@@ -11,7 +11,6 @@ export * from './layout/Hero.js';
 export * from './decorations/AmbientBlob.js';
 export * from './decorations/GradientText.js';
 export * from './decorations/JivicoFontPreload.js';
-export * from './badges/Chips.js';
 export * from './buttons/MobileViewAll.js';
 export * from './cards/LiquidGlassCard.js';
 export * from './navigation/DynamicIsland.js';
