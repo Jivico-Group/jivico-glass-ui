@@ -26,7 +26,15 @@ import {
 import { GlassPanel } from "../src/components/index";
 import { GradientText } from "../src/components/index";
 import { useThemeMode } from "../src/context/ThemeContext";
-import { ShoppingCart, CreditCard, CheckCircle2 } from "lucide-react";
+import {
+  ShoppingCart,
+  CreditCard,
+  CheckCircle2,
+  Star,
+  ChevronRight,
+  Tag,
+  Filter,
+} from "lucide-react";
 
 // Sun icon (light mode)
 function SunIcon() {
@@ -184,84 +192,419 @@ export default function App() {
 
         {/* ── Chips ─────────────────────────────────────────────────── */}
         <GlassPanel>
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-            Chips
-          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              mb: 3,
+            }}
+          >
+            <Box>
+              <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                Chips (Brand Kit Design System)
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Hollow circle indicator before label, sleek ✕ delete icon, tonal
+                & outlined variants, 24px / 28px / 32px
+              </Typography>
+            </Box>
+          </Box>
 
-          {/* Filled */}
+          {/* 1. CHIP TYPES */}
           <Typography
             variant="overline"
             color="text.secondary"
-            sx={{ mb: 1.5, display: "block" }}
+            sx={{
+              mb: 1.5,
+              display: "block",
+              letterSpacing: "0.08em",
+              fontWeight: 700,
+            }}
           >
-            Filled
+            Chip Types
           </Typography>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 3 }}>
-            <Chip label="Default" />
-            <Chip label="Primary" color="primary" />
-            <Chip label="Secondary" color="secondary" />
-            <Chip label="Success" color="success" />
-            <Chip label="Warning" color="warning" />
-            <Chip label="Error" color="error" />
-            <Chip label="Info" color="info" />
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 4 }}>
+            <Chip label="Filled" color="primary" onDelete={() => {}} />
+            <Chip
+              label="Outlined"
+              variant="outlined"
+              color="primary"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Tonal"
+              variant="tonal"
+              color="primary"
+              onDelete={() => {}}
+            />
+            <Chip label="Deletable" onDelete={() => {}} />
+            <Chip
+              icon={<Tag size={13} />}
+              label="Clickable"
+              clickable
+              deleteIcon={<ChevronRight size={13} />}
+              onDelete={() => {}}
+            />
+            <Chip
+              icon={<Filter size={13} />}
+              label="Filter"
+              clickable
+              deleteIcon={<ChevronRight size={13} />}
+              onDelete={() => {}}
+            />
+            <Chip
+              avatar={
+                <Avatar
+                  sx={{
+                    width: 20,
+                    height: 20,
+                    fontSize: "0.65rem",
+                    bgcolor: isDark ? "#F6F5F2" : "#111111",
+                    color: isDark ? "#111111" : "#FFFFFF",
+                  }}
+                >
+                  JD
+                </Avatar>
+              }
+              label="Avatar"
+              onDelete={() => {}}
+            />
+            <Chip
+              icon={<Star size={13} />}
+              label="With Custom Icon"
+              color="primary"
+              onDelete={() => {}}
+            />
+          </Box>
+
+          {/* 2. CHIP SIZES */}
+          <Typography
+            variant="overline"
+            color="text.secondary"
+            sx={{
+              mb: 1.5,
+              display: "block",
+              letterSpacing: "0.08em",
+              fontWeight: 700,
+            }}
+          >
+            Chip Sizes — Small (24px), Medium (28px), Large (32px)
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 2,
+              alignItems: "center",
+              mb: 4,
+            }}
+          >
+            <Chip
+              label="Small (24px)"
+              size="small"
+              color="primary"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Medium (28px)"
+              size="medium"
+              color="primary"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Large (32px)"
+              size="large"
+              color="primary"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Small Outlined"
+              size="small"
+              variant="outlined"
+              color="primary"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Medium Outlined"
+              size="medium"
+              variant="outlined"
+              color="primary"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Large Outlined"
+              size="large"
+              variant="outlined"
+              color="primary"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Small Tonal"
+              size="small"
+              variant="tonal"
+              color="primary"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Medium Tonal"
+              size="medium"
+              variant="tonal"
+              color="primary"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Large Tonal"
+              size="large"
+              variant="tonal"
+              color="primary"
+              onDelete={() => {}}
+            />
+          </Box>
+
+          {/* 3. COLOR PALETTE MATRIX (Brand Kit) */}
+          <Typography
+            variant="overline"
+            color="text.secondary"
+            sx={{
+              mb: 1.5,
+              display: "block",
+              letterSpacing: "0.08em",
+              fontWeight: 700,
+            }}
+          >
+            Color Palette & States (Primary, Secondary, Info, Warning, Error,
+            Success)
+          </Typography>
+
+          {/* Filled Default */}
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ display: "block", mb: 1, fontWeight: 600 }}
+          >
+            Filled Default
+          </Typography>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 2.5 }}>
+            <Chip label="Primary" color="primary" onDelete={() => {}} />
+            <Chip label="Secondary" color="secondary" onDelete={() => {}} />
+            <Chip label="Info" color="info" onDelete={() => {}} />
+            <Chip label="Warning" color="warning" onDelete={() => {}} />
+            <Chip label="Error" color="error" onDelete={() => {}} />
+            <Chip label="Success" color="success" onDelete={() => {}} />
+          </Box>
+
+          {/* Clickable / Interactive */}
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ display: "block", mb: 1, fontWeight: 600 }}
+          >
+            Clickable (Hover & Active States)
+          </Typography>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 2.5 }}>
+            <Chip
+              label="Primary"
+              color="primary"
+              clickable
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Secondary"
+              color="secondary"
+              clickable
+              onDelete={() => {}}
+            />
+            <Chip label="Info" color="info" clickable onDelete={() => {}} />
+            <Chip
+              label="Warning"
+              color="warning"
+              clickable
+              onDelete={() => {}}
+            />
+            <Chip label="Error" color="error" clickable onDelete={() => {}} />
+            <Chip
+              label="Success"
+              color="success"
+              clickable
+              onDelete={() => {}}
+            />
+          </Box>
+
+          {/* Disabled */}
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ display: "block", mb: 1, fontWeight: 600 }}
+          >
+            Disabled State
+          </Typography>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 2.5 }}>
+            <Chip
+              label="Primary"
+              color="primary"
+              disabled
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Secondary"
+              color="secondary"
+              disabled
+              onDelete={() => {}}
+            />
+            <Chip label="Info" color="info" disabled onDelete={() => {}} />
+            <Chip
+              label="Warning"
+              color="warning"
+              disabled
+              onDelete={() => {}}
+            />
+            <Chip label="Error" color="error" disabled onDelete={() => {}} />
+            <Chip
+              label="Success"
+              color="success"
+              disabled
+              onDelete={() => {}}
+            />
+          </Box>
+
+          {/* With Custom Leading Icon */}
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ display: "block", mb: 1, fontWeight: 600 }}
+          >
+            With Custom Leading Icon (Replaces Circle Indicator)
+          </Typography>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 2.5 }}>
+            <Chip
+              icon={<Star size={13} />}
+              label="Primary"
+              color="primary"
+              onDelete={() => {}}
+            />
+            <Chip
+              icon={<Star size={13} />}
+              label="Secondary"
+              color="secondary"
+              onDelete={() => {}}
+            />
+            <Chip
+              icon={<Star size={13} />}
+              label="Info"
+              color="info"
+              onDelete={() => {}}
+            />
+            <Chip
+              icon={<Star size={13} />}
+              label="Warning"
+              color="warning"
+              onDelete={() => {}}
+            />
+            <Chip
+              icon={<Star size={13} />}
+              label="Error"
+              color="error"
+              onDelete={() => {}}
+            />
+            <Chip
+              icon={<Star size={13} />}
+              label="Success"
+              color="success"
+              onDelete={() => {}}
+            />
           </Box>
 
           {/* Outlined */}
           <Typography
-            variant="overline"
+            variant="caption"
             color="text.secondary"
-            sx={{ mb: 1.5, display: "block" }}
+            sx={{ display: "block", mb: 1, fontWeight: 600 }}
           >
-            Outlined
+            Outlined Variant
           </Typography>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 3 }}>
-            <Chip label="Default" variant="outlined" />
-            <Chip label="Primary" color="primary" variant="outlined" />
-            <Chip label="Secondary" color="secondary" variant="outlined" />
-            <Chip label="Success" color="success" variant="outlined" />
-            <Chip label="Warning" color="warning" variant="outlined" />
-            <Chip label="Error" color="error" variant="outlined" />
-            <Chip label="Info" color="info" variant="outlined" />
-          </Box>
-
-          {/* Sizes (Brand Kit: Small 24px, Medium 28px, Large 32px) */}
-          <Typography
-            variant="overline"
-            color="text.secondary"
-            sx={{ mb: 1.5, display: "block" }}
-          >
-            Sizes — Small (24px), Medium (28px), Large (32px)
-          </Typography>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, alignItems: "center", mb: 3 }}>
-            <Chip label="Small 24px" size="small" color="primary" />
-            <Chip label="Medium 28px" size="medium" color="primary" />
-            <Chip label="Large 32px" size="large" color="primary" />
-            <Chip label="Small Outlined" size="small" variant="outlined" color="primary" />
-            <Chip label="Medium Outlined" size="medium" variant="outlined" color="primary" />
-            <Chip label="Large Outlined" size="large" variant="outlined" color="primary" />
-          </Box>
-
-          {/* Interactive */}
-          <Typography
-            variant="overline"
-            color="text.secondary"
-            sx={{ mb: 1.5, display: "block" }}
-          >
-            Clickable & Deletable
-          </Typography>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5 }}>
-            <Chip label="Clickable" clickable />
-            <Chip label="Clickable Primary" color="primary" clickable />
-            <Chip label="Deletable" onDelete={() => {}} />
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 2.5 }}>
             <Chip
-              label="Deletable Success"
-              color="success"
+              label="Primary"
+              color="primary"
+              variant="outlined"
               onDelete={() => {}}
             />
-            <Chip label="Both" color="primary" clickable onDelete={() => {}} />
             <Chip
-              label="Outlined + Delete"
+              label="Secondary"
+              color="secondary"
               variant="outlined"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Info"
+              color="info"
+              variant="outlined"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Warning"
+              color="warning"
+              variant="outlined"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Error"
+              color="error"
+              variant="outlined"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Success"
+              color="success"
+              variant="outlined"
+              onDelete={() => {}}
+            />
+          </Box>
+
+          {/* Tonal */}
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ display: "block", mb: 1, fontWeight: 600 }}
+          >
+            Tonal Variant (Soft Background Chip)
+          </Typography>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5 }}>
+            <Chip
+              label="Primary"
+              color="primary"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Secondary"
+              color="secondary"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Info"
+              color="info"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Warning"
+              color="warning"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Error"
+              color="error"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Success"
+              color="success"
+              variant="tonal"
               onDelete={() => {}}
             />
           </Box>

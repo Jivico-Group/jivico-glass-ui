@@ -1,14 +1,15 @@
 'use strict';
 
 var styles = require('@mui/material/styles');
+var React = require('react');
 var material = require('@mui/material');
 var lucideReact = require('lucide-react');
-var react = require('react');
 var jsxRuntime = require('react/jsx-runtime');
 var CssBaseline = require('@mui/material/CssBaseline');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
+var React__default = /*#__PURE__*/_interopDefault(React);
 var CssBaseline__default = /*#__PURE__*/_interopDefault(CssBaseline);
 
 // src/theme/colors.ts
@@ -1047,10 +1048,60 @@ var getControlOverrides = (palette, isDark) => ({
     }
   }
 });
-
-// src/theme/overrides/dataDisplay.ts
+var CloseDeleteIcon = (props) => React__default.default.createElement(
+  "svg",
+  {
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2.2,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    ...props,
+    style: { width: "1em", height: "1em", ...props.style }
+  },
+  React__default.default.createElement("line", { x1: "18", y1: "6", x2: "6", y2: "18" }),
+  React__default.default.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" })
+);
 var getDataDisplayOverrides = (palette, isDark) => {
   const chipColor = (colorKey) => {
+    const semanticColors = {
+      info: {
+        main: "#4285F4",
+        hover: isDark ? "#5A95F5" : "#3367D6",
+        active: isDark ? "#3367D6" : "#2A56C6",
+        disabled: isDark ? "rgba(66, 133, 244, 0.3)" : "rgba(66, 133, 244, 0.25)",
+        glow: "rgba(66, 133, 244, 0.35)",
+        text: "#FFFFFF"
+      },
+      warning: {
+        main: "#E67700",
+        hover: isDark ? "#EE881E" : "#C96800",
+        active: isDark ? "#C96800" : "#A85700",
+        disabled: isDark ? "rgba(230, 119, 0, 0.3)" : "rgba(230, 119, 0, 0.25)",
+        glow: "rgba(230, 119, 0, 0.35)",
+        text: "#FFFFFF"
+      },
+      error: {
+        main: "#EA4335",
+        hover: isDark ? "#ED594D" : "#C5221F",
+        active: isDark ? "#C5221F" : "#A51D1A",
+        disabled: isDark ? "rgba(234, 67, 53, 0.3)" : "rgba(234, 67, 53, 0.25)",
+        glow: "rgba(234, 67, 53, 0.35)",
+        text: "#FFFFFF"
+      },
+      success: {
+        main: "#34A853",
+        hover: isDark ? "#45B463" : "#278A42",
+        active: isDark ? "#278A42" : "#1E7034",
+        disabled: isDark ? "rgba(52, 168, 83, 0.3)" : "rgba(52, 168, 83, 0.25)",
+        glow: "rgba(52, 168, 83, 0.35)",
+        text: "#FFFFFF"
+      }
+    };
+    if (semanticColors[colorKey]) {
+      return semanticColors[colorKey];
+    }
     const group = palette[colorKey] || palette.primary;
     return {
       main: group.main,
@@ -1063,28 +1114,38 @@ var getDataDisplayOverrides = (palette, isDark) => {
   };
   return {
     MuiChip: {
+      defaultProps: {
+        deleteIcon: React__default.default.createElement(CloseDeleteIcon)
+      },
       variants: [
         {
           props: { size: "large" },
           style: {
             height: 32,
             fontSize: "0.82rem",
-            padding: "0 14px",
+            padding: "0 12px",
+            "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before": {
+              width: 10,
+              height: 10,
+              borderWidth: "2px",
+              marginRight: "7px"
+            },
             "& .MuiChip-avatar": {
               width: 24,
               height: 24,
-              marginLeft: "-4px",
-              marginRight: "8px",
+              marginLeft: "-3px",
+              marginRight: "6px",
               fontSize: "0.7rem"
             },
             "& .MuiChip-icon": {
               fontSize: "18px",
               marginLeft: "-2px",
-              marginRight: "8px"
+              marginRight: "6px"
             },
             "& .MuiChip-deleteIcon": {
-              fontSize: "18px",
-              marginLeft: "8px"
+              fontSize: "17px",
+              marginLeft: "6px",
+              marginRight: "-1px"
             }
           }
         }
@@ -1109,21 +1170,39 @@ var getDataDisplayOverrides = (palette, isDark) => {
             fontSize: "0.76rem",
             letterSpacing: "0.02em",
             lineHeight: 1,
-            padding: "0 12px",
+            padding: "0 11px",
             cursor: "default",
             transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
             userSelect: "none",
             "& .MuiChip-label": {
               color: "inherit",
+              display: "inline-flex",
+              alignItems: "center",
               padding: 0
+            },
+            // ── Brand Kit Signature Circle Indicator Before Label ────────
+            // Displayed on all chips unless a custom icon or avatar is provided
+            "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before": {
+              content: '""',
+              display: "inline-block",
+              width: 8.5,
+              height: 8.5,
+              borderRadius: "50%",
+              border: "1.75px solid currentColor",
+              boxSizing: "border-box",
+              marginRight: "6px",
+              flexShrink: 0,
+              opacity: 0.9
             },
             // Delete icon
             "& .MuiChip-deleteIcon": {
-              fontSize: "16px",
-              marginLeft: "6px",
+              fontSize: "15px",
+              marginLeft: "5px",
               marginRight: "-2px",
-              opacity: 0.55,
+              opacity: 0.75,
               transition: "opacity 0.15s ease, transform 0.15s ease",
+              color: "inherit",
+              cursor: "pointer",
               "&:hover": {
                 opacity: 1,
                 transform: "scale(1.15)",
@@ -1134,7 +1213,7 @@ var getDataDisplayOverrides = (palette, isDark) => {
             "& .MuiChip-avatar": {
               width: 20,
               height: 20,
-              marginLeft: "-4px",
+              marginLeft: "-3px",
               marginRight: "6px",
               fontSize: "0.65rem",
               fontWeight: 700
@@ -1145,51 +1224,51 @@ var getDataDisplayOverrides = (palette, isDark) => {
               marginLeft: "-2px",
               marginRight: "6px",
               color: "inherit",
-              opacity: 0.8
+              opacity: 0.85
             },
             // ══════════════════════════════════════════════════════════════
             // FILLED VARIANT
             // ══════════════════════════════════════════════════════════════
-            // ── Primary Filled — Solid Charcoal / Cream ──────────────────
+            // ── Primary Filled — Solid Charcoal (Light) / Cream (Dark) ────
             ...variant === "filled" && isPrimary && {
-              backgroundColor: cc.main,
-              color: cc.text,
+              backgroundColor: isDark ? "#F6F5F2" : "#111111",
+              color: isDark ? "#111111" : "#FFFFFF",
               border: "1px solid transparent",
               boxShadow: isDark ? "0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08)" : "0 2px 6px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.15)",
               "&.MuiChip-clickable:hover": {
-                backgroundColor: cc.hover,
+                backgroundColor: isDark ? "#E8E7E4" : "#2A2A2A",
                 transform: "translateY(-1px)",
-                boxShadow: isDark ? "0 6px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)" : "0 6px 14px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.2)"
+                boxShadow: isDark ? "0 6px 16px rgba(0,0,0,0.4)" : "0 6px 14px rgba(0,0,0,0.12)"
               },
               "&.MuiChip-clickable:active": {
-                backgroundColor: cc.active,
+                backgroundColor: isDark ? "#D9D8D4" : "#1A1A1A",
                 transform: "translateY(0) scale(0.98)"
               },
               "&.Mui-disabled": {
-                backgroundColor: cc.disabled,
-                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
+                backgroundColor: isDark ? "rgba(255,255,255,0.12)" : "#EBEBEB",
+                color: isDark ? "rgba(255,255,255,0.3)" : "#A0A0A0",
                 boxShadow: "none",
                 opacity: 1
               }
             },
-            // ── Secondary Filled — Soft Glass ────────────────────────────
+            // ── Secondary Filled — Cream (Light) / Dark Stone (Dark) ──────
             ...variant === "filled" && isSecondary && {
-              backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.08)",
+              backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "#F6F5F2",
               color: isDark ? "#F6F5F2" : "#111111",
               border: `1px solid ${isDark ? "rgba(255,255,255,0.14)" : "rgba(17,17,17,0.12)"}`,
               backdropFilter: "blur(12px)",
               WebkitBackdropFilter: "blur(12px)",
               boxShadow: isDark ? "0 2px 8px rgba(0,0,0,0.25)" : "0 2px 6px rgba(0,0,0,0.04)",
               "&.MuiChip-clickable:hover": {
-                backgroundColor: isDark ? "rgba(255,255,255,0.16)" : "rgba(17,17,17,0.12)",
+                backgroundColor: isDark ? "rgba(255,255,255,0.16)" : "#EDECE8",
                 transform: "translateY(-1px)"
               },
               "&.MuiChip-clickable:active": {
-                backgroundColor: isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.16)",
+                backgroundColor: isDark ? "rgba(255,255,255,0.22)" : "#D9D9CF",
                 transform: "translateY(0) scale(0.98)"
               },
               "&.Mui-disabled": {
-                backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(17,17,17,0.04)",
+                backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(246,245,242,0.6)",
                 color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
                 boxShadow: "none",
                 opacity: 1
@@ -1200,7 +1279,7 @@ var getDataDisplayOverrides = (palette, isDark) => {
               backgroundColor: cc.main,
               color: cc.text,
               border: "1px solid transparent",
-              boxShadow: isDark ? `0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06)` : `0 2px 6px ${cc.glow}`,
+              boxShadow: isDark ? `0 2px 8px rgba(0,0,0,0.3)` : `0 2px 6px ${cc.glow}`,
               "&.MuiChip-clickable:hover": {
                 backgroundColor: cc.hover,
                 transform: "translateY(-1px)",
@@ -1212,7 +1291,7 @@ var getDataDisplayOverrides = (palette, isDark) => {
               },
               "&.Mui-disabled": {
                 backgroundColor: cc.disabled,
-                color: isDark ? "rgba(255,255,255,0.4)" : "rgba(17,17,17,0.4)",
+                color: isDark ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.5)",
                 boxShadow: "none",
                 opacity: 1
               }
@@ -1246,7 +1325,7 @@ var getDataDisplayOverrides = (palette, isDark) => {
             // ── Primary Outlined ─────────────────────────────────────────
             ...variant === "outlined" && isPrimary && {
               backgroundColor: "transparent",
-              border: `1.5px solid ${isDark ? "rgba(246,245,242,0.55)" : "rgba(17,17,17,0.7)"}`,
+              border: `1.5px solid ${isDark ? "#F6F5F2" : "#111111"}`,
               color: isDark ? "#F6F5F2" : "#111111",
               boxShadow: "none",
               "&.MuiChip-clickable:hover": {
@@ -1283,7 +1362,7 @@ var getDataDisplayOverrides = (palette, isDark) => {
               color: cc.main,
               boxShadow: "none",
               "&.MuiChip-clickable:hover": {
-                backgroundColor: isDark ? `rgba(${color === "info" ? "138,180,248" : color === "warning" ? "246,173,85" : color === "error" ? "242,139,130" : "129,201,149"},0.1)` : `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"},0.07)`,
+                backgroundColor: isDark ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"},0.12)` : `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"},0.07)`,
                 transform: "translateY(-1px)",
                 boxShadow: isDark ? "0 4px 12px rgba(0,0,0,0.25)" : "0 4px 10px rgba(0,0,0,0.07)"
               },
@@ -1309,26 +1388,52 @@ var getDataDisplayOverrides = (palette, isDark) => {
                 opacity: 1
               }
             },
+            // ══════════════════════════════════════════════════════════════
+            // TONAL VARIANT (Soft background chip from Brand Kit)
+            // ══════════════════════════════════════════════════════════════
+            ...variant === "tonal" && {
+              backgroundColor: isPrimary ? isDark ? "rgba(246, 245, 242, 0.12)" : "rgba(17, 17, 17, 0.07)" : isSecondary ? isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.05)" : isSemantic ? isDark ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.2)` : `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.1)` : isDark ? "rgba(255, 255, 255, 0.07)" : "rgba(17, 17, 17, 0.05)",
+              color: isPrimary ? isDark ? "#F6F5F2" : "#111111" : isSecondary ? isDark ? "#F6F5F2" : "#111111" : isSemantic ? cc.main : palette.text.primary,
+              border: `1px solid ${isDark ? isSemantic ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.25)` : "rgba(255,255,255,0.08)" : isSemantic ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.15)` : "rgba(17,17,17,0.08)"}`,
+              boxShadow: "none",
+              "&.MuiChip-clickable:hover": {
+                backgroundColor: isPrimary ? isDark ? "rgba(246, 245, 242, 0.18)" : "rgba(17, 17, 17, 0.12)" : isSecondary ? isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.09)" : isSemantic ? isDark ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.28)` : `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.16)` : isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)",
+                transform: "translateY(-1px)"
+              },
+              "&.MuiChip-clickable:active": {
+                transform: "translateY(0) scale(0.98)"
+              },
+              "&.Mui-disabled": {
+                opacity: 0.45
+              }
+            },
             // ── Size: Large (Brand Kit: 32px) ───────────────────────────
             ...ownerState.size === "large" && {
               height: 32,
               fontSize: "0.82rem",
-              padding: "0 14px",
+              padding: "0 12px",
+              "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before": {
+                width: 10,
+                height: 10,
+                borderWidth: "2px",
+                marginRight: "7px"
+              },
               "& .MuiChip-avatar": {
                 width: 24,
                 height: 24,
-                marginLeft: "-4px",
-                marginRight: "8px",
+                marginLeft: "-3px",
+                marginRight: "6px",
                 fontSize: "0.7rem"
               },
               "& .MuiChip-icon": {
                 fontSize: "18px",
                 marginLeft: "-2px",
-                marginRight: "8px"
+                marginRight: "6px"
               },
               "& .MuiChip-deleteIcon": {
-                fontSize: "18px",
-                marginLeft: "8px"
+                fontSize: "17px",
+                marginLeft: "6px",
+                marginRight: "-1px"
               }
             }
           };
@@ -1337,7 +1442,13 @@ var getDataDisplayOverrides = (palette, isDark) => {
         sizeSmall: {
           height: 24,
           fontSize: "0.68rem",
-          padding: "0 9px",
+          padding: "0 8px",
+          "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before": {
+            width: 7,
+            height: 7,
+            borderWidth: "1.5px",
+            marginRight: "5px"
+          },
           "& .MuiChip-avatar": {
             width: 16,
             height: 16,
@@ -1352,13 +1463,20 @@ var getDataDisplayOverrides = (palette, isDark) => {
           },
           "& .MuiChip-deleteIcon": {
             fontSize: "14px",
-            marginLeft: "4px"
+            marginLeft: "4px",
+            marginRight: "-1px"
           }
         },
         sizeMedium: {
           height: 28,
           fontSize: "0.76rem",
-          padding: "0 12px"
+          padding: "0 11px",
+          "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before": {
+            width: 8.5,
+            height: 8.5,
+            borderWidth: "1.75px",
+            marginRight: "6px"
+          }
         }
       }
     },
@@ -2190,21 +2308,21 @@ var GlassScrollButton = material.styled(material.IconButton, {
     transform: "scale(1.06)"
   }
 }));
-var ThemeContext = react.createContext({
+var ThemeContext = React.createContext({
   mode: "light",
   toggleTheme: () => {
   },
   setMode: () => {
   }
 });
-var useThemeMode = () => react.useContext(ThemeContext);
+var useThemeMode = () => React.useContext(ThemeContext);
 function ThemeModeProvider({
   children,
   defaultMode = "light",
   storageKey = "jivico-theme-mode"
 }) {
-  const [mode, setModeState] = react.useState(defaultMode);
-  react.useEffect(() => {
+  const [mode, setModeState] = React.useState(defaultMode);
+  React.useEffect(() => {
     try {
       const saved = localStorage.getItem(storageKey);
       if (saved === "light" || saved === "dark") {
@@ -2232,7 +2350,7 @@ function ThemeModeProvider({
     } catch {
     }
   };
-  const value = react.useMemo(
+  const value = React.useMemo(
     () => ({
       mode,
       toggleTheme,
@@ -2857,7 +2975,7 @@ function InternalMuiWrapper({
   enableCssBaseline = true
 }) {
   const { mode } = useThemeMode();
-  const theme = react.useMemo(() => getAntigravityTheme(mode), [mode]);
+  const theme = React.useMemo(() => getAntigravityTheme(mode), [mode]);
   return /* @__PURE__ */ jsxRuntime.jsxs(styles.ThemeProvider, { theme, children: [
     enableCssBaseline && /* @__PURE__ */ jsxRuntime.jsx(CssBaseline__default.default, {}),
     children

@@ -452,6 +452,9 @@ declare const createJivicoTheme: (mode: "light" | "dark") => Theme;
 declare const getControlOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
 declare module '@mui/material/Chip' {
+    interface ChipPropsVariantOverrides {
+        tonal: true;
+    }
     interface ChipPropsSizeOverrides {
         large: true;
     }
