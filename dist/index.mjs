@@ -22,17 +22,29 @@ var COLORS = {
     dark: "#F6F5F2",
     hoverLight: "#2A2A2A",
     hoverDark: "#E8E7E4",
-    glowLight: "rgba(17, 17, 17, 0.22)",
-    glowDark: "rgba(246, 245, 242, 0.18)"
+    activeLight: "#1A1A1A",
+    activeDark: "#D9D8D4",
+    disabledLight: "#D9D9D9",
+    disabledDark: "#3A3A3A",
+    glowLight: "rgba(17, 17, 17, 0.35)",
+    glowDark: "rgba(246, 245, 242, 0.4)",
+    textLight: "#FFFFFF",
+    textDark: "#111111"
   },
   // ─── Secondary (Cream) ───────────────────────────────────────────────────────
   secondary: {
     light: "#F6F5F2",
-    dark: "#111111",
-    hoverLight: "#E8E7E4",
-    hoverDark: "#2A2A2A",
-    glowLight: "rgba(246, 245, 242, 0.4)",
-    glowDark: "rgba(17, 17, 17, 0.4)"
+    dark: "#F6F5F2",
+    hoverLight: "#2A2A2A",
+    hoverDark: "#E8E7E4",
+    activeLight: "#3A3A37",
+    activeDark: "#D4D4D8",
+    disabledLight: "#3A3A3A",
+    disabledDark: "#EDEDED",
+    glowLight: "rgba(17, 17, 17, 0.08)",
+    glowDark: "rgba(246, 245, 242, 0.15)",
+    textLight: "#111111",
+    textDark: "#F6F5F2"
   },
   // ─── Semantic ────────────────────────────────────────────────────────────────
   success: {
@@ -40,32 +52,56 @@ var COLORS = {
     dark: "#81C995",
     hoverLight: "#2D9247",
     hoverDark: "#A8DAB5",
+    activeLight: "#24863E",
+    activeDark: "#6FB8B9",
+    disabledLight: "#C6EBD2",
+    disabledDark: "#2F4A3A",
     glowLight: "rgba(52, 168, 83, 0.35)",
-    glowDark: "rgba(129, 201, 149, 0.4)"
+    glowDark: "rgba(129, 201, 149, 0.4)",
+    textLight: "#FFFFFF",
+    textDark: "#111111"
   },
   warning: {
     light: "#E67700",
     dark: "#F6AD55",
     hoverLight: "#CC6A00",
     hoverDark: "#FBD38D",
+    activeLight: "#B35900",
+    activeDark: "#F1A340",
+    disabledLight: "#FCD5A6",
+    disabledDark: "#3A2B13",
     glowLight: "rgba(230, 119, 0, 0.35)",
-    glowDark: "rgba(246, 173, 85, 0.4)"
+    glowDark: "rgba(246, 173, 85, 0.4)",
+    textLight: "#FFFFFF",
+    textDark: "#111111"
   },
   error: {
     light: "#EA4335",
     dark: "#F28B82",
     hoverLight: "#D93025",
     hoverDark: "#F6AEA9",
-    glowLight: "rgba(234, 67, 53, 0.35)",
-    glowDark: "rgba(242, 139, 130, 0.4)"
+    activeLight: "#B3261E",
+    activeDark: "#E57373",
+    disabledLight: "#FBC5C1",
+    disabledDark: "#3A2F2F",
+    glowLight: "rgba(224, 67, 53, 0.35)",
+    glowDark: "rgba(242, 139, 130, 0.4)",
+    textLight: "#FFFFFF",
+    textDark: "#111111"
   },
   info: {
     light: "#4285F4",
     dark: "#8AB4F8",
     hoverLight: "#1A73E8",
     hoverDark: "#AECBFA",
+    activeLight: "#0F5CC7",
+    activeDark: "#7BAAF7",
+    disabledLight: "#D6E3FD",
+    disabledDark: "#2A3B5E",
     glowLight: "rgba(66, 133, 244, 0.35)",
-    glowDark: "rgba(138, 180, 248, 0.4)"
+    glowDark: "rgba(138, 180, 248, 0.4)",
+    textLight: "#FFFFFF",
+    textDark: "#111111"
   },
   // ─── Backgrounds ─────────────────────────────────────────────────────────────
   background: {
@@ -193,38 +229,50 @@ var buildPalette = (mode) => {
     primary: {
       main: isDark ? COLORS.primary.dark : COLORS.primary.light,
       hover: isDark ? COLORS.primary.hoverDark : COLORS.primary.hoverLight,
+      active: isDark ? COLORS.primary.activeDark : COLORS.primary.activeLight,
+      disabled: isDark ? COLORS.primary.disabledDark : COLORS.primary.disabledLight,
       glow: isDark ? COLORS.primary.glowDark : COLORS.primary.glowLight,
-      contrastText: COLORS.white
+      contrastText: isDark ? COLORS.primary.textDark : COLORS.primary.textLight
     },
     secondary: {
       main: isDark ? COLORS.secondary.dark : COLORS.secondary.light,
       hover: isDark ? COLORS.secondary.hoverDark : COLORS.secondary.hoverLight,
+      active: isDark ? COLORS.secondary.activeDark : COLORS.secondary.activeLight,
+      disabled: isDark ? COLORS.secondary.disabledDark : COLORS.secondary.disabledLight,
       glow: isDark ? COLORS.secondary.glowDark : COLORS.secondary.glowLight,
-      contrastText: isDark ? COLORS.black : COLORS.white
+      contrastText: isDark ? COLORS.secondary.textDark : COLORS.secondary.textLight
     },
     success: {
       main: isDark ? COLORS.success.dark : COLORS.success.light,
       hover: isDark ? COLORS.success.hoverDark : COLORS.success.hoverLight,
+      active: isDark ? COLORS.success.activeDark : COLORS.success.activeLight,
+      disabled: isDark ? COLORS.success.disabledDark : COLORS.success.disabledLight,
       glow: isDark ? COLORS.success.glowDark : COLORS.success.glowLight,
-      contrastText: isDark ? COLORS.black : COLORS.white
+      contrastText: isDark ? COLORS.success.textDark : COLORS.success.textLight
     },
     warning: {
       main: isDark ? COLORS.warning.dark : COLORS.warning.light,
       hover: isDark ? COLORS.warning.hoverDark : COLORS.warning.hoverLight,
+      active: isDark ? COLORS.warning.activeDark : COLORS.warning.activeLight,
+      disabled: isDark ? COLORS.warning.disabledDark : COLORS.warning.disabledLight,
       glow: isDark ? COLORS.warning.glowDark : COLORS.warning.glowLight,
-      contrastText: isDark ? COLORS.black : COLORS.white
+      contrastText: isDark ? COLORS.warning.textDark : COLORS.warning.textLight
     },
     error: {
       main: isDark ? COLORS.error.dark : COLORS.error.light,
       hover: isDark ? COLORS.error.hoverDark : COLORS.error.hoverLight,
+      active: isDark ? COLORS.error.activeDark : COLORS.error.activeLight,
+      disabled: isDark ? COLORS.error.disabledDark : COLORS.error.disabledLight,
       glow: isDark ? COLORS.error.glowDark : COLORS.error.glowLight,
-      contrastText: COLORS.white
+      contrastText: isDark ? COLORS.error.textDark : COLORS.error.textLight
     },
     info: {
       main: isDark ? COLORS.info.dark : COLORS.info.light,
       hover: isDark ? COLORS.info.hoverDark : COLORS.info.hoverLight,
+      active: isDark ? COLORS.info.activeDark : COLORS.info.activeLight,
+      disabled: isDark ? COLORS.info.disabledDark : COLORS.info.disabledLight,
       glow: isDark ? COLORS.info.glowDark : COLORS.info.glowLight,
-      contrastText: isDark ? COLORS.black : COLORS.white
+      contrastText: isDark ? COLORS.info.textDark : COLORS.info.textLight
     },
     background: {
       default: isDark ? COLORS.background.dark : COLORS.background.light,
@@ -387,13 +435,12 @@ var getInputOverrides = (palette, isDark) => ({
         const activeColorGroup = palette[colorKey] || palette.primary;
         const mainColor = activeColorGroup.main;
         const hoverColor = activeColorGroup.hover;
+        const activeColor = activeColorGroup.active;
+        const disabledColor = activeColorGroup.disabled;
         const glowColor = activeColorGroup.glow;
+        const textColor = activeColorGroup.contrastText || COLORS.white;
         const isPrimary = colorKey === "primary";
         const isSecondary = colorKey === "secondary";
-        let textColor = COLORS.white;
-        if (isDark && (isSecondary || colorKey === "success" || colorKey === "warning" || colorKey === "info")) {
-          textColor = COLORS.black;
-        }
         return {
           display: "inline-flex",
           alignItems: "center",
@@ -416,29 +463,32 @@ var getInputOverrides = (palette, isDark) => ({
           "&:active": {
             transform: "translateY(0) scale(0.98)"
           },
-          // Primary Contained — Luxury Monochrome
-          // Light: solid charcoal · Dark: crisp cream on deep black
+          // ── Primary Contained — Luxury Monochrome ──────────────────────
           ...variant === "contained" && isPrimary && {
-            background: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
-            color: isDark ? COLORS.brand.charcoal : COLORS.white,
+            backgroundColor: mainColor,
+            color: textColor,
             boxShadow: isDark ? "0 6px 24px rgba(0,0,0,0.55), inset 0 1px 1px rgba(255,255,255,0.25)" : "0 6px 20px rgba(17,17,17,0.22), inset 0 1px 1px rgba(255,255,255,0.15)",
             "&:hover": {
-              background: isDark ? COLORS.white : COLORS.brand.charcoal,
+              backgroundColor: hoverColor,
               transform: "translateY(-2px)",
               boxShadow: isDark ? "0 12px 36px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.2)" : "0 12px 32px rgba(17,17,17,0.3)"
             },
+            "&:active": {
+              backgroundColor: activeColor,
+              transform: "translateY(0) scale(0.98)"
+            },
             "&:focus-visible": {
               outline: "none",
-              boxShadow: isDark ? "0 0 0 3px rgba(246,245,242,0.4), 0 6px 24px rgba(0,0,0,0.55)" : "0 0 0 3px rgba(17,17,17,0.2), 0 6px 20px rgba(17,17,17,0.22)"
+              boxShadow: `0 0 0 3px ${glowColor}, ${isDark ? "0 6px 24px rgba(0,0,0,0.55)" : "0 6px 20px rgba(17,17,17,0.22)"}`
             },
             "&.Mui-disabled": {
-              background: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
+              backgroundColor: disabledColor,
               color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
               boxShadow: "none",
               transform: "none"
             }
           },
-          // Primary Outlined — Frosted glass in dark, cream in light
+          // ── Primary Outlined — Frosted Glass ───────────────────────────
           ...variant === "outlined" && isPrimary && {
             border: "none",
             background: isDark ? "rgba(255, 255, 255, 0.1)" : COLORS.brand.cream,
@@ -453,16 +503,18 @@ var getInputOverrides = (palette, isDark) => ({
             },
             "&:focus-visible": {
               outline: "none",
-              boxShadow: isDark ? "0 0 0 3px rgba(246,245,242,0.3), 0 6px 24px rgba(0,0,0,0.55)" : "0 0 0 3px rgba(246,245,242,0.6), 0 6px 20px rgba(0,0,0,0.06)"
+              boxShadow: isDark ? `0 0 0 3px ${glowColor}, 0 6px 24px rgba(0,0,0,0.55)` : `0 0 0 3px rgba(246,245,242,0.6), 0 6px 20px rgba(0,0,0,0.06)`
             },
             "&.Mui-disabled": {
               background: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
               color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
               boxShadow: "none",
+              backdropFilter: "none",
+              WebkitBackdropFilter: "none",
               transform: "none"
             }
           },
-          // Secondary Contained — Soft Glass
+          // ── Secondary Contained — Soft Glass ───────────────────────────
           ...variant === "contained" && isSecondary && {
             background: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)",
             color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
@@ -482,10 +534,12 @@ var getInputOverrides = (palette, isDark) => ({
               background: isDark ? "rgba(255,255,255,0.03)" : "rgba(17,17,17,0.02)",
               color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
               boxShadow: "none",
+              backdropFilter: "none",
+              WebkitBackdropFilter: "none",
               transform: "none"
             }
           },
-          // Secondary Outlined
+          // ── Secondary Outlined — Glass Border ──────────────────────────
           ...variant === "outlined" && isSecondary && {
             border: "none",
             background: "transparent",
@@ -506,53 +560,85 @@ var getInputOverrides = (palette, isDark) => ({
               boxShadow: isDark ? "inset 0 0 0 1px rgba(255,255,255,0.1)" : "inset 0 0 0 1px rgba(17,17,17,0.1)",
               color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
               background: "transparent",
+              backdropFilter: "none",
+              WebkitBackdropFilter: "none",
               transform: "none"
             }
           },
-          // Other Contained Colors
+          // ── Semantic Contained (Info, Warning, Error, Success) ─────────
           ...variant === "contained" && !isPrimary && !isSecondary && {
             backgroundColor: mainColor,
             color: textColor,
+            boxShadow: "none",
+            border: "1px solid transparent",
             "&:hover": {
               backgroundColor: hoverColor,
               boxShadow: `0 6px 20px ${glowColor}`,
-              transform: "translateY(-1.5px) scale(1.015)"
+              transform: "translateY(-1.5px)"
             },
-            "&:focus-visible": {
-              outline: "none",
-              boxShadow: `0 0 0 4px ${glowColor}`
-            }
-          },
-          // Other Outlined Colors
-          ...variant === "outlined" && !isPrimary && !isSecondary && {
-            borderColor: palette.glass.buttonBorder,
-            color: mainColor,
-            backgroundColor: palette.glass.buttonBg,
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
-            "&:hover": {
-              borderColor: mainColor,
-              backgroundColor: palette.glass.buttonHoverBg,
-              boxShadow: `0 0 14px ${glowColor}`,
-              transform: "translateY(-1.5px) scale(1.015)"
-            },
-            "&:focus-visible": {
-              outline: "none",
-              boxShadow: `0 0 0 4px ${glowColor}`
-            }
-          },
-          // Text Button
-          ...variant === "text" && {
-            color: isSecondary ? isDark ? COLORS.brand.cream : COLORS.brand.charcoal : mainColor,
-            padding: "8px 16px",
-            minHeight: 40,
-            "&:hover": {
-              backgroundColor: palette.glass.buttonTextHover,
-              transform: "translateY(-1px)"
+            "&:active": {
+              backgroundColor: activeColor
             },
             "&:focus-visible": {
               outline: "none",
               boxShadow: `0 0 0 3px ${glowColor}`
+            },
+            "&.Mui-disabled": {
+              backgroundColor: disabledColor,
+              color: isDark ? "rgba(255,255,255,0.4)" : "rgba(17,17,17,0.4)",
+              boxShadow: "none",
+              transform: "none"
+            }
+          },
+          // ── Semantic Outlined (Info, Warning, Error, Success) ──────────
+          ...variant === "outlined" && !isPrimary && !isSecondary && {
+            border: `1.5px solid ${mainColor}`,
+            color: mainColor,
+            backgroundColor: "transparent",
+            "&:hover": {
+              backgroundColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
+              borderColor: hoverColor,
+              boxShadow: `0 4px 14px ${glowColor}`,
+              transform: "translateY(-1.5px)"
+            },
+            "&:active": {
+              borderColor: activeColor,
+              backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)"
+            },
+            "&:focus-visible": {
+              outline: "none",
+              boxShadow: `0 0 0 3px ${glowColor}`
+            },
+            "&.Mui-disabled": {
+              borderColor: disabledColor,
+              color: disabledColor,
+              backgroundColor: "transparent",
+              boxShadow: "none",
+              transform: "none"
+            }
+          },
+          // ── Text Buttons (all colors) ──────────────────────────────────
+          ...variant === "text" && {
+            color: isPrimary || isSecondary ? isDark ? COLORS.brand.cream : COLORS.brand.charcoal : mainColor,
+            padding: "8px 16px",
+            minHeight: 40,
+            backgroundColor: "transparent",
+            "&:hover": {
+              backgroundColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
+              transform: "translateY(-1px)"
+            },
+            "&:active": {
+              backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)"
+            },
+            "&:focus-visible": {
+              outline: "none",
+              boxShadow: `0 0 0 3px ${glowColor}`
+            },
+            "&.Mui-disabled": {
+              color: isPrimary || isSecondary ? isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)" : disabledColor,
+              backgroundColor: "transparent",
+              boxShadow: "none",
+              transform: "none"
             }
           }
         };
@@ -958,103 +1044,67 @@ var getControlOverrides = (palette, isDark) => ({
 
 // src/theme/overrides/dataDisplay.ts
 var getDataDisplayOverrides = (palette, isDark) => {
-  const semanticFilled = {
-    primary: {
-      bg: isDark ? "rgba(246,245,242,0.12)" : "rgba(17,17,17,0.88)",
-      border: isDark ? "rgba(246,245,242,0.2)" : "rgba(17,17,17,0.9)",
-      text: isDark ? "#F6F5F2" : "#FFFFFF"
-    },
-    secondary: {
-      bg: isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.08)",
-      border: isDark ? "rgba(255,255,255,0.18)" : "rgba(17,17,17,0.18)",
-      text: isDark ? "#FFFFFF" : "#111111"
-    },
-    success: {
-      bg: isDark ? "rgba(129,201,149,0.18)" : "rgba(52,168,83,0.1)",
-      border: isDark ? "rgba(129,201,149,0.35)" : "rgba(52,168,83,0.3)",
-      text: isDark ? "#81C995" : "#1E7E34"
-    },
-    warning: {
-      bg: isDark ? "rgba(246,173,85,0.18)" : "rgba(230,119,0,0.1)",
-      border: isDark ? "rgba(246,173,85,0.35)" : "rgba(230,119,0,0.3)",
-      text: isDark ? "#F6AD55" : "#9A5000"
-    },
-    error: {
-      bg: isDark ? "rgba(242,139,130,0.18)" : "rgba(234,67,53,0.1)",
-      border: isDark ? "rgba(242,139,130,0.35)" : "rgba(234,67,53,0.3)",
-      text: isDark ? "#F28B82" : "#C0392B"
-    },
-    info: {
-      bg: isDark ? "rgba(138,180,248,0.18)" : "rgba(66,133,244,0.1)",
-      border: isDark ? "rgba(138,180,248,0.35)" : "rgba(66,133,244,0.3)",
-      text: isDark ? "#8AB4F8" : "#1558B0"
-    },
-    default: {
-      bg: isDark ? "rgba(255,255,255,0.07)" : "rgba(17,17,17,0.05)",
-      border: isDark ? "rgba(255,255,255,0.14)" : "rgba(17,17,17,0.12)",
-      text: isDark ? palette.text.primary : palette.text.primary
-    }
-  };
-  const semanticOutlined = {
-    primary: {
-      border: isDark ? "rgba(246,245,242,0.55)" : "rgba(17,17,17,0.7)",
-      text: isDark ? "#F6F5F2" : "#111111",
-      hoverBg: isDark ? "rgba(246,245,242,0.08)" : "rgba(17,17,17,0.06)"
-    },
-    secondary: {
-      border: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.25)",
-      text: isDark ? "#FFFFFF" : "#111111",
-      hoverBg: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)"
-    },
-    success: {
-      border: isDark ? "rgba(129,201,149,0.5)" : "rgba(52,168,83,0.5)",
-      text: isDark ? "#81C995" : "#1E7E34",
-      hoverBg: isDark ? "rgba(129,201,149,0.1)" : "rgba(52,168,83,0.07)"
-    },
-    warning: {
-      border: isDark ? "rgba(246,173,85,0.5)" : "rgba(230,119,0,0.5)",
-      text: isDark ? "#F6AD55" : "#9A5000",
-      hoverBg: isDark ? "rgba(246,173,85,0.1)" : "rgba(230,119,0,0.07)"
-    },
-    error: {
-      border: isDark ? "rgba(242,139,130,0.5)" : "rgba(234,67,53,0.5)",
-      text: isDark ? "#F28B82" : "#C0392B",
-      hoverBg: isDark ? "rgba(242,139,130,0.1)" : "rgba(234,67,53,0.07)"
-    },
-    info: {
-      border: isDark ? "rgba(138,180,248,0.5)" : "rgba(66,133,244,0.5)",
-      text: isDark ? "#8AB4F8" : "#1558B0",
-      hoverBg: isDark ? "rgba(138,180,248,0.1)" : "rgba(66,133,244,0.07)"
-    },
-    default: {
-      border: isDark ? "rgba(255,255,255,0.25)" : "rgba(17,17,17,0.25)",
-      text: isDark ? palette.text.primary : palette.text.primary,
-      hoverBg: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)"
-    }
+  const chipColor = (colorKey) => {
+    const group = palette[colorKey] || palette.primary;
+    return {
+      main: group.main,
+      hover: group.hover,
+      active: group.active,
+      disabled: group.disabled,
+      glow: group.glow,
+      text: group.contrastText || "#FFFFFF"
+    };
   };
   return {
     MuiChip: {
+      variants: [
+        {
+          props: { size: "large" },
+          style: {
+            height: 32,
+            fontSize: "0.82rem",
+            padding: "0 14px",
+            "& .MuiChip-avatar": {
+              width: 24,
+              height: 24,
+              marginLeft: "-4px",
+              marginRight: "8px",
+              fontSize: "0.7rem"
+            },
+            "& .MuiChip-icon": {
+              fontSize: "18px",
+              marginLeft: "-2px",
+              marginRight: "8px"
+            },
+            "& .MuiChip-deleteIcon": {
+              fontSize: "18px",
+              marginLeft: "8px"
+            }
+          }
+        }
+      ],
       styleOverrides: {
         root: ({ ownerState }) => {
           const color = ownerState.color ?? "default";
           const variant = ownerState.variant ?? "filled";
-          const filled = semanticFilled[color] ?? semanticFilled.default;
-          const outlined = semanticOutlined[color] ?? semanticOutlined.default;
+          const isPrimary = color === "primary";
+          const isSecondary = color === "secondary";
+          const isSemantic = !isPrimary && !isSecondary && color !== "default";
+          const cc = chipColor(color === "default" ? "primary" : color);
           return {
             // ── Base ──────────────────────────────────────────────────────
             display: "inline-flex",
             alignItems: "center",
             borderRadius: 9999,
-            height: "auto",
+            height: 28,
+            // Medium (default) — brand kit 28px
             fontWeight: 500,
             fontFamily: '"Montserrat", "Google Sans Flex", -apple-system, sans-serif',
             fontSize: "0.76rem",
             letterSpacing: "0.02em",
             lineHeight: 1,
-            padding: "5px 12px",
+            padding: "0 12px",
             cursor: "default",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
             transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
             userSelect: "none",
             "& .MuiChip-label": {
@@ -1083,36 +1133,205 @@ var getDataDisplayOverrides = (palette, isDark) => {
               fontSize: "0.65rem",
               fontWeight: 700
             },
-            // ── Filled variant ────────────────────────────────────────────
-            ...variant === "filled" && {
-              backgroundColor: filled.bg,
-              border: `1px solid ${filled.border}`,
-              color: filled.text,
-              boxShadow: isDark ? "0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08)" : "0 2px 6px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.7)",
+            // Icon inside chip
+            "& .MuiChip-icon": {
+              fontSize: "16px",
+              marginLeft: "-2px",
+              marginRight: "6px",
+              color: "inherit",
+              opacity: 0.8
+            },
+            // ══════════════════════════════════════════════════════════════
+            // FILLED VARIANT
+            // ══════════════════════════════════════════════════════════════
+            // ── Primary Filled — Solid Charcoal / Cream ──────────────────
+            ...variant === "filled" && isPrimary && {
+              backgroundColor: cc.main,
+              color: cc.text,
+              border: "1px solid transparent",
+              boxShadow: isDark ? "0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08)" : "0 2px 6px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.15)",
               "&.MuiChip-clickable:hover": {
+                backgroundColor: cc.hover,
                 transform: "translateY(-1px)",
-                boxShadow: isDark ? "0 6px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)" : "0 6px 14px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.9)",
-                filter: "brightness(1.08)"
+                boxShadow: isDark ? "0 6px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)" : "0 6px 14px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.2)"
+              },
+              "&.MuiChip-clickable:active": {
+                backgroundColor: cc.active,
+                transform: "translateY(0) scale(0.98)"
+              },
+              "&.Mui-disabled": {
+                backgroundColor: cc.disabled,
+                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
+                boxShadow: "none",
+                opacity: 1
               }
             },
-            // ── Outlined variant ──────────────────────────────────────────
-            ...variant === "outlined" && {
+            // ── Secondary Filled — Soft Glass ────────────────────────────
+            ...variant === "filled" && isSecondary && {
+              backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.08)",
+              color: isDark ? "#F6F5F2" : "#111111",
+              border: `1px solid ${isDark ? "rgba(255,255,255,0.14)" : "rgba(17,17,17,0.12)"}`,
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              boxShadow: isDark ? "0 2px 8px rgba(0,0,0,0.25)" : "0 2px 6px rgba(0,0,0,0.04)",
+              "&.MuiChip-clickable:hover": {
+                backgroundColor: isDark ? "rgba(255,255,255,0.16)" : "rgba(17,17,17,0.12)",
+                transform: "translateY(-1px)"
+              },
+              "&.MuiChip-clickable:active": {
+                backgroundColor: isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.16)",
+                transform: "translateY(0) scale(0.98)"
+              },
+              "&.Mui-disabled": {
+                backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(17,17,17,0.04)",
+                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
+                boxShadow: "none",
+                opacity: 1
+              }
+            },
+            // ── Semantic Filled (Info, Warning, Error, Success) ──────────
+            ...variant === "filled" && isSemantic && {
+              backgroundColor: cc.main,
+              color: cc.text,
+              border: "1px solid transparent",
+              boxShadow: isDark ? `0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06)` : `0 2px 6px ${cc.glow}`,
+              "&.MuiChip-clickable:hover": {
+                backgroundColor: cc.hover,
+                transform: "translateY(-1px)",
+                boxShadow: isDark ? `0 6px 16px rgba(0,0,0,0.4)` : `0 6px 14px ${cc.glow}`
+              },
+              "&.MuiChip-clickable:active": {
+                backgroundColor: cc.active,
+                transform: "translateY(0) scale(0.98)"
+              },
+              "&.Mui-disabled": {
+                backgroundColor: cc.disabled,
+                color: isDark ? "rgba(255,255,255,0.4)" : "rgba(17,17,17,0.4)",
+                boxShadow: "none",
+                opacity: 1
+              }
+            },
+            // ── Default Filled — Neutral Glass ───────────────────────────
+            ...variant === "filled" && color === "default" && {
+              backgroundColor: isDark ? "rgba(255,255,255,0.07)" : "rgba(17,17,17,0.05)",
+              border: `1px solid ${isDark ? "rgba(255,255,255,0.14)" : "rgba(17,17,17,0.12)"}`,
+              color: palette.text.primary,
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              boxShadow: isDark ? "0 2px 8px rgba(0,0,0,0.2)" : "0 2px 6px rgba(0,0,0,0.04)",
+              "&.MuiChip-clickable:hover": {
+                backgroundColor: isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.08)",
+                transform: "translateY(-1px)"
+              },
+              "&.MuiChip-clickable:active": {
+                backgroundColor: isDark ? "rgba(255,255,255,0.16)" : "rgba(17,17,17,0.12)",
+                transform: "translateY(0) scale(0.98)"
+              },
+              "&.Mui-disabled": {
+                backgroundColor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)",
+                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
+                boxShadow: "none",
+                opacity: 1
+              }
+            },
+            // ══════════════════════════════════════════════════════════════
+            // OUTLINED VARIANT
+            // ══════════════════════════════════════════════════════════════
+            // ── Primary Outlined ─────────────────────────────────────────
+            ...variant === "outlined" && isPrimary && {
               backgroundColor: "transparent",
-              border: `1.5px solid ${outlined.border}`,
-              color: outlined.text,
+              border: `1.5px solid ${isDark ? "rgba(246,245,242,0.55)" : "rgba(17,17,17,0.7)"}`,
+              color: isDark ? "#F6F5F2" : "#111111",
               boxShadow: "none",
               "&.MuiChip-clickable:hover": {
-                backgroundColor: outlined.hoverBg,
+                backgroundColor: isDark ? "rgba(246,245,242,0.08)" : "rgba(17,17,17,0.06)",
                 transform: "translateY(-1px)",
                 boxShadow: isDark ? "0 4px 12px rgba(0,0,0,0.25)" : "0 4px 10px rgba(0,0,0,0.07)"
+              },
+              "&.Mui-disabled": {
+                borderColor: isDark ? "rgba(246,245,242,0.2)" : "rgba(17,17,17,0.2)",
+                color: isDark ? "rgba(246,245,242,0.3)" : "rgba(17,17,17,0.3)",
+                opacity: 1
+              }
+            },
+            // ── Secondary Outlined ───────────────────────────────────────
+            ...variant === "outlined" && isSecondary && {
+              backgroundColor: "transparent",
+              border: `1.5px solid ${isDark ? "rgba(255,255,255,0.25)" : "rgba(17,17,17,0.2)"}`,
+              color: isDark ? "#F6F5F2" : "#111111",
+              boxShadow: "none",
+              "&.MuiChip-clickable:hover": {
+                backgroundColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
+                transform: "translateY(-1px)"
+              },
+              "&.Mui-disabled": {
+                borderColor: isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.1)",
+                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
+                opacity: 1
+              }
+            },
+            // ── Semantic Outlined (Info, Warning, Error, Success) ────────
+            ...variant === "outlined" && isSemantic && {
+              backgroundColor: "transparent",
+              border: `1.5px solid ${cc.main}`,
+              color: cc.main,
+              boxShadow: "none",
+              "&.MuiChip-clickable:hover": {
+                backgroundColor: isDark ? `rgba(${color === "info" ? "138,180,248" : color === "warning" ? "246,173,85" : color === "error" ? "242,139,130" : "129,201,149"},0.1)` : `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"},0.07)`,
+                transform: "translateY(-1px)",
+                boxShadow: isDark ? "0 4px 12px rgba(0,0,0,0.25)" : "0 4px 10px rgba(0,0,0,0.07)"
+              },
+              "&.Mui-disabled": {
+                borderColor: cc.disabled,
+                color: cc.disabled,
+                opacity: 1
+              }
+            },
+            // ── Default Outlined ─────────────────────────────────────────
+            ...variant === "outlined" && color === "default" && {
+              backgroundColor: "transparent",
+              border: `1.5px solid ${isDark ? "rgba(255,255,255,0.25)" : "rgba(17,17,17,0.25)"}`,
+              color: palette.text.primary,
+              boxShadow: "none",
+              "&.MuiChip-clickable:hover": {
+                backgroundColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
+                transform: "translateY(-1px)"
+              },
+              "&.Mui-disabled": {
+                borderColor: isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.1)",
+                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
+                opacity: 1
+              }
+            },
+            // ── Size: Large (Brand Kit: 32px) ───────────────────────────
+            ...ownerState.size === "large" && {
+              height: 32,
+              fontSize: "0.82rem",
+              padding: "0 14px",
+              "& .MuiChip-avatar": {
+                width: 24,
+                height: 24,
+                marginLeft: "-4px",
+                marginRight: "8px",
+                fontSize: "0.7rem"
+              },
+              "& .MuiChip-icon": {
+                fontSize: "18px",
+                marginLeft: "-2px",
+                marginRight: "8px"
+              },
+              "& .MuiChip-deleteIcon": {
+                fontSize: "18px",
+                marginLeft: "8px"
               }
             }
           };
         },
-        // ── Size variants ──────────────────────────────────────────────────
+        // ── Size variants — Brand Kit: Small 24px, Medium 28px, Large 32px ──
         sizeSmall: {
+          height: 24,
           fontSize: "0.68rem",
-          padding: "3px 9px",
+          padding: "0 9px",
           "& .MuiChip-avatar": {
             width: 16,
             height: 16,
@@ -1120,14 +1339,20 @@ var getDataDisplayOverrides = (palette, isDark) => {
             marginRight: "4px",
             fontSize: "0.55rem"
           },
+          "& .MuiChip-icon": {
+            fontSize: "14px",
+            marginLeft: "-1px",
+            marginRight: "4px"
+          },
           "& .MuiChip-deleteIcon": {
             fontSize: "14px",
             marginLeft: "4px"
           }
         },
         sizeMedium: {
+          height: 28,
           fontSize: "0.76rem",
-          padding: "5px 12px"
+          padding: "0 12px"
         }
       }
     },
@@ -1174,12 +1399,12 @@ var getDataDisplayOverrides = (palette, isDark) => {
     MuiBadge: {
       styleOverrides: {
         badge: ({ ownerState }) => {
-          const color = ownerState.color && ownerState.color !== "default" ? ownerState.color : "default";
-          const filled = semanticFilled[color] ?? semanticFilled.default;
+          const color = ownerState.color && ownerState.color !== "default" ? ownerState.color : "primary";
+          const colorGroup = palette[color] || palette.primary;
           return {
-            backgroundColor: filled.bg,
-            color: filled.text,
-            border: `1px solid ${filled.border}`,
+            backgroundColor: colorGroup.main,
+            color: colorGroup.contrastText || "#FFFFFF",
+            border: `1px solid ${isDark ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.8)"}`,
             backdropFilter: "blur(8px)",
             WebkitBackdropFilter: "blur(8px)",
             boxShadow: palette.glass.paperShadow,

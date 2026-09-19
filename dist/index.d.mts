@@ -30,48 +30,84 @@ declare const COLORS: {
         dark: string;
         hoverLight: string;
         hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
         glowLight: string;
         glowDark: string;
+        textLight: string;
+        textDark: string;
     };
     secondary: {
         light: string;
         dark: string;
         hoverLight: string;
         hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
         glowLight: string;
         glowDark: string;
+        textLight: string;
+        textDark: string;
     };
     success: {
         light: string;
         dark: string;
         hoverLight: string;
         hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
         glowLight: string;
         glowDark: string;
+        textLight: string;
+        textDark: string;
     };
     warning: {
         light: string;
         dark: string;
         hoverLight: string;
         hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
         glowLight: string;
         glowDark: string;
+        textLight: string;
+        textDark: string;
     };
     error: {
         light: string;
         dark: string;
         hoverLight: string;
         hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
         glowLight: string;
         glowDark: string;
+        textLight: string;
+        textDark: string;
     };
     info: {
         light: string;
         dark: string;
         hoverLight: string;
         hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
         glowLight: string;
         glowDark: string;
+        textLight: string;
+        textDark: string;
     };
     background: {
         /** Light: warm off-white (brand Cream) for an editorial, premium feel */
@@ -195,36 +231,48 @@ declare const buildPalette: (mode: "light" | "dark") => {
     primary: {
         main: string;
         hover: string;
+        active: string;
+        disabled: string;
         glow: string;
         contrastText: string;
     };
     secondary: {
         main: string;
         hover: string;
+        active: string;
+        disabled: string;
         glow: string;
         contrastText: string;
     };
     success: {
         main: string;
         hover: string;
+        active: string;
+        disabled: string;
         glow: string;
         contrastText: string;
     };
     warning: {
         main: string;
         hover: string;
+        active: string;
+        disabled: string;
         glow: string;
         contrastText: string;
     };
     error: {
         main: string;
         hover: string;
+        active: string;
+        disabled: string;
         glow: string;
         contrastText: string;
     };
     info: {
         main: string;
         hover: string;
+        active: string;
+        disabled: string;
         glow: string;
         contrastText: string;
     };
@@ -384,6 +432,11 @@ declare module '@mui/material/styles' {
         gradients?: JivicoPalette['gradients'];
     }
 }
+declare module '@mui/material/Chip' {
+    interface ChipPropsSizeOverrides {
+        large: true;
+    }
+}
 declare const GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
 /** Montserrat (subheadings/accent) + Space Grotesk (body fallback) — from brand kit */
 declare const JIVICO_BRAND_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
@@ -398,6 +451,11 @@ declare const createJivicoTheme: (mode: "light" | "dark") => Theme;
  */
 declare const getControlOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
+declare module '@mui/material/Chip' {
+    interface ChipPropsSizeOverrides {
+        large: true;
+    }
+}
 /**
  * MUI component overrides — Data Display:
  * Chip, Avatar, Divider, Table, TableCell, Tooltip
@@ -550,16 +608,16 @@ declare const GradientContextTitle: _emotion_styled.StyledComponent<_mui_materia
 declare function JivicoFontPreload(): react__default.JSX.Element;
 declare const JivicoFontLinks: typeof JivicoFontPreload;
 
-declare const FreestyleBadge: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "clickable" | "avatar" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
+declare const FreestyleBadge: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "avatar" | "clickable" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
     isDark?: boolean;
 }, {}, {}>;
-declare const BannerChip: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "clickable" | "avatar" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
+declare const BannerChip: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "avatar" | "clickable" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
     isDark?: boolean;
 }, {}, {}>;
-declare const SupportedTypeChip: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "clickable" | "avatar" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
+declare const SupportedTypeChip: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "avatar" | "clickable" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
     isDark?: boolean;
 }, {}, {}>;
-declare const FilterChip: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "clickable" | "avatar" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
+declare const FilterChip: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "avatar" | "clickable" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
     isSelected?: boolean;
 }, {}, {}>;
 

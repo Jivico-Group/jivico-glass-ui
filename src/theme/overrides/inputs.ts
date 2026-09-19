@@ -29,20 +29,12 @@ export const getInputOverrides = (
           palette.primary) as Record<string, string>;
         const mainColor = activeColorGroup.main;
         const hoverColor = activeColorGroup.hover;
+        const activeColor = activeColorGroup.active;
+        const disabledColor = activeColorGroup.disabled;
         const glowColor = activeColorGroup.glow;
+        const textColor = activeColorGroup.contrastText || COLORS.white;
         const isPrimary = colorKey === "primary";
         const isSecondary = colorKey === "secondary";
-
-        let textColor = COLORS.white;
-        if (
-          isDark &&
-          (isSecondary ||
-            colorKey === "success" ||
-            colorKey === "warning" ||
-            colorKey === "info")
-        ) {
-          textColor = COLORS.black;
-        }
 
         return {
           display: "inline-flex",
@@ -69,41 +61,42 @@ export const getInputOverrides = (
             transform: "translateY(0) scale(0.98)",
           },
 
-          // Primary Contained — Luxury Monochrome
-          // Light: solid charcoal · Dark: crisp cream on deep black
+          // ── Primary Contained — Luxury Monochrome ──────────────────────
           ...(variant === "contained" &&
             isPrimary && {
-              background: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
-              color: isDark ? COLORS.brand.charcoal : COLORS.white,
+              backgroundColor: mainColor,
+              color: textColor,
               boxShadow: isDark
                 ? "0 6px 24px rgba(0,0,0,0.55), inset 0 1px 1px rgba(255,255,255,0.25)"
                 : "0 6px 20px rgba(17,17,17,0.22), inset 0 1px 1px rgba(255,255,255,0.15)",
-
               "&:hover": {
-                background: isDark ? COLORS.white : COLORS.brand.charcoal,
+                backgroundColor: hoverColor,
                 transform: "translateY(-2px)",
                 boxShadow: isDark
                   ? "0 12px 36px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.2)"
                   : "0 12px 32px rgba(17,17,17,0.3)",
               },
-
+              "&:active": {
+                backgroundColor: activeColor,
+                transform: "translateY(0) scale(0.98)",
+              },
               "&:focus-visible": {
                 outline: "none",
-                boxShadow: isDark
-                  ? "0 0 0 3px rgba(246,245,242,0.4), 0 6px 24px rgba(0,0,0,0.55)"
-                  : "0 0 0 3px rgba(17,17,17,0.2), 0 6px 20px rgba(17,17,17,0.22)",
+                boxShadow: `0 0 0 3px ${glowColor}, ${
+                  isDark
+                    ? "0 6px 24px rgba(0,0,0,0.55)"
+                    : "0 6px 20px rgba(17,17,17,0.22)"
+                }`,
               },
               "&.Mui-disabled": {
-                background: isDark
-                  ? "rgba(255,255,255,0.08)"
-                  : "rgba(0,0,0,0.08)",
+                backgroundColor: disabledColor,
                 color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
                 boxShadow: "none",
                 transform: "none",
               },
             }),
 
-          // Primary Outlined — Frosted glass in dark, cream in light
+          // ── Primary Outlined — Frosted Glass ───────────────────────────
           ...(variant === "outlined" &&
             isPrimary && {
               border: "none",
@@ -123,25 +116,25 @@ export const getInputOverrides = (
                   ? "0 12px 32px rgba(0,0,0,0.6), inset 0 0 0 1.5px rgba(255,255,255,0.25)"
                   : "0 12px 32px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(17,17,17,0.15)",
               },
-
               "&:focus-visible": {
                 outline: "none",
                 boxShadow: isDark
-                  ? "0 0 0 3px rgba(246,245,242,0.3), 0 6px 24px rgba(0,0,0,0.55)"
-                  : "0 0 0 3px rgba(246,245,242,0.6), 0 6px 20px rgba(0,0,0,0.06)",
+                  ? `0 0 0 3px ${glowColor}, 0 6px 24px rgba(0,0,0,0.55)`
+                  : `0 0 0 3px rgba(246,245,242,0.6), 0 6px 20px rgba(0,0,0,0.06)`,
               },
-
               "&.Mui-disabled": {
                 background: isDark
                   ? "rgba(255,255,255,0.05)"
                   : "rgba(0,0,0,0.04)",
                 color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
                 boxShadow: "none",
+                backdropFilter: "none",
+                WebkitBackdropFilter: "none",
                 transform: "none",
               },
             }),
 
-          // Secondary Contained — Soft Glass
+          // ── Secondary Contained — Soft Glass ───────────────────────────
           ...(variant === "contained" &&
             isSecondary && {
               background: isDark
@@ -162,25 +155,25 @@ export const getInputOverrides = (
                   ? "0 4px 14px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.1)"
                   : "0 4px 14px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(17,17,17,0.1)",
               },
-
               "&:focus-visible": {
                 outline: "none",
                 boxShadow: isDark
                   ? "0 0 0 3px rgba(246,245,242,0.3)"
                   : "0 0 0 3px rgba(17,17,17,0.2)",
               },
-
               "&.Mui-disabled": {
                 background: isDark
                   ? "rgba(255,255,255,0.03)"
                   : "rgba(17,17,17,0.02)",
                 color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
                 boxShadow: "none",
+                backdropFilter: "none",
+                WebkitBackdropFilter: "none",
                 transform: "none",
               },
             }),
 
-          // Secondary Outlined
+          // ── Secondary Outlined — Glass Border ──────────────────────────
           ...(variant === "outlined" &&
             isSecondary && {
               border: "none",
@@ -200,79 +193,122 @@ export const getInputOverrides = (
                   ? "0 4px 14px rgba(0,0,0,0.3), inset 0 0 0 1.5px rgba(255,255,255,0.25)"
                   : "0 4px 14px rgba(0,0,0,0.04), inset 0 0 0 1.5px rgba(17,17,17,0.25)",
               },
-
               "&:focus-visible": {
                 outline: "none",
                 boxShadow: isDark
                   ? "0 0 0 3px rgba(246,245,242,0.3)"
                   : "0 0 0 3px rgba(17,17,17,0.2)",
               },
-
               "&.Mui-disabled": {
                 boxShadow: isDark
                   ? "inset 0 0 0 1px rgba(255,255,255,0.1)"
                   : "inset 0 0 0 1px rgba(17,17,17,0.1)",
                 color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
                 background: "transparent",
+                backdropFilter: "none",
+                WebkitBackdropFilter: "none",
                 transform: "none",
               },
             }),
 
-          // Other Contained Colors
+          // ── Semantic Contained (Info, Warning, Error, Success) ─────────
           ...(variant === "contained" &&
             !isPrimary &&
             !isSecondary && {
               backgroundColor: mainColor,
               color: textColor,
+              boxShadow: "none",
+              border: "1px solid transparent",
               "&:hover": {
                 backgroundColor: hoverColor,
                 boxShadow: `0 6px 20px ${glowColor}`,
-                transform: "translateY(-1.5px) scale(1.015)",
+                transform: "translateY(-1.5px)",
+              },
+              "&:active": {
+                backgroundColor: activeColor,
               },
               "&:focus-visible": {
                 outline: "none",
-                boxShadow: `0 0 0 4px ${glowColor}`,
+                boxShadow: `0 0 0 3px ${glowColor}`,
+              },
+              "&.Mui-disabled": {
+                backgroundColor: disabledColor,
+                color: isDark ? "rgba(255,255,255,0.4)" : "rgba(17,17,17,0.4)",
+                boxShadow: "none",
+                transform: "none",
               },
             }),
 
-          // Other Outlined Colors
+          // ── Semantic Outlined (Info, Warning, Error, Success) ──────────
           ...(variant === "outlined" &&
             !isPrimary &&
             !isSecondary && {
-              borderColor: palette.glass.buttonBorder,
+              border: `1.5px solid ${mainColor}`,
               color: mainColor,
-              backgroundColor: palette.glass.buttonBg,
-              backdropFilter: "blur(10px)",
-              WebkitBackdropFilter: "blur(10px)",
+              backgroundColor: "transparent",
               "&:hover": {
-                borderColor: mainColor,
-                backgroundColor: palette.glass.buttonHoverBg,
-                boxShadow: `0 0 14px ${glowColor}`,
-                transform: "translateY(-1.5px) scale(1.015)",
+                backgroundColor: isDark
+                  ? "rgba(255,255,255,0.06)"
+                  : "rgba(0,0,0,0.04)",
+                borderColor: hoverColor,
+                boxShadow: `0 4px 14px ${glowColor}`,
+                transform: "translateY(-1.5px)",
               },
-
+              "&:active": {
+                borderColor: activeColor,
+                backgroundColor: isDark
+                  ? "rgba(255,255,255,0.1)"
+                  : "rgba(0,0,0,0.08)",
+              },
               "&:focus-visible": {
                 outline: "none",
-                boxShadow: `0 0 0 4px ${glowColor}`,
+                boxShadow: `0 0 0 3px ${glowColor}`,
+              },
+              "&.Mui-disabled": {
+                borderColor: disabledColor,
+                color: disabledColor,
+                backgroundColor: "transparent",
+                boxShadow: "none",
+                transform: "none",
               },
             }),
 
-          // Text Button
+          // ── Text Buttons (all colors) ──────────────────────────────────
           ...(variant === "text" && {
-            color: isSecondary
-              ? isDark
-                ? COLORS.brand.cream
-                : COLORS.brand.charcoal
-              : mainColor,
+            color:
+              isPrimary || isSecondary
+                ? isDark
+                  ? COLORS.brand.cream
+                  : COLORS.brand.charcoal
+                : mainColor,
             padding: "8px 16px",
             minHeight: 40,
+            backgroundColor: "transparent",
             "&:hover": {
-              backgroundColor: palette.glass.buttonTextHover,
+              backgroundColor: isDark
+                ? "rgba(255,255,255,0.06)"
+                : "rgba(0,0,0,0.04)",
               transform: "translateY(-1px)",
+            },
+            "&:active": {
+              backgroundColor: isDark
+                ? "rgba(255,255,255,0.1)"
+                : "rgba(0,0,0,0.08)",
             },
             "&:focus-visible": {
               outline: "none",
               boxShadow: `0 0 0 3px ${glowColor}`,
+            },
+            "&.Mui-disabled": {
+              color:
+                isPrimary || isSecondary
+                  ? isDark
+                    ? "rgba(255,255,255,0.3)"
+                    : "rgba(17,17,17,0.3)"
+                  : disabledColor,
+              backgroundColor: "transparent",
+              boxShadow: "none",
+              transform: "none",
             },
           }),
         };

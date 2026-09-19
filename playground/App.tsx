@@ -224,26 +224,21 @@ export default function App() {
             <Chip label="Info" color="info" variant="outlined" />
           </Box>
 
-          {/* Small */}
+          {/* Sizes (Brand Kit: Small 24px, Medium 28px, Large 32px) */}
           <Typography
             variant="overline"
             color="text.secondary"
             sx={{ mb: 1.5, display: "block" }}
           >
-            Small
+            Sizes — Small (24px), Medium (28px), Large (32px)
           </Typography>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 3 }}>
-            <Chip label="Default" size="small" />
-            <Chip label="Primary" color="primary" size="small" />
-            <Chip label="Success" color="success" size="small" />
-            <Chip label="Error" color="error" size="small" />
-            <Chip label="Default" size="small" variant="outlined" />
-            <Chip
-              label="Primary"
-              color="primary"
-              size="small"
-              variant="outlined"
-            />
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, alignItems: "center", mb: 3 }}>
+            <Chip label="Small 24px" size="small" color="primary" />
+            <Chip label="Medium 28px" size="medium" color="primary" />
+            <Chip label="Large 32px" size="large" color="primary" />
+            <Chip label="Small Outlined" size="small" variant="outlined" color="primary" />
+            <Chip label="Medium Outlined" size="medium" variant="outlined" color="primary" />
+            <Chip label="Large Outlined" size="large" variant="outlined" color="primary" />
           </Box>
 
           {/* Interactive */}
@@ -356,16 +351,31 @@ export default function App() {
                   >
                     {(["contained", "outlined", "text"] as const).map(
                       (variant) => [
-                        <Button key={`${variant}-small`} variant={variant} color={color} size="small">
+                        <Button
+                          key={`${variant}-small`}
+                          variant={variant}
+                          color={color}
+                          size="small"
+                        >
                           {variant}
                         </Button>,
-                        <Button key={`${variant}-medium`} variant={variant} color={color} size="medium">
+                        <Button
+                          key={`${variant}-medium`}
+                          variant={variant}
+                          color={color}
+                          size="medium"
+                        >
                           {variant}
                         </Button>,
-                        <Button key={`${variant}-large`} variant={variant} color={color} size="large">
+                        <Button
+                          key={`${variant}-large`}
+                          variant={variant}
+                          color={color}
+                          size="large"
+                        >
                           {variant}
-                        </Button>
-                      ]
+                        </Button>,
+                      ],
                     )}
                     <Button variant="contained" color={color} disabled>
                       Disabled

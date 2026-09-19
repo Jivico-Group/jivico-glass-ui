@@ -19,6 +19,12 @@ declare module '@mui/material/styles' {
   }
 }
 
+declare module '@mui/material/Chip' {
+  interface ChipPropsSizeOverrides {
+    large: true;
+  }
+}
+
 export const GOOGLE_SANS_FLEX_URL =
   'https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap';
 
