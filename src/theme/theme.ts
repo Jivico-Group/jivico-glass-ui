@@ -19,7 +19,31 @@ declare module '@mui/material/styles' {
   }
 }
 
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module '@mui/material/ButtonGroup' {
+  interface ButtonGroupPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module '@mui/material/IconButton' {
+  interface IconButtonPropsColorOverrides {
+    glass: true;
+  }
+}
+
 declare module '@mui/material/Chip' {
+  interface ChipPropsColorOverrides {
+    glass: true;
+  }
+  interface ChipPropsVariantOverrides {
+    tonal: true;
+  }
   interface ChipPropsSizeOverrides {
     large: true;
   }

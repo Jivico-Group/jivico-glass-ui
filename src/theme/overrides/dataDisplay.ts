@@ -3,6 +3,9 @@ import type { Components, Theme } from '@mui/material/styles';
 import type { JivicoPalette } from '../palette.js';
 
 declare module '@mui/material/Chip' {
+  interface ChipPropsColorOverrides {
+    glass: true;
+  }
   interface ChipPropsVariantOverrides {
     tonal: true;
   }
@@ -81,6 +84,17 @@ export const getDataDisplayOverrides = (
       return semanticColors[colorKey];
     }
 
+    if (colorKey === 'glass') {
+      return {
+        main: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(255, 255, 255, 0.68)',
+        hover: isDark ? 'rgba(255, 255, 255, 0.18)' : 'rgba(255, 255, 255, 0.88)',
+        active: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.75)',
+        disabled: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(255, 255, 255, 0.3)',
+        glow: isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.08)',
+        text: isDark ? '#F6F5F2' : '#111111',
+      };
+    }
+
     const group = (palette as Record<string, any>)[colorKey] || palette.primary;
     return {
       main: group.main,
@@ -134,9 +148,10 @@ export const getDataDisplayOverrides = (
         root: ({ ownerState }) => {
           const color = ownerState.color ?? 'default';
           const variant = (ownerState.variant as string) ?? 'filled';
+          const isGlass = (color as string) === 'glass';
           const isPrimary = color === 'primary';
           const isSecondary = color === 'secondary';
-          const isSemantic = !isPrimary && !isSecondary && color !== 'default';
+          const isSemantic = !isPrimary && !isSecondary && !isGlass && color !== 'default';
           const cc = chipColor(color === 'default' ? 'primary' : color);
 
           return {
@@ -279,6 +294,51 @@ export const getDataDisplayOverrides = (
               },
             }),
 
+            // ── Glass Filled — Pure Frosted Glass Chip ────────────────────
+            ...(variant === 'filled' && isGlass && {
+              backgroundColor: isDark
+                ? 'rgba(255, 255, 255, 0.12)'
+                : 'rgba(255, 255, 255, 0.68)',
+              color: isDark ? '#F6F5F2' : '#111111',
+              border: `1px solid ${
+                isDark ? 'rgba(255, 255, 255, 0.18)' : 'rgba(255, 255, 255, 0.85)'
+              }`,
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              boxShadow: isDark
+                ? '0 4px 16px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.2)'
+                : '0 3px 12px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.9)',
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.18)'
+                  : 'rgba(255, 255, 255, 0.88)',
+                transform: 'translateY(-1px)',
+                boxShadow: isDark
+                  ? '0 8px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.3)'
+                  : '0 6px 18px rgba(0,0,0,0.08), inset 0 1px 0 #FFFFFF',
+              },
+              '&.MuiChip-clickable:active': {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.1)'
+                  : 'rgba(255, 255, 255, 0.75)',
+                transform: 'translateY(0) scale(0.98)',
+              },
+              '&.Mui-disabled': {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.04)'
+                  : 'rgba(255, 255, 255, 0.3)',
+                color: isDark ? 'rgba(255,255,255,0.28)' : 'rgba(0,0,0,0.28)',
+                border: `1px solid ${
+                  isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(255, 255, 255, 0.4)'
+                }`,
+                boxShadow: 'none',
+                backdropFilter: 'none',
+                WebkitBackdropFilter: 'none',
+                opacity: 1,
+              },
+            }),
+
             // ── Semantic Filled (Info, Warning, Error, Success) ──────────
             ...(variant === 'filled' && isSemantic && {
               backgroundColor: cc.main,
@@ -377,6 +437,47 @@ export const getDataDisplayOverrides = (
               },
             }),
 
+            // ── Glass Outlined — Airy Translucent Border Chip ─────────────
+            ...(variant === 'outlined' && isGlass && {
+              backgroundColor: isDark
+                ? 'rgba(255, 255, 255, 0.04)'
+                : 'rgba(255, 255, 255, 0.28)',
+              border: `1.5px solid ${
+                isDark ? 'rgba(255, 255, 255, 0.22)' : 'rgba(17, 17, 17, 0.16)'
+              }`,
+              color: isDark ? '#F6F5F2' : '#111111',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              boxShadow: isDark
+                ? '0 2px 10px rgba(0,0,0,0.25)'
+                : '0 2px 8px rgba(0,0,0,0.03)',
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.09)'
+                  : 'rgba(255, 255, 255, 0.55)',
+                borderColor: isDark
+                  ? 'rgba(255, 255, 255, 0.35)'
+                  : 'rgba(17, 17, 17, 0.3)',
+                transform: 'translateY(-1px)',
+                boxShadow: isDark
+                  ? '0 6px 18px rgba(0,0,0,0.35)'
+                  : '0 4px 14px rgba(0,0,0,0.06)',
+              },
+              '&.MuiChip-clickable:active': {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.06)'
+                  : 'rgba(255, 255, 255, 0.4)',
+                transform: 'translateY(0) scale(0.98)',
+              },
+              '&.Mui-disabled': {
+                borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(17,17,17,0.08)',
+                color: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(17,17,17,0.25)',
+                backgroundColor: 'transparent',
+                opacity: 1,
+              },
+            }),
+
             // ── Semantic Outlined (Info, Warning, Error, Success) ────────
             ...(variant === 'outlined' && isSemantic && {
               backgroundColor: 'transparent',
@@ -422,7 +523,9 @@ export const getDataDisplayOverrides = (
             // TONAL VARIANT (Soft background chip from Brand Kit)
             // ══════════════════════════════════════════════════════════════
             ...(variant === 'tonal' && {
-              backgroundColor: isPrimary
+              backgroundColor: isGlass
+                ? (isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.45)')
+                : isPrimary
                 ? (isDark ? 'rgba(246, 245, 242, 0.12)' : 'rgba(17, 17, 17, 0.07)')
                 : isSecondary
                 ? (isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(17, 17, 17, 0.05)')
@@ -431,22 +534,28 @@ export const getDataDisplayOverrides = (
                     ? `rgba(${color === 'info' ? '66,133,244' : color === 'warning' ? '230,119,0' : color === 'error' ? '234,67,53' : '52,168,83'}, 0.2)`
                     : `rgba(${color === 'info' ? '66,133,244' : color === 'warning' ? '230,119,0' : color === 'error' ? '234,67,53' : '52,168,83'}, 0.1)`)
                 : (isDark ? 'rgba(255, 255, 255, 0.07)' : 'rgba(17, 17, 17, 0.05)'),
-              color: isPrimary
-                ? (isDark ? '#F6F5F2' : '#111111')
-                : isSecondary
+              color: isGlass || isPrimary || isSecondary
                 ? (isDark ? '#F6F5F2' : '#111111')
                 : isSemantic
                 ? cc.main
                 : palette.text.primary,
               border: `1px solid ${
-                isDark
+                isGlass
+                  ? (isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(255, 255, 255, 0.6)')
+                  : isDark
                   ? (isSemantic ? `rgba(${color === 'info' ? '66,133,244' : color === 'warning' ? '230,119,0' : color === 'error' ? '234,67,53' : '52,168,83'}, 0.25)` : 'rgba(255,255,255,0.08)')
                   : (isSemantic ? `rgba(${color === 'info' ? '66,133,244' : color === 'warning' ? '230,119,0' : color === 'error' ? '234,67,53' : '52,168,83'}, 0.15)` : 'rgba(17,17,17,0.08)')
               }`,
+              ...(isGlass && {
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+              }),
               boxShadow: 'none',
 
               '&.MuiChip-clickable:hover': {
-                backgroundColor: isPrimary
+                backgroundColor: isGlass
+                  ? (isDark ? 'rgba(255, 255, 255, 0.14)' : 'rgba(255, 255, 255, 0.7)')
+                  : isPrimary
                   ? (isDark ? 'rgba(246, 245, 242, 0.18)' : 'rgba(17, 17, 17, 0.12)')
                   : isSecondary
                   ? (isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(17, 17, 17, 0.09)')

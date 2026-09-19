@@ -136,6 +136,23 @@ var COLORS = {
   black: "#0A0A0A",
   // ─── Glass System (unchanged — glassmorphism architecture preserved) ──────────
   glass: {
+    /** Palette-compatible color tokens for custom color="glass" */
+    mainLight: "rgba(255, 255, 255, 0.72)",
+    mainDark: "rgba(255, 255, 255, 0.12)",
+    contrastTextLight: "#111111",
+    contrastTextDark: "#F6F5F2",
+    lightLight: "rgba(255, 255, 255, 0.88)",
+    lightDark: "rgba(255, 255, 255, 0.18)",
+    darkLight: "rgba(255, 255, 255, 0.55)",
+    darkDark: "rgba(255, 255, 255, 0.08)",
+    hoverLight: "rgba(255, 255, 255, 0.9)",
+    hoverDark: "rgba(255, 255, 255, 0.2)",
+    activeLight: "rgba(255, 255, 255, 0.78)",
+    activeDark: "rgba(255, 255, 255, 0.09)",
+    disabledLight: "rgba(255, 255, 255, 0.35)",
+    disabledDark: "rgba(255, 255, 255, 0.04)",
+    glowLight: "rgba(0, 0, 0, 0.08)",
+    glowDark: "rgba(255, 255, 255, 0.25)",
     buttonBorderLight: "rgba(0, 0, 0, 0.18)",
     buttonBorderDark: "rgba(255, 255, 255, 0.2)",
     buttonBgLight: "rgba(0, 0, 0, 0.02)",
@@ -284,6 +301,14 @@ var buildPalette = (mode) => {
     },
     divider: isDark ? COLORS.divider.dark : COLORS.divider.light,
     glass: {
+      main: isDark ? COLORS.glass.mainDark : COLORS.glass.mainLight,
+      contrastText: isDark ? COLORS.glass.contrastTextDark : COLORS.glass.contrastTextLight,
+      light: isDark ? COLORS.glass.lightDark : COLORS.glass.lightLight,
+      dark: isDark ? COLORS.glass.darkDark : COLORS.glass.darkLight,
+      hover: isDark ? COLORS.glass.hoverDark : COLORS.glass.hoverLight,
+      active: isDark ? COLORS.glass.activeDark : COLORS.glass.activeLight,
+      disabled: isDark ? COLORS.glass.disabledDark : COLORS.glass.disabledLight,
+      glow: isDark ? COLORS.glass.glowDark : COLORS.glass.glowLight,
       buttonBorder: isDark ? COLORS.glass.buttonBorderDark : COLORS.glass.buttonBorderLight,
       buttonBg: isDark ? COLORS.glass.buttonBgDark : COLORS.glass.buttonBgLight,
       buttonHoverBg: isDark ? COLORS.glass.buttonHoverBgDark : COLORS.glass.buttonHoverBgLight,
@@ -441,6 +466,8 @@ var getInputOverrides = (palette, isDark) => ({
         const textColor = activeColorGroup.contrastText || COLORS.white;
         const isPrimary = colorKey === "primary";
         const isSecondary = colorKey === "secondary";
+        const isGlass = colorKey === "glass";
+        const isSemantic = !isPrimary && !isSecondary && !isGlass;
         return {
           display: "inline-flex",
           alignItems: "center",
@@ -565,8 +592,71 @@ var getInputOverrides = (palette, isDark) => ({
               transform: "none"
             }
           },
+          // ── Glass Contained — Pure Frosted Glass ───────────────────────
+          ...variant === "contained" && isGlass && {
+            background: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.72)",
+            color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.85)"}`,
+            boxShadow: isDark ? "0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.22)" : "0 6px 22px rgba(0, 0, 0, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9)",
+            "&:hover": {
+              background: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(255, 255, 255, 0.92)",
+              transform: "translateY(-2px)",
+              boxShadow: isDark ? "0 14px 40px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.35)" : "0 10px 28px rgba(0, 0, 0, 0.1), inset 0 1px 1px #FFFFFF"
+            },
+            "&:active": {
+              background: isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.78)",
+              transform: "translateY(0) scale(0.98)"
+            },
+            "&:focus-visible": {
+              outline: "none",
+              boxShadow: isDark ? "0 0 0 3px rgba(255, 255, 255, 0.35), 0 8px 32px rgba(0, 0, 0, 0.45)" : "0 0 0 3px rgba(17, 17, 17, 0.2), 0 6px 22px rgba(0, 0, 0, 0.08)"
+            },
+            "&.Mui-disabled": {
+              background: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.3)",
+              color: isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(0, 0, 0, 0.28)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.4)"}`,
+              boxShadow: "none",
+              backdropFilter: "none",
+              WebkitBackdropFilter: "none",
+              transform: "none"
+            }
+          },
+          // ── Glass Outlined — Frosted Border & Airy Glass ───────────────
+          ...variant === "outlined" && isGlass && {
+            background: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.28)",
+            color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
+            border: `1.5px solid ${isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(17, 17, 17, 0.16)"}`,
+            backdropFilter: "blur(14px)",
+            WebkitBackdropFilter: "blur(14px)",
+            boxShadow: isDark ? "0 4px 18px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.06)" : "0 4px 14px rgba(0, 0, 0, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.6)",
+            "&:hover": {
+              background: isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.55)",
+              borderColor: isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.3)",
+              transform: "translateY(-1.5px)",
+              boxShadow: isDark ? "0 8px 24px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.12)" : "0 6px 20px rgba(0, 0, 0, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9)"
+            },
+            "&:active": {
+              background: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.4)",
+              transform: "translateY(0) scale(0.98)"
+            },
+            "&:focus-visible": {
+              outline: "none",
+              boxShadow: isDark ? "0 0 0 3px rgba(255, 255, 255, 0.3)" : "0 0 0 3px rgba(17, 17, 17, 0.2)"
+            },
+            "&.Mui-disabled": {
+              borderColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)",
+              color: isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(0, 0, 0, 0.25)",
+              background: "transparent",
+              boxShadow: "none",
+              backdropFilter: "none",
+              WebkitBackdropFilter: "none",
+              transform: "none"
+            }
+          },
           // ── Semantic Contained (Info, Warning, Error, Success) ─────────
-          ...variant === "contained" && !isPrimary && !isSecondary && {
+          ...variant === "contained" && isSemantic && {
             backgroundColor: mainColor,
             color: textColor,
             boxShadow: "none",
@@ -591,7 +681,7 @@ var getInputOverrides = (palette, isDark) => ({
             }
           },
           // ── Semantic Outlined (Info, Warning, Error, Success) ──────────
-          ...variant === "outlined" && !isPrimary && !isSecondary && {
+          ...variant === "outlined" && isSemantic && {
             border: `1.5px solid ${mainColor}`,
             color: mainColor,
             backgroundColor: "transparent",
@@ -617,8 +707,39 @@ var getInputOverrides = (palette, isDark) => ({
               transform: "none"
             }
           },
-          // ── Text Buttons (all colors) ──────────────────────────────────
-          ...variant === "text" && {
+          // ── Glass Text — Soft Glass Pill on Hover ──────────────────────
+          ...variant === "text" && isGlass && {
+            background: "transparent",
+            color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
+            padding: "8px 18px",
+            minHeight: 40,
+            border: "1px solid transparent",
+            transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+            "&:hover": {
+              background: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.55)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.7)"}`,
+              boxShadow: isDark ? "0 4px 16px rgba(0, 0, 0, 0.25)" : "0 4px 14px rgba(0, 0, 0, 0.04)",
+              transform: "translateY(-1px)"
+            },
+            "&:active": {
+              background: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.75)",
+              transform: "translateY(0) scale(0.98)"
+            },
+            "&:focus-visible": {
+              outline: "none",
+              boxShadow: isDark ? "0 0 0 3px rgba(255, 255, 255, 0.3)" : "0 0 0 3px rgba(17, 17, 17, 0.2)"
+            },
+            "&.Mui-disabled": {
+              color: isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(0, 0, 0, 0.25)",
+              background: "transparent",
+              border: "1px solid transparent",
+              transform: "none"
+            }
+          },
+          // ── Text Buttons (all other colors) ────────────────────────────
+          ...variant === "text" && !isGlass && {
             color: isPrimary || isSecondary ? isDark ? COLORS.brand.cream : COLORS.brand.charcoal : mainColor,
             padding: "8px 16px",
             minHeight: 40,
@@ -1095,6 +1216,16 @@ var getDataDisplayOverrides = (palette, isDark) => {
     if (semanticColors[colorKey]) {
       return semanticColors[colorKey];
     }
+    if (colorKey === "glass") {
+      return {
+        main: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.68)",
+        hover: isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.88)",
+        active: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.75)",
+        disabled: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.3)",
+        glow: isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(0, 0, 0, 0.08)",
+        text: isDark ? "#F6F5F2" : "#111111"
+      };
+    }
     const group = palette[colorKey] || palette.primary;
     return {
       main: group.main,
@@ -1147,9 +1278,10 @@ var getDataDisplayOverrides = (palette, isDark) => {
         root: ({ ownerState }) => {
           const color = ownerState.color ?? "default";
           const variant = ownerState.variant ?? "filled";
+          const isGlass = color === "glass";
           const isPrimary = color === "primary";
           const isSecondary = color === "secondary";
-          const isSemantic = !isPrimary && !isSecondary && color !== "default";
+          const isSemantic = !isPrimary && !isSecondary && !isGlass && color !== "default";
           const cc = chipColor(color === "default" ? "primary" : color);
           return {
             // ── Base ──────────────────────────────────────────────────────
@@ -1267,6 +1399,33 @@ var getDataDisplayOverrides = (palette, isDark) => {
                 opacity: 1
               }
             },
+            // ── Glass Filled — Pure Frosted Glass Chip ────────────────────
+            ...variant === "filled" && isGlass && {
+              backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.68)",
+              color: isDark ? "#F6F5F2" : "#111111",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.85)"}`,
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
+              boxShadow: isDark ? "0 4px 16px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.2)" : "0 3px 12px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.9)",
+              "&.MuiChip-clickable:hover": {
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.88)",
+                transform: "translateY(-1px)",
+                boxShadow: isDark ? "0 8px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.3)" : "0 6px 18px rgba(0,0,0,0.08), inset 0 1px 0 #FFFFFF"
+              },
+              "&.MuiChip-clickable:active": {
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.75)",
+                transform: "translateY(0) scale(0.98)"
+              },
+              "&.Mui-disabled": {
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.3)",
+                color: isDark ? "rgba(255,255,255,0.28)" : "rgba(0,0,0,0.28)",
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.4)"}`,
+                boxShadow: "none",
+                backdropFilter: "none",
+                WebkitBackdropFilter: "none",
+                opacity: 1
+              }
+            },
             // ── Semantic Filled (Info, Warning, Error, Success) ──────────
             ...variant === "filled" && isSemantic && {
               backgroundColor: cc.main,
@@ -1348,6 +1507,31 @@ var getDataDisplayOverrides = (palette, isDark) => {
                 opacity: 1
               }
             },
+            // ── Glass Outlined — Airy Translucent Border Chip ─────────────
+            ...variant === "outlined" && isGlass && {
+              backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.28)",
+              border: `1.5px solid ${isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(17, 17, 17, 0.16)"}`,
+              color: isDark ? "#F6F5F2" : "#111111",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              boxShadow: isDark ? "0 2px 10px rgba(0,0,0,0.25)" : "0 2px 8px rgba(0,0,0,0.03)",
+              "&.MuiChip-clickable:hover": {
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.55)",
+                borderColor: isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.3)",
+                transform: "translateY(-1px)",
+                boxShadow: isDark ? "0 6px 18px rgba(0,0,0,0.35)" : "0 4px 14px rgba(0,0,0,0.06)"
+              },
+              "&.MuiChip-clickable:active": {
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.4)",
+                transform: "translateY(0) scale(0.98)"
+              },
+              "&.Mui-disabled": {
+                borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)",
+                color: isDark ? "rgba(255,255,255,0.25)" : "rgba(17,17,17,0.25)",
+                backgroundColor: "transparent",
+                opacity: 1
+              }
+            },
             // ── Semantic Outlined (Info, Warning, Error, Success) ────────
             ...variant === "outlined" && isSemantic && {
               backgroundColor: "transparent",
@@ -1385,12 +1569,16 @@ var getDataDisplayOverrides = (palette, isDark) => {
             // TONAL VARIANT (Soft background chip from Brand Kit)
             // ══════════════════════════════════════════════════════════════
             ...variant === "tonal" && {
-              backgroundColor: isPrimary ? isDark ? "rgba(246, 245, 242, 0.12)" : "rgba(17, 17, 17, 0.07)" : isSecondary ? isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.05)" : isSemantic ? isDark ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.2)` : `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.1)` : isDark ? "rgba(255, 255, 255, 0.07)" : "rgba(17, 17, 17, 0.05)",
-              color: isPrimary ? isDark ? "#F6F5F2" : "#111111" : isSecondary ? isDark ? "#F6F5F2" : "#111111" : isSemantic ? cc.main : palette.text.primary,
-              border: `1px solid ${isDark ? isSemantic ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.25)` : "rgba(255,255,255,0.08)" : isSemantic ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.15)` : "rgba(17,17,17,0.08)"}`,
+              backgroundColor: isGlass ? isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.45)" : isPrimary ? isDark ? "rgba(246, 245, 242, 0.12)" : "rgba(17, 17, 17, 0.07)" : isSecondary ? isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.05)" : isSemantic ? isDark ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.2)` : `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.1)` : isDark ? "rgba(255, 255, 255, 0.07)" : "rgba(17, 17, 17, 0.05)",
+              color: isGlass || isPrimary || isSecondary ? isDark ? "#F6F5F2" : "#111111" : isSemantic ? cc.main : palette.text.primary,
+              border: `1px solid ${isGlass ? isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.6)" : isDark ? isSemantic ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.25)` : "rgba(255,255,255,0.08)" : isSemantic ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.15)` : "rgba(17,17,17,0.08)"}`,
+              ...isGlass && {
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)"
+              },
               boxShadow: "none",
               "&.MuiChip-clickable:hover": {
-                backgroundColor: isPrimary ? isDark ? "rgba(246, 245, 242, 0.18)" : "rgba(17, 17, 17, 0.12)" : isSecondary ? isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.09)" : isSemantic ? isDark ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.28)` : `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.16)` : isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)",
+                backgroundColor: isGlass ? isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.7)" : isPrimary ? isDark ? "rgba(246, 245, 242, 0.18)" : "rgba(17, 17, 17, 0.12)" : isSecondary ? isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.09)" : isSemantic ? isDark ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.28)` : `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.16)` : isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)",
                 transform: "translateY(-1px)"
               },
               "&.MuiChip-clickable:active": {

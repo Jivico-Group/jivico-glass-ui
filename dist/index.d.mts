@@ -137,6 +137,23 @@ declare const COLORS: {
     white: string;
     black: string;
     glass: {
+        /** Palette-compatible color tokens for custom color="glass" */
+        mainLight: string;
+        mainDark: string;
+        contrastTextLight: string;
+        contrastTextDark: string;
+        lightLight: string;
+        lightDark: string;
+        darkLight: string;
+        darkDark: string;
+        hoverLight: string;
+        hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
+        glowLight: string;
+        glowDark: string;
         buttonBorderLight: string;
         buttonBorderDark: string;
         buttonBgLight: string;
@@ -286,6 +303,14 @@ declare const buildPalette: (mode: "light" | "dark") => {
     };
     divider: string;
     glass: {
+        main: string;
+        contrastText: string;
+        light: string;
+        dark: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
         buttonBorder: string;
         buttonBg: string;
         buttonHoverBg: string;
@@ -432,7 +457,28 @@ declare module '@mui/material/styles' {
         gradients?: JivicoPalette['gradients'];
     }
 }
+declare module '@mui/material/Button' {
+    interface ButtonPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/ButtonGroup' {
+    interface ButtonGroupPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/IconButton' {
+    interface IconButtonPropsColorOverrides {
+        glass: true;
+    }
+}
 declare module '@mui/material/Chip' {
+    interface ChipPropsColorOverrides {
+        glass: true;
+    }
+    interface ChipPropsVariantOverrides {
+        tonal: true;
+    }
     interface ChipPropsSizeOverrides {
         large: true;
     }
@@ -452,6 +498,9 @@ declare const createJivicoTheme: (mode: "light" | "dark") => Theme;
 declare const getControlOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
 declare module '@mui/material/Chip' {
+    interface ChipPropsColorOverrides {
+        glass: true;
+    }
     interface ChipPropsVariantOverrides {
         tonal: true;
     }

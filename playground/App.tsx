@@ -206,8 +206,192 @@ export default function App() {
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 Hollow circle indicator before label, sleek ✕ delete icon, tonal
-                & outlined variants, 24px / 28px / 32px
+                & outlined variants, 24px / 28px / 32px, custom Glass color
               </Typography>
+            </Box>
+          </Box>
+
+          {/* ── Glass Chips Spotlight ── */}
+          <Box
+            sx={{
+              p: 2.5,
+              mb: 4,
+              borderRadius: "16px",
+              background: isDark
+                ? "rgba(255, 255, 255, 0.04)"
+                : "rgba(255, 255, 255, 0.5)",
+              border: `1px solid ${
+                isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.07)"
+              }`,
+              backdropFilter: "blur(14px)",
+            }}
+          >
+            <Typography
+              variant="overline"
+              sx={{
+                display: "block",
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+                color: isDark ? "#F6F5F2" : "#111111",
+                mb: 1,
+              }}
+            >
+              ✨ New: color=&quot;glass&quot; for Chips (Filled, Outlined, Tonal)
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ mb: 2.5 }}
+            >
+              Frosted glassmorphism across all variants with backdrop blur, specular lighting highlights, brand circle indicator, and responsive light/dark contrast.
+            </Typography>
+
+            {/* Filled, Outlined, Tonal Glass Chips */}
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{ display: "block", mb: 1, fontWeight: 600 }}
+            >
+              Variants & States — Filled, Outlined, Tonal, Clickable, Avatar, Disabled
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 1.5,
+                alignItems: "center",
+                mb: 2.5,
+              }}
+            >
+              <Chip label="Glass Filled" color="glass" onDelete={() => {}} />
+              <Chip
+                label="Glass Outlined"
+                variant="outlined"
+                color="glass"
+                onDelete={() => {}}
+              />
+              <Chip
+                label="Glass Tonal"
+                variant="tonal"
+                color="glass"
+                onDelete={() => {}}
+              />
+              <Chip
+                label="Glass Clickable"
+                color="glass"
+                clickable
+                onDelete={() => {}}
+              />
+              <Chip
+                icon={<Star size={13} />}
+                label="Glass with Icon"
+                color="glass"
+                onDelete={() => {}}
+              />
+              <Chip
+                avatar={
+                  <Avatar
+                    sx={{
+                      width: 20,
+                      height: 20,
+                      fontSize: "0.65rem",
+                      bgcolor: isDark
+                        ? "rgba(255,255,255,0.2)"
+                        : "rgba(17,17,17,0.15)",
+                      color: isDark ? "#F6F5F2" : "#111111",
+                    }}
+                  >
+                    GL
+                  </Avatar>
+                }
+                label="Glass Avatar"
+                color="glass"
+                onDelete={() => {}}
+              />
+              <Chip
+                label="Glass Disabled"
+                color="glass"
+                disabled
+                onDelete={() => {}}
+              />
+            </Box>
+
+            {/* Glass Sizes */}
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{ display: "block", mb: 1, fontWeight: 600 }}
+            >
+              Glass Sizes — Small (24px), Medium (28px), Large (32px)
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 1.5,
+                alignItems: "center",
+              }}
+            >
+              <Chip
+                label="Small Glass"
+                size="small"
+                color="glass"
+                onDelete={() => {}}
+              />
+              <Chip
+                label="Medium Glass"
+                size="medium"
+                color="glass"
+                onDelete={() => {}}
+              />
+              <Chip
+                label="Large Glass"
+                size="large"
+                color="glass"
+                onDelete={() => {}}
+              />
+              <Chip
+                label="Small Outlined"
+                size="small"
+                variant="outlined"
+                color="glass"
+                onDelete={() => {}}
+              />
+              <Chip
+                label="Medium Outlined"
+                size="medium"
+                variant="outlined"
+                color="glass"
+                onDelete={() => {}}
+              />
+              <Chip
+                label="Large Outlined"
+                size="large"
+                variant="outlined"
+                color="glass"
+                onDelete={() => {}}
+              />
+              <Chip
+                label="Small Tonal"
+                size="small"
+                variant="tonal"
+                color="glass"
+                onDelete={() => {}}
+              />
+              <Chip
+                label="Medium Tonal"
+                size="medium"
+                variant="tonal"
+                color="glass"
+                onDelete={() => {}}
+              />
+              <Chip
+                label="Large Tonal"
+                size="large"
+                variant="tonal"
+                color="glass"
+                onDelete={() => {}}
+              />
             </Box>
           </Box>
 
@@ -236,6 +420,19 @@ export default function App() {
               label="Tonal"
               variant="tonal"
               color="primary"
+              onDelete={() => {}}
+            />
+            <Chip label="Glass Filled" color="glass" onDelete={() => {}} />
+            <Chip
+              label="Glass Outlined"
+              variant="outlined"
+              color="glass"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Glass Tonal"
+              variant="tonal"
+              color="glass"
               onDelete={() => {}}
             />
             <Chip label="Deletable" onDelete={() => {}} />
@@ -373,8 +570,8 @@ export default function App() {
               fontWeight: 700,
             }}
           >
-            Color Palette & States (Primary, Secondary, Info, Warning, Error,
-            Success)
+            Color Palette & States (Primary, Secondary, Glass, Info, Warning,
+            Error, Success)
           </Typography>
 
           {/* Filled Default */}
@@ -388,6 +585,7 @@ export default function App() {
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 2.5 }}>
             <Chip label="Primary" color="primary" onDelete={() => {}} />
             <Chip label="Secondary" color="secondary" onDelete={() => {}} />
+            <Chip label="Glass" color="glass" onDelete={() => {}} />
             <Chip label="Info" color="info" onDelete={() => {}} />
             <Chip label="Warning" color="warning" onDelete={() => {}} />
             <Chip label="Error" color="error" onDelete={() => {}} />
@@ -412,6 +610,12 @@ export default function App() {
             <Chip
               label="Secondary"
               color="secondary"
+              clickable
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Glass"
+              color="glass"
               clickable
               onDelete={() => {}}
             />
@@ -452,6 +656,12 @@ export default function App() {
               disabled
               onDelete={() => {}}
             />
+            <Chip
+              label="Glass"
+              color="glass"
+              disabled
+              onDelete={() => {}}
+            />
             <Chip label="Info" color="info" disabled onDelete={() => {}} />
             <Chip
               label="Warning"
@@ -487,6 +697,12 @@ export default function App() {
               icon={<Star size={13} />}
               label="Secondary"
               color="secondary"
+              onDelete={() => {}}
+            />
+            <Chip
+              icon={<Star size={13} />}
+              label="Glass"
+              color="glass"
               onDelete={() => {}}
             />
             <Chip
@@ -537,6 +753,12 @@ export default function App() {
               onDelete={() => {}}
             />
             <Chip
+              label="Glass"
+              color="glass"
+              variant="outlined"
+              onDelete={() => {}}
+            />
+            <Chip
               label="Info"
               color="info"
               variant="outlined"
@@ -580,6 +802,12 @@ export default function App() {
             <Chip
               label="Secondary"
               color="secondary"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Glass"
+              color="glass"
               variant="tonal"
               onDelete={() => {}}
             />
@@ -638,10 +866,150 @@ export default function App() {
 
         {/* ── Buttons ──────────────────────────────────────────────── */}
         <GlassPanel>
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
+          <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>
             Buttons
           </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+            Standard colors + new <strong>color=&quot;glass&quot;</strong> for
+            luxury frosted glassmorphism across contained, outlined, and text
+            variants.
+          </Typography>
+
           <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+            {/* ── Glass Button Spotlight ────────────────────────────── */}
+            <Box
+              sx={{
+                p: 3,
+                borderRadius: 4,
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              <Typography
+                variant="overline"
+                sx={{
+                  display: "block",
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  color: isDark ? "#F6F5F2" : "#111111",
+                  mb: 1,
+                }}
+              >
+                ✨ New: color=&quot;glass&quot; (Frosted Glassmorphism)
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ mb: 2.5 }}
+              >
+                Pure Apple-precision frosted glass with dynamic backdrop-filter
+                blur, subtle perimeter lighting, and luxury hover transitions.
+              </Typography>
+
+              {/* Contained, Outlined, Text Showcase */}
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 2,
+                  alignItems: "center",
+                  mb: 2.5,
+                }}
+              >
+                <Button variant="contained" color="glass">
+                  Contained Glass
+                </Button>
+                <Button variant="outlined" color="glass">
+                  Outlined Glass
+                </Button>
+                <Button variant="text" color="glass">
+                  Text Glass
+                </Button>
+                <Button
+                  variant="contained"
+                  color="glass"
+                  startIcon={<ShoppingCart size={16} />}
+                >
+                  Glass with Icon
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="glass"
+                  startIcon={<Star size={16} />}
+                >
+                  Outlined + Star
+                </Button>
+                <Button variant="contained" color="glass" disabled>
+                  Disabled Glass
+                </Button>
+              </Box>
+
+              {/* Sizes */}
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ display: "block", mb: 1, fontWeight: 600 }}
+              >
+                Sizes — Small, Medium, Large
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 2,
+                  alignItems: "center",
+                  mb: 2.5,
+                }}
+              >
+                <Button variant="contained" color="glass" size="small">
+                  Small Glass
+                </Button>
+                <Button variant="contained" color="glass" size="medium">
+                  Medium Glass
+                </Button>
+                <Button variant="contained" color="glass" size="large">
+                  Large Glass
+                </Button>
+                <Button variant="outlined" color="glass" size="small">
+                  Small Outlined
+                </Button>
+                <Button variant="outlined" color="glass" size="medium">
+                  Medium Outlined
+                </Button>
+                <Button variant="outlined" color="glass" size="large">
+                  Large Outlined
+                </Button>
+              </Box>
+
+              {/* Button Group with Glass */}
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ display: "block", mb: 1, fontWeight: 600 }}
+              >
+                ButtonGroup with color=&quot;glass&quot;
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 2,
+                  alignItems: "center",
+                }}
+              >
+                <ButtonGroup variant="contained" color="glass">
+                  <Button>Glass Option A</Button>
+                  <Button>Glass Option B</Button>
+                  <Button>Glass Option C</Button>
+                </ButtonGroup>
+                <ButtonGroup variant="outlined" color="glass">
+                  <Button>Outlined 1</Button>
+                  <Button>Outlined 2</Button>
+                  <Button>Outlined 3</Button>
+                </ButtonGroup>
+              </Box>
+            </Box>
+
             {/* All Buttons Variants */}
             <Box
               sx={{
@@ -656,6 +1024,7 @@ export default function App() {
                 [
                   "primary",
                   "secondary",
+                  "glass",
                   "info",
                   "warning",
                   "error",

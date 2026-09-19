@@ -146,6 +146,24 @@ export const COLORS = {
 
   // ─── Glass System (unchanged — glassmorphism architecture preserved) ──────────
   glass: {
+    /** Palette-compatible color tokens for custom color="glass" */
+    mainLight: 'rgba(255, 255, 255, 0.72)',
+    mainDark: 'rgba(255, 255, 255, 0.12)',
+    contrastTextLight: '#111111',
+    contrastTextDark: '#F6F5F2',
+    lightLight: 'rgba(255, 255, 255, 0.88)',
+    lightDark: 'rgba(255, 255, 255, 0.18)',
+    darkLight: 'rgba(255, 255, 255, 0.55)',
+    darkDark: 'rgba(255, 255, 255, 0.08)',
+    hoverLight: 'rgba(255, 255, 255, 0.9)',
+    hoverDark: 'rgba(255, 255, 255, 0.2)',
+    activeLight: 'rgba(255, 255, 255, 0.78)',
+    activeDark: 'rgba(255, 255, 255, 0.09)',
+    disabledLight: 'rgba(255, 255, 255, 0.35)',
+    disabledDark: 'rgba(255, 255, 255, 0.04)',
+    glowLight: 'rgba(0, 0, 0, 0.08)',
+    glowDark: 'rgba(255, 255, 255, 0.25)',
+
     buttonBorderLight: 'rgba(0, 0, 0, 0.18)',
     buttonBorderDark: 'rgba(255, 255, 255, 0.2)',
     buttonBgLight: 'rgba(0, 0, 0, 0.02)',
