@@ -28,8 +28,19 @@ export const GlassBox = styled(Box, {
     ...recipe,
     borderRadius: radius,
     boxSizing: "border-box",
+    color: isDark ? "#fff" : "#000",
   };
 });
+
+/**
+ * GlassSurface — Lightweight wrapper that sets text color to
+ * strict #FFFFFF in Dark Mode and strict #000000 in Light Mode for maximum readability.
+ */
+export const GlassSurface = styled(Box)(({ theme }) => ({
+  color: theme.palette.mode === "dark" ? "#FFFFFF" : "#000000",
+}));
+
+export type GlassSurfaceProps = BoxProps;
 
 // Alias for layout container workflows
 export const GlassContainer = GlassBox;
