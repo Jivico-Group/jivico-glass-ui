@@ -1,8 +1,8 @@
-import { defineConfig } from 'tsup';
+import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ['src/index.ts'],
-  format: ['esm', 'cjs'],
+  entry: ["src/index.ts"],
+  format: ["esm", "cjs"],
   dts: true,
   splitting: false,
   sourcemap: false,
@@ -10,18 +10,15 @@ export default defineConfig({
   clean: true,
   treeshake: true,
   external: [
-    'react',
-    'react-dom',
-    '@mui/material',
-    '@mui/material/styles',
-    '@mui/material/colors',
-    '@mui/material/CssBaseline',
-    '@emotion/react',
-    '@emotion/styled',
-    'framer-motion',
-    'lucide-react',
+    "react",
+    "react-dom",
+    "@mui/material",
+    "@mui/material/styles",
+    "@mui/material/colors",
+    "@mui/material/CssBaseline",
+    "@emotion/react",
+    "@emotion/styled",
+    "framer-motion",
+    "lucide-react",
   ],
-  banner: {
-    js: "'use client';",
-  },
 });
