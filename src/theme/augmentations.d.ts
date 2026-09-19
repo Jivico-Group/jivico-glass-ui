@@ -3,10 +3,14 @@ import type { JivicoPalette } from "./palette.js";
 declare module "@mui/material/styles" {
   interface Palette {
     glass: JivicoPalette["glass"];
+    "glass-surface"?: string;
+    glassSurface?: string;
     gradients?: JivicoPalette["gradients"];
   }
   interface PaletteOptions {
     glass?: JivicoPalette["glass"];
+    "glass-surface"?: string;
+    glassSurface?: string;
     gradients?: JivicoPalette["gradients"];
   }
 }
@@ -151,5 +155,18 @@ declare module "@mui/material/Typography" {
   interface TypographyPropsColorOverrides {
     glass: true;
     "glass-surface": true;
+  }
+}
+
+declare module "@mui/material/Box" {
+  interface BoxPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+    primary: true;
+    secondary: true;
+    success: true;
+    error: true;
+    info: true;
+    warning: true;
   }
 }

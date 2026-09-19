@@ -128,6 +128,8 @@ export const buildPalette = (mode: 'light' | 'dark') => {
       info: COLORS.alertRgb.info,
     },
     gradients: COLORS.gradients,
+    "glass-surface": isDark ? "#FFFFFF" : "#000000",
+    glassSurface: isDark ? "#FFFFFF" : "#000000",
   };
 };
 
