@@ -64,11 +64,14 @@ export const buildPalette = (mode: 'light' | 'dark') => {
     text: {
       primary: isDark ? COLORS.text.primaryDark : COLORS.text.primaryLight,
       secondary: isDark ? COLORS.text.secondaryDark : COLORS.text.secondaryLight,
+      glassSurface: isDark ? "#FFFFFF" : "#000000",
+      "glass-surface": isDark ? "#FFFFFF" : "#000000",
     },
     divider: isDark ? COLORS.divider.dark : COLORS.divider.light,
     glass: {
       main: isDark ? COLORS.glass.mainDark : COLORS.glass.mainLight,
-      contrastText: isDark ? COLORS.glass.contrastTextDark : COLORS.glass.contrastTextLight,
+      contrastText: isDark ? "#FFFFFF" : "#000000",
+      surface: isDark ? "#FFFFFF" : "#000000",
       light: isDark ? COLORS.glass.lightDark : COLORS.glass.lightLight,
       dark: isDark ? COLORS.glass.darkDark : COLORS.glass.darkLight,
       hover: isDark ? COLORS.glass.hoverDark : COLORS.glass.hoverLight,
@@ -128,8 +131,18 @@ export const buildPalette = (mode: 'light' | 'dark') => {
       info: COLORS.alertRgb.info,
     },
     gradients: COLORS.gradients,
-    "glass-surface": isDark ? "#FFFFFF" : "#000000",
-    glassSurface: isDark ? "#FFFFFF" : "#000000",
+    "glass-surface": {
+      main: isDark ? "#FFFFFF" : "#000000",
+      light: isDark ? "#FFFFFF" : "#000000",
+      dark: isDark ? "#FFFFFF" : "#000000",
+      contrastText: isDark ? "#000000" : "#FFFFFF",
+    },
+    glassSurface: {
+      main: isDark ? "#FFFFFF" : "#000000",
+      light: isDark ? "#FFFFFF" : "#000000",
+      dark: isDark ? "#FFFFFF" : "#000000",
+      contrastText: isDark ? "#000000" : "#FFFFFF",
+    },
   };
 };
 

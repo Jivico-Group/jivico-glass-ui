@@ -3,15 +3,19 @@ import type { JivicoPalette } from "./palette.js";
 declare module "@mui/material/styles" {
   interface Palette {
     glass: JivicoPalette["glass"];
-    "glass-surface"?: string;
-    glassSurface?: string;
+    "glass-surface"?: { main: string; light: string; dark: string; contrastText: string };
+    glassSurface?: { main: string; light: string; dark: string; contrastText: string };
     gradients?: JivicoPalette["gradients"];
   }
   interface PaletteOptions {
     glass?: JivicoPalette["glass"];
-    "glass-surface"?: string;
-    glassSurface?: string;
+    "glass-surface"?: { main: string; light: string; dark: string; contrastText: string };
+    glassSurface?: { main: string; light: string; dark: string; contrastText: string };
     gradients?: JivicoPalette["gradients"];
+  }
+  interface TypeText {
+    glassSurface?: string;
+    "glass-surface"?: string;
   }
 }
 
