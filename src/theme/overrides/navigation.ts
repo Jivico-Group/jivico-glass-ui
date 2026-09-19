@@ -1,24 +1,74 @@
 import type { Components, Theme } from '@mui/material/styles';
 import type { JivicoPalette } from '../palette.js';
+import { glassAppBarRecipe } from './glassRecipe.js';
 
 /**
  * MUI component overrides — Navigation:
- * Tabs, Tab, Drawer, Menu, MenuItem, PaginationItem
+ * AppBar, Toolbar, Tabs, Tab, Drawer, Menu, MenuItem, PaginationItem
  */
 export const getNavigationOverrides = (
   palette: JivicoPalette,
   isDark: boolean
 ): Components<Theme> => ({
-  MuiTabs: {
+
+  // ========================================================================
+  // APP BAR — luxury glassmorphism (recipe shared via glassRecipe.ts)
+  // ========================================================================
+  MuiAppBar: {
+    defaultProps: {
+      elevation: 0,
+      color: 'transparent',
+    },
     styleOverrides: {
       root: {
-        minHeight: 44,
+        ...glassAppBarRecipe(isDark),
+        color: palette.text.primary,
+        transition: 'background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease',
       },
+    },
+  },
+
+  // ========================================================================
+  // TOOLBAR
+  // ========================================================================
+  MuiToolbar: {
+    styleOverrides: {
+      root: {
+        minHeight: '56px !important',
+        paddingLeft: '24px !important',
+        paddingRight: '24px !important',
+      },
+    },
+  },
+
+  MuiTabs: {
+    styleOverrides: {
+      root: ({ ownerState }) => ({
+        minHeight: 36,
+        backgroundColor: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(17, 17, 17, 0.03)',
+        borderRadius: 12,
+        padding: '4px',
+        border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(17, 17, 17, 0.06)'}`,
+        display: ownerState.variant === 'fullWidth' ? 'flex' : 'inline-flex',
+        width: ownerState.variant === 'fullWidth' ? '100%' : 'fit-content',
+        boxShadow: isDark 
+          ? 'inset 0 1px 2px rgba(0,0,0,0.2)' 
+          : 'inset 0 1px 2px rgba(0,0,0,0.05)',
+        '& .MuiTabs-flexContainer': {
+          gap: '4px',
+          position: 'relative',
+          zIndex: 1,
+        },
+      }),
       indicator: {
-        height: 3,
-        borderRadius: 3,
-        backgroundColor: palette.primary.main,
-        boxShadow: isDark ? `0 0 10px ${palette.primary.glow}` : 'none',
+        height: '100%',
+        borderRadius: 8,
+        backgroundColor: isDark ? 'rgba(255, 255, 255, 0.12)' : '#FFFFFF',
+        boxShadow: isDark 
+          ? '0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)' 
+          : '0 2px 8px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04)',
+        zIndex: -1, // Places it directly behind the tab items
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       },
     },
   },
@@ -27,11 +77,24 @@ export const getNavigationOverrides = (
       root: {
         textTransform: 'none',
         fontWeight: 500,
-        fontSize: '0.9375rem',
+        fontSize: '0.875rem',
+        minHeight: 32,
+        minWidth: 'auto',
+        borderRadius: 8,
+        padding: '6px 16px',
         color: palette.text.secondary,
+        transition: 'color 0.3s ease, background-color 0.3s ease',
+        '&:hover': {
+          color: palette.text.primary,
+          backgroundColor: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(17, 17, 17, 0.03)',
+        },
         '&.Mui-selected': {
           color: palette.text.primary,
           fontWeight: 600,
+          backgroundColor: 'transparent',
+          '&:hover': {
+            backgroundColor: 'transparent', // The indicator is the background
+          },
         },
       },
     },
@@ -207,6 +270,58 @@ export const getNavigationOverrides = (
           '&:hover': {
             backgroundColor: palette.secondary.hover,
           },
+        },
+      },
+    },
+  },
+  MuiStepper: {
+    styleOverrides: {
+      root: {
+        backgroundColor: 'transparent',
+        padding: '24px 0',
+      },
+    },
+  },
+  MuiStepConnector: {
+    styleOverrides: {
+      line: {
+        borderColor: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(17, 17, 17, 0.12)',
+        borderTopWidth: 2,
+        borderRadius: 1,
+      },
+    },
+  },
+  MuiStepIcon: {
+    styleOverrides: {
+      root: {
+        color: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(17, 17, 17, 0.1)',
+        '&.Mui-active': {
+          color: palette.text.primary,
+          filter: isDark ? `drop-shadow(0 0 6px rgba(255, 255, 255, 0.25))` : `drop-shadow(0 0 6px rgba(17, 17, 17, 0.15))`,
+        },
+        '&.Mui-completed': {
+          color: palette.text.primary,
+        },
+      },
+      text: {
+        fill: isDark ? '#111' : '#FFF',
+        fontWeight: 700,
+      },
+    },
+  },
+  MuiStepLabel: {
+    styleOverrides: {
+      label: {
+        fontSize: '0.875rem',
+        fontWeight: 500,
+        color: palette.text.secondary,
+        '&.Mui-active': {
+          color: palette.text.primary,
+          fontWeight: 600,
+        },
+        '&.Mui-completed': {
+          color: palette.text.primary,
+          fontWeight: 500,
         },
       },
     },

@@ -3,27 +3,30 @@ import type { JivicoPalette } from '../palette.js';
 
 /**
  * MUI component overrides — Surfaces:
- * Card, Paper, AppBar, Accordion
+ * Card, Paper, Accordion
+ *
+ * Note: MuiAppBar lives in navigation.ts (uses glassRecipe).
  */
 export const getSurfaceOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiCard: {
     styleOverrides: {
       root: {
         background: `linear-gradient(135deg, ${palette.glass.cardBg} 0%, ${
-          isDark ? 'rgba(30,30,35,0.2)' : 'rgba(255,255,255,0.4)'
+          isDark ? 'rgba(22, 22, 22, 0.25)' : 'rgba(255, 255, 255, 0.45)'
         } 100%)`,
         border: `1px solid ${palette.glass.chipBorder}`,
         boxShadow: `${palette.glass.cardShadow}, inset 0 1px 1px 0 ${
-          isDark ? 'rgba(246, 29, 29, 0.1)' : 'rgba(255, 255, 255, 0.7)'
+          isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(255, 255, 255, 0.75)'
         }`,
         transition:
           'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease',
         '&:hover': {
-          transform: 'translateY(-8px) scale(1.01)',
+          transform: 'translateY(-6px) scale(1.01)',
+          // Luxury hover: deep neutral shadow — no colour glow, just depth
           boxShadow: isDark
-            ? '0 28px 60px rgba(0, 0, 0, 0.65), 0 0 32px rgba(236, 72, 153, 0.28), inset 0 1px 2px rgba(255, 255, 255, 0.35)'
-            : '0 28px 60px rgba(236, 72, 153, 0.14), 0 0 28px rgba(236, 72, 153, 0.18), inset 0 1px 2px rgba(255, 255, 255, 1)',
-          borderColor: isDark ? 'rgba(236, 72, 153, 0.5)' : 'rgba(236, 72, 153, 0.4)',
+            ? '0 28px 60px rgba(0, 0, 0, 0.72), 0 2px 0px rgba(255, 255, 255, 0.04), inset 0 1px 2px rgba(255, 255, 255, 0.1)'
+            : '0 28px 60px rgba(0, 0, 0, 0.12), 0 2px 0 rgba(255, 255, 255, 1), inset 0 1px 2px rgba(255, 255, 255, 1)',
+          borderColor: isDark ? 'rgba(246, 245, 242, 0.14)' : 'rgba(17, 17, 17, 0.16)',
           '&::after': {
             left: '160%',
             transition: 'all 0.8s ease',
@@ -65,21 +68,6 @@ export const getSurfaceOverrides = (palette: JivicoPalette, isDark: boolean): Co
         },
       },
     ],
-  },
-  MuiAppBar: {
-    styleOverrides: {
-      root: {
-        backgroundColor: palette.glass.appBarBg,
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: `1px solid ${palette.glass.chipBorder}`,
-        borderRadius: 0,
-        boxShadow: 'none',
-        color: palette.text.primary,
-        transition: 'all 0.3s ease',
-        zIndex: 1100,
-      },
-    },
   },
   MuiAccordion: {
     styleOverrides: {

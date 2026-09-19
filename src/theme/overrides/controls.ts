@@ -33,32 +33,49 @@ export const getControlOverrides = (
   },
   MuiSwitch: {
     styleOverrides: {
-      root: {
-        width: 40,
-        height: 20,
-        padding: 0,
-        "& .MuiSwitch-switchBase": {
-          padding: 2,
-          "&.Mui-checked": {
-            transform: "translateX(20px)",
-            color: isDark ? "#1D1D1F" : COLORS.white,
-            "& + .MuiSwitch-track": {
-              backgroundColor: palette.primary.main,
-              opacity: 1,
-              border: 0,
+      root: ({ ownerState, theme }) => {
+        // Resolve the correct color from the palette, fallback to primary
+        const colorName = ownerState.color && ownerState.color !== "default" ? ownerState.color : "primary";
+        const trackColor = (theme.palette as any)[colorName]?.main || palette.primary.main;
+
+        return {
+          width: 40,
+          height: 20,
+          padding: 0,
+          "& .MuiSwitch-switchBase": {
+            padding: 2,
+            "&.Mui-checked": {
+              transform: "translateX(20px)",
+              color: isDark ? "#1D1D1F" : COLORS.white,
+              "& + .MuiSwitch-track": {
+                backgroundColor: trackColor,
+                opacity: 1,
+                border: 0,
+              },
+              "&.Mui-disabled": {
+                color: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)",
+                "& + .MuiSwitch-track": {
+                  opacity: 0.3,
+                },
+              },
+            },
+            "&.Mui-disabled": {
+              "& + .MuiSwitch-track": {
+                opacity: 0.3,
+              },
             },
           },
-        },
-        "& .MuiSwitch-thumb": {
-          width: 16,
-          height: 16,
-          boxShadow: palette.glass.switchShadow,
-        },
-        "& .MuiSwitch-track": {
-          borderRadius: 20 / 2,
-          backgroundColor: palette.glass.switchTrack,
-          opacity: 1,
-        },
+          "& .MuiSwitch-thumb": {
+            width: 16,
+            height: 16,
+            boxShadow: palette.glass.switchShadow,
+          },
+          "& .MuiSwitch-track": {
+            borderRadius: 20 / 2,
+            backgroundColor: palette.glass.switchTrack,
+            opacity: 1,
+          },
+        };
       },
       sizeSmall: {
         width: 32,

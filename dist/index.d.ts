@@ -8,12 +8,25 @@ import { BoxProps } from '@mui/material';
 import * as _mui_material_OverridableComponent from '@mui/material/OverridableComponent';
 
 /**
- * Jivico Comprehensive Design System: Apple Precision + Google Antigravity
- * Raw Color Constants
+ * Jivico Studio Design System — Luxury Monochrome + Glassmorphism
+ *
+ * Brand Kit: Modern · Minimal · Bold · Timeless
+ * Primary Palette: Charcoal #111111 · Stone #686868 · Sand #D9D9CF · Cream #F6F5F2
+ *
+ * Raw Color Constants — no pink, no gradients-with-purple.
+ * Glassmorphism surfaces, blur, and elevation are preserved exactly.
  */
 declare const COLORS: {
+    brand: {
+        charcoal: string;
+        stone: string;
+        sand: string;
+        cream: string;
+    };
     primary: {
+        /** Light mode: bold charcoal for buttons, focus rings, active states */
         light: string;
+        /** Dark mode: crisp cream/off-white — reads as luxury against dark glass */
         dark: string;
         hoverLight: string;
         hoverDark: string;
@@ -61,8 +74,10 @@ declare const COLORS: {
         glowDark: string;
     };
     background: {
+        /** Light: warm off-white (brand Cream) for an editorial, premium feel */
         light: string;
         dark: string;
+        /** Light paper surfaces are pure white for contrast against Cream bg */
         paperLight: string;
         paperDark: string;
     };
@@ -79,6 +94,7 @@ declare const COLORS: {
     action: {
         hoverLight: string;
         hoverDark: string;
+        /** Selected tint: charcoal-based in light, cream-based in dark */
         selectedLight: string;
         selectedDark: string;
     };
@@ -159,9 +175,14 @@ declare const COLORS: {
         error: string;
         info: string;
     };
+    /** Monochrome sweep — Charcoal → Stone. Used only on accent/hero text. */
     gradients: {
         primary: string;
         primaryHover: string;
+        /** Light-mode accent variant: Stone → Sand for a softer editorial sweep */
+        accent: string;
+        /** Dark-mode accent: Cream → Stone */
+        accentDark: string;
     };
 };
 
@@ -266,12 +287,19 @@ declare const buildPalette: (mode: "light" | "dark") => {
     gradients: {
         primary: string;
         primaryHover: string;
+        accent: string;
+        accentDark: string;
     };
 };
 type JivicoPalette = ReturnType<typeof buildPalette>;
 
 /**
- * Shared typography configuration for the Jivico design system.
+ * Jivico Studio Design System — Typography
+ *
+ * Font stack per Brand Kit:
+ *  - Headlines / Logo: Brush Script style (handled by logo asset)
+ *  - Subheadings / Accent: Montserrat · Space Grotesk
+ *  - Body / UI: SF Pro Display (macOS/iOS native), Google Sans Flex
  */
 declare const typography: {
     fontFamily: string;
@@ -280,33 +308,39 @@ declare const typography: {
         fontWeight: number;
         letterSpacing: string;
         lineHeight: number;
+        fontFamily: string;
     };
     h2: {
         fontSize: string;
         fontWeight: number;
         letterSpacing: string;
         lineHeight: number;
+        fontFamily: string;
     };
     h3: {
         fontSize: string;
         fontWeight: number;
         letterSpacing: string;
         lineHeight: number;
+        fontFamily: string;
     };
     h4: {
         fontSize: string;
         fontWeight: number;
         letterSpacing: string;
+        fontFamily: string;
     };
     h5: {
         fontSize: string;
         fontWeight: number;
         letterSpacing: string;
+        fontFamily: string;
     };
     h6: {
         fontSize: string;
         fontWeight: number;
         letterSpacing: string;
+        fontFamily: string;
     };
     body1: {
         fontSize: string;
@@ -324,8 +358,21 @@ declare const typography: {
         fontWeight: number;
         letterSpacing: string;
         fontSize: string;
+        fontFamily: string;
+    };
+    overline: {
+        fontSize: string;
+        fontWeight: number;
+        letterSpacing: string;
+        textTransform: "uppercase";
+        fontFamily: string;
     };
 };
+/**
+ * Google Fonts URL for Montserrat + Space Grotesk.
+ * Import this in your <head> or via a FontPreload component.
+ */
+declare const JIVICO_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
 
 declare module '@mui/material/styles' {
     interface Palette {
@@ -338,6 +385,8 @@ declare module '@mui/material/styles' {
     }
 }
 declare const GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
+/** Montserrat (subheadings/accent) + Space Grotesk (body fallback) — from brand kit */
+declare const JIVICO_BRAND_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
 declare const getHybridTheme: (mode: "light" | "dark") => Theme;
 declare const getAppleTheme: (mode: "light" | "dark") => Theme;
 declare const getAntigravityTheme: (mode: "light" | "dark") => Theme;
@@ -353,7 +402,7 @@ declare const getControlOverrides: (palette: JivicoPalette, isDark: boolean) => 
  * MUI component overrides — Data Display:
  * Chip, Avatar, Divider, Table, TableCell, Tooltip
  */
-declare const getDataDisplayOverrides: (palette: JivicoPalette, _isDark: boolean) => Components<Theme>;
+declare const getDataDisplayOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
 /**
  * MUI component overrides — Feedback:
@@ -369,13 +418,15 @@ declare const getInputOverrides: (palette: JivicoPalette, isDark: boolean) => Co
 
 /**
  * MUI component overrides — Navigation:
- * Tabs, Tab, Drawer, Menu, MenuItem, PaginationItem
+ * AppBar, Toolbar, Tabs, Tab, Drawer, Menu, MenuItem, PaginationItem
  */
 declare const getNavigationOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
 /**
  * MUI component overrides — Surfaces:
- * Card, Paper, AppBar, Accordion
+ * Card, Paper, Accordion
+ *
+ * Note: MuiAppBar lives in navigation.ts (uses glassRecipe).
  */
 declare const getSurfaceOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
@@ -459,8 +510,22 @@ declare const HeroImageFrame: _emotion_styled.StyledComponent<_mui_system.BoxOwn
 }, {}, {}>;
 declare const CoverImage: _emotion_styled.StyledComponent<_mui_system.MUIStyledCommonProps<_mui_material.Theme>, react.DetailedHTMLProps<react.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>, {}>;
 
+type BlobVariant = 'primary' | 'secondary' | 'warm' | 'blue' | 'cyan' | 'pink' | 'purple' | 'amber';
+/**
+ * AmbientBlob — slow-floating background orbs.
+ *
+ * Variant palette updated to brand monochrome:
+ *  - 'primary'  → Charcoal/Cream glow (was pink)
+ *  - 'secondary'→ Stone glow (was purple)
+ *  - 'warm'     → Sand/Cream warmth (was amber)
+ *  - 'blue'     → Info blue (retained for depth contrast)
+ *  - 'cyan'     → Subtle teal (retained for light-mode freshness)
+ *
+ * Legacy variants (pink, purple, amber) are aliased to brand colours
+ * so existing consumers don't break.
+ */
 declare const AmbientBlob: _emotion_styled.StyledComponent<_mui_system.BoxOwnProps<_mui_material.Theme> & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof _mui_system.BoxOwnProps<_mui_material.Theme>> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
-    variant: "pink" | "blue" | "purple" | "amber" | "cyan";
+    variant: BlobVariant;
     isDark: boolean;
 }, {}, {}>;
 declare const DecorativeBlob: _emotion_styled.StyledComponent<_mui_system.BoxOwnProps<_mui_material.Theme> & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof _mui_system.BoxOwnProps<_mui_material.Theme>> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
@@ -470,10 +535,16 @@ declare const DecorativeBlob: _emotion_styled.StyledComponent<_mui_system.BoxOwn
 declare const GradientText: _emotion_styled.StyledComponent<_mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
     isDark?: boolean;
 }, react.DetailedHTMLProps<react.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, {}>;
-declare const GradientContextTitle: _emotion_styled.StyledComponent<_mui_material.TypographyOwnProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, "className" | "style" | "classes" | "children" | "sx" | "color" | "variant" | "align" | "noWrap" | "gutterBottom" | "variantMapping"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme>, {}, {}>;
+declare const GradientContextTitle: _emotion_styled.StyledComponent<_mui_material.TypographyOwnProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, "className" | "style" | "classes" | "children" | "sx" | "color" | "variant" | "align" | "noWrap" | "gutterBottom" | "variantMapping"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
+    isDark?: boolean;
+}, {}, {}>;
 
 /**
- * Preloads Google Sans Flex font with high priority preconnect links.
+ * Preloads all Jivico brand fonts:
+ *  - Google Sans Flex (primary UI font)
+ *  - Montserrat (brand headings/accent per brand kit)
+ *  - Space Grotesk (body fallback)
+ *
  * Place inside <head> or at the root of your HTML layout.
  */
 declare function JivicoFontPreload(): react__default.JSX.Element;
@@ -549,4 +620,4 @@ interface JivicoThemeProviderProps {
 }
 declare function JivicoThemeProvider({ children, defaultMode, storageKey, enableCssBaseline, }: JivicoThemeProviderProps): react__default.JSX.Element;
 
-export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassCardBody, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JivicoFontLinks, JivicoFontPreload, type JivicoPalette, JivicoThemeProvider, type JivicoThemeProviderProps, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PageRoot, Section, SectionContainer, SectionHeader, type SectionHeaderProps, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, SupportedTypeChip, type ThemeContextType, type ThemeMode, ThemeModeProvider, type ThemeModeProviderProps, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };
+export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassCardBody, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, type JivicoPalette, JivicoThemeProvider, type JivicoThemeProviderProps, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PageRoot, Section, SectionContainer, SectionHeader, type SectionHeaderProps, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, SupportedTypeChip, type ThemeContextType, type ThemeMode, ThemeModeProvider, type ThemeModeProviderProps, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };

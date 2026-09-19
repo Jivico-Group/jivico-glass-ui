@@ -1,80 +1,114 @@
 /**
- * Jivico Comprehensive Design System: Apple Precision + Google Antigravity
- * Raw Color Constants
+ * Jivico Studio Design System — Luxury Monochrome + Glassmorphism
+ *
+ * Brand Kit: Modern · Minimal · Bold · Timeless
+ * Primary Palette: Charcoal #111111 · Stone #686868 · Sand #D9D9CF · Cream #F6F5F2
+ *
+ * Raw Color Constants — no pink, no gradients-with-purple.
+ * Glassmorphism surfaces, blur, and elevation are preserved exactly.
  */
 export const COLORS = {
+  // ─── Brand Monochrome ────────────────────────────────────────────────────────
+  brand: {
+    charcoal: '#111111',
+    stone: '#686868',
+    sand: '#D9D9CF',
+    cream: '#F6F5F2',
+  },
+
+  // ─── Primary (Charcoal) ──────────────────────────────────────────────────────
   primary: {
-    light: '#EC4899', // Brand Pink
-    dark: '#F472B6', // Brand Pink (Lighter for Dark Mode)
-    hoverLight: '#DB2777',
-    hoverDark: '#F9A8D4',
-    glowLight: 'rgba(236, 72, 153, 0.35)',
-    glowDark: 'rgba(244, 114, 182, 0.45)',
+    /** Light mode: bold charcoal for buttons, focus rings, active states */
+    light: '#111111',
+    /** Dark mode: crisp cream/off-white — reads as luxury against dark glass */
+    dark: '#F6F5F2',
+    hoverLight: '#2A2A2A',
+    hoverDark: '#E8E7E4',
+    glowLight: 'rgba(17, 17, 17, 0.22)',
+    glowDark: 'rgba(246, 245, 242, 0.18)',
   },
+
+  // ─── Secondary (Cream) ───────────────────────────────────────────────────────
   secondary: {
-    light: '#1D1D1F', // Apple Obsidian
-    dark: '#FFFFFF', // Crisp White
-    hoverLight: '#333336',
-    hoverDark: '#E8EAED',
-    glowLight: 'rgba(0, 0, 0, 0.2)',
-    glowDark: 'rgba(255, 255, 255, 0.25)',
+    light: '#F6F5F2',
+    dark: '#111111',
+    hoverLight: '#E8E7E4',
+    hoverDark: '#2A2A2A',
+    glowLight: 'rgba(246, 245, 242, 0.4)',
+    glowDark: 'rgba(17, 17, 17, 0.4)',
   },
+
+  // ─── Semantic ────────────────────────────────────────────────────────────────
   success: {
-    light: '#34A853', // Google Green / Apple Leaf
-    dark: '#81C995', // Soft Antigravity Mint
+    light: '#34A853',
+    dark: '#81C995',
     hoverLight: '#2D9247',
     hoverDark: '#A8DAB5',
     glowLight: 'rgba(52, 168, 83, 0.35)',
     glowDark: 'rgba(129, 201, 149, 0.4)',
   },
   warning: {
-    light: '#E67700', // Apple Deep Amber / Google Warm Ochre
-    dark: '#F6AD55', // Antigravity Warm Honey Peach
+    light: '#E67700',
+    dark: '#F6AD55',
     hoverLight: '#CC6A00',
     hoverDark: '#FBD38D',
     glowLight: 'rgba(230, 119, 0, 0.35)',
     glowDark: 'rgba(246, 173, 85, 0.4)',
   },
   error: {
-    light: '#EA4335', // Google Red / Apple Coral
-    dark: '#F28B82', // Antigravity Coral Red
+    light: '#EA4335',
+    dark: '#F28B82',
     hoverLight: '#D93025',
     hoverDark: '#F6AEA9',
     glowLight: 'rgba(234, 67, 53, 0.35)',
     glowDark: 'rgba(242, 139, 130, 0.4)',
   },
   info: {
-    light: '#4285F4', // Google Blue / Sky Blue
-    dark: '#8AB4F8', // Antigravity Sky Blue
+    light: '#4285F4',
+    dark: '#8AB4F8',
     hoverLight: '#1A73E8',
     hoverDark: '#AECBFA',
     glowLight: 'rgba(66, 133, 244, 0.35)',
     glowDark: 'rgba(138, 180, 248, 0.4)',
   },
+
+  // ─── Backgrounds ─────────────────────────────────────────────────────────────
   background: {
-    light: '#FFFFFF',
-    dark: '#000000',
-    paperLight: '#F8F9FA',
-    paperDark: '#141418',
+    /** Light: warm off-white (brand Cream) for an editorial, premium feel */
+    light: '#F6F5F2',
+    dark: '#0A0A0A',
+    /** Light paper surfaces are pure white for contrast against Cream bg */
+    paperLight: '#FFFFFF',
+    paperDark: '#141414',
   },
+
+  // ─── Text ────────────────────────────────────────────────────────────────────
   text: {
-    primaryLight: '#1D1D1F',
-    primaryDark: '#F5F5F7',
-    secondaryLight: '#5F6368',
+    primaryLight: '#111111',
+    primaryDark: '#F6F5F2',
+    secondaryLight: '#686868',
     secondaryDark: '#9AA0A6',
   },
+
+  // ─── Dividers ────────────────────────────────────────────────────────────────
   divider: {
-    light: 'rgba(0, 0, 0, 0.08)',
-    dark: 'rgba(255, 255, 255, 0.08)',
+    light: 'rgba(17, 17, 17, 0.1)',
+    dark: 'rgba(246, 245, 242, 0.1)',
   },
+
+  // ─── Action States ───────────────────────────────────────────────────────────
   action: {
-    hoverLight: 'rgba(0, 0, 0, 0.04)',
+    hoverLight: 'rgba(17, 17, 17, 0.04)',
     hoverDark: 'rgba(255, 255, 255, 0.06)',
-    selectedLight: 'rgba(0, 113, 227, 0.08)',
-    selectedDark: 'rgba(41, 151, 255, 0.15)',
+    /** Selected tint: charcoal-based in light, cream-based in dark */
+    selectedLight: 'rgba(17, 17, 17, 0.08)',
+    selectedDark: 'rgba(246, 245, 242, 0.12)',
   },
+
   white: '#FFFFFF',
-  black: '#0A0A0C',
+  black: '#0A0A0A',
+
+  // ─── Glass System (unchanged — glassmorphism architecture preserved) ──────────
   glass: {
     buttonBorderLight: 'rgba(0, 0, 0, 0.18)',
     buttonBorderDark: 'rgba(255, 255, 255, 0.2)',
@@ -84,65 +118,66 @@ export const COLORS = {
     buttonHoverBgDark: 'rgba(255, 255, 255, 0.08)',
     buttonTextHoverLight: 'rgba(0, 0, 0, 0.04)',
     buttonTextHoverDark: 'rgba(255, 255, 255, 0.06)',
-    fabShadowLight: '0 8px 24px rgba(0,0,0,0.12)',
+    fabShadowLight: '0 8px 24px rgba(0,0,0,0.14)',
     fabShadowDark: '0 8px 24px rgba(0,0,0,0.6)',
-    inputBorderHoverLight: 'rgba(0, 0, 0, 0.3)',
+    inputBorderHoverLight: 'rgba(17, 17, 17, 0.35)',
     inputBorderHoverDark: 'rgba(255, 255, 255, 0.3)',
     inputFocusBgDark: 'rgba(255, 255, 255, 0.06)',
     paperBgLight: 'rgba(255, 255, 255, 0.95)',
-    paperBgDark: 'rgba(20, 20, 24, 0.95)',
-    paperBorderLight: 'rgba(0, 0, 0, 0.08)',
+    paperBgDark: 'rgba(20, 20, 20, 0.95)',
+    paperBorderLight: 'rgba(17, 17, 17, 0.08)',
     paperBorderDark: 'rgba(255, 255, 255, 0.1)',
     paperShadowLight: '0 16px 40px rgba(0, 0, 0, 0.08)',
     paperShadowDark: '0 16px 40px rgba(0, 0, 0, 0.6)',
-    controlLight: 'rgba(0, 0, 0, 0.3)',
+    controlLight: 'rgba(17, 17, 17, 0.3)',
     controlDark: 'rgba(255, 255, 255, 0.3)',
-    switchTrackLight: 'rgba(0, 0, 0, 0.15)',
+    switchTrackLight: 'rgba(17, 17, 17, 0.15)',
     switchTrackDark: 'rgba(255, 255, 255, 0.2)',
     switchShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2)',
     sliderThumbShadow: '0 2px 8px rgba(0,0,0,0.2)',
-    sliderRailLight: 'rgba(0, 0, 0, 0.1)',
+    sliderRailLight: 'rgba(17, 17, 17, 0.1)',
     sliderRailDark: 'rgba(255, 255, 255, 0.15)',
-    chipBgLight: 'rgba(0, 0, 0, 0.05)',
+    chipBgLight: 'rgba(17, 17, 17, 0.05)',
     chipBgDark: 'rgba(255, 255, 255, 0.08)',
-    chipBorderLight: 'rgba(0, 0, 0, 0.06)',
+    chipBorderLight: 'rgba(17, 17, 17, 0.08)',
     chipBorderDark: 'rgba(255, 255, 255, 0.08)',
-    avatarBorderLight: 'rgba(0, 0, 0, 0.08)',
+    avatarBorderLight: 'rgba(17, 17, 17, 0.1)',
     avatarBorderDark: 'rgba(255, 255, 255, 0.12)',
-    tableBorderLight: 'rgba(0, 0, 0, 0.06)',
+    tableBorderLight: 'rgba(17, 17, 17, 0.07)',
     tableBorderDark: 'rgba(255, 255, 255, 0.06)',
-    tableHeadBgLight: 'rgba(0, 0, 0, 0.02)',
+    tableHeadBgLight: 'rgba(17, 17, 17, 0.025)',
     tableHeadBgDark: 'rgba(255, 255, 255, 0.02)',
-    tooltipBgLight: 'rgba(20, 20, 24, 0.65)',
-    tooltipBgDark: 'rgba(255, 255, 255, 0.65)',
+    tooltipBgLight: 'rgba(17, 17, 17, 0.88)',
+    tooltipBgDark: 'rgba(246, 245, 242, 0.92)',
     tooltipBorderLight: 'rgba(255, 255, 255, 0.1)',
     tooltipBorderDark: 'rgba(0, 0, 0, 0.12)',
     tooltipShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
-    dialogBgLight: 'rgba(255, 255, 255, 0.7)',
-    dialogBgDark: 'rgba(20, 20, 24, 0.7)',
-    dialogShadowLight: '0 24px 64px rgba(0, 0, 0, 0.15)',
+    dialogBgLight: 'rgba(255, 255, 255, 0.72)',
+    dialogBgDark: 'rgba(14, 14, 14, 0.72)',
+    dialogShadowLight: '0 24px 64px rgba(0, 0, 0, 0.12)',
     dialogShadowDark: '0 24px 64px rgba(0, 0, 0, 0.8)',
-    skeletonBgLight: 'rgba(0, 0, 0, 0.06)',
+    skeletonBgLight: 'rgba(17, 17, 17, 0.06)',
     skeletonBgDark: 'rgba(255, 255, 255, 0.06)',
-    progressBgLight: 'rgba(0, 0, 0, 0.08)',
+    progressBgLight: 'rgba(17, 17, 17, 0.08)',
     progressBgDark: 'rgba(255, 255, 255, 0.1)',
-    cardBgLight: 'rgba(248, 249, 250, 0.85)',
-    cardBgDark: 'rgba(20, 20, 24, 0.75)',
-    cardShadowLight: '0 12px 36px 0 rgba(0, 0, 0, 0.03)',
+    cardBgLight: 'rgba(255, 255, 255, 0.85)',
+    cardBgDark: 'rgba(18, 18, 18, 0.78)',
+    cardShadowLight: '0 12px 36px 0 rgba(0, 0, 0, 0.04)',
     cardShadowDark: '0 12px 36px 0 rgba(0, 0, 0, 0.55)',
-    cardHoverShadowLight: '0 20px 48px 0 rgba(0, 0, 0, 0.08)',
-    cardHoverShadowDark: '0 20px 48px 0 rgba(0, 0, 0, 0.7)',
-    elevation1Light: '0 8px 24px rgba(0, 0, 0, 0.04)',
+    cardHoverShadowLight: '0 20px 48px 0 rgba(0, 0, 0, 0.1)',
+    cardHoverShadowDark: '0 20px 48px 0 rgba(0, 0, 0, 0.72)',
+    elevation1Light: '0 8px 24px rgba(0, 0, 0, 0.05)',
     elevation1Dark: '0 8px 24px rgba(0, 0, 0, 0.4)',
-    appBarBgLight: 'rgba(255, 255, 255, 0.8)',
-    appBarBgDark: 'rgba(10, 10, 12, 0.75)',
-    accordionBgLight: 'rgba(248, 249, 250, 0.6)',
-    accordionBgDark: 'rgba(20, 20, 24, 0.6)',
-    drawerBgLight: 'rgba(255, 255, 255, 0.95)',
-    drawerBgDark: 'rgba(10, 10, 12, 0.95)',
-    menuItemHoverLight: 'rgba(0, 0, 0, 0.04)',
+    appBarBgLight: 'rgba(246, 245, 242, 0.82)',
+    appBarBgDark: 'rgba(10, 10, 10, 0.78)',
+    accordionBgLight: 'rgba(255, 255, 255, 0.6)',
+    accordionBgDark: 'rgba(18, 18, 18, 0.6)',
+    drawerBgLight: 'rgba(246, 245, 242, 0.97)',
+    drawerBgDark: 'rgba(10, 10, 10, 0.97)',
+    menuItemHoverLight: 'rgba(17, 17, 17, 0.04)',
     menuItemHoverDark: 'rgba(255, 255, 255, 0.08)',
   },
+
   alertRgb: {
     success: '52, 168, 83',
     warningDark: '246, 173, 85',
@@ -150,8 +185,15 @@ export const COLORS = {
     error: '234, 67, 53',
     info: '66, 133, 244',
   },
+
+  // ─── Gradients ───────────────────────────────────────────────────────────────
+  /** Monochrome sweep — Charcoal → Stone. Used only on accent/hero text. */
   gradients: {
-    primary: 'linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%)',
-    primaryHover: 'linear-gradient(135deg, #DB2777 0%, #7C3AED 100%)',
+    primary: 'linear-gradient(135deg, #111111 0%, #686868 100%)',
+    primaryHover: 'linear-gradient(135deg, #000000 0%, #4A4A4A 100%)',
+    /** Light-mode accent variant: Stone → Sand for a softer editorial sweep */
+    accent: 'linear-gradient(135deg, #686868 0%, #D9D9CF 100%)',
+    /** Dark-mode accent: Cream → Stone */
+    accentDark: 'linear-gradient(135deg, #F6F5F2 0%, #686868 100%)',
   },
 };

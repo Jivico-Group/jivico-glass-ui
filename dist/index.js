@@ -13,31 +13,37 @@ var CssBaseline__default = /*#__PURE__*/_interopDefault(CssBaseline);
 
 // src/theme/colors.ts
 var COLORS = {
+  // ─── Brand Monochrome ────────────────────────────────────────────────────────
+  brand: {
+    charcoal: "#111111",
+    stone: "#686868",
+    sand: "#D9D9CF",
+    cream: "#F6F5F2"
+  },
+  // ─── Primary (Charcoal) ──────────────────────────────────────────────────────
   primary: {
-    light: "#EC4899",
-    // Brand Pink
-    dark: "#F472B6",
-    // Brand Pink (Lighter for Dark Mode)
-    hoverLight: "#DB2777",
-    hoverDark: "#F9A8D4",
-    glowLight: "rgba(236, 72, 153, 0.35)",
-    glowDark: "rgba(244, 114, 182, 0.45)"
+    /** Light mode: bold charcoal for buttons, focus rings, active states */
+    light: "#111111",
+    /** Dark mode: crisp cream/off-white — reads as luxury against dark glass */
+    dark: "#F6F5F2",
+    hoverLight: "#2A2A2A",
+    hoverDark: "#E8E7E4",
+    glowLight: "rgba(17, 17, 17, 0.22)",
+    glowDark: "rgba(246, 245, 242, 0.18)"
   },
+  // ─── Secondary (Cream) ───────────────────────────────────────────────────────
   secondary: {
-    light: "#1D1D1F",
-    // Apple Obsidian
-    dark: "#FFFFFF",
-    // Crisp White
-    hoverLight: "#333336",
-    hoverDark: "#E8EAED",
-    glowLight: "rgba(0, 0, 0, 0.2)",
-    glowDark: "rgba(255, 255, 255, 0.25)"
+    light: "#F6F5F2",
+    dark: "#111111",
+    hoverLight: "#E8E7E4",
+    hoverDark: "#2A2A2A",
+    glowLight: "rgba(246, 245, 242, 0.4)",
+    glowDark: "rgba(17, 17, 17, 0.4)"
   },
+  // ─── Semantic ────────────────────────────────────────────────────────────────
   success: {
     light: "#34A853",
-    // Google Green / Apple Leaf
     dark: "#81C995",
-    // Soft Antigravity Mint
     hoverLight: "#2D9247",
     hoverDark: "#A8DAB5",
     glowLight: "rgba(52, 168, 83, 0.35)",
@@ -45,9 +51,7 @@ var COLORS = {
   },
   warning: {
     light: "#E67700",
-    // Apple Deep Amber / Google Warm Ochre
     dark: "#F6AD55",
-    // Antigravity Warm Honey Peach
     hoverLight: "#CC6A00",
     hoverDark: "#FBD38D",
     glowLight: "rgba(230, 119, 0, 0.35)",
@@ -55,9 +59,7 @@ var COLORS = {
   },
   error: {
     light: "#EA4335",
-    // Google Red / Apple Coral
     dark: "#F28B82",
-    // Antigravity Coral Red
     hoverLight: "#D93025",
     hoverDark: "#F6AEA9",
     glowLight: "rgba(234, 67, 53, 0.35)",
@@ -65,38 +67,44 @@ var COLORS = {
   },
   info: {
     light: "#4285F4",
-    // Google Blue / Sky Blue
     dark: "#8AB4F8",
-    // Antigravity Sky Blue
     hoverLight: "#1A73E8",
     hoverDark: "#AECBFA",
     glowLight: "rgba(66, 133, 244, 0.35)",
     glowDark: "rgba(138, 180, 248, 0.4)"
   },
+  // ─── Backgrounds ─────────────────────────────────────────────────────────────
   background: {
-    light: "#FFFFFF",
-    dark: "#000000",
-    paperLight: "#F8F9FA",
-    paperDark: "#141418"
+    /** Light: warm off-white (brand Cream) for an editorial, premium feel */
+    light: "#F6F5F2",
+    dark: "#0A0A0A",
+    /** Light paper surfaces are pure white for contrast against Cream bg */
+    paperLight: "#FFFFFF",
+    paperDark: "#141414"
   },
+  // ─── Text ────────────────────────────────────────────────────────────────────
   text: {
-    primaryLight: "#1D1D1F",
-    primaryDark: "#F5F5F7",
-    secondaryLight: "#5F6368",
+    primaryLight: "#111111",
+    primaryDark: "#F6F5F2",
+    secondaryLight: "#686868",
     secondaryDark: "#9AA0A6"
   },
+  // ─── Dividers ────────────────────────────────────────────────────────────────
   divider: {
-    light: "rgba(0, 0, 0, 0.08)",
-    dark: "rgba(255, 255, 255, 0.08)"
+    light: "rgba(17, 17, 17, 0.1)",
+    dark: "rgba(246, 245, 242, 0.1)"
   },
+  // ─── Action States ───────────────────────────────────────────────────────────
   action: {
-    hoverLight: "rgba(0, 0, 0, 0.04)",
+    hoverLight: "rgba(17, 17, 17, 0.04)",
     hoverDark: "rgba(255, 255, 255, 0.06)",
-    selectedLight: "rgba(0, 113, 227, 0.08)",
-    selectedDark: "rgba(41, 151, 255, 0.15)"
+    /** Selected tint: charcoal-based in light, cream-based in dark */
+    selectedLight: "rgba(17, 17, 17, 0.08)",
+    selectedDark: "rgba(246, 245, 242, 0.12)"
   },
   white: "#FFFFFF",
-  black: "#0A0A0C",
+  black: "#0A0A0A",
+  // ─── Glass System (unchanged — glassmorphism architecture preserved) ──────────
   glass: {
     buttonBorderLight: "rgba(0, 0, 0, 0.18)",
     buttonBorderDark: "rgba(255, 255, 255, 0.2)",
@@ -106,63 +114,63 @@ var COLORS = {
     buttonHoverBgDark: "rgba(255, 255, 255, 0.08)",
     buttonTextHoverLight: "rgba(0, 0, 0, 0.04)",
     buttonTextHoverDark: "rgba(255, 255, 255, 0.06)",
-    fabShadowLight: "0 8px 24px rgba(0,0,0,0.12)",
+    fabShadowLight: "0 8px 24px rgba(0,0,0,0.14)",
     fabShadowDark: "0 8px 24px rgba(0,0,0,0.6)",
-    inputBorderHoverLight: "rgba(0, 0, 0, 0.3)",
+    inputBorderHoverLight: "rgba(17, 17, 17, 0.35)",
     inputBorderHoverDark: "rgba(255, 255, 255, 0.3)",
     inputFocusBgDark: "rgba(255, 255, 255, 0.06)",
     paperBgLight: "rgba(255, 255, 255, 0.95)",
-    paperBgDark: "rgba(20, 20, 24, 0.95)",
-    paperBorderLight: "rgba(0, 0, 0, 0.08)",
+    paperBgDark: "rgba(20, 20, 20, 0.95)",
+    paperBorderLight: "rgba(17, 17, 17, 0.08)",
     paperBorderDark: "rgba(255, 255, 255, 0.1)",
     paperShadowLight: "0 16px 40px rgba(0, 0, 0, 0.08)",
     paperShadowDark: "0 16px 40px rgba(0, 0, 0, 0.6)",
-    controlLight: "rgba(0, 0, 0, 0.3)",
+    controlLight: "rgba(17, 17, 17, 0.3)",
     controlDark: "rgba(255, 255, 255, 0.3)",
-    switchTrackLight: "rgba(0, 0, 0, 0.15)",
+    switchTrackLight: "rgba(17, 17, 17, 0.15)",
     switchTrackDark: "rgba(255, 255, 255, 0.2)",
     switchShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2)",
     sliderThumbShadow: "0 2px 8px rgba(0,0,0,0.2)",
-    sliderRailLight: "rgba(0, 0, 0, 0.1)",
+    sliderRailLight: "rgba(17, 17, 17, 0.1)",
     sliderRailDark: "rgba(255, 255, 255, 0.15)",
-    chipBgLight: "rgba(0, 0, 0, 0.05)",
+    chipBgLight: "rgba(17, 17, 17, 0.05)",
     chipBgDark: "rgba(255, 255, 255, 0.08)",
-    chipBorderLight: "rgba(0, 0, 0, 0.06)",
+    chipBorderLight: "rgba(17, 17, 17, 0.08)",
     chipBorderDark: "rgba(255, 255, 255, 0.08)",
-    avatarBorderLight: "rgba(0, 0, 0, 0.08)",
+    avatarBorderLight: "rgba(17, 17, 17, 0.1)",
     avatarBorderDark: "rgba(255, 255, 255, 0.12)",
-    tableBorderLight: "rgba(0, 0, 0, 0.06)",
+    tableBorderLight: "rgba(17, 17, 17, 0.07)",
     tableBorderDark: "rgba(255, 255, 255, 0.06)",
-    tableHeadBgLight: "rgba(0, 0, 0, 0.02)",
+    tableHeadBgLight: "rgba(17, 17, 17, 0.025)",
     tableHeadBgDark: "rgba(255, 255, 255, 0.02)",
-    tooltipBgLight: "rgba(20, 20, 24, 0.65)",
-    tooltipBgDark: "rgba(255, 255, 255, 0.65)",
+    tooltipBgLight: "rgba(17, 17, 17, 0.88)",
+    tooltipBgDark: "rgba(246, 245, 242, 0.92)",
     tooltipBorderLight: "rgba(255, 255, 255, 0.1)",
     tooltipBorderDark: "rgba(0, 0, 0, 0.12)",
     tooltipShadow: "0 8px 24px rgba(0, 0, 0, 0.25)",
-    dialogBgLight: "rgba(255, 255, 255, 0.7)",
-    dialogBgDark: "rgba(20, 20, 24, 0.7)",
-    dialogShadowLight: "0 24px 64px rgba(0, 0, 0, 0.15)",
+    dialogBgLight: "rgba(255, 255, 255, 0.72)",
+    dialogBgDark: "rgba(14, 14, 14, 0.72)",
+    dialogShadowLight: "0 24px 64px rgba(0, 0, 0, 0.12)",
     dialogShadowDark: "0 24px 64px rgba(0, 0, 0, 0.8)",
-    skeletonBgLight: "rgba(0, 0, 0, 0.06)",
+    skeletonBgLight: "rgba(17, 17, 17, 0.06)",
     skeletonBgDark: "rgba(255, 255, 255, 0.06)",
-    progressBgLight: "rgba(0, 0, 0, 0.08)",
+    progressBgLight: "rgba(17, 17, 17, 0.08)",
     progressBgDark: "rgba(255, 255, 255, 0.1)",
-    cardBgLight: "rgba(248, 249, 250, 0.85)",
-    cardBgDark: "rgba(20, 20, 24, 0.75)",
-    cardShadowLight: "0 12px 36px 0 rgba(0, 0, 0, 0.03)",
+    cardBgLight: "rgba(255, 255, 255, 0.85)",
+    cardBgDark: "rgba(18, 18, 18, 0.78)",
+    cardShadowLight: "0 12px 36px 0 rgba(0, 0, 0, 0.04)",
     cardShadowDark: "0 12px 36px 0 rgba(0, 0, 0, 0.55)",
-    cardHoverShadowLight: "0 20px 48px 0 rgba(0, 0, 0, 0.08)",
-    cardHoverShadowDark: "0 20px 48px 0 rgba(0, 0, 0, 0.7)",
-    elevation1Light: "0 8px 24px rgba(0, 0, 0, 0.04)",
+    cardHoverShadowLight: "0 20px 48px 0 rgba(0, 0, 0, 0.1)",
+    cardHoverShadowDark: "0 20px 48px 0 rgba(0, 0, 0, 0.72)",
+    elevation1Light: "0 8px 24px rgba(0, 0, 0, 0.05)",
     elevation1Dark: "0 8px 24px rgba(0, 0, 0, 0.4)",
-    appBarBgLight: "rgba(255, 255, 255, 0.8)",
-    appBarBgDark: "rgba(10, 10, 12, 0.75)",
-    accordionBgLight: "rgba(248, 249, 250, 0.6)",
-    accordionBgDark: "rgba(20, 20, 24, 0.6)",
-    drawerBgLight: "rgba(255, 255, 255, 0.95)",
-    drawerBgDark: "rgba(10, 10, 12, 0.95)",
-    menuItemHoverLight: "rgba(0, 0, 0, 0.04)",
+    appBarBgLight: "rgba(246, 245, 242, 0.82)",
+    appBarBgDark: "rgba(10, 10, 10, 0.78)",
+    accordionBgLight: "rgba(255, 255, 255, 0.6)",
+    accordionBgDark: "rgba(18, 18, 18, 0.6)",
+    drawerBgLight: "rgba(246, 245, 242, 0.97)",
+    drawerBgDark: "rgba(10, 10, 10, 0.97)",
+    menuItemHoverLight: "rgba(17, 17, 17, 0.04)",
     menuItemHoverDark: "rgba(255, 255, 255, 0.08)"
   },
   alertRgb: {
@@ -172,9 +180,15 @@ var COLORS = {
     error: "234, 67, 53",
     info: "66, 133, 244"
   },
+  // ─── Gradients ───────────────────────────────────────────────────────────────
+  /** Monochrome sweep — Charcoal → Stone. Used only on accent/hero text. */
   gradients: {
-    primary: "linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%)",
-    primaryHover: "linear-gradient(135deg, #DB2777 0%, #7C3AED 100%)"
+    primary: "linear-gradient(135deg, #111111 0%, #686868 100%)",
+    primaryHover: "linear-gradient(135deg, #000000 0%, #4A4A4A 100%)",
+    /** Light-mode accent variant: Stone → Sand for a softer editorial sweep */
+    accent: "linear-gradient(135deg, #686868 0%, #D9D9CF 100%)",
+    /** Dark-mode accent: Cream → Stone */
+    accentDark: "linear-gradient(135deg, #F6F5F2 0%, #686868 100%)"
   }
 };
 
@@ -285,26 +299,83 @@ var typography = {
     '"SF Pro Text"',
     '"Google Sans Flex"',
     '"Google Sans"',
+    '"Montserrat"',
+    '"Space Grotesk"',
     "-apple-system",
     "BlinkMacSystemFont",
     '"Segoe UI"',
     "sans-serif"
   ].join(","),
-  h1: { fontSize: "3.75rem", fontWeight: 600, letterSpacing: "-0.035em", lineHeight: 1.05 },
-  h2: { fontSize: "2.85rem", fontWeight: 600, letterSpacing: "-0.028em", lineHeight: 1.1 },
-  h3: { fontSize: "2.1rem", fontWeight: 600, letterSpacing: "-0.022em", lineHeight: 1.18 },
-  h4: { fontSize: "1.5rem", fontWeight: 600, letterSpacing: "-0.015em" },
-  h5: { fontSize: "1.25rem", fontWeight: 600, letterSpacing: "-0.01em" },
-  h6: { fontSize: "1rem", fontWeight: 600, letterSpacing: "-0.005em" },
-  body1: { fontSize: "1.0625rem", lineHeight: 1.5, letterSpacing: "-0.01em", fontWeight: 400 },
-  body2: { fontSize: "0.875rem", lineHeight: 1.45, letterSpacing: "-0.005em" },
+  // Tight, editorial headings — luxury fashion house cadence
+  h1: {
+    fontSize: "3.75rem",
+    fontWeight: 700,
+    letterSpacing: "-0.04em",
+    lineHeight: 1,
+    fontFamily: '"Montserrat", "SF Pro Display", -apple-system, sans-serif'
+  },
+  h2: {
+    fontSize: "2.85rem",
+    fontWeight: 700,
+    letterSpacing: "-0.03em",
+    lineHeight: 1.08,
+    fontFamily: '"Montserrat", "SF Pro Display", -apple-system, sans-serif'
+  },
+  h3: {
+    fontSize: "2.1rem",
+    fontWeight: 700,
+    letterSpacing: "-0.025em",
+    lineHeight: 1.15,
+    fontFamily: '"Montserrat", "SF Pro Display", -apple-system, sans-serif'
+  },
+  h4: {
+    fontSize: "1.5rem",
+    fontWeight: 600,
+    letterSpacing: "-0.018em",
+    fontFamily: '"Montserrat", "SF Pro Display", -apple-system, sans-serif'
+  },
+  h5: {
+    fontSize: "1.25rem",
+    fontWeight: 600,
+    letterSpacing: "-0.012em",
+    fontFamily: '"Montserrat", "SF Pro Display", -apple-system, sans-serif'
+  },
+  h6: {
+    fontSize: "1rem",
+    fontWeight: 600,
+    letterSpacing: "-0.006em",
+    fontFamily: '"Montserrat", "SF Pro Display", -apple-system, sans-serif'
+  },
+  // Body text: regular weight, high legibility
+  body1: {
+    fontSize: "1.0625rem",
+    lineHeight: 1.55,
+    letterSpacing: "-0.008em",
+    fontWeight: 400
+  },
+  body2: {
+    fontSize: "0.875rem",
+    lineHeight: 1.5,
+    letterSpacing: "-0.004em"
+  },
+  // Buttons: Montserrat caps feel premium but readable
   button: {
     textTransform: "none",
-    fontWeight: 500,
-    letterSpacing: "-0.01em",
-    fontSize: "0.9375rem"
+    fontWeight: 600,
+    letterSpacing: "0.01em",
+    fontSize: "0.9375rem",
+    fontFamily: '"Montserrat", "SF Pro Display", -apple-system, sans-serif'
+  },
+  // Overline for tags / labels
+  overline: {
+    fontSize: "0.7rem",
+    fontWeight: 700,
+    letterSpacing: "0.12em",
+    textTransform: "uppercase",
+    fontFamily: '"Montserrat", "Space Grotesk", -apple-system, sans-serif'
   }
 };
+var JIVICO_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
 
 // src/theme/overrides/inputs.ts
 var getInputOverrides = (palette, isDark) => ({
@@ -333,11 +404,11 @@ var getInputOverrides = (palette, isDark) => ({
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
-          minHeight: 48,
-          borderRadius: 30,
-          padding: "12px 28px",
+          minHeight: 38,
+          borderRadius: 9999,
+          padding: "9px 22px",
           fontWeight: 600,
-          fontSize: "0.92rem",
+          fontSize: "0.875rem",
           lineHeight: 1.2,
           textTransform: "none",
           whiteSpace: "nowrap",
@@ -351,19 +422,20 @@ var getInputOverrides = (palette, isDark) => ({
           "&:active": {
             transform: "translateY(0) scale(0.98)"
           },
-          // Primary Contained
+          // Primary Contained — Luxury Monochrome
+          // Light: solid charcoal · Dark: crisp cream on deep black
           ...variant === "contained" && isPrimary && {
-            background: COLORS.gradients.primary,
-            color: COLORS.white,
-            boxShadow: isDark ? "0 8px 28px rgba(236,72,153,0.38), inset 0 1px 1px rgba(255,255,255,0.3)" : "0 8px 24px rgba(236,72,153,0.28), inset 0 1px 1px rgba(255,255,255,0.4)",
+            background: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
+            color: isDark ? COLORS.brand.charcoal : COLORS.white,
+            boxShadow: isDark ? "0 6px 24px rgba(0,0,0,0.55), inset 0 1px 1px rgba(255,255,255,0.25)" : "0 6px 20px rgba(17,17,17,0.22), inset 0 1px 1px rgba(255,255,255,0.15)",
             "&:hover": {
-              background: COLORS.gradients.primaryHover,
+              background: isDark ? COLORS.white : COLORS.brand.charcoal,
               transform: "translateY(-2px)",
-              boxShadow: isDark ? "0 12px 36px rgba(236,72,153,0.5), 0 0 20px rgba(139,92,246,0.3)" : "0 12px 32px rgba(236,72,153,0.38)"
+              boxShadow: isDark ? "0 12px 36px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.2)" : "0 12px 32px rgba(17,17,17,0.3)"
             },
             "&:focus-visible": {
               outline: "none",
-              boxShadow: isDark ? "0 0 0 4px rgba(236,72,153,0.22), 0 8px 28px rgba(236,72,153,0.38)" : "0 0 0 4px rgba(236,72,153,0.18), 0 8px 24px rgba(236,72,153,0.28)"
+              boxShadow: isDark ? "0 0 0 3px rgba(246,245,242,0.4), 0 6px 24px rgba(0,0,0,0.55)" : "0 0 0 3px rgba(17,17,17,0.2), 0 6px 20px rgba(17,17,17,0.22)"
             },
             "&.Mui-disabled": {
               background: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
@@ -372,73 +444,74 @@ var getInputOverrides = (palette, isDark) => ({
               transform: "none"
             }
           },
-          // Primary Outlined
+          // Primary Outlined — Frosted glass in dark, cream in light
           ...variant === "outlined" && isPrimary && {
             border: "none",
-            boxShadow: `inset 0 0 0 2px ${isDark ? "rgba(236,72,153,0.7)" : "#EC4899"}`,
-            color: "#EC4899",
-            background: isDark ? "rgba(236,72,153,0.04)" : "rgba(236,72,153,0.02)",
+            background: isDark ? "rgba(255, 255, 255, 0.1)" : COLORS.brand.cream,
+            color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
+            boxShadow: isDark ? "0 6px 20px rgba(0,0,0,0.5), inset 0 0 0 1.5px rgba(255,255,255,0.15)" : "0 6px 20px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(17,17,17,0.08)",
             "&:hover": {
-              background: isDark ? "rgba(236,72,153,0.14)" : "rgba(236,72,153,0.08)",
+              background: isDark ? "rgba(255, 255, 255, 0.15)" : COLORS.white,
               transform: "translateY(-2px)",
-              boxShadow: `inset 0 0 0 2px #F472B6, 0 8px 20px rgba(236,72,153,0.25)`
+              boxShadow: isDark ? "0 12px 32px rgba(0,0,0,0.6), inset 0 0 0 1.5px rgba(255,255,255,0.25)" : "0 12px 32px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(17,17,17,0.15)"
             },
             "&:focus-visible": {
               outline: "none",
-              boxShadow: `inset 0 0 0 2px ${isDark ? "rgba(236,72,153,0.7)" : "#EC4899"}, 0 0 0 4px rgba(236,72,153,0.16), 0 8px 20px rgba(236,72,153,0.2)`
+              boxShadow: isDark ? "0 0 0 3px rgba(246,245,242,0.3), 0 6px 24px rgba(0,0,0,0.55)" : "0 0 0 3px rgba(246,245,242,0.6), 0 6px 20px rgba(0,0,0,0.06)"
             },
             "&.Mui-disabled": {
-              borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
+              background: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
               color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
-              background: "transparent",
               boxShadow: "none",
               transform: "none"
             }
           },
-          // Secondary Contained
+          // Secondary Contained — Soft Glass
           ...variant === "contained" && isSecondary && {
-            backgroundColor: mainColor,
-            color: textColor,
+            background: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)",
+            color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
+            boxShadow: isDark ? "inset 0 0 0 1px rgba(255,255,255,0.05)" : "inset 0 0 0 1px rgba(17,17,17,0.05)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
             "&:hover": {
-              backgroundColor: hoverColor,
-              boxShadow: `0 6px 20px ${glowColor}`,
-              transform: "translateY(-1.5px) scale(1.015)"
+              background: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)",
+              transform: "translateY(-1.5px)",
+              boxShadow: isDark ? "0 4px 14px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.1)" : "0 4px 14px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(17,17,17,0.1)"
             },
             "&:focus-visible": {
               outline: "none",
-              boxShadow: `0 0 0 4px ${glowColor}, 0 6px 20px ${glowColor}`
+              boxShadow: isDark ? "0 0 0 3px rgba(246,245,242,0.3)" : "0 0 0 3px rgba(17,17,17,0.2)"
             },
             "&.Mui-disabled": {
-              backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
-              color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
+              background: isDark ? "rgba(255,255,255,0.03)" : "rgba(17,17,17,0.02)",
+              color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
               boxShadow: "none",
               transform: "none"
             }
           },
           // Secondary Outlined
           ...variant === "outlined" && isSecondary && {
-            borderColor: palette.glass.buttonBorder,
-            color: mainColor,
-            backgroundColor: palette.glass.buttonBg,
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
+            border: "none",
+            background: "transparent",
+            color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
+            boxShadow: isDark ? "inset 0 0 0 1.5px rgba(255,255,255,0.15)" : "inset 0 0 0 1.5px rgba(17,17,17,0.15)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
             "&:hover": {
-              borderColor: mainColor,
-              backgroundColor: palette.glass.buttonHoverBg,
-              boxShadow: `0 0 14px ${glowColor}`,
-              transform: "translateY(-1.5px) scale(1.015)"
+              background: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
+              transform: "translateY(-1.5px)",
+              boxShadow: isDark ? "0 4px 14px rgba(0,0,0,0.3), inset 0 0 0 1.5px rgba(255,255,255,0.25)" : "0 4px 14px rgba(0,0,0,0.04), inset 0 0 0 1.5px rgba(17,17,17,0.25)"
             },
             "&:focus-visible": {
               outline: "none",
-              boxShadow: `0 0 0 4px ${glowColor}`
+              boxShadow: isDark ? "0 0 0 3px rgba(246,245,242,0.3)" : "0 0 0 3px rgba(17,17,17,0.2)"
             },
             "&.Mui-disabled": {
-              borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
-              color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
+              boxShadow: isDark ? "inset 0 0 0 1px rgba(255,255,255,0.1)" : "inset 0 0 0 1px rgba(17,17,17,0.1)",
+              color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
               background: "transparent",
-              boxShadow: "none",
               transform: "none"
             }
           },
@@ -476,7 +549,7 @@ var getInputOverrides = (palette, isDark) => ({
           },
           // Text Button
           ...variant === "text" && {
-            color: mainColor,
+            color: isSecondary ? isDark ? COLORS.brand.cream : COLORS.brand.charcoal : mainColor,
             padding: "8px 16px",
             minHeight: 40,
             "&:hover": {
@@ -491,19 +564,19 @@ var getInputOverrides = (palette, isDark) => ({
         };
       },
       sizeSmall: {
-        minHeight: 36,
-        padding: "8px 18px",
-        fontSize: "0.8125rem"
+        minHeight: 30,
+        padding: "5px 14px",
+        fontSize: "0.78rem"
       },
       sizeMedium: {
-        minHeight: 40,
-        padding: "11px 20px",
-        fontSize: "0.875rem"
+        minHeight: 36,
+        padding: "7px 18px",
+        fontSize: "0.85rem"
       },
       sizeLarge: {
-        minHeight: 52,
-        padding: "13px 30px",
-        fontSize: "1.0625rem"
+        minHeight: 44,
+        padding: "11px 26px",
+        fontSize: "0.9375rem"
       }
     }
   },
@@ -512,13 +585,59 @@ var getInputOverrides = (palette, isDark) => ({
   // ========================================================================
   MuiButtonGroup: {
     styleOverrides: {
-      root: {
-        borderRadius: 9999,
-        overflow: "hidden",
-        boxShadow: "none",
-        "& .MuiButton-root": {
-          borderRadius: 0
-        }
+      root: ({ ownerState }) => {
+        const isContained = ownerState.variant === "contained";
+        const isOutlined = ownerState.variant === "outlined";
+        return {
+          boxShadow: "none",
+          borderRadius: 9999,
+          // Contained: clip children inside the pill shape
+          ...isContained && {
+            overflow: "hidden",
+            "& .MuiButton-root": {
+              borderRadius: 0,
+              // No individual border — the group clip + bg handles shape
+              border: "none !important"
+            },
+            "& .MuiButton-root + .MuiButton-root": {
+              // Subtle divider between contained buttons
+              borderLeft: `1px solid ${isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)"} !important`
+            }
+          },
+          // Outlined: group gets single border, NO overflow hidden (avoids clip artifacts)
+          ...isOutlined && {
+            overflow: "visible",
+            border: `1.5px solid ${isDark ? "rgba(255,255,255,0.25)" : "rgba(17,17,17,0.3)"}`,
+            "& .MuiButton-root": {
+              borderRadius: 0,
+              border: "none !important",
+              boxShadow: "none !important",
+              background: "transparent",
+              "&:hover": {
+                background: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.05)",
+                boxShadow: "none !important",
+                transform: "none"
+              },
+              "&:focus-visible": {
+                outline: "none",
+                boxShadow: "none !important"
+              }
+            },
+            // Pill radius on the first and last button
+            "& .MuiButton-root:first-of-type": {
+              borderTopLeftRadius: "9999px !important",
+              borderBottomLeftRadius: "9999px !important"
+            },
+            "& .MuiButton-root:last-of-type": {
+              borderTopRightRadius: "9999px !important",
+              borderBottomRightRadius: "9999px !important"
+            },
+            // Divider between outlined group buttons
+            "& .MuiButton-root + .MuiButton-root": {
+              borderLeft: `1px solid ${isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.2)"} !important`
+            }
+          }
+        };
       }
     }
   },
@@ -638,12 +757,36 @@ var getInputOverrides = (palette, isDark) => ({
   // ========================================================================
   MuiInputLabel: {
     styleOverrides: {
-      root: {
-        fontSize: "0.9375rem",
-        color: palette.text.secondary,
-        "&.Mui-focused": {
-          color: palette.primary.main
+      root: ({ ownerState }) => {
+        let translate = "translate(18px, 13px) scale(1)";
+        let shrinkTranslate = "translate(18px, -9px) scale(0.75)";
+        if (ownerState.size === "small") {
+          translate = "translate(14px, 8px) scale(1)";
+          shrinkTranslate = "translate(14px, -9px) scale(0.75)";
+        } else if (ownerState.size === "large") {
+          translate = "translate(20px, 17px) scale(1)";
+          shrinkTranslate = "translate(20px, -9px) scale(0.75)";
         }
+        return {
+          fontSize: "0.9375rem",
+          color: palette.text.secondary,
+          "&.Mui-focused": {
+            color: palette.primary.main
+          },
+          // Use explicit class targeting and !important to beat MUI's default specificity
+          "&.MuiInputLabel-outlined": {
+            transform: `${translate} !important`,
+            "&.MuiInputLabel-shrink": {
+              transform: `${shrinkTranslate} !important`
+            }
+          },
+          ...ownerState.variant === "outlined" && {
+            // Also ensure that the legend width accommodates the horizontal padding changes
+            "& + .MuiOutlinedInput-root > fieldset > legend": {
+              marginLeft: ownerState.size === "small" ? 0 : ownerState.size === "large" ? 6 : 4
+            }
+          }
+        };
       }
     }
   },
@@ -705,32 +848,47 @@ var getControlOverrides = (palette, isDark) => ({
   },
   MuiSwitch: {
     styleOverrides: {
-      root: {
-        width: 40,
-        height: 20,
-        padding: 0,
-        "& .MuiSwitch-switchBase": {
-          padding: 2,
-          "&.Mui-checked": {
-            transform: "translateX(20px)",
-            color: isDark ? "#1D1D1F" : COLORS.white,
-            "& + .MuiSwitch-track": {
-              backgroundColor: palette.primary.main,
-              opacity: 1,
-              border: 0
+      root: ({ ownerState, theme }) => {
+        const colorName = ownerState.color && ownerState.color !== "default" ? ownerState.color : "primary";
+        const trackColor = theme.palette[colorName]?.main || palette.primary.main;
+        return {
+          width: 40,
+          height: 20,
+          padding: 0,
+          "& .MuiSwitch-switchBase": {
+            padding: 2,
+            "&.Mui-checked": {
+              transform: "translateX(20px)",
+              color: isDark ? "#1D1D1F" : COLORS.white,
+              "& + .MuiSwitch-track": {
+                backgroundColor: trackColor,
+                opacity: 1,
+                border: 0
+              },
+              "&.Mui-disabled": {
+                color: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)",
+                "& + .MuiSwitch-track": {
+                  opacity: 0.3
+                }
+              }
+            },
+            "&.Mui-disabled": {
+              "& + .MuiSwitch-track": {
+                opacity: 0.3
+              }
             }
+          },
+          "& .MuiSwitch-thumb": {
+            width: 16,
+            height: 16,
+            boxShadow: palette.glass.switchShadow
+          },
+          "& .MuiSwitch-track": {
+            borderRadius: 20 / 2,
+            backgroundColor: palette.glass.switchTrack,
+            opacity: 1
           }
-        },
-        "& .MuiSwitch-thumb": {
-          width: 16,
-          height: 16,
-          boxShadow: palette.glass.switchShadow
-        },
-        "& .MuiSwitch-track": {
-          borderRadius: 20 / 2,
-          backgroundColor: palette.glass.switchTrack,
-          opacity: 1
-        }
+        };
       },
       sizeSmall: {
         width: 32,
@@ -805,67 +963,239 @@ var getControlOverrides = (palette, isDark) => ({
 });
 
 // src/theme/overrides/dataDisplay.ts
-var getDataDisplayOverrides = (palette, _isDark) => ({
-  MuiChip: {
-    styleOverrides: {
-      root: {
-        borderRadius: 9999,
-        fontWeight: 500,
-        fontFamily: '"Google Sans Flex", -apple-system, sans-serif',
-        fontSize: "0.8125rem",
-        backdropFilter: "blur(12px)",
-        "& .MuiChip-label": {
-          color: "inherit"
+var getDataDisplayOverrides = (palette, isDark) => {
+  const semanticFilled = {
+    primary: {
+      bg: isDark ? "rgba(246,245,242,0.12)" : "rgba(17,17,17,0.88)",
+      border: isDark ? "rgba(246,245,242,0.2)" : "rgba(17,17,17,0.9)",
+      text: isDark ? "#F6F5F2" : "#FFFFFF"
+    },
+    secondary: {
+      bg: isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.08)",
+      border: isDark ? "rgba(255,255,255,0.18)" : "rgba(17,17,17,0.18)",
+      text: isDark ? "#FFFFFF" : "#111111"
+    },
+    success: {
+      bg: isDark ? "rgba(129,201,149,0.18)" : "rgba(52,168,83,0.1)",
+      border: isDark ? "rgba(129,201,149,0.35)" : "rgba(52,168,83,0.3)",
+      text: isDark ? "#81C995" : "#1E7E34"
+    },
+    warning: {
+      bg: isDark ? "rgba(246,173,85,0.18)" : "rgba(230,119,0,0.1)",
+      border: isDark ? "rgba(246,173,85,0.35)" : "rgba(230,119,0,0.3)",
+      text: isDark ? "#F6AD55" : "#9A5000"
+    },
+    error: {
+      bg: isDark ? "rgba(242,139,130,0.18)" : "rgba(234,67,53,0.1)",
+      border: isDark ? "rgba(242,139,130,0.35)" : "rgba(234,67,53,0.3)",
+      text: isDark ? "#F28B82" : "#C0392B"
+    },
+    info: {
+      bg: isDark ? "rgba(138,180,248,0.18)" : "rgba(66,133,244,0.1)",
+      border: isDark ? "rgba(138,180,248,0.35)" : "rgba(66,133,244,0.3)",
+      text: isDark ? "#8AB4F8" : "#1558B0"
+    },
+    default: {
+      bg: isDark ? "rgba(255,255,255,0.07)" : "rgba(17,17,17,0.05)",
+      border: isDark ? "rgba(255,255,255,0.14)" : "rgba(17,17,17,0.12)",
+      text: isDark ? palette.text.primary : palette.text.primary
+    }
+  };
+  const semanticOutlined = {
+    primary: {
+      border: isDark ? "rgba(246,245,242,0.55)" : "rgba(17,17,17,0.7)",
+      text: isDark ? "#F6F5F2" : "#111111",
+      hoverBg: isDark ? "rgba(246,245,242,0.08)" : "rgba(17,17,17,0.06)"
+    },
+    secondary: {
+      border: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.25)",
+      text: isDark ? "#FFFFFF" : "#111111",
+      hoverBg: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)"
+    },
+    success: {
+      border: isDark ? "rgba(129,201,149,0.5)" : "rgba(52,168,83,0.5)",
+      text: isDark ? "#81C995" : "#1E7E34",
+      hoverBg: isDark ? "rgba(129,201,149,0.1)" : "rgba(52,168,83,0.07)"
+    },
+    warning: {
+      border: isDark ? "rgba(246,173,85,0.5)" : "rgba(230,119,0,0.5)",
+      text: isDark ? "#F6AD55" : "#9A5000",
+      hoverBg: isDark ? "rgba(246,173,85,0.1)" : "rgba(230,119,0,0.07)"
+    },
+    error: {
+      border: isDark ? "rgba(242,139,130,0.5)" : "rgba(234,67,53,0.5)",
+      text: isDark ? "#F28B82" : "#C0392B",
+      hoverBg: isDark ? "rgba(242,139,130,0.1)" : "rgba(234,67,53,0.07)"
+    },
+    info: {
+      border: isDark ? "rgba(138,180,248,0.5)" : "rgba(66,133,244,0.5)",
+      text: isDark ? "#8AB4F8" : "#1558B0",
+      hoverBg: isDark ? "rgba(138,180,248,0.1)" : "rgba(66,133,244,0.07)"
+    },
+    default: {
+      border: isDark ? "rgba(255,255,255,0.25)" : "rgba(17,17,17,0.25)",
+      text: isDark ? palette.text.primary : palette.text.primary,
+      hoverBg: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)"
+    }
+  };
+  return {
+    MuiChip: {
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          const color = ownerState.color ?? "default";
+          const variant = ownerState.variant ?? "filled";
+          const filled = semanticFilled[color] ?? semanticFilled.default;
+          const outlined = semanticOutlined[color] ?? semanticOutlined.default;
+          return {
+            // ── Base ──────────────────────────────────────────────────────
+            display: "inline-flex",
+            alignItems: "center",
+            borderRadius: 9999,
+            height: "auto",
+            fontWeight: 500,
+            fontFamily: '"Montserrat", "Google Sans Flex", -apple-system, sans-serif',
+            fontSize: "0.76rem",
+            letterSpacing: "0.02em",
+            lineHeight: 1,
+            padding: "5px 12px",
+            cursor: "default",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+            userSelect: "none",
+            "& .MuiChip-label": {
+              color: "inherit",
+              padding: 0
+            },
+            // Delete icon
+            "& .MuiChip-deleteIcon": {
+              fontSize: "16px",
+              marginLeft: "6px",
+              marginRight: "-2px",
+              opacity: 0.55,
+              transition: "opacity 0.15s ease, transform 0.15s ease",
+              "&:hover": {
+                opacity: 1,
+                transform: "scale(1.15)",
+                color: "inherit"
+              }
+            },
+            // Avatar inside chip
+            "& .MuiChip-avatar": {
+              width: 20,
+              height: 20,
+              marginLeft: "-4px",
+              marginRight: "6px",
+              fontSize: "0.65rem",
+              fontWeight: 700
+            },
+            // ── Filled variant ────────────────────────────────────────────
+            ...variant === "filled" && {
+              backgroundColor: filled.bg,
+              border: `1px solid ${filled.border}`,
+              color: filled.text,
+              boxShadow: isDark ? "0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08)" : "0 2px 6px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.7)",
+              "&.MuiChip-clickable:hover": {
+                transform: "translateY(-1px)",
+                boxShadow: isDark ? "0 6px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)" : "0 6px 14px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.9)",
+                filter: "brightness(1.08)"
+              }
+            },
+            // ── Outlined variant ──────────────────────────────────────────
+            ...variant === "outlined" && {
+              backgroundColor: "transparent",
+              border: `1.5px solid ${outlined.border}`,
+              color: outlined.text,
+              boxShadow: "none",
+              "&.MuiChip-clickable:hover": {
+                backgroundColor: outlined.hoverBg,
+                transform: "translateY(-1px)",
+                boxShadow: isDark ? "0 4px 12px rgba(0,0,0,0.25)" : "0 4px 10px rgba(0,0,0,0.07)"
+              }
+            }
+          };
+        },
+        // ── Size variants ──────────────────────────────────────────────────
+        sizeSmall: {
+          fontSize: "0.68rem",
+          padding: "3px 9px",
+          "& .MuiChip-avatar": {
+            width: 16,
+            height: 16,
+            marginLeft: "-3px",
+            marginRight: "4px",
+            fontSize: "0.55rem"
+          },
+          "& .MuiChip-deleteIcon": {
+            fontSize: "14px",
+            marginLeft: "4px"
+          }
+        },
+        sizeMedium: {
+          fontSize: "0.76rem",
+          padding: "5px 12px"
         }
-      },
-      filled: {
-        backgroundColor: palette.glass.buttonHoverBg,
-        color: palette.text.primary,
-        border: `1px solid ${palette.glass.chipBorder}`
+      }
+    },
+    MuiAvatar: {
+      styleOverrides: {
+        root: {
+          borderRadius: "50%",
+          border: `1.5px solid ${palette.glass.avatarBorder}`
+        }
+      }
+    },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          borderColor: palette.divider
+        }
+      }
+    },
+    MuiTable: {
+      styleOverrides: {
+        root: {
+          borderRadius: 18,
+          overflow: "hidden"
+        }
+      }
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          borderBottom: `1px solid ${palette.glass.tableBorder}`,
+          padding: "14px 20px",
+          color: palette.text.primary
+        },
+        head: {
+          fontWeight: 600,
+          color: palette.text.secondary,
+          backgroundColor: palette.glass.tableHeadBg,
+          textTransform: "uppercase",
+          fontSize: "0.75rem",
+          letterSpacing: "0.04em"
+        }
+      }
+    },
+    MuiBadge: {
+      styleOverrides: {
+        badge: ({ ownerState }) => {
+          const color = ownerState.color && ownerState.color !== "default" ? ownerState.color : "default";
+          const filled = semanticFilled[color] ?? semanticFilled.default;
+          return {
+            backgroundColor: filled.bg,
+            color: filled.text,
+            border: `1px solid ${filled.border}`,
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            boxShadow: palette.glass.paperShadow,
+            fontWeight: 600
+          };
+        }
       }
     }
-  },
-  MuiAvatar: {
-    styleOverrides: {
-      root: {
-        borderRadius: "50%",
-        border: `1.5px solid ${palette.glass.avatarBorder}`
-      }
-    }
-  },
-  MuiDivider: {
-    styleOverrides: {
-      root: {
-        borderColor: palette.divider
-      }
-    }
-  },
-  MuiTable: {
-    styleOverrides: {
-      root: {
-        borderRadius: 18,
-        overflow: "hidden"
-      }
-    }
-  },
-  MuiTableCell: {
-    styleOverrides: {
-      root: {
-        borderBottom: `1px solid ${palette.glass.tableBorder}`,
-        padding: "14px 20px",
-        color: palette.text.primary
-      },
-      head: {
-        fontWeight: 600,
-        color: palette.text.secondary,
-        backgroundColor: palette.glass.tableHeadBg,
-        textTransform: "uppercase",
-        fontSize: "0.75rem",
-        letterSpacing: "0.04em"
-      }
-    }
-  }
-});
+  };
+};
 
 // src/theme/overrides/feedback.ts
 var getFeedbackOverrides = (palette, isDark) => ({
@@ -963,14 +1293,15 @@ var getSurfaceOverrides = (palette, isDark) => ({
   MuiCard: {
     styleOverrides: {
       root: {
-        background: `linear-gradient(135deg, ${palette.glass.cardBg} 0%, ${isDark ? "rgba(30,30,35,0.2)" : "rgba(255,255,255,0.4)"} 100%)`,
+        background: `linear-gradient(135deg, ${palette.glass.cardBg} 0%, ${isDark ? "rgba(22, 22, 22, 0.25)" : "rgba(255, 255, 255, 0.45)"} 100%)`,
         border: `1px solid ${palette.glass.chipBorder}`,
-        boxShadow: `${palette.glass.cardShadow}, inset 0 1px 1px 0 ${isDark ? "rgba(246, 29, 29, 0.1)" : "rgba(255, 255, 255, 0.7)"}`,
+        boxShadow: `${palette.glass.cardShadow}, inset 0 1px 1px 0 ${isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.75)"}`,
         transition: "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease",
         "&:hover": {
-          transform: "translateY(-8px) scale(1.01)",
-          boxShadow: isDark ? "0 28px 60px rgba(0, 0, 0, 0.65), 0 0 32px rgba(236, 72, 153, 0.28), inset 0 1px 2px rgba(255, 255, 255, 0.35)" : "0 28px 60px rgba(236, 72, 153, 0.14), 0 0 28px rgba(236, 72, 153, 0.18), inset 0 1px 2px rgba(255, 255, 255, 1)",
-          borderColor: isDark ? "rgba(236, 72, 153, 0.5)" : "rgba(236, 72, 153, 0.4)",
+          transform: "translateY(-6px) scale(1.01)",
+          // Luxury hover: deep neutral shadow — no colour glow, just depth
+          boxShadow: isDark ? "0 28px 60px rgba(0, 0, 0, 0.72), 0 2px 0px rgba(255, 255, 255, 0.04), inset 0 1px 2px rgba(255, 255, 255, 0.1)" : "0 28px 60px rgba(0, 0, 0, 0.12), 0 2px 0 rgba(255, 255, 255, 1), inset 0 1px 2px rgba(255, 255, 255, 1)",
+          borderColor: isDark ? "rgba(246, 245, 242, 0.14)" : "rgba(17, 17, 17, 0.16)",
           "&::after": {
             left: "160%",
             transition: "all 0.8s ease"
@@ -1013,21 +1344,6 @@ var getSurfaceOverrides = (palette, isDark) => ({
       }
     ]
   },
-  MuiAppBar: {
-    styleOverrides: {
-      root: {
-        backgroundColor: palette.glass.appBarBg,
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        borderBottom: `1px solid ${palette.glass.chipBorder}`,
-        borderRadius: 0,
-        boxShadow: "none",
-        color: palette.text.primary,
-        transition: "all 0.3s ease",
-        zIndex: 1100
-      }
-    }
-  },
   MuiAccordion: {
     styleOverrides: {
       root: {
@@ -1045,18 +1361,82 @@ var getSurfaceOverrides = (palette, isDark) => ({
   }
 });
 
+// src/theme/overrides/glassRecipe.ts
+var glassRecipe = (isDark) => ({
+  backdropFilter: "blur(48px) saturate(180%)",
+  WebkitBackdropFilter: "blur(48px) saturate(180%)",
+  backgroundColor: isDark ? "rgba(28, 31, 38, 0.65)" : "rgba(255, 255, 255, 0.24)",
+  backgroundImage: isDark ? "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%)" : "linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(248,250,252,0.4) 100%)",
+  border: isDark ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(255,255,255,0.6)",
+  boxShadow: isDark ? "0 8px 32px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1)" : "0 20px 50px rgba(15,23,42,0.08), 0 8px 20px rgba(15,23,42,0.06), 0 2px 6px rgba(15,23,42,0.04), inset 0 1px 1px rgba(255,255,255,0.95)"
+});
+var glassAppBarRecipe = (isDark) => ({
+  ...glassRecipe(isDark),
+  // Override box-shadow to a slimmer version appropriate for a pinned bar
+  boxShadow: isDark ? "0 4px 24px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1)" : "0 4px 24px rgba(15,23,42,0.06), 0 1px 6px rgba(15,23,42,0.04), inset 0 1px 1px rgba(255,255,255,0.95)",
+  // AppBar has no border-radius — it spans full width
+  borderRadius: 0,
+  borderLeft: "none",
+  borderRight: "none",
+  borderTop: "none",
+  borderBottom: isDark ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(255,255,255,0.6)"
+});
+
 // src/theme/overrides/navigation.ts
 var getNavigationOverrides = (palette, isDark) => ({
-  MuiTabs: {
+  // ========================================================================
+  // APP BAR — luxury glassmorphism (recipe shared via glassRecipe.ts)
+  // ========================================================================
+  MuiAppBar: {
+    defaultProps: {
+      elevation: 0,
+      color: "transparent"
+    },
     styleOverrides: {
       root: {
-        minHeight: 44
-      },
+        ...glassAppBarRecipe(isDark),
+        color: palette.text.primary,
+        transition: "background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease"
+      }
+    }
+  },
+  // ========================================================================
+  // TOOLBAR
+  // ========================================================================
+  MuiToolbar: {
+    styleOverrides: {
+      root: {
+        minHeight: "56px !important",
+        paddingLeft: "24px !important",
+        paddingRight: "24px !important"
+      }
+    }
+  },
+  MuiTabs: {
+    styleOverrides: {
+      root: ({ ownerState }) => ({
+        minHeight: 36,
+        backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
+        borderRadius: 12,
+        padding: "4px",
+        border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)"}`,
+        display: ownerState.variant === "fullWidth" ? "flex" : "inline-flex",
+        width: ownerState.variant === "fullWidth" ? "100%" : "fit-content",
+        boxShadow: isDark ? "inset 0 1px 2px rgba(0,0,0,0.2)" : "inset 0 1px 2px rgba(0,0,0,0.05)",
+        "& .MuiTabs-flexContainer": {
+          gap: "4px",
+          position: "relative",
+          zIndex: 1
+        }
+      }),
       indicator: {
-        height: 3,
-        borderRadius: 3,
-        backgroundColor: palette.primary.main,
-        boxShadow: isDark ? `0 0 10px ${palette.primary.glow}` : "none"
+        height: "100%",
+        borderRadius: 8,
+        backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "#FFFFFF",
+        boxShadow: isDark ? "0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)" : "0 2px 8px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04)",
+        zIndex: -1,
+        // Places it directly behind the tab items
+        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
       }
     }
   },
@@ -1065,11 +1445,25 @@ var getNavigationOverrides = (palette, isDark) => ({
       root: {
         textTransform: "none",
         fontWeight: 500,
-        fontSize: "0.9375rem",
+        fontSize: "0.875rem",
+        minHeight: 32,
+        minWidth: "auto",
+        borderRadius: 8,
+        padding: "6px 16px",
         color: palette.text.secondary,
+        transition: "color 0.3s ease, background-color 0.3s ease",
+        "&:hover": {
+          color: palette.text.primary,
+          backgroundColor: isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(17, 17, 17, 0.03)"
+        },
         "&.Mui-selected": {
           color: palette.text.primary,
-          fontWeight: 600
+          fontWeight: 600,
+          backgroundColor: "transparent",
+          "&:hover": {
+            backgroundColor: "transparent"
+            // The indicator is the background
+          }
         }
       }
     }
@@ -1242,11 +1636,64 @@ var getNavigationOverrides = (palette, isDark) => ({
         }
       }
     }
+  },
+  MuiStepper: {
+    styleOverrides: {
+      root: {
+        backgroundColor: "transparent",
+        padding: "24px 0"
+      }
+    }
+  },
+  MuiStepConnector: {
+    styleOverrides: {
+      line: {
+        borderColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.12)",
+        borderTopWidth: 2,
+        borderRadius: 1
+      }
+    }
+  },
+  MuiStepIcon: {
+    styleOverrides: {
+      root: {
+        color: isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.1)",
+        "&.Mui-active": {
+          color: palette.text.primary,
+          filter: isDark ? `drop-shadow(0 0 6px rgba(255, 255, 255, 0.25))` : `drop-shadow(0 0 6px rgba(17, 17, 17, 0.15))`
+        },
+        "&.Mui-completed": {
+          color: palette.text.primary
+        }
+      },
+      text: {
+        fill: isDark ? "#111" : "#FFF",
+        fontWeight: 700
+      }
+    }
+  },
+  MuiStepLabel: {
+    styleOverrides: {
+      label: {
+        fontSize: "0.875rem",
+        fontWeight: 500,
+        color: palette.text.secondary,
+        "&.Mui-active": {
+          color: palette.text.primary,
+          fontWeight: 600
+        },
+        "&.Mui-completed": {
+          color: palette.text.primary,
+          fontWeight: 500
+        }
+      }
+    }
   }
 });
 
 // src/theme/theme.ts
 var GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
+var JIVICO_BRAND_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
 var themeCache = {};
 function buildTheme(mode) {
   const isDark = mode === "dark";
@@ -1268,7 +1715,7 @@ function buildTheme(mode) {
     },
     typography,
     shape: {
-      borderRadius: 18
+      borderRadius: 20
     },
     components: {
       MuiCssBaseline: {
@@ -1314,7 +1761,7 @@ function buildTheme(mode) {
       },
       ...getInputOverrides(palette, isDark),
       ...getControlOverrides(palette, isDark),
-      ...getDataDisplayOverrides(palette),
+      ...getDataDisplayOverrides(palette, isDark),
       ...getFeedbackOverrides(palette, isDark),
       ...getSurfaceOverrides(palette, isDark),
       ...getNavigationOverrides(palette, isDark)
@@ -1467,14 +1914,14 @@ var GlassTitleGroup = material.styled(material.Box)(({ theme }) => ({
 }));
 var GlassIconGlow = material.styled(material.Box, {
   shouldForwardProp: (p) => p !== "gradient"
-})(({ gradient: gradient2 = "amber" }) => {
+})(({ gradient = "amber" }) => {
   const bg = {
     amber: "linear-gradient(135deg, #F59E0B 0%, #EC4899 100%)",
     pink: "linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%)",
     cyan: "linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%)",
     purple: "linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%)",
     emerald: "linear-gradient(135deg, #10B981 0%, #06B6D4 100%)"
-  }[gradient2];
+  }[gradient];
   return {
     display: "flex",
     alignItems: "center",
@@ -1765,80 +2212,112 @@ var CoverImage = material.styled("img")({
   display: "block"
 });
 var floatAmbient = styles.keyframes`
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(30px, -25px) scale(1.08); }
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(30px, -25px) scale(1.08); }
   100% { transform: translate(-20px, 35px) scale(0.95); }
 `;
 var AmbientBlob = material.styled(material.Box, {
   shouldForwardProp: (p) => p !== "variant" && p !== "isDark"
-})(
-  ({ isDark, variant }) => {
-    const config = {
-      pink: {
-        top: "5%",
-        left: "10%",
-        width: "45vw",
-        height: "45vw",
-        color: isDark ? "rgba(236,72,153,0.16)" : "rgba(236,72,153,0.08)",
-        duration: "18s"
-      },
-      blue: {
-        top: "35%",
-        right: "5%",
-        width: "40vw",
-        height: "40vw",
-        color: isDark ? "rgba(59,130,246,0.15)" : "rgba(59,130,246,0.07)",
-        duration: "22s"
-      },
-      purple: {
-        top: "60%",
-        left: "5%",
-        width: "45vw",
-        height: "45vw",
-        color: isDark ? "rgba(139,92,246,0.16)" : "rgba(139,92,246,0.08)",
-        duration: "20s"
-      },
-      amber: {
-        top: "75%",
-        right: "15%",
-        width: "35vw",
-        height: "35vw",
-        color: isDark ? "rgba(245,158,11,0.14)" : "rgba(245,158,11,0.06)",
-        duration: "25s"
-      },
-      cyan: {
-        top: "20%",
-        left: "50%",
-        width: "35vw",
-        height: "35vw",
-        color: isDark ? "rgba(6,182,212,0.14)" : "rgba(6,182,212,0.06)",
-        duration: "19s"
-      }
-    }[variant];
-    return {
-      position: "absolute",
-      borderRadius: "50%",
-      filter: "blur(80px)",
-      WebkitFilter: "blur(80px)",
-      transform: "translateZ(0)",
-      WebkitTransform: "translateZ(0)",
-      willChange: "transform",
-      zIndex: 0,
-      pointerEvents: "none",
-      top: config.top,
-      ..."left" in config ? { left: config.left } : {},
-      ..."right" in config ? { right: config.right } : {},
-      width: config.width,
-      height: config.height,
-      background: `radial-gradient(circle, ${config.color} 0%, transparent 70%)`,
-      animation: `${floatAmbient} ${config.duration} ease-in-out infinite alternate`,
-      "@media (max-width: 600px)": {
-        filter: "blur(40px)",
-        WebkitFilter: "blur(40px)"
-      }
-    };
-  }
-);
+})(({ isDark, variant }) => {
+  const configs = {
+    // Charcoal/Cream (brand primary)
+    primary: {
+      top: "5%",
+      left: "10%",
+      width: "45vw",
+      height: "45vw",
+      color: isDark ? "rgba(246, 245, 242, 0.09)" : "rgba(17, 17, 17, 0.055)",
+      duration: "18s"
+    },
+    // Stone (brand secondary tone)
+    secondary: {
+      top: "35%",
+      right: "5%",
+      width: "40vw",
+      height: "40vw",
+      color: isDark ? "rgba(217, 217, 207, 0.1)" : "rgba(104, 104, 104, 0.06)",
+      duration: "22s"
+    },
+    // Warm Sand/Cream — editorial softness
+    warm: {
+      top: "60%",
+      left: "5%",
+      width: "45vw",
+      height: "45vw",
+      color: isDark ? "rgba(217, 217, 207, 0.08)" : "rgba(246, 245, 242, 0.6)",
+      duration: "20s"
+    },
+    // Legacy alias → primary monochrome
+    pink: {
+      top: "5%",
+      left: "10%",
+      width: "45vw",
+      height: "45vw",
+      color: isDark ? "rgba(246, 245, 242, 0.09)" : "rgba(17, 17, 17, 0.055)",
+      duration: "18s"
+    },
+    // Legacy alias → secondary monochrome
+    purple: {
+      top: "35%",
+      right: "5%",
+      width: "40vw",
+      height: "40vw",
+      color: isDark ? "rgba(217, 217, 207, 0.1)" : "rgba(104, 104, 104, 0.06)",
+      duration: "22s"
+    },
+    // Legacy alias → warm
+    amber: {
+      top: "75%",
+      right: "15%",
+      width: "35vw",
+      height: "35vw",
+      color: isDark ? "rgba(217, 217, 207, 0.08)" : "rgba(246, 245, 242, 0.6)",
+      duration: "25s"
+    },
+    // Info blue — retained for depth contrast
+    blue: {
+      top: "35%",
+      right: "5%",
+      width: "40vw",
+      height: "40vw",
+      color: isDark ? "rgba(59, 130, 246, 0.1)" : "rgba(59, 130, 246, 0.05)",
+      duration: "22s"
+    },
+    // Teal/Cyan — very subtle
+    cyan: {
+      top: "20%",
+      left: "50%",
+      width: "35vw",
+      height: "35vw",
+      color: isDark ? "rgba(104, 104, 104, 0.1)" : "rgba(6, 182, 212, 0.04)",
+      duration: "19s"
+    }
+  };
+  const config = configs[variant] ?? configs.primary;
+  return {
+    position: "absolute",
+    borderRadius: "50%",
+    filter: "blur(80px)",
+    WebkitFilter: "blur(80px)",
+    transform: "translateZ(0)",
+    WebkitTransform: "translateZ(0)",
+    willChange: "transform",
+    zIndex: 0,
+    pointerEvents: "none",
+    ...config.top && { top: config.top },
+    ...config.bottom && { bottom: config.bottom },
+    ...config.left && { left: config.left },
+    ...config.right && { right: config.right },
+    width: config.width,
+    height: config.height,
+    background: `radial-gradient(circle, ${config.color} 0%, transparent 70%)`,
+    animation: `${floatAmbient} ${config.duration} ease-in-out infinite alternate`,
+    "@media (max-width: 600px)": {
+      filter: "blur(40px)",
+      WebkitFilter: "blur(40px)"
+    }
+  };
+});
 var DecorativeBlob = material.styled(material.Box, {
   shouldForwardProp: (p) => p !== "isDark"
 })(({ isDark }) => ({
@@ -1848,28 +2327,29 @@ var DecorativeBlob = material.styled(material.Box, {
   width: "50%",
   height: "160%",
   borderRadius: "50%",
-  background: `radial-gradient(circle, ${isDark ? "rgba(233,30,99,0.12)" : "rgba(233,30,99,0.06)"} 0%, transparent 70%)`,
+  background: `radial-gradient(circle, ${isDark ? "rgba(217, 217, 207, 0.08)" : "rgba(17, 17, 17, 0.04)"} 0%, transparent 70%)`,
   filter: "blur(60px)",
   willChange: "transform",
   pointerEvents: "none"
 }));
-var gradient = "linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%)";
-var GradientText = styles.styled("span")(() => ({
-  background: gradient,
+var gradientLight = "linear-gradient(135deg, #111111 0%, #686868 100%)";
+var gradientDark = "linear-gradient(135deg, #F6F5F2 0%, #D9D9CF 100%)";
+var GradientText = styles.styled("span")(({ isDark }) => ({
+  background: isDark ? gradientDark : gradientLight,
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
   display: "inline"
 }));
-var GradientContextTitle = styles.styled(material.Typography)(() => ({
+var GradientContextTitle = styles.styled(material.Typography)(({ isDark }) => ({
   fontWeight: 800,
-  letterSpacing: "-0.4px",
-  lineHeight: 1.25,
+  letterSpacing: "-0.04em",
+  lineHeight: 1.2,
   fontSize: "1.35rem",
   display: "inline-block",
   paddingBottom: "4px",
   marginBottom: "-4px",
-  background: gradient,
+  background: isDark ? gradientDark : gradientLight,
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text"
@@ -1878,7 +2358,8 @@ function JivicoFontPreload() {
   return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
     /* @__PURE__ */ jsxRuntime.jsx("link", { rel: "preconnect", href: "https://fonts.googleapis.com" }),
     /* @__PURE__ */ jsxRuntime.jsx("link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" }),
-    /* @__PURE__ */ jsxRuntime.jsx("link", { href: GOOGLE_SANS_FLEX_URL, rel: "stylesheet" })
+    /* @__PURE__ */ jsxRuntime.jsx("link", { href: GOOGLE_SANS_FLEX_URL, rel: "stylesheet" }),
+    /* @__PURE__ */ jsxRuntime.jsx("link", { href: JIVICO_BRAND_FONTS_URL, rel: "stylesheet" })
   ] });
 }
 var JivicoFontLinks = JivicoFontPreload;
@@ -2076,7 +2557,7 @@ var GlassWishlistButton = material.styled(material.IconButton, {
 });
 var HolographicBadge = material.styled(material.Box, {
   shouldForwardProp: (p) => p !== "tagColor" && p !== "gradient"
-})(({ theme, tagColor, gradient: gradient2 }) => ({
+})(({ theme, tagColor, gradient }) => ({
   position: "absolute",
   top: 12,
   left: 12,
@@ -2087,7 +2568,7 @@ var HolographicBadge = material.styled(material.Box, {
   fontWeight: 900,
   letterSpacing: 0.6,
   color: "#FFFFFF",
-  background: gradient2 || tagColor || "#EC4899",
+  background: gradient || tagColor || "#EC4899",
   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.25)",
   textTransform: "uppercase",
   backdropFilter: "blur(8px)",
@@ -2199,6 +2680,8 @@ exports.HeroSection = HeroSection;
 exports.HeroStatsPanel = HeroStatsPanel;
 exports.HeroTitle = HeroTitle;
 exports.HolographicBadge = HolographicBadge;
+exports.JIVICO_BRAND_FONTS_URL = JIVICO_BRAND_FONTS_URL;
+exports.JIVICO_FONTS_URL = JIVICO_FONTS_URL;
 exports.JivicoFontLinks = JivicoFontLinks;
 exports.JivicoFontPreload = JivicoFontPreload;
 exports.JivicoThemeProvider = JivicoThemeProvider;

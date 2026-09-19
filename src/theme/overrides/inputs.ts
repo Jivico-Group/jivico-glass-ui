@@ -48,11 +48,11 @@ export const getInputOverrides = (
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
-          minHeight: 48,
-          borderRadius: 30,
-          padding: "12px 28px",
+          minHeight: 38,
+          borderRadius: 9999,
+          padding: "9px 22px",
           fontWeight: 600,
-          fontSize: "0.92rem",
+          fontSize: "0.875rem",
           lineHeight: 1.2,
           textTransform: "none",
           whiteSpace: "nowrap",
@@ -69,28 +69,29 @@ export const getInputOverrides = (
             transform: "translateY(0) scale(0.98)",
           },
 
-          // Primary Contained
+          // Primary Contained — Luxury Monochrome
+          // Light: solid charcoal · Dark: crisp cream on deep black
           ...(variant === "contained" &&
             isPrimary && {
-              background: COLORS.gradients.primary,
-              color: COLORS.white,
+              background: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
+              color: isDark ? COLORS.brand.charcoal : COLORS.white,
               boxShadow: isDark
-                ? "0 8px 28px rgba(236,72,153,0.38), inset 0 1px 1px rgba(255,255,255,0.3)"
-                : "0 8px 24px rgba(236,72,153,0.28), inset 0 1px 1px rgba(255,255,255,0.4)",
+                ? "0 6px 24px rgba(0,0,0,0.55), inset 0 1px 1px rgba(255,255,255,0.25)"
+                : "0 6px 20px rgba(17,17,17,0.22), inset 0 1px 1px rgba(255,255,255,0.15)",
 
               "&:hover": {
-                background: COLORS.gradients.primaryHover,
+                background: isDark ? COLORS.white : COLORS.brand.charcoal,
                 transform: "translateY(-2px)",
                 boxShadow: isDark
-                  ? "0 12px 36px rgba(236,72,153,0.5), 0 0 20px rgba(139,92,246,0.3)"
-                  : "0 12px 32px rgba(236,72,153,0.38)",
+                  ? "0 12px 36px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.2)"
+                  : "0 12px 32px rgba(17,17,17,0.3)",
               },
 
               "&:focus-visible": {
                 outline: "none",
                 boxShadow: isDark
-                  ? "0 0 0 4px rgba(236,72,153,0.22), 0 8px 28px rgba(236,72,153,0.38)"
-                  : "0 0 0 4px rgba(236,72,153,0.18), 0 8px 24px rgba(236,72,153,0.28)",
+                  ? "0 0 0 3px rgba(246,245,242,0.4), 0 6px 24px rgba(0,0,0,0.55)"
+                  : "0 0 0 3px rgba(17,17,17,0.2), 0 6px 20px rgba(17,17,17,0.22)",
               },
               "&.Mui-disabled": {
                 background: isDark
@@ -102,62 +103,78 @@ export const getInputOverrides = (
               },
             }),
 
-          // Primary Outlined
+          // Primary Outlined — Frosted glass in dark, cream in light
           ...(variant === "outlined" &&
             isPrimary && {
               border: "none",
-              boxShadow: `inset 0 0 0 2px ${isDark ? "rgba(236,72,153,0.7)" : "#EC4899"}`,
-              color: "#EC4899",
               background: isDark
-                ? "rgba(236,72,153,0.04)"
-                : "rgba(236,72,153,0.02)",
+                ? "rgba(255, 255, 255, 0.1)"
+                : COLORS.brand.cream,
+              color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              boxShadow: isDark
+                ? "0 6px 20px rgba(0,0,0,0.5), inset 0 0 0 1.5px rgba(255,255,255,0.15)"
+                : "0 6px 20px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(17,17,17,0.08)",
+              "&:hover": {
+                background: isDark ? "rgba(255, 255, 255, 0.15)" : COLORS.white,
+                transform: "translateY(-2px)",
+                boxShadow: isDark
+                  ? "0 12px 32px rgba(0,0,0,0.6), inset 0 0 0 1.5px rgba(255,255,255,0.25)"
+                  : "0 12px 32px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(17,17,17,0.15)",
+              },
+
+              "&:focus-visible": {
+                outline: "none",
+                boxShadow: isDark
+                  ? "0 0 0 3px rgba(246,245,242,0.3), 0 6px 24px rgba(0,0,0,0.55)"
+                  : "0 0 0 3px rgba(246,245,242,0.6), 0 6px 20px rgba(0,0,0,0.06)",
+              },
+
+              "&.Mui-disabled": {
+                background: isDark
+                  ? "rgba(255,255,255,0.05)"
+                  : "rgba(0,0,0,0.04)",
+                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
+                boxShadow: "none",
+                transform: "none",
+              },
+            }),
+
+          // Secondary Contained — Soft Glass
+          ...(variant === "contained" &&
+            isSecondary && {
+              background: isDark
+                ? "rgba(255, 255, 255, 0.06)"
+                : "rgba(17, 17, 17, 0.04)",
+              color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
+              boxShadow: isDark
+                ? "inset 0 0 0 1px rgba(255,255,255,0.05)"
+                : "inset 0 0 0 1px rgba(17,17,17,0.05)",
               backdropFilter: "blur(12px)",
               WebkitBackdropFilter: "blur(12px)",
               "&:hover": {
                 background: isDark
-                  ? "rgba(236,72,153,0.14)"
-                  : "rgba(236,72,153,0.08)",
-                transform: "translateY(-2px)",
-                boxShadow: `inset 0 0 0 2px #F472B6, 0 8px 20px rgba(236,72,153,0.25)`,
+                  ? "rgba(255, 255, 255, 0.12)"
+                  : "rgba(17, 17, 17, 0.08)",
+                transform: "translateY(-1.5px)",
+                boxShadow: isDark
+                  ? "0 4px 14px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.1)"
+                  : "0 4px 14px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(17,17,17,0.1)",
               },
 
               "&:focus-visible": {
                 outline: "none",
-                boxShadow: `inset 0 0 0 2px ${isDark ? "rgba(236,72,153,0.7)" : "#EC4899"}, 0 0 0 4px rgba(236,72,153,0.16), 0 8px 20px rgba(236,72,153,0.2)`,
+                boxShadow: isDark
+                  ? "0 0 0 3px rgba(246,245,242,0.3)"
+                  : "0 0 0 3px rgba(17,17,17,0.2)",
               },
 
               "&.Mui-disabled": {
-                borderColor: isDark
-                  ? "rgba(255,255,255,0.1)"
-                  : "rgba(0,0,0,0.1)",
-                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
-                background: "transparent",
-                boxShadow: "none",
-                transform: "none",
-              },
-            }),
-
-          // Secondary Contained
-          ...(variant === "contained" &&
-            isSecondary && {
-              backgroundColor: mainColor,
-              color: textColor,
-              "&:hover": {
-                backgroundColor: hoverColor,
-                boxShadow: `0 6px 20px ${glowColor}`,
-                transform: "translateY(-1.5px) scale(1.015)",
-              },
-
-              "&:focus-visible": {
-                outline: "none",
-                boxShadow: `0 0 0 4px ${glowColor}, 0 6px 20px ${glowColor}`,
-              },
-
-              "&.Mui-disabled": {
-                backgroundColor: isDark
-                  ? "rgba(255,255,255,0.08)"
-                  : "rgba(0,0,0,0.08)",
-                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
+                background: isDark
+                  ? "rgba(255,255,255,0.03)"
+                  : "rgba(17,17,17,0.02)",
+                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
                 boxShadow: "none",
                 transform: "none",
               },
@@ -166,30 +183,37 @@ export const getInputOverrides = (
           // Secondary Outlined
           ...(variant === "outlined" &&
             isSecondary && {
-              borderColor: palette.glass.buttonBorder,
-              color: mainColor,
-              backgroundColor: palette.glass.buttonBg,
-              backdropFilter: "blur(10px)",
-              WebkitBackdropFilter: "blur(10px)",
+              border: "none",
+              background: "transparent",
+              color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
+              boxShadow: isDark
+                ? "inset 0 0 0 1.5px rgba(255,255,255,0.15)"
+                : "inset 0 0 0 1.5px rgba(17,17,17,0.15)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
               "&:hover": {
-                borderColor: mainColor,
-                backgroundColor: palette.glass.buttonHoverBg,
-                boxShadow: `0 0 14px ${glowColor}`,
-                transform: "translateY(-1.5px) scale(1.015)",
+                background: isDark
+                  ? "rgba(255, 255, 255, 0.04)"
+                  : "rgba(17, 17, 17, 0.03)",
+                transform: "translateY(-1.5px)",
+                boxShadow: isDark
+                  ? "0 4px 14px rgba(0,0,0,0.3), inset 0 0 0 1.5px rgba(255,255,255,0.25)"
+                  : "0 4px 14px rgba(0,0,0,0.04), inset 0 0 0 1.5px rgba(17,17,17,0.25)",
               },
 
               "&:focus-visible": {
                 outline: "none",
-                boxShadow: `0 0 0 4px ${glowColor}`,
+                boxShadow: isDark
+                  ? "0 0 0 3px rgba(246,245,242,0.3)"
+                  : "0 0 0 3px rgba(17,17,17,0.2)",
               },
 
               "&.Mui-disabled": {
-                borderColor: isDark
-                  ? "rgba(255,255,255,0.1)"
-                  : "rgba(0,0,0,0.1)",
-                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
+                boxShadow: isDark
+                  ? "inset 0 0 0 1px rgba(255,255,255,0.1)"
+                  : "inset 0 0 0 1px rgba(17,17,17,0.1)",
+                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
                 background: "transparent",
-                boxShadow: "none",
                 transform: "none",
               },
             }),
@@ -235,7 +259,11 @@ export const getInputOverrides = (
 
           // Text Button
           ...(variant === "text" && {
-            color: mainColor,
+            color: isSecondary
+              ? isDark
+                ? COLORS.brand.cream
+                : COLORS.brand.charcoal
+              : mainColor,
             padding: "8px 16px",
             minHeight: 40,
             "&:hover": {
@@ -251,19 +279,19 @@ export const getInputOverrides = (
       },
 
       sizeSmall: {
-        minHeight: 36,
-        padding: "8px 18px",
-        fontSize: "0.8125rem",
+        minHeight: 30,
+        padding: "5px 14px",
+        fontSize: "0.78rem",
       },
       sizeMedium: {
-        minHeight: 40,
-        padding: "11px 20px",
-        fontSize: "0.875rem",
+        minHeight: 36,
+        padding: "7px 18px",
+        fontSize: "0.85rem",
       },
       sizeLarge: {
-        minHeight: 52,
-        padding: "13px 30px",
-        fontSize: "1.0625rem",
+        minHeight: 44,
+        padding: "11px 26px",
+        fontSize: "0.9375rem",
       },
     },
   },
@@ -273,13 +301,64 @@ export const getInputOverrides = (
   // ========================================================================
   MuiButtonGroup: {
     styleOverrides: {
-      root: {
-        borderRadius: 9999,
-        overflow: "hidden",
-        boxShadow: "none",
-        "& .MuiButton-root": {
-          borderRadius: 0,
-        },
+      root: ({ ownerState }) => {
+        const isContained = ownerState.variant === "contained";
+        const isOutlined = ownerState.variant === "outlined";
+
+        return {
+          boxShadow: "none",
+          borderRadius: 9999,
+
+          // Contained: clip children inside the pill shape
+          ...(isContained && {
+            overflow: "hidden",
+            "& .MuiButton-root": {
+              borderRadius: 0,
+              // No individual border — the group clip + bg handles shape
+              border: "none !important",
+            },
+            "& .MuiButton-root + .MuiButton-root": {
+              // Subtle divider between contained buttons
+              borderLeft: `1px solid ${isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)"} !important`,
+            },
+          }),
+
+          // Outlined: group gets single border, NO overflow hidden (avoids clip artifacts)
+          ...(isOutlined && {
+            overflow: "visible",
+            border: `1.5px solid ${isDark ? "rgba(255,255,255,0.25)" : "rgba(17,17,17,0.3)"}`,
+            "& .MuiButton-root": {
+              borderRadius: 0,
+              border: "none !important",
+              boxShadow: "none !important",
+              background: "transparent",
+              "&:hover": {
+                background: isDark
+                  ? "rgba(255,255,255,0.06)"
+                  : "rgba(17,17,17,0.05)",
+                boxShadow: "none !important",
+                transform: "none",
+              },
+              "&:focus-visible": {
+                outline: "none",
+                boxShadow: "none !important",
+              },
+            },
+            // Pill radius on the first and last button
+            "& .MuiButton-root:first-of-type": {
+              borderTopLeftRadius: "9999px !important",
+              borderBottomLeftRadius: "9999px !important",
+            },
+            "& .MuiButton-root:last-of-type": {
+              borderTopRightRadius: "9999px !important",
+              borderBottomRightRadius: "9999px !important",
+            },
+            // Divider between outlined group buttons
+            "& .MuiButton-root + .MuiButton-root": {
+              borderLeft: `1px solid ${isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.2)"} !important`,
+            },
+          }),
+        };
       },
     },
   },
@@ -407,12 +486,43 @@ export const getInputOverrides = (
   // ========================================================================
   MuiInputLabel: {
     styleOverrides: {
-      root: {
-        fontSize: "0.9375rem",
-        color: palette.text.secondary,
-        "&.Mui-focused": {
-          color: palette.primary.main,
-        },
+      root: ({ ownerState }) => {
+        let translate = "translate(18px, 13px) scale(1)"; // medium
+        let shrinkTranslate = "translate(18px, -9px) scale(0.75)";
+
+        if (ownerState.size === "small") {
+          translate = "translate(14px, 8px) scale(1)";
+          shrinkTranslate = "translate(14px, -9px) scale(0.75)";
+        } else if ((ownerState.size as string) === "large") {
+          translate = "translate(20px, 17px) scale(1)";
+          shrinkTranslate = "translate(20px, -9px) scale(0.75)";
+        }
+
+        return {
+          fontSize: "0.9375rem",
+          color: palette.text.secondary,
+          "&.Mui-focused": {
+            color: palette.primary.main,
+          },
+          // Use explicit class targeting and !important to beat MUI's default specificity
+          "&.MuiInputLabel-outlined": {
+            transform: `${translate} !important`,
+            "&.MuiInputLabel-shrink": {
+              transform: `${shrinkTranslate} !important`,
+            },
+          },
+          ...(ownerState.variant === "outlined" && {
+            // Also ensure that the legend width accommodates the horizontal padding changes
+            "& + .MuiOutlinedInput-root > fieldset > legend": {
+              marginLeft:
+                ownerState.size === "small"
+                  ? 0
+                  : (ownerState.size as string) === "large"
+                    ? 6
+                    : 4,
+            },
+          }),
+        };
       },
     },
   },
