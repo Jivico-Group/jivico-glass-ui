@@ -483,6 +483,11 @@ declare module '@mui/material/Chip' {
         large: true;
     }
 }
+declare module '@mui/material/Tabs' {
+    interface TabsPropsIndicatorColorOverrides {
+        glass: true;
+    }
+}
 declare const GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
 /** Montserrat (subheadings/accent) + Space Grotesk (body fallback) — from brand kit */
 declare const JIVICO_BRAND_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";

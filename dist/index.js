@@ -1944,58 +1944,111 @@ var getNavigationOverrides = (palette, isDark) => ({
     }
   },
   MuiTabs: {
+    defaultProps: {
+      textColor: "primary",
+      indicatorColor: "primary"
+    },
     styleOverrides: {
       root: ({ ownerState }) => ({
-        minHeight: 36,
-        backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
-        borderRadius: 12,
+        minHeight: 44,
+        height: "auto",
+        backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "#ECEAE5",
+        // Brand Kit Sand #D9D9CF warm tinted track
+        borderRadius: 9999,
+        // Brand Kit fully rounded pill track
         padding: "4px",
-        border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)"}`,
+        border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.04)"}`,
         display: ownerState.variant === "fullWidth" ? "flex" : "inline-flex",
         width: ownerState.variant === "fullWidth" ? "100%" : "fit-content",
-        boxShadow: isDark ? "inset 0 1px 2px rgba(0,0,0,0.2)" : "inset 0 1px 2px rgba(0,0,0,0.05)",
-        "& .MuiTabs-flexContainer": {
-          gap: "4px",
+        boxShadow: isDark ? "inset 0 1px 3px rgba(0,0,0,0.35)" : "inset 0 1px 2px rgba(0,0,0,0.04)",
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+        boxSizing: "border-box",
+        position: "relative",
+        isolation: "isolate",
+        overflow: "visible",
+        "& .MuiTabs-scroller": {
           position: "relative",
-          zIndex: 1
+          borderRadius: 9999,
+          overflow: "visible !important",
+          height: "100%"
+        },
+        "& .MuiTabs-flexContainer": {
+          position: "relative",
+          zIndex: 2,
+          gap: 0,
+          height: "100%",
+          alignItems: "center"
         }
       }),
-      indicator: {
-        height: "100%",
-        borderRadius: 8,
-        backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "#FFFFFF",
-        boxShadow: isDark ? "0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)" : "0 2px 8px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04)",
-        zIndex: -1,
-        // Places it directly behind the tab items
-        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      indicator: ({ ownerState }) => {
+        const isGlass = ownerState.indicatorColor === "glass";
+        return {
+          height: "100%",
+          top: 0,
+          bottom: 0,
+          borderRadius: 9999,
+          // Brand Kit fully rounded floating pill
+          backgroundColor: isGlass ? isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.75)" : isDark ? "#F6F5F2" : "#FFFFFF",
+          border: isGlass ? `1px solid ${isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.9)"}` : isDark ? "none" : "1px solid rgba(0, 0, 0, 0.03)",
+          boxShadow: isGlass ? isDark ? "0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25)" : "0 3px 12px rgba(0,0,0,0.06), inset 0 1px 0 #FFFFFF" : isDark ? "0 4px 16px rgba(0, 0, 0, 0.45)" : "0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04)",
+          // Exact drop shadow sampled from Brand Kit image
+          ...isGlass && {
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)"
+          },
+          zIndex: 1,
+          transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)"
+        };
       }
     }
   },
   MuiTab: {
+    defaultProps: {
+      disableRipple: true
+    },
     styleOverrides: {
-      root: {
-        textTransform: "none",
-        fontWeight: 500,
-        fontSize: "0.875rem",
-        minHeight: 32,
-        minWidth: "auto",
-        borderRadius: 8,
-        padding: "6px 16px",
-        color: palette.text.secondary,
-        transition: "color 0.3s ease, background-color 0.3s ease",
-        "&:hover": {
-          color: palette.text.primary,
-          backgroundColor: isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(17, 17, 17, 0.03)"
-        },
-        "&.Mui-selected": {
-          color: palette.text.primary,
-          fontWeight: 600,
-          backgroundColor: "transparent",
+      root: ({ ownerState }) => {
+        const isGlass = ownerState.textColor === "secondary";
+        return {
+          position: "relative",
+          zIndex: 2,
+          textTransform: "none",
+          fontFamily: '"Montserrat", "Google Sans Flex", -apple-system, BlinkMacSystemFont, sans-serif',
+          fontSize: "0.84rem",
+          fontWeight: 500,
+          letterSpacing: "0.01em",
+          lineHeight: 1.2,
+          minHeight: 36,
+          height: 36,
+          minWidth: 80,
+          borderRadius: 9999,
+          padding: "8px 22px",
+          color: isDark ? "rgba(255, 255, 255, 0.62)" : "#686868",
+          // Brand Stone #686868
+          transition: "color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
+          userSelect: "none",
           "&:hover": {
+            color: isDark ? "#F6F5F2" : "#111111",
             backgroundColor: "transparent"
-            // The indicator is the background
+          },
+          "&:active": {
+            transform: "scale(0.98)"
+          },
+          "&.Mui-selected": {
+            fontWeight: 600,
+            color: isDark ? isGlass ? "#F6F5F2" : "#111111" : "#111111",
+            // High contrast Charcoal #111111 on Cream / White floating pill!
+            backgroundColor: "transparent",
+            "&:hover": {
+              backgroundColor: "transparent"
+            }
+          },
+          "&.Mui-disabled": {
+            color: isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(104, 104, 104, 0.35)",
+            opacity: 0.6
           }
-        }
+        };
       }
     }
   },

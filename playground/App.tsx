@@ -82,7 +82,9 @@ function MoonIcon() {
 
 export default function App() {
   const [text, setText] = useState("");
-  const [tabIndex, setTabIndex] = useState(0);
+  const [compactTab, setCompactTab] = useState(2); // Settings selected by default (matches Brand Kit)
+  const [fullTab, setFullTab] = useState(2); // Canceled selected by default (matches Brand Kit)
+  const [glassTab, setGlassTab] = useState(1);
   const { mode, toggleTheme } = useThemeMode();
   const isDark = mode === "dark";
 
@@ -1351,17 +1353,48 @@ export default function App() {
           </Box>
         </GlassPanel>
 
-        {/* ── Tabs ─────────────────────────────────────────── */}
+        {/* ── Tabs (Segmented Control) ────────────────────── */}
         <GlassPanel>
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-            Tabs (Segmented Control)
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              flexWrap: "wrap",
+              gap: 2,
+              mb: 3,
+            }}
+          >
             <Box>
+              <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                Tabs (Segmented Control)
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Design System · Components · Light & Dark Mode · Capsule pill
+                track & sliding indicator
+              </Typography>
+            </Box>
+          </Box>
+
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            {/* 1. COMPACT SEGMENTED CONTROL */}
+            <Box>
+              <Typography
+                variant="overline"
+                color="text.secondary"
+                sx={{
+                  display: "block",
+                  mb: 1.5,
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                }}
+              >
+                1. COMPACT SEGMENTED CONTROL
+              </Typography>
               <Tabs
-                value={tabIndex}
-                onChange={(e, v) => setTabIndex(v)}
-                aria-label="luxury glass tabs"
+                value={compactTab}
+                onChange={(e, v) => setCompactTab(v)}
+                aria-label="compact segmented control"
               >
                 <Tab label="Dashboard" />
                 <Tab label="Products" />
@@ -1369,23 +1402,110 @@ export default function App() {
               </Tabs>
             </Box>
 
+            {/* 2. FULL WIDTH SEGMENTED CONTROL */}
             <Box sx={{ width: "100%" }}>
               <Typography
                 variant="overline"
                 color="text.secondary"
-                sx={{ display: "block", mb: 2 }}
+                sx={{
+                  display: "block",
+                  mb: 1.5,
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                }}
               >
-                Full Width
+                2. FULL WIDTH SEGMENTED CONTROL
               </Typography>
               <Tabs
-                value={tabIndex}
-                onChange={(e, v) => setTabIndex(v)}
+                value={fullTab}
+                onChange={(e, v) => setFullTab(v)}
                 variant="fullWidth"
+                aria-label="full width segmented control"
               >
                 <Tab label="Active" />
                 <Tab label="Completed" />
                 <Tab label="Canceled" />
               </Tabs>
+            </Box>
+
+            {/* 3. FROSTED GLASS SEGMENTED CONTROL */}
+            <Box>
+              <Typography
+                variant="overline"
+                color="text.secondary"
+                sx={{
+                  display: "block",
+                  mb: 1.5,
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                }}
+              >
+                3. FROSTED GLASS SEGMENTED CONTROL (indicatorColor=&quot;glass&quot;)
+              </Typography>
+              <Tabs
+                value={glassTab}
+                onChange={(e, v) => setGlassTab(v)}
+                indicatorColor="glass"
+                textColor="secondary"
+                aria-label="frosted glass segmented control"
+              >
+                <Tab label="Overview" />
+                <Tab label="Analytics" />
+                <Tab label="Reports" />
+              </Tabs>
+            </Box>
+
+            {/* ── Brand Kit Color Palette Swatches (From Brand Kit Image) ── */}
+            <Divider sx={{ my: 1 }} />
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 3,
+                alignItems: "center",
+                pt: 1,
+              }}
+            >
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ fontWeight: 600, letterSpacing: "0.04em" }}
+              >
+                BRAND KIT PALETTE:
+              </Typography>
+              {[
+                { name: "Sand", hex: "#D9D9CF", border: true },
+                { name: "Cream", hex: "#F6F5F2", border: true },
+                { name: "Charcoal", hex: "#111111", border: false },
+                { name: "Stone", hex: "#686868", border: false },
+              ].map((c) => (
+                <Box
+                  key={c.name}
+                  sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                >
+                  <Box
+                    sx={{
+                      width: 16,
+                      height: 16,
+                      borderRadius: "50%",
+                      bgcolor: c.hex,
+                      border: c.border
+                        ? `1px solid ${
+                            isDark
+                              ? "rgba(255,255,255,0.2)"
+                              : "rgba(17,17,17,0.15)"
+                          }`
+                        : "none",
+                    }}
+                  />
+                  <Typography variant="caption" sx={{ fontWeight: 600 }}>
+                    {c.name}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    {c.hex}
+                  </Typography>
+                </Box>
+              ))}
             </Box>
           </Box>
         </GlassPanel>
