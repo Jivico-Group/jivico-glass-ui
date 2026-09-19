@@ -49,7 +49,11 @@ export const DocLayout: React.FC<DocLayoutProps> = ({
             px: { xs: 2, sm: 3, md: 5 },
           }}
         >
-          <Container maxWidth="lg" disableGutters sx={{ display: "flex", gap: 4 }}>
+          <Container
+            maxWidth="lg"
+            disableGutters
+            sx={{ display: "flex", gap: 4 }}
+          >
             <Box sx={{ flex: 1, minWidth: 0 }}>{children}</Box>
 
             {/* Right Sticky Table of Contents */}

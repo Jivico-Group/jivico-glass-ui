@@ -15,6 +15,7 @@ import { FeedbackPage } from "./components/Pages/FeedbackPage.js";
 import { TypographyPage } from "./components/Pages/TypographyPage.js";
 import { SteppersPage } from "./components/Pages/SteppersPage.js";
 import { DialogsPage } from "./components/Pages/DialogsPage.js";
+import { DynamicIslandPage } from "./components/Pages/DynamicIslandPage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
 const TOC_MAP: Record<string, TocItem[]> = {
@@ -53,6 +54,12 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "compact", title: "Compact Control" },
     { id: "full-width", title: "Full Width" },
     { id: "frosted-glass", title: "Frosted Glass" },
+  ],
+  "dynamic-island": [
+    { id: "dries-van-noten", title: "Dries Van Noten Bar" },
+    { id: "placement-controller", title: "Placement Engine" },
+    { id: "arbitrary-children", title: "Arbitrary Children" },
+    { id: "light-dark", title: "Light & Dark Adaptation" },
   ],
   inputs: [
     { id: "text-fields", title: "Text Field Variants" },
@@ -149,6 +156,8 @@ export default function App() {
         return <SurfacesPage />;
       case "dialogs":
         return <DialogsPage />;
+      case "dynamic-island":
+        return <DynamicIslandPage />;
       case "feedback":
         return <FeedbackPage />;
       case "typography":

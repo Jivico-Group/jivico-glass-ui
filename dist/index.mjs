@@ -1,6 +1,6 @@
 import { keyframes, styled as styled$1, createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
-import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
-import { styled, Box, Container, IconButton, Typography, AppBar, Chip, Button } from '@mui/material';
+import React, { createContext, forwardRef, useContext, useState, useEffect, useMemo } from 'react';
+import { styled, Box, Container, IconButton, Typography, AppBar, Chip, Button, ButtonBase } from '@mui/material';
 import { ArrowRight } from 'lucide-react';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -445,6 +445,14 @@ var typography = {
 var JIVICO_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
 
 // src/theme/overrides/glassRecipe.ts
+var glassRecipe = (isDark) => ({
+  backdropFilter: "blur(48px) saturate(200%) brightness(105%)",
+  WebkitBackdropFilter: "blur(48px) saturate(200%) brightness(105%)",
+  backgroundColor: isDark ? "rgba(20, 24, 32, 0.18)" : "rgba(255, 255, 255, 0.8)",
+  backgroundImage: isDark ? "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 100%)" : "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(248,250,252,0.4) 100%)",
+  border: isDark ? "1px solid rgba(255,255,255,0.14)" : "1px solid rgba(255,255,255,0.6)",
+  boxShadow: isDark ? "0 12px 36px rgba(0,0,0,0.45), inset 0 1px 1.5px rgba(255,255,255,0.18)" : "0 20px 50px rgba(15,23,42,0.08), 0 8px 20px rgba(15,23,42,0.06), 0 2px 6px rgba(15,23,42,0.04), inset 0 1.5px 1.5px rgba(255,255,255,0.95)"
+});
 var glassAppBarRecipe = (isDark) => ({
   backgroundColor: isDark ? "rgba(18, 20, 26, 0.65) !important" : "rgba(246, 245, 242, 0.60) !important",
   backgroundImage: isDark ? "linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%) !important" : "linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.05) 100%) !important",
@@ -459,7 +467,7 @@ var glassAppBarRecipe = (isDark) => ({
 });
 var liquidGlassPopupRecipe = (isDark) => ({
   borderRadius: "18px !important",
-  backgroundColor: isDark ? "rgba(18, 20, 26, 0.35) !important" : "rgba(255, 255, 255, 0.08) !important",
+  backgroundColor: isDark ? "rgba(18, 20, 26, 0.05) !important" : "rgba(255, 255, 255, 0.08) !important",
   backgroundImage: isDark ? "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%) !important" : "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%) !important",
   backdropFilter: "blur(30px) saturate(190%) !important",
   WebkitBackdropFilter: "blur(30px) saturate(190%) !important",
@@ -469,6 +477,22 @@ var liquidGlassPopupRecipe = (isDark) => ({
   overflow: "hidden !important",
   transition: "transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important",
   transformOrigin: "top center !important"
+});
+var LiquidDialogDrawerRecipe = (isDark) => ({
+  backgroundColor: isDark ? "rgba(20, 20, 24, 0.37)" : "rgba(255, 255, 255, 0.34)",
+  backdropFilter: "blur(30px) saturate(180%) brightness(110%)",
+  WebkitBackdropFilter: "blur(30px) saturate(180%) brightness(110%)",
+  backgroundImage: isDark ? "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%)" : "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(248, 250, 252, 0.4) 100%)",
+  border: isDark ? "1px solid rgba(255, 255, 255, 0.14)" : "1px solid rgba(255, 255, 255, 0.65)",
+  boxShadow: isDark ? `
+          0 -12px 40px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.12)
+        ` : `
+          0 -12px 40px rgba(0, 0, 0, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.7)
+        `,
+  backgroundClip: "padding-box",
+  overflow: "hidden"
 });
 
 // src/theme/overrides/inputs.ts
@@ -2113,12 +2137,34 @@ var getFeedbackOverrides = (palette, isDark) => ({
     },
     styleOverrides: {
       paper: {
-        backgroundColor: palette.glass.dialogBg,
-        backdropFilter: "saturate(180%) blur(24px)",
-        WebkitBackdropFilter: "saturate(180%) blur(24px)",
-        border: `1px solid ${palette.glass.paperBorder}`,
-        boxShadow: palette.glass.dialogShadow,
-        padding: "8px"
+        ...LiquidDialogDrawerRecipe(isDark)
+      }
+    }
+  },
+  MuiDialogTitle: {
+    styleOverrides: {
+      root: {
+        fontFamily: '"Google Sans Flex", "SF Pro Display", -apple-system, sans-serif',
+        fontWeight: 700,
+        fontSize: "1.25rem",
+        letterSpacing: "-0.02em",
+        padding: "16px 20px 8px"
+      }
+    }
+  },
+  MuiDialogContent: {
+    styleOverrides: {
+      root: {
+        padding: "12px 20px",
+        color: palette.text.secondary
+      }
+    }
+  },
+  MuiDialogActions: {
+    styleOverrides: {
+      root: {
+        padding: "12px 20px 16px",
+        gap: "10px"
       }
     }
   },
@@ -2394,26 +2440,7 @@ var getNavigationOverrides = (palette, isDark) => ({
   MuiDrawer: {
     styleOverrides: {
       paper: ({ ownerState }) => ({
-        backgroundColor: isDark ? "rgba(20, 20, 24, 0.58)" : "rgba(255, 255, 255, 0.58)",
-        backdropFilter: "blur(30px) saturate(180%) brightness(110%)",
-        WebkitBackdropFilter: "blur(30px) saturate(180%) brightness(110%)",
-        backgroundImage: `
-        linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.18),
-          rgba(255, 255, 255, 0.04)
-        )
-      `,
-        border: isDark ? "1px solid rgba(255, 255, 255, 0.14)" : "1px solid rgba(255, 255, 255, 0.65)",
-        boxShadow: isDark ? `
-          0 -12px 40px rgba(0, 0, 0, 0.35),
-          inset 0 1px 0 rgba(255, 255, 255, 0.12)
-        ` : `
-          0 -12px 40px rgba(0, 0, 0, 0.12),
-          inset 0 1px 0 rgba(255, 255, 255, 0.7)
-        `,
-        backgroundClip: "padding-box",
-        overflow: "hidden",
+        ...LiquidDialogDrawerRecipe(isDark),
         ...ownerState.anchor === "bottom" && {
           borderBottom: "none",
           borderLeft: "none",
@@ -2717,6 +2744,18 @@ var GlassPanel = styled(Box, {
     borderRadius: 24
   };
 });
+var GlassBox = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "isDark" && prop !== "radius"
+})(({ theme, isDark: explicitDark, radius = 20 }) => {
+  const isDark = explicitDark ?? theme.palette.mode === "dark";
+  const recipe = glassRecipe(isDark);
+  return {
+    ...recipe,
+    borderRadius: radius,
+    boxSizing: "border-box"
+  };
+});
+var GlassContainer = GlassBox;
 var PageRoot = styled(Box)(({ theme }) => ({
   width: "100%",
   minHeight: "100vh",
@@ -3546,6 +3585,214 @@ var TribeMemberPill = styled(Box, {
   };
 });
 var LiquidGlassCard = LiquidGlassCardRoot;
+var sizeConfig = {
+  sm: { minHeight: 42, px: 1.5, py: 0.4, fontSize: "0.8125rem", gap: 1.25 },
+  md: { minHeight: 52, px: 2, py: 0.6, fontSize: "0.875rem", gap: 1.5 },
+  lg: { minHeight: 62, px: 2.5, py: 0.8, fontSize: "0.9375rem", gap: 1.75 }
+};
+var getPlacementStyles = (placement = "none", offset) => {
+  if (placement === "none") {
+    return {
+      position: "relative",
+      display: "inline-flex"
+    };
+  }
+  const defaultY = 10;
+  const defaultX = 20;
+  const topOffset = offset?.y ?? defaultY;
+  const bottomOffset = offset?.y ?? defaultY;
+  const leftOffset = offset?.x ?? defaultX;
+  const rightOffset = offset?.x ?? defaultX;
+  const baseFixed = {
+    position: "fixed",
+    display: "inline-flex",
+    zIndex: 11e3,
+    willChange: "transform, opacity"
+  };
+  switch (placement) {
+    case "top-center":
+      return {
+        ...baseFixed,
+        top: topOffset,
+        left: "50%",
+        transform: "translateX(-50%)"
+      };
+    case "top-left":
+      return {
+        ...baseFixed,
+        top: topOffset,
+        left: leftOffset
+      };
+    case "top-right":
+      return {
+        ...baseFixed,
+        top: topOffset,
+        right: rightOffset
+      };
+    case "bottom-center":
+      return {
+        ...baseFixed,
+        bottom: bottomOffset,
+        left: "50%",
+        transform: "translateX(-50%)"
+      };
+    case "bottom-left":
+      return {
+        ...baseFixed,
+        bottom: bottomOffset,
+        left: leftOffset
+      };
+    case "bottom-right":
+      return {
+        ...baseFixed,
+        bottom: bottomOffset,
+        right: rightOffset
+      };
+    default:
+      return {
+        position: "relative",
+        display: "inline-flex"
+      };
+  }
+};
+var StyledIslandRoot = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "placement" && prop !== "size" && prop !== "offset" && prop !== "blur" && prop !== "isDark" && prop !== "interactive"
+})(({
+  theme,
+  placement = "none",
+  size = "md",
+  offset,
+  blur = 40,
+  isDark: explicitDark,
+  interactive
+}) => {
+  const isDark = explicitDark ?? theme.palette.mode === "dark";
+  const { minHeight, px, py, fontSize, gap } = sizeConfig[size];
+  const placementStyles = getPlacementStyles(placement, offset);
+  return {
+    ...placementStyles,
+    alignItems: "center",
+    boxSizing: "border-box",
+    borderRadius: 9999,
+    minHeight,
+    padding: theme.spacing(py, px),
+    gap: theme.spacing(gap),
+    fontSize,
+    fontFamily: theme.typography.fontFamily,
+    // Quiet Luxury Frosted Mist Glass (Authentic Cosmos / Dries Van Noten)
+    backdropFilter: `blur(${blur}px) saturate(140%)`,
+    WebkitBackdropFilter: `blur(${blur}px) saturate(140%)`,
+    backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.65)",
+    border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
+    boxShadow: isDark ? "0 8px 24px 0 rgba(0, 0, 0, 0.30)" : "0 8px 24px 0 rgba(0, 0, 0, 0.05)",
+    color: isDark ? "#FFFFFF" : "#111827",
+    transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+    ...interactive && {
+      cursor: "pointer",
+      "&:hover": {
+        transform: placement === "top-center" || placement === "bottom-center" ? "translateX(-50%) translateY(-1.5px)" : "translateY(-1.5px)",
+        backgroundColor: isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(255, 255, 255, 0.80)",
+        borderColor: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(0, 0, 0, 0.12)",
+        boxShadow: isDark ? "0 12px 32px 0 rgba(0, 0, 0, 0.40)" : "0 12px 32px 0 rgba(0, 0, 0, 0.08)"
+      }
+    }
+  };
+});
+var DynamicIsland = forwardRef(
+  ({
+    children,
+    placement = "none",
+    size = "md",
+    offset,
+    blur,
+    isDark,
+    interactive = false,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx(
+      StyledIslandRoot,
+      {
+        ref,
+        placement,
+        size,
+        offset,
+        blur,
+        isDark,
+        interactive,
+        ...props,
+        children
+      }
+    );
+  }
+);
+DynamicIsland.displayName = "DynamicIsland";
+var StyledPillButton = styled(ButtonBase, {
+  shouldForwardProp: (prop) => prop !== "isDark" && prop !== "active"
+})(({
+  theme,
+  isDark: explicitDark,
+  active
+}) => {
+  const isDark = explicitDark ?? theme.palette.mode === "dark";
+  return {
+    borderRadius: 9999,
+    height: 36,
+    padding: "0 14px",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: theme.spacing(0.85),
+    fontSize: "0.8125rem",
+    fontWeight: 600,
+    fontFamily: theme.typography.fontFamily,
+    lineHeight: 1,
+    color: isDark ? "#FFFFFF" : "#111827",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
+    boxSizing: "border-box",
+    backgroundColor: active ? isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.95)" : isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.75)",
+    border: `1px solid ${active ? isDark ? "rgba(255, 255, 255, 0.24)" : "rgba(0, 0, 0, 0.16)" : isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(0, 0, 0, 0.08)"}`,
+    boxShadow: isDark ? "none" : "0 1px 3px rgba(0, 0, 0, 0.04)",
+    transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+    "&:hover": {
+      backgroundColor: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.95)",
+      borderColor: isDark ? "rgba(255, 255, 255, 0.24)" : "rgba(0, 0, 0, 0.15)"
+    },
+    "&:active": {
+      transform: "scale(0.98)"
+    }
+  };
+});
+var DynamicIslandPill = forwardRef(({ children, startIcon, endIcon, isDark, active, ...props }, ref) => {
+  return /* @__PURE__ */ jsxs(StyledPillButton, { ref, isDark, active, ...props, children: [
+    startIcon && /* @__PURE__ */ jsx(
+      Box,
+      {
+        component: "span",
+        sx: {
+          display: "inline-flex",
+          alignItems: "center",
+          fontSize: "1rem"
+        },
+        children: startIcon
+      }
+    ),
+    children,
+    endIcon && /* @__PURE__ */ jsx(
+      Box,
+      {
+        component: "span",
+        sx: {
+          display: "inline-flex",
+          alignItems: "center",
+          fontSize: "0.9rem"
+        },
+        children: endIcon
+      }
+    )
+  ] });
+});
+DynamicIslandPill.displayName = "DynamicIslandPill";
 function InternalMuiWrapper({
   children,
   enableCssBaseline = true
@@ -3566,6 +3813,6 @@ function JivicoThemeProvider({
   return /* @__PURE__ */ jsx(ThemeModeProvider, { defaultMode, storageKey, children: /* @__PURE__ */ jsx(InternalMuiWrapper, { enableCssBaseline, children }) });
 }
 
-export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassCardBody, GlassControlsGroup, GlassEdgeFade, GlassIconGlow, GlassNavArrowButton, GlassPanel, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoThemeProvider, LiquidGlassCard, LiquidGlassCardRoot, LiquidSpotlightImageArea, MobileViewAll, MobileViewAllButton, PageRoot, Section, SectionContainer, SectionHeader, StatLabel, StatValue, SectionHeader as StudioSectionHeader, SupportedTypeChip, ThemeModeProvider, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };
+export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, DynamicIsland, DynamicIslandPill, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassBox, GlassCardBody, GlassContainer, GlassControlsGroup, GlassEdgeFade, GlassIconGlow, GlassNavArrowButton, GlassPanel, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoThemeProvider, LiquidGlassCard, LiquidGlassCardRoot, LiquidSpotlightImageArea, MobileViewAll, MobileViewAllButton, PageRoot, Section, SectionContainer, SectionHeader, StatLabel, StatValue, SectionHeader as StudioSectionHeader, SupportedTypeChip, ThemeModeProvider, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map
