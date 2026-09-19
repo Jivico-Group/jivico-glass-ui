@@ -45,6 +45,8 @@ function buildTheme(mode: "light" | "dark"): Theme {
       divider: palette.divider,
       action: palette.action,
       glass: palette.glass as any,
+      "glass-surface": palette["glass-surface"] as any,
+      glassSurface: palette.glassSurface as any,
     },
     typography,
     shape: {
