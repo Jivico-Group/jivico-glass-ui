@@ -22,24 +22,48 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
     glass: true;
+    "glass-surface": true;
+  }
+}
+
+declare module "@mui/material/Button/Button" {
+  interface ButtonPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
   }
 }
 
 declare module "@mui/material/ButtonGroup" {
   interface ButtonGroupPropsColorOverrides {
     glass: true;
+    "glass-surface": true;
   }
 }
 
 declare module "@mui/material/IconButton" {
   interface IconButtonPropsColorOverrides {
     glass: true;
+    "glass-surface": true;
   }
 }
 
 declare module "@mui/material/Chip" {
   interface ChipPropsColorOverrides {
     glass: true;
+    "glass-surface": true;
+  }
+  interface ChipPropsVariantOverrides {
+    tonal: true;
+  }
+  interface ChipPropsSizeOverrides {
+    large: true;
+  }
+}
+
+declare module "@mui/material/Chip/Chip" {
+  interface ChipPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
   }
   interface ChipPropsVariantOverrides {
     tonal: true;
@@ -76,42 +100,38 @@ declare module "@mui/material/Tab/Tab" {
   }
 }
 
-declare module "@mui/material" {
-  interface TabsOwnProps {
-    size?: "small" | "medium";
-  }
-  interface TabOwnProps {
-    size?: "small" | "medium";
-  }
-  interface TabsProps {
-    size?: "small" | "medium";
-  }
-  interface TabProps {
-    size?: "small" | "medium";
-  }
-}
-
 declare module "@mui/material/TextField" {
   interface TextFieldPropsColorOverrides {
     glass: true;
+    "glass-surface": true;
+  }
+}
+
+declare module "@mui/material/TextField/TextField" {
+  interface TextFieldPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
   }
 }
 
 declare module "@mui/material/InputBase" {
   interface InputBasePropsColorOverrides {
     glass: true;
+    "glass-surface": true;
   }
 }
 
 declare module "@mui/material/FormControl" {
   interface FormControlPropsColorOverrides {
     glass: true;
+    "glass-surface": true;
   }
 }
 
 declare module "@mui/material/FormLabel" {
   interface FormLabelPropsColorOverrides {
     glass: true;
+    "glass-surface": true;
   }
 }
 
@@ -162,6 +182,13 @@ declare module "@mui/material/Typography" {
   }
 }
 
+declare module "@mui/material/Typography/Typography" {
+  interface TypographyPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+}
+
 declare module "@mui/material/Box" {
   interface BoxPropsColorOverrides {
     glass: true;
@@ -172,5 +199,40 @@ declare module "@mui/material/Box" {
     error: true;
     info: true;
     warning: true;
+  }
+}
+
+declare module "@mui/material" {
+  interface ButtonPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+  interface ChipPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+  interface TextFieldPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+  interface TypographyPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+  interface BoxPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+    primary: true;
+    secondary: true;
+    success: true;
+    error: true;
+    info: true;
+    warning: true;
+  }
+  interface TabsOwnProps {
+    size?: "small" | "medium";
+  }
+  interface TabOwnProps {
+    size?: "small" | "medium";
   }
 }
