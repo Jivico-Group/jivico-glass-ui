@@ -110,10 +110,10 @@ export const COLORS = {
 
   // ─── Backgrounds ─────────────────────────────────────────────────────────────
   background: {
-    /** Light: warm off-white (brand Cream) for an editorial, premium feel */
-    light: '#F6F5F2',
+    /** Light: pure white background for crisp, clean pages */
+    light: '#FFFFFF',
     dark: '#0A0A0A',
-    /** Light paper surfaces are pure white for contrast against Cream bg */
+    /** Light paper surfaces are pure white for consistency */
     paperLight: '#FFFFFF',
     paperDark: '#141414',
   },
@@ -222,11 +222,11 @@ export const COLORS = {
     cardHoverShadowDark: '0 20px 48px 0 rgba(0, 0, 0, 0.72)',
     elevation1Light: '0 8px 24px rgba(0, 0, 0, 0.05)',
     elevation1Dark: '0 8px 24px rgba(0, 0, 0, 0.4)',
-    appBarBgLight: 'rgba(246, 245, 242, 0.82)',
+    appBarBgLight: 'rgba(255, 255, 255, 0.82)',
     appBarBgDark: 'rgba(10, 10, 10, 0.78)',
     accordionBgLight: 'rgba(255, 255, 255, 0.6)',
     accordionBgDark: 'rgba(18, 18, 18, 0.6)',
-    drawerBgLight: 'rgba(246, 245, 242, 0.97)',
+    drawerBgLight: 'rgba(255, 255, 255, 0.97)',
     drawerBgDark: 'rgba(10, 10, 10, 0.97)',
     menuItemHoverLight: 'rgba(17, 17, 17, 0.04)',
     menuItemHoverDark: 'rgba(255, 255, 255, 0.08)',

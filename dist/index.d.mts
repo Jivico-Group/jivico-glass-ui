@@ -110,10 +110,10 @@ declare const COLORS: {
         textDark: string;
     };
     background: {
-        /** Light: warm off-white (brand Cream) for an editorial, premium feel */
+        /** Light: pure white background for crisp, clean pages */
         light: string;
         dark: string;
-        /** Light paper surfaces are pure white for contrast against Cream bg */
+        /** Light paper surfaces are pure white for consistency */
         paperLight: string;
         paperDark: string;
     };
