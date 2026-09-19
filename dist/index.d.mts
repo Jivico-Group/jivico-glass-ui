@@ -4,7 +4,7 @@ import * as react from 'react';
 import react__default from 'react';
 import * as _mui_system from '@mui/system';
 import * as _mui_material from '@mui/material';
-import { BoxProps } from '@mui/material';
+import { BoxProps, ButtonBaseProps } from '@mui/material';
 import * as _mui_material_OverridableComponent from '@mui/material/OverridableComponent';
 
 /**
@@ -30,48 +30,84 @@ declare const COLORS: {
         dark: string;
         hoverLight: string;
         hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
         glowLight: string;
         glowDark: string;
+        textLight: string;
+        textDark: string;
     };
     secondary: {
         light: string;
         dark: string;
         hoverLight: string;
         hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
         glowLight: string;
         glowDark: string;
+        textLight: string;
+        textDark: string;
     };
     success: {
         light: string;
         dark: string;
         hoverLight: string;
         hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
         glowLight: string;
         glowDark: string;
+        textLight: string;
+        textDark: string;
     };
     warning: {
         light: string;
         dark: string;
         hoverLight: string;
         hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
         glowLight: string;
         glowDark: string;
+        textLight: string;
+        textDark: string;
     };
     error: {
         light: string;
         dark: string;
         hoverLight: string;
         hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
         glowLight: string;
         glowDark: string;
+        textLight: string;
+        textDark: string;
     };
     info: {
         light: string;
         dark: string;
         hoverLight: string;
         hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
         glowLight: string;
         glowDark: string;
+        textLight: string;
+        textDark: string;
     };
     background: {
         /** Light: warm off-white (brand Cream) for an editorial, premium feel */
@@ -101,6 +137,23 @@ declare const COLORS: {
     white: string;
     black: string;
     glass: {
+        /** Palette-compatible color tokens for custom color="glass" */
+        mainLight: string;
+        mainDark: string;
+        contrastTextLight: string;
+        contrastTextDark: string;
+        lightLight: string;
+        lightDark: string;
+        darkLight: string;
+        darkDark: string;
+        hoverLight: string;
+        hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
+        glowLight: string;
+        glowDark: string;
         buttonBorderLight: string;
         buttonBorderDark: string;
         buttonBgLight: string;
@@ -195,36 +248,48 @@ declare const buildPalette: (mode: "light" | "dark") => {
     primary: {
         main: string;
         hover: string;
+        active: string;
+        disabled: string;
         glow: string;
         contrastText: string;
     };
     secondary: {
         main: string;
         hover: string;
+        active: string;
+        disabled: string;
         glow: string;
         contrastText: string;
     };
     success: {
         main: string;
         hover: string;
+        active: string;
+        disabled: string;
         glow: string;
         contrastText: string;
     };
     warning: {
         main: string;
         hover: string;
+        active: string;
+        disabled: string;
         glow: string;
         contrastText: string;
     };
     error: {
         main: string;
         hover: string;
+        active: string;
+        disabled: string;
         glow: string;
         contrastText: string;
     };
     info: {
         main: string;
         hover: string;
+        active: string;
+        disabled: string;
         glow: string;
         contrastText: string;
     };
@@ -238,6 +303,14 @@ declare const buildPalette: (mode: "light" | "dark") => {
     };
     divider: string;
     glass: {
+        main: string;
+        contrastText: string;
+        light: string;
+        dark: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
         buttonBorder: string;
         buttonBg: string;
         buttonHoverBg: string;
@@ -384,6 +457,91 @@ declare module '@mui/material/styles' {
         gradients?: JivicoPalette['gradients'];
     }
 }
+declare module '@mui/material/Button' {
+    interface ButtonPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/ButtonGroup' {
+    interface ButtonGroupPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/IconButton' {
+    interface IconButtonPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/Chip' {
+    interface ChipPropsColorOverrides {
+        glass: true;
+    }
+    interface ChipPropsVariantOverrides {
+        tonal: true;
+    }
+    interface ChipPropsSizeOverrides {
+        large: true;
+    }
+}
+declare module '@mui/material/Tabs' {
+    interface TabsPropsIndicatorColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/TextField' {
+    interface TextFieldPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/InputBase' {
+    interface InputBasePropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/FormControl' {
+    interface FormControlPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/FormLabel' {
+    interface FormLabelPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/Switch' {
+    interface SwitchPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/Checkbox' {
+    interface CheckboxPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/Radio' {
+    interface RadioPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/Slider' {
+    interface SliderPropsColorOverrides {
+        glass: true;
+        success: true;
+        warning: true;
+        error: true;
+        info: true;
+    }
+}
+declare module '@mui/material/Badge' {
+    interface BadgePropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/Avatar' {
+    interface AvatarPropsVariantOverrides {
+        glass: true;
+    }
+}
 declare const GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
 /** Montserrat (subheadings/accent) + Space Grotesk (body fallback) — from brand kit */
 declare const JIVICO_BRAND_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
@@ -392,12 +550,19 @@ declare const getAppleTheme: (mode: "light" | "dark") => Theme;
 declare const getAntigravityTheme: (mode: "light" | "dark") => Theme;
 declare const createJivicoTheme: (mode: "light" | "dark") => Theme;
 
-/**
- * MUI component overrides — Selection Controls:
- * Checkbox, Radio, Switch, Slider, ToggleButton
- */
 declare const getControlOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
+declare module '@mui/material/Chip' {
+    interface ChipPropsColorOverrides {
+        glass: true;
+    }
+    interface ChipPropsVariantOverrides {
+        tonal: true;
+    }
+    interface ChipPropsSizeOverrides {
+        large: true;
+    }
+}
 /**
  * MUI component overrides — Data Display:
  * Chip, Avatar, Divider, Table, TableCell, Tooltip
@@ -434,6 +599,26 @@ interface GlassPanelProps extends BoxProps {
     isDark?: boolean;
 }
 declare const GlassPanel: _emotion_styled.StyledComponent<_mui_system.BoxOwnProps<_mui_material.Theme> & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof _mui_system.BoxOwnProps<_mui_material.Theme>> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & GlassPanelProps, {}, {}>;
+
+interface GlassBoxProps extends BoxProps {
+    /**
+     * Explicit dark mode override.
+     * If omitted, automatically resolves from MUI theme.palette.mode.
+     */
+    isDark?: boolean;
+    /**
+     * Corner border radius in px or CSS string.
+     * Default: 20
+     */
+    radius?: number | string;
+}
+/**
+ * GlassBox — Lightweight MUI Box component styled with the signature frosted glass recipe.
+ * Accepts all standard Box props, custom `sx`, arbitrary children, and responds to light/dark themes.
+ */
+declare const GlassBox: _emotion_styled.StyledComponent<_mui_system.BoxOwnProps<_mui_material.Theme> & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof _mui_system.BoxOwnProps<_mui_material.Theme>> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & GlassBoxProps, {}, {}>;
+declare const GlassContainer: _emotion_styled.StyledComponent<_mui_system.BoxOwnProps<_mui_material.Theme> & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof _mui_system.BoxOwnProps<_mui_material.Theme>> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & GlassBoxProps, {}, {}>;
+type GlassContainerProps = GlassBoxProps;
 
 declare const PageRoot: _emotion_styled.StyledComponent<_mui_system.BoxOwnProps<_mui_material.Theme> & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof _mui_system.BoxOwnProps<_mui_material.Theme>> & _mui_system.MUIStyledCommonProps<_mui_material.Theme>, {}, {}>;
 
@@ -550,16 +735,16 @@ declare const GradientContextTitle: _emotion_styled.StyledComponent<_mui_materia
 declare function JivicoFontPreload(): react__default.JSX.Element;
 declare const JivicoFontLinks: typeof JivicoFontPreload;
 
-declare const FreestyleBadge: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "clickable" | "avatar" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
+declare const FreestyleBadge: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "avatar" | "clickable" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
     isDark?: boolean;
 }, {}, {}>;
-declare const BannerChip: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "clickable" | "avatar" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
+declare const BannerChip: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "avatar" | "clickable" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
     isDark?: boolean;
 }, {}, {}>;
-declare const SupportedTypeChip: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "clickable" | "avatar" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
+declare const SupportedTypeChip: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "avatar" | "clickable" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
     isDark?: boolean;
 }, {}, {}>;
-declare const FilterChip: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "clickable" | "avatar" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
+declare const FilterChip: _emotion_styled.StyledComponent<_mui_material.ChipOwnProps & _mui_material.ChipSlotsAndSlotProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "disabled" | "nativeButton" | "sx" | "tabIndex" | "color" | "size" | "variant" | "label" | "icon" | "slotProps" | "slots" | "avatar" | "clickable" | "deleteIcon" | "onDelete" | "skipFocusWhenDisabled"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
     isSelected?: boolean;
 }, {}, {}>;
 
@@ -598,6 +783,70 @@ declare const TribeMemberPill: _emotion_styled.StyledComponent<_mui_system.BoxOw
 }, {}, {}>;
 declare const LiquidGlassCard: _emotion_styled.StyledComponent<_mui_system.BoxOwnProps<_mui_material.Theme> & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof _mui_system.BoxOwnProps<_mui_material.Theme>> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & LiquidGlassCardRootProps, {}, {}>;
 
+type DynamicIslandPlacement = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right" | "none";
+type DynamicIslandSize = "sm" | "md" | "lg";
+interface DynamicIslandOffset {
+    x?: number | string;
+    y?: number | string;
+}
+interface DynamicIslandProps extends BoxProps {
+    /**
+     * Floating viewport placement.
+     * If 'none' (default), renders as an inline-flex pill container.
+     * If set to a position (e.g. 'top-center'), pins the island using fixed positioning.
+     */
+    placement?: DynamicIslandPlacement;
+    /**
+     * Sizing scale for the island.
+     * 'sm' ~38px height, 'md' ~48px (standard Dries Van Noten scale), 'lg' ~58px height
+     * Default: 'md'
+     */
+    size?: DynamicIslandSize;
+    /**
+     * Custom offset distance from viewport edges when placement is active.
+     * Default: { x: 24, y: 20 }
+     */
+    offset?: DynamicIslandOffset;
+    /**
+     * Custom blur radius in px (default: 40px for ultra-frosted liquid diffusion)
+     */
+    blur?: number;
+    /**
+     * Explicit dark mode override. If omitted, automatically detects theme.palette.mode.
+     */
+    isDark?: boolean;
+    /**
+     * If true, applies subtle elevation and glint lift on hover.
+     */
+    interactive?: boolean;
+}
+/**
+ * DynamicIsland — Liquid Glass floating capsule island component inspired by Apple & Dries Van Noten Cosmos.
+ *
+ * Accepts arbitrary children and supports viewport edge placement ('top-center', 'bottom-center', etc.)
+ * or standard inline-flex flow ('none'). Automatically adapts to Light and Dark modes.
+ */
+declare const DynamicIsland: react__default.ForwardRefExoticComponent<Omit<DynamicIslandProps, "ref"> & react__default.RefAttributes<HTMLDivElement>>;
+interface DynamicIslandPillProps extends ButtonBaseProps {
+    /**
+     * Leading icon or avatar element
+     */
+    startIcon?: react__default.ReactNode;
+    /**
+     * Trailing icon or chevron element
+     */
+    endIcon?: react__default.ReactNode;
+    /**
+     * Explicit dark mode override
+     */
+    isDark?: boolean;
+    /**
+     * Active state (solid subtle highlight)
+     */
+    active?: boolean;
+}
+declare const DynamicIslandPill: react__default.ForwardRefExoticComponent<Omit<DynamicIslandPillProps, "ref"> & react__default.RefAttributes<HTMLButtonElement>>;
+
 type ThemeMode = 'light' | 'dark';
 interface ThemeContextType {
     mode: ThemeMode;
@@ -620,4 +869,4 @@ interface JivicoThemeProviderProps {
 }
 declare function JivicoThemeProvider({ children, defaultMode, storageKey, enableCssBaseline, }: JivicoThemeProviderProps): react__default.JSX.Element;
 
-export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassCardBody, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, type JivicoPalette, JivicoThemeProvider, type JivicoThemeProviderProps, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PageRoot, Section, SectionContainer, SectionHeader, type SectionHeaderProps, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, SupportedTypeChip, type ThemeContextType, type ThemeMode, ThemeModeProvider, type ThemeModeProviderProps, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };
+export { AmbientBlob, BannerChip, COLORS, CoverImage, DecorativeBlob, DynamicIsland, type DynamicIslandOffset, DynamicIslandPill, type DynamicIslandPillProps, type DynamicIslandPlacement, type DynamicIslandProps, type DynamicIslandSize, EdgeFade, FilterChip, FreestyleBadge, GOOGLE_SANS_FLEX_URL, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, type JivicoPalette, JivicoThemeProvider, type JivicoThemeProviderProps, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PageRoot, Section, SectionContainer, SectionHeader, type SectionHeaderProps, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, SupportedTypeChip, type ThemeContextType, type ThemeMode, ThemeModeProvider, type ThemeModeProviderProps, TribeMemberPill, buildPalette, createJivicoTheme, getAntigravityTheme, getAppleTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getHybridTheme, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useThemeMode };

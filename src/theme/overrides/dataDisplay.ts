@@ -1,5 +1,36 @@
+import React from 'react';
 import type { Components, Theme } from '@mui/material/styles';
 import type { JivicoPalette } from '../palette.js';
+
+declare module '@mui/material/Chip' {
+  interface ChipPropsColorOverrides {
+    glass: true;
+  }
+  interface ChipPropsVariantOverrides {
+    tonal: true;
+  }
+  interface ChipPropsSizeOverrides {
+    large: true;
+  }
+}
+
+// Clean minimalist close cross icon matching the brand kit
+const CloseDeleteIcon = (props: React.SVGProps<SVGSVGElement>) =>
+  React.createElement(
+    'svg',
+    {
+      viewBox: '0 0 24 24',
+      fill: 'none',
+      stroke: 'currentColor',
+      strokeWidth: 2.2,
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      ...props,
+      style: { width: '1em', height: '1em', ...props.style },
+    },
+    React.createElement('line', { x1: '18', y1: '6', x2: '6', y2: '18' }),
+    React.createElement('line', { x1: '6', y1: '6', x2: '18', y2: '18' })
+  );
 
 /**
  * MUI component overrides — Data Display:
@@ -9,259 +40,794 @@ export const getDataDisplayOverrides = (
   palette: JivicoPalette,
   isDark: boolean
 ): Components<Theme> => {
-  // ── Semantic colour maps ──────────────────────────────────────────
-  const semanticFilled: Record<string, { bg: string; border: string; text: string }> = {
-    primary: {
-      bg: isDark ? 'rgba(246,245,242,0.12)' : 'rgba(17,17,17,0.88)',
-      border: isDark ? 'rgba(246,245,242,0.2)' : 'rgba(17,17,17,0.9)',
-      text: isDark ? '#F6F5F2' : '#FFFFFF',
-    },
-    secondary: {
-      bg: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(17,17,17,0.08)',
-      border: isDark ? 'rgba(255,255,255,0.18)' : 'rgba(17,17,17,0.18)',
-      text: isDark ? '#FFFFFF' : '#111111',
-    },
-    success: {
-      bg: isDark ? 'rgba(129,201,149,0.18)' : 'rgba(52,168,83,0.1)',
-      border: isDark ? 'rgba(129,201,149,0.35)' : 'rgba(52,168,83,0.3)',
-      text: isDark ? '#81C995' : '#1E7E34',
-    },
-    warning: {
-      bg: isDark ? 'rgba(246,173,85,0.18)' : 'rgba(230,119,0,0.1)',
-      border: isDark ? 'rgba(246,173,85,0.35)' : 'rgba(230,119,0,0.3)',
-      text: isDark ? '#F6AD55' : '#9A5000',
-    },
-    error: {
-      bg: isDark ? 'rgba(242,139,130,0.18)' : 'rgba(234,67,53,0.1)',
-      border: isDark ? 'rgba(242,139,130,0.35)' : 'rgba(234,67,53,0.3)',
-      text: isDark ? '#F28B82' : '#C0392B',
-    },
-    info: {
-      bg: isDark ? 'rgba(138,180,248,0.18)' : 'rgba(66,133,244,0.1)',
-      border: isDark ? 'rgba(138,180,248,0.35)' : 'rgba(66,133,244,0.3)',
-      text: isDark ? '#8AB4F8' : '#1558B0',
-    },
-    default: {
-      bg: isDark ? 'rgba(255,255,255,0.07)' : 'rgba(17,17,17,0.05)',
-      border: isDark ? 'rgba(255,255,255,0.14)' : 'rgba(17,17,17,0.12)',
-      text: isDark ? palette.text.primary : palette.text.primary,
-    },
-  };
+  // ── Chip colour helpers ────────────────────────────────────────────
+  // Pull palette groups for dynamic chip colouring matching brand kit
+  const chipColor = (
+    colorKey: string,
+  ): { main: string; hover: string; active: string; disabled: string; glow: string; text: string } => {
+    const semanticColors: Record<string, { main: string; hover: string; active: string; disabled: string; glow: string; text: string }> = {
+      info: {
+        main: '#4285F4',
+        hover: isDark ? '#5A95F5' : '#3367D6',
+        active: isDark ? '#3367D6' : '#2A56C6',
+        disabled: isDark ? 'rgba(66, 133, 244, 0.3)' : 'rgba(66, 133, 244, 0.25)',
+        glow: 'rgba(66, 133, 244, 0.35)',
+        text: '#FFFFFF',
+      },
+      warning: {
+        main: '#E67700',
+        hover: isDark ? '#EE881E' : '#C96800',
+        active: isDark ? '#C96800' : '#A85700',
+        disabled: isDark ? 'rgba(230, 119, 0, 0.3)' : 'rgba(230, 119, 0, 0.25)',
+        glow: 'rgba(230, 119, 0, 0.35)',
+        text: '#FFFFFF',
+      },
+      error: {
+        main: '#EA4335',
+        hover: isDark ? '#ED594D' : '#C5221F',
+        active: isDark ? '#C5221F' : '#A51D1A',
+        disabled: isDark ? 'rgba(234, 67, 53, 0.3)' : 'rgba(234, 67, 53, 0.25)',
+        glow: 'rgba(234, 67, 53, 0.35)',
+        text: '#FFFFFF',
+      },
+      success: {
+        main: '#34A853',
+        hover: isDark ? '#45B463' : '#278A42',
+        active: isDark ? '#278A42' : '#1E7034',
+        disabled: isDark ? 'rgba(52, 168, 83, 0.3)' : 'rgba(52, 168, 83, 0.25)',
+        glow: 'rgba(52, 168, 83, 0.35)',
+        text: '#FFFFFF',
+      },
+    };
 
-  const semanticOutlined: Record<string, { border: string; text: string; hoverBg: string }> = {
-    primary: {
-      border: isDark ? 'rgba(246,245,242,0.55)' : 'rgba(17,17,17,0.7)',
-      text: isDark ? '#F6F5F2' : '#111111',
-      hoverBg: isDark ? 'rgba(246,245,242,0.08)' : 'rgba(17,17,17,0.06)',
-    },
-    secondary: {
-      border: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(17,17,17,0.25)',
-      text: isDark ? '#FFFFFF' : '#111111',
-      hoverBg: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(17,17,17,0.04)',
-    },
-    success: {
-      border: isDark ? 'rgba(129,201,149,0.5)' : 'rgba(52,168,83,0.5)',
-      text: isDark ? '#81C995' : '#1E7E34',
-      hoverBg: isDark ? 'rgba(129,201,149,0.1)' : 'rgba(52,168,83,0.07)',
-    },
-    warning: {
-      border: isDark ? 'rgba(246,173,85,0.5)' : 'rgba(230,119,0,0.5)',
-      text: isDark ? '#F6AD55' : '#9A5000',
-      hoverBg: isDark ? 'rgba(246,173,85,0.1)' : 'rgba(230,119,0,0.07)',
-    },
-    error: {
-      border: isDark ? 'rgba(242,139,130,0.5)' : 'rgba(234,67,53,0.5)',
-      text: isDark ? '#F28B82' : '#C0392B',
-      hoverBg: isDark ? 'rgba(242,139,130,0.1)' : 'rgba(234,67,53,0.07)',
-    },
-    info: {
-      border: isDark ? 'rgba(138,180,248,0.5)' : 'rgba(66,133,244,0.5)',
-      text: isDark ? '#8AB4F8' : '#1558B0',
-      hoverBg: isDark ? 'rgba(138,180,248,0.1)' : 'rgba(66,133,244,0.07)',
-    },
-    default: {
-      border: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(17,17,17,0.25)',
-      text: isDark ? palette.text.primary : palette.text.primary,
-      hoverBg: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(17,17,17,0.04)',
-    },
+    if (semanticColors[colorKey]) {
+      return semanticColors[colorKey];
+    }
+
+    if (colorKey === 'glass') {
+      return {
+        main: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(255, 255, 255, 0.68)',
+        hover: isDark ? 'rgba(255, 255, 255, 0.18)' : 'rgba(255, 255, 255, 0.88)',
+        active: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.75)',
+        disabled: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(255, 255, 255, 0.3)',
+        glow: isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.08)',
+        text: isDark ? '#F6F5F2' : '#111111',
+      };
+    }
+
+    const group = (palette as Record<string, any>)[colorKey] || palette.primary;
+    return {
+      main: group.main,
+      hover: group.hover,
+      active: group.active,
+      disabled: group.disabled,
+      glow: group.glow,
+      text: group.contrastText || '#FFFFFF',
+    };
   };
 
   return {
     MuiChip: {
+      defaultProps: {
+        deleteIcon: React.createElement(CloseDeleteIcon),
+      },
+      variants: [
+        {
+          props: { size: 'large' },
+          style: {
+            height: 32,
+            fontSize: '0.82rem',
+            padding: '0 12px',
+            '&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before': {
+              width: 10,
+              height: 10,
+              borderWidth: '2px',
+              marginRight: '7px',
+            },
+            '& .MuiChip-avatar': {
+              width: 24,
+              height: 24,
+              marginLeft: '-3px',
+              marginRight: '6px',
+              fontSize: '0.7rem',
+            },
+            '& .MuiChip-icon': {
+              fontSize: '18px',
+              marginLeft: '-2px',
+              marginRight: '6px',
+            },
+            '& .MuiChip-deleteIcon': {
+              fontSize: '17px',
+              marginLeft: '6px',
+              marginRight: '-1px',
+            },
+          },
+        },
+      ],
       styleOverrides: {
         root: ({ ownerState }) => {
           const color = ownerState.color ?? 'default';
-          const variant = ownerState.variant ?? 'filled';
+          const variant = (ownerState.variant as string) ?? 'filled';
+          const isGlass = (color as string) === 'glass';
+          const isPrimary = color === 'primary';
+          const isSecondary = color === 'secondary';
+          const isSemantic = !isPrimary && !isSecondary && !isGlass && color !== 'default';
+          const cc = chipColor(color === 'default' ? 'primary' : color);
 
-          const filled = semanticFilled[color] ?? semanticFilled.default;
-          const outlined = semanticOutlined[color] ?? semanticOutlined.default;
+          return {
+            // ── Base ──────────────────────────────────────────────────────
+            display: 'inline-flex',
+            alignItems: 'center',
+            borderRadius: 9999,
+            height: 28,                    // Medium (default) — brand kit 28px
+            fontWeight: 500,
+            fontFamily: '"Montserrat", "Google Sans Flex", -apple-system, sans-serif',
+            fontSize: '0.76rem',
+            letterSpacing: '0.02em',
+            lineHeight: 1,
+            padding: '0 11px',
+            cursor: 'default',
+            transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+            userSelect: 'none',
 
-        return {
-          // ── Base ──────────────────────────────────────────────────────
-          display: 'inline-flex',
-          alignItems: 'center',
-          borderRadius: 9999,
-          height: 'auto',
-          fontWeight: 500,
-          fontFamily: '"Montserrat", "Google Sans Flex", -apple-system, sans-serif',
-          fontSize: '0.76rem',
-          letterSpacing: '0.02em',
-          lineHeight: 1,
-          padding: '5px 12px',
-          cursor: 'default',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-          userSelect: 'none',
-
-          '& .MuiChip-label': {
-            color: 'inherit',
-            padding: 0,
-          },
-
-          // Delete icon
-          '& .MuiChip-deleteIcon': {
-            fontSize: '16px',
-            marginLeft: '6px',
-            marginRight: '-2px',
-            opacity: 0.55,
-            transition: 'opacity 0.15s ease, transform 0.15s ease',
-            '&:hover': {
-              opacity: 1,
-              transform: 'scale(1.15)',
+            '& .MuiChip-label': {
               color: 'inherit',
+              display: 'inline-flex',
+              alignItems: 'center',
+              padding: 0,
             },
-          },
 
-          // Avatar inside chip
+            // ── Brand Kit Signature Circle Indicator Before Label ────────
+            // Displayed on all chips unless a custom icon or avatar is provided
+            '&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before': {
+              content: '""',
+              display: 'inline-block',
+              width: 8.5,
+              height: 8.5,
+              borderRadius: '50%',
+              border: '1.75px solid currentColor',
+              boxSizing: 'border-box',
+              marginRight: '6px',
+              flexShrink: 0,
+              opacity: 0.9,
+            },
+
+            // Delete icon
+            '& .MuiChip-deleteIcon': {
+              fontSize: '15px',
+              marginLeft: '5px',
+              marginRight: '-2px',
+              opacity: 0.75,
+              transition: 'opacity 0.15s ease, transform 0.15s ease',
+              color: 'inherit',
+              cursor: 'pointer',
+              '&:hover': {
+                opacity: 1,
+                transform: 'scale(1.15)',
+                color: 'inherit',
+              },
+            },
+
+            // Avatar inside chip
+            '& .MuiChip-avatar': {
+              width: 20,
+              height: 20,
+              marginLeft: '-3px',
+              marginRight: '6px',
+              fontSize: '0.65rem',
+              fontWeight: 700,
+            },
+
+            // Icon inside chip
+            '& .MuiChip-icon': {
+              fontSize: '16px',
+              marginLeft: '-2px',
+              marginRight: '6px',
+              color: 'inherit',
+              opacity: 0.85,
+            },
+
+            // ══════════════════════════════════════════════════════════════
+            // FILLED VARIANT
+            // ══════════════════════════════════════════════════════════════
+
+            // ── Primary Filled — Solid Charcoal (Light) / Cream (Dark) ────
+            ...(variant === 'filled' && isPrimary && {
+              backgroundColor: isDark ? '#F6F5F2' : '#111111',
+              color: isDark ? '#111111' : '#FFFFFF',
+              border: '1px solid transparent',
+              boxShadow: isDark
+                ? '0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08)'
+                : '0 2px 6px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.15)',
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: isDark ? '#E8E7E4' : '#2A2A2A',
+                transform: 'translateY(-1px)',
+                boxShadow: isDark
+                  ? '0 6px 16px rgba(0,0,0,0.4)'
+                  : '0 6px 14px rgba(0,0,0,0.12)',
+              },
+              '&.MuiChip-clickable:active': {
+                backgroundColor: isDark ? '#D9D8D4' : '#1A1A1A',
+                transform: 'translateY(0) scale(0.98)',
+              },
+              '&.Mui-disabled': {
+                backgroundColor: isDark ? 'rgba(255,255,255,0.12)' : '#EBEBEB',
+                color: isDark ? 'rgba(255,255,255,0.3)' : '#A0A0A0',
+                boxShadow: 'none',
+                opacity: 1,
+              },
+            }),
+
+            // ── Secondary Filled — Cream (Light) / Dark Stone (Dark) ──────
+            ...(variant === 'filled' && isSecondary && {
+              backgroundColor: isDark
+                ? 'rgba(255,255,255,0.1)'
+                : '#F6F5F2',
+              color: isDark ? '#F6F5F2' : '#111111',
+              border: `1px solid ${isDark ? 'rgba(255,255,255,0.14)' : 'rgba(17,17,17,0.12)'}`,
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              boxShadow: isDark
+                ? '0 2px 8px rgba(0,0,0,0.25)'
+                : '0 2px 6px rgba(0,0,0,0.04)',
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: isDark
+                  ? 'rgba(255,255,255,0.16)'
+                  : '#EDECE8',
+                transform: 'translateY(-1px)',
+              },
+              '&.MuiChip-clickable:active': {
+                backgroundColor: isDark
+                  ? 'rgba(255,255,255,0.22)'
+                  : '#D9D9CF',
+                transform: 'translateY(0) scale(0.98)',
+              },
+              '&.Mui-disabled': {
+                backgroundColor: isDark
+                  ? 'rgba(255,255,255,0.05)'
+                  : 'rgba(246,245,242,0.6)',
+                color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(17,17,17,0.3)',
+                boxShadow: 'none',
+                opacity: 1,
+              },
+            }),
+
+            // ── Glass Filled — Pure Frosted Glass Chip ────────────────────
+            ...(variant === 'filled' && isGlass && {
+              backgroundColor: isDark
+                ? 'rgba(255, 255, 255, 0.12)'
+                : 'rgba(255, 255, 255, 0.68)',
+              color: isDark ? '#F6F5F2' : '#111111',
+              border: `1px solid ${
+                isDark ? 'rgba(255, 255, 255, 0.18)' : 'rgba(255, 255, 255, 0.85)'
+              }`,
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              boxShadow: isDark
+                ? '0 4px 16px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.2)'
+                : '0 3px 12px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.9)',
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.18)'
+                  : 'rgba(255, 255, 255, 0.88)',
+                transform: 'translateY(-1px)',
+                boxShadow: isDark
+                  ? '0 8px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.3)'
+                  : '0 6px 18px rgba(0,0,0,0.08), inset 0 1px 0 #FFFFFF',
+              },
+              '&.MuiChip-clickable:active': {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.1)'
+                  : 'rgba(255, 255, 255, 0.75)',
+                transform: 'translateY(0) scale(0.98)',
+              },
+              '&.Mui-disabled': {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.04)'
+                  : 'rgba(255, 255, 255, 0.3)',
+                color: isDark ? 'rgba(255,255,255,0.28)' : 'rgba(0,0,0,0.28)',
+                border: `1px solid ${
+                  isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(255, 255, 255, 0.4)'
+                }`,
+                boxShadow: 'none',
+                backdropFilter: 'none',
+                WebkitBackdropFilter: 'none',
+                opacity: 1,
+              },
+            }),
+
+            // ── Semantic Filled (Info, Warning, Error, Success) ──────────
+            ...(variant === 'filled' && isSemantic && {
+              backgroundColor: cc.main,
+              color: cc.text,
+              border: '1px solid transparent',
+              boxShadow: isDark
+                ? `0 2px 8px rgba(0,0,0,0.3)`
+                : `0 2px 6px ${cc.glow}`,
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: cc.hover,
+                transform: 'translateY(-1px)',
+                boxShadow: isDark
+                  ? `0 6px 16px rgba(0,0,0,0.4)`
+                  : `0 6px 14px ${cc.glow}`,
+              },
+              '&.MuiChip-clickable:active': {
+                backgroundColor: cc.active,
+                transform: 'translateY(0) scale(0.98)',
+              },
+              '&.Mui-disabled': {
+                backgroundColor: cc.disabled,
+                color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.5)',
+                boxShadow: 'none',
+                opacity: 1,
+              },
+            }),
+
+            // ── Default Filled — Neutral Glass ───────────────────────────
+            ...(variant === 'filled' && color === 'default' && {
+              backgroundColor: isDark ? 'rgba(255,255,255,0.07)' : 'rgba(17,17,17,0.05)',
+              border: `1px solid ${isDark ? 'rgba(255,255,255,0.14)' : 'rgba(17,17,17,0.12)'}`,
+              color: palette.text.primary,
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              boxShadow: isDark
+                ? '0 2px 8px rgba(0,0,0,0.2)'
+                : '0 2px 6px rgba(0,0,0,0.04)',
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(17,17,17,0.08)',
+                transform: 'translateY(-1px)',
+              },
+              '&.MuiChip-clickable:active': {
+                backgroundColor: isDark ? 'rgba(255,255,255,0.16)' : 'rgba(17,17,17,0.12)',
+                transform: 'translateY(0) scale(0.98)',
+              },
+              '&.Mui-disabled': {
+                backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(17,17,17,0.03)',
+                color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(17,17,17,0.3)',
+                boxShadow: 'none',
+                opacity: 1,
+              },
+            }),
+
+            // ══════════════════════════════════════════════════════════════
+            // OUTLINED VARIANT
+            // ══════════════════════════════════════════════════════════════
+
+            // ── Primary Outlined ─────────────────────────────────────────
+            ...(variant === 'outlined' && isPrimary && {
+              backgroundColor: 'transparent',
+              border: `1.5px solid ${isDark ? '#F6F5F2' : '#111111'}`,
+              color: isDark ? '#F6F5F2' : '#111111',
+              boxShadow: 'none',
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: isDark ? 'rgba(246,245,242,0.08)' : 'rgba(17,17,17,0.06)',
+                transform: 'translateY(-1px)',
+                boxShadow: isDark
+                  ? '0 4px 12px rgba(0,0,0,0.25)'
+                  : '0 4px 10px rgba(0,0,0,0.07)',
+              },
+              '&.Mui-disabled': {
+                borderColor: isDark ? 'rgba(246,245,242,0.2)' : 'rgba(17,17,17,0.2)',
+                color: isDark ? 'rgba(246,245,242,0.3)' : 'rgba(17,17,17,0.3)',
+                opacity: 1,
+              },
+            }),
+
+            // ── Secondary Outlined ───────────────────────────────────────
+            ...(variant === 'outlined' && isSecondary && {
+              backgroundColor: 'transparent',
+              border: `1.5px solid ${isDark ? 'rgba(255,255,255,0.25)' : 'rgba(17,17,17,0.2)'}`,
+              color: isDark ? '#F6F5F2' : '#111111',
+              boxShadow: 'none',
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(17,17,17,0.04)',
+                transform: 'translateY(-1px)',
+              },
+              '&.Mui-disabled': {
+                borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(17,17,17,0.1)',
+                color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(17,17,17,0.3)',
+                opacity: 1,
+              },
+            }),
+
+            // ── Glass Outlined — Airy Translucent Border Chip ─────────────
+            ...(variant === 'outlined' && isGlass && {
+              backgroundColor: isDark
+                ? 'rgba(255, 255, 255, 0.04)'
+                : 'rgba(255, 255, 255, 0.28)',
+              border: `1.5px solid ${
+                isDark ? 'rgba(255, 255, 255, 0.22)' : 'rgba(17, 17, 17, 0.16)'
+              }`,
+              color: isDark ? '#F6F5F2' : '#111111',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              boxShadow: isDark
+                ? '0 2px 10px rgba(0,0,0,0.25)'
+                : '0 2px 8px rgba(0,0,0,0.03)',
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.09)'
+                  : 'rgba(255, 255, 255, 0.55)',
+                borderColor: isDark
+                  ? 'rgba(255, 255, 255, 0.35)'
+                  : 'rgba(17, 17, 17, 0.3)',
+                transform: 'translateY(-1px)',
+                boxShadow: isDark
+                  ? '0 6px 18px rgba(0,0,0,0.35)'
+                  : '0 4px 14px rgba(0,0,0,0.06)',
+              },
+              '&.MuiChip-clickable:active': {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.06)'
+                  : 'rgba(255, 255, 255, 0.4)',
+                transform: 'translateY(0) scale(0.98)',
+              },
+              '&.Mui-disabled': {
+                borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(17,17,17,0.08)',
+                color: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(17,17,17,0.25)',
+                backgroundColor: 'transparent',
+                opacity: 1,
+              },
+            }),
+
+            // ── Semantic Outlined (Info, Warning, Error, Success) ────────
+            ...(variant === 'outlined' && isSemantic && {
+              backgroundColor: 'transparent',
+              border: `1.5px solid ${cc.main}`,
+              color: cc.main,
+              boxShadow: 'none',
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: isDark
+                  ? `rgba(${color === 'info' ? '66,133,244' : color === 'warning' ? '230,119,0' : color === 'error' ? '234,67,53' : '52,168,83'},0.12)`
+                  : `rgba(${color === 'info' ? '66,133,244' : color === 'warning' ? '230,119,0' : color === 'error' ? '234,67,53' : '52,168,83'},0.07)`,
+                transform: 'translateY(-1px)',
+                boxShadow: isDark
+                  ? '0 4px 12px rgba(0,0,0,0.25)'
+                  : '0 4px 10px rgba(0,0,0,0.07)',
+              },
+              '&.Mui-disabled': {
+                borderColor: cc.disabled,
+                color: cc.disabled,
+                opacity: 1,
+              },
+            }),
+
+            // ── Default Outlined ─────────────────────────────────────────
+            ...(variant === 'outlined' && color === 'default' && {
+              backgroundColor: 'transparent',
+              border: `1.5px solid ${isDark ? 'rgba(255,255,255,0.25)' : 'rgba(17,17,17,0.25)'}`,
+              color: palette.text.primary,
+              boxShadow: 'none',
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(17,17,17,0.04)',
+                transform: 'translateY(-1px)',
+              },
+              '&.Mui-disabled': {
+                borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(17,17,17,0.1)',
+                color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(17,17,17,0.3)',
+                opacity: 1,
+              },
+            }),
+
+            // ══════════════════════════════════════════════════════════════
+            // TONAL VARIANT (Soft background chip from Brand Kit)
+            // ══════════════════════════════════════════════════════════════
+            ...(variant === 'tonal' && {
+              backgroundColor: isGlass
+                ? (isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.45)')
+                : isPrimary
+                ? (isDark ? 'rgba(246, 245, 242, 0.12)' : 'rgba(17, 17, 17, 0.07)')
+                : isSecondary
+                ? (isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(17, 17, 17, 0.05)')
+                : isSemantic
+                ? (isDark
+                    ? `rgba(${color === 'info' ? '66,133,244' : color === 'warning' ? '230,119,0' : color === 'error' ? '234,67,53' : '52,168,83'}, 0.2)`
+                    : `rgba(${color === 'info' ? '66,133,244' : color === 'warning' ? '230,119,0' : color === 'error' ? '234,67,53' : '52,168,83'}, 0.1)`)
+                : (isDark ? 'rgba(255, 255, 255, 0.07)' : 'rgba(17, 17, 17, 0.05)'),
+              color: isGlass || isPrimary || isSecondary
+                ? (isDark ? '#F6F5F2' : '#111111')
+                : isSemantic
+                ? cc.main
+                : palette.text.primary,
+              border: `1px solid ${
+                isGlass
+                  ? (isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(255, 255, 255, 0.6)')
+                  : isDark
+                  ? (isSemantic ? `rgba(${color === 'info' ? '66,133,244' : color === 'warning' ? '230,119,0' : color === 'error' ? '234,67,53' : '52,168,83'}, 0.25)` : 'rgba(255,255,255,0.08)')
+                  : (isSemantic ? `rgba(${color === 'info' ? '66,133,244' : color === 'warning' ? '230,119,0' : color === 'error' ? '234,67,53' : '52,168,83'}, 0.15)` : 'rgba(17,17,17,0.08)')
+              }`,
+              ...(isGlass && {
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+              }),
+              boxShadow: 'none',
+
+              '&.MuiChip-clickable:hover': {
+                backgroundColor: isGlass
+                  ? (isDark ? 'rgba(255, 255, 255, 0.14)' : 'rgba(255, 255, 255, 0.7)')
+                  : isPrimary
+                  ? (isDark ? 'rgba(246, 245, 242, 0.18)' : 'rgba(17, 17, 17, 0.12)')
+                  : isSecondary
+                  ? (isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(17, 17, 17, 0.09)')
+                  : isSemantic
+                  ? (isDark
+                      ? `rgba(${color === 'info' ? '66,133,244' : color === 'warning' ? '230,119,0' : color === 'error' ? '234,67,53' : '52,168,83'}, 0.28)`
+                      : `rgba(${color === 'info' ? '66,133,244' : color === 'warning' ? '230,119,0' : color === 'error' ? '234,67,53' : '52,168,83'}, 0.16)`)
+                  : (isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(17, 17, 17, 0.08)'),
+                transform: 'translateY(-1px)',
+              },
+              '&.MuiChip-clickable:active': {
+                transform: 'translateY(0) scale(0.98)',
+              },
+              '&.Mui-disabled': {
+                opacity: 0.45,
+              },
+            }),
+
+            // ── Size: Large (Brand Kit: 32px) ───────────────────────────
+            ...((ownerState.size as string) === 'large' && {
+              height: 32,
+              fontSize: '0.82rem',
+              padding: '0 12px',
+              '&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before': {
+                width: 10,
+                height: 10,
+                borderWidth: '2px',
+                marginRight: '7px',
+              },
+              '& .MuiChip-avatar': {
+                width: 24,
+                height: 24,
+                marginLeft: '-3px',
+                marginRight: '6px',
+                fontSize: '0.7rem',
+              },
+              '& .MuiChip-icon': {
+                fontSize: '18px',
+                marginLeft: '-2px',
+                marginRight: '6px',
+              },
+              '& .MuiChip-deleteIcon': {
+                fontSize: '17px',
+                marginLeft: '6px',
+                marginRight: '-1px',
+              },
+            }),
+          };
+        },
+
+        // ── Size variants — Brand Kit: Small 24px, Medium 28px, Large 32px ──
+        sizeSmall: {
+          height: 24,
+          fontSize: '0.68rem',
+          padding: '0 8px',
+          '&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before': {
+            width: 7,
+            height: 7,
+            borderWidth: '1.5px',
+            marginRight: '5px',
+          },
           '& .MuiChip-avatar': {
-            width: 20,
-            height: 20,
-            marginLeft: '-4px',
-            marginRight: '6px',
-            fontSize: '0.65rem',
-            fontWeight: 700,
+            width: 16,
+            height: 16,
+            marginLeft: '-3px',
+            marginRight: '4px',
+            fontSize: '0.55rem',
           },
+          '& .MuiChip-icon': {
+            fontSize: '14px',
+            marginLeft: '-1px',
+            marginRight: '4px',
+          },
+          '& .MuiChip-deleteIcon': {
+            fontSize: '14px',
+            marginLeft: '4px',
+            marginRight: '-1px',
+          },
+        },
 
-          // ── Filled variant ────────────────────────────────────────────
-          ...(variant === 'filled' && {
-            backgroundColor: filled.bg,
-            border: `1px solid ${filled.border}`,
-            color: filled.text,
+        sizeMedium: {
+          height: 28,
+          fontSize: '0.76rem',
+          padding: '0 11px',
+          '&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before': {
+            width: 8.5,
+            height: 8.5,
+            borderWidth: '1.75px',
+            marginRight: '6px',
+          },
+        },
+      },
+    },
+
+    MuiAvatar: {
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          const isGlass = (ownerState as any).variant === "glass";
+          const isRounded = ownerState.variant === "rounded";
+
+          return {
+            fontFamily: '"Google Sans Flex", "SF Pro Display", -apple-system, sans-serif',
+            fontWeight: 700,
+            fontSize: "0.9375rem",
+            letterSpacing: "-0.01em",
+            border: `1.5px solid ${
+              isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.85)"
+            }`,
+            backgroundColor: isDark
+              ? "rgba(255, 255, 255, 0.12)"
+              : "rgba(255, 255, 255, 0.65)",
+            color: isDark ? "#F6F5F2" : "#111111",
+            backdropFilter: "blur(16px) saturate(180%)",
+            WebkitBackdropFilter: "blur(16px) saturate(180%)",
             boxShadow: isDark
-              ? '0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08)'
-              : '0 2px 6px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.7)',
-
-            '&.MuiChip-clickable:hover': {
-              transform: 'translateY(-1px)',
-              boxShadow: isDark
-                ? '0 6px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)'
-                : '0 6px 14px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.9)',
-              filter: 'brightness(1.08)',
+              ? "0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.18)"
+              : "0 4px 16px rgba(17, 17, 17, 0.06), inset 0 1px 1.5px rgba(255, 255, 255, 0.95)",
+            transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+            ...(isRounded && {
+              borderRadius: "28%", // Apple continuous curve squircle
+            }),
+            ...(isGlass && {
+              backgroundColor: isDark
+                ? "rgba(255, 255, 255, 0.08) !important"
+                : "rgba(255, 255, 255, 0.45) !important",
+              backdropFilter: "blur(20px) saturate(190%) !important",
+              WebkitBackdropFilter: "blur(20px) saturate(190%) !important",
+              border: `1.5px solid ${
+                isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.95)"
+              } !important`,
+            }),
+            "& .MuiAvatar-img": {
+              borderRadius: "inherit",
             },
-          }),
-
-          // ── Outlined variant ──────────────────────────────────────────
-          ...(variant === 'outlined' && {
-            backgroundColor: 'transparent',
-            border: `1.5px solid ${outlined.border}`,
-            color: outlined.text,
-            boxShadow: 'none',
-
-            '&.MuiChip-clickable:hover': {
-              backgroundColor: outlined.hoverBg,
-              transform: 'translateY(-1px)',
-              boxShadow: isDark
-                ? '0 4px 12px rgba(0,0,0,0.25)'
-                : '0 4px 10px rgba(0,0,0,0.07)',
-            },
-          }),
-        };
-      },
-
-      // ── Size variants ──────────────────────────────────────────────────
-      sizeSmall: {
-        fontSize: '0.68rem',
-        padding: '3px 9px',
-        '& .MuiChip-avatar': {
-          width: 16,
-          height: 16,
-          marginLeft: '-3px',
-          marginRight: '4px',
-          fontSize: '0.55rem',
-        },
-        '& .MuiChip-deleteIcon': {
-          fontSize: '14px',
-          marginLeft: '4px',
+          };
         },
       },
+    },
 
-      sizeMedium: {
-        fontSize: '0.76rem',
-        padding: '5px 12px',
+    MuiAvatarGroup: {
+      styleOverrides: {
+        root: {
+          "& .MuiAvatar-root": {
+            border: `2px solid ${
+              isDark ? "rgba(20, 24, 32, 0.85)" : "rgba(255, 255, 255, 0.95)"
+            }`,
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            boxShadow: isDark
+              ? "0 2px 8px rgba(0, 0, 0, 0.4)"
+              : "0 2px 8px rgba(0, 0, 0, 0.06)",
+            marginLeft: -8,
+            "&:first-of-type": {
+              marginLeft: 0,
+            },
+          },
+          "& .MuiAvatar-root:last-child": {
+            backgroundColor: isDark
+              ? "rgba(255, 255, 255, 0.12)"
+              : "rgba(17, 17, 17, 0.08)",
+            color: palette.text.primary,
+            fontWeight: 700,
+            fontSize: "0.82rem",
+          },
+        },
       },
     },
-  },
 
-  MuiAvatar: {
-    styleOverrides: {
-      root: {
-        borderRadius: '50%',
-        border: `1.5px solid ${palette.glass.avatarBorder}`,
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          borderColor: palette.divider,
+        },
       },
     },
-  },
-  MuiDivider: {
-    styleOverrides: {
-      root: {
-        borderColor: palette.divider,
+    MuiTable: {
+      styleOverrides: {
+        root: {
+          borderRadius: 18,
+          overflow: "hidden",
+        },
       },
     },
-  },
-  MuiTable: {
-    styleOverrides: {
-      root: {
-        borderRadius: 18,
-        overflow: 'hidden',
-      },
-    },
-  },
-  MuiTableCell: {
-    styleOverrides: {
-      root: {
-        borderBottom: `1px solid ${palette.glass.tableBorder}`,
-        padding: '14px 20px',
-        color: palette.text.primary,
-      },
-      head: {
-        fontWeight: 600,
-        color: palette.text.secondary,
-        backgroundColor: palette.glass.tableHeadBg,
-        textTransform: 'uppercase',
-        fontSize: '0.75rem',
-        letterSpacing: '0.04em',
-      },
-    },
-  },
-  MuiBadge: {
-    styleOverrides: {
-      badge: ({ ownerState }) => {
-        // Exclude standard styles if variant is dot, since dot is super small, 
-        // but we can still style its bg and border.
-        const color = ownerState.color && ownerState.color !== "default" ? ownerState.color : "default";
-        const filled = semanticFilled[color] ?? semanticFilled.default;
-
-        return {
-          backgroundColor: filled.bg,
-          color: filled.text,
-          border: `1px solid ${filled.border}`,
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-          boxShadow: palette.glass.paperShadow,
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          borderBottom: `1px solid ${palette.glass.tableBorder}`,
+          padding: "14px 20px",
+          color: palette.text.primary,
+        },
+        head: {
           fontWeight: 600,
-        };
+          color: palette.text.secondary,
+          backgroundColor: palette.glass.tableHeadBg,
+          textTransform: "uppercase",
+          fontSize: "0.75rem",
+          letterSpacing: "0.04em",
+        },
       },
     },
-  },
+    MuiBadge: {
+      styleOverrides: {
+        badge: ({ ownerState }) => {
+          const color = (ownerState.color as string) || "primary";
+          const isGlass = color === "glass";
+          const isDot = ownerState.variant === "dot";
+          const colorGroup =
+            (palette as Record<string, any>)[color] || palette.primary;
+
+          if (isDot) {
+            const dotColor = isGlass
+              ? isDark
+                ? "#F6F5F2"
+                : "#111111"
+              : colorGroup.main;
+
+            return {
+              height: 10,
+              width: 10,
+              minWidth: 10,
+              borderRadius: "50%",
+              backgroundColor: dotColor,
+              border: `2px solid ${isDark ? "#12141A" : "#FFFFFF"}`,
+              boxShadow: isGlass
+                ? isDark
+                  ? "0 0 8px rgba(255, 255, 255, 0.5)"
+                  : "0 0 6px rgba(0, 0, 0, 0.3)"
+                : `0 0 8px ${colorGroup.glow || colorGroup.main}`,
+            };
+          }
+
+          if (isGlass) {
+            return {
+              backgroundColor: isDark
+                ? "rgba(255, 255, 255, 0.16)"
+                : "rgba(255, 255, 255, 0.75)",
+              color: isDark ? "#F6F5F2" : "#111111",
+              border: `1px solid ${
+                isDark
+                  ? "rgba(255, 255, 255, 0.25)"
+                  : "rgba(255, 255, 255, 0.9)"
+              }`,
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
+              boxShadow: isDark
+                ? "0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.25)"
+                : "0 4px 12px rgba(17, 17, 17, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95)",
+              fontWeight: 700,
+              fontSize: "0.72rem",
+              height: 20,
+              minWidth: 20,
+              borderRadius: 10,
+              padding: "0 6px",
+            };
+          }
+
+          return {
+            backgroundColor: colorGroup.main,
+            color: colorGroup.contrastText || "#FFFFFF",
+            border: `1.5px solid ${
+              isDark ? "rgba(20, 24, 32, 0.9)" : "rgba(255, 255, 255, 0.95)"
+            }`,
+            boxShadow: `0 2px 8px ${colorGroup.glow || "rgba(0, 0, 0, 0.15)"}`,
+            fontWeight: 700,
+            fontSize: "0.72rem",
+            height: 20,
+            minWidth: 20,
+            borderRadius: 10,
+            padding: "0 6px",
+          };
+        },
+      },
+    },
 };
 };

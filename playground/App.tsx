@@ -1,878 +1,190 @@
-import { useState } from "react";
-import {
-  AppBar,
-  Toolbar,
-  Box,
-  Typography,
-  TextField,
-  Autocomplete,
-  Switch,
-  ButtonGroup,
-  Button,
-  Chip,
-  Tooltip,
-  IconButton,
-  Divider,
-  Alert,
-  Avatar,
-  Badge,
-  Stepper,
-  Step,
-  StepLabel,
-  StepContent,
-  Tabs,
-  Tab,
-} from "@mui/material";
-import { GlassPanel } from "../src/components/index";
-import { GradientText } from "../src/components/index";
-import { useThemeMode } from "../src/context/ThemeContext";
-import { ShoppingCart, CreditCard, CheckCircle2 } from "lucide-react";
+import React, { useState, useEffect, useMemo } from "react";
+import { Box } from "@mui/material";
+import { DocLayout } from "./components/Layout/DocLayout.js";
+import { SearchDialog } from "./components/Common/SearchDialog.js";
+import { OverviewPage } from "./components/Pages/OverviewPage.js";
+import { ColorsPage } from "./components/Pages/ColorsPage.js";
+import { ButtonsPage } from "./components/Pages/ButtonsPage.js";
+import { ChipsPage } from "./components/Pages/ChipsPage.js";
+import { TabsPage } from "./components/Pages/TabsPage.js";
+import { InputsPage } from "./components/Pages/InputsPage.js";
+import { SwitchesPage } from "./components/Pages/SwitchesPage.js";
+import { DataDisplayPage } from "./components/Pages/DataDisplayPage.js";
+import { SurfacesPage } from "./components/Pages/SurfacesPage.js";
+import { FeedbackPage } from "./components/Pages/FeedbackPage.js";
+import { TypographyPage } from "./components/Pages/TypographyPage.js";
+import { SteppersPage } from "./components/Pages/SteppersPage.js";
+import { DialogsPage } from "./components/Pages/DialogsPage.js";
+import { DynamicIslandPage } from "./components/Pages/DynamicIslandPage.js";
+import { TocItem } from "./components/Layout/TableOfContents.js";
 
-// Sun icon (light mode)
-function SunIcon() {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="5" />
-      <line x1="12" y1="1" x2="12" y2="3" />
-      <line x1="12" y1="21" x2="12" y2="23" />
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-      <line x1="1" y1="12" x2="3" y2="12" />
-      <line x1="21" y1="12" x2="23" y2="12" />
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-    </svg>
-  );
-}
-
-// Moon icon (dark mode)
-function MoonIcon() {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-    </svg>
-  );
-}
+const TOC_MAP: Record<string, TocItem[]> = {
+  overview: [
+    { id: "brand-kit", title: "Brand Kit Palette" },
+    { id: "installation", title: "Installation" },
+    { id: "setup", title: "Theme Setup" },
+  ],
+  colors: [
+    { id: "brand-monochrome", title: "Brand Monochrome" },
+    { id: "primary-secondary", title: "Primary & Secondary" },
+    { id: "semantic-palette", title: "Semantic Palette" },
+    { id: "surfaces-backgrounds", title: "Surfaces & Canvas" },
+    { id: "glass-system", title: "Glass Tokens" },
+    { id: "editorial-gradients", title: "Monochrome Gradients" },
+  ],
+  buttons: [
+    { id: "variants", title: "Core Variants" },
+    { id: "color-matrix", title: "Complete Color Matrix" },
+    { id: "glass-spotlight", title: "Glass Spotlight" },
+    { id: "sizes", title: "Sizes (30/36/44px)" },
+    { id: "icons", title: "Buttons with Icons" },
+    { id: "icon-buttons", title: "Icon Buttons" },
+    { id: "fab", title: "Floating Action Buttons" },
+    { id: "button-group", title: "Button Group & Split" },
+    { id: "toggle-buttons", title: "Toggle Buttons" },
+    { id: "complex-states", title: "Interactive & Full Width" },
+  ],
+  chips: [
+    { id: "glass-spotlight", title: "Glass Spotlight" },
+    { id: "chip-types", title: "Chip Types" },
+    { id: "sizes", title: "Sizes (24/28/32px)" },
+    { id: "color-matrix", title: "Color Matrix" },
+  ],
+  tabs: [
+    { id: "compact", title: "Compact Control" },
+    { id: "full-width", title: "Full Width" },
+    { id: "frosted-glass", title: "Frosted Glass" },
+  ],
+  "dynamic-island": [
+    { id: "dries-van-noten", title: "Dries Van Noten Bar" },
+    { id: "placement-controller", title: "Placement Engine" },
+    { id: "arbitrary-children", title: "Arbitrary Children" },
+    { id: "light-dark", title: "Light & Dark Adaptation" },
+  ],
+  inputs: [
+    { id: "text-fields", title: "Text Field Variants" },
+    { id: "glass-inputs", title: "Glass Input Spotlight" },
+    { id: "validation-colors", title: "Palette & Validation" },
+    { id: "select", title: "Select Dropdowns" },
+    { id: "autocomplete", title: "Autocomplete & Chips" },
+    { id: "adornments", title: "Input Adornments" },
+    { id: "sizes", title: "Sizes (36/48/56px)" },
+    { id: "multiline", title: "Multiline & Textarea" },
+  ],
+  switches: [
+    { id: "glass-spotlight", title: "Glass Spotlight" },
+    { id: "switch-colors", title: "Switch Color Palette" },
+    { id: "checkbox-colors", title: "Checkbox Color Palette" },
+    { id: "radio-colors", title: "Radio Color Palette" },
+    { id: "sizes-states", title: "Sizes & Selection States" },
+    { id: "custom-icons", title: "Custom Icons & Placements" },
+    { id: "sliders", title: "Glass & Palette Sliders" },
+    { id: "form-group", title: "Form Group Preferences" },
+  ],
+  "data-display": [
+    { id: "glass-spotlight", title: "Glass Spotlight" },
+    { id: "avatar-shapes", title: "Avatar Shapes (Squircle)" },
+    { id: "avatar-sizes", title: "Avatar Size Scale" },
+    { id: "badges-colors", title: "Liquid Glass Badges" },
+    { id: "status-dots", title: "Glowing Status Aura Dots" },
+    { id: "tooltips", title: "Glass Tooltips" },
+  ],
+  surfaces: [
+    { id: "glass-panel", title: "Glass Panel" },
+    { id: "paper-surface", title: "Paper Overrides" },
+  ],
+  dialogs: [
+    { id: "confirmation-dialog", title: "Glass Dialogs" },
+    { id: "bottom-sheet", title: "Bottom Sheet & Drawers" },
+  ],
+  feedback: [
+    { id: "alerts", title: "Severity Levels" },
+  ],
+  typography: [
+    { id: "gradient-text", title: "Gradient Text" },
+    { id: "headings", title: "Heading Scale" },
+  ],
+  steppers: [
+    { id: "horizontal-stepper", title: "Horizontal Stepper" },
+  ],
+};
 
 export default function App() {
-  const [text, setText] = useState("");
-  const [tabIndex, setTabIndex] = useState(0);
-  const { mode, toggleTheme } = useThemeMode();
-  const isDark = mode === "dark";
+  const [currentRoute, setCurrentRoute] = useState<string>(() => {
+    const hash = window.location.hash.replace(/^#/, "");
+    return hash || "overview";
+  });
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  // Sync hash on browser back/forward
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace(/^#/, "");
+      setCurrentRoute(hash || "overview");
+    };
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  const handleRouteChange = (newRoute: string) => {
+    window.location.hash = newRoute;
+    setCurrentRoute(newRoute);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const currentToc = useMemo(() => TOC_MAP[currentRoute] || [], [currentRoute]);
+
+  const renderPage = () => {
+    switch (currentRoute) {
+      case "overview":
+        return <OverviewPage />;
+      case "colors":
+        return <ColorsPage />;
+      case "buttons":
+        return <ButtonsPage />;
+      case "chips":
+        return <ChipsPage />;
+      case "tabs":
+        return <TabsPage />;
+      case "inputs":
+        return <InputsPage />;
+      case "switches":
+        return <SwitchesPage />;
+      case "data-display":
+        return <DataDisplayPage />;
+      case "surfaces":
+        return <SurfacesPage />;
+      case "dialogs":
+        return <DialogsPage />;
+      case "dynamic-island":
+        return <DynamicIslandPage />;
+      case "feedback":
+        return <FeedbackPage />;
+      case "typography":
+        return <TypographyPage />;
+      case "steppers":
+        return <SteppersPage />;
+      default:
+        return <OverviewPage />;
+    }
+  };
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        bgcolor: "background.default",
-        transition: "background-color 0.35s ease",
-      }}
-    >
-      {/* ── AppBar ────────────────────────────────────────────────── */}
-      <AppBar position="sticky">
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          {/* Logo */}
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1 }}
-          >
-            <GradientText isDark={isDark}>JIVICO</GradientText>
-            <Box
-              component="span"
-              sx={{
-                color: "text.secondary",
-                fontWeight: 400,
-                ml: 1,
-                fontSize: "0.65em",
-                letterSpacing: "0.18em",
-              }}
-            >
-              STUDIO
-            </Box>
-          </Typography>
-
-          {/* Theme Toggle — icon-only circular button */}
-          <Tooltip
-            title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            arrow
-            placement="bottom-end"
-          >
-            <Box
-              onClick={toggleTheme}
-              role="button"
-              aria-label="Toggle theme"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                border: "1.5px solid",
-                borderColor: isDark
-                  ? "rgba(255,255,255,0.2)"
-                  : "rgba(17,17,17,0.18)",
-                color: "text.primary",
-                cursor: "pointer",
-                transition: "all 0.2s cubic-bezier(0.16,1,0.3,1)",
-                "&:hover": {
-                  borderColor: isDark
-                    ? "rgba(255,255,255,0.5)"
-                    : "rgba(17,17,17,0.5)",
-                  transform: "scale(1.08)",
-                  boxShadow: isDark
-                    ? "0 0 12px rgba(255,255,255,0.12)"
-                    : "0 0 12px rgba(0,0,0,0.1)",
-                },
-                "&:active": { transform: "scale(0.95)" },
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  transition:
-                    "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease",
-                  transform: isDark ? "rotate(0deg)" : "rotate(180deg)",
-                }}
-              >
-                {isDark ? <MoonIcon /> : <SunIcon />}
-              </Box>
-            </Box>
-          </Tooltip>
-        </Toolbar>
-      </AppBar>
-
-      {/* ── Page Body ─────────────────────────────────────────────── */}
-      <Box
-        sx={{
-          p: { xs: 2, sm: 4 },
-          display: "flex",
-          flexDirection: "column",
-          gap: 4,
-        }}
+    <Box sx={{ minHeight: "100vh", bgcolor: "background.default", color: "text.primary" }}>
+      <DocLayout
+        activeRoute={currentRoute}
+        onRouteChange={handleRouteChange}
+        tocItems={currentToc}
+        onOpenSearch={() => setSearchOpen(true)}
       >
-        {/* ── Hero ─────────────────────────────────────────────────── */}
-        <Box sx={{ textAlign: "center", py: 3 }}>
-          <Typography variant="h3" sx={{ fontWeight: 800 }}>
-            <GradientText isDark={isDark}>Glass UI</GradientText> Playground
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-            {isDark ? "🌙 Dark Mode" : "☀️ Light Mode"} — toggle in the
-            top-right corner
-          </Typography>
-        </Box>
+        {renderPage()}
+      </DocLayout>
 
-        {/* ── Chips ─────────────────────────────────────────────────── */}
-        <GlassPanel>
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-            Chips
-          </Typography>
-
-          {/* Filled */}
-          <Typography
-            variant="overline"
-            color="text.secondary"
-            sx={{ mb: 1.5, display: "block" }}
-          >
-            Filled
-          </Typography>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 3 }}>
-            <Chip label="Default" />
-            <Chip label="Primary" color="primary" />
-            <Chip label="Secondary" color="secondary" />
-            <Chip label="Success" color="success" />
-            <Chip label="Warning" color="warning" />
-            <Chip label="Error" color="error" />
-            <Chip label="Info" color="info" />
-          </Box>
-
-          {/* Outlined */}
-          <Typography
-            variant="overline"
-            color="text.secondary"
-            sx={{ mb: 1.5, display: "block" }}
-          >
-            Outlined
-          </Typography>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 3 }}>
-            <Chip label="Default" variant="outlined" />
-            <Chip label="Primary" color="primary" variant="outlined" />
-            <Chip label="Secondary" color="secondary" variant="outlined" />
-            <Chip label="Success" color="success" variant="outlined" />
-            <Chip label="Warning" color="warning" variant="outlined" />
-            <Chip label="Error" color="error" variant="outlined" />
-            <Chip label="Info" color="info" variant="outlined" />
-          </Box>
-
-          {/* Small */}
-          <Typography
-            variant="overline"
-            color="text.secondary"
-            sx={{ mb: 1.5, display: "block" }}
-          >
-            Small
-          </Typography>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mb: 3 }}>
-            <Chip label="Default" size="small" />
-            <Chip label="Primary" color="primary" size="small" />
-            <Chip label="Success" color="success" size="small" />
-            <Chip label="Error" color="error" size="small" />
-            <Chip label="Default" size="small" variant="outlined" />
-            <Chip
-              label="Primary"
-              color="primary"
-              size="small"
-              variant="outlined"
-            />
-          </Box>
-
-          {/* Interactive */}
-          <Typography
-            variant="overline"
-            color="text.secondary"
-            sx={{ mb: 1.5, display: "block" }}
-          >
-            Clickable & Deletable
-          </Typography>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5 }}>
-            <Chip label="Clickable" clickable />
-            <Chip label="Clickable Primary" color="primary" clickable />
-            <Chip label="Deletable" onDelete={() => {}} />
-            <Chip
-              label="Deletable Success"
-              color="success"
-              onDelete={() => {}}
-            />
-            <Chip label="Both" color="primary" clickable onDelete={() => {}} />
-            <Chip
-              label="Outlined + Delete"
-              variant="outlined"
-              onDelete={() => {}}
-            />
-          </Box>
-        </GlassPanel>
-
-        {/* ── Switches ──────────────────────────────────────────────── */}
-        <GlassPanel>
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-            Switches
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
-            <Switch defaultChecked />
-            <Switch size="small" defaultChecked />
-            <Switch />
-            <Switch size="small" />
-            <Switch disabled />
-            <Switch disabled checked />
-            <Switch color="success" />
-            <Switch color="error" />
-            <Switch color="info" />
-            <Switch color="warning" />
-          </Box>
-        </GlassPanel>
-
-        {/* ── Buttons ──────────────────────────────────────────────── */}
-        <GlassPanel>
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-            Buttons
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-            {/* All Buttons Variants */}
-            <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 2,
-                alignItems: "center",
-                p: 3,
-              }}
-            >
-              {(
-                [
-                  "primary",
-                  "secondary",
-                  "info",
-                  "warning",
-                  "error",
-                  "success",
-                ] as const
-              ).map((color) => (
-                <Box
-                  key={color}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 2,
-                    width: "100%",
-                    mb: 3,
-                  }}
-                >
-                  <Typography
-                    variant="overline"
-                    color="text.secondary"
-                    sx={{
-                      textTransform: "capitalize",
-                      borderBottom: 1,
-                      borderColor: "divider",
-                      pb: 0.5,
-                    }}
-                  >
-                    {color}
-                  </Typography>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      gap: 2,
-                      alignItems: "center",
-                    }}
-                  >
-                    {(["contained", "outlined", "text"] as const).map(
-                      (variant) => [
-                        <Button key={`${variant}-small`} variant={variant} color={color} size="small">
-                          {variant}
-                        </Button>,
-                        <Button key={`${variant}-medium`} variant={variant} color={color} size="medium">
-                          {variant}
-                        </Button>,
-                        <Button key={`${variant}-large`} variant={variant} color={color} size="large">
-                          {variant}
-                        </Button>
-                      ]
-                    )}
-                    <Button variant="contained" color={color} disabled>
-                      Disabled
-                    </Button>
-                  </Box>
-                </Box>
-              ))}
-            </Box>
-
-            {/* Semantic */}
-            <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 2,
-                alignItems: "center",
-              }}
-            >
-              <Typography
-                variant="overline"
-                color="text.secondary"
-                sx={{ width: "100%" }}
-              >
-                Semantic
-              </Typography>
-              <Button variant="contained" color="success">
-                Success
-              </Button>
-              <Button variant="contained" color="warning">
-                Warning
-              </Button>
-              <Button variant="contained" color="error">
-                Error
-              </Button>
-              <Button variant="contained" color="info">
-                Info
-              </Button>
-            </Box>
-
-            {/* Groups */}
-            <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 2,
-                alignItems: "center",
-              }}
-            >
-              <Typography
-                variant="overline"
-                color="text.secondary"
-                sx={{ width: "100%" }}
-              >
-                Groups - Small
-              </Typography>
-              <ButtonGroup size="small" variant="contained">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-              <ButtonGroup size="small" variant="outlined">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-              <ButtonGroup size="small" variant="contained" color="secondary">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-              <ButtonGroup size="small" variant="outlined" color="secondary">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-              <ButtonGroup size="small" variant="contained" color="success">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-              <ButtonGroup size="small" variant="outlined" color="success">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-              <ButtonGroup size="small" variant="contained" color="warning">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-              <ButtonGroup size="small" variant="outlined" color="warning">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-              <ButtonGroup size="small" variant="contained" color="error">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-              <ButtonGroup size="small" variant="outlined" color="error">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-              <ButtonGroup size="small" variant="contained" color="info">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-              <ButtonGroup size="small" variant="outlined" color="info">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 2,
-                alignItems: "center",
-              }}
-            >
-              <Typography
-                variant="overline"
-                color="text.secondary"
-                sx={{ width: "100%" }}
-              >
-                Groups - medium
-              </Typography>
-              <ButtonGroup size="medium" variant="contained">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-              <ButtonGroup size="medium" variant="outlined">
-                <Button>One</Button>
-                <Button>Two</Button>
-                <Button>Three</Button>
-              </ButtonGroup>
-            </Box>
-          </Box>
-        </GlassPanel>
-
-        {/* ── Alerts ───────────────────────────────────────────────── */}
-        <GlassPanel>
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-            Alerts
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <Alert severity="success">
-              Your order has been placed successfully.
-            </Alert>
-            <Alert severity="warning">
-              Stock is running low for this item.
-            </Alert>
-            <Alert severity="error">
-              Something went wrong. Please try again.
-            </Alert>
-            <Alert severity="info">
-              New features are available — check them out.
-            </Alert>
-          </Box>
-        </GlassPanel>
-
-        {/* ── Inputs ───────────────────────────────────────────────── */}
-        <GlassPanel>
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-            Inputs
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-              maxWidth: 480,
-            }}
-          >
-            <TextField
-              size="small"
-              label="Small Input"
-              placeholder="Type something..."
-            />
-            <TextField label="Standard Input" placeholder="Type something..." />
-            <TextField
-              label="Multiline Input"
-              placeholder="Multiline test..."
-              multiline
-              rows={3}
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
-            <Autocomplete
-              multiple
-              options={[
-                "Option 1",
-                "Option 2",
-                "Option 3",
-                "Studio Originals",
-                "Studio Freestyle",
-              ]}
-              renderInput={(params) => (
-                <TextField {...params} label="Autocomplete" />
-              )}
-            />
-          </Box>
-        </GlassPanel>
-
-        {/* ── Typography ───────────────────────────────────────────── */}
-        <GlassPanel>
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-            Typography Scale
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-            {(["h1", "h2", "h3", "h4", "h5", "h6"] as const).map((v) => (
-              <Typography key={v} variant={v}>
-                {v.toUpperCase()} — Wear Your Ideas
-              </Typography>
-            ))}
-            <Divider sx={{ my: 1 }} />
-            <Typography variant="body1">
-              Body 1 — Custom Apparel · Streetwear · Print on Demand
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Body 2 — Custom Apparel · Streetwear · Print on Demand
-            </Typography>
-            <Typography variant="overline">
-              Overline · Brand Label Style
-            </Typography>
-          </Box>
-        </GlassPanel>
-
-        {/* ── Avatars & Badges ─────────────────────────────────────── */}
-        <GlassPanel>
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-            Avatars & Badges
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 3,
-              alignItems: "center",
-            }}
-          >
-            <Avatar
-              sx={{ bgcolor: "primary.main", color: "primary.contrastText" }}
-            >
-              J
-            </Avatar>
-            <Avatar sx={{ bgcolor: "success.main" }}>S</Avatar>
-            <Avatar sx={{ bgcolor: "error.main" }}>E</Avatar>
-            <Badge badgeContent={4} color="primary">
-              <Avatar sx={{ bgcolor: "text.secondary" }}>B</Avatar>
-            </Badge>
-            <Badge badgeContent={99} color="error">
-              <Avatar sx={{ bgcolor: "text.secondary" }}>N</Avatar>
-            </Badge>
-          </Box>
-        </GlassPanel>
-
-        {/* ── Tabs ─────────────────────────────────────────── */}
-        <GlassPanel>
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-            Tabs (Segmented Control)
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            <Box>
-              <Tabs
-                value={tabIndex}
-                onChange={(e, v) => setTabIndex(v)}
-                aria-label="luxury glass tabs"
-              >
-                <Tab label="Dashboard" />
-                <Tab label="Products" />
-                <Tab label="Settings" />
-              </Tabs>
-            </Box>
-
-            <Box sx={{ width: "100%" }}>
-              <Typography
-                variant="overline"
-                color="text.secondary"
-                sx={{ display: "block", mb: 2 }}
-              >
-                Full Width
-              </Typography>
-              <Tabs
-                value={tabIndex}
-                onChange={(e, v) => setTabIndex(v)}
-                variant="fullWidth"
-              >
-                <Tab label="Active" />
-                <Tab label="Completed" />
-                <Tab label="Canceled" />
-              </Tabs>
-            </Box>
-          </Box>
-        </GlassPanel>
-
-        {/* ── Steppers ─────────────────────────────────────── */}
-        <GlassPanel>
-          <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-            Steppers
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            {/* Horizontal Stepper (Inline Text) */}
-            <Box>
-              <Typography
-                variant="overline"
-                color="text.secondary"
-                sx={{ mb: 2, display: "block" }}
-              >
-                Horizontal Stepper (Inline Text)
-              </Typography>
-              <Stepper activeStep={1}>
-                <Step>
-                  <StepLabel>Design</StepLabel>
-                </Step>
-                <Step>
-                  <StepLabel>Review</StepLabel>
-                </Step>
-                <Step>
-                  <StepLabel>Checkout</StepLabel>
-                </Step>
-              </Stepper>
-            </Box>
-
-            {/* Horizontal Stepper (Text Bottom) */}
-            <Box>
-              <Typography
-                variant="overline"
-                color="text.secondary"
-                sx={{ mb: 2, display: "block" }}
-              >
-                Horizontal Stepper (Text Bottom)
-              </Typography>
-              <Stepper activeStep={1} alternativeLabel>
-                <Step>
-                  <StepLabel>Design</StepLabel>
-                </Step>
-                <Step>
-                  <StepLabel>Review</StepLabel>
-                </Step>
-                <Step>
-                  <StepLabel>Checkout</StepLabel>
-                </Step>
-              </Stepper>
-            </Box>
-
-            {/* Stepper with Custom Icons */}
-            <Box>
-              <Typography
-                variant="overline"
-                color="text.secondary"
-                sx={{ mb: 2, display: "block" }}
-              >
-                Stepper with Custom Icons
-              </Typography>
-              <Stepper activeStep={1} alternativeLabel>
-                <Step>
-                  <StepLabel
-                    slots={{
-                      stepIcon: (props: any) => (
-                        <Box
-                          sx={{
-                            color:
-                              props.active || props.completed
-                                ? "text.primary"
-                                : "text.secondary",
-                            opacity: props.active || props.completed ? 1 : 0.5,
-                            display: "flex",
-                            filter: props.active
-                              ? isDark
-                                ? "drop-shadow(0 0 6px rgba(255, 255, 255, 0.25))"
-                                : "drop-shadow(0 0 6px rgba(17, 17, 17, 0.15))"
-                              : "none",
-                          }}
-                        >
-                          <ShoppingCart size={22} />
-                        </Box>
-                      ),
-                    }}
-                  >
-                    Cart
-                  </StepLabel>
-                </Step>
-                <Step>
-                  <StepLabel
-                    slots={{
-                      stepIcon: (props: any) => (
-                        <Box
-                          sx={{
-                            color:
-                              props.active || props.completed
-                                ? "text.primary"
-                                : "text.secondary",
-                            opacity: props.active || props.completed ? 1 : 0.5,
-                            display: "flex",
-                            filter: props.active
-                              ? isDark
-                                ? "drop-shadow(0 0 6px rgba(255, 255, 255, 0.25))"
-                                : "drop-shadow(0 0 6px rgba(17, 17, 17, 0.15))"
-                              : "none",
-                          }}
-                        >
-                          <CreditCard size={22} />
-                        </Box>
-                      ),
-                    }}
-                  >
-                    Payment
-                  </StepLabel>
-                </Step>
-                <Step>
-                  <StepLabel
-                    slots={{
-                      stepIcon: (props: any) => (
-                        <Box
-                          sx={{
-                            color:
-                              props.active || props.completed
-                                ? "text.primary"
-                                : "text.secondary",
-                            opacity: props.active || props.completed ? 1 : 0.5,
-                            display: "flex",
-                            filter: props.active
-                              ? isDark
-                                ? "drop-shadow(0 0 6px rgba(255, 255, 255, 0.25))"
-                                : "drop-shadow(0 0 6px rgba(17, 17, 17, 0.15))"
-                              : "none",
-                          }}
-                        >
-                          <CheckCircle2 size={22} />
-                        </Box>
-                      ),
-                    }}
-                  >
-                    Confirmation
-                  </StepLabel>
-                </Step>
-              </Stepper>
-            </Box>
-
-            {/* Vertical Stepper */}
-            <Box>
-              <Typography
-                variant="overline"
-                color="text.secondary"
-                sx={{ mb: 2, display: "block" }}
-              >
-                Vertical Stepper
-              </Typography>
-              <Stepper activeStep={2} orientation="vertical">
-                <Step>
-                  <StepLabel>Select Product</StepLabel>
-                  <StepContent>
-                    <Typography variant="body2" color="text.secondary">
-                      Choose a blank product to customize.
-                    </Typography>
-                  </StepContent>
-                </Step>
-                <Step>
-                  <StepLabel>Upload Graphics</StepLabel>
-                  <StepContent>
-                    <Typography variant="body2" color="text.secondary">
-                      Upload your custom designs.
-                    </Typography>
-                  </StepContent>
-                </Step>
-                <Step>
-                  <StepLabel>Finalize</StepLabel>
-                  <StepContent>
-                    <Typography variant="body2" color="text.secondary">
-                      Review and confirm your order.
-                    </Typography>
-                  </StepContent>
-                </Step>
-              </Stepper>
-            </Box>
-
-            {/* Stepper with Error/Alternative State */}
-            <Box>
-              <Typography
-                variant="overline"
-                color="text.secondary"
-                sx={{ mb: 2, display: "block" }}
-              >
-                Stepper with Error State
-              </Typography>
-              <Stepper activeStep={1}>
-                <Step>
-                  <StepLabel>Cart</StepLabel>
-                </Step>
-                <Step>
-                  <StepLabel error>Payment Failed</StepLabel>
-                </Step>
-                <Step>
-                  <StepLabel>Confirmation</StepLabel>
-                </Step>
-              </Stepper>
-            </Box>
-          </Box>
-        </GlassPanel>
-      </Box>
+      <SearchDialog
+        open={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        onSelect={handleRouteChange}
+      />
     </Box>
   );
 }
