@@ -19,12 +19,7 @@ interface HeaderProps {
 
 function GithubIcon({ size = 18 }: { size?: number }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-    >
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -88,14 +83,6 @@ export const Header: React.FC<HeaderProps> = ({
       position="sticky"
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        backgroundColor: isDark
-          ? "rgba(18, 18, 18, 0.82)"
-          : "rgba(255, 255, 255, 0.85)",
-        borderBottom: `1px solid ${
-          isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"
-        }`,
       }}
     >
       <Toolbar sx={{ minHeight: "60px !important", px: { xs: 2, md: 3 } }}>
@@ -214,10 +201,7 @@ export const Header: React.FC<HeaderProps> = ({
           >
             Search components...
           </Box>
-          <Box
-            component="span"
-            sx={{ display: { xs: "inline", sm: "none" } }}
-          >
+          <Box component="span" sx={{ display: { xs: "inline", sm: "none" } }}>
             Search
           </Box>
           <Box

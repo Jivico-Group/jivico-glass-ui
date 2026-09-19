@@ -64,9 +64,14 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "multiline", title: "Multiline & Textarea" },
   ],
   switches: [
-    { id: "switches", title: "Glass Switches" },
-    { id: "checkboxes", title: "Checkboxes" },
-    { id: "radio-buttons", title: "Radio Buttons" },
+    { id: "glass-spotlight", title: "Glass Spotlight" },
+    { id: "switch-colors", title: "Switch Color Palette" },
+    { id: "checkbox-colors", title: "Checkbox Color Palette" },
+    { id: "radio-colors", title: "Radio Color Palette" },
+    { id: "sizes-states", title: "Sizes & Selection States" },
+    { id: "custom-icons", title: "Custom Icons & Placements" },
+    { id: "sliders", title: "Glass & Palette Sliders" },
+    { id: "form-group", title: "Form Group Preferences" },
   ],
   "data-display": [
     { id: "avatars", title: "Avatars" },

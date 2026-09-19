@@ -508,6 +508,30 @@ declare module '@mui/material/FormLabel' {
         glass: true;
     }
 }
+declare module '@mui/material/Switch' {
+    interface SwitchPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/Checkbox' {
+    interface CheckboxPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/Radio' {
+    interface RadioPropsColorOverrides {
+        glass: true;
+    }
+}
+declare module '@mui/material/Slider' {
+    interface SliderPropsColorOverrides {
+        glass: true;
+        success: true;
+        warning: true;
+        error: true;
+        info: true;
+    }
+}
 declare const GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
 /** Montserrat (subheadings/accent) + Space Grotesk (body fallback) — from brand kit */
 declare const JIVICO_BRAND_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
@@ -516,10 +540,6 @@ declare const getAppleTheme: (mode: "light" | "dark") => Theme;
 declare const getAntigravityTheme: (mode: "light" | "dark") => Theme;
 declare const createJivicoTheme: (mode: "light" | "dark") => Theme;
 
-/**
- * MUI component overrides — Selection Controls:
- * Checkbox, Radio, Switch, Slider, ToggleButton
- */
 declare const getControlOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
 declare module '@mui/material/Chip' {

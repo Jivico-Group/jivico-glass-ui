@@ -452,24 +452,17 @@ var typography = {
 var JIVICO_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
 
 // src/theme/overrides/glassRecipe.ts
-var glassRecipe = (isDark) => ({
-  backdropFilter: "blur(48px) saturate(200%) brightness(105%)",
-  WebkitBackdropFilter: "blur(48px) saturate(200%) brightness(105%)",
-  backgroundColor: isDark ? "rgba(20, 24, 32, 0.48)" : "rgba(255, 255, 255, 0.24)",
-  backgroundImage: isDark ? "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 100%)" : "linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(248,250,252,0.4) 100%)",
-  border: isDark ? "1px solid rgba(255,255,255,0.14)" : "1px solid rgba(255,255,255,0.6)",
-  boxShadow: isDark ? "0 12px 36px rgba(0,0,0,0.45), inset 0 1px 1.5px rgba(255,255,255,0.18)" : "0 20px 50px rgba(15,23,42,0.08), 0 8px 20px rgba(15,23,42,0.06), 0 2px 6px rgba(15,23,42,0.04), inset 0 1.5px 1.5px rgba(255,255,255,0.95)"
-});
 var glassAppBarRecipe = (isDark) => ({
-  ...glassRecipe(isDark),
-  // Override box-shadow to a slimmer version appropriate for a pinned bar
-  boxShadow: isDark ? "0 4px 24px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1)" : "0 4px 24px rgba(15,23,42,0.06), 0 1px 6px rgba(15,23,42,0.04), inset 0 1px 1px rgba(255,255,255,0.95)",
-  // AppBar has no border-radius — it spans full width
-  borderRadius: 0,
-  borderLeft: "none",
-  borderRight: "none",
-  borderTop: "none",
-  borderBottom: isDark ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(255,255,255,0.6)"
+  backgroundColor: isDark ? "rgba(18, 20, 26, 0.65) !important" : "rgba(246, 245, 242, 0.60) !important",
+  backgroundImage: isDark ? "linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%) !important" : "linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.05) 100%) !important",
+  backdropFilter: "blur(24px) saturate(180%) !important",
+  WebkitBackdropFilter: "blur(24px) saturate(180%) !important",
+  borderTop: "none !important",
+  borderLeft: "none !important",
+  borderRight: "none !important",
+  borderBottom: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"} !important`,
+  boxShadow: isDark ? "0 4px 24px -2px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3) !important" : "0 4px 20px -2px rgba(17, 17, 17, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02) !important",
+  borderRadius: "0 !important"
 });
 var liquidGlassPopupRecipe = (isDark) => ({
   borderRadius: "18px !important",
@@ -911,7 +904,7 @@ var getInputOverrides = (palette, isDark) => ({
         const activeColorGroup = palette[colorKey] || palette.primary;
         const activeColor = activeColorGroup.main;
         const hoverColor = activeColorGroup.hover || activeColor;
-        const glowColor = activeColorGroup.glow;
+        activeColorGroup.glow;
         const isGlass = colorKey === "glass";
         const isSemantic = colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
         return {
@@ -937,14 +930,12 @@ var getInputOverrides = (palette, isDark) => ({
             backgroundColor: isGlass ? isDark ? "rgba(24, 26, 32, 0.65)" : "rgba(255, 255, 255, 0.90)" : palette.glass.inputFocusBg,
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: isGlass ? isDark ? "#F6F5F2" : "#111111" : activeColor,
-              borderWidth: "1.5px",
-              boxShadow: isGlass ? isDark ? "0 0 0 3px rgba(255, 255, 255, 0.18), 0 8px 24px rgba(0,0,0,0.4)" : "0 0 0 3px rgba(17, 17, 17, 0.08), 0 8px 24px rgba(0,0,0,0.06)" : glowColor ? `0 0 0 3px ${glowColor}` : "none"
+              borderWidth: "1.5px"
             }
           },
           "&.Mui-error": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: palette.error.main,
-              boxShadow: `0 0 0 3px ${palette.error.glow}`
+              borderColor: palette.error.main
             }
           }
         };
@@ -1192,46 +1183,124 @@ var getInputOverrides = (palette, isDark) => ({
 });
 
 // src/theme/overrides/controls.ts
+var resolveControlColors = (colorName, isDark, palette, theme) => {
+  if (colorName === "glass") {
+    return {
+      active: isDark ? "#F6F5F2" : "#111111",
+      glow: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(17, 17, 17, 0.08)",
+      track: isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.45)"
+    };
+  }
+  if (colorName === "secondary") {
+    return {
+      active: isDark ? "#A0A09B" : COLORS.brand.stone,
+      // #686868 Warm Stone
+      glow: isDark ? "rgba(160, 160, 155, 0.3)" : "rgba(104, 104, 104, 0.25)",
+      track: isDark ? "#8A8A82" : COLORS.brand.stone
+      // #686868 Warm Stone
+    };
+  }
+  if (colorName === "default") {
+    return {
+      active: isDark ? "rgba(255, 255, 255, 0.7)" : "rgba(17, 17, 17, 0.65)",
+      glow: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.08)",
+      track: isDark ? "rgba(255, 255, 255, 0.45)" : "rgba(17, 17, 17, 0.45)"
+    };
+  }
+  const pal = theme.palette[colorName];
+  return {
+    active: pal?.main || palette.primary.main,
+    glow: pal?.glow || palette.primary.glow,
+    track: pal?.main || palette.primary.main
+  };
+};
 var getControlOverrides = (palette, isDark) => ({
   MuiCheckbox: {
     styleOverrides: {
-      root: {
-        borderRadius: 8,
-        color: palette.glass.inputBorderHover,
-        "&.Mui-checked": {
-          color: palette.primary.main
-        }
+      root: ({ ownerState, theme }) => {
+        const colorName = ownerState.color || "primary";
+        const isGlass = colorName === "glass";
+        const resolved = resolveControlColors(colorName, isDark, palette, theme);
+        return {
+          borderRadius: 8,
+          color: isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.3)",
+          padding: 8,
+          transition: "color 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
+          "&:hover": {
+            backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)"
+          },
+          "&.Mui-checked, &.MuiCheckbox-indeterminate": {
+            color: resolved.active,
+            ...isGlass && {
+              filter: isDark ? "drop-shadow(0 2px 6px rgba(255, 255, 255, 0.25))" : "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18))"
+            }
+          },
+          "&.Mui-focusVisible": {
+            boxShadow: `0 0 0 3px ${resolved.glow}`
+          },
+          "&.Mui-disabled": {
+            color: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)"
+          }
+        };
       }
     }
   },
   MuiRadio: {
     styleOverrides: {
-      root: {
-        color: palette.glass.inputBorderHover,
-        "&.Mui-checked": {
-          color: palette.primary.main
-        }
+      root: ({ ownerState, theme }) => {
+        const colorName = ownerState.color || "primary";
+        const isGlass = colorName === "glass";
+        const resolved = resolveControlColors(colorName, isDark, palette, theme);
+        return {
+          color: isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.3)",
+          padding: 8,
+          transition: "color 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
+          "&:hover": {
+            backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)"
+          },
+          "&.Mui-checked": {
+            color: resolved.active,
+            ...isGlass && {
+              filter: isDark ? "drop-shadow(0 2px 6px rgba(255, 255, 255, 0.25))" : "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18))"
+            }
+          },
+          "&.Mui-focusVisible": {
+            boxShadow: `0 0 0 3px ${resolved.glow}`
+          },
+          "&.Mui-disabled": {
+            color: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)"
+          }
+        };
       }
     }
   },
   MuiSwitch: {
     styleOverrides: {
       root: ({ ownerState, theme }) => {
-        const colorName = ownerState.color && ownerState.color !== "default" ? ownerState.color : "primary";
-        const trackColor = theme.palette[colorName]?.main || palette.primary.main;
+        const colorName = ownerState.color || "primary";
+        const isGlass = colorName === "glass";
+        const resolved = resolveControlColors(colorName, isDark, palette, theme);
+        const thumbCheckedColor = isGlass ? "#FFFFFF" : colorName === "primary" ? isDark ? "#1D1D1F" : COLORS.white : COLORS.white;
         return {
-          width: 40,
-          height: 20,
+          width: 44,
+          height: 24,
           padding: 0,
+          display: "flex",
           "& .MuiSwitch-switchBase": {
-            padding: 2,
+            padding: 3,
+            color: isDark ? "#F6F5F2" : COLORS.white,
+            transitionDuration: "200ms",
             "&.Mui-checked": {
               transform: "translateX(20px)",
-              color: isDark ? "#1D1D1F" : COLORS.white,
+              color: thumbCheckedColor,
               "& + .MuiSwitch-track": {
-                backgroundColor: trackColor,
+                backgroundColor: resolved.track,
                 opacity: 1,
-                border: 0
+                border: isGlass ? `1px solid ${isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(0, 0, 0, 0.2)"}` : 0,
+                ...isGlass && {
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)"
+                }
               },
               "&.Mui-disabled": {
                 color: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)",
@@ -1241,36 +1310,50 @@ var getControlOverrides = (palette, isDark) => ({
               }
             },
             "&.Mui-disabled": {
+              color: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)",
               "& + .MuiSwitch-track": {
                 opacity: 0.3
               }
+            },
+            "&:hover": {
+              backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)"
             }
           },
           "& .MuiSwitch-thumb": {
-            width: 16,
-            height: 16,
-            boxShadow: palette.glass.switchShadow
+            width: 18,
+            height: 18,
+            borderRadius: 9,
+            boxShadow: isDark ? "0 2px 6px rgba(0, 0, 0, 0.6)" : "0 2px 4px rgba(0, 0, 0, 0.2)",
+            transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+            ...isGlass && {
+              border: isDark ? "1px solid rgba(255, 255, 255, 0.4)" : "1px solid rgba(255, 255, 255, 0.8)"
+            }
           },
           "& .MuiSwitch-track": {
-            borderRadius: 20 / 2,
-            backgroundColor: palette.glass.switchTrack,
-            opacity: 1
+            borderRadius: 24 / 2,
+            backgroundColor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(17, 17, 17, 0.14)",
+            opacity: 1,
+            border: isDark ? "1px solid rgba(255, 255, 255, 0.08)" : "1px solid rgba(0, 0, 0, 0.06)",
+            transition: "background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)"
           }
         };
       },
       sizeSmall: {
-        width: 32,
+        width: 34,
         height: 18,
         padding: 0,
         "& .MuiSwitch-switchBase": {
           padding: 2,
           "&.Mui-checked": {
-            transform: "translateX(14px)"
+            transform: "translateX(16px)"
           }
         },
         "& .MuiSwitch-thumb": {
           width: 14,
-          height: 14
+          height: 14,
+          borderRadius: 7
         },
         "& .MuiSwitch-track": {
           borderRadius: 18 / 2
@@ -1280,34 +1363,65 @@ var getControlOverrides = (palette, isDark) => ({
   },
   MuiSlider: {
     styleOverrides: {
+      root: ({ ownerState, theme }) => {
+        const colorName = ownerState.color || "primary";
+        const resolved = resolveControlColors(colorName, isDark, palette, theme);
+        return {
+          color: resolved.active,
+          height: 6,
+          padding: "13px 0",
+          "& .MuiSlider-thumb": {
+            height: 16,
+            width: 16,
+            backgroundColor: isDark ? "#1E2025" : "#FFFFFF",
+            border: `2px solid ${resolved.active}`,
+            boxShadow: isDark ? "0 2px 6px rgba(0, 0, 0, 0.5)" : "0 2px 6px rgba(0, 0, 0, 0.15)",
+            transition: "box-shadow 0.15s ease",
+            "&:hover, &.Mui-focusVisible": {
+              boxShadow: `0px 0px 0px 6px ${resolved.glow}`
+            },
+            "&.Mui-active": {
+              boxShadow: `0px 0px 0px 9px ${resolved.glow}`
+            },
+            "&::before": {
+              display: "none"
+            }
+          },
+          "& .MuiSlider-track": {
+            border: "none",
+            height: 6,
+            borderRadius: 3,
+            backgroundColor: resolved.track
+          },
+          "& .MuiSlider-rail": {
+            opacity: 1,
+            backgroundColor: isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.12)",
+            height: 6,
+            borderRadius: 3
+          },
+          "& .MuiSlider-valueLabel": {
+            backgroundColor: isDark ? "rgba(30, 32, 38, 0.9)" : "rgba(17, 17, 17, 0.9)",
+            borderRadius: 6,
+            fontSize: "0.75rem",
+            fontWeight: 600,
+            backdropFilter: "blur(8px)"
+          }
+        };
+      }
+    }
+  },
+  MuiFormControlLabel: {
+    styleOverrides: {
       root: {
-        color: palette.primary.main,
-        height: 6,
-        padding: "13px 0"
-      },
-      thumb: {
-        height: 14,
-        width: 14,
-        backgroundColor: "#fff",
-        border: "1px solid rgba(0,0,0,0.1)",
-        boxShadow: "0 1px 2px rgba(0,0,0,0.1)",
-        "&:hover, &.Mui-focusVisible": {
-          boxShadow: `0px 0px 0px 6px ${palette.primary.glow}`
-        },
-        "&::before": {
-          display: "none"
+        marginLeft: 0,
+        marginRight: 0,
+        gap: "10px",
+        userSelect: "none",
+        "& .MuiFormControlLabel-label": {
+          fontSize: "0.875rem",
+          fontWeight: 500,
+          color: palette.text.primary
         }
-      },
-      track: {
-        border: "none",
-        height: 6,
-        borderRadius: 3
-      },
-      rail: {
-        opacity: 0.2,
-        backgroundColor: isDark ? "#fff" : "#000",
-        height: 6,
-        borderRadius: 3
       }
     }
   },
@@ -1318,6 +1432,7 @@ var getControlOverrides = (palette, isDark) => ({
         padding: "6px 16px",
         border: `1px solid ${palette.glass.paperBorder}`,
         color: palette.text.secondary,
+        transition: "all 0.18s cubic-bezier(0.16, 1, 0.3, 1)",
         "&.Mui-selected": {
           backgroundColor: palette.secondary.main,
           color: palette.secondary.contrastText,
@@ -2062,14 +2177,22 @@ var getNavigationOverrides = (palette, isDark) => ({
   // ========================================================================
   MuiAppBar: {
     defaultProps: {
-      elevation: 0,
-      color: "transparent"
+      elevation: 0
     },
     styleOverrides: {
       root: {
         ...glassAppBarRecipe(isDark),
         color: palette.text.primary,
-        transition: "background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease"
+        transition: "background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease"
+      },
+      colorTransparent: {
+        ...glassAppBarRecipe(isDark)
+      },
+      colorDefault: {
+        ...glassAppBarRecipe(isDark)
+      },
+      colorInherit: {
+        ...glassAppBarRecipe(isDark)
       }
     }
   },

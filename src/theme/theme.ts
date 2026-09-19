@@ -79,6 +79,34 @@ declare module '@mui/material/FormLabel' {
   }
 }
 
+declare module '@mui/material/Switch' {
+  interface SwitchPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module '@mui/material/Checkbox' {
+  interface CheckboxPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module '@mui/material/Radio' {
+  interface RadioPropsColorOverrides {
+    glass: true;
+  }
+}
+
+declare module '@mui/material/Slider' {
+  interface SliderPropsColorOverrides {
+    glass: true;
+    success: true;
+    warning: true;
+    error: true;
+    info: true;
+  }
+}
+
 export const GOOGLE_SANS_FLEX_URL =
   'https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap';
 

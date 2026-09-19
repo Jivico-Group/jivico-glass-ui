@@ -8,11 +8,11 @@ export const glassRecipe = (isDark: boolean) => ({
   backdropFilter: "blur(48px) saturate(200%) brightness(105%)",
   WebkitBackdropFilter: "blur(48px) saturate(200%) brightness(105%)",
   backgroundColor: isDark
-    ? "rgba(20, 24, 32, 0.48)"
-    : "rgba(255, 255, 255, 0.24)",
+    ? "rgba(20, 24, 32, 0.18)"
+    : "rgba(255, 255, 255, 0.8)",
   backgroundImage: isDark
     ? "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 100%)"
-    : "linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(248,250,252,0.4) 100%)",
+    : "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(248,250,252,0.4) 100%)",
   border: isDark
     ? "1px solid rgba(255,255,255,0.14)"
     : "1px solid rgba(255,255,255,0.6)",
@@ -22,22 +22,28 @@ export const glassRecipe = (isDark: boolean) => ({
 });
 
 /**
- * AppBar-specific variant: same glass but a lighter shadow (sits at top, not floating).
+ * Apple Liquid Glass AppBar Recipe — true optical frosted glass for sticky navigation.
+ * High optical transparency (~60%), vibrant saturation boost (180%), optical blur, and subtle specular sheen.
  */
 export const glassAppBarRecipe = (isDark: boolean) => ({
-  ...glassRecipe(isDark),
-  // Override box-shadow to a slimmer version appropriate for a pinned bar
+  backgroundColor: isDark
+    ? "rgba(18, 20, 26, 0.65) !important"
+    : "rgba(246, 245, 242, 0.60) !important",
+  backgroundImage: isDark
+    ? "linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%) !important"
+    : "linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.05) 100%) !important",
+  backdropFilter: "blur(24px) saturate(180%) !important",
+  WebkitBackdropFilter: "blur(24px) saturate(180%) !important",
+  borderTop: "none !important",
+  borderLeft: "none !important",
+  borderRight: "none !important",
+  borderBottom: `1px solid ${
+    isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"
+  } !important`,
   boxShadow: isDark
-    ? "0 4px 24px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1)"
-    : "0 4px 24px rgba(15,23,42,0.06), 0 1px 6px rgba(15,23,42,0.04), inset 0 1px 1px rgba(255,255,255,0.95)",
-  // AppBar has no border-radius — it spans full width
-  borderRadius: 0,
-  borderLeft: "none",
-  borderRight: "none",
-  borderTop: "none",
-  borderBottom: isDark
-    ? "1px solid rgba(255,255,255,0.12)"
-    : "1px solid rgba(255,255,255,0.6)",
+    ? "0 4px 24px -2px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3) !important"
+    : "0 4px 20px -2px rgba(17, 17, 17, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02) !important",
+  borderRadius: "0 !important",
 });
 
 /**
