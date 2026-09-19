@@ -146,3 +146,10 @@ declare module "@mui/material/Avatar" {
     glass: true;
   }
 }
+
+declare module "@mui/material/Typography" {
+  interface TypographyPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+}
