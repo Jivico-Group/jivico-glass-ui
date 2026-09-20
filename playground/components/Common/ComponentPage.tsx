@@ -1,6 +1,13 @@
 import React from "react";
-import { Box, Typography, Breadcrumbs, Link, Chip, Divider } from "@mui/material";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import {
+  Box,
+  Typography,
+  Breadcrumbs,
+  Link,
+  Chip,
+  Divider,
+} from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext";
 
 interface ComponentPageProps {
   title: string;
@@ -17,7 +24,7 @@ export const ComponentPage: React.FC<ComponentPageProps> = ({
   badges = ["Glass UI", "MUI v9"],
   children,
 }) => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
   return (
@@ -33,14 +40,24 @@ export const ComponentPage: React.FC<ComponentPageProps> = ({
         <Typography sx={{ fontSize: "0.8rem", color: "text.secondary" }}>
           {category}
         </Typography>
-        <Typography sx={{ fontSize: "0.8rem", color: "text.primary", fontWeight: 600 }}>
+        <Typography
+          sx={{ fontSize: "0.8rem", color: "text.primary", fontWeight: 600 }}
+        >
           {title}
         </Typography>
       </Breadcrumbs>
 
       {/* Page Title & Subtitle */}
       <Box sx={{ mb: 4 }}>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flexWrap: "wrap", mb: 1 }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 1.5,
+            flexWrap: "wrap",
+            mb: 1,
+          }}
+        >
           <Typography
             variant="h3"
             component="h1"
@@ -66,7 +83,9 @@ export const ComponentPage: React.FC<ComponentPageProps> = ({
                   : "rgba(17, 17, 17, 0.06)",
                 color: isDark ? "#F6F5F2" : "#111111",
                 border: `1px solid ${
-                  isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)"
+                  isDark
+                    ? "rgba(255, 255, 255, 0.12)"
+                    : "rgba(17, 17, 17, 0.08)"
                 }`,
               }}
             />

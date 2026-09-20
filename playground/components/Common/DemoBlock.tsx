@@ -7,8 +7,9 @@ import {
   Collapse,
   Button,
 } from "@mui/material";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+
 import { Code, Copy, Check } from "lucide-react";
+import { useGlassMode } from "../../../src/context/ThemeContext";
 
 interface DemoBlockProps {
   id?: string;
@@ -25,7 +26,7 @@ export const DemoBlock: React.FC<DemoBlockProps> = ({
   code,
   children,
 }) => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
   const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);

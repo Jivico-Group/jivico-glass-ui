@@ -3,10 +3,10 @@ import { Box, Typography, Chip, Avatar } from "@mui/material";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { Star, Tag, Filter, ChevronRight } from "lucide-react";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const ChipsPage: React.FC = () => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
   return (
@@ -167,8 +167,22 @@ export const ChipsPage: React.FC = () => {
 <Chip label="Medium" size="medium" color="primary" onDelete={() => {}} />
 <Chip label="Large" size="large" color="primary" onDelete={() => {}} />`}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            width: "100%",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 2,
+              alignItems: "center",
+            }}
+          >
             <Chip
               label="Small (24px)"
               size="small"
@@ -188,7 +202,14 @@ export const ChipsPage: React.FC = () => {
               onDelete={() => {}}
             />
           </Box>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 2,
+              alignItems: "center",
+            }}
+          >
             <Chip
               label="Small Outlined"
               size="small"
@@ -211,7 +232,14 @@ export const ChipsPage: React.FC = () => {
               onDelete={() => {}}
             />
           </Box>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 2,
+              alignItems: "center",
+            }}
+          >
             <Chip
               label="Small Glass"
               size="small"
@@ -247,8 +275,18 @@ export const ChipsPage: React.FC = () => {
 <Chip label="Error" color="error" onDelete={() => {}} />
 <Chip label="Success" color="success" onDelete={() => {}} />`}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
-          <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            width: "100%",
+          }}
+        >
+          <Typography
+            variant="caption"
+            sx={{ fontWeight: 600, color: "text.secondary" }}
+          >
             Filled Default
           </Typography>
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5 }}>
@@ -261,30 +299,106 @@ export const ChipsPage: React.FC = () => {
             <Chip label="Success" color="success" onDelete={() => {}} />
           </Box>
 
-          <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary", mt: 1 }}>
+          <Typography
+            variant="caption"
+            sx={{ fontWeight: 600, color: "text.secondary", mt: 1 }}
+          >
             Outlined Variant
           </Typography>
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5 }}>
-            <Chip label="Primary" color="primary" variant="outlined" onDelete={() => {}} />
-            <Chip label="Secondary" color="secondary" variant="outlined" onDelete={() => {}} />
-            <Chip label="Glass" color="glass" variant="outlined" onDelete={() => {}} />
-            <Chip label="Info" color="info" variant="outlined" onDelete={() => {}} />
-            <Chip label="Warning" color="warning" variant="outlined" onDelete={() => {}} />
-            <Chip label="Error" color="error" variant="outlined" onDelete={() => {}} />
-            <Chip label="Success" color="success" variant="outlined" onDelete={() => {}} />
+            <Chip
+              label="Primary"
+              color="primary"
+              variant="outlined"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Secondary"
+              color="secondary"
+              variant="outlined"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Glass"
+              color="glass"
+              variant="outlined"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Info"
+              color="info"
+              variant="outlined"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Warning"
+              color="warning"
+              variant="outlined"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Error"
+              color="error"
+              variant="outlined"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Success"
+              color="success"
+              variant="outlined"
+              onDelete={() => {}}
+            />
           </Box>
 
-          <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary", mt: 1 }}>
+          <Typography
+            variant="caption"
+            sx={{ fontWeight: 600, color: "text.secondary", mt: 1 }}
+          >
             Tonal Variant
           </Typography>
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5 }}>
-            <Chip label="Primary" color="primary" variant="tonal" onDelete={() => {}} />
-            <Chip label="Secondary" color="secondary" variant="tonal" onDelete={() => {}} />
-            <Chip label="Glass" color="glass" variant="tonal" onDelete={() => {}} />
-            <Chip label="Info" color="info" variant="tonal" onDelete={() => {}} />
-            <Chip label="Warning" color="warning" variant="tonal" onDelete={() => {}} />
-            <Chip label="Error" color="error" variant="tonal" onDelete={() => {}} />
-            <Chip label="Success" color="success" variant="tonal" onDelete={() => {}} />
+            <Chip
+              label="Primary"
+              color="primary"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Secondary"
+              color="secondary"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Glass"
+              color="glass"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Info"
+              color="info"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Warning"
+              color="warning"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Error"
+              color="error"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Success"
+              color="success"
+              variant="tonal"
+              onDelete={() => {}}
+            />
           </Box>
         </Box>
       </DemoBlock>

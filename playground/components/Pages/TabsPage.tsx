@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Box, Typography, Tabs, Tab, Divider } from "@mui/material";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const TabsPage: React.FC = () => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
   const [compactTab, setCompactTab] = useState(2); // Settings selected by default
@@ -132,7 +132,10 @@ export const TabsPage: React.FC = () => {
           { name: "Charcoal", hex: "#111111", border: false },
           { name: "Stone", hex: "#686868", border: false },
         ].map((c) => (
-          <Box key={c.name} sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Box
+            key={c.name}
+            sx={{ display: "flex", alignItems: "center", gap: 1 }}
+          >
             <Box
               sx={{
                 width: 14,

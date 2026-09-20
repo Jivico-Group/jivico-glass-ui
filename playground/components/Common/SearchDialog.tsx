@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { Search } from "lucide-react";
 import { NAV_SECTIONS } from "../Layout/Sidebar.js";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 interface SearchDialogProps {
   open: boolean;
@@ -27,13 +27,17 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({
   onSelect,
 }) => {
   const [query, setQuery] = useState("");
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
   // Flat list of searchable components
   const allItems = React.useMemo(() => {
-    const list: { id: string; label: string; category: string; badge?: string }[] =
-      [];
+    const list: {
+      id: string;
+      label: string;
+      category: string;
+      badge?: string;
+    }[] = [];
     NAV_SECTIONS.forEach((sec) => {
       sec.items.forEach((item) => {
         list.push({
@@ -53,7 +57,7 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({
     return allItems.filter(
       (item) =>
         item.label.toLowerCase().includes(q) ||
-        item.category.toLowerCase().includes(q)
+        item.category.toLowerCase().includes(q),
     );
   }, [allItems, query]);
 

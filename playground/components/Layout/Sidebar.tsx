@@ -8,7 +8,7 @@ import {
   Chip,
   Drawer,
 } from "@mui/material";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import { useGlassMode } from "../../../src/context/ThemeContext";
 
 export interface NavItem {
   id: string;
@@ -62,9 +62,7 @@ export const NAV_SECTIONS: NavSection[] = [
   },
   {
     title: "Feedback",
-    items: [
-      { id: "feedback", label: "Alert & Notification" },
-    ],
+    items: [{ id: "feedback", label: "Alert & Notification" }],
   },
 ];
 
@@ -81,7 +79,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   mobileOpen = false,
   onCloseMobile,
 }) => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
   const content = (
@@ -174,16 +172,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
                               ? "rgba(255,255,255,0.15)"
                               : "rgba(0,0,0,0.08)"
                             : isDark
-                            ? "#F6F5F2"
-                            : "#111111",
+                              ? "#F6F5F2"
+                              : "#111111",
                         color:
                           item.badge === "GLASS"
                             ? isDark
                               ? "#F6F5F2"
                               : "#111111"
                             : isDark
-                            ? "#111111"
-                            : "#FFFFFF",
+                              ? "#111111"
+                              : "#FFFFFF",
                         "& .MuiChip-label": { px: 0.7 },
                       }}
                     />

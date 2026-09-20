@@ -13,11 +13,17 @@
 - 💎 **Apple Precision & Google Antigravity Aesthetics**  
   A curated design system featuring frosted glass surfaces, liquid borders, subtle glow layers, ambient effects, and premium motion.
 
-- 🌓 **Unified Theme System**  
-  Supports `light`, `dark`, and `system` appearance modes with persistent user preferences and automatic operating-system theme detection.
+- 🎨 **Luxury Monochrome Brand Palette**  
+  Primary Charcoal (`#111111`), Stone (`#686868`), Sand (`#D9D9CF`), and Cream (`#F6F5F2`) palette across light and dark modes with complete MUI component overrides.
 
-- ⚡ **Cached Theme Engine**  
-  Compiled MUI themes are cached by appearance mode to avoid unnecessary theme recreation.
+- 🌈 **Native Gradient Typography**  
+  `color="gradient"` on `<Typography>` with mode-aware `gradientLight` (`linear-gradient(135deg, #111111 0%, #686868 100%)`) and `gradientDark` (`linear-gradient(135deg, #F6F5F2 0%, #D9D9CF 100%)`).
+
+- 🌓 **Unified Theme System & Theme Toggle**  
+  Supports `light`, `dark`, and `system` appearance modes with `useGlassMode()` exposing `resolvedMode`, `toggleGlassMode`, and `toggleTheme` alias.
+
+- ⚡ **Cached Theme Engine & Component Overrides**  
+  Compiled MUI themes cached by mode. Standardized component overrides for Inputs, Controls, DataDisplay, Feedback, Surfaces, and Navigation (including tight scrollable pill track wrapping for `<Tabs>`).
 
 - 🔄 **Live System Theme Detection**  
   When using `system`, the library follows the browser/OS `prefers-color-scheme` setting and automatically reacts when the system appearance changes.
@@ -29,7 +35,7 @@
   Designed for React applications including Next.js App Router and Vite-based applications.
 
 - 🧩 **Zero-Setup UI Primitives**  
-  Reusable glass panels, liquid cards, ambient blobs, gradient typography, section headers, toolbars, navigation surfaces, and more.
+  Reusable glass panels (`GlassPanel` with crisp light border `rgba(17, 17, 17, 0.08)`), liquid cards, ambient blobs, gradient typography, section headers, toolbars, navigation surfaces, and more.
 
 - 📦 **TypeScript First**  
   Full TypeScript declarations with ESM and CommonJS package outputs.

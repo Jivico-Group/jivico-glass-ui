@@ -22,10 +22,10 @@ import {
   Camera,
   Check,
 } from "lucide-react";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const DataDisplayPage: React.FC = () => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
   return (
@@ -108,20 +108,27 @@ export const DataDisplayPage: React.FC = () => {
               backdropFilter: "blur(24px) saturate(180%)",
               WebkitBackdropFilter: "blur(24px) saturate(180%)",
               border: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(255, 255, 255, 0.85)"
+                isDark
+                  ? "rgba(255, 255, 255, 0.15)"
+                  : "rgba(255, 255, 255, 0.85)"
               }`,
               boxShadow: isDark
                 ? "0 8px 32px rgba(0, 0, 0, 0.35)"
                 : "0 8px 32px rgba(0, 0, 0, 0.05)",
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 3 }}>
+            <Box
+              sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 3 }}
+            >
               <Sparkles
                 size={22}
                 color={isDark ? "#F6F5F2" : "#111111"}
                 style={{ opacity: 0.85 }}
               />
-              <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.05rem" }}>
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: 700, fontSize: "1.05rem" }}
+              >
                 Liquid Glass Identity Primitives
               </Typography>
               <Chip
@@ -148,7 +155,14 @@ export const DataDisplayPage: React.FC = () => {
               }}
             >
               {/* Glass Squircle Avatar with Pro Badge */}
-              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+              >
                 <Badge
                   badgeContent="PRO"
                   color="glass"
@@ -167,13 +181,23 @@ export const DataDisplayPage: React.FC = () => {
                     JV
                   </Avatar>
                 </Badge>
-                <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
+                <Typography
+                  variant="caption"
+                  sx={{ fontWeight: 600, color: "text.secondary" }}
+                >
                   Apple Squircle
                 </Typography>
               </Box>
 
               {/* Photo Avatar with Online Aura Dot */}
-              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+              >
                 <Badge
                   variant="dot"
                   color="success"
@@ -186,13 +210,23 @@ export const DataDisplayPage: React.FC = () => {
                     sx={{ width: 64, height: 64 }}
                   />
                 </Badge>
-                <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
+                <Typography
+                  variant="caption"
+                  sx={{ fontWeight: 600, color: "text.secondary" }}
+                >
                   Active Online
                 </Typography>
               </Box>
 
               {/* Pure Frosted Glass Circular Avatar with Notification Count */}
-              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+              >
                 <Badge badgeContent={8} color="primary" overlap="circular">
                   <Avatar
                     sx={{
@@ -206,14 +240,27 @@ export const DataDisplayPage: React.FC = () => {
                     <User size={28} />
                   </Avatar>
                 </Badge>
-                <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
+                <Typography
+                  variant="caption"
+                  sx={{ fontWeight: 600, color: "text.secondary" }}
+                >
                   Glass Icon
                 </Typography>
               </Box>
 
               {/* Overlapping Glass AvatarGroup */}
-              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
-                <AvatarGroup max={4} sx={{ "& .MuiAvatar-root": { width: 46, height: 46 } }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+              >
+                <AvatarGroup
+                  max={4}
+                  sx={{ "& .MuiAvatar-root": { width: 46, height: 46 } }}
+                >
                   <Avatar
                     alt="Remy Sharp"
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
@@ -228,7 +275,10 @@ export const DataDisplayPage: React.FC = () => {
                   />
                   <Avatar>+6</Avatar>
                 </AvatarGroup>
-                <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
+                <Typography
+                  variant="caption"
+                  sx={{ fontWeight: 600, color: "text.secondary" }}
+                >
                   Glass AvatarGroup
                 </Typography>
               </Box>
@@ -251,7 +301,15 @@ export const DataDisplayPage: React.FC = () => {
 // Square Variant
 <Avatar variant="square">SQ</Avatar>`}
       >
-        <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 4, width: "100%" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: 4,
+            width: "100%",
+          }}
+        >
           {/* Circular */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Avatar sx={{ width: 48, height: 48 }}>CL</Avatar>
@@ -310,46 +368,103 @@ export const DataDisplayPage: React.FC = () => {
 <Avatar sx={{ width: 56, height: 56, fontSize: '1.2rem' }}>LG</Avatar>
 <Avatar sx={{ width: 72, height: 72, fontSize: '1.5rem' }}>XL</Avatar>`}
       >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3, flexWrap: "wrap", width: "100%" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 3,
+            flexWrap: "wrap",
+            width: "100%",
+          }}
+        >
           <Box sx={{ textAlign: "center" }}>
-            <Avatar sx={{ width: 28, height: 28, fontSize: "0.75rem", mx: "auto", mb: 1 }}>
+            <Avatar
+              sx={{
+                width: 28,
+                height: 28,
+                fontSize: "0.75rem",
+                mx: "auto",
+                mb: 1,
+              }}
+            >
               XS
             </Avatar>
-            <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
+            <Typography
+              variant="caption"
+              sx={{ color: "text.secondary", fontWeight: 600 }}
+            >
               28px
             </Typography>
           </Box>
 
           <Box sx={{ textAlign: "center" }}>
-            <Avatar sx={{ width: 36, height: 36, fontSize: "0.85rem", mx: "auto", mb: 1 }}>
+            <Avatar
+              sx={{
+                width: 36,
+                height: 36,
+                fontSize: "0.85rem",
+                mx: "auto",
+                mb: 1,
+              }}
+            >
               SM
             </Avatar>
-            <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
+            <Typography
+              variant="caption"
+              sx={{ color: "text.secondary", fontWeight: 600 }}
+            >
               36px
             </Typography>
           </Box>
 
           <Box sx={{ textAlign: "center" }}>
-            <Avatar sx={{ width: 44, height: 44, mx: "auto", mb: 1 }}>MD</Avatar>
-            <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
+            <Avatar sx={{ width: 44, height: 44, mx: "auto", mb: 1 }}>
+              MD
+            </Avatar>
+            <Typography
+              variant="caption"
+              sx={{ color: "text.secondary", fontWeight: 600 }}
+            >
               44px
             </Typography>
           </Box>
 
           <Box sx={{ textAlign: "center" }}>
-            <Avatar sx={{ width: 56, height: 56, fontSize: "1.2rem", mx: "auto", mb: 1 }}>
+            <Avatar
+              sx={{
+                width: 56,
+                height: 56,
+                fontSize: "1.2rem",
+                mx: "auto",
+                mb: 1,
+              }}
+            >
               LG
             </Avatar>
-            <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
+            <Typography
+              variant="caption"
+              sx={{ color: "text.secondary", fontWeight: 600 }}
+            >
               56px
             </Typography>
           </Box>
 
           <Box sx={{ textAlign: "center" }}>
-            <Avatar sx={{ width: 72, height: 72, fontSize: "1.5rem", mx: "auto", mb: 1 }}>
+            <Avatar
+              sx={{
+                width: 72,
+                height: 72,
+                fontSize: "1.5rem",
+                mx: "auto",
+                mb: 1,
+              }}
+            >
               XL
             </Avatar>
-            <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
+            <Typography
+              variant="caption"
+              sx={{ color: "text.secondary", fontWeight: 600 }}
+            >
               72px
             </Typography>
           </Box>
@@ -371,15 +486,32 @@ export const DataDisplayPage: React.FC = () => {
   <Bell size={22} />
 </Badge>`}
       >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap", width: "100%" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 5,
+            flexWrap: "wrap",
+            width: "100%",
+          }}
+        >
           {/* Glass Badge */}
-          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
             <Badge badgeContent="GLASS" color="glass">
               <Box
                 sx={{
                   p: 1.5,
                   borderRadius: "12px",
-                  bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
+                  bgcolor: isDark
+                    ? "rgba(255,255,255,0.06)"
+                    : "rgba(17,17,17,0.04)",
                   border: `1px solid ${
                     isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"
                   }`,
@@ -388,19 +520,31 @@ export const DataDisplayPage: React.FC = () => {
                 <Sparkles size={22} />
               </Box>
             </Badge>
-            <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
+            <Typography
+              variant="caption"
+              sx={{ fontWeight: 600, color: "text.secondary" }}
+            >
               Glass Badge
             </Typography>
           </Box>
 
           {/* Primary Badge */}
-          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
             <Badge badgeContent={12} color="primary">
               <Box
                 sx={{
                   p: 1.5,
                   borderRadius: "12px",
-                  bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
+                  bgcolor: isDark
+                    ? "rgba(255,255,255,0.06)"
+                    : "rgba(17,17,17,0.04)",
                   border: `1px solid ${
                     isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"
                   }`,
@@ -409,19 +553,31 @@ export const DataDisplayPage: React.FC = () => {
                 <Mail size={22} />
               </Box>
             </Badge>
-            <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
+            <Typography
+              variant="caption"
+              sx={{ fontWeight: 600, color: "text.secondary" }}
+            >
               Primary Charcoal
             </Typography>
           </Box>
 
           {/* Error Badge */}
-          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
             <Badge badgeContent={99} color="error">
               <Box
                 sx={{
                   p: 1.5,
                   borderRadius: "12px",
-                  bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
+                  bgcolor: isDark
+                    ? "rgba(255,255,255,0.06)"
+                    : "rgba(17,17,17,0.04)",
                   border: `1px solid ${
                     isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"
                   }`,
@@ -430,19 +586,31 @@ export const DataDisplayPage: React.FC = () => {
                 <Bell size={22} />
               </Box>
             </Badge>
-            <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
+            <Typography
+              variant="caption"
+              sx={{ fontWeight: 600, color: "text.secondary" }}
+            >
               Error Crimson
             </Typography>
           </Box>
 
           {/* Success Badge */}
-          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
             <Badge badgeContent="OK" color="success">
               <Box
                 sx={{
                   p: 1.5,
                   borderRadius: "12px",
-                  bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
+                  bgcolor: isDark
+                    ? "rgba(255,255,255,0.06)"
+                    : "rgba(17,17,17,0.04)",
                   border: `1px solid ${
                     isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"
                   }`,
@@ -451,19 +619,31 @@ export const DataDisplayPage: React.FC = () => {
                 <Shield size={22} />
               </Box>
             </Badge>
-            <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
+            <Typography
+              variant="caption"
+              sx={{ fontWeight: 600, color: "text.secondary" }}
+            >
               Success Emerald
             </Typography>
           </Box>
 
           {/* Max Overflow Badge */}
-          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
             <Badge badgeContent={120} max={99} color="primary">
               <Box
                 sx={{
                   p: 1.5,
                   borderRadius: "12px",
-                  bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
+                  bgcolor: isDark
+                    ? "rgba(255,255,255,0.06)"
+                    : "rgba(17,17,17,0.04)",
                   border: `1px solid ${
                     isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"
                   }`,
@@ -472,7 +652,10 @@ export const DataDisplayPage: React.FC = () => {
                 <MessageSquare size={22} />
               </Box>
             </Badge>
-            <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
+            <Typography
+              variant="caption"
+              sx={{ fontWeight: 600, color: "text.secondary" }}
+            >
               Max Overflow 99+
             </Typography>
           </Box>
@@ -497,7 +680,14 @@ export const DataDisplayPage: React.FC = () => {
   <Avatar>GL</Avatar>
 </Badge>`}
       >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 4,
+            flexWrap: "wrap",
+          }}
+        >
           <Badge
             variant="dot"
             color="success"

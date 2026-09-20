@@ -9,8 +9,9 @@ import {
   Chip,
   Button,
 } from "@mui/material";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+
 import { Menu as MenuIcon, Search } from "lucide-react";
+import { useGlassMode } from "../../../src/context/ThemeContext";
 
 interface HeaderProps {
   onToggleMobileSidebar: () => void;
@@ -75,7 +76,7 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleMobileSidebar,
   onOpenSearch,
 }) => {
-  const { mode, toggleTheme } = useThemeMode();
+  const { mode, toggleGlassMode } = useGlassMode();
   const isDark = mode === "dark";
 
   return (
@@ -255,7 +256,7 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Theme Toggle (Sun/Moon) */}
         <Tooltip title={`Switch to ${isDark ? "light" : "dark"} mode`}>
           <IconButton
-            onClick={toggleTheme}
+            onClick={toggleGlassMode}
             size="small"
             sx={{
               color: "inherit",

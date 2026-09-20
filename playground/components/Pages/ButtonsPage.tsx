@@ -35,12 +35,11 @@ import {
   Bold,
   Italic,
   Underline,
-  Check,
 } from "lucide-react";
-import { useThemeMode } from "../../../src/context/ThemeContext.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const ButtonsPage: React.FC = () => {
-  const { mode } = useThemeMode();
+  const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
   // State for Toggle Buttons

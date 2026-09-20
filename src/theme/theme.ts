@@ -59,7 +59,6 @@ function buildTheme(mode: "light" | "dark"): Theme {
             scrollBehavior: "smooth",
             backgroundColor: palette.background.default,
             color: palette.text.primary,
-            transition: "background-color 0.2s ease, color 0.2s ease",
             WebkitFontSmoothing: "antialiased",
             MozOsxFontSmoothing: "grayscale",
           },

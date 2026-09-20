@@ -117,25 +117,46 @@ export function GlassModeProvider({
 
   /**
    * Toggle between light and dark.
+  /**
+   * Helper to perform smooth View Transitions if supported by browser
+   */
+  const withViewTransition = (callback: () => void) => {
+    if (
+      typeof document !== "undefined" &&
+      "startViewTransition" in document &&
+      typeof (document as any).startViewTransition === "function"
+    ) {
+      (document as any).startViewTransition(() => {
+        callback();
+      });
+    } else {
+      callback();
+    }
+  };
+
+  /**
+   * Toggle between light and dark.
    *
    * When using system mode, this explicitly switches
    * to the opposite of the currently resolved mode.
    */
   const toggleGlassMode = () => {
-    setModeState((previousMode) => {
-      const currentResolved =
-        previousMode === "system" ? systemMode : previousMode;
+    withViewTransition(() => {
+      setModeState((previousMode) => {
+        const currentResolved =
+          previousMode === "system" ? systemMode : previousMode;
 
-      const nextMode: ThemeMode =
-        currentResolved === "light" ? "dark" : "light";
+        const nextMode: ThemeMode =
+          currentResolved === "light" ? "dark" : "light";
 
-      try {
-        localStorage.setItem(storageKey, nextMode);
-      } catch {
-        // Ignore storage access errors.
-      }
+        try {
+          localStorage.setItem(storageKey, nextMode);
+        } catch {
+          // Ignore storage access errors.
+        }
 
-      return nextMode;
+        return nextMode;
+      });
     });
   };
 
@@ -143,13 +164,15 @@ export function GlassModeProvider({
    * Set the user's appearance preference.
    */
   const setGlassMode = (newMode: ThemeMode) => {
-    setModeState(newMode);
+    withViewTransition(() => {
+      setModeState(newMode);
 
-    try {
-      localStorage.setItem(storageKey, newMode);
-    } catch {
-      // Ignore storage access errors.
-    }
+      try {
+        localStorage.setItem(storageKey, newMode);
+      } catch {
+        // Ignore storage access errors.
+      }
+    });
   };
 
   const value = useMemo<GlassModeContextType>(

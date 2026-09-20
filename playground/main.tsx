@@ -1,14 +1,14 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import { JivicoThemeProvider } from "../src/providers/JivicoThemeProvider";
+import { JivicoGlassProvider } from "../src/providers/JivicoGlassProvider";
 
 const root = createRoot(document.getElementById("root")!);
 
 root.render(
   <React.StrictMode>
-    <JivicoThemeProvider>
+    <JivicoGlassProvider>
       <App />
-    </JivicoThemeProvider>
+    </JivicoGlassProvider>
   </React.StrictMode>,
 );
