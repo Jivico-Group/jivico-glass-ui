@@ -17,7 +17,7 @@ export const GlassPanel = styled(Box, {
       : "linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(248, 250, 252, 0.4) 100%)",
     backdropFilter: "blur(48px) saturate(180%)",
     WebkitBackdropFilter: "blur(48px) saturate(180%)",
-    border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.6)"}`,
+    border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)"}`,
 
     borderRadius: 24,
   };
