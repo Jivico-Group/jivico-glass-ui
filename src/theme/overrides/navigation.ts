@@ -389,8 +389,8 @@ export const getNavigationOverrides = (
     styleOverrides: {
       line: {
         borderColor: isDark
-          ? "rgba(255, 255, 255, 0.12)"
-          : "rgba(17, 17, 17, 0.12)",
+          ? "rgba(255, 255, 255, 0.18)"
+          : "rgba(17, 17, 17, 0.16)",
         borderTopWidth: 2,
         borderRadius: 1,
       },
@@ -399,20 +399,28 @@ export const getNavigationOverrides = (
   MuiStepIcon: {
     styleOverrides: {
       root: {
-        color: isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.1)",
+        color: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(17, 17, 17, 0.14)",
+        transition: "all 0.2s ease",
         "&.Mui-active": {
           color: palette.text.primary,
           filter: isDark
             ? `drop-shadow(0 0 6px rgba(255, 255, 255, 0.25))`
-            : `drop-shadow(0 0 6px rgba(17, 17, 17, 0.15))`,
+            : `drop-shadow(0 0 6px rgba(17, 17, 17, 0.18))`,
+          "& .MuiStepIcon-text": {
+            fill: isDark ? "#111111" : "#FFFFFF",
+          },
         },
         "&.Mui-completed": {
           color: palette.text.primary,
+          "& .MuiStepIcon-text": {
+            fill: isDark ? "#111111" : "#FFFFFF",
+          },
         },
       },
       text: {
-        fill: isDark ? "#111" : "#FFF",
+        fill: isDark ? "#FFFFFF" : "#111111",
         fontWeight: 700,
+        fontSize: "0.75rem",
       },
     },
   },
@@ -421,14 +429,15 @@ export const getNavigationOverrides = (
       label: {
         fontSize: "0.875rem",
         fontWeight: 500,
-        color: palette.text.secondary,
+        color: isDark ? "rgba(255, 255, 255, 0.72)" : "rgba(17, 17, 17, 0.72)",
+        transition: "all 0.2s ease",
         "&.Mui-active": {
           color: palette.text.primary,
-          fontWeight: 600,
+          fontWeight: 700,
         },
         "&.Mui-completed": {
           color: palette.text.primary,
-          fontWeight: 500,
+          fontWeight: 600,
         },
       },
     },
