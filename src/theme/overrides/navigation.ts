@@ -285,18 +285,28 @@ export const getNavigationOverrides = (
   MuiMenuItem: {
     styleOverrides: {
       root: {
-        borderRadius: 12,
-        padding: "6px 12px",
-        minHeight: "32px",
-        fontSize: "0.875rem",
+        borderRadius: 8,
+        padding: "5px 10px",
+        minHeight: "28px",
+        fontSize: "0.8125rem",
         fontWeight: 500,
         transition: "all 0.15s ease",
+        gap: "8px",
+        "&.MuiMenuItem-dense": {
+          minHeight: "24px",
+          padding: "3px 8px",
+          fontSize: "0.775rem",
+        },
         "&:hover": {
           backgroundColor: palette.glass.menuItemHover,
         },
         "&.Mui-selected": {
           backgroundColor: palette.action.selected,
           color: palette.primary.main,
+          fontWeight: 600,
+          "&:hover": {
+            backgroundColor: palette.glass.menuItemHover,
+          },
         },
       },
     },
@@ -304,7 +314,7 @@ export const getNavigationOverrides = (
   MuiList: {
     styleOverrides: {
       root: {
-        padding: "4px",
+        padding: "3px",
       },
     },
   },

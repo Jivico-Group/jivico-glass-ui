@@ -839,12 +839,13 @@ export const getInputOverrides = (
             padding: "4px !important",
           },
           "& .MuiMenuItem-root": {
-            minHeight: "34px",
-            padding: "6px 12px",
-            fontSize: "0.875rem",
-            borderRadius: "10px",
+            minHeight: "28px",
+            padding: "5px 10px",
+            fontSize: "0.8125rem",
+            borderRadius: "8px",
             color: palette.text.primary,
             transition: "all 0.15s ease",
+            gap: "8px",
             "&:hover": {
               backgroundColor: `${palette.glass.menuItemHover} !important`,
             },
