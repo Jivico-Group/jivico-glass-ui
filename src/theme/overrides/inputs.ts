@@ -830,11 +830,13 @@ export const getInputOverrides = (
         sx: {
           "& .MuiPaper-root": {
             ...liquidGlassPopupRecipe(isDark),
+            maxHeight: "320px !important",
+            overflowY: "auto !important",
           },
           "& .MuiList-root": {
             backgroundColor: "transparent !important",
             backgroundImage: "none !important",
-            padding: "0 !important",
+            padding: "4px !important",
           },
           "& .MuiMenuItem-root": {
             minHeight: "34px",

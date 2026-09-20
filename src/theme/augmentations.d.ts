@@ -114,6 +114,34 @@ declare module "@mui/material/TextField/TextField" {
   }
 }
 
+declare module "@mui/material/Select" {
+  interface SelectPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+}
+
+declare module "@mui/material/Select/Select" {
+  interface SelectPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+}
+
+declare module "@mui/material/OutlinedInput" {
+  interface OutlinedInputPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+}
+
+declare module "@mui/material/OutlinedInput/OutlinedInput" {
+  interface OutlinedInputPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+}
+
 declare module "@mui/material/InputBase" {
   interface InputBasePropsColorOverrides {
     glass: true;
@@ -121,7 +149,21 @@ declare module "@mui/material/InputBase" {
   }
 }
 
+declare module "@mui/material/InputBase/InputBase" {
+  interface InputBasePropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+}
+
 declare module "@mui/material/FormControl" {
+  interface FormControlPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+}
+
+declare module "@mui/material/FormControl/FormControl" {
   interface FormControlPropsColorOverrides {
     glass: true;
     "glass-surface": true;
@@ -214,6 +256,26 @@ declare module "@mui/material" {
     "glass-surface": true;
   }
   interface TextFieldPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+  interface SelectPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+  interface FormControlPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+  interface FormLabelPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+  interface OutlinedInputPropsColorOverrides {
+    glass: true;
+    "glass-surface": true;
+  }
+  interface InputBasePropsColorOverrides {
     glass: true;
     "glass-surface": true;
   }

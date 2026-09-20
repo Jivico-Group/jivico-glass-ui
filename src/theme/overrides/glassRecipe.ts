@@ -67,7 +67,9 @@ export const liquidGlassPopupRecipe = (isDark: boolean) => ({
     ? "0 24px 50px rgba(0, 0, 0, 0.65), 0 6px 16px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important"
     : "0 20px 48px -4px rgba(0, 0, 0, 0.10), 0 6px 16px -2px rgba(0, 0, 0, 0.04), inset 0 1px 1px 0 rgba(255, 255, 255, 0.6) !important",
   padding: "6px !important",
-  overflow: "hidden !important",
+  maxHeight: "320px",
+  overflowY: "auto" as const,
+  overflowX: "hidden" as const,
   transition:
     "transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important",
   transformOrigin: "top center !important",

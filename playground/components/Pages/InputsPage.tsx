@@ -21,7 +21,6 @@ import {
   Eye,
   EyeOff,
   DollarSign,
-  Globe,
   Check,
   Sparkles,
 } from "lucide-react";
@@ -41,6 +40,8 @@ export const InputsPage: React.FC = () => {
     "Brand Kit",
   ]);
 
+  const [largeListValue, setLargeListValue] = useState("item-1");
+
   const designOptions = [
     "Apple Precision",
     "Google Antigravity",
@@ -50,6 +51,24 @@ export const InputsPage: React.FC = () => {
     "Charcoal Surface",
     "Cream Canvas",
   ];
+
+  const largeOptionsList = Array.from({ length: 35 }, (_, i) => ({
+    id: `item-${i + 1}`,
+    label: `Option ${i + 1} — ${
+      [
+        "Raw Materials & Fabric Roll",
+        "Trims, Zippers & Metal Buttons",
+        "Custom Packaging & Polybags",
+        "Freight, Air Cargo & Import Duty",
+        "Embroidery & Screen Printing Ink",
+        "Garment Washing & Acid Dyeing",
+        "Pattern Development & Tech Pack",
+        "Quality Audit & Fabric Testing",
+        "Factory Overhead & Electricity",
+        "Sewing Machine Spare Parts",
+      ][i % 10]
+    }`,
+  }));
 
   return (
     <ComponentPage
@@ -197,7 +216,7 @@ export const InputsPage: React.FC = () => {
               }}
               sx={{ minWidth: 240 }}
             />
-            <FormControl color="glass" sx={{ minWidth: 240 }}>
+            <FormControl sx={{ minWidth: 240 }}>
               <InputLabel id="glass-select-label">Glass Select</InputLabel>
               <Select
                 color="glass"
@@ -326,6 +345,26 @@ export const InputsPage: React.FC = () => {
               <MenuItem value="large">Large (56px)</MenuItem>
             </Select>
             <FormHelperText>Compact small size variant</FormHelperText>
+          </FormControl>
+
+          <FormControl sx={{ minWidth: 280 }}>
+            <InputLabel id="large-select-label">
+              Large Options List (35 Items)
+            </InputLabel>
+            <Select
+              labelId="large-select-label"
+              id="large-select"
+              value={largeListValue}
+              label="Large Options List (35 Items)"
+              onChange={(e) => setLargeListValue(e.target.value)}
+            >
+              {largeOptionsList.map((item) => (
+                <MenuItem key={item.id} value={item.id}>
+                  {item.label}
+                </MenuItem>
+              ))}
+            </Select>
+            <FormHelperText>Scrollable menu (max-height: 320px)</FormHelperText>
           </FormControl>
 
           <FormControl sx={{ minWidth: 240 }} disabled>
