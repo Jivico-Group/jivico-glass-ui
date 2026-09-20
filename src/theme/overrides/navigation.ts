@@ -72,8 +72,8 @@ export const getNavigationOverrides = (
           border: `1px solid ${
             isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.04)"
           }`,
-          display: ownerState.variant === "fullWidth" ? "flex" : isScrollable ? "flex" : "inline-flex",
-          width: ownerState.variant === "fullWidth" ? "100%" : isScrollable ? "100%" : "fit-content",
+          display: ownerState.variant === "fullWidth" ? "flex" : "inline-flex",
+          width: ownerState.variant === "fullWidth" ? "100%" : "fit-content",
           maxWidth: "100%",
           boxShadow: isDark
             ? "inset 0 1px 3px rgba(0,0,0,0.35)"
