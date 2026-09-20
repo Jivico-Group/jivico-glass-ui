@@ -37,17 +37,17 @@ export const COLORS = {
   // ─── Secondary (Cream) ───────────────────────────────────────────────────────
   secondary: {
     light: '#F6F5F2',
-    dark: '#F6F5F2',
-    hoverLight: '#2A2A2A',
-    hoverDark: '#E8E7E4',
-    activeLight: '#3A3A37',
-    activeDark: '#D4D4D8',
-    disabledLight: '#3A3A3A',
-    disabledDark: '#EDEDED',
-    glowLight: 'rgba(17, 17, 17, 0.08)',
-    glowDark: 'rgba(246, 245, 242, 0.15)',
+    dark: '#1A1A1A',
+    hoverLight: '#E8E7E4',
+    hoverDark: '#2A2A2A',
+    activeLight: '#D9D8D4',
+    activeDark: '#3A3A3A',
+    disabledLight: '#D9D9D9',
+    disabledDark: '#3A3A3A',
+    glowLight: 'rgba(246, 245, 242, 0.15)',
+    glowDark: 'rgba(17, 17, 17, 0.35)',
     textLight: '#111111',
-    textDark: '#F6F5F2',
+    textDark: '#FFFFFF',
   },
 
   // ─── Semantic ────────────────────────────────────────────────────────────────
