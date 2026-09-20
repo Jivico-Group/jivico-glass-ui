@@ -1,10 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import { COLORS } from "../colors.js";
 import type { JivicoPalette } from "../palette.js";
-import {
-  LiquidDialogDrawerRecipe,
-  liquidGlassPopupRecipe,
-} from "./glassRecipe.js";
+import { LiquidDialogDrawerRecipe } from "./glassRecipe.js";
 
 /**
  * MUI component overrides — Feedback:
