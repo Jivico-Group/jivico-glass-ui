@@ -62,6 +62,7 @@ export const getNavigationOverrides = (
     styleOverrides: {
       root: ({ ownerState }) => {
         const isSmall = (ownerState as any).size === "small";
+        const isScrollable = ownerState.variant === "scrollable";
         return {
           minHeight: isSmall ? 32 : 44,
           height: isSmall ? 32 : "auto",
@@ -71,8 +72,9 @@ export const getNavigationOverrides = (
           border: `1px solid ${
             isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.04)"
           }`,
-          display: ownerState.variant === "fullWidth" ? "flex" : "inline-flex",
-          width: ownerState.variant === "fullWidth" ? "100%" : "fit-content",
+          display: ownerState.variant === "fullWidth" ? "flex" : isScrollable ? "flex" : "inline-flex",
+          width: ownerState.variant === "fullWidth" ? "100%" : isScrollable ? "100%" : "fit-content",
+          maxWidth: "100%",
           boxShadow: isDark
             ? "inset 0 1px 3px rgba(0,0,0,0.35)"
             : "inset 0 1px 2px rgba(0,0,0,0.04)",
@@ -81,12 +83,16 @@ export const getNavigationOverrides = (
           boxSizing: "border-box",
           position: "relative",
           isolation: "isolate",
-          overflow: "visible",
+          overflow: isScrollable ? "hidden" : "visible",
           "& .MuiTabs-scroller": {
             position: "relative",
             borderRadius: 9999,
-            overflow: "visible !important",
+            overflow: isScrollable ? "auto !important" : "visible !important",
             height: "100%",
+            scrollbarWidth: "none",
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
           },
           "& .MuiTabs-flexContainer": {
             position: "relative",
@@ -94,6 +100,18 @@ export const getNavigationOverrides = (
             gap: 0,
             height: "100%",
             alignItems: "center",
+          },
+          "& .MuiTabs-scrollButtons": {
+            color: isDark ? "rgba(255, 255, 255, 0.7)" : "rgba(17, 17, 17, 0.7)",
+            borderRadius: 9999,
+            width: isSmall ? 24 : 32,
+            height: isSmall ? 24 : 32,
+            minWidth: isSmall ? 24 : 32,
+            alignSelf: "center",
+            zIndex: 3,
+            "&.Mui-disabled": {
+              opacity: 0.3,
+            },
           },
           ...(isSmall && {
             "& .MuiTab-root": {
