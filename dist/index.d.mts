@@ -328,6 +328,7 @@ declare module "@mui/material/Typography" {
   interface TypographyPropsColorOverrides {
     glass: true;
     "glass-surface": true;
+    gradient: true;
   }
 }
 
@@ -335,6 +336,7 @@ declare module "@mui/material/Typography/Typography" {
   interface TypographyPropsColorOverrides {
     glass: true;
     "glass-surface": true;
+    gradient: true;
   }
 }
 
@@ -367,16 +369,7 @@ declare module "@mui/material" {
   interface TypographyPropsColorOverrides {
     glass: true;
     "glass-surface": true;
-  }
-  interface BoxPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-    primary: true;
-    secondary: true;
-    success: true;
-    error: true;
-    info: true;
-    warning: true;
+    gradient: true;
   }
   interface TabsOwnProps {
     size?: "small" | "medium";
