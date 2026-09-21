@@ -1,36 +1,5 @@
 import type { Components, Theme } from "@mui/material/styles";
 
-declare module "@mui/material/Tabs" {
-  interface TabsOwnProps {
-    size?: "small" | "medium";
-    textColorOverride?:
-      | "primary"
-      | "secondary"
-      | "inherit"
-      | "accent"
-      | "glass"
-      | "info"
-      | "success"
-      | "warning"
-      | "error";
-    indicatorColorOverride?:
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "glass"
-      | "info"
-      | "success"
-      | "warning"
-      | "error";
-  }
-}
-
-declare module "@mui/material/Tab" {
-  interface TabOwnProps {
-    size?: "small" | "medium";
-  }
-}
-
 export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
   MuiTabs: {
     defaultProps: {

@@ -2,14 +2,6 @@ import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 import { liquidGlassPopupRecipe } from "../glassRecipe.js";
 
-declare module "@mui/material/Select" {
-  interface SelectPropsColorOverrides {
-    accent: true;
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
 export const getSelectOverrides = (
   palette: JivicoPalette,
   isDark: boolean,

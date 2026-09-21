@@ -1,13 +1,5 @@
 import type { Components, Theme } from "@mui/material/styles";
 
-declare module "@mui/material/ButtonGroup" {
-  interface ButtonGroupPropsColorOverrides {
-    accent: true;
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
 export const getButtonGroupOverrides = (
   isDark: boolean,
 ): Components<Theme> => ({

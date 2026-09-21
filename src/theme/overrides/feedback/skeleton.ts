@@ -1,26 +1,5 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
-
-declare module "@mui/material/Skeleton" {
-  interface SkeletonPropsColorOverrides {
-    primary: true;
-    secondary: true;
-    accent: true;
-    success: true;
-    info: true;
-    warning: true;
-    error: true;
-    glass: true;
-  }
-
-  interface SkeletonOwnProps {
-    appearance?: "solid" | "tonal" | "glass" | "outlined";
-    radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
-    glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
-    glow?: boolean;
-  }
-}
-
 type SkeletonColor =
   | "primary"
   | "secondary"

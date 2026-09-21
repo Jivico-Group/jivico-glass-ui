@@ -2,22 +2,6 @@ import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 import { COLORS } from "../../colors/index.js";
 
-declare module "@mui/material/Button" {
-  interface ButtonPropsColorOverrides {
-    accent: true;
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/IconButton" {
-  interface IconButtonPropsColorOverrides {
-    accent: true;
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
 export const getButtonOverrides = (
   palette: JivicoPalette,
   isDark: boolean,

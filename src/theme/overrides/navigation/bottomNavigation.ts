@@ -1,40 +1,6 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-declare module "@mui/material/BottomNavigation" {
-  interface BottomNavigationOwnProps {
-    /**
-     * Enables Jivico frosted glass surface.
-     *
-     * Default: false
-     */
-    glass?: boolean;
-
-    /**
-     * Size variant for dock height and item padding.
-     *
-     * Supports: 'small' | 'medium'
-     * Default: 'medium'
-     */
-    size?: "small" | "medium";
-
-    /**
-     * Floating screen placement.
-     *
-     * Supports: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right' | 'inline'
-     * Default: 'inline'
-     */
-    placement?:
-      | "top-left"
-      | "top-center"
-      | "top-right"
-      | "bottom-left"
-      | "bottom-center"
-      | "bottom-right"
-      | "inline";
-  }
-}
-
 export const getBottomNavigationOverrides = (
   _palette: JivicoPalette,
   isDark: boolean,

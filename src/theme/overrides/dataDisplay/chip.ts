@@ -2,20 +2,6 @@ import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette.js";
 import React from "react";
 
-declare module "@mui/material/Chip" {
-  interface ChipPropsColorOverrides {
-    accent: true;
-    glass: true;
-    "glass-surface": true;
-  }
-  interface ChipPropsVariantOverrides {
-    tonal: true;
-  }
-  interface ChipPropsSizeOverrides {
-    large: true;
-  }
-}
-
 // Clean minimalist close cross icon matching the brand kit
 const CloseDeleteIcon = (props: React.SVGProps<SVGSVGElement>) =>
   React.createElement(

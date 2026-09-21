@@ -2,22 +2,6 @@ import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 import { COLORS } from "../../colors/index.js";
 
-declare module "@mui/material/Alert" {
-  interface AlertPropsColorOverrides {
-    primary: true;
-    secondary: true;
-    accent: true;
-    glass: true;
-  }
-
-  interface AlertProps {
-    appearance?: "solid" | "tonal" | "glass" | "outlined";
-    radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
-    glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
-    glow?: boolean;
-  }
-}
-
 type AlertColor = "primary" | "secondary" | "accent" | "glass";
 type AlertAppearance = "solid" | "tonal" | "glass" | "outlined";
 type AlertRadius = "square" | "small" | "medium" | "large" | "rounded" | "pill";

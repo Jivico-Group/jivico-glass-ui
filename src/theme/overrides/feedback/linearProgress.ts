@@ -2,26 +2,6 @@ import type { Components, Theme } from "@mui/material/styles";
 import { linearProgressClasses } from "@mui/material/LinearProgress";
 import type { JivicoPalette } from "../../palette/index.js";
 
-declare module "@mui/material/LinearProgress" {
-  interface LinearProgressPropsColorOverrides {
-    primary: true;
-    secondary: true;
-    accent: true;
-    success: true;
-    info: true;
-    warning: true;
-    error: true;
-    glass: true;
-  }
-
-  interface LinearProgressProps {
-    appearance?: "solid" | "tonal" | "glass" | "outlined";
-    radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
-    size?: "thin" | "small" | "medium" | "large";
-    glow?: boolean;
-    glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
-  }
-}
 
 type ProgressColor =
   | "primary"

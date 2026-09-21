@@ -1,38 +1,6 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-declare module "@mui/material/TextField" {
-  interface TextFieldPropsColorOverrides {
-    accent: true;
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/OutlinedInput" {
-  interface OutlinedInputPropsColorOverrides {
-    accent: true;
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/InputBase" {
-  interface InputBasePropsColorOverrides {
-    accent: true;
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/FormControl" {
-  interface FormControlPropsColorOverrides {
-    accent: true;
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
 export const getOutlinedInputOverrides = (
   palette: JivicoPalette,
   isDark: boolean,

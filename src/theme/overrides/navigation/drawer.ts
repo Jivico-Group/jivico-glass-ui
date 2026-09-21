@@ -1,16 +1,5 @@
 import type { Components, Theme } from "@mui/material/styles";
 
-declare module "@mui/material/Drawer" {
-  interface DrawerProps {
-    /**
-     * Enables Jivico glass surface.
-     *
-     * Default: false
-     */
-    glass?: boolean;
-  }
-}
-
 export const getDrawerOverrides = (isDark: boolean): Components<Theme> => ({
   MuiDrawer: {
     styleOverrides: {

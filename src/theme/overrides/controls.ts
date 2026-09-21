@@ -2,38 +2,6 @@ import type { Components, Theme } from "@mui/material/styles";
 import { COLORS } from "../colors/index.js";
 import type { JivicoPalette } from "../palette/index.js";
 
-declare module "@mui/material/Switch" {
-  interface SwitchPropsColorOverrides {
-    accent: true;
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Checkbox" {
-  interface CheckboxPropsColorOverrides {
-    accent: true;
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Radio" {
-  interface RadioPropsColorOverrides {
-    accent: true;
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Slider" {
-  interface SliderPropsColorOverrides {
-    accent: true;
-    glass: true;
-    success: true;
-    warning: true;
-    error: true;
-    info: true;
-  }
-}
-
 /**
  * MUI component overrides — Selection Controls:
  * Checkbox, Radio, Switch, Slider, ToggleButton

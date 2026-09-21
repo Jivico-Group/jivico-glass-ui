@@ -1,61 +1,6 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette.js";
 
-declare module "@mui/material/Card" {
-  interface CardOwnProps {
-    /**
-     * Jivico Card color.
-     *
-     * Defaults to primary.
-     *
-     * Primary adapts to the active theme:
-     * - Light mode: white
-     * - Dark mode: dark surface
-     */
-    color?:
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "info"
-      | "success"
-      | "warning"
-      | "error"
-      | "glass";
-
-    /**
-     * Controls Card corner radius.
-     *
-     * Defaults to medium.
-     */
-    radius?: "none" | "small" | "medium" | "large" | "full";
-
-    /**
-     * Enables the optional Card hover interaction.
-     *
-     * Defaults to false.
-     */
-    hover?: boolean;
-
-    /**
-     * Additional Jivico Card variant.
-     */
-    variant?: "elevation" | "outlined" | "tonal";
-  }
-
-  interface CardPropsColorOverrides {
-    accent: true;
-    info: true;
-    success: true;
-    warning: true;
-    error: true;
-    glass: true;
-  }
-
-  interface CardPropsVariantOverrides {
-    tonal: true;
-  }
-}
-
 type CardColor =
   | "primary"
   | "secondary"

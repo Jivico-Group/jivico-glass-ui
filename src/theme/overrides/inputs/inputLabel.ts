@@ -1,14 +1,6 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-declare module "@mui/material/FormLabel" {
-  interface FormLabelPropsColorOverrides {
-    accent: true;
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
 export const getInputLabelOverrides = (
   palette: JivicoPalette,
 ): Components<Theme> => ({

@@ -1,17 +1,6 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-declare module "@mui/material/Tooltip" {
-  interface TooltipProps {
-    /**
-     * Enables Jivico glass surface.
-     *
-     * Default: false
-     */
-    glass?: boolean;
-  }
-}
-
 export const getTooltipOverrides = (
   _palette: JivicoPalette,
   isDark: boolean,

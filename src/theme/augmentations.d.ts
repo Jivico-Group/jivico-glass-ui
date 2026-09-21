@@ -117,16 +117,40 @@ declare module "@mui/material/Slider" {
   }
 }
 
-declare module "@mui/material/TextField" {
-  interface TextFieldPropsColorOverrides {
+declare module "@mui/material/FormLabel" {
+  interface FormLabelPropsColorOverrides {
     accent: true;
     glass: true;
     "glass-surface": true;
   }
 }
 
-declare module "@mui/material/Select" {
-  interface SelectPropsColorOverrides {
+declare module "@mui/material/OutlinedInput" {
+  interface OutlinedInputPropsColorOverrides {
+    accent: true;
+    glass: true;
+    "glass-surface": true;
+  }
+}
+
+declare module "@mui/material/InputBase" {
+  interface InputBasePropsColorOverrides {
+    accent: true;
+    glass: true;
+    "glass-surface": true;
+  }
+}
+
+declare module "@mui/material/FormControl" {
+  interface FormControlPropsColorOverrides {
+    accent: true;
+    glass: true;
+    "glass-surface": true;
+  }
+}
+
+declare module "@mui/material/TextField" {
+  interface TextFieldPropsColorOverrides {
     accent: true;
     glass: true;
     "glass-surface": true;
@@ -144,6 +168,14 @@ declare module "@mui/material/Chip" {
     accent: true;
     glass: true;
     "glass-surface": true;
+  }
+
+  interface ChipPropsVariantOverrides {
+    tonal: true;
+  }
+
+  interface ChipPropsSizeOverrides {
+    large: true;
   }
 
   interface ChipOwnProps {
@@ -165,6 +197,10 @@ declare module "@mui/material/Avatar" {
     glass: true;
     "glass-surface": true;
   }
+
+  interface AvatarPropsVariantOverrides {
+    glass: true;
+  }
 }
 
 declare module "@mui/material/Typography" {
@@ -172,6 +208,7 @@ declare module "@mui/material/Typography" {
     accent: true;
     glass: true;
     "glass-surface": true;
+    gradient: true;
   }
 }
 
@@ -183,23 +220,80 @@ declare module "@mui/material/Typography" {
 
 declare module "@mui/material/Card" {
   interface CardOwnProps {
+    color?:
+      | "primary"
+      | "secondary"
+      | "accent"
+      | "info"
+      | "success"
+      | "warning"
+      | "error"
+      | "glass";
+    radius?: "none" | "small" | "medium" | "large" | "full";
+    hover?: boolean;
+    variant?: "elevation" | "outlined" | "tonal";
     glass?: boolean;
+  }
+
+  interface CardPropsColorOverrides {
+    accent: true;
+    info: true;
+    success: true;
+    warning: true;
+    error: true;
+    glass: true;
+  }
+
+  interface CardPropsVariantOverrides {
+    tonal: true;
   }
 }
 
 declare module "@mui/material/Dialog" {
   interface DialogOwnProps {
     glass?: boolean;
+    color?: "primary" | "secondary" | "accent" | "glass";
+    variant?: "glass" | "solid" | "tonal" | "outlined";
+    radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
+    elevation?: "none" | "low" | "medium" | "high" | "floating";
+    glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
+    border?: "none" | "subtle" | "strong";
+  }
+
+  interface DialogProps {
+    glass?: boolean;
+  }
+
+  interface DialogPropsColorOverrides {
+    primary: true;
+    secondary: true;
+    accent: true;
+    glass: true;
+  }
+
+  interface DialogPropsVariantOverrides {
+    glass: true;
+    solid: true;
+    tonal: true;
+    outlined: true;
   }
 }
 
 declare module "@mui/material/Drawer" {
+  interface DrawerProps {
+    glass?: boolean;
+  }
+
   interface DrawerOwnProps {
     glass?: boolean;
   }
 }
 
 declare module "@mui/material/Tooltip" {
+  interface TooltipProps {
+    glass?: boolean;
+  }
+
   interface TooltipOwnProps {
     glass?: boolean;
   }
@@ -207,13 +301,26 @@ declare module "@mui/material/Tooltip" {
 
 declare module "@mui/material/Alert" {
   interface AlertPropsColorOverrides {
+    primary: true;
+    secondary: true;
     accent: true;
     glass: true;
     "glass-surface": true;
   }
 
+  interface AlertProps {
+    appearance?: "solid" | "tonal" | "glass" | "outlined";
+    radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
+    glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
+    glow?: boolean;
+  }
+
   interface AlertOwnProps {
     glass?: boolean;
+    appearance?: "solid" | "tonal" | "glass" | "outlined";
+    radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
+    glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
+    glow?: boolean;
   }
 }
 
@@ -224,14 +331,51 @@ declare module "@mui/material/LinearProgress" {
     "glass-surface": true;
   }
 
+  interface LinearProgressProps {
+    appearance?: "solid" | "tonal" | "glass" | "outlined";
+    radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
+    size?: "thin" | "small" | "medium" | "large";
+    glow?: boolean;
+    glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
+  }
+
   interface LinearProgressOwnProps {
     glass?: boolean;
+    appearance?: "solid" | "tonal" | "glass" | "outlined";
+    radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
+    size?: "thin" | "small" | "medium" | "large";
+    glow?: boolean;
+    glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
   }
 }
 
 declare module "@mui/material/Skeleton" {
+  interface SkeletonPropsColorOverrides {
+    primary: true;
+    secondary: true;
+    accent: true;
+    success: true;
+    info: true;
+    warning: true;
+    error: true;
+    glass: true;
+  }
+
   interface SkeletonOwnProps {
     glass?: boolean;
+    appearance?: "solid" | "tonal" | "glass" | "outlined";
+    radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
+    glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
+    glow?: boolean;
+    color?:
+      | "primary"
+      | "secondary"
+      | "accent"
+      | "success"
+      | "info"
+      | "warning"
+      | "error"
+      | "glass";
   }
 }
 
@@ -259,6 +403,7 @@ declare module "@mui/material/BottomNavigation" {
 declare module "@mui/material/Tabs" {
   interface TabsOwnProps {
     glass?: boolean;
+    size?: "small" | "medium";
     placement?:
       | "top-left"
       | "top-center"
@@ -267,6 +412,25 @@ declare module "@mui/material/Tabs" {
       | "bottom-center"
       | "bottom-right"
       | "inline";
+    textColorOverride?:
+      | "primary"
+      | "secondary"
+      | "inherit"
+      | "accent"
+      | "glass"
+      | "info"
+      | "success"
+      | "warning"
+      | "error";
+    indicatorColorOverride?:
+      | "primary"
+      | "secondary"
+      | "accent"
+      | "glass"
+      | "info"
+      | "success"
+      | "warning"
+      | "error";
   }
 
   interface TabsPropsColorOverrides {
@@ -277,6 +441,10 @@ declare module "@mui/material/Tabs" {
 }
 
 declare module "@mui/material/Tab" {
+  interface TabOwnProps {
+    size?: "small" | "medium";
+  }
+
   interface TabPropsColorOverrides {
     accent: true;
     glass: true;

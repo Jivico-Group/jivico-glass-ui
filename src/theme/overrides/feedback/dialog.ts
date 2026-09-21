@@ -1,17 +1,6 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-declare module "@mui/material/Dialog" {
-  interface DialogProps {
-    /**
-     * Enables Jivico glass surface.
-     *
-     * Default: false
-     */
-    glass?: boolean;
-  }
-}
-
 export const getDialogOverrides = (
   _palette: JivicoPalette,
   isDark: boolean,

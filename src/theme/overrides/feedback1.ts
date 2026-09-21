@@ -3,30 +3,6 @@ import { COLORS } from "../colors";
 import type { JivicoPalette } from "../palette.js";
 import { LiquidDialogDrawerRecipe } from "./glassRecipe.js";
 
-declare module "@mui/material/Dialog" {
-  interface DialogPropsColorOverrides {
-    primary: true;
-    secondary: true;
-    accent: true;
-    glass: true;
-  }
-
-  interface DialogPropsVariantOverrides {
-    glass: true;
-    solid: true;
-    tonal: true;
-    outlined: true;
-  }
-
-  interface DialogOwnProps {
-    color?: "primary" | "secondary" | "accent" | "glass";
-    variant?: "glass" | "solid" | "tonal" | "outlined";
-    radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
-    elevation?: "none" | "low" | "medium" | "high" | "floating";
-    glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
-    border?: "none" | "subtle" | "strong";
-  }
-}
 
 /**
  * MUI component overrides — Feedback:

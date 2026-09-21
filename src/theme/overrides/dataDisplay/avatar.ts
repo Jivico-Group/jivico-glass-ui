@@ -1,12 +1,6 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-declare module "@mui/material/Avatar" {
-  interface AvatarPropsVariantOverrides {
-    glass: true;
-  }
-}
-
 export const getAvatarOverrides = (
   _palette: JivicoPalette,
   isDark: boolean,
