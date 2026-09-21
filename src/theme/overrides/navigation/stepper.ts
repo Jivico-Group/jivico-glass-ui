@@ -2,6 +2,16 @@ import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
 declare module "@mui/material/Stepper" {
+  interface StepperPropsColorOverrides {
+    accent: true;
+    primary: true;
+    secondary: true;
+    success: true;
+    warning: true;
+    error: true;
+    info: true;
+  }
+
   interface StepperOwnProps {
     color?:
       | "primary"

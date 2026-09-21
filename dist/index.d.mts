@@ -430,6 +430,40 @@ declare module "@mui/material/Box" {
   }
 }
 
+/**
+ * ============================================================
+ * STEPPER & STEP NAVIGATION
+ * ============================================================
+ */
+
+declare module "@mui/material/Stepper" {
+  interface StepperPropsColorOverrides {
+    accent: true;
+    glass: true;
+    "glass-surface": true;
+    primary: true;
+    secondary: true;
+    success: true;
+    warning: true;
+    error: true;
+    info: true;
+  }
+}
+
+declare module "@mui/material/Step" {
+  interface StepPropsColorOverrides {
+    accent: true;
+    glass: true;
+    "glass-surface": true;
+    primary: true;
+    secondary: true;
+    success: true;
+    warning: true;
+    error: true;
+    info: true;
+  }
+}
+
 declare const BRAND_COLORS: {
     charcoal: string;
     stone: string;
