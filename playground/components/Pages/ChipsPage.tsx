@@ -39,18 +39,25 @@ export const ChipsPage: React.FC = () => {
           label="Glass Tonal"
           variant="tonal"
           color="glass"
-          onDelete={() => {}}
+          // onDelete={() => {}}
         />
         <Chip
           label="Glass Clickable"
           color="glass"
           clickable
-          onDelete={() => {}}
+          // onDelete={() => {}}
         />
         <Chip
           icon={<Star size={13} />}
           label="Glass with Icon"
           color="glass"
+          onDelete={() => {}}
+        />
+        <Chip
+          icon={<Star size={13} />}
+          variant="tonal"
+          label="Accent"
+          color="accent"
           onDelete={() => {}}
         />
         <Chip
@@ -269,6 +276,7 @@ export const ChipsPage: React.FC = () => {
         description="Comprehensive matrix of colors across Filled, Outlined, and Tonal variants."
         code={`<Chip label="Primary" color="primary" onDelete={() => {}} />
 <Chip label="Secondary" color="secondary" onDelete={() => {}} />
+<Chip label="Accent" color="accent" onDelete={() => {}} />
 <Chip label="Glass" color="glass" onDelete={() => {}} />
 <Chip label="Info" color="info" onDelete={() => {}} />
 <Chip label="Warning" color="warning" onDelete={() => {}} />
@@ -292,6 +300,7 @@ export const ChipsPage: React.FC = () => {
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5 }}>
             <Chip label="Primary" color="primary" onDelete={() => {}} />
             <Chip label="Secondary" color="secondary" onDelete={() => {}} />
+            <Chip label="Accent" color="accent" onDelete={() => {}} />
             <Chip label="Glass" color="glass" onDelete={() => {}} />
             <Chip label="Info" color="info" onDelete={() => {}} />
             <Chip label="Warning" color="warning" onDelete={() => {}} />
@@ -315,6 +324,12 @@ export const ChipsPage: React.FC = () => {
             <Chip
               label="Secondary"
               color="secondary"
+              variant="outlined"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Accent"
+              color="accent"
               variant="outlined"
               onDelete={() => {}}
             />
@@ -366,6 +381,12 @@ export const ChipsPage: React.FC = () => {
             <Chip
               label="Secondary"
               color="secondary"
+              variant="tonal"
+              onDelete={() => {}}
+            />
+            <Chip
+              label="Accent"
+              color="accent"
               variant="tonal"
               onDelete={() => {}}
             />

@@ -97,6 +97,12 @@ export const ButtonsPage: React.FC = () => {
           <Button variant="contained" color="primary" disabled>
             Disabled
           </Button>
+          <Button variant="contained" color="accent">
+            Disabled
+          </Button>
+          <Button variant="outlined" color="accent">
+            Disabled
+          </Button>
         </Box>
       </DemoBlock>
 
