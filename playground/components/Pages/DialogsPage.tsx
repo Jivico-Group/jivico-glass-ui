@@ -41,9 +41,7 @@ import {
   Sliders,
   Maximize2,
   Layers,
-  Palette,
-  Layout,
-  Maximize,
+  Layers3,
 } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
@@ -66,30 +64,13 @@ export const DialogsPage: React.FC = () => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [fullScreenOpen, setFullScreenOpen] = useState(false);
+  const [glassModalOpen, setGlassModalOpen] = useState(false);
+  const [standardModalOpen, setStandardModalOpen] = useState(false);
 
   // Preset Drawer States
   const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
   const [rightDrawerOpen, setRightDrawerOpen] = useState(false);
   const [leftDrawerOpen, setLeftDrawerOpen] = useState(false);
-
-  // Interactive Custom Dialog State
-  const [customDialogOpen, setCustomDialogOpen] = useState(false);
-  const [dialogVariant, setDialogVariant] = useState<"glass" | "solid" | "tonal" | "outlined">("glass");
-  const [dialogColor, setDialogColor] = useState<"glass" | "primary" | "secondary" | "accent">("glass");
-  const [dialogRadius, setDialogRadius] = useState<"square" | "small" | "medium" | "large" | "rounded" | "pill">("large");
-  const [dialogElevation, setDialogElevation] = useState<"none" | "low" | "medium" | "high" | "floating">("floating");
-  const [dialogIntensity, setDialogIntensity] = useState<"subtle" | "medium" | "strong" | "ultra">("strong");
-  const [dialogBorder, setDialogBorder] = useState<"none" | "subtle" | "strong">("subtle");
-
-  // Interactive Custom Drawer State
-  const [customDrawerOpen, setCustomDrawerOpen] = useState(false);
-  const [drawerAnchor, setDrawerAnchor] = useState<"bottom" | "top" | "left" | "right">("bottom");
-  const [drawerVariant, setDrawerVariant] = useState<"glass" | "solid" | "tonal" | "outlined">("glass");
-  const [drawerColor, setDrawerColor] = useState<"glass" | "primary" | "secondary" | "accent">("glass");
-  const [drawerRadius, setDrawerRadius] = useState<"square" | "small" | "medium" | "large" | "rounded" | "pill">("rounded");
-  const [drawerElevation, setDrawerElevation] = useState<"none" | "low" | "medium" | "high" | "floating">("floating");
-  const [drawerIntensity, setDrawerIntensity] = useState<"subtle" | "medium" | "strong" | "ultra">("strong");
-  const [drawerBorder, setDrawerBorder] = useState<"none" | "subtle" | "strong">("subtle");
 
   // Form states inside dialog
   const [projectName, setProjectName] = useState("Apple Liquid Design");
@@ -99,149 +80,64 @@ export const DialogsPage: React.FC = () => {
   return (
     <ComponentPage
       title="Dialog & Drawer Overlays"
-      description="Frosted glass modal dialogs and slide-out drawers equipped with optical backdrop blur, specular perimeter lighting, and custom style controls."
+      description="Frosted glass modal dialogs and slide-out drawers equipped with optical backdrop blur, specular perimeter lighting, and tactile spring transitions."
       category="Surfaces"
-      badges={["Modal Overlays", "Liquid Glass", "Bottom Sheet", "Custom Props"]}
+      badges={["Modal Overlays", "Liquid Glass", "Bottom Sheet", "glass prop"]}
     >
-      {/* 1. Interactive Custom Dialog Configurator */}
+      {/* 1. Signature Glass vs Standard Surface Dialogs */}
       <DemoBlock
-        id="interactive-dialog"
-        title="Interactive Dialog Configurator"
-        description="Configure `variant`, `color`, `radius`, `elevation`, `glassIntensity`, and `border` props live on the Dialog component."
-        code={`<Dialog
-  open={open}
-  variant="${dialogVariant}"
-  color="${dialogColor}"
-  radius="${dialogRadius}"
-  elevation="${dialogElevation}"
-  glassIntensity="${dialogIntensity}"
-  border="${dialogBorder}"
->
-  <DialogTitle>Interactive Glass Modal</DialogTitle>
-  <DialogContent>Configure all theme props live.</DialogContent>
+        id="glass-dialog-toggle"
+        title="Frosted Glass Surface (glass prop)"
+        description="Toggle the `glass` prop on `<Dialog glass={true}>` to enable optical background blur, top specular edge glint, and liquid backdrop translucency."
+        code={`// Signature Frosted Glass Modal
+<Dialog open={open} glass={true} onClose={() => setOpen(false)}>
+  <DialogTitle>Frosted Glass Modal</DialogTitle>
+  <DialogContent>Optical 32px backdrop blur and specular lighting.</DialogContent>
   <DialogActions>
-    <Button color="${dialogColor}">Confirm</Button>
+    <Button color="glass" onClick={() => setOpen(false)}>Cancel</Button>
+    <Button color="primary" onClick={() => setOpen(false)}>Confirm</Button>
   </DialogActions>
+</Dialog>
+
+// Standard Solid Surface Modal
+<Dialog open={open} glass={false} onClose={() => setOpen(false)}>
+  <DialogTitle>Standard Modal</DialogTitle>
 </Dialog>`}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "100%" }}>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-              gap: 2,
-            }}
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 2.5,
+            alignItems: "center",
+          }}
+        >
+          <Button
+            variant="contained"
+            color="glass"
+            size="large"
+            onClick={() => setGlassModalOpen(true)}
+            startIcon={<Sparkles size={18} />}
           >
-            <FormControl fullWidth size="small">
-              <InputLabel>Variant</InputLabel>
-              <Select
-                value={dialogVariant}
-                label="Variant"
-                onChange={(e) => setDialogVariant(e.target.value as any)}
-              >
-                <MenuItem value="glass">Glass (Frosted)</MenuItem>
-                <MenuItem value="solid">Solid (Palette Fill)</MenuItem>
-                <MenuItem value="tonal">Tonal (Soft Tint)</MenuItem>
-                <MenuItem value="outlined">Outlined</MenuItem>
-              </Select>
-            </FormControl>
+            Open Frosted Glass Modal (glass=true)
+          </Button>
 
-            <FormControl fullWidth size="small">
-              <InputLabel>Color Identity</InputLabel>
-              <Select
-                value={dialogColor}
-                label="Color Identity"
-                onChange={(e) => setDialogColor(e.target.value as any)}
-              >
-                <MenuItem value="glass">Glass Surface</MenuItem>
-                <MenuItem value="primary">Primary Brand</MenuItem>
-                <MenuItem value="secondary">Secondary Neutral</MenuItem>
-                <MenuItem value="accent">Accent Electric Indigo</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl fullWidth size="small">
-              <InputLabel>Corner Radius</InputLabel>
-              <Select
-                value={dialogRadius}
-                label="Corner Radius"
-                onChange={(e) => setDialogRadius(e.target.value as any)}
-              >
-                <MenuItem value="square">Square (0px)</MenuItem>
-                <MenuItem value="small">Small (12px)</MenuItem>
-                <MenuItem value="medium">Medium (18px)</MenuItem>
-                <MenuItem value="large">Large (24px)</MenuItem>
-                <MenuItem value="rounded">Rounded (32px)</MenuItem>
-                <MenuItem value="pill">Pill (48px)</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl fullWidth size="small">
-              <InputLabel>Elevation Depth</InputLabel>
-              <Select
-                value={dialogElevation}
-                label="Elevation Depth"
-                onChange={(e) => setDialogElevation(e.target.value as any)}
-              >
-                <MenuItem value="none">None</MenuItem>
-                <MenuItem value="low">Low (8px)</MenuItem>
-                <MenuItem value="medium">Medium (16px)</MenuItem>
-                <MenuItem value="high">High (24px)</MenuItem>
-                <MenuItem value="floating">Floating (32px)</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl fullWidth size="small">
-              <InputLabel>Glass Intensity</InputLabel>
-              <Select
-                value={dialogIntensity}
-                label="Glass Intensity"
-                onChange={(e) => setDialogIntensity(e.target.value as any)}
-              >
-                <MenuItem value="subtle">Subtle (12px blur)</MenuItem>
-                <MenuItem value="medium">Medium (20px blur)</MenuItem>
-                <MenuItem value="strong">Strong (32px blur)</MenuItem>
-                <MenuItem value="ultra">Ultra (48px blur)</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl fullWidth size="small">
-              <InputLabel>Border Strength</InputLabel>
-              <Select
-                value={dialogBorder}
-                label="Border Strength"
-                onChange={(e) => setDialogBorder(e.target.value as any)}
-              >
-                <MenuItem value="none">None</MenuItem>
-                <MenuItem value="subtle">Subtle Specular</MenuItem>
-                <MenuItem value="strong">Strong Palette Border</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-
-          <Box sx={{ display: "flex", gap: 2 }}>
-            <Button
-              variant="contained"
-              color={dialogColor === "glass" ? "glass" : dialogColor}
-              size="large"
-              onClick={() => setCustomDialogOpen(true)}
-              startIcon={<Sparkles size={18} />}
-            >
-              Open Custom Configured Dialog
-            </Button>
-          </Box>
+          <Button
+            variant="outlined"
+            color="primary"
+            size="large"
+            onClick={() => setStandardModalOpen(true)}
+            startIcon={<Layers3 size={18} />}
+          >
+            Open Standard Modal (glass=false)
+          </Button>
         </Box>
 
-        {/* Custom Configured Dialog */}
+        {/* Frosted Glass Dialog (glass=true) */}
         <Dialog
-          open={customDialogOpen}
-          onClose={() => setCustomDialogOpen(false)}
-          variant={dialogVariant}
-          color={dialogColor}
-          radius={dialogRadius}
-          elevation={dialogElevation}
-          glassIntensity={dialogIntensity}
-          border={dialogBorder}
+          open={glassModalOpen}
+          glass={true}
+          onClose={() => setGlassModalOpen(false)}
           maxWidth="xs"
           fullWidth
         >
@@ -258,231 +154,80 @@ export const DialogsPage: React.FC = () => {
               sx={{ display: "flex", alignItems: "center", gap: 1.5, pb: 0 }}
             >
               <Sparkles size={20} />
-              Configured Dialog
+              Frosted Glass Dialog
             </DialogTitle>
-            <IconButton onClick={() => setCustomDialogOpen(false)} size="small">
+            <IconButton onClick={() => setGlassModalOpen(false)} size="small">
               <X size={18} />
             </IconButton>
           </Box>
           <DialogContent>
             <DialogContentText sx={{ pt: 1 }}>
-              Currently rendered with <strong>{dialogVariant}</strong> variant,{" "}
-              <strong>{dialogColor}</strong> color identity,{" "}
-              <strong>{dialogRadius}</strong> radius, and{" "}
-              <strong>{dialogIntensity}</strong> glass blur intensity.
+              This dialog renders with <strong>glass={"{true}"}</strong> featuring 32px backdrop blur, specular top perimeter light reflection, and refined contrast typography.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button
               variant="outlined"
               color="glass"
-              onClick={() => setCustomDialogOpen(false)}
+              onClick={() => setGlassModalOpen(false)}
             >
-              Close
+              Cancel
             </Button>
             <Button
               variant="contained"
-              color={dialogColor === "glass" ? "primary" : dialogColor}
-              onClick={() => setCustomDialogOpen(false)}
+              color="primary"
+              onClick={() => setGlassModalOpen(false)}
             >
               Confirm
             </Button>
           </DialogActions>
         </Dialog>
-      </DemoBlock>
 
-      {/* 2. Interactive Custom Drawer Configurator */}
-      <DemoBlock
-        id="interactive-drawer"
-        title="Interactive Drawer Configurator"
-        description="Test slide-out Drawer styles with custom `anchor`, `drawerVariant`, `color`, `radius`, `glassIntensity`, and `border` controls."
-        code={`<Drawer
-  open={open}
-  anchor="${drawerAnchor}"
-  drawerVariant="${drawerVariant}"
-  color="${drawerColor}"
-  radius="${drawerRadius}"
-  glassIntensity="${drawerIntensity}"
-  border="${drawerBorder}"
->
-  <Box sx={{ p: 3 }}>Interactive Drawer Content</Box>
-</Drawer>`}
-      >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "100%" }}>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-              gap: 2,
-            }}
-          >
-            <FormControl fullWidth size="small">
-              <InputLabel>Anchor Position</InputLabel>
-              <Select
-                value={drawerAnchor}
-                label="Anchor Position"
-                onChange={(e) => setDrawerAnchor(e.target.value as any)}
-              >
-                <MenuItem value="bottom">Bottom (Action Sheet)</MenuItem>
-                <MenuItem value="top">Top Banner Sheet</MenuItem>
-                <MenuItem value="right">Right Side Inspection</MenuItem>
-                <MenuItem value="left">Left Navigation Drawer</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl fullWidth size="small">
-              <InputLabel>Drawer Variant</InputLabel>
-              <Select
-                value={drawerVariant}
-                label="Drawer Variant"
-                onChange={(e) => setDrawerVariant(e.target.value as any)}
-              >
-                <MenuItem value="glass">Glass (Frosted Blur)</MenuItem>
-                <MenuItem value="solid">Solid (Palette Fill)</MenuItem>
-                <MenuItem value="tonal">Tonal (Soft Tint)</MenuItem>
-                <MenuItem value="outlined">Outlined</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl fullWidth size="small">
-              <InputLabel>Color Identity</InputLabel>
-              <Select
-                value={drawerColor}
-                label="Color Identity"
-                onChange={(e) => setDrawerColor(e.target.value as any)}
-              >
-                <MenuItem value="glass">Glass Surface</MenuItem>
-                <MenuItem value="primary">Primary Brand</MenuItem>
-                <MenuItem value="secondary">Secondary Neutral</MenuItem>
-                <MenuItem value="accent">Accent Electric Indigo</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl fullWidth size="small">
-              <InputLabel>Corner Radius</InputLabel>
-              <Select
-                value={drawerRadius}
-                label="Corner Radius"
-                onChange={(e) => setDrawerRadius(e.target.value as any)}
-              >
-                <MenuItem value="square">Square (0px)</MenuItem>
-                <MenuItem value="small">Small (12px)</MenuItem>
-                <MenuItem value="medium">Medium (18px)</MenuItem>
-                <MenuItem value="large">Large (24px)</MenuItem>
-                <MenuItem value="rounded">Rounded (28px)</MenuItem>
-                <MenuItem value="pill">Pill (40px)</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl fullWidth size="small">
-              <InputLabel>Glass Blur Intensity</InputLabel>
-              <Select
-                value={drawerIntensity}
-                label="Glass Blur Intensity"
-                onChange={(e) => setDrawerIntensity(e.target.value as any)}
-              >
-                <MenuItem value="subtle">Subtle (12px blur)</MenuItem>
-                <MenuItem value="medium">Medium (20px blur)</MenuItem>
-                <MenuItem value="strong">Strong (32px blur)</MenuItem>
-                <MenuItem value="ultra">Ultra (48px blur)</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl fullWidth size="small">
-              <InputLabel>Border Strength</InputLabel>
-              <Select
-                value={drawerBorder}
-                label="Border Strength"
-                onChange={(e) => setDrawerBorder(e.target.value as any)}
-              >
-                <MenuItem value="none">None</MenuItem>
-                <MenuItem value="subtle">Subtle Specular</MenuItem>
-                <MenuItem value="strong">Strong Palette Border</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-
-          <Box sx={{ display: "flex", gap: 2 }}>
-            <Button
-              variant="contained"
-              color={drawerColor === "glass" ? "glass" : drawerColor}
-              size="large"
-              onClick={() => setCustomDrawerOpen(true)}
-              startIcon={<Layers size={18} />}
-            >
-              Open Custom Configured Drawer
-            </Button>
-          </Box>
-        </Box>
-
-        {/* Custom Configured Drawer */}
-        <Drawer
-          anchor={drawerAnchor}
-          open={customDrawerOpen}
-          onClose={() => setCustomDrawerOpen(false)}
-          drawerVariant={drawerVariant}
-          color={drawerColor}
-          radius={drawerRadius}
-          glassIntensity={drawerIntensity}
-          border={drawerBorder}
+        {/* Standard Solid Surface Dialog (glass=false) */}
+        <Dialog
+          open={standardModalOpen}
+          glass={false}
+          onClose={() => setStandardModalOpen(false)}
+          maxWidth="xs"
+          fullWidth
         >
           <Box
             sx={{
-              p: 3,
-              width: drawerAnchor === "left" || drawerAnchor === "right" ? { xs: 300, sm: 380 } : "100%",
-              maxWidth: drawerAnchor === "bottom" || drawerAnchor === "top" ? 600 : "none",
-              mx: drawerAnchor === "bottom" || drawerAnchor === "top" ? "auto" : 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              pr: 2,
+              pt: 1,
             }}
           >
-            {drawerAnchor === "bottom" && (
-              <Box
-                sx={{
-                  width: 44,
-                  height: 5,
-                  borderRadius: 3,
-                  bgcolor: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.25)",
-                  mx: "auto",
-                  mb: 2.5,
-                }}
-              />
-            )}
-
-            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2 }}>
-              <Box>
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                  Configured {drawerAnchor.toUpperCase()} Drawer
-                </Typography>
-                <Typography variant="caption" sx={{ opacity: 0.8 }}>
-                  Variant: {drawerVariant} • Color: {drawerColor} • Radius: {drawerRadius}
-                </Typography>
-              </Box>
-              <IconButton onClick={() => setCustomDrawerOpen(false)} size="small">
-                <X size={18} />
-              </IconButton>
-            </Box>
-
-            <Typography variant="body2" sx={{ mb: 3, opacity: 0.9 }}>
-              This drawer adapts perimeter borders and corner curves dynamically based on anchor direction (`{drawerAnchor}`).
-            </Typography>
-
-            <Button
-              variant="contained"
-              color={drawerColor === "glass" ? "primary" : drawerColor}
-              fullWidth
-              onClick={() => setCustomDrawerOpen(false)}
-            >
-              Close Drawer
-            </Button>
+            <DialogTitle sx={{ pb: 0 }}>Standard Surface Dialog</DialogTitle>
+            <IconButton onClick={() => setStandardModalOpen(false)} size="small">
+              <X size={18} />
+            </IconButton>
           </Box>
-        </Drawer>
+          <DialogContent>
+            <DialogContentText sx={{ pt: 1 }}>
+              This dialog renders with <strong>glass={"{false}"}</strong> using the clean 24px rounded surface palette with 70px drop shadow.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              color="glass"
+              onClick={() => setStandardModalOpen(false)}
+            >
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
       </DemoBlock>
 
-      {/* 3. Preset Dialog Showcase */}
+      {/* 2. Preset Dialog Workflows */}
       <DemoBlock
         id="confirmation-dialog"
-        title="Frosted Glass Dialog Presets"
+        title="Frosted Glass Action Presets"
         description="Pre-configured modal dialogs for common workflows: confirmation actions, multi-input forms, and full-screen workspaces."
-        code={`<Dialog open={open} onClose={() => setOpen(false)}>
+        code={`<Dialog open={open} glass={true} onClose={() => setOpen(false)}>
   <DialogTitle>Revoke Session?</DialogTitle>
   <DialogContent>Confirmation text here...</DialogContent>
   <DialogActions>
@@ -533,6 +278,7 @@ export const DialogsPage: React.FC = () => {
         {/* Preset Confirmation Dialog */}
         <Dialog
           open={confirmOpen}
+          glass={true}
           onClose={() => setConfirmOpen(false)}
           maxWidth="xs"
           fullWidth
@@ -598,6 +344,7 @@ export const DialogsPage: React.FC = () => {
         {/* Preset Form Settings Dialog */}
         <Dialog
           open={formOpen}
+          glass={true}
           onClose={() => setFormOpen(false)}
           maxWidth="sm"
           fullWidth
@@ -704,6 +451,7 @@ export const DialogsPage: React.FC = () => {
         <Dialog
           fullScreen
           open={fullScreenOpen}
+          glass={true}
           onClose={() => setFullScreenOpen(false)}
           slots={{
             transition: Transition,
@@ -778,15 +526,21 @@ export const DialogsPage: React.FC = () => {
         </Dialog>
       </DemoBlock>
 
-      {/* 4. Drawer Anchors Showcase */}
+      {/* 3. Apple Liquid Bottom Sheet Drawer */}
       <DemoBlock
         id="bottom-sheet"
-        title="Apple Liquid Drawers & Action Sheets"
-        description="Features Apple's signature 28px rounded top corners on bottom sheets, right-side inspection panels, and left navigation drawers."
-        code={`<Drawer anchor="bottom" open={open} onClose={() => setOpen(false)}>
-  <Box sx={{ p: 3 }}>
-    <Box sx={{ width: 44, height: 5, borderRadius: 3, bgcolor: "rgba(0,0,0,0.2)", mx: "auto" }} />
-    <Typography variant="h6">Action Sheet</Typography>
+        title="Apple Liquid Bottom Sheet Drawer"
+        description="Features Apple's signature 28px rounded top corners, centered grabber pill handle, and translucent frosted glass background."
+        code={`// Bottom Sheet with Grabber Pill
+<Drawer
+  anchor="bottom"
+  open={open}
+  onClose={() => setOpen(false)}
+>
+  <Box sx={{ p: 3, textAlign: "center" }}>
+    {/* Centered Grabber Pill */}
+    <Box sx={{ width: 44, height: 5, borderRadius: 3, bgcolor: "rgba(0,0,0,0.2)", mx: "auto", mb: 2.5 }} />
+    <Typography variant="h6">Share Options</Typography>
   </Box>
 </Drawer>`}
       >
@@ -805,7 +559,7 @@ export const DialogsPage: React.FC = () => {
             onClick={() => setBottomSheetOpen(true)}
             startIcon={<Layers size={18} />}
           >
-            Apple Bottom Sheet
+            Open Apple Bottom Sheet
           </Button>
 
           <Button
@@ -815,7 +569,7 @@ export const DialogsPage: React.FC = () => {
             onClick={() => setRightDrawerOpen(true)}
             startIcon={<ChevronRight size={18} />}
           >
-            Right Side Panel
+            Open Right Side Panel
           </Button>
 
           <Button
@@ -824,7 +578,7 @@ export const DialogsPage: React.FC = () => {
             size="large"
             onClick={() => setLeftDrawerOpen(true)}
           >
-            Left Navigation Drawer
+            Open Left Navigation Drawer
           </Button>
         </Box>
 

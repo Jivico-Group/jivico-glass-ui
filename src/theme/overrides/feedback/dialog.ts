@@ -3,47 +3,14 @@ import type { JivicoPalette } from "../../palette/index.js";
 
 declare module "@mui/material/Dialog" {
   interface DialogProps {
-    variant?: "glass" | "solid" | "tonal" | "outlined";
-
-    radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
-
-    elevation?: "none" | "low" | "medium" | "high" | "floating";
-
-    glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
-
-    border?: "none" | "subtle" | "strong";
-  }
-
-  interface DialogPropsColorOverrides {
-    primary: true;
-    secondary: true;
-    accent: true;
-    glass: true;
-  }
-
-  interface DialogPropsVariantOverrides {
-    glass: true;
-    solid: true;
-    tonal: true;
-    outlined: true;
+    /**
+     * Enables Jivico glass surface.
+     *
+     * Default: false
+     */
+    glass?: boolean;
   }
 }
-
-type DialogColor = "primary" | "secondary" | "accent" | "glass";
-
-type DialogVariant = "glass" | "solid" | "tonal" | "outlined";
-
-type DialogRadius =
-  | "square"
-  | "small"
-  | "medium"
-  | "large"
-  | "rounded"
-  | "pill";
-
-type DialogElevation = "none" | "low" | "medium" | "high" | "floating";
-type GlassIntensity = "subtle" | "medium" | "strong" | "ultra";
-type DialogBorder = "none" | "subtle" | "strong";
 
 export const getDialogOverrides = (
   palette: JivicoPalette,
@@ -52,308 +19,112 @@ export const getDialogOverrides = (
   MuiDialog: {
     defaultProps: {
       disableScrollLock: false,
-
-      color: "glass",
-      variant: "glass",
-      radius: "large",
-      elevation: "floating",
-      glassIntensity: "strong",
-      border: "subtle",
     },
 
     styleOverrides: {
-      root: ({ ownerState }) => {
-        const color = (ownerState.color ?? "glass") as DialogColor;
-        const variant = (ownerState.variant ?? "glass") as DialogVariant;
-        const radius = (ownerState.radius ?? "large") as DialogRadius;
-        const elevation = (ownerState.elevation ??
-          "floating") as DialogElevation;
-        const glassIntensity = (ownerState.glassIntensity ??
-          "strong") as GlassIntensity;
-        const border = (ownerState.border ?? "subtle") as DialogBorder;
-
+      root: {
         /**
-         * ----------------------------------------
-         * Radius
-         * ----------------------------------------
+         * Dialog positioning
          */
-
-        const radiusMap: Record<DialogRadius, number> = {
-          square: 0,
-          small: 12,
-          medium: 18,
-          large: 24,
-          rounded: 32,
-          pill: 48,
-        };
-
-        /**
-         * ----------------------------------------
-         * Elevation
-         * ----------------------------------------
-         */
-
-        const elevationMap: Record<DialogElevation, string> = {
-          none: "none",
-
-          low: isDark
-            ? "0 8px 24px rgba(0,0,0,.22)"
-            : "0 8px 24px rgba(0,0,0,.08)",
-
-          medium: isDark
-            ? "0 16px 40px rgba(0,0,0,.32)"
-            : "0 16px 40px rgba(0,0,0,.12)",
-
-          high: isDark
-            ? "0 24px 60px rgba(0,0,0,.42)"
-            : "0 24px 60px rgba(0,0,0,.16)",
-
-          floating: isDark
-            ? "0 32px 90px rgba(0,0,0,.52), 0 8px 32px rgba(0,0,0,.28)"
-            : "0 32px 90px rgba(0,0,0,.18), 0 8px 32px rgba(0,0,0,.10)",
-        };
-
-        /**
-         * ----------------------------------------
-         * Glass blur
-         * ----------------------------------------
-         */
-
-        const glassBlurMap: Record<GlassIntensity, string> = {
-          subtle: "blur(12px)",
-          medium: "blur(20px)",
-          strong: "blur(32px)",
-          ultra: "blur(48px)",
-        };
-
-        /**
-         * ----------------------------------------
-         * Dialog colors
-         *
-         * IMPORTANT:
-         *
-         * Do not use palette.primary.light/dark.
-         *
-         * palette.primary.main is already resolved
-         * for the current light/dark theme.
-         * ----------------------------------------
-         */
-
-        const colors: Record<
-          DialogColor,
-          {
-            main: string;
-            border: string;
-          }
-        > = {
-          primary: {
-            main: palette.primary.main,
-            border: palette.primary.main,
+        "& .MuiDialog-container": {
+          padding: {
+            xs: 1.5,
+            sm: 2,
+            md: 3,
           },
+        },
+      },
 
-          secondary: {
-            main: palette.secondary.main,
-            border: palette.secondary.main,
-          },
-
-          accent: {
-            main: palette.accent.main,
-            border: palette.accent.main,
-          },
-
-          glass: {
-            main: palette.glass.surface,
-            border: palette.glass.paperBorder,
-          },
-        };
-
-        const selected = colors[color];
+      /**
+       * --------------------------------------------------
+       * NORMAL + GLASS DIALOG
+       * --------------------------------------------------
+       */
+      paper: ({ ownerState }) => {
+        const glass = ownerState.glass === true;
 
         /**
-         * ----------------------------------------
-         * Surface
-         * ----------------------------------------
+         * -----------------------------------------------
+         * Normal surface
+         * -----------------------------------------------
          */
+        const normalBackground = isDark ? "#18181B" : "#FFFFFF";
 
-        let background: string;
-        let borderColor: string;
-
-        switch (variant) {
-          /**
-           * SOLID
-           *
-           * Uses the resolved palette color directly.
-           */
-          case "solid": {
-            background = selected.main;
-
-            borderColor = border === "none" ? "transparent" : selected.border;
-
-            break;
-          }
-
-          /**
-           * TONAL
-           *
-           * Uses a subtle tint of the current
-           * resolved palette color.
-           */
-          case "tonal": {
-            if (color === "glass") {
-              background = palette.glass.surface;
-            } else {
-              background = isDark
-                ? `color-mix(
-                    in srgb,
-                    ${selected.main} 13%,
-                    transparent
-                  )`
-                : `color-mix(
-                    in srgb,
-                    ${selected.main} 8%,
-                    transparent
-                  )`;
-            }
-
-            borderColor =
-              border === "none"
-                ? "transparent"
-                : isDark
-                  ? `color-mix(
-                      in srgb,
-                      ${selected.border} 34%,
-                      transparent
-                    )`
-                  : `color-mix(
-                      in srgb,
-                      ${selected.border} 22%,
-                      transparent
-                    )`;
-
-            break;
-          }
-
-          /**
-           * OUTLINED
-           */
-          case "outlined": {
-            background = "transparent";
-
-            borderColor = border === "none" ? "transparent" : selected.border;
-
-            break;
-          }
-
-          /**
-           * GLASS
-           *
-           * Default Jivico Dialog treatment.
-           */
-          case "glass":
-          default: {
-            background = palette.glass.paperBg;
-
-            borderColor =
-              border === "none" ? "transparent" : palette.glass.paperBorder;
-
-            break;
-          }
-        }
+        const normalColor = isDark ? "#F5F5F7" : "#111111";
 
         /**
-         * ----------------------------------------
-         * Border strength
-         * ----------------------------------------
+         * -----------------------------------------------
+         * Glass surface
+         * -----------------------------------------------
          */
+        const glassBackground = isDark
+          ? "rgba(24, 24, 27, 0.72)"
+          : "rgba(255, 255, 255, 0.72)";
 
-        const resolvedBorder =
-          border === "none"
-            ? "transparent"
-            : border === "strong"
-              ? selected.border
-              : borderColor;
+        const glassColor = isDark ? "#F5F5F7" : "#111111";
 
         /**
-         * ----------------------------------------
-         * Root
-         * ----------------------------------------
+         * -----------------------------------------------
+         * Border
+         * -----------------------------------------------
          */
+        const borderColor = glass
+          ? isDark
+            ? "rgba(255, 255, 255, 0.14)"
+            : "rgba(255, 255, 255, 0.85)"
+          : isDark
+            ? "rgba(255, 255, 255, 0.08)"
+            : "rgba(0, 0, 0, 0.08)";
+
+        /**
+         * -----------------------------------------------
+         * Shadow
+         * -----------------------------------------------
+         */
+        const shadow = isDark
+          ? "0 24px 70px rgba(0, 0, 0, 0.45)"
+          : "0 24px 70px rgba(0, 0, 0, 0.14)";
 
         return {
-          "& .MuiDialog-container": {
-            padding: {
-              xs: 1.5,
-              sm: 2,
-              md: 3,
-            },
-          },
+          position: "relative",
+
+          width: "100%",
+
+          overflow: "hidden",
 
           /**
-           * --------------------------------------
-           * Dialog paper
-           * --------------------------------------
+           * Simple radius.
            */
+          borderRadius: 24,
 
-          "& .MuiDialog-paper": {
-            position: "relative",
+          /**
+           * Normal / Glass surface
+           */
+          backgroundColor: glass ? glassBackground : normalBackground,
 
-            overflow: "hidden",
+          color: glass ? glassColor : normalColor,
 
-            width: "100%",
+          border: `1px solid ${borderColor}`,
 
-            borderRadius: radiusMap[radius],
+          boxShadow: shadow,
 
-            background,
+          /**
+           * ---------------------------------------------
+           * Glass only
+           * ---------------------------------------------
+           */
+          ...(glass && {
+            backdropFilter: "blur(32px) saturate(180%)",
 
-            border: `1px solid ${resolvedBorder}`,
+            WebkitBackdropFilter: "blur(32px) saturate(180%)",
+          }),
 
-            boxShadow: elevation === "none" ? "none" : elevationMap[elevation],
-
-            /**
-             * ------------------------------------
-             * Glass treatment
-             * ------------------------------------
-             */
-
-            ...(variant === "glass" && {
-              backdropFilter: glassBlurMap[glassIntensity],
-
-              WebkitBackdropFilter: glassBlurMap[glassIntensity],
-
-              backgroundImage: isDark
-                ? `
-                  linear-gradient(
-                    135deg,
-                    rgba(255,255,255,.075),
-                    rgba(255,255,255,.025)
-                  )
-                `
-                : `
-                  linear-gradient(
-                    135deg,
-                    rgba(255,255,255,.92),
-                    rgba(255,255,255,.68)
-                  )
-                `,
-            }),
-
-            /**
-             * ------------------------------------
-             * Smooth premium transitions
-             * ------------------------------------
-             */
-
-            transition:
-              "transform 220ms cubic-bezier(.2,.8,.2,1), " +
-              "box-shadow 220ms ease, " +
-              "border-color 220ms ease",
-
-            /**
-             * ------------------------------------
-             * Glass highlight
-             * ------------------------------------
-             */
-
+          /**
+           * ---------------------------------------------
+           * Glass highlight
+           * ---------------------------------------------
+           */
+          ...(glass && {
             "&::before": {
               content: '""',
 
@@ -365,60 +136,100 @@ export const getDialogOverrides = (
 
               background: isDark
                 ? `
-                  radial-gradient(
-                    circle at 0% 0%,
-                    rgba(255,255,255,.08),
-                    transparent 38%
+                  linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.08) 0%,
+                    rgba(255,255,255,0.025) 45%,
+                    transparent 100%
                   )
                 `
                 : `
-                  radial-gradient(
-                    circle at 0% 0%,
-                    rgba(255,255,255,.85),
-                    transparent 38%
+                  linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.55) 0%,
+                    rgba(255,255,255,0.12) 45%,
+                    transparent 100%
                   )
                 `,
 
-              opacity: variant === "glass" ? 1 : 0,
+              zIndex: 0,
             },
 
             /**
-             * ------------------------------------
-             * Inner highlight
-             * ------------------------------------
+             * Top specular edge.
              */
-
             "&::after": {
               content: '""',
 
               position: "absolute",
 
-              inset: 0,
+              top: 0,
+              left: 0,
+              right: 0,
+
+              height: 1,
 
               pointerEvents: "none",
 
-              borderRadius: "inherit",
+              background: isDark
+                ? "rgba(255,255,255,0.16)"
+                : "rgba(255,255,255,0.95)",
 
-              boxShadow:
-                variant === "glass"
-                  ? `inset 0 1px 0 ${
-                      isDark ? "rgba(255,255,255,.10)" : "rgba(255,255,255,.75)"
-                    }`
-                  : "none",
+              zIndex: 2,
             },
+          }),
 
-            /**
-             * ------------------------------------
-             * Keep actual Dialog content above
-             * decorative pseudo-elements.
-             * ------------------------------------
-             */
+          /**
+           * ---------------------------------------------
+           * Keep Dialog content above glass effects.
+           * ---------------------------------------------
+           */
+          "& > *": {
+            position: "relative",
+            zIndex: 1,
+          },
 
-            "& > *": {
-              position: "relative",
+          /**
+           * ---------------------------------------------
+           * Dialog title
+           * ---------------------------------------------
+           */
+          "& .MuiDialogTitle-root": {
+            color: "inherit",
+          },
 
-              zIndex: 1,
-            },
+          /**
+           * ---------------------------------------------
+           * Dialog content
+           * ---------------------------------------------
+           */
+          "& .MuiDialogContent-root": {
+            color: "inherit",
+          },
+
+          /**
+           * ---------------------------------------------
+           * Dialog content text
+           * ---------------------------------------------
+           */
+          "& .MuiDialogContentText-root": {
+            color: glass
+              ? isDark
+                ? "rgba(245,245,247,0.72)"
+                : "rgba(17,17,17,0.68)"
+              : isDark
+                ? "rgba(245,245,247,0.70)"
+                : "rgba(17,17,17,0.68)",
+          },
+
+          /**
+           * ---------------------------------------------
+           * Dialog actions
+           * ---------------------------------------------
+           */
+          "& .MuiDialogActions-root": {
+            position: "relative",
+            zIndex: 1,
           },
         };
       },
