@@ -1,14 +1,15 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette";
 
-import { getAppBarOverrides } from "./appBar";
-import { getToolbarOverrides } from "./toolbar";
-import { getTabsOverrides } from "./tabs";
-import { getDrawerOverrides } from "./drawer";
-import { getMenuOverrides } from "./menus";
-import { getListOverrides } from "./lists";
-import { getPaginationOverrides } from "./pagination";
-import { getStepperOverrides } from "./stepper";
+import { getAppBarOverrides } from "./appBar.js";
+import { getToolbarOverrides } from "./toolbar.js";
+import { getTabsOverrides } from "./tabs.js";
+import { getDrawerOverrides } from "./drawer.js";
+import { getMenuOverrides } from "./menus.js";
+import { getListOverrides } from "./lists.js";
+import { getPaginationOverrides } from "./pagination.js";
+import { getStepperOverrides } from "./stepper.js";
+import { getBottomNavigationOverrides } from "./bottomNavigation.js";
 
 export const getNavigationOverrides = (
   palette: JivicoPalette,
@@ -22,4 +23,6 @@ export const getNavigationOverrides = (
   ...getListOverrides(palette, isDark),
   ...getPaginationOverrides(palette),
   ...getStepperOverrides(palette, isDark),
+  ...getBottomNavigationOverrides(palette, isDark),
 });
+

@@ -22,6 +22,7 @@ import { TypographyPage } from "./components/Pages/TypographyPage.js";
 import { SteppersPage } from "./components/Pages/SteppersPage.js";
 import { DialogsPage } from "./components/Pages/DialogsPage.js";
 import { DynamicIslandPage } from "./components/Pages/DynamicIslandPage.js";
+import { BottomNavigationPage } from "./components/Pages/BottomNavigationPage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
 const TOC_MAP: Record<string, TocItem[]> = {
@@ -66,6 +67,10 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "placement-controller", title: "Placement Engine" },
     { id: "arbitrary-children", title: "Arbitrary Children" },
     { id: "light-dark", title: "Light & Dark Adaptation" },
+  ],
+  "bottom-nav": [
+    { id: "bottom-nav-surface", title: "Frosted Glass Surface" },
+    { id: "bottom-nav-placements", title: "Screen Placements" },
   ],
   inputs: [
     { id: "text-fields", title: "Text Field Variants" },
@@ -205,6 +210,8 @@ export default function App() {
         return <DialogsPage />;
       case "dynamic-island":
         return <DynamicIslandPage />;
+      case "bottom-nav":
+        return <BottomNavigationPage />;
       case "alerts":
         return <AlertsPage />;
       case "tooltips":
