@@ -1,5 +1,14 @@
 import type { Components, Theme } from "@mui/material/styles";
 
+declare module "@mui/material/Typography" {
+  interface TypographyPropsColorOverrides {
+    accent: true;
+    glass: true;
+    "glass-surface": true;
+    gradient: true;
+  }
+}
+
 export const getTypographyOverrides = (isDark: boolean): Components<Theme> => ({
   MuiTypography: {
     styleOverrides: {

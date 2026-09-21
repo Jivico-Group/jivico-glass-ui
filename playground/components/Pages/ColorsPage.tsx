@@ -11,7 +11,7 @@ import {
 import { Copy, Check, Sun, Moon } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { COLORS } from "../../../src/theme/colors.js";
+import { COLORS } from "../../../src/theme/colors";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 interface ColorItemProps {

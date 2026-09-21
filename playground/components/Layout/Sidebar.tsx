@@ -57,12 +57,20 @@ export const NAV_SECTIONS: NavSection[] = [
     title: "Surfaces",
     items: [
       { id: "surfaces", label: "Glass Panel & Surfaces" },
+      { id: "cards", label: "Card", badge: "BRAND KIT" },
+      { id: "accordion", label: "Accordion" },
+      { id: "paper", label: "Paper" },
       { id: "dialogs", label: "Dialog & Drawer", badge: "GLASS" },
     ],
   },
   {
     title: "Feedback",
-    items: [{ id: "feedback", label: "Alert & Notification" }],
+    items: [
+      { id: "alerts", label: "Alert & Banner", badge: "BRAND KIT" },
+      { id: "tooltips", label: "Tooltip & Popover", badge: "GLASS" },
+      { id: "progress", label: "Progress & Skeleton", badge: "NEW" },
+      { id: "feedback", label: "All Feedback Showcase" },
+    ],
   },
 ];
 

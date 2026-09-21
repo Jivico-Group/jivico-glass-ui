@@ -4,8 +4,8 @@ import { typography } from "./typography.js";
 import { getInputOverrides } from "./overrides/inputs";
 import { getControlOverrides } from "./overrides/controls.js";
 import { getDataDisplayOverrides } from "./overrides/dataDisplay";
-import { getFeedbackOverrides } from "./overrides/feedback.js";
-import { getSurfaceOverrides } from "./overrides/surfaces.js";
+import { getFeedbackOverrides } from "./overrides/feedback";
+import { getSurfaceOverrides } from "./overrides/surfaces";
 import { getNavigationOverrides } from "./overrides/navigation";
 import "./augmentations.d.ts";
 

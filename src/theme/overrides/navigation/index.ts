@@ -17,7 +17,7 @@ export const getNavigationOverrides = (
   ...getAppBarOverrides(palette, isDark),
   ...getToolbarOverrides(),
   ...getTabsOverrides(isDark),
-  ...getDrawerOverrides(isDark),
+  ...getDrawerOverrides(palette, isDark),
   ...getMenuOverrides(palette, isDark),
   ...getListOverrides(palette, isDark),
   ...getPaginationOverrides(palette),

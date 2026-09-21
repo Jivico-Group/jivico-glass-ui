@@ -1,12 +1,11 @@
-export * from './colors.js';
-export * from './palette.js';
-export * from './typography.js';
-export * from './theme.js';
-export * from './overrides/controls.js';
-export * from './overrides/dataDisplay.js';
-export * from './overrides/feedback.js';
-export * from './overrides/inputs.js';
-export * from './overrides/navigation.js';
-export * from './overrides/surfaces.js';
-import './augmentations.d.ts';
-
+export * from "./colors/index.js";
+export * from "./palette/index.js";
+export * from "./typography.js";
+export * from "./theme.js";
+export * from "./overrides/controls.js";
+export * from "./overrides/dataDisplay/index.js";
+export * from "./overrides/feedback";
+export * from "./overrides/inputs/index.js";
+export * from "./overrides/navigation/index.js";
+export * from "./overrides/surfaces/index.js";
+import "./augmentations.d.ts";

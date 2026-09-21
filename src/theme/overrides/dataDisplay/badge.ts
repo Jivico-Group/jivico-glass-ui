@@ -1,5 +1,12 @@
 import type { Components, Theme } from "@mui/material/styles";
-import type { JivicoPalette } from "../../palette.js";
+import type { JivicoPalette } from "../../palette";
+
+declare module "@mui/material/Badge" {
+  interface BadgePropsColorOverrides {
+    accent: true;
+    glass: true;
+  }
+}
 
 export const getBadgeOverrides = (
   palette: JivicoPalette,

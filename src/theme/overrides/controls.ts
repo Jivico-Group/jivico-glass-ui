@@ -1,6 +1,38 @@
 import type { Components, Theme } from "@mui/material/styles";
-import { COLORS } from "../colors.js";
-import type { JivicoPalette } from "../palette.js";
+import { COLORS } from "../colors/index.js";
+import type { JivicoPalette } from "../palette/index.js";
+
+declare module "@mui/material/Switch" {
+  interface SwitchPropsColorOverrides {
+    accent: true;
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Checkbox" {
+  interface CheckboxPropsColorOverrides {
+    accent: true;
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Radio" {
+  interface RadioPropsColorOverrides {
+    accent: true;
+    glass: true;
+  }
+}
+
+declare module "@mui/material/Slider" {
+  interface SliderPropsColorOverrides {
+    accent: true;
+    glass: true;
+    success: true;
+    warning: true;
+    error: true;
+    info: true;
+  }
+}
 
 /**
  * MUI component overrides — Selection Controls:
@@ -51,15 +83,23 @@ export const getControlOverrides = (
       root: ({ ownerState, theme }) => {
         const colorName = (ownerState.color as string) || "primary";
         const isGlass = colorName === "glass";
-        const resolved = resolveControlColors(colorName, isDark, palette, theme);
+        const resolved = resolveControlColors(
+          colorName,
+          isDark,
+          palette,
+          theme,
+        );
 
         return {
           borderRadius: 8,
           color: isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.3)",
           padding: 8,
-          transition: "color 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
+          transition:
+            "color 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
           "&:hover": {
-            backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)",
+            backgroundColor: isDark
+              ? "rgba(255, 255, 255, 0.06)"
+              : "rgba(17, 17, 17, 0.04)",
           },
           "&.Mui-checked, &.MuiCheckbox-indeterminate": {
             color: resolved.active,
@@ -85,14 +125,22 @@ export const getControlOverrides = (
       root: ({ ownerState, theme }) => {
         const colorName = (ownerState.color as string) || "primary";
         const isGlass = colorName === "glass";
-        const resolved = resolveControlColors(colorName, isDark, palette, theme);
+        const resolved = resolveControlColors(
+          colorName,
+          isDark,
+          palette,
+          theme,
+        );
 
         return {
           color: isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.3)",
           padding: 8,
-          transition: "color 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
+          transition:
+            "color 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
           "&:hover": {
-            backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)",
+            backgroundColor: isDark
+              ? "rgba(255, 255, 255, 0.06)"
+              : "rgba(17, 17, 17, 0.04)",
           },
           "&.Mui-checked": {
             color: resolved.active,
@@ -118,15 +166,20 @@ export const getControlOverrides = (
       root: ({ ownerState, theme }) => {
         const colorName = (ownerState.color as string) || "primary";
         const isGlass = colorName === "glass";
-        const resolved = resolveControlColors(colorName, isDark, palette, theme);
+        const resolved = resolveControlColors(
+          colorName,
+          isDark,
+          palette,
+          theme,
+        );
 
         const thumbCheckedColor = isGlass
           ? "#FFFFFF"
           : colorName === "primary"
-          ? isDark
-            ? "#1D1D1F"
-            : COLORS.white
-          : COLORS.white;
+            ? isDark
+              ? "#1D1D1F"
+              : COLORS.white
+            : COLORS.white;
 
         return {
           width: 44,
@@ -152,7 +205,9 @@ export const getControlOverrides = (
                 }),
               },
               "&.Mui-disabled": {
-                color: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)",
+                color: isDark
+                  ? "rgba(255, 255, 255, 0.3)"
+                  : "rgba(0, 0, 0, 0.3)",
                 "& + .MuiSwitch-track": {
                   opacity: 0.3,
                 },
@@ -165,7 +220,9 @@ export const getControlOverrides = (
               },
             },
             "&:hover": {
-              backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)",
+              backgroundColor: isDark
+                ? "rgba(255, 255, 255, 0.06)"
+                : "rgba(17, 17, 17, 0.04)",
             },
           },
           "& .MuiSwitch-thumb": {
@@ -177,7 +234,9 @@ export const getControlOverrides = (
               : "0 2px 4px rgba(0, 0, 0, 0.2)",
             transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
             ...(isGlass && {
-              border: isDark ? "1px solid rgba(255, 255, 255, 0.4)" : "1px solid rgba(255, 255, 255, 0.8)",
+              border: isDark
+                ? "1px solid rgba(255, 255, 255, 0.4)"
+                : "1px solid rgba(255, 255, 255, 0.8)",
             }),
           },
           "& .MuiSwitch-track": {
@@ -189,7 +248,8 @@ export const getControlOverrides = (
             border: isDark
               ? "1px solid rgba(255, 255, 255, 0.08)"
               : "1px solid rgba(0, 0, 0, 0.06)",
-            transition: "background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+            transition:
+              "background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
             backdropFilter: "blur(8px)",
             WebkitBackdropFilter: "blur(8px)",
           },
@@ -222,7 +282,12 @@ export const getControlOverrides = (
       root: ({ ownerState, theme }) => {
         const colorName = (ownerState.color as string) || "primary";
         const isGlass = colorName === "glass";
-        const resolved = resolveControlColors(colorName, isDark, palette, theme);
+        const resolved = resolveControlColors(
+          colorName,
+          isDark,
+          palette,
+          theme,
+        );
 
         return {
           color: resolved.active,
@@ -262,7 +327,9 @@ export const getControlOverrides = (
             borderRadius: 3,
           },
           "& .MuiSlider-valueLabel": {
-            backgroundColor: isDark ? "rgba(30, 32, 38, 0.9)" : "rgba(17, 17, 17, 0.9)",
+            backgroundColor: isDark
+              ? "rgba(30, 32, 38, 0.9)"
+              : "rgba(17, 17, 17, 0.9)",
             borderRadius: 6,
             fontSize: "0.75rem",
             fontWeight: 600,
@@ -308,4 +375,3 @@ export const getControlOverrides = (
     },
   },
 });
-

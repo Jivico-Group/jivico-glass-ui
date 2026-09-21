@@ -4,7 +4,9 @@ import React from "react";
 
 declare module "@mui/material/Chip" {
   interface ChipPropsColorOverrides {
+    accent: true;
     glass: true;
+    "glass-surface": true;
   }
   interface ChipPropsVariantOverrides {
     tonal: true;

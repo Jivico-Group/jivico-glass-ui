@@ -1,5 +1,18 @@
 import type { Components, Theme } from "@mui/material/styles";
-import type { JivicoPalette } from "../../palette";
+import type { JivicoPalette } from "../../palette/index.js";
+
+declare module "@mui/material/Stepper" {
+  interface StepperOwnProps {
+    color?:
+      | "primary"
+      | "secondary"
+      | "accent"
+      | "success"
+      | "warning"
+      | "error"
+      | "info";
+  }
+}
 
 export const getStepperOverrides = (
   palette: JivicoPalette,

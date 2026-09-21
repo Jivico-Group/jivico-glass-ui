@@ -11,7 +11,13 @@ import { InputsPage } from "./components/Pages/InputsPage.js";
 import { SwitchesPage } from "./components/Pages/SwitchesPage.js";
 import { DataDisplayPage } from "./components/Pages/DataDisplayPage.js";
 import { SurfacesPage } from "./components/Pages/SurfacesPage.js";
+import { CardsPage } from "./components/Pages/CardsPage.js";
+import { AccordionPage } from "./components/Pages/AccordionPage.js";
+import { PaperPage } from "./components/Pages/PaperPage.js";
 import { FeedbackPage } from "./components/Pages/FeedbackPage.js";
+import { AlertsPage } from "./components/Pages/AlertsPage.js";
+import { TooltipsPage } from "./components/Pages/TooltipsPage.js";
+import { ProgressPage } from "./components/Pages/ProgressPage.js";
 import { TypographyPage } from "./components/Pages/TypographyPage.js";
 import { SteppersPage } from "./components/Pages/SteppersPage.js";
 import { DialogsPage } from "./components/Pages/DialogsPage.js";
@@ -93,9 +99,44 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "glass-panel", title: "Glass Panel" },
     { id: "paper-surface", title: "Paper Overrides" },
   ],
+  cards: [
+    { id: "card-variants", title: "Card Variants" },
+    { id: "card-colors", title: "Color System & Glass" },
+    { id: "card-radius", title: "Corner Radius Options" },
+    { id: "card-hover", title: "Interactive Hover Cards" },
+    { id: "card-composition", title: "Rich Card Composition" },
+  ],
+  accordion: [
+    { id: "basic-accordion", title: "Basic Accordion Stack" },
+    { id: "controlled-accordion", title: "Controlled Single-Expand" },
+    { id: "disabled-accordion", title: "Disabled & Static States" },
+  ],
+  paper: [
+    { id: "default-paper", title: "Flat Paper Surface" },
+    { id: "glass-paper", title: "Frosted Glass Container" },
+    { id: "glass-footer-paper", title: "Glass Footer Variant" },
+  ],
   dialogs: [
     { id: "confirmation-dialog", title: "Glass Dialogs" },
     { id: "bottom-sheet", title: "Bottom Sheet & Drawers" },
+  ],
+  alerts: [
+    { id: "alert-severities", title: "Severity Levels" },
+    { id: "alert-appearances", title: "Visual Appearances" },
+    { id: "alert-colors", title: "Palette Color System" },
+    { id: "alert-actions", title: "Actions & Radius Scale" },
+  ],
+  tooltips: [
+    { id: "tooltip-variants", title: "Visual Variants" },
+    { id: "tooltip-colors", title: "Color Palette System" },
+    { id: "tooltip-placements", title: "Directional Placements" },
+    { id: "tooltip-rich-content", title: "Rich Content Tooltips" },
+  ],
+  progress: [
+    { id: "linear-progress-appearances", title: "Progress Appearances" },
+    { id: "linear-progress-colors", title: "Palette & Glowing Aura" },
+    { id: "linear-progress-sizes", title: "Progress Track Scale" },
+    { id: "skeleton-placeholders", title: "Glass Skeleton Shimmer" },
   ],
   feedback: [
     { id: "alerts", title: "Severity Levels" },
@@ -154,10 +195,22 @@ export default function App() {
         return <DataDisplayPage />;
       case "surfaces":
         return <SurfacesPage />;
+      case "cards":
+        return <CardsPage />;
+      case "accordion":
+        return <AccordionPage />;
+      case "paper":
+        return <PaperPage />;
       case "dialogs":
         return <DialogsPage />;
       case "dynamic-island":
         return <DynamicIslandPage />;
+      case "alerts":
+        return <AlertsPage />;
+      case "tooltips":
+        return <TooltipsPage />;
+      case "progress":
+        return <ProgressPage />;
       case "feedback":
         return <FeedbackPage />;
       case "typography":

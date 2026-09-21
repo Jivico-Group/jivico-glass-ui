@@ -7,28 +7,41 @@ import * as _mui_material from '@mui/material';
 import { BoxProps, ButtonBaseProps } from '@mui/material';
 import * as _mui_material_OverridableComponent from '@mui/material/OverridableComponent';
 
-/**
- * Builds a mode-resolved palette from the raw COLORS constants.
- * Every value is already resolved for the given mode so consumers
- * never need to branch on `isDark` themselves.
- */
-declare const buildPalette: (mode: "light" | "dark") => {
-    primary: {
-        main: string;
-        hover: string;
-        active: string;
-        disabled: string;
-        glow: string;
-        contrastText: string;
-    };
-    secondary: {
-        main: string;
-        hover: string;
-        active: string;
-        disabled: string;
-        glow: string;
-        contrastText: string;
-    };
+declare const buildBrandPalette: () => {
+    charcoal: string;
+    stone: string;
+    sand: string;
+    cream: string;
+};
+
+declare const buildPrimaryPalette: (isDark: boolean) => {
+    main: string;
+    hover: string;
+    active: string;
+    disabled: string;
+    glow: string;
+    contrastText: string;
+};
+
+declare const buildSecondaryPalette: (isDark: boolean) => {
+    main: string;
+    hover: string;
+    active: string;
+    disabled: string;
+    glow: string;
+    contrastText: string;
+};
+
+declare const buildAccentPalette: (isDark: boolean) => {
+    main: string;
+    hover: string;
+    active: string;
+    disabled: string;
+    glow: string;
+    contrastText: string;
+};
+
+declare const buildSemanticPalette: (isDark: boolean) => {
     success: {
         main: string;
         hover: string;
@@ -61,6 +74,117 @@ declare const buildPalette: (mode: "light" | "dark") => {
         glow: string;
         contrastText: string;
     };
+};
+
+declare const buildBackgroundPalette: (isDark: boolean) => {
+    default: string;
+    paper: string;
+};
+
+declare const buildTextPalette: (isDark: boolean) => {
+    primary: string;
+    secondary: string;
+    glassSurface: string;
+    "glass-surface": string;
+};
+
+declare const buildDividerPalette: (isDark: boolean) => string;
+
+declare const buildGlassPalette: (isDark: boolean) => {
+    main: string;
+    contrastText: string;
+    surface: string;
+    light: string;
+    dark: string;
+    hover: string;
+    active: string;
+    disabled: string;
+    glow: string;
+    buttonBorder: string;
+    buttonBg: string;
+    alertBg: string;
+    buttonHoverBg: string;
+    buttonTextHover: string;
+    fabShadow: string;
+    inputBorderHover: string;
+    inputFocusBg: string;
+    paperBg: string;
+    paperBorder: string;
+    paperShadow: string;
+    control: string;
+    switchTrack: string;
+    switchShadow: string;
+    sliderThumbShadow: string;
+    sliderRail: string;
+    chipBg: string;
+    chipBorder: string;
+    avatarBorder: string;
+    tableBorder: string;
+    tableHeadBg: string;
+    tooltipBg: string;
+    tooltipBorder: string;
+    tooltipShadow: string;
+    dialogBg: string;
+    dialogShadow: string;
+    skeletonBg: string;
+    progressBg: string;
+    cardBg: string;
+    cardShadow: string;
+    cardHoverShadow: string;
+    elevation1: string;
+    appBarBg: string;
+    accordionBg: string;
+    drawerBg: string;
+    menuItemHover: string;
+};
+
+declare const buildActionPalette: (isDark: boolean) => {
+    hover: string;
+    selected: string;
+};
+
+declare const buildAlertPalette: (isDark: boolean) => {
+    success: string;
+    warning: string;
+    error: string;
+    info: string;
+};
+
+declare const buildGradientsPalette: () => {
+    primary: string;
+    primaryHover: string;
+    accent: string;
+    accentDark: string;
+};
+
+declare const buildAliasesPalette: (isDark: boolean) => {
+    "glass-surface": {
+        main: string;
+        light: string;
+        dark: string;
+        contrastText: string;
+    };
+    glassSurface: {
+        main: string;
+        light: string;
+        dark: string;
+        contrastText: string;
+    };
+};
+
+declare const buildPalette: (mode: "light" | "dark") => {
+    "glass-surface": {
+        main: string;
+        light: string;
+        dark: string;
+        contrastText: string;
+    };
+    glassSurface: {
+        main: string;
+        light: string;
+        dark: string;
+        contrastText: string;
+    };
     background: {
         default: string;
         paper: string;
@@ -84,6 +208,7 @@ declare const buildPalette: (mode: "light" | "dark") => {
         glow: string;
         buttonBorder: string;
         buttonBg: string;
+        alertBg: string;
         buttonHoverBg: string;
         buttonTextHover: string;
         fabShadow: string;
@@ -134,258 +259,140 @@ declare const buildPalette: (mode: "light" | "dark") => {
         accent: string;
         accentDark: string;
     };
-    "glass-surface": {
+    success: {
         main: string;
-        light: string;
-        dark: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
         contrastText: string;
     };
-    glassSurface: {
+    warning: {
         main: string;
-        light: string;
-        dark: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
+        contrastText: string;
+    };
+    error: {
+        main: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
+        contrastText: string;
+    };
+    info: {
+        main: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
+        contrastText: string;
+    };
+    brand: {
+        charcoal: string;
+        stone: string;
+        sand: string;
+        cream: string;
+    };
+    primary: {
+        main: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
+        contrastText: string;
+    };
+    accent: {
+        main: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
+        contrastText: string;
+    };
+    secondary: {
+        main: string;
+        hover: string;
+        active: string;
+        disabled: string;
+        glow: string;
         contrastText: string;
     };
 };
 type JivicoPalette = ReturnType<typeof buildPalette>;
 
+/**
+ * ============================================================
+ * GLOBAL MUI THEME & PALETTE AUGMENTATIONS
+ * ============================================================
+ * Component-specific prop augmentations are co-located in their
+ * corresponding files under src/theme/overrides/.
+ */
+
 declare module "@mui/material/styles" {
   interface Palette {
+    accent: JivicoPalette["accent"];
     glass: JivicoPalette["glass"];
-    "glass-surface"?: { main: string; light: string; dark: string; contrastText: string };
-    glassSurface?: { main: string; light: string; dark: string; contrastText: string };
+
+    "glass-surface"?: {
+      main: string;
+      light: string;
+      dark: string;
+      contrastText: string;
+    };
+
+    glassSurface?: {
+      main: string;
+      light: string;
+      dark: string;
+      contrastText: string;
+    };
+
     gradients?: JivicoPalette["gradients"];
   }
+
   interface PaletteOptions {
+    accent?: JivicoPalette["accent"];
     glass?: JivicoPalette["glass"];
-    "glass-surface"?: { main: string; light: string; dark: string; contrastText: string };
-    glassSurface?: { main: string; light: string; dark: string; contrastText: string };
+
+    "glass-surface"?: {
+      main: string;
+      light: string;
+      dark: string;
+      contrastText: string;
+    };
+
+    glassSurface?: {
+      main: string;
+      light: string;
+      dark: string;
+      contrastText: string;
+    };
+
     gradients?: JivicoPalette["gradients"];
   }
+
   interface TypeText {
     glassSurface?: string;
     "glass-surface"?: string;
   }
 }
 
-declare module "@mui/material/Button" {
-  interface ButtonPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/Button/Button" {
-  interface ButtonPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/ButtonGroup" {
-  interface ButtonGroupPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/IconButton" {
-  interface IconButtonPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/Chip" {
-  interface ChipPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-  interface ChipPropsVariantOverrides {
-    tonal: true;
-  }
-  interface ChipPropsSizeOverrides {
-    large: true;
-  }
-}
-
-declare module "@mui/material/Chip/Chip" {
-  interface ChipPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-  interface ChipPropsVariantOverrides {
-    tonal: true;
-  }
-  interface ChipPropsSizeOverrides {
-    large: true;
-  }
-}
-
-declare module "@mui/material/Tabs" {
-  interface TabsPropsIndicatorColorOverrides {
-    glass: true;
-  }
-  interface TabsOwnProps {
-    size?: "small" | "medium";
-  }
-}
-
-declare module "@mui/material/Tabs/Tabs" {
-  interface TabsOwnProps {
-    size?: "small" | "medium";
-  }
-}
-
-declare module "@mui/material/Tab" {
-  interface TabOwnProps {
-    size?: "small" | "medium";
-  }
-}
-
-declare module "@mui/material/Tab/Tab" {
-  interface TabOwnProps {
-    size?: "small" | "medium";
-  }
-}
-
-declare module "@mui/material/TextField" {
-  interface TextFieldPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/TextField/TextField" {
-  interface TextFieldPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/Select" {
-  interface SelectPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/Select/Select" {
-  interface SelectPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/OutlinedInput" {
-  interface OutlinedInputPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/OutlinedInput/OutlinedInput" {
-  interface OutlinedInputPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/InputBase" {
-  interface InputBasePropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/InputBase/InputBase" {
-  interface InputBasePropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/FormControl" {
-  interface FormControlPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/FormControl/FormControl" {
-  interface FormControlPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/FormLabel" {
-  interface FormLabelPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-}
-
-declare module "@mui/material/Switch" {
-  interface SwitchPropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Checkbox" {
-  interface CheckboxPropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Radio" {
-  interface RadioPropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Slider" {
-  interface SliderPropsColorOverrides {
-    glass: true;
-    success: true;
-    warning: true;
-    error: true;
-    info: true;
-  }
-}
-
-declare module "@mui/material/Badge" {
-  interface BadgePropsColorOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Avatar" {
-  interface AvatarPropsVariantOverrides {
-    glass: true;
-  }
-}
-
-declare module "@mui/material/Typography" {
-  interface TypographyPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-    gradient: true;
-  }
-}
-
-declare module "@mui/material/Typography/Typography" {
-  interface TypographyPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-    gradient: true;
-  }
-}
+/**
+ * ============================================================
+ * BOX
+ * ============================================================
+ */
 
 declare module "@mui/material/Box" {
   interface BoxPropsColorOverrides {
+    accent: true;
     glass: true;
     "glass-surface": true;
+
     primary: true;
     secondary: true;
     success: true;
@@ -395,98 +402,59 @@ declare module "@mui/material/Box" {
   }
 }
 
-declare module "@mui/material" {
-  interface ButtonPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-  interface ChipPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-  interface TextFieldPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-  interface SelectPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-  interface FormControlPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-  interface FormLabelPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-  interface OutlinedInputPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-  interface InputBasePropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-  }
-  interface TypographyPropsColorOverrides {
-    glass: true;
-    "glass-surface": true;
-    gradient: true;
-  }
-  interface TabsOwnProps {
-    size?: "small" | "medium";
-  }
-  interface TabOwnProps {
-    size?: "small" | "medium";
-  }
-}
+declare const BRAND_COLORS: {
+    charcoal: string;
+    stone: string;
+    sand: string;
+    cream: string;
+};
 
-/**
- * Jivico Studio Design System — Luxury Monochrome + Glassmorphism
- *
- * Brand Kit: Modern · Minimal · Bold · Timeless
- * Primary Palette: Charcoal #111111 · Stone #686868 · Sand #D9D9CF · Cream #F6F5F2
- *
- * Raw Color Constants — no pink, no gradients-with-purple.
- * Glassmorphism surfaces, blur, and elevation are preserved exactly.
- */
-declare const COLORS: {
-    brand: {
-        charcoal: string;
-        stone: string;
-        sand: string;
-        cream: string;
-    };
-    primary: {
-        /** Light mode: bold charcoal for buttons, focus rings, active states */
-        light: string;
-        /** Dark mode: crisp cream/off-white — reads as luxury against dark glass */
-        dark: string;
-        hoverLight: string;
-        hoverDark: string;
-        activeLight: string;
-        activeDark: string;
-        disabledLight: string;
-        disabledDark: string;
-        glowLight: string;
-        glowDark: string;
-        textLight: string;
-        textDark: string;
-    };
-    secondary: {
-        light: string;
-        dark: string;
-        hoverLight: string;
-        hoverDark: string;
-        activeLight: string;
-        activeDark: string;
-        disabledLight: string;
-        disabledDark: string;
-        glowLight: string;
-        glowDark: string;
-        textLight: string;
-        textDark: string;
-    };
+declare const PRIMARY_COLORS: {
+    light: string;
+    dark: string;
+    hoverLight: string;
+    hoverDark: string;
+    activeLight: string;
+    activeDark: string;
+    disabledLight: string;
+    disabledDark: string;
+    glowLight: string;
+    glowDark: string;
+    textLight: string;
+    textDark: string;
+};
+
+declare const SECONDARY_COLORS: {
+    light: string;
+    dark: string;
+    hoverLight: string;
+    hoverDark: string;
+    activeLight: string;
+    activeDark: string;
+    disabledLight: string;
+    disabledDark: string;
+    glowLight: string;
+    glowDark: string;
+    textLight: string;
+    textDark: string;
+};
+
+declare const ACCENT_COLORS: {
+    light: string;
+    dark: string;
+    hoverLight: string;
+    hoverDark: string;
+    activeLight: string;
+    activeDark: string;
+    disabledLight: string;
+    disabledDark: string;
+    glowLight: string;
+    glowDark: string;
+    textLight: string;
+    textDark: string;
+};
+
+declare const SEMANTIC_COLORS: {
     success: {
         light: string;
         dark: string;
@@ -543,11 +511,140 @@ declare const COLORS: {
         textLight: string;
         textDark: string;
     };
+};
+
+declare const BACKGROUND_COLORS: {
+    light: string;
+    dark: string;
+    paperLight: string;
+    paperDark: string;
+};
+
+declare const TEXT_COLORS: {
+    primaryLight: string;
+    primaryDark: string;
+    secondaryLight: string;
+    secondaryDark: string;
+};
+
+declare const DIVIDER_COLORS: {
+    light: string;
+    dark: string;
+};
+
+declare const ACTION_COLORS: {
+    hoverLight: string;
+    hoverDark: string;
+    selectedLight: string;
+    selectedDark: string;
+};
+
+declare const GLASS_COLORS: {
+    mainLight: string;
+    mainDark: string;
+    contrastTextLight: string;
+    contrastTextDark: string;
+    lightLight: string;
+    lightDark: string;
+    darkLight: string;
+    darkDark: string;
+    hoverLight: string;
+    hoverDark: string;
+    activeLight: string;
+    activeDark: string;
+    disabledLight: string;
+    disabledDark: string;
+    glowLight: string;
+    glowDark: string;
+    alertBgLight: string;
+    alertBgDark: string;
+    buttonBorderLight: string;
+    buttonBorderDark: string;
+    buttonBgLight: string;
+    buttonBgDark: string;
+    buttonHoverBgLight: string;
+    buttonHoverBgDark: string;
+    buttonTextHoverLight: string;
+    buttonTextHoverDark: string;
+    fabShadowLight: string;
+    fabShadowDark: string;
+    inputBorderHoverLight: string;
+    inputBorderHoverDark: string;
+    inputFocusBgDark: string;
+    paperBgLight: string;
+    paperBgDark: string;
+    paperBorderLight: string;
+    paperBorderDark: string;
+    paperShadowLight: string;
+    paperShadowDark: string;
+    controlLight: string;
+    controlDark: string;
+    switchTrackLight: string;
+    switchTrackDark: string;
+    switchShadow: string;
+    sliderThumbShadow: string;
+    sliderRailLight: string;
+    sliderRailDark: string;
+    chipBgLight: string;
+    chipBgDark: string;
+    chipBorderLight: string;
+    chipBorderDark: string;
+    avatarBorderLight: string;
+    avatarBorderDark: string;
+    tableBorderLight: string;
+    tableBorderDark: string;
+    tableHeadBgLight: string;
+    tableHeadBgDark: string;
+    tooltipBgLight: string;
+    tooltipBgDark: string;
+    tooltipBorderLight: string;
+    tooltipBorderDark: string;
+    tooltipShadow: string;
+    dialogBgLight: string;
+    dialogBgDark: string;
+    dialogShadowLight: string;
+    dialogShadowDark: string;
+    skeletonBgLight: string;
+    skeletonBgDark: string;
+    progressBgLight: string;
+    progressBgDark: string;
+    cardBgLight: string;
+    cardBgDark: string;
+    cardShadowLight: string;
+    cardShadowDark: string;
+    cardHoverShadowLight: string;
+    cardHoverShadowDark: string;
+    elevation1Light: string;
+    elevation1Dark: string;
+    appBarBgLight: string;
+    appBarBgDark: string;
+    accordionBgLight: string;
+    accordionBgDark: string;
+    drawerBgLight: string;
+    drawerBgDark: string;
+    menuItemHoverLight: string;
+    menuItemHoverDark: string;
+};
+
+declare const ALERT_RGB: {
+    success: string;
+    warningDark: string;
+    warningLight: string;
+    error: string;
+    info: string;
+};
+
+declare const GRADIENT_COLORS: {
+    primary: string;
+    primaryHover: string;
+    accent: string;
+    accentDark: string;
+};
+
+declare const COLORS: {
     background: {
-        /** Light: pure white background for crisp, clean pages */
         light: string;
         dark: string;
-        /** Light paper surfaces are pure white for consistency */
         paperLight: string;
         paperDark: string;
     };
@@ -564,14 +661,12 @@ declare const COLORS: {
     action: {
         hoverLight: string;
         hoverDark: string;
-        /** Selected tint: charcoal-based in light, cream-based in dark */
         selectedLight: string;
         selectedDark: string;
     };
     white: string;
     black: string;
     glass: {
-        /** Palette-compatible color tokens for custom color="glass" */
         mainLight: string;
         mainDark: string;
         contrastTextLight: string;
@@ -588,6 +683,8 @@ declare const COLORS: {
         disabledDark: string;
         glowLight: string;
         glowDark: string;
+        alertBgLight: string;
+        alertBgDark: string;
         buttonBorderLight: string;
         buttonBorderDark: string;
         buttonBgLight: string;
@@ -662,14 +759,115 @@ declare const COLORS: {
         error: string;
         info: string;
     };
-    /** Monochrome sweep — Charcoal → Stone. Used only on accent/hero text. */
     gradients: {
         primary: string;
         primaryHover: string;
-        /** Light-mode accent variant: Stone → Sand for a softer editorial sweep */
         accent: string;
-        /** Dark-mode accent: Cream → Stone */
         accentDark: string;
+    };
+    success: {
+        light: string;
+        dark: string;
+        hoverLight: string;
+        hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
+        glowLight: string;
+        glowDark: string;
+        textLight: string;
+        textDark: string;
+    };
+    warning: {
+        light: string;
+        dark: string;
+        hoverLight: string;
+        hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
+        glowLight: string;
+        glowDark: string;
+        textLight: string;
+        textDark: string;
+    };
+    error: {
+        light: string;
+        dark: string;
+        hoverLight: string;
+        hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
+        glowLight: string;
+        glowDark: string;
+        textLight: string;
+        textDark: string;
+    };
+    info: {
+        light: string;
+        dark: string;
+        hoverLight: string;
+        hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
+        glowLight: string;
+        glowDark: string;
+        textLight: string;
+        textDark: string;
+    };
+    brand: {
+        charcoal: string;
+        stone: string;
+        sand: string;
+        cream: string;
+    };
+    primary: {
+        light: string;
+        dark: string;
+        hoverLight: string;
+        hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
+        glowLight: string;
+        glowDark: string;
+        textLight: string;
+        textDark: string;
+    };
+    secondary: {
+        light: string;
+        dark: string;
+        hoverLight: string;
+        hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
+        glowLight: string;
+        glowDark: string;
+        textLight: string;
+        textDark: string;
+    };
+    accent: {
+        light: string;
+        dark: string;
+        hoverLight: string;
+        hoverDark: string;
+        activeLight: string;
+        activeDark: string;
+        disabledLight: string;
+        disabledDark: string;
+        glowLight: string;
+        glowDark: string;
+        textLight: string;
+        textDark: string;
     };
 };
 
@@ -760,49 +958,44 @@ declare const JIVICO_BRAND_FONTS_URL = "https://fonts.googleapis.com/css2?family
 declare const JivicoGlassTheme: (mode: "light" | "dark") => Theme;
 declare const createJivicoTheme: (mode: "light" | "dark") => Theme;
 
-declare const getControlOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
-
-declare module '@mui/material/Chip' {
-    interface ChipPropsColorOverrides {
+declare module "@mui/material/Switch" {
+    interface SwitchPropsColorOverrides {
+        accent: true;
         glass: true;
     }
-    interface ChipPropsVariantOverrides {
-        tonal: true;
-    }
-    interface ChipPropsSizeOverrides {
-        large: true;
+}
+declare module "@mui/material/Checkbox" {
+    interface CheckboxPropsColorOverrides {
+        accent: true;
+        glass: true;
     }
 }
-/**
- * MUI component overrides — Data Display:
- * Chip, Avatar, Divider, Table, TableCell, Tooltip
- */
+declare module "@mui/material/Radio" {
+    interface RadioPropsColorOverrides {
+        accent: true;
+        glass: true;
+    }
+}
+declare module "@mui/material/Slider" {
+    interface SliderPropsColorOverrides {
+        accent: true;
+        glass: true;
+        success: true;
+        warning: true;
+        error: true;
+        info: true;
+    }
+}
+declare const getControlOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
+
 declare const getDataDisplayOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
-/**
- * MUI component overrides — Feedback:
- * Alert, Dialog, Skeleton, LinearProgress, Tooltip
- */
 declare const getFeedbackOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
-/**
- * MUI component overrides — Inputs category:
- * Button, ButtonGroup, Fab, OutlinedInput, InputLabel, Select, Autocomplete
- */
 declare const getInputOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
-/**
- * MUI component overrides — Navigation:
- * AppBar, Toolbar, Tabs, Tab, Drawer, Menu, MenuItem, PaginationItem
- */
 declare const getNavigationOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
-/**
- * MUI component overrides — Surfaces:
- * Card, Paper, Accordion
- *
- * Note: MuiAppBar lives in navigation.ts (uses glassRecipe).
- */
 declare const getSurfaceOverrides: (palette: JivicoPalette, isDark: boolean) => Components<Theme>;
 
 interface GlassPanelProps extends BoxProps {
@@ -1050,4 +1243,4 @@ interface JivicoGlassProviderProps {
 }
 declare function JivicoGlassProvider({ children, defaultMode, storageKey, enableCssBaseline, }: JivicoGlassProviderProps): react__default.JSX.Element;
 
-export { AmbientBlob, COLORS, CoverImage, DecorativeBlob, DynamicIsland, DynamicIslandPill, type DynamicIslandPillProps, type DynamicIslandPlacement, type DynamicIslandProps, type DynamicIslandSize, EdgeFade, GOOGLE_SANS_FLEX_URL, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PageRoot, type ResolvedThemeMode, Section, SectionContainer, SectionHeader, type SectionHeaderProps, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, type ThemeMode, TribeMemberPill, buildPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode };
+export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, BACKGROUND_COLORS, BRAND_COLORS, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandPill, type DynamicIslandPillProps, type DynamicIslandPlacement, type DynamicIslandProps, type DynamicIslandSize, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type ResolvedThemeMode, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode };
