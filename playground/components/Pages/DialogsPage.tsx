@@ -71,6 +71,8 @@ export const DialogsPage: React.FC = () => {
   const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
   const [rightDrawerOpen, setRightDrawerOpen] = useState(false);
   const [leftDrawerOpen, setLeftDrawerOpen] = useState(false);
+  const [topDrawerOpen, setTopDrawerOpen] = useState(false);
+  const [drawerGlass, setDrawerGlass] = useState(true);
 
   // Form states inside dialog
   const [projectName, setProjectName] = useState("Apple Liquid Design");
@@ -87,7 +89,7 @@ export const DialogsPage: React.FC = () => {
       {/* 1. Signature Glass vs Standard Surface Dialogs */}
       <DemoBlock
         id="glass-dialog-toggle"
-        title="Frosted Glass Surface (glass prop)"
+        title="Frosted Glass Dialog Surface (glass prop)"
         description="Toggle the `glass` prop on `<Dialog glass={true}>` to enable optical background blur, top specular edge glint, and liquid backdrop translucency."
         code={`// Signature Frosted Glass Modal
 <Dialog open={open} glass={true} onClose={() => setOpen(false)}>
@@ -526,65 +528,110 @@ export const DialogsPage: React.FC = () => {
         </Dialog>
       </DemoBlock>
 
-      {/* 3. Apple Liquid Bottom Sheet Drawer */}
+      {/* 3. Apple Liquid Drawer Overlays (glass prop & anchors) */}
       <DemoBlock
-        id="bottom-sheet"
-        title="Apple Liquid Bottom Sheet Drawer"
-        description="Features Apple's signature 28px rounded top corners, centered grabber pill handle, and translucent frosted glass background."
-        code={`// Bottom Sheet with Grabber Pill
-<Drawer
-  anchor="bottom"
-  open={open}
-  onClose={() => setOpen(false)}
->
-  <Box sx={{ p: 3, textAlign: "center" }}>
-    {/* Centered Grabber Pill */}
+        id="drawer-styles"
+        title="Drawer Overlays & Surface Styles (glass prop)"
+        description="Drawers support the `glass` prop (`glass={true}` vs `glass={false}`) with 32px backdrop blur, specular top edge glint, and tailored anchor corner radius rules."
+        code={`// Frosted Glass Bottom Sheet Drawer
+<Drawer anchor="bottom" glass={true} open={open} onClose={() => setOpen(false)}>
+  <Box sx={{ p: 3 }}>
     <Box sx={{ width: 44, height: 5, borderRadius: 3, bgcolor: "rgba(0,0,0,0.2)", mx: "auto", mb: 2.5 }} />
-    <Typography variant="h6">Share Options</Typography>
+    <Typography variant="h6">Frosted Glass Action Sheet</Typography>
+  </Box>
+</Drawer>
+
+// Standard Solid Surface Side Panel
+<Drawer anchor="right" glass={false} open={open} onClose={() => setOpen(false)}>
+  <Box sx={{ width: 320, p: 3 }}>
+    <Typography variant="h6">Standard Side Panel</Typography>
   </Box>
 </Drawer>`}
       >
+        <Box sx={{ mb: 3 }}>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={drawerGlass}
+                onChange={(e) => setDrawerGlass(e.target.checked)}
+                color="glass"
+              />
+            }
+            label={
+              <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                Drawer Surface Mode:{" "}
+                <Box
+                  component="span"
+                  sx={{
+                    color: drawerGlass ? "primary.main" : "text.secondary",
+                  }}
+                >
+                  glass={drawerGlass ? "true" : "false"}
+                </Box>
+              </Typography>
+            }
+          />
+        </Box>
+
         <Box
           sx={{
             display: "flex",
-            gap: 2.5,
+            gap: 2,
             flexWrap: "wrap",
             alignItems: "center",
           }}
         >
           <Button
-            variant="contained"
-            color="glass"
+            variant={drawerGlass ? "contained" : "outlined"}
+            color={drawerGlass ? "glass" : "primary"}
             size="large"
-            onClick={() => setBottomSheetOpen(true)}
+            onClick={() => {
+              setBottomSheetOpen(true);
+            }}
             startIcon={<Layers size={18} />}
           >
-            Open Apple Bottom Sheet
+            Bottom Sheet ({drawerGlass ? "Frosted Glass" : "Standard"})
           </Button>
 
           <Button
             variant="outlined"
             color="primary"
             size="large"
-            onClick={() => setRightDrawerOpen(true)}
+            onClick={() => {
+              setRightDrawerOpen(true);
+            }}
             startIcon={<ChevronRight size={18} />}
           >
-            Open Right Side Panel
+            Right Side Panel ({drawerGlass ? "Frosted Glass" : "Standard"})
           </Button>
 
           <Button
             variant="outlined"
             color="glass"
             size="large"
-            onClick={() => setLeftDrawerOpen(true)}
+            onClick={() => {
+              setLeftDrawerOpen(true);
+            }}
           >
-            Open Left Navigation Drawer
+            Left Navigation ({drawerGlass ? "Frosted Glass" : "Standard"})
+          </Button>
+
+          <Button
+            variant="text"
+            color="secondary"
+            size="large"
+            onClick={() => {
+              setTopDrawerOpen(true);
+            }}
+          >
+            Top Banner Sheet ({drawerGlass ? "Frosted Glass" : "Standard"})
           </Button>
         </Box>
 
         {/* Bottom Sheet Drawer */}
         <Drawer
           anchor="bottom"
+          glass={drawerGlass}
           open={bottomSheetOpen}
           onClose={() => setBottomSheetOpen(false)}
         >
@@ -624,7 +671,7 @@ export const DialogsPage: React.FC = () => {
                   Quick Share & Export
                 </Typography>
                 <Typography variant="caption" sx={{ color: "text.secondary" }}>
-                  Apple frosted action sheet
+                  Rendering with glass={drawerGlass ? "true" : "false"}
                 </Typography>
               </Box>
               <IconButton
@@ -702,6 +749,7 @@ export const DialogsPage: React.FC = () => {
         {/* Right Drawer */}
         <Drawer
           anchor="right"
+          glass={drawerGlass}
           open={rightDrawerOpen}
           onClose={() => setRightDrawerOpen(false)}
         >
@@ -734,11 +782,21 @@ export const DialogsPage: React.FC = () => {
             </Box>
 
             <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5 }}>
-              Theme Properties
+              Drawer Surface Properties
             </Typography>
             <Box
               sx={{ display: "flex", flexDirection: "column", gap: 1.5, mb: 3 }}
             >
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                  Glass Prop:
+                </Typography>
+                <Chip
+                  label={drawerGlass ? "glass={true}" : "glass={false}"}
+                  color={drawerGlass ? "primary" : "default"}
+                  size="small"
+                />
+              </Box>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   Active Mode:
@@ -750,15 +808,7 @@ export const DialogsPage: React.FC = () => {
                   Backdrop Blur:
                 </Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                  32px saturate(180%)
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                  Border Glint:
-                </Typography>
-                <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                  1px solid specular
+                  {drawerGlass ? "32px saturate(180%)" : "None (Solid Surface)"}
                 </Typography>
               </Box>
             </Box>
@@ -773,7 +823,7 @@ export const DialogsPage: React.FC = () => {
             >
               <Bell size={18} opacity={0.7} />
               <Typography variant="body2">
-                System tokens synced successfully
+                Drawer styles synchronized cleanly
               </Typography>
             </Box>
 
@@ -793,6 +843,7 @@ export const DialogsPage: React.FC = () => {
         {/* Left Drawer */}
         <Drawer
           anchor="left"
+          glass={drawerGlass}
           open={leftDrawerOpen}
           onClose={() => setLeftDrawerOpen(false)}
         >
@@ -831,7 +882,47 @@ export const DialogsPage: React.FC = () => {
             </List>
           </Box>
         </Drawer>
+
+        {/* Top Drawer */}
+        <Drawer
+          anchor="top"
+          glass={drawerGlass}
+          open={topDrawerOpen}
+          onClose={() => setTopDrawerOpen(false)}
+        >
+          <Box
+            sx={{
+              p: 3,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              maxWidth: 800,
+              mx: "auto",
+              width: "100%",
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+              <Sparkles size={24} />
+              <Box>
+                <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+                  Top Specular Banner Sheet
+                </Typography>
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                  Demonstrating top anchor corner radii and specular glint lighting.
+                </Typography>
+              </Box>
+            </Box>
+            <Button
+              variant="outlined"
+              color="glass"
+              onClick={() => setTopDrawerOpen(false)}
+            >
+              Dismiss
+            </Button>
+          </Box>
+        </Drawer>
       </DemoBlock>
     </ComponentPage>
   );
 };
+

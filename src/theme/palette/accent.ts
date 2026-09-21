@@ -2,6 +2,8 @@ import { COLORS } from "../colors/index.js";
 
 export const buildAccentPalette = (isDark: boolean) => ({
   main: isDark ? COLORS.accent.dark : COLORS.accent.light,
+  light: COLORS.accent.dark,
+  dark: COLORS.accent.light,
   hover: isDark ? COLORS.accent.hoverDark : COLORS.accent.hoverLight,
   active: isDark ? COLORS.accent.activeDark : COLORS.accent.activeLight,
   disabled: isDark
@@ -10,3 +12,4 @@ export const buildAccentPalette = (isDark: boolean) => ({
   glow: isDark ? COLORS.accent.glowDark : COLORS.accent.glowLight,
   contrastText: isDark ? COLORS.accent.textDark : COLORS.accent.textLight,
 });
+

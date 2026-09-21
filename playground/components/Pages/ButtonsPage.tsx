@@ -68,9 +68,10 @@ export const ButtonsPage: React.FC = () => {
       <DemoBlock
         id="variants"
         title="Core Variants"
-        description="Buttons come in three primary emphasis levels: Contained (high emphasis), Outlined (medium emphasis / frosted glass), and Text (low emphasis / navigation)."
+        description="Buttons come in primary emphasis levels: Contained (high emphasis), Outlined (medium emphasis / frosted glass), and Text (low emphasis / navigation)."
         code={`<Button variant="contained" color="primary">Primary</Button>
 <Button variant="contained" color="secondary">Secondary</Button>
+<Button variant="contained" color="accent">Accent</Button>
 <Button variant="outlined" color="primary">Outlined</Button>
 <Button variant="text" color="primary">Text Button</Button>
 <Button variant="contained" color="primary" disabled>Disabled</Button>`}
@@ -89,19 +90,19 @@ export const ButtonsPage: React.FC = () => {
           <Button variant="contained" color="secondary">
             Secondary Contained
           </Button>
+          <Button variant="contained" color="accent">
+            Accent Contained
+          </Button>
           <Button variant="outlined" color="primary">
             Outlined Glass
+          </Button>
+          <Button variant="outlined" color="accent">
+            Outlined Accent
           </Button>
           <Button variant="text" color="primary">
             Text Button
           </Button>
           <Button variant="contained" color="primary" disabled>
-            Disabled
-          </Button>
-          <Button variant="contained" color="accent">
-            Disabled
-          </Button>
-          <Button variant="outlined" color="accent">
             Disabled
           </Button>
         </Box>
@@ -111,9 +112,10 @@ export const ButtonsPage: React.FC = () => {
       <DemoBlock
         id="color-matrix"
         title="Complete Color Matrix"
-        description="Every color in the Jivico palette (Primary, Secondary, Glass, Success, Warning, Error, Info) rendered across Contained, Outlined, and Text variants."
-        code={`// Available colors: "primary" | "secondary" | "glass" | "success" | "warning" | "error" | "info"
+        description="Every color in the Jivico palette (Primary, Secondary, Accent, Glass, Success, Warning, Error, Info) rendered across Contained, Outlined, and Text variants."
+        code={`// Available colors: "primary" | "secondary" | "accent" | "glass" | "success" | "warning" | "error" | "info"
 <Button variant="contained" color="primary">Primary</Button>
+<Button variant="contained" color="accent">Accent</Button>
 <Button variant="contained" color="glass">Glass</Button>
 <Button variant="contained" color="success">Success</Button>`}
       >
@@ -153,6 +155,9 @@ export const ButtonsPage: React.FC = () => {
               </Button>
               <Button variant="contained" color="secondary">
                 Secondary
+              </Button>
+              <Button variant="contained" color="accent">
+                Accent
               </Button>
               <Button variant="contained" color="glass">
                 ✨ Glass
@@ -201,6 +206,9 @@ export const ButtonsPage: React.FC = () => {
               <Button variant="outlined" color="secondary">
                 Secondary
               </Button>
+              <Button variant="outlined" color="accent">
+                Accent
+              </Button>
               <Button variant="outlined" color="glass">
                 ✨ Glass
               </Button>
@@ -247,6 +255,9 @@ export const ButtonsPage: React.FC = () => {
               </Button>
               <Button variant="text" color="secondary">
                 Secondary
+              </Button>
+              <Button variant="text" color="accent">
+                Accent
               </Button>
               <Button variant="text" color="glass">
                 ✨ Glass
@@ -381,6 +392,26 @@ export const ButtonsPage: React.FC = () => {
             </Button>
           </Box>
 
+          {/* Accent Sizes */}
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 2,
+              alignItems: "center",
+            }}
+          >
+            <Button variant="contained" color="accent" size="small">
+              Small Accent
+            </Button>
+            <Button variant="contained" color="accent" size="medium">
+              Medium Accent
+            </Button>
+            <Button variant="contained" color="accent" size="large">
+              Large Accent
+            </Button>
+          </Box>
+
           {/* Outlined Sizes */}
           <Box
             sx={{
@@ -411,11 +442,11 @@ export const ButtonsPage: React.FC = () => {
         code={`<Button variant="contained" color="primary" startIcon={<Plus size={16} />}>
   Add Item
 </Button>
+<Button variant="contained" color="accent" startIcon={<Sparkles size={16} />}>
+  Upgrade Plan
+</Button>
 <Button variant="contained" color="glass" endIcon={<ArrowRight size={16} />}>
   Continue
-</Button>
-<Button variant="outlined" color="primary" startIcon={<Download size={16} />}>
-  Export Data
 </Button>`}
       >
         <Box
@@ -435,6 +466,13 @@ export const ButtonsPage: React.FC = () => {
           </Button>
           <Button
             variant="contained"
+            color="accent"
+            startIcon={<Sparkles size={16} />}
+          >
+            Upgrade Plan
+          </Button>
+          <Button
+            variant="contained"
             color="glass"
             endIcon={<ArrowRight size={16} />}
           >
@@ -446,6 +484,13 @@ export const ButtonsPage: React.FC = () => {
             startIcon={<Send size={16} />}
           >
             Submit
+          </Button>
+          <Button
+            variant="outlined"
+            color="accent"
+            startIcon={<Star size={16} />}
+          >
+            Premium Feature
           </Button>
           <Button
             variant="outlined"

@@ -13,7 +13,7 @@ declare module "@mui/material/Dialog" {
 }
 
 export const getDialogOverrides = (
-  palette: JivicoPalette,
+  _palette: JivicoPalette,
   isDark: boolean,
 ): Components<Theme> => ({
   MuiDialog: {
@@ -59,7 +59,7 @@ export const getDialogOverrides = (
          */
         const glassBackground = isDark
           ? "rgba(24, 24, 27, 0.72)"
-          : "rgba(255, 255, 255, 0.72)";
+          : "rgba(255, 255, 255, 0.52)";
 
         const glassColor = isDark ? "#F5F5F7" : "#111111";
 

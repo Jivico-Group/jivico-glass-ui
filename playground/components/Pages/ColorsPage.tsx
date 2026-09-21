@@ -445,6 +445,7 @@ const primaryGlow = theme.palette.primary.glow;`}
               md: "repeat(6, 1fr)",
             },
             gap: 2,
+            mb: 3,
             width: "100%",
           }}
         >
@@ -504,6 +505,91 @@ const primaryGlow = theme.palette.primary.glow;`}
                 : COLORS.secondary.textDark
             }
             description="Text on secondary fill"
+          />
+        </Box>
+
+        <Typography
+          variant="subtitle2"
+          sx={{
+            fontWeight: 700,
+            mb: 1.5,
+            color: "text.secondary",
+            textTransform: "uppercase",
+            letterSpacing: "0.05em",
+            fontSize: "0.75rem",
+          }}
+        >
+          Accent Gold Spectrum ({primaryMode.toUpperCase()} MODE)
+        </Typography>
+
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "repeat(2, 1fr)",
+              sm: "repeat(3, 1fr)",
+              md: "repeat(6, 1fr)",
+            },
+            gap: 2,
+            width: "100%",
+          }}
+        >
+          <ColorSwatch
+            name="Main"
+            token={`COLORS.accent.${primaryMode}`}
+            value={COLORS.accent[primaryMode]}
+            description="Luxury champagne gold accent"
+          />
+          <ColorSwatch
+            name="Hover"
+            token={`COLORS.accent.hover${primaryMode === "light" ? "Light" : "Dark"}`}
+            value={
+              primaryMode === "light"
+                ? COLORS.accent.hoverLight
+                : COLORS.accent.hoverDark
+            }
+            description="Hover state"
+          />
+          <ColorSwatch
+            name="Active"
+            token={`COLORS.accent.active${primaryMode === "light" ? "Light" : "Dark"}`}
+            value={
+              primaryMode === "light"
+                ? COLORS.accent.activeLight
+                : COLORS.accent.activeDark
+            }
+            description="Active state fill"
+          />
+          <ColorSwatch
+            name="Disabled"
+            token={`COLORS.accent.disabled${primaryMode === "light" ? "Light" : "Dark"}`}
+            value={
+              primaryMode === "light"
+                ? COLORS.accent.disabledLight
+                : COLORS.accent.disabledDark
+            }
+            description="Inactive accent"
+          />
+          <ColorSwatch
+            name="Glow Accent"
+            token={`COLORS.accent.glow${primaryMode === "light" ? "Light" : "Dark"}`}
+            value={
+              primaryMode === "light"
+                ? COLORS.accent.glowLight
+                : COLORS.accent.glowDark
+            }
+            isTranslucent
+            description="Gold halo & focus ring"
+          />
+          <ColorSwatch
+            name="Contrast Text"
+            token={`COLORS.accent.text${primaryMode === "light" ? "Light" : "Dark"}`}
+            value={
+              primaryMode === "light"
+                ? COLORS.accent.textLight
+                : COLORS.accent.textDark
+            }
+            description="Text on gold fill"
           />
         </Box>
       </DemoBlock>

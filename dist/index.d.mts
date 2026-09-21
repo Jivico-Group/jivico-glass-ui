@@ -16,6 +16,8 @@ declare const buildBrandPalette: () => {
 
 declare const buildPrimaryPalette: (isDark: boolean) => {
     main: string;
+    light: string;
+    dark: string;
     hover: string;
     active: string;
     disabled: string;
@@ -25,6 +27,8 @@ declare const buildPrimaryPalette: (isDark: boolean) => {
 
 declare const buildSecondaryPalette: (isDark: boolean) => {
     main: string;
+    light: string;
+    dark: string;
     hover: string;
     active: string;
     disabled: string;
@@ -34,6 +38,8 @@ declare const buildSecondaryPalette: (isDark: boolean) => {
 
 declare const buildAccentPalette: (isDark: boolean) => {
     main: string;
+    light: string;
+    dark: string;
     hover: string;
     active: string;
     disabled: string;
@@ -44,6 +50,8 @@ declare const buildAccentPalette: (isDark: boolean) => {
 declare const buildSemanticPalette: (isDark: boolean) => {
     success: {
         main: string;
+        light: string;
+        dark: string;
         hover: string;
         active: string;
         disabled: string;
@@ -52,6 +60,8 @@ declare const buildSemanticPalette: (isDark: boolean) => {
     };
     warning: {
         main: string;
+        light: string;
+        dark: string;
         hover: string;
         active: string;
         disabled: string;
@@ -60,6 +70,8 @@ declare const buildSemanticPalette: (isDark: boolean) => {
     };
     error: {
         main: string;
+        light: string;
+        dark: string;
         hover: string;
         active: string;
         disabled: string;
@@ -68,6 +80,8 @@ declare const buildSemanticPalette: (isDark: boolean) => {
     };
     info: {
         main: string;
+        light: string;
+        dark: string;
         hover: string;
         active: string;
         disabled: string;
@@ -261,6 +275,8 @@ declare const buildPalette: (mode: "light" | "dark") => {
     };
     success: {
         main: string;
+        light: string;
+        dark: string;
         hover: string;
         active: string;
         disabled: string;
@@ -269,6 +285,8 @@ declare const buildPalette: (mode: "light" | "dark") => {
     };
     warning: {
         main: string;
+        light: string;
+        dark: string;
         hover: string;
         active: string;
         disabled: string;
@@ -277,6 +295,8 @@ declare const buildPalette: (mode: "light" | "dark") => {
     };
     error: {
         main: string;
+        light: string;
+        dark: string;
         hover: string;
         active: string;
         disabled: string;
@@ -285,6 +305,8 @@ declare const buildPalette: (mode: "light" | "dark") => {
     };
     info: {
         main: string;
+        light: string;
+        dark: string;
         hover: string;
         active: string;
         disabled: string;
@@ -299,6 +321,8 @@ declare const buildPalette: (mode: "light" | "dark") => {
     };
     primary: {
         main: string;
+        light: string;
+        dark: string;
         hover: string;
         active: string;
         disabled: string;
@@ -307,6 +331,8 @@ declare const buildPalette: (mode: "light" | "dark") => {
     };
     accent: {
         main: string;
+        light: string;
+        dark: string;
         hover: string;
         active: string;
         disabled: string;
@@ -315,6 +341,8 @@ declare const buildPalette: (mode: "light" | "dark") => {
     };
     secondary: {
         main: string;
+        light: string;
+        dark: string;
         hover: string;
         active: string;
         disabled: string;
