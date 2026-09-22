@@ -1,4 +1,10 @@
-import type { ComponentType, CSSProperties, Key, ReactNode } from "react";
+import type {
+  ComponentType,
+  CSSProperties,
+  Key,
+  MouseEvent,
+  ReactNode,
+} from "react";
 
 import type { SxProps, Theme } from "@mui/material/styles";
 
@@ -122,24 +128,6 @@ export interface RailImageProps {
 export type RailImageComponent = ComponentType<RailImageProps>;
 
 /**
- * Framework-specific link component.
- *
- * Example:
- *
- * import Link from "next/link";
- *
- * <Rails
- *   linkComponent={Link}
- * />
- *
- * Rails does not import or depend on
- * Next.js itself.
- */
-export type RailLinkComponent = ComponentType<
-  React.ComponentPropsWithoutRef<"a">
->;
-
-/**
  * Context supplied when rendering
  * rail content.
  */
@@ -234,26 +222,48 @@ export interface RailProps<T> {
    * Return undefined when the item should
    * not be clickable.
    *
+   * The resolved URL is rendered as the
+   * semantic href of the item's anchor.
+   *
+   * Rails does not perform native navigation.
+   *
    * Example:
    *
-   * getHref={(product) => `/products/${product.slug}`}
+   * getHref={(product) =>
+   *   `/products/${product.slug}`
+   * }
    */
   getHref?: (item: T, index: number) => string | undefined;
 
   /**
-   * Framework-specific link component.
+   * Handles item navigation.
+   *
+   * Rails renders a semantic <a href="...">
+   * when getHref returns a destination, but
+   * prevents the anchor's native navigation.
+   *
+   * The consuming application owns routing.
+   *
+   * This keeps Rails framework-agnostic and
+   * allows integration with:
+   *
+   * - Next.js router
+   * - React Router
+   * - TanStack Router
+   * - custom routing
+   * - any application-level navigation system
    *
    * Example:
    *
-   * import Link from "next/link";
-   *
-   * <Rails
-   *   linkComponent={Link}
-   * />
-   *
-   * The API data remains framework-agnostic.
+   * onNavigate={(item, index) => {
+   *   router.push(`/products/${item.slug}`);
+   * }}
    */
-  linkComponent?: RailLinkComponent;
+  onNavigate?: (
+    item: T,
+    index: number,
+    event: MouseEvent<HTMLAnchorElement>,
+  ) => void;
 
   /**
    * Custom image component.
@@ -295,9 +305,9 @@ export interface RailProps<T> {
    * to be customized.
    *
    * When renderItem is supplied, the built-in
-   * getHref/linkComponent behavior is not applied
-   * automatically. The custom renderer owns its
-   * own navigation.
+   * navigation behavior is not applied
+   * automatically. The custom renderer owns
+   * its own navigation.
    */
   renderItem?: (context: RailRenderContext<T>) => ReactNode;
 
@@ -341,7 +351,7 @@ export interface RailProps<T> {
    *
    * Example:
    *
-   * gap={2}
+   * gap={16}
    */
   gap?: number;
 

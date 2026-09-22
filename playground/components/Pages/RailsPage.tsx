@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import {
   Box,
@@ -732,9 +734,11 @@ export const RailsPage: React.FC = () => {
           </Box>
         </Stack>
       </DemoBlock>
+
       {/* ================================================== */}
       {/* 2. Highlight Rail                                */}
       {/* ================================================== */}
+
       <DemoBlock
         id="highlight-rail"
         title="1. Highlight Cards"
@@ -808,9 +812,11 @@ export const RailsPage: React.FC = () => {
           />
         </Box>
       </DemoBlock>
+
       {/* ================================================== */}
       {/* 3. Standalone Highlight                           */}
       {/* ================================================== */}
+
       <DemoBlock
         id="standalone-highlight"
         title="2. Standalone Highlight"
@@ -850,9 +856,11 @@ export const RailsPage: React.FC = () => {
           />
         </Box>
       </DemoBlock>
+
       {/* ================================================== */}
       {/* 4. Highlight Variants                             */}
       {/* ================================================== */}
+
       <DemoBlock
         id="highlight-variants"
         title="3. Highlight Variants"
@@ -946,9 +954,11 @@ export const RailsPage: React.FC = () => {
           />
         </Stack>
       </DemoBlock>
+
       {/* ================================================== */}
       {/* 5. Product Rail                                  */}
       {/* ================================================== */}
+
       <DemoBlock
         id="product-rail"
         title="4. E-Commerce Product Rail"
@@ -1063,9 +1073,11 @@ export const RailsPage: React.FC = () => {
           />
         </Box>
       </DemoBlock>
+
       {/* ================================================== */}
       {/* 6. Editorial Peek Rail                           */}
       {/* ================================================== */}
+
       <DemoBlock
         id="editorial-item-width"
         title="5. Editorial Peek Rail"
@@ -1121,9 +1133,11 @@ export const RailsPage: React.FC = () => {
           />
         </Box>
       </DemoBlock>
+
       {/* ================================================== */}
       {/* 7. Completely Custom Item                        */}
       {/* ================================================== */}
+
       <DemoBlock
         id="custom-item"
         title="6. Completely Custom Item"
@@ -1207,9 +1221,11 @@ export const RailsPage: React.FC = () => {
           />
         </Box>
       </DemoBlock>
+
       {/* ================================================== */}
       {/* 8. Custom Image Renderer                         */}
       {/* ================================================== */}
+
       <DemoBlock
         id="custom-image"
         title="7. Custom Image Renderer"
@@ -1262,14 +1278,17 @@ export const RailsPage: React.FC = () => {
       </DemoBlock>
 
       {/* ================================================== */}
-      {/* 8. Next.js Integration                            */}
+      {/* 9. Next.js Integration                            */}
       {/* ================================================== */}
+
       <DemoBlock
         id="nextjs-integration"
         title="8. Next.js Integration"
-        description="Rails stays framework-agnostic. In a Next.js application, inject next/link and next/image through linkComponent and ImageComponent while keeping API data completely serializable."
-        code={`// Server Component
-import Link from "next/link";
+        description="Rails stays framework-agnostic. Next.js handles navigation through onNavigate, while ImageComponent can still be used for next/image."
+        code={`// app/categories/CategoriesRail.tsx
+"use client";
+
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import { Rails } from "jivico-glass-ui";
@@ -1281,30 +1300,29 @@ interface Category {
   slug: string;
 }
 
-const categories: Category[] = [
-  {
-    id: "tshirts",
-    name: "T-Shirts",
-    image: "/images/tshirts.jpg",
-    slug: "t-shirts",
-  },
-  {
-    id: "hoodies",
-    name: "Hoodies",
-    image: "/images/hoodies.jpg",
-    slug: "hoodies",
-  },
-];
+interface CategoriesRailProps {
+  categories: Category[];
+}
 
-export default function CategoriesPage() {
+export function CategoriesRail({
+  categories,
+}: CategoriesRailProps) {
+  const router = useRouter();
+
   return (
     <Rails<Category>
       items={categories}
       getKey={(item) => item.id}
       getImage={(item) => item.image}
       getTitle={(item) => item.name}
-      getHref={(item) => \\\`/collections/\\\${item.slug}\\\`}
-      linkComponent={Link}
+      getHref={(item) =>
+        \\\`/collections/\\\${item.slug}\\\`
+      }
+      onNavigate={(item) => {
+        router.push(
+          \\\`/collections/\\\${item.slug}\\\`,
+        );
+      }}
       ImageComponent={Image}
       columns={{
         xs: 2,
@@ -1323,14 +1341,7 @@ export default function CategoriesPage() {
 }
 
 // API data remains plain JSON.
-// No React components are stored in the API response.
-
-// {
-//   "id": "tshirts",
-//   "name": "T-Shirts",
-//   "image": "/images/tshirts.jpg",
-//   "slug": "t-shirts"
-// }`}
+// No React components are stored in the API response.`}
       >
         <Stack spacing={3} sx={{ width: "100%" }}>
           {/* Architecture overview */}
@@ -1356,8 +1367,9 @@ export default function CategoriesPage() {
 
               <Typography variant="body2" color="text.secondary">
                 Rails does not import Next.js or depend on any routing
-                framework. The application provides the framework-specific
-                components at the boundary.
+                framework. The application owns routing through the onNavigate
+                callback, while framework-specific image rendering can still be
+                injected through ImageComponent.
               </Typography>
 
               <Stack
@@ -1376,7 +1388,7 @@ export default function CategoriesPage() {
                 {[
                   "API JSON",
                   "Next.js Page",
-                  "linkComponent",
+                  "onNavigate",
                   "ImageComponent",
                   "Rails",
                 ].map((label, index) => (
@@ -1444,8 +1456,8 @@ export default function CategoriesPage() {
 
               <Typography variant="body2" color="text.secondary">
                 Your backend only needs to return serializable data such as IDs,
-                titles, images, and slugs. No React components or Next.js
-                objects are included.
+                titles, images, and slugs. No React components, router objects,
+                or Next.js objects are included.
               </Typography>
 
               <Box
@@ -1470,7 +1482,7 @@ export default function CategoriesPage() {
             </Stack>
           </Box>
 
-          {/* Next.js */}
+          {/* Navigation */}
 
           <Box
             sx={{
@@ -1488,12 +1500,14 @@ export default function CategoriesPage() {
                   fontWeight: 700,
                 }}
               >
-                2. Next.js provides the framework components
+                2. Application owns navigation
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                The Next.js application injects its own Link and Image
-                implementations into Rails.
+                Rails renders a real anchor with the resolved href, but it
+                prevents the anchor's native navigation. The consuming
+                application receives the item through onNavigate and decides how
+                routing should happen.
               </Typography>
 
               <Box
@@ -1508,20 +1522,15 @@ export default function CategoriesPage() {
                   fontSize: 12,
                 }}
               >
-                {`import Link from "next/link";
-import Image from "next/image";
+                {`getHref={(item) =>
+  \\\`/collections/\\\${item.slug}\\\`
+}
 
-<Rails
-  items={categories}
-  getKey={(item) => item.id}
-  getImage={(item) => item.image}
-  getTitle={(item) => item.name}
-  getHref={(item) =>
-    \\\`/collections/\\\${item.slug}\\\`
-  }
-  linkComponent={Link}
-  ImageComponent={Image}
-/>`}
+onNavigate={(item) => {
+  router.push(
+    \\\`/collections/\\\${item.slug}\\\`,
+  );
+}}`}
               </Box>
             </Stack>
           </Box>
@@ -1544,13 +1553,13 @@ import Image from "next/image";
                   fontWeight: 700,
                 }}
               >
-                3. Full image becomes the Next.js link
+                3. Full image remains clickable
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                When getHref returns a URL, the built-in Rails image area
-                becomes fully clickable. Because linkComponent is Next.js Link,
-                navigation uses client-side Next.js routing.
+                When getHref returns a URL, Rails places a full-size semantic
+                anchor over the image. The href remains available in the DOM,
+                while onNavigate controls the actual application navigation.
               </Typography>
 
               <Box
@@ -1569,7 +1578,11 @@ import Image from "next/image";
   \\\`/collections/\\\${item.slug}\\\`
 }
 
-linkComponent={Link}`}
+onNavigate={(item) => {
+  router.push(
+    \\\`/collections/\\\${item.slug}\\\`,
+  );
+}}`}
               </Box>
             </Stack>
           </Box>
@@ -1596,8 +1609,8 @@ linkComponent={Link}`}
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                ImageComponent allows Rails to use next/image without importing
-                Next.js into the component library.
+                ImageComponent remains available when the application wants
+                Rails to use next/image. This is independent from routing.
               </Typography>
 
               <Box
@@ -1643,9 +1656,9 @@ linkComponent={Link}`}
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Keep the API framework-independent. Keep Rails framework-
-                independent. Let the Next.js application provide routing and
-                image implementations at the application boundary.
+                Keep the API framework-independent. Keep Rails
+                framework-independent. Let the consuming application own routing
+                and optionally provide framework-specific image rendering.
               </Typography>
 
               <Typography
@@ -1654,7 +1667,7 @@ linkComponent={Link}`}
                   fontWeight: 700,
                 }}
               >
-                API → JSON → Next.js → Rails → Link / Image
+                API → JSON → Next.js → Rails → onNavigate / ImageComponent
               </Typography>
             </Stack>
           </Box>

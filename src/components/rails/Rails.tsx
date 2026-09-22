@@ -51,7 +51,6 @@ export function Rails<T>({
   renderItem,
 
   ImageComponent,
-  linkComponent,
 
   columns = DEFAULT_COLUMNS,
   itemWidth,
@@ -83,6 +82,7 @@ export function Rails<T>({
 
   className,
   cursor,
+  onNavigate,
   "aria-label": ariaLabel = "Content rail",
 }: RailProps<T>) {
   const theme = useTheme();
@@ -617,6 +617,33 @@ export function Rails<T>({
           ? `View ${title}`
           : "View item";
 
+      /*
+       * -----------------------------------------------------
+       * Semantic anchor
+       * -----------------------------------------------------
+       *
+       * The rail always renders a real <a href="...">.
+       *
+       * The href is intentionally preserved for:
+       *
+       * - SEO
+       * - accessibility
+       * - semantic HTML
+       *
+       * Native navigation is intentionally disabled.
+       *
+       * The consuming application can handle navigation
+       * through onNavigate.
+       */
+
+      const handleItemNavigation = (
+        event: React.MouseEvent<HTMLAnchorElement>,
+      ) => {
+        event.preventDefault();
+
+        onNavigate?.(item, index, event);
+      };
+
       const imageContent = (
         <Box
           sx={{
@@ -662,54 +689,31 @@ export function Rails<T>({
 
           {/* Full image navigation */}
 
-          {href &&
-            (linkComponent ? (
-              <Box
-                component={linkComponent}
-                href={href}
-                aria-label={linkLabel}
-                sx={{
-                  position: "absolute",
+          {href && (
+            <Box
+              component="a"
+              href={href}
+              aria-label={linkLabel}
+              onClick={handleItemNavigation}
+              sx={{
+                position: "absolute",
 
-                  inset: 0,
+                inset: 0,
 
-                  zIndex: 2,
+                zIndex: 2,
 
-                  display: "block",
+                display: "block",
 
-                  width: "100%",
+                width: "100%",
 
-                  height: "100%",
+                height: "100%",
 
-                  textDecoration: "none",
+                textDecoration: "none",
 
-                  cursor: "pointer",
-                }}
-              />
-            ) : (
-              <Box
-                component="a"
-                href={href}
-                aria-label={linkLabel}
-                sx={{
-                  position: "absolute",
-
-                  inset: 0,
-
-                  zIndex: 2,
-
-                  display: "block",
-
-                  width: "100%",
-
-                  height: "100%",
-
-                  textDecoration: "none",
-
-                  cursor: "pointer",
-                }}
-              />
-            ))}
+                cursor: "pointer",
+              }}
+            />
+          )}
         </Box>
       );
 
@@ -717,6 +721,7 @@ export function Rails<T>({
         <Box
           sx={{
             width: "100%",
+
             minWidth: 0,
           }}
         >
@@ -793,7 +798,7 @@ export function Rails<T>({
       getImage,
       getTitle,
       imageAspectRatio,
-      linkComponent,
+      onNavigate,
       radius,
       renderContent,
       renderDefaultImage,
@@ -1073,6 +1078,7 @@ export function Rails<T>({
 
               display: {
                 xs: "none",
+
                 sm: "block",
               },
             }}
@@ -1094,6 +1100,7 @@ export function Rails<T>({
 
               display: {
                 xs: "none",
+
                 sm: "block",
               },
             }}
