@@ -1763,6 +1763,222 @@ interface ShowcaseProps {
 
 declare const Showcase: react__default.FC<ShowcaseProps>;
 
+type RailColumns = {
+    xs?: number;
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+};
+type RailItemWidth = {
+    xs?: string | number;
+    sm?: string | number;
+    md?: string | number;
+    lg?: string | number;
+    xl?: string | number;
+};
+type RailNavigation = "arrows" | "dots" | "both" | "none";
+/**
+ * Hover / interaction transition applied
+ * to rail items.
+ *
+ * - none: no visual interaction
+ * - fade: overlay fades in
+ * - scale: image gently scales
+ * - lift: item lifts and image scales
+ */
+type RailTransition = "none" | "fade" | "scale" | "lift";
+interface RailRenderContext<T> {
+    item: T;
+    index: number;
+}
+interface RailImageContext<T> extends RailRenderContext<T> {
+    src: string;
+}
+interface RailNavigationContext {
+    onClick: () => void;
+    disabled: boolean;
+}
+interface RailProps<T> {
+    /**
+     * Data consumed by the rail.
+     *
+     * The rail does not know what T represents.
+     */
+    items: T[];
+    /**
+     * Unique key for each item.
+     */
+    getKey: (item: T, index: number) => React.Key;
+    /**
+     * Image resolver.
+     *
+     * Every rail item is expected to have an image.
+     */
+    getImage: (item: T, index: number) => string;
+    /**
+     * Optional title resolver for the built-in renderer.
+     *
+     * Example:
+     *
+     * getTitle={(product) => product.name}
+     */
+    getTitle?: (item: T, index: number) => ReactNode;
+    /**
+     * Custom content rendered below the image/title area.
+     *
+     * Useful for:
+     *
+     * - price
+     * - rating
+     * - sale price
+     * - badges
+     * - metadata
+     * - product information
+     */
+    renderContent?: (context: RailRenderContext<T>) => ReactNode;
+    /**
+     * Completely replace the default item UI.
+     *
+     * Use this when the entire card needs
+     * to be customized.
+     */
+    renderItem?: (context: RailRenderContext<T>) => ReactNode;
+    /**
+     * Optional custom image renderer.
+     *
+     * Useful when the default <img> needs
+     * to be replaced with a custom image
+     * component.
+     */
+    renderImage?: (context: RailImageContext<T>) => ReactNode;
+    /**
+     * Number of visible items at each breakpoint.
+     *
+     * Example:
+     *
+     * xs: 2
+     * sm: 3
+     * md: 4
+     * lg: 5
+     */
+    columns?: RailColumns;
+    /**
+     * Alternative to columns.
+     *
+     * Useful for editorial layouts where
+     * the next item should partially remain visible.
+     */
+    itemWidth?: RailItemWidth;
+    /**
+     * Spacing between items.
+     */
+    gap?: number;
+    /**
+     * Horizontal alignment when there is not
+     * enough content to fill the rail.
+     */
+    justifyContent?: "flex-start" | "center" | "flex-end";
+    /**
+     * Navigation controls.
+     */
+    navigation?: RailNavigation;
+    /**
+     * Custom previous button.
+     */
+    renderPreviousButton?: (context: RailNavigationContext) => ReactNode;
+    /**
+     * Custom next button.
+     */
+    renderNextButton?: (context: RailNavigationContext) => ReactNode;
+    /**
+     * Enable horizontal touch scrolling.
+     *
+     * Defaults to true.
+     */
+    swipe?: boolean;
+    /**
+     * Automatically advance the rail.
+     *
+     * Defaults to false.
+     */
+    autoplay?: boolean;
+    /**
+     * Time between automatic movements
+     * in milliseconds.
+     *
+     * Defaults to 5000.
+     */
+    interval?: number;
+    /**
+     * Pause autoplay while the pointer
+     * is over the rail.
+     *
+     * Defaults to true.
+     */
+    pauseOnHover?: boolean;
+    /**
+     * Whether navigation wraps around
+     * when reaching the beginning/end.
+     *
+     * Also controls the end behavior of autoplay.
+     *
+     * Defaults to false.
+     */
+    loop?: boolean;
+    /**
+     * Number of items moved per navigation action.
+     *
+     * Defaults to one item.
+     */
+    step?: number;
+    /**
+     * Snap items into position after movement.
+     *
+     * Defaults to true.
+     */
+    snap?: boolean;
+    /**
+     * Hover / interaction transition.
+     *
+     * This does not control horizontal scrolling.
+     */
+    transition?: RailTransition;
+    /**
+     * Aspect ratio for the built-in image renderer.
+     *
+     * Examples:
+     *
+     * "1 / 1"
+     * "4 / 5"
+     * "3 / 4"
+     * "16 / 9"
+     */
+    imageAspectRatio?: string;
+    /**
+     * Border radius for the built-in image renderer.
+     */
+    radius?: number | string;
+    /**
+     * Optional custom item container styles.
+     */
+    itemSx?: SxProps<Theme>;
+    /**
+     * Root styles.
+     */
+    sx?: SxProps<Theme>;
+    /**
+     * Root class name.
+     */
+    className?: string;
+    /**
+     * Accessibility label.
+     */
+    "aria-label"?: string;
+}
+
+declare function Rails<T>({ items, getKey, getImage, getTitle, renderContent, renderImage, renderItem, columns, itemWidth, gap, justifyContent, navigation, renderPreviousButton, renderNextButton, swipe, autoplay, interval, pauseOnHover, loop, step, snap, transition, imageAspectRatio, radius, itemSx, sx, className, "aria-label": ariaLabel, }: RailProps<T>): react.JSX.Element | null;
+
 type ThemeMode = "light" | "dark" | "system";
 type ResolvedThemeMode = "light" | "dark";
 interface GlassModeContextType {
@@ -1821,4 +2037,4 @@ interface GlassThemeScopeProps {
  */
 declare function GlassThemeScope({ mode, children }: GlassThemeScopeProps): react__default.JSX.Element;
 
-export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, BACKGROUND_COLORS, BRAND_COLORS, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type ResolvedThemeMode, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode };
+export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, BACKGROUND_COLORS, BRAND_COLORS, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode };

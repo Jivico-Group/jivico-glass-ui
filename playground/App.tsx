@@ -27,6 +27,7 @@ import { TablePage } from "./components/Pages/TablePage.js";
 import { MenusPage } from "./components/Pages/MenusPage.js";
 import { ThemePage } from "./components/Pages/ThemePage.js";
 import { ShowcasePage } from "./components/Pages/ShowcasePage.js";
+import { RailsPage } from "./components/Pages/RailsPage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
 const TOC_MAP: Record<string, TocItem[]> = {
@@ -34,6 +35,11 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "brand-kit", title: "Brand Kit Palette" },
     { id: "installation", title: "Installation" },
     { id: "setup", title: "Theme Setup" },
+  ],
+  rails: [
+    { id: "interactive-rails", title: "Interactive Playground" },
+    { id: "product-rail", title: "1. E-Commerce Product Rail" },
+    { id: "editorial-item-width", title: "2. Editorial Peek Rail" },
   ],
   showcase: [
     { id: "interactive-showcase", title: "Interactive Playground" },
@@ -245,6 +251,8 @@ export default function App() {
         return <MenusPage />;
       case "showcase":
         return <ShowcasePage />;
+      case "rails":
+        return <RailsPage />;
       case "theme":
         return <ThemePage />;
       case "alerts":

@@ -1,10 +1,6 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+"use client";
+
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import {
   Box,
@@ -17,7 +13,10 @@ import {
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-import type { ShowcaseProps } from "./Showcase.types.js";
+import type {
+  ShowcaseImageComponent,
+  ShowcaseProps,
+} from "./Showcase.types.js";
 
 const clampIndex = (index: number, length: number): number => {
   if (length <= 0) {
@@ -263,24 +262,75 @@ const showcaseSizeStyles = {
   },
 } as const;
 
+const DefaultImage: ShowcaseImageComponent = ({
+  src,
+  alt,
+  fill,
+  sizes,
+  priority,
+  style,
+  className,
+}) => (
+  <Box
+    component="img"
+    src={src}
+    alt={alt}
+    loading={priority ? "eager" : "lazy"}
+    decoding="async"
+    draggable={false}
+    sizes={sizes}
+    className={className}
+    sx={{
+      display: "block",
+
+      width: fill ? "100%" : undefined,
+
+      height: fill ? "100%" : undefined,
+
+      objectFit: "cover",
+
+      objectPosition: "center",
+
+      userSelect: "none",
+
+      verticalAlign: "middle",
+
+      ...style,
+    }}
+  />
+);
+
 export const Showcase: React.FC<ShowcaseProps> = ({
   items,
 
+  ImageComponent = DefaultImage,
+
+  imageSizes = "100vw",
+
+  imagePriority = true,
+
   variant = "editorial",
+
   size = "hero",
+
   transition = "cinematic",
 
   autoplay = true,
+
   interval = 6000,
+
   loop = true,
+
   pauseOnHover = true,
 
   showArrows = true,
+
   showProgress = true,
 
   navigation,
 
   activeIndex: controlledIndex,
+
   defaultActiveIndex = 0,
 
   onActiveIndexChange,
@@ -288,7 +338,15 @@ export const Showcase: React.FC<ShowcaseProps> = ({
   swipe = true,
 
   radius = "rounded",
+
+  height,
+
+  minHeight,
+
+  maxHeight,
+
   aspectRatio,
+
   containerSx,
 
   className,
@@ -312,6 +370,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
   const [isPaused, setIsPaused] = useState(false);
 
   const touchStartX = useRef<number | null>(null);
+
   const touchCurrentX = useRef<number | null>(null);
 
   const currentIndex = isControlled
@@ -328,24 +387,16 @@ export const Showcase: React.FC<ShowcaseProps> = ({
    * =========================================================
    * RESPONSIVE SIZE
    * =========================================================
-   *
-   * Size controls the complete visual scale of the component:
-   *
-   * - aspect ratio
-   * - title
-   * - description
-   * - eyebrow
-   * - content spacing
-   * - content width
-   * - button size
-   * - button dimensions
    */
 
   const currentSize = showcaseSizeStyles[size];
 
-  /*
-   * Allow the consumer to override the default responsive
-   * aspect ratio when necessary.
+  /**
+   * Aspect ratio is still available as the default
+   * sizing mechanism.
+   *
+   * Explicit height is applied separately and therefore
+   * takes precedence over aspect-ratio in the browser.
    */
   const resolvedAspectRatio = aspectRatio ?? currentSize.aspectRatio;
 
@@ -485,6 +536,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
     }
 
     touchStartX.current = null;
+
     touchCurrentX.current = null;
   };
 
@@ -516,14 +568,27 @@ export const Showcase: React.FC<ShowcaseProps> = ({
       onTouchEnd={handleTouchEnd}
       sx={{
         position: "relative",
+
         width: "100%",
 
         /*
-         * The frame owns the dimensions.
+         * =====================================================
+         * FRAME DIMENSIONS
+         * =====================================================
          *
-         * Images never determine the height.
+         * If height is supplied, it explicitly controls the
+         * frame height.
+         *
+         * Otherwise aspectRatio determines the height.
          */
-        aspectRatio: resolvedAspectRatio,
+
+        height,
+
+        minHeight,
+
+        maxHeight,
+
+        aspectRatio: height === undefined ? resolvedAspectRatio : undefined,
 
         overflow: "hidden",
 
@@ -535,20 +600,18 @@ export const Showcase: React.FC<ShowcaseProps> = ({
 
         ...(variant === "glass" && {
           backdropFilter: "blur(18px)",
+
           WebkitBackdropFilter: "blur(18px)",
         }),
 
         "&:focus-visible": {
           outline: `2px solid ${theme.palette.primary.main}`,
+
           outlineOffset: 3,
         },
 
         /*
-         * Consumer override.
-         *
-         * NOTE:
-         * containerSx comes last intentionally, so consumers can
-         * override the semantic radius if they explicitly need to.
+         * Consumer overrides come last.
          */
         ...containerSx,
       }}
@@ -560,9 +623,13 @@ export const Showcase: React.FC<ShowcaseProps> = ({
       <Box
         sx={{
           position: "absolute",
+
           inset: 0,
+
           width: "100%",
+
           height: "100%",
+
           overflow: "hidden",
         }}
       >
@@ -575,9 +642,11 @@ export const Showcase: React.FC<ShowcaseProps> = ({
               aria-hidden={!active}
               sx={{
                 position: "absolute",
+
                 inset: 0,
 
                 width: "100%",
+
                 height: "100%",
 
                 opacity: active ? 1 : 0,
@@ -600,8 +669,14 @@ export const Showcase: React.FC<ShowcaseProps> = ({
               <Box
                 component="picture"
                 sx={{
+                  position: "absolute",
+
+                  inset: 0,
+
                   display: "block",
+
                   width: "100%",
+
                   height: "100%",
                 }}
               >
@@ -612,18 +687,19 @@ export const Showcase: React.FC<ShowcaseProps> = ({
                   />
                 )}
 
-                <Box
-                  component="img"
+                <ImageComponent
                   src={item.media.src}
                   alt={active ? item.media.alt : ""}
-                  draggable={false}
-                  sx={{
-                    display: "block",
-
+                  fill
+                  sizes={imageSizes}
+                  priority={imagePriority && active}
+                  style={{
                     width: "100%",
+
                     height: "100%",
 
                     objectFit: "cover",
+
                     objectPosition: "center",
 
                     userSelect: "none",
@@ -633,10 +709,14 @@ export const Showcase: React.FC<ShowcaseProps> = ({
                 />
               </Box>
 
-              {/* Image overlay */}
+              {/* =================================================
+                    IMAGE OVERLAY
+                ================================================= */}
+
               <Box
                 sx={{
                   position: "absolute",
+
                   inset: 0,
 
                   background: isMobile
@@ -658,41 +738,32 @@ export const Showcase: React.FC<ShowcaseProps> = ({
       <Box
         sx={{
           position: "absolute",
+
           inset: 0,
 
           zIndex: 3,
 
           display: "flex",
 
-          /*
-           * Mobile keeps content at the bottom.
-           *
-           * Desktop centers the complete content group.
-           * This prevents the CTA from being pushed outside
-           * the frame when the title becomes large.
-           */
           alignItems: {
             xs: "flex-end",
+
             md: "center",
           },
 
           px: currentSize.contentPadding,
 
-          /*
-           * Mobile needs bottom breathing room because the
-           * navigation dots/arrows may sit near the bottom.
-           */
           pb: {
             xs: 5.5,
+
             sm: 6,
+
             md: 0,
           },
 
-          /*
-           * Reserve space for desktop side navigation.
-           */
           pr: {
             md: 14,
+
             lg: 18,
           },
 
@@ -706,26 +777,17 @@ export const Showcase: React.FC<ShowcaseProps> = ({
             maxWidth: currentSize.maxWidth,
 
             display: "flex",
+
             flexDirection: "column",
 
-            /*
-             * All content elements now scale together.
-             */
             gap: currentSize.contentGap,
 
-            /*
-             * Never allow the content group to become taller
-             * than the available frame.
-             */
             maxHeight: {
               xs: "calc(100% - 16px)",
+
               md: "calc(100% - 32px)",
             },
 
-            /*
-             * Smooth transition when changing size in a
-             * playground/demo environment.
-             */
             transition:
               "opacity 500ms ease, transform 700ms cubic-bezier(0.16, 1, 0.3, 1)",
           }}
@@ -750,12 +812,10 @@ export const Showcase: React.FC<ShowcaseProps> = ({
 
                 color: "rgba(255,255,255,0.72)",
 
-                /*
-                 * Prevent a long eyebrow from affecting
-                 * the content height unnecessarily.
-                 */
                 overflow: "hidden",
+
                 textOverflow: "ellipsis",
+
                 whiteSpace: "nowrap",
               }}
             >
@@ -772,13 +832,6 @@ export const Showcase: React.FC<ShowcaseProps> = ({
             sx={{
               fontSize: currentSize.titleSize,
 
-              /*
-               * Tight editorial typography.
-               *
-               * The previous implementation used values up
-               * to 8rem, which could consume most of a short
-               * aspect-ratio frame.
-               */
               lineHeight: 0.92,
 
               fontWeight: 700,
@@ -787,10 +840,6 @@ export const Showcase: React.FC<ShowcaseProps> = ({
 
               maxWidth: "100%",
 
-              /*
-               * Modern browser line balancing helps avoid
-               * awkward title wrapping.
-               */
               textWrap: "balance",
 
               overflowWrap: "break-word",
@@ -812,6 +861,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
 
                 maxWidth: {
                   xs: "100%",
+
                   md: "620px",
                 },
 
@@ -821,16 +871,12 @@ export const Showcase: React.FC<ShowcaseProps> = ({
 
                 color: "rgba(255,255,255,0.82)",
 
-                /*
-                 * Keep descriptions from becoming huge
-                 * content blocks on narrow screens.
-                 */
                 display: "-webkit-box",
+
                 WebkitBoxOrient: "vertical",
-                WebkitLineClamp: {
-                  xs: 3,
-                  md: 3,
-                },
+
+                WebkitLineClamp: 3,
+
                 overflow: "hidden",
               }}
             >
@@ -839,7 +885,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
           )}
 
           {/* =================================================
-              MUI BUTTON
+              CTA
           ================================================= */}
 
           {currentItem.action &&
@@ -856,26 +902,16 @@ export const Showcase: React.FC<ShowcaseProps> = ({
                 sx={{
                   alignSelf: "flex-start",
 
-                  /*
-                   * CTA scales with Showcase size.
-                   */
                   minHeight: currentSize.buttonHeight,
 
                   px: currentSize.buttonPaddingX,
 
                   borderRadius: 999,
 
-                  /*
-                   * Keep CTA on one line.
-                   */
                   whiteSpace: "nowrap",
 
                   flexShrink: 0,
 
-                  /*
-                   * Prevent the button from being affected
-                   * by very large surrounding typography.
-                   */
                   lineHeight: 1.2,
 
                   "& .MuiButton-endIcon": {
@@ -926,10 +962,12 @@ export const Showcase: React.FC<ShowcaseProps> = ({
         <Box
           sx={{
             position: "absolute",
+
             zIndex: 4,
 
             right: {
               md: 24,
+
               lg: 36,
             },
 
@@ -964,10 +1002,12 @@ export const Showcase: React.FC<ShowcaseProps> = ({
         <Box
           sx={{
             position: "absolute",
+
             zIndex: 5,
 
             left: {
               md: 28,
+
               lg: 40,
             },
 
@@ -986,6 +1026,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
             disabled={!loop && currentIndex === 0}
             sx={{
               width: 42,
+
               height: 42,
 
               color: "#FFFFFF",
@@ -1016,6 +1057,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
             disabled={!loop && currentIndex === items.length - 1}
             sx={{
               width: 42,
+
               height: 42,
 
               color: "#FFFFFF",
@@ -1050,12 +1092,14 @@ export const Showcase: React.FC<ShowcaseProps> = ({
         <Box
           sx={{
             position: "absolute",
+
             zIndex: 5,
 
             ...(effectiveNavigation === "vertical"
               ? {
                   right: {
                     md: 58,
+
                     lg: 76,
                   },
 
@@ -1074,6 +1118,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
 
                   bottom: {
                     xs: 18,
+
                     sm: 24,
                   },
 
@@ -1125,6 +1170,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
 
                   "&:focus-visible": {
                     outline: `2px solid ${theme.palette.primary.main}`,
+
                     outlineOffset: 3,
                   },
                 }}
@@ -1180,6 +1226,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
             zIndex: 6,
 
             left: 0,
+
             bottom: 0,
 
             width: "100%",

@@ -14,4 +14,5 @@ export * from './decorations/JivicoFontPreload.js';
 export * from './buttons/MobileViewAll.js';
 export * from './cards/LiquidGlassCard.js';
 export * from './showcase/index.js';
+export * from './rails/index.js';
 
