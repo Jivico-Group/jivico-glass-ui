@@ -229,7 +229,7 @@ export const RailsPage: React.FC = () => {
 
   const [columnsMd, setColumnsMd] = useState(4);
 
-  const [gap, setGap] = useState(20);
+  const [gap, setGap] = useState(2);
 
   const [swipe, setSwipe] = useState(true);
 
@@ -276,7 +276,6 @@ export const RailsPage: React.FC = () => {
       {/* ================================================== */}
       {/* 1. Interactive Playground                         */}
       {/* ================================================== */}
-
       <DemoBlock
         id="interactive-rails"
         title="Interactive Rails Playground"
@@ -460,7 +459,7 @@ export const RailsPage: React.FC = () => {
                 Gap:
               </Typography>
 
-              {[8, 12, 16, 20, 24, 32].map((value) => (
+              {[2, 4, 8, 12, 16, 20, 24, 32].map((value) => (
                 <Button
                   key={value}
                   size="small"
@@ -733,11 +732,9 @@ export const RailsPage: React.FC = () => {
           </Box>
         </Stack>
       </DemoBlock>
-
       {/* ================================================== */}
       {/* 2. Highlight Rail                                */}
       {/* ================================================== */}
-
       <DemoBlock
         id="highlight-rail"
         title="1. Highlight Cards"
@@ -811,11 +808,9 @@ export const RailsPage: React.FC = () => {
           />
         </Box>
       </DemoBlock>
-
       {/* ================================================== */}
       {/* 3. Standalone Highlight                           */}
       {/* ================================================== */}
-
       <DemoBlock
         id="standalone-highlight"
         title="2. Standalone Highlight"
@@ -855,11 +850,9 @@ export const RailsPage: React.FC = () => {
           />
         </Box>
       </DemoBlock>
-
       {/* ================================================== */}
       {/* 4. Highlight Variants                             */}
       {/* ================================================== */}
-
       <DemoBlock
         id="highlight-variants"
         title="3. Highlight Variants"
@@ -953,11 +946,9 @@ export const RailsPage: React.FC = () => {
           />
         </Stack>
       </DemoBlock>
-
       {/* ================================================== */}
       {/* 5. Product Rail                                  */}
       {/* ================================================== */}
-
       <DemoBlock
         id="product-rail"
         title="4. E-Commerce Product Rail"
@@ -1072,11 +1063,9 @@ export const RailsPage: React.FC = () => {
           />
         </Box>
       </DemoBlock>
-
       {/* ================================================== */}
       {/* 6. Editorial Peek Rail                           */}
       {/* ================================================== */}
-
       <DemoBlock
         id="editorial-item-width"
         title="5. Editorial Peek Rail"
@@ -1132,11 +1121,9 @@ export const RailsPage: React.FC = () => {
           />
         </Box>
       </DemoBlock>
-
       {/* ================================================== */}
       {/* 7. Completely Custom Item                        */}
       {/* ================================================== */}
-
       <DemoBlock
         id="custom-item"
         title="6. Completely Custom Item"
@@ -1220,11 +1207,9 @@ export const RailsPage: React.FC = () => {
           />
         </Box>
       </DemoBlock>
-
       {/* ================================================== */}
       {/* 8. Custom Image Renderer                         */}
       {/* ================================================== */}
-
       <DemoBlock
         id="custom-image"
         title="7. Custom Image Renderer"
@@ -1274,6 +1259,406 @@ export const RailsPage: React.FC = () => {
             )}
           />
         </Box>
+      </DemoBlock>
+
+      {/* ================================================== */}
+      {/* 8. Next.js Integration                            */}
+      {/* ================================================== */}
+      <DemoBlock
+        id="nextjs-integration"
+        title="8. Next.js Integration"
+        description="Rails stays framework-agnostic. In a Next.js application, inject next/link and next/image through linkComponent and ImageComponent while keeping API data completely serializable."
+        code={`// Server Component
+import Link from "next/link";
+import Image from "next/image";
+
+import { Rails } from "jivico-glass-ui";
+
+interface Category {
+  id: string;
+  name: string;
+  image: string;
+  slug: string;
+}
+
+const categories: Category[] = [
+  {
+    id: "tshirts",
+    name: "T-Shirts",
+    image: "/images/tshirts.jpg",
+    slug: "t-shirts",
+  },
+  {
+    id: "hoodies",
+    name: "Hoodies",
+    image: "/images/hoodies.jpg",
+    slug: "hoodies",
+  },
+];
+
+export default function CategoriesPage() {
+  return (
+    <Rails<Category>
+      items={categories}
+      getKey={(item) => item.id}
+      getImage={(item) => item.image}
+      getTitle={(item) => item.name}
+      getHref={(item) => \\\`/collections/\\\${item.slug}\\\`}
+      linkComponent={Link}
+      ImageComponent={Image}
+      columns={{
+        xs: 2,
+        sm: 3,
+        md: 4,
+        lg: 5,
+      }}
+      gap={20}
+      navigation="arrows"
+      swipe
+      snap
+      imageAspectRatio="4 / 5"
+      radius={3}
+    />
+  );
+}
+
+// API data remains plain JSON.
+// No React components are stored in the API response.
+
+// {
+//   "id": "tshirts",
+//   "name": "T-Shirts",
+//   "image": "/images/tshirts.jpg",
+//   "slug": "t-shirts"
+// }`}
+      >
+        <Stack spacing={3} sx={{ width: "100%" }}>
+          {/* Architecture overview */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              border: 1,
+              borderColor: "divider",
+              bgcolor: "action.hover",
+            }}
+          >
+            <Stack spacing={2}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  fontWeight: 700,
+                }}
+              >
+                Framework-agnostic architecture
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                Rails does not import Next.js or depend on any routing
+                framework. The application provides the framework-specific
+                components at the boundary.
+              </Typography>
+
+              <Stack
+                direction={{
+                  xs: "column",
+                  sm: "row",
+                }}
+                spacing={1}
+                sx={{
+                  alignItems: {
+                    xs: "stretch",
+                    sm: "center",
+                  },
+                }}
+              >
+                {[
+                  "API JSON",
+                  "Next.js Page",
+                  "linkComponent",
+                  "ImageComponent",
+                  "Rails",
+                ].map((label, index) => (
+                  <React.Fragment key={label}>
+                    <Box
+                      sx={{
+                        px: 1.5,
+                        py: 1,
+                        borderRadius: 2,
+                        bgcolor: "background.paper",
+                        border: 1,
+                        borderColor: "divider",
+                        textAlign: "center",
+                      }}
+                    >
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          fontWeight: 700,
+                        }}
+                      >
+                        {label}
+                      </Typography>
+                    </Box>
+
+                    {index < 4 && (
+                      <Typography
+                        sx={{
+                          display: {
+                            xs: "none",
+                            sm: "block",
+                          },
+                          color: "text.secondary",
+                        }}
+                      >
+                        →
+                      </Typography>
+                    )}
+                  </React.Fragment>
+                ))}
+              </Stack>
+            </Stack>
+          </Box>
+
+          {/* API data */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              border: 1,
+              borderColor: "divider",
+              bgcolor: "background.paper",
+            }}
+          >
+            <Stack spacing={1.5}>
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontWeight: 700,
+                }}
+              >
+                1. API returns plain JSON
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                Your backend only needs to return serializable data such as IDs,
+                titles, images, and slugs. No React components or Next.js
+                objects are included.
+              </Typography>
+
+              <Box
+                component="pre"
+                sx={{
+                  m: 0,
+                  p: 2,
+                  overflow: "auto",
+                  borderRadius: 2,
+                  bgcolor: "action.hover",
+                  fontFamily: "monospace",
+                  fontSize: 12,
+                }}
+              >
+                {`{
+  "id": "tshirts",
+  "name": "T-Shirts",
+  "image": "/images/tshirts.jpg",
+  "slug": "t-shirts"
+}`}
+              </Box>
+            </Stack>
+          </Box>
+
+          {/* Next.js */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              border: 1,
+              borderColor: "divider",
+              bgcolor: "background.paper",
+            }}
+          >
+            <Stack spacing={1.5}>
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontWeight: 700,
+                }}
+              >
+                2. Next.js provides the framework components
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                The Next.js application injects its own Link and Image
+                implementations into Rails.
+              </Typography>
+
+              <Box
+                component="pre"
+                sx={{
+                  m: 0,
+                  p: 2,
+                  overflow: "auto",
+                  borderRadius: 2,
+                  bgcolor: "action.hover",
+                  fontFamily: "monospace",
+                  fontSize: 12,
+                }}
+              >
+                {`import Link from "next/link";
+import Image from "next/image";
+
+<Rails
+  items={categories}
+  getKey={(item) => item.id}
+  getImage={(item) => item.image}
+  getTitle={(item) => item.name}
+  getHref={(item) =>
+    \\\`/collections/\\\${item.slug}\\\`
+  }
+  linkComponent={Link}
+  ImageComponent={Image}
+/>`}
+              </Box>
+            </Stack>
+          </Box>
+
+          {/* Full image navigation */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              border: 1,
+              borderColor: "divider",
+              bgcolor: "background.paper",
+            }}
+          >
+            <Stack spacing={1.5}>
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontWeight: 700,
+                }}
+              >
+                3. Full image becomes the Next.js link
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                When getHref returns a URL, the built-in Rails image area
+                becomes fully clickable. Because linkComponent is Next.js Link,
+                navigation uses client-side Next.js routing.
+              </Typography>
+
+              <Box
+                component="pre"
+                sx={{
+                  m: 0,
+                  p: 2,
+                  overflow: "auto",
+                  borderRadius: 2,
+                  bgcolor: "action.hover",
+                  fontFamily: "monospace",
+                  fontSize: 12,
+                }}
+              >
+                {`getHref={(item) =>
+  \\\`/collections/\\\${item.slug}\\\`
+}
+
+linkComponent={Link}`}
+              </Box>
+            </Stack>
+          </Box>
+
+          {/* Image integration */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              border: 1,
+              borderColor: "divider",
+              bgcolor: "background.paper",
+            }}
+          >
+            <Stack spacing={1.5}>
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontWeight: 700,
+                }}
+              >
+                4. Next.js Image integration
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                ImageComponent allows Rails to use next/image without importing
+                Next.js into the component library.
+              </Typography>
+
+              <Box
+                component="pre"
+                sx={{
+                  m: 0,
+                  p: 2,
+                  overflow: "auto",
+                  borderRadius: 2,
+                  bgcolor: "action.hover",
+                  fontFamily: "monospace",
+                  fontSize: 12,
+                }}
+              >
+                {`import Image from "next/image";
+
+<Rails
+  ImageComponent={Image}
+/>`}
+              </Box>
+            </Stack>
+          </Box>
+
+          {/* Architecture rule */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              border: 1,
+              borderColor: "divider",
+              bgcolor: "action.hover",
+            }}
+          >
+            <Stack spacing={1}>
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontWeight: 700,
+                }}
+              >
+                Recommended architecture
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                Keep the API framework-independent. Keep Rails framework-
+                independent. Let the Next.js application provide routing and
+                image implementations at the application boundary.
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{
+                  fontWeight: 700,
+                }}
+              >
+                API → JSON → Next.js → Rails → Link / Image
+              </Typography>
+            </Stack>
+          </Box>
+        </Stack>
       </DemoBlock>
     </ComponentPage>
   );

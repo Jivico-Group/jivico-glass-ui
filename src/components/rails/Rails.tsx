@@ -44,12 +44,14 @@ export function Rails<T>({
   getKey,
   getImage,
   getTitle,
+  getHref,
 
   renderContent,
   renderImage,
   renderItem,
 
   ImageComponent,
+  linkComponent,
 
   columns = DEFAULT_COLUMNS,
   itemWidth,
@@ -608,6 +610,109 @@ export function Rails<T>({
 
       const title = getTitle?.(item, index);
 
+      const href = getHref?.(item, index);
+
+      const linkLabel =
+        typeof title === "string" && title.trim().length > 0
+          ? `View ${title}`
+          : "View item";
+
+      const imageContent = (
+        <Box
+          sx={{
+            position: "relative",
+
+            width: "100%",
+
+            aspectRatio: imageAspectRatio,
+
+            overflow: "hidden",
+
+            borderRadius: radius,
+
+            backgroundColor: theme.palette.action.hover,
+          }}
+        >
+          {renderDefaultImage({
+            src: image,
+            alt: typeof title === "string" ? title : "",
+            index,
+          })}
+
+          {/* Image overlay */}
+
+          <Box
+            className="Rail-image-overlay"
+            aria-hidden
+            sx={{
+              position: "absolute",
+
+              inset: 0,
+
+              pointerEvents: "none",
+
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.22), transparent 45%)",
+
+              opacity: 0,
+
+              ...transitionConfig.overlay,
+            }}
+          />
+
+          {/* Full image navigation */}
+
+          {href &&
+            (linkComponent ? (
+              <Box
+                component={linkComponent}
+                href={href}
+                aria-label={linkLabel}
+                sx={{
+                  position: "absolute",
+
+                  inset: 0,
+
+                  zIndex: 2,
+
+                  display: "block",
+
+                  width: "100%",
+
+                  height: "100%",
+
+                  textDecoration: "none",
+
+                  cursor: "pointer",
+                }}
+              />
+            ) : (
+              <Box
+                component="a"
+                href={href}
+                aria-label={linkLabel}
+                sx={{
+                  position: "absolute",
+
+                  inset: 0,
+
+                  zIndex: 2,
+
+                  display: "block",
+
+                  width: "100%",
+
+                  height: "100%",
+
+                  textDecoration: "none",
+
+                  cursor: "pointer",
+                }}
+              />
+            ))}
+        </Box>
+      );
+
       return (
         <Box
           sx={{
@@ -619,48 +724,7 @@ export function Rails<T>({
           {/* Image                                          */}
           {/* ============================================== */}
 
-          <Box
-            sx={{
-              position: "relative",
-
-              width: "100%",
-
-              aspectRatio: imageAspectRatio,
-
-              overflow: "hidden",
-
-              borderRadius: radius,
-
-              backgroundColor: theme.palette.action.hover,
-            }}
-          >
-            {renderDefaultImage({
-              src: image,
-              alt: typeof title === "string" ? title : "",
-              index,
-            })}
-
-            {/* Image overlay */}
-
-            <Box
-              className="Rail-image-overlay"
-              aria-hidden
-              sx={{
-                position: "absolute",
-
-                inset: 0,
-
-                pointerEvents: "none",
-
-                background:
-                  "linear-gradient(to top, rgba(0,0,0,0.22), transparent 45%)",
-
-                opacity: 0,
-
-                ...transitionConfig.overlay,
-              }}
-            />
-          </Box>
+          {imageContent}
 
           {/* ============================================== */}
           {/* Title                                          */}
@@ -725,9 +789,11 @@ export function Rails<T>({
       );
     },
     [
+      getHref,
       getImage,
       getTitle,
       imageAspectRatio,
+      linkComponent,
       radius,
       renderContent,
       renderDefaultImage,

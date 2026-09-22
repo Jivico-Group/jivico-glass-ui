@@ -122,6 +122,24 @@ export interface RailImageProps {
 export type RailImageComponent = ComponentType<RailImageProps>;
 
 /**
+ * Framework-specific link component.
+ *
+ * Example:
+ *
+ * import Link from "next/link";
+ *
+ * <Rails
+ *   linkComponent={Link}
+ * />
+ *
+ * Rails does not import or depend on
+ * Next.js itself.
+ */
+export type RailLinkComponent = ComponentType<
+  React.ComponentPropsWithoutRef<"a">
+>;
+
+/**
  * Context supplied when rendering
  * rail content.
  */
@@ -211,6 +229,33 @@ export interface RailProps<T> {
   getTitle?: (item: T, index: number) => ReactNode;
 
   /**
+   * Optional navigation URL resolver.
+   *
+   * Return undefined when the item should
+   * not be clickable.
+   *
+   * Example:
+   *
+   * getHref={(product) => `/products/${product.slug}`}
+   */
+  getHref?: (item: T, index: number) => string | undefined;
+
+  /**
+   * Framework-specific link component.
+   *
+   * Example:
+   *
+   * import Link from "next/link";
+   *
+   * <Rails
+   *   linkComponent={Link}
+   * />
+   *
+   * The API data remains framework-agnostic.
+   */
+  linkComponent?: RailLinkComponent;
+
+  /**
    * Custom image component.
    *
    * Rails manages the image props internally.
@@ -248,6 +293,11 @@ export interface RailProps<T> {
    *
    * Use this when the entire card needs
    * to be customized.
+   *
+   * When renderItem is supplied, the built-in
+   * getHref/linkComponent behavior is not applied
+   * automatically. The custom renderer owns its
+   * own navigation.
    */
   renderItem?: (context: RailRenderContext<T>) => ReactNode;
 
