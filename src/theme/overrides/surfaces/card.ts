@@ -16,7 +16,7 @@ type CardRadius = "none" | "small" | "medium" | "large" | "full";
 interface JivicoCardOwnerState {
   color?: CardColor;
   radius?: CardRadius;
-  hover?: boolean;
+  hoverEffect?: boolean;
   variant?: "elevation" | "outlined" | "tonal";
 }
 
@@ -188,13 +188,8 @@ export const getCardOverrides = (
      * -----------------------------------------
      */
     defaultProps: {
-      elevation: 0,
-
       color: "primary",
-
       radius: "medium",
-
-      hover: false,
     },
 
     /*
@@ -210,7 +205,7 @@ export const getCardOverrides = (
 
         const radius = state.radius || "medium";
 
-        const hover = state.hover === true;
+        const hover = state.hoverEffect === true;
 
         const variant = state.variant || "elevation";
 

@@ -582,22 +582,25 @@ declare module "@mui/material/Card" {
       | "error"
       | "glass";
     radius?: "none" | "small" | "medium" | "large" | "full";
-    hover?: boolean;
+    hoverEffect?: boolean;
     variant?: "elevation" | "outlined" | "tonal";
     glass?: boolean;
   }
 
-  interface CardPropsColorOverrides {
-    accent: true;
-    info: true;
-    success: true;
-    warning: true;
-    error: true;
-    glass: true;
-  }
-
-  interface CardPropsVariantOverrides {
-    tonal: true;
+  interface CardProps {
+    color?:
+      | "primary"
+      | "secondary"
+      | "accent"
+      | "info"
+      | "success"
+      | "warning"
+      | "error"
+      | "glass";
+    radius?: "none" | "small" | "medium" | "large" | "full";
+    hoverEffect?: boolean;
+    variant?: "elevation" | "outlined" | "tonal";
+    glass?: boolean;
   }
 }
 
