@@ -52,10 +52,10 @@ export const MenusPage: React.FC = () => {
   return (
     <ComponentPage
       title="Menu & Dropdown"
-      description="Frosted glass dropdown menus (variant='glass') with 24px optical backdrop blur, specular border highlights, scale-adjusted sizes, and semantic color accents."
+      description="Frosted glass dropdown menus (surface='glass') with 24px optical backdrop blur, specular border highlights, scale-adjusted sizes, and semantic color accents."
       category="Navigation"
       badges={[
-        "variant='glass'",
+        "surface='glass'",
         "size='small | medium'",
         "color palette",
         "Dropdowns & Contextual",
@@ -64,7 +64,7 @@ export const MenusPage: React.FC = () => {
       {/* 1. Frosted Glass Spotlight */}
       <DemoBlock
         id="glass-spotlight"
-        title="✨ Frosted Glass Menu (variant='glass')"
+        title="✨ Frosted Glass Menu (surface='glass')"
         description="Floating glass dropdown menu with 24px backdrop blur, translucent specular border, and smooth interactive item hover effects."
         code={`<Button variant="contained" color="glass" onClick={handleClick}>
   Open Glass Menu
@@ -74,7 +74,7 @@ export const MenusPage: React.FC = () => {
   anchorEl={anchorEl}
   open={Boolean(anchorEl)}
   onClose={handleClose}
-  variant="glass"
+  surface="glass"
 >
   <MenuItem onClick={handleClose}>
     <ListItemIcon><User size={20} /></ListItemIcon>
@@ -217,9 +217,8 @@ export const MenusPage: React.FC = () => {
         <Stack
           direction="row"
           spacing={3}
-          justifyContent="center"
-          flexWrap="wrap"
-          gap={2}
+          // gap={2}
+          sx={{ justifyContent: "center", flexWrap: "wrap", gap: 2 }}
         >
           <Button
             variant="outlined"
@@ -307,10 +306,20 @@ export const MenusPage: React.FC = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            width: "100%",
             gap: 3,
           }}
         >
-          <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
+          <Stack
+            sx={{
+              flexDirection: "row",
+              spacing: 1,
+              flexWrap: "wrap",
+              gap: 1,
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
             {["primary", "accent", "success", "warning", "error"].map(
               (color) => (
                 <Chip

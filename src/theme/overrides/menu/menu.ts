@@ -111,7 +111,7 @@ export const getMenuOverrides = (
           };
 
           const color = colorMap[state.color ?? "primary"];
-          const surface = state.surface ?? "standard";
+          const surface = state.surface ?? (state as any).variant ?? "standard";
           const size = sizeMap[state.size ?? "medium"];
           const isGlass = surface === "glass";
 

@@ -569,6 +569,20 @@ declare module "@mui/material/Menu" {
       | "warning"
       | "error";
     surface?: "standard" | "glass";
+    variant?: "standard" | "glass";
+    size?: "small" | "medium";
+  }
+
+  interface MenuProps {
+    color?:
+      | "primary"
+      | "secondary"
+      | "accent"
+      | "success"
+      | "warning"
+      | "error";
+    surface?: "standard" | "glass";
+    variant?: "standard" | "glass";
     size?: "small" | "medium";
   }
 }
