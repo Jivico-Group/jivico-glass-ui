@@ -26,6 +26,7 @@ import { ListPage } from "./components/Pages/ListPage.js";
 import { TablePage } from "./components/Pages/TablePage.js";
 import { MenusPage } from "./components/Pages/MenusPage.js";
 import { ThemePage } from "./components/Pages/ThemePage.js";
+import { ShowcasePage } from "./components/Pages/ShowcasePage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
 const TOC_MAP: Record<string, TocItem[]> = {
@@ -33,6 +34,12 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "brand-kit", title: "Brand Kit Palette" },
     { id: "installation", title: "Installation" },
     { id: "setup", title: "Theme Setup" },
+  ],
+  showcase: [
+    { id: "interactive-showcase", title: "Interactive Playground" },
+    { id: "image-only-showcase", title: "1. Pure Image-Only Mode" },
+    { id: "title-desc-showcase", title: "2. Title & Description Mode" },
+    { id: "glass-variant-showcase", title: "3. Frosted Glass Variant" },
   ],
   theme: [
     { id: "global-provider-setup", title: "Global Provider Setup" },
@@ -236,6 +243,8 @@ export default function App() {
         return <TablePage />;
       case "menus":
         return <MenusPage />;
+      case "showcase":
+        return <ShowcasePage />;
       case "theme":
         return <ThemePage />;
       case "alerts":

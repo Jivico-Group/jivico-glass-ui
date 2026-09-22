@@ -1,7 +1,7 @@
 import { Theme, Components } from '@mui/material/styles';
 import * as _emotion_styled from '@emotion/styled';
 import * as react from 'react';
-import react__default from 'react';
+import react__default, { ReactNode } from 'react';
 import * as _mui_system from '@mui/system';
 import * as _mui_material from '@mui/material';
 import { BoxProps } from '@mui/material';
@@ -1691,6 +1691,52 @@ declare const TribeMemberPill: _emotion_styled.StyledComponent<_mui_system.BoxOw
 }, {}, {}>;
 declare const LiquidGlassCard: _emotion_styled.StyledComponent<_mui_system.BoxOwnProps<_mui_material.Theme> & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof _mui_system.BoxOwnProps<_mui_material.Theme>> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & LiquidGlassCardRootProps, {}, {}>;
 
+type ShowcaseTransition = "cinematic" | "fade" | "slide";
+type ShowcaseNavigation = "vertical" | "dots" | "none";
+type ShowcaseSize = "small" | "medium" | "large" | "hero";
+type ShowcaseVariant = "editorial" | "minimal" | "glass";
+interface ShowcaseMedia {
+    src: string;
+    alt: string;
+    mobileSrc?: string;
+}
+interface ShowcaseAction {
+    label: string;
+    href?: string;
+    onClick?: () => void;
+}
+interface ShowcaseItem {
+    id: string;
+    media: ShowcaseMedia;
+    eyebrow?: string;
+    title: string;
+    description?: string;
+    action?: ShowcaseAction;
+    content?: ReactNode;
+    sideLabel?: string;
+}
+interface ShowcaseProps {
+    items: ShowcaseItem[];
+    variant?: ShowcaseVariant;
+    size?: ShowcaseSize;
+    transition?: ShowcaseTransition;
+    autoplay?: boolean;
+    interval?: number;
+    loop?: boolean;
+    pauseOnHover?: boolean;
+    showArrows?: boolean;
+    showProgress?: boolean;
+    navigation?: ShowcaseNavigation;
+    activeIndex?: number;
+    defaultActiveIndex?: number;
+    onActiveIndexChange?: (index: number, item: ShowcaseItem) => void;
+    swipe?: boolean;
+    className?: string;
+    "aria-label"?: string;
+}
+
+declare const Showcase: react__default.FC<ShowcaseProps>;
+
 type ThemeMode = "light" | "dark" | "system";
 type ResolvedThemeMode = "light" | "dark";
 interface GlassModeContextType {
@@ -1749,4 +1795,4 @@ interface GlassThemeScopeProps {
  */
 declare function GlassThemeScope({ mode, children }: GlassThemeScopeProps): react__default.JSX.Element;
 
-export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, BACKGROUND_COLORS, BRAND_COLORS, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type ResolvedThemeMode, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode };
+export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, BACKGROUND_COLORS, BRAND_COLORS, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type ResolvedThemeMode, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode };
