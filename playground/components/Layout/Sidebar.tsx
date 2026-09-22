@@ -26,6 +26,7 @@ export const NAV_SECTIONS: NavSection[] = [
     title: "Overview",
     items: [
       { id: "overview", label: "Brand Kit & Setup" },
+      { id: "theme", label: "Theme Setup & Scopes", badge: "THEME" },
       { id: "colors", label: "Colors (Full Palette)", badge: "PALETTE" },
     ],
   },

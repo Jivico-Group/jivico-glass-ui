@@ -25,6 +25,7 @@ import { BottomNavigationPage } from "./components/Pages/BottomNavigationPage.js
 import { ListPage } from "./components/Pages/ListPage.js";
 import { TablePage } from "./components/Pages/TablePage.js";
 import { MenusPage } from "./components/Pages/MenusPage.js";
+import { ThemePage } from "./components/Pages/ThemePage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
 const TOC_MAP: Record<string, TocItem[]> = {
@@ -32,6 +33,13 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "brand-kit", title: "Brand Kit Palette" },
     { id: "installation", title: "Installation" },
     { id: "setup", title: "Theme Setup" },
+  ],
+  theme: [
+    { id: "global-provider-setup", title: "Global Provider Setup" },
+    { id: "standalone-no-setup", title: "Standalone / Zero Setup" },
+    { id: "side-by-side-comparison", title: "Nested Theme Scope" },
+    { id: "forced-dark-table", title: "Scoped Glass Table" },
+    { id: "interactive-scope", title: "Interactive Target Toggle" },
   ],
   colors: [
     { id: "brand-monochrome", title: "Brand Monochrome" },
@@ -228,6 +236,8 @@ export default function App() {
         return <TablePage />;
       case "menus":
         return <MenusPage />;
+      case "theme":
+        return <ThemePage />;
       case "alerts":
         return <AlertsPage />;
       case "tooltips":
