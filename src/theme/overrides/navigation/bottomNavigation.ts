@@ -215,6 +215,7 @@ export const getBottomNavigationOverrides = (
           },
 
           "& .MuiBottomNavigationAction-label": {
+            display: !showLabels ? "none !important" : "block",
             fontSize: isSmall ? "0.6875rem" : "0.75rem",
             fontWeight: 600,
             lineHeight: 1.2,
