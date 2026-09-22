@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+
 import {
   Box,
   Typography,
@@ -32,6 +33,7 @@ interface SampleCategory {
   name: string;
   image: string;
   count: number;
+  slug: string;
 }
 
 interface SampleProduct {
@@ -41,6 +43,7 @@ interface SampleProduct {
   price: number;
   rating: number;
   colors: number;
+  slug: string;
 }
 
 interface SampleHighlight {
@@ -63,6 +66,7 @@ const CATEGORIES: SampleCategory[] = [
     image:
       "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
     count: 24,
+    slug: "heavyweight-tees",
   },
   {
     id: "cat-2",
@@ -70,6 +74,7 @@ const CATEGORIES: SampleCategory[] = [
     image:
       "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
     count: 18,
+    slug: "luxury-hoodies",
   },
   {
     id: "cat-3",
@@ -77,6 +82,7 @@ const CATEGORIES: SampleCategory[] = [
     image:
       "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80",
     count: 12,
+    slug: "overalls-denim",
   },
   {
     id: "cat-4",
@@ -84,6 +90,7 @@ const CATEGORIES: SampleCategory[] = [
     image:
       "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
     count: 15,
+    slug: "glass-outerwear",
   },
   {
     id: "cat-5",
@@ -91,6 +98,7 @@ const CATEGORIES: SampleCategory[] = [
     image:
       "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80",
     count: 30,
+    slug: "footwear-boots",
   },
   {
     id: "cat-6",
@@ -98,6 +106,7 @@ const CATEGORIES: SampleCategory[] = [
     image:
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
     count: 42,
+    slug: "studio-accessories",
   },
 ];
 
@@ -114,6 +123,7 @@ const PRODUCTS: SampleProduct[] = [
     price: 899,
     rating: 4.8,
     colors: 4,
+    slug: "originals-oversized-tee",
   },
   {
     id: "prod-2",
@@ -123,6 +133,7 @@ const PRODUCTS: SampleProduct[] = [
     price: 1499,
     rating: 4.9,
     colors: 3,
+    slug: "freestyle-heavy-hoodie",
   },
   {
     id: "prod-3",
@@ -132,6 +143,7 @@ const PRODUCTS: SampleProduct[] = [
     price: 2499,
     rating: 4.7,
     colors: 2,
+    slug: "liquid-glass-bomber",
   },
   {
     id: "prod-4",
@@ -141,6 +153,7 @@ const PRODUCTS: SampleProduct[] = [
     price: 1299,
     rating: 4.6,
     colors: 5,
+    slug: "washed-cargo-trousers",
   },
   {
     id: "prod-5",
@@ -150,6 +163,7 @@ const PRODUCTS: SampleProduct[] = [
     price: 499,
     rating: 4.5,
     colors: 6,
+    slug: "minimalist-cap",
   },
 ];
 
@@ -219,6 +233,11 @@ const HIGHLIGHTS: SampleHighlight[] = [
  * ======================================================= */
 
 export const RailsPage: React.FC = () => {
+  const router = {
+    push: (p: any) => {
+      console.log("push", p);
+    },
+  };
   /*
    * ---------------------------------------------------------
    * Playground state
@@ -278,6 +297,7 @@ export const RailsPage: React.FC = () => {
       {/* ================================================== */}
       {/* 1. Interactive Playground                         */}
       {/* ================================================== */}
+
       <DemoBlock
         id="interactive-rails"
         title="Interactive Rails Playground"
@@ -322,8 +342,6 @@ export const RailsPage: React.FC = () => {
             alignItems: "stretch",
           }}
         >
-          {/* Controls */}
-
           <Box
             sx={{
               p: 2.5,
@@ -702,18 +720,16 @@ export const RailsPage: React.FC = () => {
             )}
           </Box>
 
-          {/* Rail */}
-
-          <Box
-            sx={{
-              width: "100%",
-            }}
-          >
+          <Box sx={{ width: "100%" }}>
             <Rails<SampleCategory>
               items={CATEGORIES}
               getKey={(item) => item.id}
               getImage={(item) => item.image}
               getTitle={(item) => item.name}
+              getHref={(item) => `/collections/${item.slug}`}
+              onNavigate={(item) => {
+                router.push(`/collections/${item.slug}`);
+              }}
               columns={responsiveColumns}
               gap={gap}
               navigation={navigation}
@@ -742,7 +758,7 @@ export const RailsPage: React.FC = () => {
       <DemoBlock
         id="highlight-rail"
         title="1. Highlight Cards"
-        description="Image-first visual cards designed to work independently or inside Rails. Ideal for categories, collections, campaigns, offers, and editorial content."
+        description="Image-first visual cards designed to work independently or inside Rails. The full Highlight image can be used as the primary navigation target."
         code={`import { Rails, Highlight } from "jivico-glass-ui";
 
 <Rails<HighlightItem>
@@ -754,9 +770,10 @@ export const RailsPage: React.FC = () => {
       eyebrow={item.eyebrow}
       title={item.title}
       description={item.description}
-      action={{
-        label: "Shop Now",
-        href: item.href,
+      href={item.href}
+      linkLabel={\\\`View \\\${item.title}\\\`}
+      onNavigate={() => {
+        router.push(item.href);
       }}
       variant="overlay"
       aspectRatio="4 / 5"
@@ -775,24 +792,21 @@ export const RailsPage: React.FC = () => {
   snap
 />`}
       >
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
+        <Box sx={{ width: "100%" }}>
           <Rails<SampleHighlight>
             items={HIGHLIGHTS}
-            getImage={(item) => item.image}
             getKey={(item) => item.id}
+            getImage={(item) => item.image}
             renderItem={({ item }) => (
               <Highlight
                 image={item.image}
                 eyebrow={item.eyebrow}
                 title={item.title}
                 description={item.description}
-                action={{
-                  label: "Shop Now",
-                  href: item.href,
+                href={item.href}
+                linkLabel={`View ${item.title}`}
+                onNavigate={() => {
+                  router.push(item.href);
                 }}
                 variant="overlay"
                 aspectRatio="4 / 5"
@@ -820,15 +834,16 @@ export const RailsPage: React.FC = () => {
       <DemoBlock
         id="standalone-highlight"
         title="2. Standalone Highlight"
-        description="Highlight can also be used independently when a single visual card is needed."
+        description="Highlight can also be used independently when a single visual card is needed. The entire image acts as the navigation target."
         code={`<Highlight
   image="/images/graphic-tees.jpg"
   eyebrow="JIVICO ORIGINALS"
   title="Graphic Tees"
   description="Bold graphics. Everyday essentials."
-  action={{
-    label: "Shop Now",
-    href: "/collections/graphic-tees",
+  href="/collections/graphic-tees"
+  linkLabel="View Graphic Tees"
+  onNavigate={() => {
+    router.push("/collections/graphic-tees");
   }}
   variant="overlay"
   aspectRatio="16 / 7"
@@ -846,9 +861,10 @@ export const RailsPage: React.FC = () => {
             eyebrow={HIGHLIGHTS[0].eyebrow}
             title={HIGHLIGHTS[0].title}
             description={HIGHLIGHTS[0].description}
-            action={{
-              label: "Shop Now",
-              href: HIGHLIGHTS[0].href,
+            href={HIGHLIGHTS[0].href}
+            linkLabel={`View ${HIGHLIGHTS[0].title}`}
+            onNavigate={() => {
+              router.push(HIGHLIGHTS[0].href);
             }}
             variant="overlay"
             aspectRatio="16 / 7"
@@ -870,24 +886,28 @@ export const RailsPage: React.FC = () => {
     image="/images/graphic-tees.jpg"
     title="Graphic Tees"
     variant="overlay"
+    href="/collections/graphic-tees"
   />
 
   <Highlight
     image="/images/oversized-tees.jpg"
     title="Oversized Tees"
-    variant="bottom"
+    variant="overlay"
+    href="/collections/oversized-tees"
   />
 
   <Highlight
     image="/images/minimal-tees.jpg"
     title="Minimal Tees"
     variant="center"
+    href="/collections/minimal-tees"
   />
 
   <Highlight
     image="/images/streetwear.jpg"
     title="Streetwear"
     variant="minimal"
+    href="/collections/streetwear"
   />
 </Stack>`}
       >
@@ -902,9 +922,10 @@ export const RailsPage: React.FC = () => {
             eyebrow={HIGHLIGHTS[0].eyebrow}
             title={HIGHLIGHTS[0].title}
             description={HIGHLIGHTS[0].description}
-            action={{
-              label: "Shop Now",
-              href: HIGHLIGHTS[0].href,
+            href={HIGHLIGHTS[0].href}
+            linkLabel={`View ${HIGHLIGHTS[0].title}`}
+            onNavigate={() => {
+              router.push(HIGHLIGHTS[0].href);
             }}
             variant="overlay"
             aspectRatio="4 / 5"
@@ -916,11 +937,12 @@ export const RailsPage: React.FC = () => {
             eyebrow={HIGHLIGHTS[1].eyebrow}
             title={HIGHLIGHTS[1].title}
             description={HIGHLIGHTS[1].description}
-            action={{
-              label: "Shop Now",
-              href: HIGHLIGHTS[1].href,
+            href={HIGHLIGHTS[1].href}
+            linkLabel={`View ${HIGHLIGHTS[1].title}`}
+            onNavigate={() => {
+              router.push(HIGHLIGHTS[1].href);
             }}
-            variant="bottom"
+            variant="overlay"
             aspectRatio="4 / 5"
             radius={3}
           />
@@ -930,9 +952,10 @@ export const RailsPage: React.FC = () => {
             eyebrow={HIGHLIGHTS[2].eyebrow}
             title={HIGHLIGHTS[2].title}
             description={HIGHLIGHTS[2].description}
-            action={{
-              label: "Shop Now",
-              href: HIGHLIGHTS[2].href,
+            href={HIGHLIGHTS[2].href}
+            linkLabel={`View ${HIGHLIGHTS[2].title}`}
+            onNavigate={() => {
+              router.push(HIGHLIGHTS[2].href);
             }}
             variant="center"
             aspectRatio="4 / 5"
@@ -944,9 +967,10 @@ export const RailsPage: React.FC = () => {
             eyebrow={HIGHLIGHTS[3].eyebrow}
             title={HIGHLIGHTS[3].title}
             description={HIGHLIGHTS[3].description}
-            action={{
-              label: "Shop Now",
-              href: HIGHLIGHTS[3].href,
+            href={HIGHLIGHTS[3].href}
+            linkLabel={`View ${HIGHLIGHTS[3].title}`}
+            onNavigate={() => {
+              router.push(HIGHLIGHTS[3].href);
             }}
             variant="minimal"
             aspectRatio="4 / 5"
@@ -1012,11 +1036,7 @@ export const RailsPage: React.FC = () => {
   )}
 />`}
       >
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
+        <Box sx={{ width: "100%" }}>
           <Rails<SampleProduct>
             items={PRODUCTS}
             getKey={(item) => item.id}
@@ -1106,11 +1126,7 @@ export const RailsPage: React.FC = () => {
   )}
 />`}
       >
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
+        <Box sx={{ width: "100%" }}>
           <Rails<SampleCategory>
             items={CATEGORIES}
             getKey={(item) => item.id}
@@ -1180,11 +1196,7 @@ export const RailsPage: React.FC = () => {
   )}
 />`}
       >
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
+        <Box sx={{ width: "100%" }}>
           <Rails<SampleCategory>
             items={CATEGORIES}
             getKey={(item) => item.id}
@@ -1250,11 +1262,7 @@ export const RailsPage: React.FC = () => {
   )}
 />`}
       >
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
+        <Box sx={{ width: "100%" }}>
           <Rails<SampleCategory>
             items={CATEGORIES}
             getKey={(item) => item.id}
@@ -1284,14 +1292,14 @@ export const RailsPage: React.FC = () => {
       <DemoBlock
         id="nextjs-integration"
         title="8. Next.js Integration"
-        description="Rails stays framework-agnostic. Next.js handles navigation through onNavigate, while ImageComponent can still be used for next/image."
+        description="Rails and Highlight stay framework-agnostic. Next.js owns navigation through onNavigate, while ImageComponent can be used for next/image."
         code={`// app/categories/CategoriesRail.tsx
 "use client";
 
-import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-import { Rails } from "jivico-glass-ui";
+import { Rails, Highlight } from "jivico-glass-ui";
 
 interface Category {
   id: string;
@@ -1300,13 +1308,11 @@ interface Category {
   slug: string;
 }
 
-interface CategoriesRailProps {
-  categories: Category[];
-}
-
 export function CategoriesRail({
   categories,
-}: CategoriesRailProps) {
+}: {
+  categories: Category[];
+}) {
   const router = useRouter();
 
   return (
@@ -1324,18 +1330,26 @@ export function CategoriesRail({
         );
       }}
       ImageComponent={Image}
-      columns={{
-        xs: 2,
-        sm: 3,
-        md: 4,
-        lg: 5,
+    />
+  );
+}
+
+export function CollectionHighlight() {
+  const router = useRouter();
+
+  return (
+    <Highlight
+      image="/images/originals.jpg"
+      alt="Jivico Originals"
+      href="/collections/originals"
+      linkLabel="View Jivico Originals"
+      onNavigate={() => {
+        router.push("/collections/originals");
       }}
-      gap={20}
-      navigation="arrows"
-      swipe
-      snap
-      imageAspectRatio="4 / 5"
-      radius={3}
+      ImageComponent={Image}
+      eyebrow="JIVICO ORIGINALS"
+      title="Originals"
+      description="Made for the ones who don't follow the usual."
     />
   );
 }
@@ -1366,9 +1380,9 @@ export function CategoriesRail({
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Rails does not import Next.js or depend on any routing
-                framework. The application owns routing through the onNavigate
-                callback, while framework-specific image rendering can still be
+                Rails and Highlight do not import Next.js or depend on any
+                routing framework. The application owns routing through
+                onNavigate, while framework-specific image rendering can be
                 injected through ImageComponent.
               </Typography>
 
@@ -1388,9 +1402,9 @@ export function CategoriesRail({
                 {[
                   "API JSON",
                   "Next.js Page",
+                  "Rails / Highlight",
                   "onNavigate",
                   "ImageComponent",
-                  "Rails",
                 ].map((label, index) => (
                   <React.Fragment key={label}>
                     <Box
@@ -1482,7 +1496,7 @@ export function CategoriesRail({
             </Stack>
           </Box>
 
-          {/* Navigation */}
+          {/* Rails navigation */}
 
           <Box
             sx={{
@@ -1500,14 +1514,13 @@ export function CategoriesRail({
                   fontWeight: 700,
                 }}
               >
-                2. Application owns navigation
+                2. Rails navigation
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Rails renders a real anchor with the resolved href, but it
-                prevents the anchor's native navigation. The consuming
-                application receives the item through onNavigate and decides how
-                routing should happen.
+                Rails renders a real anchor with the resolved href, but prevents
+                native navigation. The consuming application receives the item
+                through onNavigate and decides how routing should happen.
               </Typography>
 
               <Box
@@ -1535,6 +1548,57 @@ onNavigate={(item) => {
             </Stack>
           </Box>
 
+          {/* Highlight navigation */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              border: 1,
+              borderColor: "divider",
+              bgcolor: "background.paper",
+            }}
+          >
+            <Stack spacing={1.5}>
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontWeight: 700,
+                }}
+              >
+                3. Highlight full-image navigation
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                Highlight uses the same principle. Its full image becomes a
+                semantic anchor when href is provided. Native navigation is
+                prevented and onNavigate controls the actual application route.
+              </Typography>
+
+              <Box
+                component="pre"
+                sx={{
+                  m: 0,
+                  p: 2,
+                  overflow: "auto",
+                  borderRadius: 2,
+                  bgcolor: "action.hover",
+                  fontFamily: "monospace",
+                  fontSize: 12,
+                }}
+              >
+                {`<Highlight
+  image={item.image}
+  href={item.href}
+  linkLabel={\\\`View \\\${item.title}\\\`}
+  onNavigate={() => {
+    router.push(item.href);
+  }}
+/>`}
+              </Box>
+            </Stack>
+          </Box>
+
           {/* Full image navigation */}
 
           <Box
@@ -1553,13 +1617,13 @@ onNavigate={(item) => {
                   fontWeight: 700,
                 }}
               >
-                3. Full image remains clickable
+                4. Full image remains clickable
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                When getHref returns a URL, Rails places a full-size semantic
-                anchor over the image. The href remains available in the DOM,
-                while onNavigate controls the actual application navigation.
+                The href remains in the DOM as a real anchor destination. This
+                provides semantic link information, while onNavigate owns the
+                actual client-side navigation.
               </Typography>
 
               <Box
@@ -1574,13 +1638,11 @@ onNavigate={(item) => {
                   fontSize: 12,
                 }}
               >
-                {`getHref={(item) =>
-  \\\`/collections/\\\${item.slug}\\\`
-}
+                {`href="/collections/originals"
 
-onNavigate={(item) => {
+onNavigate={() => {
   router.push(
-    \\\`/collections/\\\${item.slug}\\\`,
+    "/collections/originals",
   );
 }}`}
               </Box>
@@ -1605,12 +1667,13 @@ onNavigate={(item) => {
                   fontWeight: 700,
                 }}
               >
-                4. Next.js Image integration
+                5. Next.js Image integration
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                ImageComponent remains available when the application wants
-                Rails to use next/image. This is independent from routing.
+                ImageComponent remains available independently from routing.
+                This allows Rails and Highlight to use next/image without
+                coupling either component to Next.js.
               </Typography>
 
               <Box
@@ -1628,6 +1691,10 @@ onNavigate={(item) => {
                 {`import Image from "next/image";
 
 <Rails
+  ImageComponent={Image}
+/>
+
+<Highlight
   ImageComponent={Image}
 />`}
               </Box>
@@ -1656,7 +1723,7 @@ onNavigate={(item) => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Keep the API framework-independent. Keep Rails
+                Keep the API framework-independent. Keep Rails and Highlight
                 framework-independent. Let the consuming application own routing
                 and optionally provide framework-specific image rendering.
               </Typography>
@@ -1667,7 +1734,8 @@ onNavigate={(item) => {
                   fontWeight: 700,
                 }}
               >
-                API → JSON → Next.js → Rails → onNavigate / ImageComponent
+                API → JSON → Next.js → Rails / Highlight → onNavigate /
+                ImageComponent
               </Typography>
             </Stack>
           </Box>

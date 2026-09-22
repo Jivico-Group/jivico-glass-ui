@@ -1,4 +1,10 @@
-import type { ComponentType, CSSProperties, ReactNode } from "react";
+import type {
+  ComponentType,
+  CSSProperties,
+  HTMLAttributeAnchorTarget,
+  MouseEvent,
+  ReactNode,
+} from "react";
 
 import type { SxProps, Theme } from "@mui/material/styles";
 
@@ -51,13 +57,33 @@ export interface SpotlightAction {
 
   /**
    * Optional navigation URL.
+   *
+   * This remains plain data and does not
+   * contain a React routing component.
    */
   href?: string;
 
   /**
    * Optional click handler.
+   *
+   * Used for actions that do not navigate.
    */
   onClick?: () => void;
+
+  /**
+   * Optional target.
+   */
+  target?: HTMLAttributeAnchorTarget;
+
+  /**
+   * Optional rel attribute.
+   */
+  rel?: string;
+
+  /**
+   * Accessible label.
+   */
+  ariaLabel?: string;
 }
 
 /**
@@ -122,6 +148,31 @@ export interface SpotlightImageProps {
 export type SpotlightImageComponent = ComponentType<SpotlightImageProps>;
 
 /**
+ * Advanced image renderer context.
+ */
+export interface SpotlightImageContext {
+  /**
+   * Main image source.
+   */
+  src: string;
+
+  /**
+   * Optional mobile image source.
+   */
+  mobileImage?: string;
+
+  /**
+   * Image alt text.
+   */
+  alt: string;
+
+  /**
+   * Image cropping position.
+   */
+  imagePosition: SpotlightImagePosition;
+}
+
+/**
  * Spotlight component props.
  */
 export interface SpotlightProps {
@@ -152,6 +203,49 @@ export interface SpotlightProps {
    * />
    */
   ImageComponent?: SpotlightImageComponent;
+
+  /**
+   * Advanced custom image renderer.
+   *
+   * This takes precedence over ImageComponent.
+   */
+  renderImage?: (context: SpotlightImageContext) => ReactNode;
+
+  /**
+   * Optional destination for the complete Spotlight.
+   *
+   * Spotlight renders this as a semantic
+   * <a href="..."> when provided.
+   *
+   * Native browser navigation is prevented.
+   * Use `onNavigate` for actual routing.
+   */
+  href?: string;
+
+  /**
+   * Accessible label for the complete Spotlight link.
+   */
+  linkLabel?: string;
+
+  /**
+   * Handles navigation for the complete Spotlight.
+   *
+   * Spotlight renders a semantic <a href="...">,
+   * prevents native navigation, and delegates
+   * actual routing to the consuming application.
+   *
+   * Example with Next.js:
+   *
+   * const router = useRouter();
+   *
+   * <Spotlight
+   *   href="/collections/originals"
+   *   onNavigate={() => {
+   *     router.push("/collections/originals");
+   *   }}
+   * />
+   */
+  onNavigate?: (event: MouseEvent<HTMLAnchorElement>) => void;
 
   /**
    * Small text above the title.
@@ -248,13 +342,6 @@ export interface SpotlightProps {
   imagePriority?: boolean;
 
   /**
-   * Advanced custom image renderer.
-   *
-   * This takes precedence over ImageComponent.
-   */
-  renderImage?: (context: SpotlightImageContext) => ReactNode;
-
-  /**
    * Border radius.
    *
    * Number values use the theme spacing system.
@@ -279,32 +366,7 @@ export interface SpotlightProps {
   className?: string;
 
   /**
-   * Accessible label for the spotlight.
+   * Accessible label for the Spotlight.
    */
   "aria-label"?: string;
-}
-
-/**
- * Context supplied to a custom image renderer.
- */
-export interface SpotlightImageContext {
-  /**
-   * Main image source.
-   */
-  src: string;
-
-  /**
-   * Optional mobile image source.
-   */
-  mobileImage?: string;
-
-  /**
-   * Image alt text.
-   */
-  alt: string;
-
-  /**
-   * Image cropping position.
-   */
-  imagePosition: SpotlightImagePosition;
 }

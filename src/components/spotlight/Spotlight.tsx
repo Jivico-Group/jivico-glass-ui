@@ -85,18 +85,42 @@ interface SpotlightActionButtonProps {
 }
 
 function SpotlightActionButton({ action }: SpotlightActionButtonProps) {
-  const buttonProps = action.href
-    ? {
-        component: "a" as const,
-        href: action.href,
-      }
-    : {
-        onClick: action.onClick,
-      };
+  if (action.href) {
+    return (
+      <Button
+        component="a"
+        href={action.href}
+        target={action.target}
+        rel={action.rel}
+        aria-label={action.ariaLabel}
+        onClick={(event) => {
+          /*
+           * The CTA is inside the Spotlight anchor.
+           *
+           * Stop the event here so clicking the CTA does not
+           * also trigger the parent Spotlight navigation.
+           */
+          event.stopPropagation();
+        }}
+        variant="contained"
+        size="medium"
+        sx={{
+          alignSelf: "flex-start",
+          borderRadius: 999,
+          px: 2.5,
+          py: 1.1,
+          whiteSpace: "nowrap",
+        }}
+      >
+        {action.label}
+      </Button>
+    );
+  }
 
   return (
     <Button
-      {...buttonProps}
+      onClick={action.onClick}
+      aria-label={action.ariaLabel}
       variant="contained"
       size="medium"
       sx={{
@@ -177,12 +201,14 @@ function SpotlightImage({
    */
 
   if (renderImage) {
-    return renderImage({
+    const context: SpotlightImageContext = {
       src: image,
       mobileImage,
       alt,
       imagePosition,
-    });
+    };
+
+    return renderImage(context);
   }
 
   /*
@@ -209,13 +235,6 @@ function SpotlightImage({
       },
     };
 
-    /*
-     * Mobile image can still be supported
-     * through <picture>.
-     *
-     * The custom image component remains
-     * responsible for the actual image.
-     */
     return (
       <picture
         style={{
@@ -275,6 +294,10 @@ export function Spotlight({
   ImageComponent,
   renderImage,
 
+  href,
+  linkLabel,
+  onNavigate,
+
   eyebrow,
   title,
   description,
@@ -318,6 +341,31 @@ export function Spotlight({
 
   /*
    * ---------------------------------------------------------
+   * Navigation
+   * ---------------------------------------------------------
+   */
+
+  const handleNavigate = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    /*
+     * IMPORTANT:
+     *
+     * href exists for:
+     *
+     * - semantic HTML
+     * - SEO
+     * - accessibility
+     * - browser status bar
+     * - link discovery
+     *
+     * But Spotlight itself must NOT perform native navigation.
+     */
+    event.preventDefault();
+
+    onNavigate?.(event);
+  };
+
+  /*
+   * ---------------------------------------------------------
    * Shared image
    * ---------------------------------------------------------
    */
@@ -346,13 +394,10 @@ export function Spotlight({
       sx={{
         position: "relative",
         zIndex: 2,
-
         display: "flex",
-
         flexDirection: "column",
-
         alignItems: "flex-start",
-
+        cursor: "pointer",
         gap: 1.5,
       }}
     >
@@ -434,60 +479,69 @@ export function Spotlight({
 
   /*
    * =========================================================
-   * OVERLAY
+   * Root renderer
    * =========================================================
+   *
+   * When href exists:
+   *
+   * <a href="...">
+   *
+   * When href does not exist:
+   *
+   * <section>
+   *
+   * This keeps Spotlight semantic without forcing
+   * every Spotlight to become a link.
    */
 
-  if (variant === "overlay") {
+  const renderRoot = (children: React.ReactNode) => {
+    if (href) {
+      return (
+        <Box
+          component="a"
+          href={href}
+          aria-label={
+            linkLabel ?? (typeof title === "string" ? title : ariaLabel)
+          }
+          onClick={handleNavigate}
+          className={className}
+          sx={[
+            baseRootSx,
+            {
+              display: "block",
+              color: "inherit",
+              textDecoration: "none",
+              cursor: "pointer",
+            },
+            ...(Array.isArray(sx) ? sx : [sx]),
+          ]}
+        >
+          {children}
+        </Box>
+      );
+    }
+
     return (
       <Box
         component="section"
         className={className}
         aria-label={ariaLabel}
-        sx={[
-          baseRootSx,
-
-          {
-            aspectRatio: height === undefined ? aspectRatio : undefined,
-
-            minHeight:
-              minHeight === undefined
-                ? {
-                    xs: currentSize.minHeight * 0.75,
-
-                    md: currentSize.minHeight,
-                  }
-                : dimensions.minHeight,
-
-            display: "flex",
-
-            alignItems: "flex-end",
-
-            isolation: "isolate",
-
-            backgroundColor: "background.default",
-
-            "&::after": {
-              content: '""',
-
-              position: "absolute",
-
-              inset: 0,
-
-              zIndex: 1,
-
-              background:
-                "linear-gradient(180deg, rgba(0,0,0,0.02) 20%, rgba(0,0,0,0.68) 100%)",
-
-              pointerEvents: "none",
-            },
-
-            color: "#fff",
-          },
-
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+        sx={[baseRootSx, ...(Array.isArray(sx) ? sx : [sx])]}
       >
+        {children}
+      </Box>
+    );
+  };
+
+  /*
+   * =========================================================
+   * OVERLAY
+   * =========================================================
+   */
+
+  if (variant === "overlay") {
+    return renderRoot(
+      <>
         {imageElement}
 
         <Box
@@ -505,11 +559,47 @@ export function Spotlight({
 
               md: currentSize.padding + 1,
             },
+
+            display: "flex",
+
+            alignItems: "flex-end",
+
+            minHeight:
+              minHeight === undefined
+                ? {
+                    xs: currentSize.minHeight * 0.75,
+
+                    md: currentSize.minHeight,
+                  }
+                : dimensions.minHeight,
+
+            aspectRatio: height === undefined ? aspectRatio : undefined,
+
+            isolation: "isolate",
+
+            backgroundColor: "background.default",
+
+            color: "#fff",
+
+            "&::after": {
+              content: '""',
+
+              position: "absolute",
+
+              inset: 0,
+
+              zIndex: -1,
+
+              background:
+                "linear-gradient(180deg, rgba(0,0,0,0.02) 20%, rgba(0,0,0,0.68) 100%)",
+
+              pointerEvents: "none",
+            },
           }}
         >
           {content}
         </Box>
-      </Box>
+      </>,
     );
   }
 
@@ -520,41 +610,32 @@ export function Spotlight({
    */
 
   if (variant === "split") {
-    return (
+    return renderRoot(
       <Box
-        component="section"
-        className={className}
-        aria-label={ariaLabel}
-        sx={[
-          baseRootSx,
+        sx={{
+          display: "grid",
 
-          {
-            display: "grid",
+          gridTemplateColumns: {
+            xs: "1fr",
 
-            gridTemplateColumns: {
-              xs: "1fr",
-
-              md: "1.15fr 0.85fr",
-            },
-
-            aspectRatio: height === undefined ? aspectRatio : undefined,
-
-            minHeight:
-              minHeight === undefined
-                ? {
-                    xs: currentSize.minHeight,
-
-                    md: currentSize.minHeight + 40,
-                  }
-                : dimensions.minHeight,
-
-            backgroundColor: "background.paper",
-
-            color: "text.primary",
+            md: "1.15fr 0.85fr",
           },
 
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          aspectRatio: height === undefined ? aspectRatio : undefined,
+
+          minHeight:
+            minHeight === undefined
+              ? {
+                  xs: currentSize.minHeight,
+
+                  md: currentSize.minHeight + 40,
+                }
+              : dimensions.minHeight,
+
+          backgroundColor: "background.paper",
+
+          color: "text.primary",
+        }}
       >
         {/* Image */}
 
@@ -591,7 +672,7 @@ export function Spotlight({
         >
           {content}
         </Box>
-      </Box>
+      </Box>,
     );
   }
 
@@ -601,27 +682,8 @@ export function Spotlight({
    * =========================================================
    */
 
-  return (
-    <Box
-      component="section"
-      className={className}
-      aria-label={ariaLabel}
-      sx={[
-        baseRootSx,
-
-        {
-          backgroundColor: "background.paper",
-
-          color: "text.primary",
-
-          ...(height === undefined && {
-            aspectRatio: undefined,
-          }),
-        },
-
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
+  return renderRoot(
+    <>
       {/* Image */}
 
       <Box
@@ -657,7 +719,7 @@ export function Spotlight({
       >
         {content}
       </Box>
-    </Box>
+    </>,
   );
 }
 

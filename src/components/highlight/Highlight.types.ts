@@ -1,9 +1,23 @@
-import type { ComponentType, CSSProperties, ReactNode } from "react";
+import type {
+  ComponentType,
+  CSSProperties,
+  MouseEvent,
+  ReactNode,
+} from "react";
+
 import type { SxProps, Theme } from "@mui/material/styles";
 
-export type HighlightVariant = "overlay" | "bottom" | "center" | "minimal";
+export type HighlightVariant = "overlay" | "center" | "minimal";
 
 export type HighlightSize = "small" | "medium" | "large";
+
+export type HighlightImagePosition =
+  | "top"
+  | "center"
+  | "bottom"
+  | "left"
+  | "right"
+  | string;
 
 export type HighlightDimension =
   | number
@@ -22,22 +36,18 @@ export interface HighlightAction {
   onClick?: () => void;
 }
 
-/**
- * Props required by a custom image component.
- *
- * This keeps Highlight independent from Next.js while allowing
- * consumers to provide an image implementation such as Next/Image.
- */
 export interface HighlightImageProps {
   src: string;
   alt: string;
+  fill?: boolean;
   sizes?: string;
-  loading?: "lazy" | "eager";
   priority?: boolean;
+  loading?: "eager" | "lazy";
   style?: CSSProperties;
   className?: string;
-  fill?: boolean;
 }
+
+export type HighlightImageComponent = ComponentType<HighlightImageProps>;
 
 export interface HighlightProps {
   /**
@@ -46,116 +56,82 @@ export interface HighlightProps {
   image: string;
 
   /**
-   * Optional mobile image source.
+   * Optional mobile-specific image source.
    */
   mobileImage?: string;
 
   /**
-   * Image alt text.
+   * Image alternative text.
    */
   alt?: string;
-
-  /**
-   * Custom image component.
-   *
-   * Example:
-   *
-   * ImageComponent={Image}
-   *
-   * The library itself remains framework independent.
-   */
-  ImageComponent?: ComponentType<HighlightImageProps>;
-
-  /**
-   * Responsive image sizes hint.
-   */
-  imageSizes?: string;
-
-  /**
-   * Small supporting label.
-   */
-  eyebrow?: ReactNode;
-
-  /**
-   * Main title.
-   */
-  title?: ReactNode;
-
-  /**
-   * Supporting description.
-   */
-  description?: ReactNode;
-
-  /**
-   * Optional CTA.
-   */
-  action?: HighlightAction;
-
-  /**
-   * Visual presentation variant.
-   */
-  variant?: HighlightVariant;
-
-  /**
-   * Preset component size.
-   */
-  size?: HighlightSize;
-
-  /**
-   * Explicit height.
-   */
-  height?: HighlightDimension;
-
-  /**
-   * Minimum height.
-   */
-  minHeight?: HighlightDimension;
-
-  /**
-   * Maximum height.
-   */
-  maxHeight?: HighlightDimension;
-
-  /**
-   * Aspect ratio used when height is not explicitly defined.
-   */
-  aspectRatio?: string;
-
-  /**
-   * CSS object-position.
-   */
-  imagePosition?: string;
-
-  /**
-   * Border radius.
-   *
-   * Numbers are resolved using theme.spacing().
-   */
   radius?: number | string;
 
   /**
-   * Whether the image should be loaded with priority.
+   * Optional custom image implementation.
+   *
+   * Example:
+   * ImageComponent={Image}
+   *
+   * This can be Next.js Image or another compatible
+   * image component.
    */
+  ImageComponent?: HighlightImageComponent;
+
+  /**
+   * Semantic destination for the Highlight image.
+   *
+   * The component renders this as a real <a href="...">
+   * for semantics, SEO, browser status previews, etc.
+   *
+   * Native navigation is prevented. Use onNavigate
+   * for actual application navigation.
+   */
+  href?: string;
+
+  /**
+   * Accessible label for the Highlight image link.
+   */
+  linkLabel?: string;
+
+  /**
+   * Handles Highlight image navigation.
+   *
+   * The component prevents native anchor navigation
+   * and delegates navigation to the consuming application.
+   */
+  onNavigate?: (event: MouseEvent<HTMLAnchorElement>) => void;
+
+  eyebrow?: ReactNode;
+
+  title?: ReactNode;
+
+  description?: ReactNode;
+
+  action?: HighlightAction;
+
+  variant?: HighlightVariant;
+
+  size?: HighlightSize;
+
+  height?: HighlightDimension;
+
+  minHeight?: HighlightDimension;
+
+  maxHeight?: HighlightDimension;
+
+  aspectRatio?: string;
+
+  imagePosition?: HighlightImagePosition;
+
+  imageSizes?: string;
+
   imagePriority?: boolean;
 
-  /**
-   * Additional custom content.
-   */
   children?: ReactNode;
 
-  /**
-   * MUI sx overrides.
-   */
   sx?: SxProps<Theme>;
 
-  /**
-   * Optional CSS class name.
-   */
   className?: string;
-
-  /**
-   * Accessible label.
-   */
 
   "aria-label"?: string;
 }

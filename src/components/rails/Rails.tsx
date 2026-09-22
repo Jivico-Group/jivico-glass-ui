@@ -938,13 +938,9 @@ export function Rails<T>({
       }}
       sx={{
         position: "relative",
-
         cursor,
-
         width: "100%",
-
         minWidth: 0,
-
         ...sx,
       }}
     >

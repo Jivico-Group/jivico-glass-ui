@@ -1,7 +1,7 @@
 import { Theme, Components, SxProps } from '@mui/material/styles';
 import * as _emotion_styled from '@emotion/styled';
 import * as react from 'react';
-import react__default, { ReactNode, ComponentType, CSSProperties, Key } from 'react';
+import react__default, { ReactNode, ComponentType, CSSProperties, MouseEvent, Key, HTMLAttributeAnchorTarget } from 'react';
 import * as _mui_system from '@mui/system';
 import * as _mui_material from '@mui/material';
 import { BoxProps } from '@mui/material';
@@ -1743,6 +1743,8 @@ interface ShowcaseItem {
      * Optional destination for the complete media/image area.
      *
      * This should normally come directly from your API.
+     *
+     * Showcase renders this as a semantic <a href="...">.
      */
     href?: string;
     /**
@@ -1772,16 +1774,24 @@ interface ShowcaseProps {
     imageSizes?: string;
     imagePriority?: boolean;
     /**
-     * Optional navigation/link component.
+     * Handles navigation for the complete media/image area.
+     *
+     * Showcase renders a semantic <a href="..."> but prevents
+     * native browser navigation and delegates the actual routing
+     * to the consuming application.
      *
      * Example with Next.js:
      *
+     * const router = useRouter();
+     *
      * <Showcase
      *   items={items}
-     *   linkComponent={Link}
+     *   onNavigate={(item) => {
+     *     router.push(item.href);
+     *   }}
      * />
      */
-    linkComponent?: ComponentType<any>;
+    onNavigate?: (item: ShowcaseItem, index: number, event: MouseEvent<HTMLAnchorElement>) => void;
     variant?: ShowcaseVariant;
     size?: ShowcaseSize;
     transition?: ShowcaseTransition;
@@ -1818,7 +1828,7 @@ interface ShowcaseProps {
     "aria-label"?: string;
 }
 
-declare const Showcase: ({ items, ImageComponent, imageSizes, imagePriority, linkComponent, variant, size, transition, autoplay, interval, loop, pauseOnHover, showArrows, showProgress, navigation, activeIndex: controlledActiveIndex, defaultActiveIndex, onActiveIndexChange, swipe, radius, height, minHeight, maxHeight, aspectRatio, containerSx, className, "aria-label": ariaLabel, }: ShowcaseProps) => react__default.JSX.Element | null;
+declare const Showcase: ({ items, ImageComponent, imageSizes, imagePriority, variant, size, transition, autoplay, interval, loop, pauseOnHover, showArrows, showProgress, navigation, activeIndex: controlledActiveIndex, defaultActiveIndex, onActiveIndexChange, onNavigate, swipe, radius, height, minHeight, maxHeight, aspectRatio, containerSx, className, "aria-label": ariaLabel, }: ShowcaseProps) => react__default.JSX.Element | null;
 
 /**
  * Number of visible items at each breakpoint.
@@ -2006,6 +2016,49 @@ interface RailProps<T> {
      */
     getTitle?: (item: T, index: number) => ReactNode;
     /**
+     * Optional navigation URL resolver.
+     *
+     * Return undefined when the item should
+     * not be clickable.
+     *
+     * The resolved URL is rendered as the
+     * semantic href of the item's anchor.
+     *
+     * Rails does not perform native navigation.
+     *
+     * Example:
+     *
+     * getHref={(product) =>
+     *   `/products/${product.slug}`
+     * }
+     */
+    getHref?: (item: T, index: number) => string | undefined;
+    /**
+     * Handles item navigation.
+     *
+     * Rails renders a semantic <a href="...">
+     * when getHref returns a destination, but
+     * prevents the anchor's native navigation.
+     *
+     * The consuming application owns routing.
+     *
+     * This keeps Rails framework-agnostic and
+     * allows integration with:
+     *
+     * - Next.js router
+     * - React Router
+     * - TanStack Router
+     * - custom routing
+     * - any application-level navigation system
+     *
+     * Example:
+     *
+     * onNavigate={(item, index) => {
+     *   router.push(`/products/${item.slug}`);
+     * }}
+     */
+    onNavigate?: (item: T, index: number, event: MouseEvent<HTMLAnchorElement>) => void;
+    /**
      * Custom image component.
      *
      * Rails manages the image props internally.
@@ -2041,6 +2094,11 @@ interface RailProps<T> {
      *
      * Use this when the entire card needs
      * to be customized.
+     *
+     * When renderItem is supplied, the built-in
+     * navigation behavior is not applied
+     * automatically. The custom renderer owns
+     * its own navigation.
      */
     renderItem?: (context: RailRenderContext<T>) => ReactNode;
     /**
@@ -2080,7 +2138,7 @@ interface RailProps<T> {
      *
      * Example:
      *
-     * gap={2}
+     * gap={16}
      */
     gap?: number;
     /**
@@ -2193,7 +2251,7 @@ interface RailProps<T> {
     cursor?: RailCursor;
 }
 
-declare function Rails<T>({ items, getKey, getImage, getTitle, renderContent, renderImage, renderItem, ImageComponent, columns, itemWidth, gap, justifyContent, navigation, renderPreviousButton, renderNextButton, swipe, autoplay, interval, pauseOnHover, loop, step, snap, transition, imageAspectRatio, radius, itemSx, sx, className, cursor, "aria-label": ariaLabel, }: RailProps<T>): react.JSX.Element | null;
+declare function Rails<T>({ items, getKey, getImage, getTitle, getHref, renderContent, renderImage, renderItem, ImageComponent, columns, itemWidth, gap, justifyContent, navigation, renderPreviousButton, renderNextButton, swipe, autoplay, interval, pauseOnHover, loop, step, snap, transition, imageAspectRatio, radius, itemSx, sx, className, cursor, onNavigate, "aria-label": ariaLabel, }: RailProps<T>): react.JSX.Element | null;
 
 /**
  * Visual layout variant.
@@ -2230,12 +2288,29 @@ interface SpotlightAction {
     label: string;
     /**
      * Optional navigation URL.
+     *
+     * This remains plain data and does not
+     * contain a React routing component.
      */
     href?: string;
     /**
      * Optional click handler.
+     *
+     * Used for actions that do not navigate.
      */
     onClick?: () => void;
+    /**
+     * Optional target.
+     */
+    target?: HTMLAttributeAnchorTarget;
+    /**
+     * Optional rel attribute.
+     */
+    rel?: string;
+    /**
+     * Accessible label.
+     */
+    ariaLabel?: string;
 }
 /**
  * Props passed internally to a custom image component.
@@ -2290,6 +2365,27 @@ interface SpotlightImageProps {
  */
 type SpotlightImageComponent = ComponentType<SpotlightImageProps>;
 /**
+ * Advanced image renderer context.
+ */
+interface SpotlightImageContext {
+    /**
+     * Main image source.
+     */
+    src: string;
+    /**
+     * Optional mobile image source.
+     */
+    mobileImage?: string;
+    /**
+     * Image alt text.
+     */
+    alt: string;
+    /**
+     * Image cropping position.
+     */
+    imagePosition: SpotlightImagePosition;
+}
+/**
  * Spotlight component props.
  */
 interface SpotlightProps {
@@ -2317,6 +2413,45 @@ interface SpotlightProps {
      * />
      */
     ImageComponent?: SpotlightImageComponent;
+    /**
+     * Advanced custom image renderer.
+     *
+     * This takes precedence over ImageComponent.
+     */
+    renderImage?: (context: SpotlightImageContext) => ReactNode;
+    /**
+     * Optional destination for the complete Spotlight.
+     *
+     * Spotlight renders this as a semantic
+     * <a href="..."> when provided.
+     *
+     * Native browser navigation is prevented.
+     * Use `onNavigate` for actual routing.
+     */
+    href?: string;
+    /**
+     * Accessible label for the complete Spotlight link.
+     */
+    linkLabel?: string;
+    /**
+     * Handles navigation for the complete Spotlight.
+     *
+     * Spotlight renders a semantic <a href="...">,
+     * prevents native navigation, and delegates
+     * actual routing to the consuming application.
+     *
+     * Example with Next.js:
+     *
+     * const router = useRouter();
+     *
+     * <Spotlight
+     *   href="/collections/originals"
+     *   onNavigate={() => {
+     *     router.push("/collections/originals");
+     *   }}
+     * />
+     */
+    onNavigate?: (event: MouseEvent<HTMLAnchorElement>) => void;
     /**
      * Small text above the title.
      */
@@ -2399,12 +2534,6 @@ interface SpotlightProps {
      */
     imagePriority?: boolean;
     /**
-     * Advanced custom image renderer.
-     *
-     * This takes precedence over ImageComponent.
-     */
-    renderImage?: (context: SpotlightImageContext) => ReactNode;
-    /**
      * Border radius.
      *
      * Number values use the theme spacing system.
@@ -2425,36 +2554,16 @@ interface SpotlightProps {
      */
     className?: string;
     /**
-     * Accessible label for the spotlight.
+     * Accessible label for the Spotlight.
      */
     "aria-label"?: string;
 }
-/**
- * Context supplied to a custom image renderer.
- */
-interface SpotlightImageContext {
-    /**
-     * Main image source.
-     */
-    src: string;
-    /**
-     * Optional mobile image source.
-     */
-    mobileImage?: string;
-    /**
-     * Image alt text.
-     */
-    alt: string;
-    /**
-     * Image cropping position.
-     */
-    imagePosition: SpotlightImagePosition;
-}
 
-declare function Spotlight({ image, mobileImage, alt, ImageComponent, renderImage, eyebrow, title, description, action, variant, size, aspectRatio, height, minHeight, maxHeight, imagePosition, imageSizes, imagePriority, radius, children, sx, className, "aria-label": ariaLabel, }: SpotlightProps): react__default.JSX.Element;
+declare function Spotlight({ image, mobileImage, alt, ImageComponent, renderImage, href, linkLabel, onNavigate, eyebrow, title, description, action, variant, size, aspectRatio, height, minHeight, maxHeight, imagePosition, imageSizes, imagePriority, radius, children, sx, className, "aria-label": ariaLabel, }: SpotlightProps): react__default.JSX.Element;
 
-type HighlightVariant = "overlay" | "bottom" | "center" | "minimal";
+type HighlightVariant = "overlay" | "center" | "minimal";
 type HighlightSize = "small" | "medium" | "large";
+type HighlightImagePosition = "top" | "center" | "bottom" | "left" | "right" | string;
 type HighlightDimension = number | string | {
     xs?: number | string;
     sm?: number | string;
@@ -2467,122 +2576,82 @@ interface HighlightAction {
     href?: string;
     onClick?: () => void;
 }
-/**
- * Props required by a custom image component.
- *
- * This keeps Highlight independent from Next.js while allowing
- * consumers to provide an image implementation such as Next/Image.
- */
 interface HighlightImageProps {
     src: string;
     alt: string;
+    fill?: boolean;
     sizes?: string;
-    loading?: "lazy" | "eager";
     priority?: boolean;
+    loading?: "eager" | "lazy";
     style?: CSSProperties;
     className?: string;
-    fill?: boolean;
 }
+type HighlightImageComponent = ComponentType<HighlightImageProps>;
 interface HighlightProps {
     /**
      * Main image source.
      */
     image: string;
     /**
-     * Optional mobile image source.
+     * Optional mobile-specific image source.
      */
     mobileImage?: string;
     /**
-     * Image alt text.
+     * Image alternative text.
      */
     alt?: string;
-    /**
-     * Custom image component.
-     *
-     * Example:
-     *
-     * ImageComponent={Image}
-     *
-     * The library itself remains framework independent.
-     */
-    ImageComponent?: ComponentType<HighlightImageProps>;
-    /**
-     * Responsive image sizes hint.
-     */
-    imageSizes?: string;
-    /**
-     * Small supporting label.
-     */
-    eyebrow?: ReactNode;
-    /**
-     * Main title.
-     */
-    title?: ReactNode;
-    /**
-     * Supporting description.
-     */
-    description?: ReactNode;
-    /**
-     * Optional CTA.
-     */
-    action?: HighlightAction;
-    /**
-     * Visual presentation variant.
-     */
-    variant?: HighlightVariant;
-    /**
-     * Preset component size.
-     */
-    size?: HighlightSize;
-    /**
-     * Explicit height.
-     */
-    height?: HighlightDimension;
-    /**
-     * Minimum height.
-     */
-    minHeight?: HighlightDimension;
-    /**
-     * Maximum height.
-     */
-    maxHeight?: HighlightDimension;
-    /**
-     * Aspect ratio used when height is not explicitly defined.
-     */
-    aspectRatio?: string;
-    /**
-     * CSS object-position.
-     */
-    imagePosition?: string;
-    /**
-     * Border radius.
-     *
-     * Numbers are resolved using theme.spacing().
-     */
     radius?: number | string;
     /**
-     * Whether the image should be loaded with priority.
+     * Optional custom image implementation.
+     *
+     * Example:
+     * ImageComponent={Image}
+     *
+     * This can be Next.js Image or another compatible
+     * image component.
      */
+    ImageComponent?: HighlightImageComponent;
+    /**
+     * Semantic destination for the Highlight image.
+     *
+     * The component renders this as a real <a href="...">
+     * for semantics, SEO, browser status previews, etc.
+     *
+     * Native navigation is prevented. Use onNavigate
+     * for actual application navigation.
+     */
+    href?: string;
+    /**
+     * Accessible label for the Highlight image link.
+     */
+    linkLabel?: string;
+    /**
+     * Handles Highlight image navigation.
+     *
+     * The component prevents native anchor navigation
+     * and delegates navigation to the consuming application.
+     */
+    onNavigate?: (event: MouseEvent<HTMLAnchorElement>) => void;
+    eyebrow?: ReactNode;
+    title?: ReactNode;
+    description?: ReactNode;
+    action?: HighlightAction;
+    variant?: HighlightVariant;
+    size?: HighlightSize;
+    height?: HighlightDimension;
+    minHeight?: HighlightDimension;
+    maxHeight?: HighlightDimension;
+    aspectRatio?: string;
+    imagePosition?: HighlightImagePosition;
+    imageSizes?: string;
     imagePriority?: boolean;
-    /**
-     * Additional custom content.
-     */
     children?: ReactNode;
-    /**
-     * MUI sx overrides.
-     */
     sx?: SxProps<Theme>;
-    /**
-     * Optional CSS class name.
-     */
     className?: string;
-    /**
-     * Accessible label.
-     */
     "aria-label"?: string;
 }
 
-declare const Highlight: ({ image, mobileImage, alt, ImageComponent, imageSizes, eyebrow, title, description, action, variant, size, height, minHeight, maxHeight, aspectRatio, imagePosition, radius, imagePriority, children, sx, className, "aria-label": ariaLabel, }: HighlightProps) => react__default.JSX.Element;
+declare const Highlight: ({ image, mobileImage, alt, ImageComponent, imageSizes, eyebrow, title, description, action, variant, size, height, minHeight, maxHeight, aspectRatio, imagePosition, radius, imagePriority, href, linkLabel, onNavigate, children, sx, className, "aria-label": ariaLabel, }: HighlightProps) => react__default.JSX.Element;
 
 type ThemeMode = "light" | "dark" | "system";
 type ResolvedThemeMode = "light" | "dark";

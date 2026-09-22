@@ -295,19 +295,12 @@ const MediaLink = ({ href, label, target, rel, onClick }: MediaLinkProps) => {
       onClick={onClick}
       sx={{
         position: "absolute",
-
         inset: 0,
-
         zIndex: 2,
-
         display: "block",
-
         width: "100%",
-
         height: "100%",
-
         textDecoration: "none",
-
         cursor: "pointer",
       }}
     />

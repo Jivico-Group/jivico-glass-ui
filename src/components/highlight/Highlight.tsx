@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
+
 import type { Theme } from "@mui/material/styles";
 
 import type {
@@ -40,6 +41,7 @@ const HighlightActionButton = ({ action }: Pick<HighlightProps, "action">) => {
         href={action.href}
         variant="contained"
         size="small"
+        onClick={action.onClick}
         sx={{
           width: "fit-content",
           minWidth: 0,
@@ -183,6 +185,40 @@ const HighlightImage = ({
   return <CustomImage {...imageProps} />;
 };
 
+interface HighlightMediaLinkProps {
+  href: string;
+  label: string;
+  onNavigate?: HighlightProps["onNavigate"];
+}
+
+const HighlightMediaLink = ({
+  href,
+  label,
+  onNavigate,
+}: HighlightMediaLinkProps) => {
+  return (
+    <Box
+      component="a"
+      href={href}
+      aria-label={label}
+      onClick={(event) => {
+        event.preventDefault();
+        onNavigate?.(event);
+      }}
+      sx={{
+        position: "absolute",
+        inset: 0,
+        zIndex: 2,
+        display: "block",
+        width: "100%",
+        height: "100%",
+        textDecoration: "none",
+        cursor: "pointer",
+      }}
+    />
+  );
+};
+
 export const Highlight = ({
   image,
   mobileImage,
@@ -202,6 +238,9 @@ export const Highlight = ({
   imagePosition = "center",
   radius,
   imagePriority = false,
+  href,
+  linkLabel,
+  onNavigate,
   children,
   sx,
   className,
@@ -237,6 +276,17 @@ export const Highlight = ({
   const resolvedHeight = getDimension(height);
   const resolvedMinHeight = getDimension(minHeight);
   const resolvedMaxHeight = getDimension(maxHeight);
+
+  const resolvedLinkLabel =
+    linkLabel || (alt ? `View ${alt}` : "View highlight");
+
+  const mediaLink = href ? (
+    <HighlightMediaLink
+      href={href}
+      label={resolvedLinkLabel}
+      onNavigate={onNavigate}
+    />
+  ) : null;
 
   const content = (
     <>
@@ -335,6 +385,8 @@ export const Highlight = ({
             imagePriority={imagePriority}
             ImageComponent={ImageComponent}
           />
+
+          {mediaLink}
         </Box>
 
         {(eyebrow || title || description || action || children) && (
@@ -365,7 +417,7 @@ export const Highlight = ({
         };
 
   /*
-   * OVERLAY / BOTTOM / CENTER
+   * OVERLAY / CENTER
    */
   return (
     <Box
@@ -410,6 +462,8 @@ export const Highlight = ({
           imagePriority={imagePriority}
           ImageComponent={ImageComponent}
         />
+
+        {mediaLink}
       </Box>
 
       <Box
@@ -418,6 +472,7 @@ export const Highlight = ({
           position: "absolute",
           inset: 0,
           zIndex: 1,
+          pointerEvents: "none",
           background:
             variant === "center"
               ? "linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.5) 100%)"
@@ -429,7 +484,7 @@ export const Highlight = ({
         sx={{
           position: "absolute",
           inset: 0,
-          zIndex: 2,
+          zIndex: 3,
           display: "flex",
           flexDirection: "column",
           ...contentPosition,
