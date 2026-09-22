@@ -1,4 +1,9 @@
-import type { CSSProperties, ComponentType, ReactNode } from "react";
+import type {
+  CSSProperties,
+  ComponentType,
+  MouseEvent,
+  ReactNode,
+} from "react";
 
 import type { ButtonProps } from "@mui/material/Button";
 import type { SxProps, Theme } from "@mui/material/styles";
@@ -80,6 +85,8 @@ export interface ShowcaseItem {
    * Optional destination for the complete media/image area.
    *
    * This should normally come directly from your API.
+   *
+   * Showcase renders this as a semantic <a href="...">.
    */
   href?: string;
 
@@ -121,16 +128,28 @@ export interface ShowcaseProps {
   imagePriority?: boolean;
 
   /**
-   * Optional navigation/link component.
+   * Handles navigation for the complete media/image area.
+   *
+   * Showcase renders a semantic <a href="..."> but prevents
+   * native browser navigation and delegates the actual routing
+   * to the consuming application.
    *
    * Example with Next.js:
    *
+   * const router = useRouter();
+   *
    * <Showcase
    *   items={items}
-   *   linkComponent={Link}
+   *   onNavigate={(item) => {
+   *     router.push(item.href);
+   *   }}
    * />
    */
-  linkComponent?: ComponentType<any>;
+  onNavigate?: (
+    item: ShowcaseItem,
+    index: number,
+    event: MouseEvent<HTMLAnchorElement>,
+  ) => void;
 
   variant?: ShowcaseVariant;
 

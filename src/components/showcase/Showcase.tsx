@@ -58,13 +58,14 @@ const getRadius = (radius: ShowcaseProps["radius"]) => {
       return 0;
 
     case "soft":
-      return 4;
+      return 14;
 
     case "rounded":
     default:
-      return 40;
+      return 2;
   }
 };
+
 const sizeConfig: Record<
   ShowcaseSize,
   {
@@ -278,45 +279,12 @@ const sizeConfig: Record<
 interface MediaLinkProps {
   href: string;
   label?: string;
-  LinkComponent?: React.ComponentType<any>;
   target?: React.HTMLAttributeAnchorTarget;
   rel?: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
-const MediaLink = ({
-  href,
-  label,
-  LinkComponent,
-  target,
-  rel,
-  onClick,
-}: MediaLinkProps) => {
-  const sx = {
-    position: "absolute",
-    inset: 0,
-    zIndex: 2,
-    display: "block",
-    width: "100%",
-    height: "100%",
-    textDecoration: "none",
-    cursor: "pointer",
-  } as const;
-
-  if (LinkComponent) {
-    return (
-      <Box
-        component={LinkComponent}
-        href={href}
-        target={target}
-        rel={rel}
-        aria-label={label}
-        onClick={onClick}
-        sx={sx}
-      />
-    );
-  }
-
+const MediaLink = ({ href, label, target, rel, onClick }: MediaLinkProps) => {
   return (
     <Box
       component="a"
@@ -325,7 +293,23 @@ const MediaLink = ({
       rel={rel}
       aria-label={label}
       onClick={onClick}
-      sx={sx}
+      sx={{
+        position: "absolute",
+
+        inset: 0,
+
+        zIndex: 2,
+
+        display: "block",
+
+        width: "100%",
+
+        height: "100%",
+
+        textDecoration: "none",
+
+        cursor: "pointer",
+      }}
     />
   );
 };
@@ -335,8 +319,6 @@ export const Showcase = ({
   ImageComponent,
   imageSizes = "100vw",
   imagePriority = false,
-
-  linkComponent,
 
   variant = "editorial",
   size = "hero",
@@ -354,6 +336,8 @@ export const Showcase = ({
   activeIndex: controlledActiveIndex,
   defaultActiveIndex = 0,
   onActiveIndexChange,
+
+  onNavigate,
 
   swipe = true,
 
@@ -867,7 +851,11 @@ export const Showcase = ({
               <MediaLink
                 href={item.href}
                 label={item.linkLabel ?? `View ${item.title}`}
-                LinkComponent={linkComponent}
+                onClick={(event) => {
+                  event.preventDefault();
+
+                  onNavigate?.(item, currentIndex, event);
+                }}
               />
             )}
 
@@ -998,37 +986,7 @@ export const Showcase = ({
                         },
                       }}
                     >
-                      {item.action.href && linkComponent ? (
-                        <Button
-                          component={linkComponent}
-                          href={item.action.href}
-                          variant={item.action.variant ?? "contained"}
-                          color={item.action.color ?? "primary"}
-                          size={currentSize.buttonSize}
-                          endIcon={<ArrowRight size={16} />}
-                          target={item.action.target}
-                          rel={item.action.rel}
-                          onClick={item.action.onClick}
-                          aria-label={item.action.ariaLabel}
-                          sx={{
-                            minHeight: currentSize.buttonHeight,
-
-                            px: currentSize.buttonPaddingX,
-
-                            borderRadius: 999,
-
-                            whiteSpace: "nowrap",
-
-                            lineHeight: 1.2,
-
-                            "& .MuiButton-endIcon": {
-                              ml: 0.75,
-                            },
-                          }}
-                        >
-                          {item.action.label}
-                        </Button>
-                      ) : item.action.href ? (
+                      {item.action.href ? (
                         <Button
                           href={item.action.href}
                           variant={item.action.variant ?? "contained"}
@@ -1234,7 +1192,7 @@ export const Showcase = ({
 
       {/* =====================================================
           NAVIGATION
-          
+
           RESTORED:
           - No glass container
           - No visible rail

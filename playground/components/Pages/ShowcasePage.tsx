@@ -25,27 +25,6 @@ import type {
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 /**
- * Mock navigation component
- *
- * In a real Next.js application this would be:
- *
- * import Link from "next/link";
- *
- * <Showcase
- *   items={items}
- *   linkComponent={Link}
- * />
- *
- * The Showcase data itself stays framework-agnostic.
- */
-const MockLink = React.forwardRef<
-  HTMLAnchorElement,
-  React.ComponentPropsWithoutRef<"a">
->(function MockLink(props, ref) {
-  return <a ref={ref} {...props} />;
-});
-
-/**
  * Mock image component
  *
  * In a real Next.js application this would be:
@@ -57,7 +36,8 @@ const MockLink = React.forwardRef<
  *   ImageComponent={Image}
  * />
  *
- * The Showcase data itself stays framework-agnostic.
+ * Image rendering remains injectable because it is a rendering concern,
+ * not a routing concern.
  */
 const MockImage = ({
   src,
@@ -266,10 +246,7 @@ export const ShowcasePage: React.FC = () => {
         title="Interactive Showcase Playground"
         description="Customize variant, size, transition mode, navigation style, radius, and action button color live."
         code={`import { Showcase, type ShowcaseItem } from 'jivico-glass-ui';
-import Link from 'next/link';
 
-// Your API returns plain data.
-// No React components are stored inside the items.
 const items: ShowcaseItem[] = [
   {
     id: "originals",
@@ -319,11 +296,15 @@ const items: ShowcaseItem[] = [
   },
 ];
 
-// Inject the navigation implementation once.
-// In Next.js this is next/link.
+const handleNavigate = (item: ShowcaseItem) => {
+  // The consuming application owns routing.
+  // Example in Next.js:
+  // router.push(item.href);
+};
+
 <Showcase
   items={items}
-  linkComponent={Link}
+  onNavigate={handleNavigate}
   variant="${variant}"
   size="${size}"
   radius="${radius}"
@@ -651,7 +632,11 @@ const items: ShowcaseItem[] = [
           >
             <Showcase
               items={activeItems}
-              linkComponent={MockLink}
+              onNavigate={(item) => {
+                if (item.href) {
+                  window.location.href = item.href;
+                }
+              }}
               variant={variant}
               size={size}
               transition={transition}
@@ -806,7 +791,11 @@ const titleDescItems: ShowcaseItem[] = [
             size="small"
             navigation="dots"
             interval={5000}
-            linkComponent={MockLink}
+            onNavigate={(item) => {
+              if (item.href) {
+                window.location.href = item.href;
+              }
+            }}
           />
         </Box>
       </DemoBlock>
@@ -818,45 +807,36 @@ const titleDescItems: ShowcaseItem[] = [
       <DemoBlock
         id="nextjs-integration"
         title="4. Next.js Integration"
-        description="Keep your API data framework-agnostic and inject Next.js Link and Image at the application boundary."
+        description="Keep your API data framework-agnostic. Showcase renders semantic links, while the consuming Next.js application owns client-side routing."
         code={`// app/components/ShowcaseClient.tsx
 
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import {
   Showcase,
   type ShowcaseItem,
 } from "jivico-glass-ui";
 
-// API returns plain JSON.
-// No React components are stored in the API data.
-const items: ShowcaseItem[] = [
-  {
-    id: "originals",
+interface ShowcaseClientProps {
+  items: ShowcaseItem[];
+}
 
-    media: {
-      src: "/images/originals.jpg",
-      alt: "Jivico Originals",
-    },
+export function ShowcaseClient({
+  items,
+}: ShowcaseClientProps) {
+  const router = useRouter();
 
-    href: "/collections/originals",
-    linkLabel: "Explore Jivico Originals",
-
-    eyebrow: "STUDIO EXCLUSIVE",
-    title: "Originals",
-    description:
-      "Discover the latest Jivico Originals collection.",
-  },
-];
-
-export function ShowcaseClient() {
   return (
     <Showcase
       items={items}
-      linkComponent={Link}
+      onNavigate={(item) => {
+        if (item.href) {
+          router.push(item.href);
+        }
+      }}
       ImageComponent={Image}
     />
   );
@@ -897,9 +877,9 @@ export function ShowcaseClient() {
                 lineHeight: 1.8,
               }}
             >
-              Showcase does not know about Next.js. Your API returns
+              Showcase does not know about Next.js routing. Your API returns
               framework-agnostic data, while the Next.js application provides
-              the navigation and image implementations.
+              the routing implementation and optional image renderer.
             </Typography>
 
             <Stack spacing={1}>
@@ -908,13 +888,23 @@ export function ShowcaseClient() {
               </Typography>
 
               <Typography variant="body2">
-                <strong>2. Next.js</strong> → Provides <code>next/link</code>{" "}
-                and <code>next/image</code>.
+                <strong>2. Showcase</strong> → Renders a semantic{" "}
+                <code>&lt;a href="..."&gt;</code>.
               </Typography>
 
               <Typography variant="body2">
-                <strong>3. Showcase</strong> → Receives those implementations
-                through props.
+                <strong>3. onNavigate</strong> → Showcase prevents native
+                navigation and gives the application the navigation event.
+              </Typography>
+
+              <Typography variant="body2">
+                <strong>4. Next.js</strong> → Calls <code>router.push()</code>{" "}
+                for client-side navigation.
+              </Typography>
+
+              <Typography variant="body2">
+                <strong>5. ImageComponent</strong> → Can optionally receive{" "}
+                <code>next/image</code>.
               </Typography>
             </Stack>
           </Box>
@@ -970,8 +960,8 @@ export function ShowcaseClient() {
                 whiteSpace: "pre",
               }}
             >
-              `
               {`
+{
   "id": "originals",
   "media": {
     "src": "/images/originals.jpg",
@@ -981,8 +971,8 @@ export function ShowcaseClient() {
   "href": "/collections/originals",
   "linkLabel": "Explore Jivico Originals",
   "title": "Originals"
+}
 `}
-              `
             </Typography>
           </Box>
 
@@ -1005,6 +995,66 @@ export function ShowcaseClient() {
               }}
             >
               ↓ plain JSON
+            </Typography>
+          </Box>
+
+          {/* ----------------------------------------------------------
+              Showcase Layer
+              ---------------------------------------------------------- */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              bgcolor: isDark
+                ? "rgba(255, 255, 255, 0.04)"
+                : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${
+                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
+              }`,
+            }}
+          >
+            <Typography
+              variant="overline"
+              sx={{
+                display: "block",
+                mb: 1.5,
+                fontWeight: 700,
+              }}
+            >
+              02 — SHOWCASE
+            </Typography>
+
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                mb: 2,
+                lineHeight: 1.7,
+              }}
+            >
+              Showcase always renders the full media area as a semantic{" "}
+              <code>&lt;a href="..."&gt;</code>. It prevents the browser's
+              default navigation and calls <code>onNavigate</code> instead.
+            </Typography>
+
+            <Typography
+              component="pre"
+              variant="body2"
+              sx={{
+                m: 0,
+                overflowX: "auto",
+                fontFamily: "monospace",
+                lineHeight: 1.7,
+                whiteSpace: "pre",
+              }}
+            >
+              {`<Showcase
+  items={items}
+  onNavigate={(item) => {
+    // Application owns routing.
+  }}
+/>`}
             </Typography>
           </Box>
 
@@ -1032,7 +1082,7 @@ export function ShowcaseClient() {
                 fontWeight: 700,
               }}
             >
-              02 — NEXT.JS LAYER
+              03 — NEXT.JS CLIENT ADAPTER
             </Typography>
 
             <Typography
@@ -1043,8 +1093,8 @@ export function ShowcaseClient() {
                 lineHeight: 1.7,
               }}
             >
-              The application injects framework-specific implementations once.
-              The API data does not need to change.
+              The client adapter owns the actual Next.js navigation. This keeps
+              routing concerns outside the reusable UI component.
             </Typography>
 
             <Typography
@@ -1054,16 +1104,24 @@ export function ShowcaseClient() {
                 m: 0,
                 overflowX: "auto",
                 fontFamily: "monospace",
-                lineHeight: 1.7,
+                lineHeight: 1.8,
                 whiteSpace: "pre",
               }}
             >
-              {`import Link from "next/link";
+              {`"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+const router = useRouter();
 
 <Showcase
   items={items}
-  linkComponent={Link}
+  onNavigate={(item) => {
+    if (item.href) {
+      router.push(item.href);
+    }
+  }}
   ImageComponent={Image}
 />`}
             </Typography>
@@ -1093,13 +1151,13 @@ import Image from "next/image";
                 fontWeight: 700,
               }}
             >
-              03 — WHY
+              04 — WHY
             </Typography>
 
             <Stack spacing={1.25}>
               <Typography variant="body2">
                 <strong>Reusable:</strong> Showcase remains independent from
-                Next.js.
+                Next.js and other routing frameworks.
               </Typography>
 
               <Typography variant="body2">
@@ -1108,14 +1166,19 @@ import Image from "next/image";
               </Typography>
 
               <Typography variant="body2">
-                <strong>Framework-safe:</strong> React, Next.js, Remix, or
-                another application can provide its own link/image
-                implementation.
+                <strong>Semantic:</strong> The media area remains a real{" "}
+                <code>&lt;a href="..."&gt;</code> element.
               </Typography>
 
               <Typography variant="body2">
-                <strong>Easy to consume:</strong> Developers only need to inject
-                the implementations at the application boundary.
+                <strong>Framework-safe:</strong> Next.js, React Router, Remix,
+                or another application can provide its own navigation logic.
+              </Typography>
+
+              <Typography variant="body2">
+                <strong>Application-owned routing:</strong> The reusable
+                component does not need to know which router the application
+                uses.
               </Typography>
             </Stack>
           </Box>
@@ -1144,7 +1207,7 @@ import Image from "next/image";
                 fontWeight: 700,
               }}
             >
-              04 — ARCHITECTURE
+              05 — ARCHITECTURE
             </Typography>
 
             <Typography
@@ -1165,10 +1228,22 @@ plain JSON
 Next.js application
     ↓
 ShowcaseClient
-    ├── linkComponent={Link}
+    ├── onNavigate
+    │      ↓
+    │   router.push()
+    │
     └── ImageComponent={Image}
     ↓
-<Showcase />`}
+<Showcase />
+    ↓
+<a href="...">
+    ↓
+preventDefault()
+    ↓
+onNavigate(item, index, event)
+    ↓
+Next.js router
+`}
             </Typography>
           </Box>
 
@@ -1207,8 +1282,9 @@ ShowcaseClient
                 lineHeight: 1.7,
               }}
             >
-              Once your API data is available, the actual Showcase usage is
-              intentionally small:
+              The reusable component only needs the data and navigation
+              callback. Next.js-specific routing stays at the application
+              boundary.
             </Typography>
 
             <Typography
@@ -1224,7 +1300,11 @@ ShowcaseClient
             >
               {`<Showcase
   items={items}
-  linkComponent={Link}
+  onNavigate={(item) => {
+    if (item.href) {
+      router.push(item.href);
+    }
+  }}
   ImageComponent={Image}
 />`}
             </Typography>
@@ -1240,8 +1320,8 @@ ShowcaseClient
               lineHeight: 1.7,
             }}
           >
-            Keep API responses framework-agnostic. Inject framework-specific
-            components at the application boundary.
+            Keep API responses framework-agnostic. Let Showcase provide semantic
+            links while the consuming application owns actual navigation.
           </Typography>
         </Stack>
       </DemoBlock>
