@@ -15,24 +15,6 @@ export type ListColor =
 
 export type ListVariant = "standard" | "glass";
 export type ListSize = "small" | "medium" | "large";
-// ============================================================
-// MUI TYPE AUGMENTATION
-// ============================================================
-
-declare module "@mui/material/List" {
-  interface ListOwnProps {
-    color?: ListColor;
-    variant?: ListVariant;
-    size?: ListSize;
-  }
-}
-
-declare module "@mui/material/ListItemButton" {
-  interface ListItemButtonOwnProps {
-    color?: ListColor;
-    size?: ListSize;
-  }
-}
 
 // ============================================================
 // OVERRIDES

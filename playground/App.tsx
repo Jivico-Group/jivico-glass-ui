@@ -23,6 +23,8 @@ import { SteppersPage } from "./components/Pages/SteppersPage.js";
 import { DialogsPage } from "./components/Pages/DialogsPage.js";
 import { BottomNavigationPage } from "./components/Pages/BottomNavigationPage.js";
 import { ListPage } from "./components/Pages/ListPage.js";
+import { TablePage } from "./components/Pages/TablePage.js";
+import { MenusPage } from "./components/Pages/MenusPage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
 const TOC_MAP: Record<string, TocItem[]> = {
@@ -67,6 +69,16 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "list-sizes", title: "List Scale Sizes" },
     { id: "list-colors", title: "Semantic Palette" },
     { id: "list-composition", title: "Rich Composition" },
+  ],
+  table: [
+    { id: "glass-spotlight", title: "Frosted Glass Table" },
+    { id: "table-sizes", title: "Table Sizes" },
+    { id: "table-colors", title: "Semantic Color Themes" },
+  ],
+  menus: [
+    { id: "glass-spotlight", title: "Frosted Glass Menu" },
+    { id: "menu-sizes", title: "Menu Sizes" },
+    { id: "menu-colors", title: "Semantic Color Accents" },
   ],
   "bottom-nav": [
     { id: "bottom-nav-surface", title: "Frosted Glass Surface" },
@@ -212,6 +224,10 @@ export default function App() {
         return <BottomNavigationPage />;
       case "list":
         return <ListPage />;
+      case "table":
+        return <TablePage />;
+      case "menus":
+        return <MenusPage />;
       case "alerts":
         return <AlertsPage />;
       case "tooltips":

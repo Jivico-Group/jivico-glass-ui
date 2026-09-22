@@ -853,6 +853,78 @@ declare module "@mui/material/Box" {
   }
 }
 
+/**
+ * ============================================================
+ * LIST & LIST ITEM CONTROLS
+ * ============================================================
+ */
+
+declare module "@mui/material/List" {
+  interface ListOwnProps {
+    color?:
+      | "primary"
+      | "secondary"
+      | "accent"
+      | "success"
+      | "warning"
+      | "error";
+    variant?: "standard" | "glass";
+    size?: "small" | "medium" | "large";
+  }
+}
+
+declare module "@mui/material/ListItemButton" {
+  interface ListItemButtonOwnProps {
+    color?:
+      | "primary"
+      | "secondary"
+      | "accent"
+      | "success"
+      | "warning"
+      | "error";
+    size?: "small" | "medium" | "large";
+  }
+}
+
+/**
+ * ============================================================
+ * TABLE CONTROLS
+ * ============================================================
+ */
+
+declare module "@mui/material/Table" {
+  interface TableOwnProps {
+    color?:
+      | "primary"
+      | "secondary"
+      | "accent"
+      | "success"
+      | "warning"
+      | "error";
+    variant?: "standard" | "glass";
+  }
+}
+
+/**
+ * ============================================================
+ * MENU CONTROLS
+ * ============================================================
+ */
+
+declare module "@mui/material/Menu" {
+  interface MenuOwnProps {
+    color?:
+      | "primary"
+      | "secondary"
+      | "accent"
+      | "success"
+      | "warning"
+      | "error";
+    surface?: "standard" | "glass";
+    size?: "small" | "medium";
+  }
+}
+
 declare const BRAND_COLORS: {
     charcoal: string;
     stone: string;

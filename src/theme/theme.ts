@@ -8,6 +8,8 @@ import { getFeedbackOverrides } from "./overrides/feedback";
 import { getSurfaceOverrides } from "./overrides/surfaces";
 import { getNavigationOverrides } from "./overrides/navigation";
 import "./augmentations.d.ts";
+import { getTableRootOverrides } from "./overrides/table/index.js";
+import { getMenuRootOverrides } from "./overrides/menu/index.js";
 
 export const GOOGLE_SANS_FLEX_URL =
   "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
@@ -106,6 +108,8 @@ function buildTheme(mode: "light" | "dark"): Theme {
       ...getFeedbackOverrides(palette, isDark),
       ...getSurfaceOverrides(palette, isDark),
       ...getNavigationOverrides(palette, isDark),
+      ...getTableRootOverrides(palette, isDark),
+      ...getMenuRootOverrides(palette, isDark),
     },
   });
 

@@ -41,6 +41,7 @@ export const NAV_SECTIONS: NavSection[] = [
     title: "Data Display",
     items: [
       { id: "chips", label: "Chip", badge: "BRAND KIT" },
+      { id: "table", label: "Table & Data Grid", badge: "NEW" },
       { id: "data-display", label: "Avatar & Badge" },
       { id: "typography", label: "Typography" },
     ],
@@ -48,6 +49,7 @@ export const NAV_SECTIONS: NavSection[] = [
   {
     title: "Navigation",
     items: [
+      { id: "menus", label: "Menu & Dropdown", badge: "NEW" },
       { id: "list", label: "List & Item", badge: "NEW" },
       { id: "bottom-nav", label: "Bottom Navigation", badge: "NEW" },
       { id: "tabs", label: "Tabs (Segmented Control)", badge: "BRAND KIT" },
