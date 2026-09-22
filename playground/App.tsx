@@ -21,7 +21,6 @@ import { ProgressPage } from "./components/Pages/ProgressPage.js";
 import { TypographyPage } from "./components/Pages/TypographyPage.js";
 import { SteppersPage } from "./components/Pages/SteppersPage.js";
 import { DialogsPage } from "./components/Pages/DialogsPage.js";
-import { DynamicIslandPage } from "./components/Pages/DynamicIslandPage.js";
 import { BottomNavigationPage } from "./components/Pages/BottomNavigationPage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
@@ -61,12 +60,6 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "compact", title: "Compact Control" },
     { id: "full-width", title: "Full Width" },
     { id: "frosted-glass", title: "Frosted Glass" },
-  ],
-  "dynamic-island": [
-    { id: "dries-van-noten", title: "Dries Van Noten Bar" },
-    { id: "placement-controller", title: "Placement Engine" },
-    { id: "arbitrary-children", title: "Arbitrary Children" },
-    { id: "light-dark", title: "Light & Dark Adaptation" },
   ],
   "bottom-nav": [
     { id: "bottom-nav-surface", title: "Frosted Glass Surface" },
@@ -208,8 +201,6 @@ export default function App() {
         return <PaperPage />;
       case "dialogs":
         return <DialogsPage />;
-      case "dynamic-island":
-        return <DynamicIslandPage />;
       case "bottom-nav":
         return <BottomNavigationPage />;
       case "alerts":

@@ -48,7 +48,6 @@ export const NAV_SECTIONS: NavSection[] = [
   {
     title: "Navigation",
     items: [
-      { id: "dynamic-island", label: "Dynamic Island", badge: "NEW" },
       { id: "bottom-nav", label: "Bottom Navigation", badge: "NEW" },
       { id: "tabs", label: "Tabs (Segmented Control)", badge: "BRAND KIT" },
       { id: "steppers", label: "Stepper" },

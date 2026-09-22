@@ -105,7 +105,18 @@ export const SteppersPage: React.FC = () => {
               </Step>
             ))}
           </Stepper>
-
+          <Stepper
+            activeStep={activeStep}
+            color="accent"
+            alternativeLabel
+            sx={{ mb: 4 }}
+          >
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
           <Box
             sx={{
               display: "flex",

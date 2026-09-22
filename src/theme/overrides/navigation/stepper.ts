@@ -42,14 +42,29 @@ export const getStepperOverrides = (
           "--jivico-stepper-contrast": palette.success.contrastText,
         },
       },
+      {
+        props: { color: "warning" },
+        style: {
+          "--jivico-stepper-color": palette.warning.main,
+          "--jivico-stepper-contrast": palette.warning.contrastText,
+        },
+      },
+      {
+        props: { color: "error" },
+        style: {
+          "--jivico-stepper-color": palette.error.main,
+          "--jivico-stepper-contrast": palette.error.contrastText,
+        },
+      },
     ],
   },
+
   MuiStepConnector: {
     styleOverrides: {
       line: {
         borderColor: isDark
-          ? "rgba(255, 255, 255, 0.18)"
-          : "rgba(17, 17, 17, 0.16)",
+          ? "rgba(255, 255, 255, 0.22)"
+          : "rgba(17, 17, 17, 0.22)",
 
         borderTopWidth: 2,
         borderRadius: 1,
@@ -66,12 +81,16 @@ export const getStepperOverrides = (
       },
     },
   },
+
   MuiStepIcon: {
     styleOverrides: {
       root: {
-        color: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(17, 17, 17, 0.14)",
+        color: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(17, 17, 17, 0.38)",
+        transition: "color 0.2s ease, filter 0.2s ease, transform 0.2s ease",
 
-        transition: "all 0.2s ease",
+        "& .MuiStepIcon-text": {
+          fill: palette.background.paper,
+        },
 
         "&.Mui-active": {
           color: "var(--jivico-stepper-color)",
@@ -99,7 +118,7 @@ export const getStepperOverrides = (
         fontSize: "0.875rem",
         fontWeight: 500,
 
-        color: isDark ? "rgba(255, 255, 255, 0.72)" : "rgba(17, 17, 17, 0.72)",
+        color: palette.text.secondary,
 
         "&.Mui-active": {
           color: "var(--jivico-stepper-color)",
