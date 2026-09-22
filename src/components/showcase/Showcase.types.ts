@@ -23,18 +23,6 @@ export type ShowcaseButtonColor =
   | "info"
   | "glass";
 
-/**
- * Responsive dimension value.
- *
- * Numeric values follow MUI spacing-compatible CSS
- * behavior when used through the component's sx system.
- *
- * Strings may be used for values such as:
- * - "500px"
- * - "70vh"
- * - "clamp(420px, 60vh, 760px)"
- * - "auto"
- */
 export type ShowcaseDimension =
   | number
   | string
@@ -46,31 +34,13 @@ export type ShowcaseDimension =
       xl?: number | string;
     };
 
-/**
- * Props expected by an injected image component.
- *
- * Designed to work with:
- * - Next.js Image
- * - Native img wrappers
- * - Custom image components
- * - Image optimization libraries
- *
- * Showcase owns the image frame dimensions,
- * therefore `fill` is the preferred mode.
- */
 export interface ShowcaseImageComponentProps {
   src: string;
-
   alt: string;
-
   fill?: boolean;
-
   sizes?: string;
-
   priority?: boolean;
-
   style?: CSSProperties;
-
   className?: string;
 }
 
@@ -78,32 +48,45 @@ export type ShowcaseImageComponent = ComponentType<ShowcaseImageComponentProps>;
 
 export interface ShowcaseMedia {
   src: string;
-
   alt: string;
-
   mobileSrc?: string;
 }
 
 export interface ShowcaseAction {
   label: string;
-
   href?: string;
-
   onClick?: () => void;
 
   color?: ShowcaseButtonColor;
-
   variant?: ButtonProps["variant"];
 
   target?: React.HTMLAttributeAnchorTarget;
-
   rel?: string;
+  ariaLabel?: string;
 }
 
 export interface ShowcaseItem {
+  /**
+   * Stable identifier for the showcase item.
+   */
   id: string;
 
+  /**
+   * Main showcase media.
+   */
   media: ShowcaseMedia;
+
+  /**
+   * Optional destination for the complete media/image area.
+   *
+   * This should normally come directly from your API.
+   */
+  href?: string;
+
+  /**
+   * Accessible label for the full media link.
+   */
+  linkLabel?: string;
 
   eyebrow?: string;
 
@@ -119,37 +102,35 @@ export interface ShowcaseItem {
 }
 
 export interface ShowcaseProps {
+  /**
+   * Showcase items.
+   *
+   * These should remain plain API/data objects.
+   */
   items: ShowcaseItem[];
 
   /**
-   * Optional image component.
+   * Image renderer.
    *
-   * Example:
-   *
-   * <Showcase
-   *   items={items}
-   *   ImageComponent={Image}
-   * />
-   *
-   * If omitted, Showcase falls back to a native
-   * image implementation.
+   * Useful for injecting Next/Image or another image implementation.
    */
   ImageComponent?: ShowcaseImageComponent;
 
-  /**
-   * Image sizes attribute.
-   *
-   * Defaults to 100vw.
-   */
   imageSizes?: string;
 
-  /**
-   * Whether the active image should receive
-   * priority loading.
-   *
-   * Useful for an above-the-fold hero.
-   */
   imagePriority?: boolean;
+
+  /**
+   * Optional navigation/link component.
+   *
+   * Example with Next.js:
+   *
+   * <Showcase
+   *   items={items}
+   *   linkComponent={Link}
+   * />
+   */
+  linkComponent?: ComponentType<any>;
 
   variant?: ShowcaseVariant;
 
@@ -171,8 +152,14 @@ export interface ShowcaseProps {
 
   navigation?: ShowcaseNavigation;
 
+  /**
+   * Controlled active index.
+   */
   activeIndex?: number;
 
+  /**
+   * Initial active index for uncontrolled mode.
+   */
   defaultActiveIndex?: number;
 
   onActiveIndexChange?: (index: number, item: ShowcaseItem) => void;
@@ -181,44 +168,22 @@ export interface ShowcaseProps {
 
   radius?: ShowcaseRadius;
 
-  /**
-   * Explicit responsive height.
-   *
-   * When supplied, height takes precedence over
-   * aspectRatio for determining the frame height.
-   */
   height?: ShowcaseDimension;
 
-  /**
-   * Minimum responsive height.
-   */
   minHeight?: ShowcaseDimension;
 
-  /**
-   * Maximum responsive height.
-   */
   maxHeight?: ShowcaseDimension;
 
-  /**
-   * Optional responsive aspect-ratio override.
-   *
-   * Used when an explicit height is not provided.
-   *
-   * If omitted, the ratio is automatically selected
-   * from the Showcase size.
-   */
-  aspectRatio?: {
-    xs?: string;
-    sm?: string;
-    md?: string;
-    lg?: string;
-    xl?: string;
-  };
+  aspectRatio?:
+    | string
+    | {
+        xs?: string;
+        sm?: string;
+        md?: string;
+        lg?: string;
+        xl?: string;
+      };
 
-  /**
-   * Allows consumers to override the Showcase
-   * container styling.
-   */
   containerSx?: SxProps<Theme>;
 
   className?: string;

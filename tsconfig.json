@@ -27,6 +27,6 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "playground/**/*"]
+  "include": ["src/**/*", "playground/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

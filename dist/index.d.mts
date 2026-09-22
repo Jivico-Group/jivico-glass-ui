@@ -1698,18 +1698,6 @@ type ShowcaseSize = "small" | "medium" | "large" | "hero";
 type ShowcaseVariant = "editorial" | "minimal" | "glass";
 type ShowcaseRadius = "square" | "rounded" | "soft";
 type ShowcaseButtonColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error" | "info" | "glass";
-/**
- * Responsive dimension value.
- *
- * Numeric values follow MUI spacing-compatible CSS
- * behavior when used through the component's sx system.
- *
- * Strings may be used for values such as:
- * - "500px"
- * - "70vh"
- * - "clamp(420px, 60vh, 760px)"
- * - "auto"
- */
 type ShowcaseDimension = number | string | {
     xs?: number | string;
     sm?: number | string;
@@ -1717,18 +1705,6 @@ type ShowcaseDimension = number | string | {
     lg?: number | string;
     xl?: number | string;
 };
-/**
- * Props expected by an injected image component.
- *
- * Designed to work with:
- * - Next.js Image
- * - Native img wrappers
- * - Custom image components
- * - Image optimization libraries
- *
- * Showcase owns the image frame dimensions,
- * therefore `fill` is the preferred mode.
- */
 interface ShowcaseImageComponentProps {
     src: string;
     alt: string;
@@ -1752,10 +1728,27 @@ interface ShowcaseAction {
     variant?: ButtonProps["variant"];
     target?: React.HTMLAttributeAnchorTarget;
     rel?: string;
+    ariaLabel?: string;
 }
 interface ShowcaseItem {
+    /**
+     * Stable identifier for the showcase item.
+     */
     id: string;
+    /**
+     * Main showcase media.
+     */
     media: ShowcaseMedia;
+    /**
+     * Optional destination for the complete media/image area.
+     *
+     * This should normally come directly from your API.
+     */
+    href?: string;
+    /**
+     * Accessible label for the full media link.
+     */
+    linkLabel?: string;
     eyebrow?: string;
     title: string;
     description?: string;
@@ -1764,34 +1757,31 @@ interface ShowcaseItem {
     sideLabel?: string;
 }
 interface ShowcaseProps {
+    /**
+     * Showcase items.
+     *
+     * These should remain plain API/data objects.
+     */
     items: ShowcaseItem[];
     /**
-     * Optional image component.
+     * Image renderer.
      *
-     * Example:
+     * Useful for injecting Next/Image or another image implementation.
+     */
+    ImageComponent?: ShowcaseImageComponent;
+    imageSizes?: string;
+    imagePriority?: boolean;
+    /**
+     * Optional navigation/link component.
+     *
+     * Example with Next.js:
      *
      * <Showcase
      *   items={items}
-     *   ImageComponent={Image}
+     *   linkComponent={Link}
      * />
-     *
-     * If omitted, Showcase falls back to a native
-     * image implementation.
      */
-    ImageComponent?: ShowcaseImageComponent;
-    /**
-     * Image sizes attribute.
-     *
-     * Defaults to 100vw.
-     */
-    imageSizes?: string;
-    /**
-     * Whether the active image should receive
-     * priority loading.
-     *
-     * Useful for an above-the-fold hero.
-     */
-    imagePriority?: boolean;
+    linkComponent?: ComponentType<any>;
     variant?: ShowcaseVariant;
     size?: ShowcaseSize;
     transition?: ShowcaseTransition;
@@ -1802,51 +1792,33 @@ interface ShowcaseProps {
     showArrows?: boolean;
     showProgress?: boolean;
     navigation?: ShowcaseNavigation;
+    /**
+     * Controlled active index.
+     */
     activeIndex?: number;
+    /**
+     * Initial active index for uncontrolled mode.
+     */
     defaultActiveIndex?: number;
     onActiveIndexChange?: (index: number, item: ShowcaseItem) => void;
     swipe?: boolean;
     radius?: ShowcaseRadius;
-    /**
-     * Explicit responsive height.
-     *
-     * When supplied, height takes precedence over
-     * aspectRatio for determining the frame height.
-     */
     height?: ShowcaseDimension;
-    /**
-     * Minimum responsive height.
-     */
     minHeight?: ShowcaseDimension;
-    /**
-     * Maximum responsive height.
-     */
     maxHeight?: ShowcaseDimension;
-    /**
-     * Optional responsive aspect-ratio override.
-     *
-     * Used when an explicit height is not provided.
-     *
-     * If omitted, the ratio is automatically selected
-     * from the Showcase size.
-     */
-    aspectRatio?: {
+    aspectRatio?: string | {
         xs?: string;
         sm?: string;
         md?: string;
         lg?: string;
         xl?: string;
     };
-    /**
-     * Allows consumers to override the Showcase
-     * container styling.
-     */
     containerSx?: SxProps<Theme>;
     className?: string;
     "aria-label"?: string;
 }
 
-declare const Showcase: react__default.FC<ShowcaseProps>;
+declare const Showcase: ({ items, ImageComponent, imageSizes, imagePriority, linkComponent, variant, size, transition, autoplay, interval, loop, pauseOnHover, showArrows, showProgress, navigation, activeIndex: controlledActiveIndex, defaultActiveIndex, onActiveIndexChange, swipe, radius, height, minHeight, maxHeight, aspectRatio, containerSx, className, "aria-label": ariaLabel, }: ShowcaseProps) => react__default.JSX.Element | null;
 
 /**
  * Number of visible items at each breakpoint.

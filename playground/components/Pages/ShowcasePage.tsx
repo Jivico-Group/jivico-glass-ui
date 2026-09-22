@@ -8,6 +8,7 @@ import {
   Switch,
 } from "@mui/material";
 
+import "../../../src/theme/augmentations.d.ts";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { Showcase } from "../../../src/components/showcase/Showcase.js";
@@ -19,8 +20,69 @@ import type {
   ShowcaseNavigation,
   ShowcaseRadius,
   ShowcaseButtonColor,
+  ShowcaseImageComponentProps,
 } from "../../../src/components/showcase/Showcase.types.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
+
+/**
+ * Mock navigation component
+ *
+ * In a real Next.js application this would be:
+ *
+ * import Link from "next/link";
+ *
+ * <Showcase
+ *   items={items}
+ *   linkComponent={Link}
+ * />
+ *
+ * The Showcase data itself stays framework-agnostic.
+ */
+const MockLink = React.forwardRef<
+  HTMLAnchorElement,
+  React.ComponentPropsWithoutRef<"a">
+>(function MockLink(props, ref) {
+  return <a ref={ref} {...props} />;
+});
+
+/**
+ * Mock image component
+ *
+ * In a real Next.js application this would be:
+ *
+ * import Image from "next/image";
+ *
+ * <Showcase
+ *   items={items}
+ *   ImageComponent={Image}
+ * />
+ *
+ * The Showcase data itself stays framework-agnostic.
+ */
+const MockImage = ({
+  src,
+  alt,
+  fill,
+  sizes,
+  priority,
+  style,
+  className,
+}: ShowcaseImageComponentProps) => (
+  <img
+    src={src}
+    alt={alt}
+    sizes={sizes}
+    loading={priority ? "eager" : "lazy"}
+    className={className}
+    style={{
+      display: "block",
+      width: fill ? "100%" : undefined,
+      height: fill ? "100%" : undefined,
+      objectFit: fill ? "cover" : undefined,
+      ...style,
+    }}
+  />
+);
 
 // Mock Showcase Items
 const heroShowcaseItems: ShowcaseItem[] = [
@@ -30,6 +92,12 @@ const heroShowcaseItems: ShowcaseItem[] = [
       src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80",
       alt: "Originals Collection",
     },
+
+    // API-safe navigation data.
+    // No React component is stored here.
+    href: "#originals",
+    linkLabel: "Explore Originals",
+
     eyebrow: "STUDIO EXCLUSIVE",
     title: "Originals by Studio",
     description:
@@ -46,6 +114,10 @@ const heroShowcaseItems: ShowcaseItem[] = [
       src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1600&q=80",
       alt: "Freestyle Designer",
     },
+
+    href: "#freestyle",
+    linkLabel: "Explore Freestyle",
+
     eyebrow: "DESIGN STUDIO",
     title: "Create Your Freestyle",
     description:
@@ -62,6 +134,10 @@ const heroShowcaseItems: ShowcaseItem[] = [
       src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
       alt: "Liquid Glass Architecture",
     },
+
+    href: "#setup",
+    linkLabel: "View Documentation",
+
     eyebrow: "MATERIAL UI V9",
     title: "Liquid Glass System",
     description:
@@ -74,7 +150,7 @@ const heroShowcaseItems: ShowcaseItem[] = [
   },
 ];
 
-// Minimal Image-Only Items (No text, title, or buttons)
+// Minimal Image-Only Items
 const imageOnlyItems: ShowcaseItem[] = [
   {
     id: "img-1",
@@ -82,7 +158,7 @@ const imageOnlyItems: ShowcaseItem[] = [
       src: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80",
       alt: "Abstract Geometry 1",
     },
-    title: "", // Empty for pure image mode
+    title: "",
   },
   {
     id: "img-2",
@@ -102,7 +178,7 @@ const imageOnlyItems: ShowcaseItem[] = [
   },
 ];
 
-// Title & Description Only Items (No eyebrow or CTA buttons)
+// Title & Description Only Items
 const titleDescItems: ShowcaseItem[] = [
   {
     id: "td-1",
@@ -128,22 +204,35 @@ const titleDescItems: ShowcaseItem[] = [
 
 export const ShowcasePage: React.FC = () => {
   const { resolvedMode } = useGlassMode();
+
   const isDark = resolvedMode === "dark";
 
   // Interactive Playground Controls
   const [variant, setVariant] = useState<ShowcaseVariant>("editorial");
+
   const [size, setSize] = useState<ShowcaseSize>("hero");
+
   const [transition, setTransition] = useState<ShowcaseTransition>("cinematic");
+
   const [navigation, setNavigation] = useState<ShowcaseNavigation>("vertical");
+
   const [radius, setRadius] = useState<ShowcaseRadius>("rounded");
+
   const [actionColor, setActionColor] =
     useState<ShowcaseButtonColor>("primary");
+
   const [autoplay, setAutoplay] = useState(true);
+
   const [showArrows, setShowArrows] = useState(true);
+
   const [showProgress, setShowProgress] = useState(true);
+
   const [interval, setInterval] = useState(5000);
 
   // Dynamic Items with customized action button colors
+  //
+  // Notice that we are NOT injecting a Link component
+  // into the items. The data remains plain.
   const activeItems = useMemo(() => {
     return heroShowcaseItems.map((item) => ({
       ...item,
@@ -168,14 +257,19 @@ export const ShowcasePage: React.FC = () => {
         "Keyboard Nav",
       ]}
     >
-      {/* 1. Interactive Showcase Playground */}
+      {/* ============================================================
+          1. Interactive Showcase Playground
+          ============================================================ */}
+
       <DemoBlock
         id="interactive-showcase"
         title="Interactive Showcase Playground"
         description="Customize variant, size, transition mode, navigation style, radius, and action button color live."
         code={`import { Showcase, type ShowcaseItem } from 'jivico-glass-ui';
+import Link from 'next/link';
 
-// Define your slider items array
+// Your API returns plain data.
+// No React components are stored inside the items.
 const items: ShowcaseItem[] = [
   {
     id: "originals",
@@ -184,26 +278,38 @@ const items: ShowcaseItem[] = [
       alt: "Originals Collection",
       mobileSrc: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600",
     },
+
+    href: "/collections/originals",
+    linkLabel: "Explore Jivico Originals",
+
     eyebrow: "STUDIO EXCLUSIVE",
     title: "Originals by Studio",
     description: "Limited-edition luxury glassmorphic collections.",
+
     action: {
       label: "Discover Originals",
-      href: "/originals",
+      href: "/collections/originals",
       color: "${actionColor}",
       variant: "contained",
     },
+
     sideLabel: "FALL / WINTER 2026",
   },
+
   {
     id: "freestyle",
     media: {
       src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1600",
       alt: "Freestyle Designer",
     },
+
+    href: "/freestyle",
+    linkLabel: "Explore Freestyle",
+
     eyebrow: "DESIGN STUDIO",
     title: "Create Your Freestyle",
     description: "Upload your artwork and print 1-of-1 pieces.",
+
     action: {
       label: "Explore Freestyle",
       href: "/freestyle",
@@ -213,9 +319,11 @@ const items: ShowcaseItem[] = [
   },
 ];
 
-// Render Showcase component
+// Inject the navigation implementation once.
+// In Next.js this is next/link.
 <Showcase
   items={items}
+  linkComponent={Link}
   variant="${variant}"
   size="${size}"
   radius="${radius}"
@@ -254,14 +362,22 @@ const items: ShowcaseItem[] = [
             <Stack
               direction="row"
               spacing={1}
-              sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}
+              sx={{
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: 1,
+              }}
             >
               <Typography
                 variant="caption"
-                sx={{ fontWeight: 700, minWidth: 90 }}
+                sx={{
+                  fontWeight: 700,
+                  minWidth: 90,
+                }}
               >
                 Variant:
               </Typography>
+
               {(["editorial", "minimal", "glass"] as ShowcaseVariant[]).map(
                 (v) => (
                   <Button
@@ -281,14 +397,22 @@ const items: ShowcaseItem[] = [
             <Stack
               direction="row"
               spacing={1}
-              sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}
+              sx={{
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: 1,
+              }}
             >
               <Typography
                 variant="caption"
-                sx={{ fontWeight: 700, minWidth: 90 }}
+                sx={{
+                  fontWeight: 700,
+                  minWidth: 90,
+                }}
               >
                 Size:
               </Typography>
+
               {(["small", "medium", "large", "hero"] as ShowcaseSize[]).map(
                 (s) => (
                   <Button
@@ -308,14 +432,22 @@ const items: ShowcaseItem[] = [
             <Stack
               direction="row"
               spacing={1}
-              sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}
+              sx={{
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: 1,
+              }}
             >
               <Typography
                 variant="caption"
-                sx={{ fontWeight: 700, minWidth: 90 }}
+                sx={{
+                  fontWeight: 700,
+                  minWidth: 90,
+                }}
               >
                 Transition:
               </Typography>
+
               {(["cinematic", "fade", "slide"] as ShowcaseTransition[]).map(
                 (t) => (
                   <Button
@@ -335,14 +467,22 @@ const items: ShowcaseItem[] = [
             <Stack
               direction="row"
               spacing={1}
-              sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}
+              sx={{
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: 1,
+              }}
             >
               <Typography
                 variant="caption"
-                sx={{ fontWeight: 700, minWidth: 90 }}
+                sx={{
+                  fontWeight: 700,
+                  minWidth: 90,
+                }}
               >
                 Navigation:
               </Typography>
+
               {(["vertical", "dots", "none"] as ShowcaseNavigation[]).map(
                 (n) => (
                   <Button
@@ -362,14 +502,22 @@ const items: ShowcaseItem[] = [
             <Stack
               direction="row"
               spacing={1}
-              sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}
+              sx={{
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: 1,
+              }}
             >
               <Typography
                 variant="caption"
-                sx={{ fontWeight: 700, minWidth: 90 }}
+                sx={{
+                  fontWeight: 700,
+                  minWidth: 90,
+                }}
               >
                 Radius:
               </Typography>
+
               {(["square", "rounded", "soft"] as ShowcaseRadius[]).map((r) => (
                 <Button
                   key={r}
@@ -387,14 +535,22 @@ const items: ShowcaseItem[] = [
             <Stack
               direction="row"
               spacing={1}
-              sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}
+              sx={{
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: 1,
+              }}
             >
               <Typography
                 variant="caption"
-                sx={{ fontWeight: 700, minWidth: 90 }}
+                sx={{
+                  fontWeight: 700,
+                  minWidth: 90,
+                }}
               >
                 CTA Color:
               </Typography>
+
               {(
                 [
                   "primary",
@@ -416,7 +572,14 @@ const items: ShowcaseItem[] = [
             </Stack>
 
             {/* Boolean Toggles */}
-            <Stack direction="row" spacing={3} sx={{ flexWrap: "wrap", pt: 1 }}>
+            <Stack
+              direction="row"
+              spacing={3}
+              sx={{
+                flexWrap: "wrap",
+                pt: 1,
+              }}
+            >
               <FormControlLabel
                 control={
                   <Switch
@@ -426,11 +589,17 @@ const items: ShowcaseItem[] = [
                   />
                 }
                 label={
-                  <Typography variant="caption" sx={{ fontWeight: 600 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      fontWeight: 600,
+                    }}
+                  >
                     Autoplay
                   </Typography>
                 }
               />
+
               <FormControlLabel
                 control={
                   <Switch
@@ -440,11 +609,17 @@ const items: ShowcaseItem[] = [
                   />
                 }
                 label={
-                  <Typography variant="caption" sx={{ fontWeight: 600 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      fontWeight: 600,
+                    }}
+                  >
                     Arrows
                   </Typography>
                 }
               />
+
               <FormControlLabel
                 control={
                   <Switch
@@ -454,7 +629,12 @@ const items: ShowcaseItem[] = [
                   />
                 }
                 label={
-                  <Typography variant="caption" sx={{ fontWeight: 600 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      fontWeight: 600,
+                    }}
+                  >
                     Progress Bar
                   </Typography>
                 }
@@ -463,9 +643,15 @@ const items: ShowcaseItem[] = [
           </Box>
 
           {/* Render Active Showcase */}
-          <Box sx={{ width: "100%", overflow: "hidden" }}>
+          <Box
+            sx={{
+              width: "100%",
+              overflow: "hidden",
+            }}
+          >
             <Showcase
               items={activeItems}
+              linkComponent={MockLink}
               variant={variant}
               size={size}
               transition={transition}
@@ -480,14 +666,16 @@ const items: ShowcaseItem[] = [
         </Stack>
       </DemoBlock>
 
-      {/* 2. Pure Image-Only Showcase (No Text / Buttons) */}
+      {/* ============================================================
+          2. Pure Image-Only Showcase
+          ============================================================ */}
+
       <DemoBlock
         id="image-only-showcase"
         title="1. Pure Image-Only Carousel Mode"
         description="Used for photo galleries, portfolio banners, or minimalist media sliders where only images and navigation controls are rendered."
         code={`import { Showcase, type ShowcaseItem } from 'jivico-glass-ui';
 
-// Minimal image-only items configuration
 const imageOnlyItems: ShowcaseItem[] = [
   {
     id: "img-1",
@@ -495,7 +683,7 @@ const imageOnlyItems: ShowcaseItem[] = [
       src: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=1200",
       alt: "Abstract Geometry 1",
     },
-    title: "", // Empty string suppresses title rendering
+    title: "",
   },
   {
     id: "img-2",
@@ -514,7 +702,13 @@ const imageOnlyItems: ShowcaseItem[] = [
   transition="fade"
 />`}
       >
-        <Box sx={{ width: "100%", borderRadius: "20px", overflow: "hidden" }}>
+        <Box
+          sx={{
+            width: "100%",
+            borderRadius: "20px",
+            overflow: "hidden",
+          }}
+        >
           <Showcase
             items={imageOnlyItems}
             size="medium"
@@ -525,14 +719,16 @@ const imageOnlyItems: ShowcaseItem[] = [
         </Box>
       </DemoBlock>
 
-      {/* 3. Title & Description Only (No Eyebrow or CTA Action Button) */}
+      {/* ============================================================
+          3. Title & Description Only
+          ============================================================ */}
+
       <DemoBlock
         id="title-desc-showcase"
         title="2. Title & Description Only Mode"
         description="Clean presentation slides showcasing headings and descriptive text overlays without action buttons."
         code={`import { Showcase, type ShowcaseItem } from 'jivico-glass-ui';
 
-// Heading and description overlay items (no eyebrow or CTA buttons)
 const titleDescItems: ShowcaseItem[] = [
   {
     id: "td-1",
@@ -561,7 +757,13 @@ const titleDescItems: ShowcaseItem[] = [
   transition="cinematic"
 />`}
       >
-        <Box sx={{ width: "100%", borderRadius: "20px", overflow: "hidden" }}>
+        <Box
+          sx={{
+            width: "100%",
+            borderRadius: "20px",
+            overflow: "hidden",
+          }}
+        >
           <Showcase
             items={titleDescItems}
             size="medium"
@@ -572,14 +774,16 @@ const titleDescItems: ShowcaseItem[] = [
         </Box>
       </DemoBlock>
 
-      {/* 4. Glass Surface Banner Variant */}
+      {/* ============================================================
+          4. Glass Surface Banner Variant
+          ============================================================ */}
+
       <DemoBlock
         id="glass-variant-showcase"
         title="3. Frosted Glass Variant (variant='glass')"
         description="Applies backdrop filter blur layers across the carousel surface for modern elevated UI sections."
         code={`import { Showcase, type ShowcaseItem } from 'jivico-glass-ui';
 
-// Frosted glass background container implementation
 <Showcase
   items={items}
   variant="glass"
@@ -602,8 +806,444 @@ const titleDescItems: ShowcaseItem[] = [
             size="small"
             navigation="dots"
             interval={5000}
+            linkComponent={MockLink}
           />
         </Box>
+      </DemoBlock>
+
+      {/* ============================================================
+          5. Next.js Integration
+          ============================================================ */}
+
+      <DemoBlock
+        id="nextjs-integration"
+        title="4. Next.js Integration"
+        description="Keep your API data framework-agnostic and inject Next.js Link and Image at the application boundary."
+        code={`// app/components/ShowcaseClient.tsx
+
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+
+import {
+  Showcase,
+  type ShowcaseItem,
+} from "jivico-glass-ui";
+
+// API returns plain JSON.
+// No React components are stored in the API data.
+const items: ShowcaseItem[] = [
+  {
+    id: "originals",
+
+    media: {
+      src: "/images/originals.jpg",
+      alt: "Jivico Originals",
+    },
+
+    href: "/collections/originals",
+    linkLabel: "Explore Jivico Originals",
+
+    eyebrow: "STUDIO EXCLUSIVE",
+    title: "Originals",
+    description:
+      "Discover the latest Jivico Originals collection.",
+  },
+];
+
+export function ShowcaseClient() {
+  return (
+    <Showcase
+      items={items}
+      linkComponent={Link}
+      ImageComponent={Image}
+    />
+  );
+}`}
+      >
+        <Stack spacing={3}>
+          {/* ----------------------------------------------------------
+              Explanation
+              ---------------------------------------------------------- */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              bgcolor: isDark
+                ? "rgba(255, 255, 255, 0.04)"
+                : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${
+                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
+              }`,
+            }}
+          >
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontWeight: 700,
+                mb: 1,
+              }}
+            >
+              How it works
+            </Typography>
+
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                mb: 2,
+                lineHeight: 1.8,
+              }}
+            >
+              Showcase does not know about Next.js. Your API returns
+              framework-agnostic data, while the Next.js application provides
+              the navigation and image implementations.
+            </Typography>
+
+            <Stack spacing={1}>
+              <Typography variant="body2">
+                <strong>1. API</strong> → Returns plain Showcase data.
+              </Typography>
+
+              <Typography variant="body2">
+                <strong>2. Next.js</strong> → Provides <code>next/link</code>{" "}
+                and <code>next/image</code>.
+              </Typography>
+
+              <Typography variant="body2">
+                <strong>3. Showcase</strong> → Receives those implementations
+                through props.
+              </Typography>
+            </Stack>
+          </Box>
+
+          {/* ----------------------------------------------------------
+              API Data
+              ---------------------------------------------------------- */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              bgcolor: isDark
+                ? "rgba(255, 255, 255, 0.04)"
+                : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${
+                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
+              }`,
+            }}
+          >
+            <Typography
+              variant="overline"
+              sx={{
+                display: "block",
+                mb: 1.5,
+                fontWeight: 700,
+              }}
+            >
+              01 — API DATA
+            </Typography>
+
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                mb: 2,
+                lineHeight: 1.7,
+              }}
+            >
+              Your backend only needs to return serializable data. There is no{" "}
+              <code>Link</code>, <code>Image</code>, or other React component
+              inside the response.
+            </Typography>
+
+            <Typography
+              component="pre"
+              variant="body2"
+              sx={{
+                m: 0,
+                overflowX: "auto",
+                fontFamily: "monospace",
+                lineHeight: 1.7,
+                whiteSpace: "pre",
+              }}
+            >
+              `
+              {`
+  "id": "originals",
+  "media": {
+    "src": "/images/originals.jpg",
+    "mobileSrc": "/images/originals-mobile.jpg",
+    "alt": "Jivico Originals"
+  },
+  "href": "/collections/originals",
+  "linkLabel": "Explore Jivico Originals",
+  "title": "Originals"
+`}
+              `
+            </Typography>
+          </Box>
+
+          {/* ----------------------------------------------------------
+              Flow
+              ---------------------------------------------------------- */}
+
+          <Box
+            sx={{
+              textAlign: "center",
+              py: 0.5,
+            }}
+          >
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                fontWeight: 700,
+                letterSpacing: "0.02em",
+              }}
+            >
+              ↓ plain JSON
+            </Typography>
+          </Box>
+
+          {/* ----------------------------------------------------------
+              Next.js Layer
+              ---------------------------------------------------------- */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              bgcolor: isDark
+                ? "rgba(255, 255, 255, 0.04)"
+                : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${
+                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
+              }`,
+            }}
+          >
+            <Typography
+              variant="overline"
+              sx={{
+                display: "block",
+                mb: 1.5,
+                fontWeight: 700,
+              }}
+            >
+              02 — NEXT.JS LAYER
+            </Typography>
+
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                mb: 2,
+                lineHeight: 1.7,
+              }}
+            >
+              The application injects framework-specific implementations once.
+              The API data does not need to change.
+            </Typography>
+
+            <Typography
+              component="pre"
+              variant="body2"
+              sx={{
+                m: 0,
+                overflowX: "auto",
+                fontFamily: "monospace",
+                lineHeight: 1.7,
+                whiteSpace: "pre",
+              }}
+            >
+              {`import Link from "next/link";
+import Image from "next/image";
+
+<Showcase
+  items={items}
+  linkComponent={Link}
+  ImageComponent={Image}
+/>`}
+            </Typography>
+          </Box>
+
+          {/* ----------------------------------------------------------
+              Why this architecture
+              ---------------------------------------------------------- */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              bgcolor: isDark
+                ? "rgba(255, 255, 255, 0.04)"
+                : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${
+                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
+              }`,
+            }}
+          >
+            <Typography
+              variant="overline"
+              sx={{
+                display: "block",
+                mb: 1.5,
+                fontWeight: 700,
+              }}
+            >
+              03 — WHY
+            </Typography>
+
+            <Stack spacing={1.25}>
+              <Typography variant="body2">
+                <strong>Reusable:</strong> Showcase remains independent from
+                Next.js.
+              </Typography>
+
+              <Typography variant="body2">
+                <strong>API-friendly:</strong> Backend responses contain only
+                serializable data.
+              </Typography>
+
+              <Typography variant="body2">
+                <strong>Framework-safe:</strong> React, Next.js, Remix, or
+                another application can provide its own link/image
+                implementation.
+              </Typography>
+
+              <Typography variant="body2">
+                <strong>Easy to consume:</strong> Developers only need to inject
+                the implementations at the application boundary.
+              </Typography>
+            </Stack>
+          </Box>
+
+          {/* ----------------------------------------------------------
+              Architecture
+              ---------------------------------------------------------- */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              bgcolor: isDark
+                ? "rgba(255, 255, 255, 0.04)"
+                : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${
+                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
+              }`,
+            }}
+          >
+            <Typography
+              variant="overline"
+              sx={{
+                display: "block",
+                mb: 1.5,
+                fontWeight: 700,
+              }}
+            >
+              04 — ARCHITECTURE
+            </Typography>
+
+            <Typography
+              component="pre"
+              variant="body2"
+              sx={{
+                m: 0,
+                overflowX: "auto",
+                fontFamily: "monospace",
+                lineHeight: 1.8,
+                whiteSpace: "pre",
+              }}
+            >
+              {`Jivico API
+    ↓
+plain JSON
+    ↓
+Next.js application
+    ↓
+ShowcaseClient
+    ├── linkComponent={Link}
+    └── ImageComponent={Image}
+    ↓
+<Showcase />`}
+            </Typography>
+          </Box>
+
+          {/* ----------------------------------------------------------
+              Minimal version
+              ---------------------------------------------------------- */}
+
+          <Box
+            sx={{
+              p: 3,
+              borderRadius: 3,
+              bgcolor: isDark
+                ? "rgba(255, 255, 255, 0.04)"
+                : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${
+                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
+              }`,
+            }}
+          >
+            <Typography
+              variant="overline"
+              sx={{
+                display: "block",
+                mb: 1.5,
+                fontWeight: 700,
+              }}
+            >
+              MINIMAL USAGE
+            </Typography>
+
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                mb: 2,
+                lineHeight: 1.7,
+              }}
+            >
+              Once your API data is available, the actual Showcase usage is
+              intentionally small:
+            </Typography>
+
+            <Typography
+              component="pre"
+              variant="body2"
+              sx={{
+                m: 0,
+                overflowX: "auto",
+                fontFamily: "monospace",
+                lineHeight: 1.7,
+                whiteSpace: "pre",
+              }}
+            >
+              {`<Showcase
+  items={items}
+  linkComponent={Link}
+  ImageComponent={Image}
+/>`}
+            </Typography>
+          </Box>
+
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{
+              display: "block",
+              textAlign: "center",
+              px: 2,
+              lineHeight: 1.7,
+            }}
+          >
+            Keep API responses framework-agnostic. Inject framework-specific
+            components at the application boundary.
+          </Typography>
+        </Stack>
       </DemoBlock>
     </ComponentPage>
   );

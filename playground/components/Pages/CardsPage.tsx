@@ -224,7 +224,7 @@ export const CardsPage: React.FC = () => {
             width: "100%",
           }}
         >
-          <Card hover={true} color="primary">
+          <Card hoverEffect={true} color="primary">
             <CardContent sx={{ p: 3 }}>
               <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 1.5 }}>
                 <Chip label="INTERACTIVE" size="small" color="primary" />
@@ -244,7 +244,7 @@ export const CardsPage: React.FC = () => {
             </CardActions>
           </Card>
 
-          <Card hover={true} color="glass">
+          <Card hoverEffect={true} color="glass">
             <CardContent sx={{ p: 3 }}>
               <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 1.5 }}>
                 <Chip label="FROSTED" size="small" color="glass" />
@@ -273,7 +273,7 @@ export const CardsPage: React.FC = () => {
         id="card-composition"
         title="Rich Card Composition"
         description="Combining CardHeader, Avatar, CardContent, Chips, and CardActions for real-world studio components."
-        code={`<Card hover={true}>
+        code={`<Card hoverEffect={true}>
   <CardHeader
     avatar={<Avatar src="..." />}
     action={<IconButton><MoreVertical /></IconButton>}
@@ -285,7 +285,7 @@ export const CardsPage: React.FC = () => {
 </Card>`}
       >
         <Box sx={{ width: "100%", maxWidth: 640, mx: "auto" }}>
-          <Card hover={true} radius="large">
+          <Card hoverEffect={true} radius="large">
             <CardHeader
               avatar={
                 <Avatar
