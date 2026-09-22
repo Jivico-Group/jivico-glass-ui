@@ -1,7 +1,7 @@
 import { Theme, Components, SxProps } from '@mui/material/styles';
 import * as _emotion_styled from '@emotion/styled';
 import * as react from 'react';
-import react__default, { ReactNode } from 'react';
+import react__default, { ReactNode, ComponentType, CSSProperties, Key } from 'react';
 import * as _mui_system from '@mui/system';
 import * as _mui_material from '@mui/material';
 import { BoxProps } from '@mui/material';
@@ -1698,6 +1698,47 @@ type ShowcaseSize = "small" | "medium" | "large" | "hero";
 type ShowcaseVariant = "editorial" | "minimal" | "glass";
 type ShowcaseRadius = "square" | "rounded" | "soft";
 type ShowcaseButtonColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error" | "info" | "glass";
+/**
+ * Responsive dimension value.
+ *
+ * Numeric values follow MUI spacing-compatible CSS
+ * behavior when used through the component's sx system.
+ *
+ * Strings may be used for values such as:
+ * - "500px"
+ * - "70vh"
+ * - "clamp(420px, 60vh, 760px)"
+ * - "auto"
+ */
+type ShowcaseDimension = number | string | {
+    xs?: number | string;
+    sm?: number | string;
+    md?: number | string;
+    lg?: number | string;
+    xl?: number | string;
+};
+/**
+ * Props expected by an injected image component.
+ *
+ * Designed to work with:
+ * - Next.js Image
+ * - Native img wrappers
+ * - Custom image components
+ * - Image optimization libraries
+ *
+ * Showcase owns the image frame dimensions,
+ * therefore `fill` is the preferred mode.
+ */
+interface ShowcaseImageComponentProps {
+    src: string;
+    alt: string;
+    fill?: boolean;
+    sizes?: string;
+    priority?: boolean;
+    style?: CSSProperties;
+    className?: string;
+}
+type ShowcaseImageComponent = ComponentType<ShowcaseImageComponentProps>;
 interface ShowcaseMedia {
     src: string;
     alt: string;
@@ -1724,6 +1765,33 @@ interface ShowcaseItem {
 }
 interface ShowcaseProps {
     items: ShowcaseItem[];
+    /**
+     * Optional image component.
+     *
+     * Example:
+     *
+     * <Showcase
+     *   items={items}
+     *   ImageComponent={Image}
+     * />
+     *
+     * If omitted, Showcase falls back to a native
+     * image implementation.
+     */
+    ImageComponent?: ShowcaseImageComponent;
+    /**
+     * Image sizes attribute.
+     *
+     * Defaults to 100vw.
+     */
+    imageSizes?: string;
+    /**
+     * Whether the active image should receive
+     * priority loading.
+     *
+     * Useful for an above-the-fold hero.
+     */
+    imagePriority?: boolean;
     variant?: ShowcaseVariant;
     size?: ShowcaseSize;
     transition?: ShowcaseTransition;
@@ -1740,7 +1808,24 @@ interface ShowcaseProps {
     swipe?: boolean;
     radius?: ShowcaseRadius;
     /**
+     * Explicit responsive height.
+     *
+     * When supplied, height takes precedence over
+     * aspectRatio for determining the frame height.
+     */
+    height?: ShowcaseDimension;
+    /**
+     * Minimum responsive height.
+     */
+    minHeight?: ShowcaseDimension;
+    /**
+     * Maximum responsive height.
+     */
+    maxHeight?: ShowcaseDimension;
+    /**
      * Optional responsive aspect-ratio override.
+     *
+     * Used when an explicit height is not provided.
      *
      * If omitted, the ratio is automatically selected
      * from the Showcase size.
@@ -1763,6 +1848,9 @@ interface ShowcaseProps {
 
 declare const Showcase: react__default.FC<ShowcaseProps>;
 
+/**
+ * Number of visible items at each breakpoint.
+ */
 type RailColumns = {
     xs?: number;
     sm?: number;
@@ -1770,6 +1858,12 @@ type RailColumns = {
     lg?: number;
     xl?: number;
 };
+/**
+ * Explicit item width at each breakpoint.
+ *
+ * When provided, itemWidth takes precedence
+ * over columns.
+ */
 type RailItemWidth = {
     xs?: string | number;
     sm?: string | number;
@@ -1777,6 +1871,13 @@ type RailItemWidth = {
     lg?: string | number;
     xl?: string | number;
 };
+/**
+ * Cursor applied to the rail root.
+ */
+type RailCursor = "default" | "pointer" | "grab" | "auto";
+/**
+ * Navigation controls displayed by the rail.
+ */
 type RailNavigation = "arrows" | "dots" | "both" | "none";
 /**
  * Hover / interaction transition applied
@@ -1788,17 +1889,125 @@ type RailNavigation = "arrows" | "dots" | "both" | "none";
  * - lift: item lifts and image scales
  */
 type RailTransition = "none" | "fade" | "scale" | "lift";
+/**
+ * Props supplied to a custom image component.
+ *
+ * This intentionally exposes only the image
+ * capabilities that Rails controls.
+ *
+ * This makes Rails compatible with:
+ *
+ * - Next.js Image
+ * - lazy image components
+ * - custom image components
+ * - other React image implementations
+ *
+ * Rails internally manages the dimensions
+ * through `fill` and the image container.
+ */
+interface RailImageProps {
+    /**
+     * Image source.
+     */
+    src: string;
+    /**
+     * Alternative text.
+     */
+    alt: string;
+    /**
+     * Fill the parent image container.
+     *
+     * Rails sets this internally.
+     */
+    fill?: boolean;
+    /**
+     * Responsive image sizes.
+     */
+    sizes?: string;
+    /**
+     * Whether the image should be prioritized.
+     */
+    priority?: boolean;
+    /**
+     * Optional loading behavior.
+     */
+    loading?: "lazy" | "eager";
+    /**
+     * Inline image styles.
+     */
+    style?: CSSProperties;
+    /**
+     * Optional class name.
+     */
+    className?: string;
+}
+/**
+ * Image component accepted by Rails.
+ *
+ * Example:
+ *
+ * import Image from "next/image";
+ *
+ * <Rails
+ *   ImageComponent={Image}
+ * />
+ */
+type RailImageComponent = ComponentType<RailImageProps>;
+/**
+ * Context supplied when rendering
+ * rail content.
+ */
 interface RailRenderContext<T> {
+    /**
+     * Current item.
+     */
     item: T;
+    /**
+     * Current item index.
+     */
     index: number;
 }
+/**
+ * Context supplied to a custom image renderer.
+ */
 interface RailImageContext<T> extends RailRenderContext<T> {
+    /**
+     * Resolved image source.
+     */
     src: string;
 }
+/**
+ * Context supplied to custom navigation buttons.
+ */
 interface RailNavigationContext {
+    /**
+     * Navigation action.
+     */
     onClick: () => void;
+    /**
+     * Whether the navigation action
+     * is currently unavailable.
+     */
     disabled: boolean;
 }
+/**
+ * Generic horizontal content rail.
+ *
+ * Rails does not know what T represents.
+ *
+ * It can therefore be used for:
+ *
+ * - products
+ * - categories
+ * - collections
+ * - brands
+ * - editorial cards
+ * - campaigns
+ * - lookbooks
+ * - articles
+ * - highlights
+ * - any custom data structure
+ */
 interface RailProps<T> {
     /**
      * Data consumed by the rail.
@@ -1809,11 +2018,11 @@ interface RailProps<T> {
     /**
      * Unique key for each item.
      */
-    getKey: (item: T, index: number) => React.Key;
+    getKey: (item: T, index: number) => Key;
     /**
-     * Image resolver.
+     * Image resolver used by the built-in renderer.
      *
-     * Every rail item is expected to have an image.
+     * Required when using the built-in item renderer.
      */
     getImage: (item: T, index: number) => string;
     /**
@@ -1825,7 +2034,25 @@ interface RailProps<T> {
      */
     getTitle?: (item: T, index: number) => ReactNode;
     /**
-     * Custom content rendered below the image/title area.
+     * Custom image component.
+     *
+     * Rails manages the image props internally.
+     *
+     * Example:
+     *
+     * import Image from "next/image";
+     *
+     * <Rails
+     *   ImageComponent={Image}
+     * />
+     *
+     * This is the recommended way to integrate
+     * framework-specific image implementations.
+     */
+    ImageComponent?: RailImageComponent;
+    /**
+     * Custom content rendered below
+     * the image/title area.
      *
      * Useful for:
      *
@@ -1845,11 +2072,12 @@ interface RailProps<T> {
      */
     renderItem?: (context: RailRenderContext<T>) => ReactNode;
     /**
-     * Optional custom image renderer.
+     * Advanced custom image renderer.
      *
-     * Useful when the default <img> needs
-     * to be replaced with a custom image
-     * component.
+     * This takes precedence over ImageComponent.
+     *
+     * Use this when the image requires completely
+     * custom rendering logic.
      */
     renderImage?: (context: RailImageContext<T>) => ReactNode;
     /**
@@ -1868,10 +2096,19 @@ interface RailProps<T> {
      *
      * Useful for editorial layouts where
      * the next item should partially remain visible.
+     *
+     * When supplied, itemWidth takes precedence
+     * over columns.
      */
     itemWidth?: RailItemWidth;
     /**
      * Spacing between items.
+     *
+     * Uses the same unit as the CSS gap value.
+     *
+     * Example:
+     *
+     * gap={2}
      */
     gap?: number;
     /**
@@ -1881,6 +2118,8 @@ interface RailProps<T> {
     justifyContent?: "flex-start" | "center" | "flex-end";
     /**
      * Navigation controls.
+     *
+     * Defaults to "arrows".
      */
     navigation?: RailNavigation;
     /**
@@ -1921,7 +2160,8 @@ interface RailProps<T> {
      * Whether navigation wraps around
      * when reaching the beginning/end.
      *
-     * Also controls the end behavior of autoplay.
+     * Also controls the end behavior
+     * of autoplay.
      *
      * Defaults to false.
      */
@@ -1975,9 +2215,402 @@ interface RailProps<T> {
      * Accessibility label.
      */
     "aria-label"?: string;
+    /**
+     * Cursor applied to the rail.
+     */
+    cursor?: RailCursor;
 }
 
-declare function Rails<T>({ items, getKey, getImage, getTitle, renderContent, renderImage, renderItem, columns, itemWidth, gap, justifyContent, navigation, renderPreviousButton, renderNextButton, swipe, autoplay, interval, pauseOnHover, loop, step, snap, transition, imageAspectRatio, radius, itemSx, sx, className, "aria-label": ariaLabel, }: RailProps<T>): react.JSX.Element | null;
+declare function Rails<T>({ items, getKey, getImage, getTitle, renderContent, renderImage, renderItem, ImageComponent, columns, itemWidth, gap, justifyContent, navigation, renderPreviousButton, renderNextButton, swipe, autoplay, interval, pauseOnHover, loop, step, snap, transition, imageAspectRatio, radius, itemSx, sx, className, cursor, "aria-label": ariaLabel, }: RailProps<T>): react.JSX.Element | null;
+
+/**
+ * Visual layout variant.
+ */
+type SpotlightVariant = "overlay" | "split" | "minimal";
+/**
+ * General visual size.
+ */
+type SpotlightSize = "small" | "medium" | "large";
+/**
+ * Image cropping position.
+ *
+ * Supports both named positions and
+ * arbitrary CSS object-position values.
+ */
+type SpotlightImagePosition = "top" | "center" | "bottom" | "left" | "right" | string;
+/**
+ * Responsive dimension.
+ */
+type SpotlightDimension = number | string | {
+    xs?: number | string;
+    sm?: number | string;
+    md?: number | string;
+    lg?: number | string;
+    xl?: number | string;
+};
+/**
+ * Spotlight CTA.
+ */
+interface SpotlightAction {
+    /**
+     * Button label.
+     */
+    label: string;
+    /**
+     * Optional navigation URL.
+     */
+    href?: string;
+    /**
+     * Optional click handler.
+     */
+    onClick?: () => void;
+}
+/**
+ * Props passed internally to a custom image component.
+ *
+ * Spotlight manages the image dimensions through
+ * `fill` and the surrounding container.
+ */
+interface SpotlightImageProps {
+    /**
+     * Image source.
+     */
+    src: string;
+    /**
+     * Accessible image description.
+     */
+    alt: string;
+    /**
+     * Fill the Spotlight image container.
+     *
+     * Spotlight manages this internally.
+     */
+    fill?: boolean;
+    /**
+     * Responsive image sizes.
+     */
+    sizes?: string;
+    /**
+     * Whether the image should be prioritized.
+     */
+    priority?: boolean;
+    /**
+     * Optional loading strategy.
+     */
+    loading?: "lazy" | "eager";
+    /**
+     * Image styles.
+     */
+    style?: CSSProperties;
+    /**
+     * Optional class name.
+     */
+    className?: string;
+}
+/**
+ * Custom image component.
+ *
+ * Compatible with:
+ *
+ * - Next.js Image
+ * - lazy image libraries
+ * - custom React image components
+ */
+type SpotlightImageComponent = ComponentType<SpotlightImageProps>;
+/**
+ * Spotlight component props.
+ */
+interface SpotlightProps {
+    /**
+     * Main desktop image.
+     */
+    image: string;
+    /**
+     * Optional mobile-specific image.
+     */
+    mobileImage?: string;
+    /**
+     * Accessible image description.
+     */
+    alt?: string;
+    /**
+     * Custom image component.
+     *
+     * Example:
+     *
+     * import Image from "next/image";
+     *
+     * <Spotlight
+     *   ImageComponent={Image}
+     * />
+     */
+    ImageComponent?: SpotlightImageComponent;
+    /**
+     * Small text above the title.
+     */
+    eyebrow?: ReactNode;
+    /**
+     * Main spotlight title.
+     */
+    title?: ReactNode;
+    /**
+     * Supporting description.
+     */
+    description?: ReactNode;
+    /**
+     * Optional CTA.
+     */
+    action?: SpotlightAction;
+    /**
+     * Visual layout.
+     *
+     * overlay:
+     * Content appears over the image.
+     *
+     * split:
+     * Image and content appear side by side.
+     *
+     * minimal:
+     * Image followed by content underneath.
+     */
+    variant?: SpotlightVariant;
+    /**
+     * Controls the general visual size.
+     */
+    size?: SpotlightSize;
+    /**
+     * Controls the proportional aspect ratio.
+     *
+     * Examples:
+     *
+     * "16 / 7"
+     * "21 / 9"
+     * "4 / 3"
+     */
+    aspectRatio?: string;
+    /**
+     * Explicit height.
+     *
+     * Supports:
+     *
+     * 100
+     * "100px"
+     * "60vh"
+     * responsive values
+     */
+    height?: SpotlightDimension;
+    /**
+     * Minimum height.
+     */
+    minHeight?: SpotlightDimension;
+    /**
+     * Maximum height.
+     */
+    maxHeight?: SpotlightDimension;
+    /**
+     * Controls image cropping position.
+     *
+     * Examples:
+     *
+     * "center"
+     * "top"
+     * "50% 30%"
+     */
+    imagePosition?: SpotlightImagePosition;
+    /**
+     * Responsive image sizes passed to
+     * the custom ImageComponent.
+     */
+    imageSizes?: string;
+    /**
+     * Whether the main image should be prioritized.
+     */
+    imagePriority?: boolean;
+    /**
+     * Advanced custom image renderer.
+     *
+     * This takes precedence over ImageComponent.
+     */
+    renderImage?: (context: SpotlightImageContext) => ReactNode;
+    /**
+     * Border radius.
+     *
+     * Number values use the theme spacing system.
+     * Strings are passed directly to CSS.
+     */
+    radius?: number | string;
+    /**
+     * Optional custom content rendered
+     * after the action.
+     */
+    children?: ReactNode;
+    /**
+     * MUI sx overrides.
+     */
+    sx?: SxProps<Theme>;
+    /**
+     * Additional CSS class.
+     */
+    className?: string;
+    /**
+     * Accessible label for the spotlight.
+     */
+    "aria-label"?: string;
+}
+/**
+ * Context supplied to a custom image renderer.
+ */
+interface SpotlightImageContext {
+    /**
+     * Main image source.
+     */
+    src: string;
+    /**
+     * Optional mobile image source.
+     */
+    mobileImage?: string;
+    /**
+     * Image alt text.
+     */
+    alt: string;
+    /**
+     * Image cropping position.
+     */
+    imagePosition: SpotlightImagePosition;
+}
+
+declare function Spotlight({ image, mobileImage, alt, ImageComponent, renderImage, eyebrow, title, description, action, variant, size, aspectRatio, height, minHeight, maxHeight, imagePosition, imageSizes, imagePriority, radius, children, sx, className, "aria-label": ariaLabel, }: SpotlightProps): react__default.JSX.Element;
+
+type HighlightVariant = "overlay" | "bottom" | "center" | "minimal";
+type HighlightSize = "small" | "medium" | "large";
+type HighlightDimension = number | string | {
+    xs?: number | string;
+    sm?: number | string;
+    md?: number | string;
+    lg?: number | string;
+    xl?: number | string;
+};
+interface HighlightAction {
+    label: string;
+    href?: string;
+    onClick?: () => void;
+}
+/**
+ * Props required by a custom image component.
+ *
+ * This keeps Highlight independent from Next.js while allowing
+ * consumers to provide an image implementation such as Next/Image.
+ */
+interface HighlightImageProps {
+    src: string;
+    alt: string;
+    sizes?: string;
+    loading?: "lazy" | "eager";
+    priority?: boolean;
+    style?: CSSProperties;
+    className?: string;
+    fill?: boolean;
+}
+interface HighlightProps {
+    /**
+     * Main image source.
+     */
+    image: string;
+    /**
+     * Optional mobile image source.
+     */
+    mobileImage?: string;
+    /**
+     * Image alt text.
+     */
+    alt?: string;
+    /**
+     * Custom image component.
+     *
+     * Example:
+     *
+     * ImageComponent={Image}
+     *
+     * The library itself remains framework independent.
+     */
+    ImageComponent?: ComponentType<HighlightImageProps>;
+    /**
+     * Responsive image sizes hint.
+     */
+    imageSizes?: string;
+    /**
+     * Small supporting label.
+     */
+    eyebrow?: ReactNode;
+    /**
+     * Main title.
+     */
+    title?: ReactNode;
+    /**
+     * Supporting description.
+     */
+    description?: ReactNode;
+    /**
+     * Optional CTA.
+     */
+    action?: HighlightAction;
+    /**
+     * Visual presentation variant.
+     */
+    variant?: HighlightVariant;
+    /**
+     * Preset component size.
+     */
+    size?: HighlightSize;
+    /**
+     * Explicit height.
+     */
+    height?: HighlightDimension;
+    /**
+     * Minimum height.
+     */
+    minHeight?: HighlightDimension;
+    /**
+     * Maximum height.
+     */
+    maxHeight?: HighlightDimension;
+    /**
+     * Aspect ratio used when height is not explicitly defined.
+     */
+    aspectRatio?: string;
+    /**
+     * CSS object-position.
+     */
+    imagePosition?: string;
+    /**
+     * Border radius.
+     *
+     * Numbers are resolved using theme.spacing().
+     */
+    radius?: number | string;
+    /**
+     * Whether the image should be loaded with priority.
+     */
+    imagePriority?: boolean;
+    /**
+     * Additional custom content.
+     */
+    children?: ReactNode;
+    /**
+     * MUI sx overrides.
+     */
+    sx?: SxProps<Theme>;
+    /**
+     * Optional CSS class name.
+     */
+    className?: string;
+    /**
+     * Accessible label.
+     */
+    "aria-label"?: string;
+}
+
+declare const Highlight: ({ image, mobileImage, alt, ImageComponent, imageSizes, eyebrow, title, description, action, variant, size, height, minHeight, maxHeight, aspectRatio, imagePosition, radius, imagePriority, children, sx, className, "aria-label": ariaLabel, }: HighlightProps) => react__default.JSX.Element;
 
 type ThemeMode = "light" | "dark" | "system";
 type ResolvedThemeMode = "light" | "dark";
@@ -2037,4 +2670,4 @@ interface GlassThemeScopeProps {
  */
 declare function GlassThemeScope({ mode, children }: GlassThemeScopeProps): react__default.JSX.Element;
 
-export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, BACKGROUND_COLORS, BRAND_COLORS, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode };
+export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, BACKGROUND_COLORS, BRAND_COLORS, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightImagePosition, type SpotlightProps, type SpotlightSize, type SpotlightVariant, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode };

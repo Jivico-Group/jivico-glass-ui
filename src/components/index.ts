@@ -15,4 +15,6 @@ export * from './buttons/MobileViewAll.js';
 export * from './cards/LiquidGlassCard.js';
 export * from './showcase/index.js';
 export * from './rails/index.js';
+export * from './spotlight/index.js';
+export * from './highlight/index.js';
 
