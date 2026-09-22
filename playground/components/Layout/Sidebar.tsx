@@ -102,6 +102,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        overflowY: "auto",
         py: 2,
         px: 1.5,
       }}

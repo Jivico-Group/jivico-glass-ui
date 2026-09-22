@@ -15,8 +15,6 @@ import {
   useTheme,
 } from "@mui/material";
 
-import type { SxProps, Theme } from "@mui/material/styles";
-
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import type { ShowcaseProps } from "./Showcase.types.js";
@@ -35,24 +33,264 @@ const radiusStyles = {
   soft: 6,
 } as const;
 
+/**
+ * Controls the complete visual scale of the Showcase.
+ *
+ * Size affects:
+ * - Typography
+ * - Content spacing
+ * - Content width
+ * - CTA size
+ * - CTA height
+ * - CTA horizontal padding
+ */
+const showcaseSizeStyles = {
+  small: {
+    aspectRatio: {
+      xs: "4 / 5",
+      sm: "16 / 10",
+      md: "16 / 9",
+    },
+
+    titleSize: {
+      xs: "2rem",
+      sm: "2.5rem",
+      md: "3rem",
+    },
+
+    descriptionSize: {
+      xs: "0.875rem",
+      md: "0.95rem",
+    },
+
+    eyebrowSize: {
+      xs: "0.65rem",
+      md: "0.7rem",
+    },
+
+    contentPadding: {
+      xs: 2,
+      sm: 3,
+      md: 4,
+    },
+
+    maxWidth: {
+      xs: "100%",
+      md: "520px",
+    },
+
+    contentGap: {
+      xs: 1.25,
+      md: 1.5,
+    },
+
+    buttonSize: "small" as const,
+
+    buttonHeight: {
+      xs: 38,
+      md: 40,
+    },
+
+    buttonPaddingX: {
+      xs: 1.75,
+      md: 2,
+    },
+  },
+
+  medium: {
+    aspectRatio: {
+      xs: "4 / 5",
+      sm: "16 / 10",
+      md: "16 / 9",
+    },
+
+    titleSize: {
+      xs: "2.5rem",
+      sm: "3rem",
+      md: "3.75rem",
+    },
+
+    descriptionSize: {
+      xs: "0.9rem",
+      md: "1rem",
+    },
+
+    eyebrowSize: {
+      xs: "0.7rem",
+      md: "0.75rem",
+    },
+
+    contentPadding: {
+      xs: 2.5,
+      sm: 4,
+      md: 5,
+    },
+
+    maxWidth: {
+      xs: "100%",
+      md: "600px",
+    },
+
+    contentGap: {
+      xs: 1.5,
+      md: 1.75,
+    },
+
+    buttonSize: "medium" as const,
+
+    buttonHeight: {
+      xs: 40,
+      md: 44,
+    },
+
+    buttonPaddingX: {
+      xs: 2,
+      md: 2.5,
+    },
+  },
+
+  large: {
+    aspectRatio: {
+      xs: "4 / 5",
+      sm: "16 / 9",
+      md: "16 / 8",
+    },
+
+    titleSize: {
+      xs: "2.75rem",
+      sm: "3.5rem",
+      md: "4.5rem",
+    },
+
+    descriptionSize: {
+      xs: "0.95rem",
+      md: "1.05rem",
+    },
+
+    eyebrowSize: {
+      xs: "0.7rem",
+      md: "0.8rem",
+    },
+
+    contentPadding: {
+      xs: 3,
+      sm: 4.5,
+      md: 6,
+    },
+
+    maxWidth: {
+      xs: "100%",
+      md: "680px",
+    },
+
+    contentGap: {
+      xs: 1.5,
+      md: 2,
+    },
+
+    buttonSize: "medium" as const,
+
+    buttonHeight: {
+      xs: 42,
+      md: 46,
+    },
+
+    buttonPaddingX: {
+      xs: 2,
+      md: 2.75,
+    },
+  },
+
+  hero: {
+    aspectRatio: {
+      xs: "4 / 5",
+      sm: "16 / 9",
+      md: "16 / 8",
+      lg: "16 / 7.5",
+    },
+
+    titleSize: {
+      xs: "2.75rem",
+      sm: "3.5rem",
+      md: "4.5rem",
+      lg: "5rem",
+    },
+
+    descriptionSize: {
+      xs: "0.95rem",
+      sm: "1rem",
+      md: "1.1rem",
+    },
+
+    eyebrowSize: {
+      xs: "0.7rem",
+      md: "0.8rem",
+    },
+
+    contentPadding: {
+      xs: 3,
+      sm: 4.5,
+      md: 6,
+      lg: 7,
+    },
+
+    maxWidth: {
+      xs: "100%",
+      sm: "650px",
+      md: "720px",
+      lg: "760px",
+    },
+
+    contentGap: {
+      xs: 1.5,
+      sm: 1.75,
+      md: 2,
+    },
+
+    buttonSize: "large" as const,
+
+    buttonHeight: {
+      xs: 42,
+      sm: 44,
+      md: 48,
+    },
+
+    buttonPaddingX: {
+      xs: 2,
+      sm: 2.5,
+      md: 3,
+    },
+  },
+} as const;
+
 export const Showcase: React.FC<ShowcaseProps> = ({
   items,
+
   variant = "editorial",
   size = "hero",
   transition = "cinematic",
+
   autoplay = true,
   interval = 6000,
   loop = true,
   pauseOnHover = true,
+
   showArrows = true,
   showProgress = true,
+
   navigation,
+
   activeIndex: controlledIndex,
   defaultActiveIndex = 0,
+
   onActiveIndexChange,
+
   swipe = true,
+
   radius = "rounded",
+  aspectRatio,
   containerSx,
+
   className,
 
   "aria-label": ariaLabel = "Showcase",
@@ -87,9 +325,34 @@ export const Showcase: React.FC<ShowcaseProps> = ({
   const shouldAnimate = !prefersReducedMotion && transition !== "fade";
 
   /*
-   * ------------------------------------------------------------
-   * INDEX CONTROL
-   * ------------------------------------------------------------
+   * =========================================================
+   * RESPONSIVE SIZE
+   * =========================================================
+   *
+   * Size controls the complete visual scale of the component:
+   *
+   * - aspect ratio
+   * - title
+   * - description
+   * - eyebrow
+   * - content spacing
+   * - content width
+   * - button size
+   * - button dimensions
+   */
+
+  const currentSize = showcaseSizeStyles[size];
+
+  /*
+   * Allow the consumer to override the default responsive
+   * aspect ratio when necessary.
+   */
+  const resolvedAspectRatio = aspectRatio ?? currentSize.aspectRatio;
+
+  /*
+   * =========================================================
+   * INDEX
+   * =========================================================
    */
 
   const updateIndex = useCallback(
@@ -126,9 +389,9 @@ export const Showcase: React.FC<ShowcaseProps> = ({
   }, [currentIndex, updateIndex]);
 
   /*
-   * ------------------------------------------------------------
+   * =========================================================
    * AUTOPLAY
-   * ------------------------------------------------------------
+   * =========================================================
    */
 
   useEffect(() => {
@@ -144,9 +407,9 @@ export const Showcase: React.FC<ShowcaseProps> = ({
   }, [autoplay, interval, isPaused, next, prefersReducedMotion, items.length]);
 
   /*
-   * ------------------------------------------------------------
+   * =========================================================
    * KEYBOARD NAVIGATION
-   * ------------------------------------------------------------
+   * =========================================================
    */
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -177,9 +440,9 @@ export const Showcase: React.FC<ShowcaseProps> = ({
   };
 
   /*
-   * ------------------------------------------------------------
+   * =========================================================
    * TOUCH / SWIPE
-   * ------------------------------------------------------------
+   * =========================================================
    */
 
   const handleTouchStart = (event: React.TouchEvent) => {
@@ -225,68 +488,9 @@ export const Showcase: React.FC<ShowcaseProps> = ({
     touchCurrentX.current = null;
   };
 
-  /*
-   * ------------------------------------------------------------
-   * RESPONSIVE SHOWCASE HEIGHT
-   * ------------------------------------------------------------
-   */
-
-  const sizeStyles = useMemo(() => {
-    switch (size) {
-      case "small":
-        return {
-          minHeight: {
-            xs: 380,
-            sm: 400,
-            md: 440,
-          },
-        };
-
-      case "medium":
-        return {
-          minHeight: {
-            xs: 440,
-            sm: 500,
-            md: 560,
-          },
-        };
-
-      case "large":
-        return {
-          minHeight: {
-            xs: 500,
-            sm: 600,
-            md: 680,
-          },
-        };
-
-      case "hero":
-      default:
-        return {
-          minHeight: {
-            xs: 560,
-            sm: 620,
-            md: "clamp(560px, 72vh, 780px)",
-          },
-        };
-    }
-  }, [size]);
-
-  /*
-   * ------------------------------------------------------------
-   * EMPTY STATE
-   * ------------------------------------------------------------
-   */
-
   if (!items.length) {
     return null;
   }
-
-  /*
-   * ------------------------------------------------------------
-   * SHOWCASE
-   * ------------------------------------------------------------
-   */
 
   return (
     <Box
@@ -313,7 +517,13 @@ export const Showcase: React.FC<ShowcaseProps> = ({
       sx={{
         position: "relative",
         width: "100%",
-        minHeight: sizeStyles.minHeight,
+
+        /*
+         * The frame owns the dimensions.
+         *
+         * Images never determine the height.
+         */
+        aspectRatio: resolvedAspectRatio,
 
         overflow: "hidden",
 
@@ -334,15 +544,11 @@ export const Showcase: React.FC<ShowcaseProps> = ({
         },
 
         /*
-         * containerSx is intentionally last.
+         * Consumer override.
          *
-         * This allows consumers to override:
-         * - borderRadius
-         * - background
-         * - boxShadow
-         * - border
-         * - spacing
-         * - any other MUI sx property
+         * NOTE:
+         * containerSx comes last intentionally, so consumers can
+         * override the semantic radius if they explicitly need to.
          */
         ...containerSx,
       }}
@@ -355,6 +561,8 @@ export const Showcase: React.FC<ShowcaseProps> = ({
         sx={{
           position: "absolute",
           inset: 0,
+          width: "100%",
+          height: "100%",
           overflow: "hidden",
         }}
       >
@@ -368,6 +576,9 @@ export const Showcase: React.FC<ShowcaseProps> = ({
               sx={{
                 position: "absolute",
                 inset: 0,
+
+                width: "100%",
+                height: "100%",
 
                 opacity: active ? 1 : 0,
 
@@ -408,16 +619,21 @@ export const Showcase: React.FC<ShowcaseProps> = ({
                   draggable={false}
                   sx={{
                     display: "block",
+
                     width: "100%",
                     height: "100%",
+
                     objectFit: "cover",
+                    objectPosition: "center",
+
                     userSelect: "none",
+
+                    verticalAlign: "middle",
                   }}
                 />
               </Box>
 
               {/* Image overlay */}
-
               <Box
                 sx={{
                   position: "absolute",
@@ -441,31 +657,40 @@ export const Showcase: React.FC<ShowcaseProps> = ({
 
       <Box
         sx={{
-          position: "relative",
-          zIndex: 3,
+          position: "absolute",
+          inset: 0,
 
-          minHeight: sizeStyles.minHeight,
+          zIndex: 3,
 
           display: "flex",
 
+          /*
+           * Mobile keeps content at the bottom.
+           *
+           * Desktop centers the complete content group.
+           * This prevents the CTA from being pushed outside
+           * the frame when the title becomes large.
+           */
           alignItems: {
             xs: "flex-end",
             md: "center",
           },
 
-          px: {
-            xs: 2.5,
-            sm: 4,
-            md: 7,
-            lg: 10,
-          },
+          px: currentSize.contentPadding,
 
+          /*
+           * Mobile needs bottom breathing room because the
+           * navigation dots/arrows may sit near the bottom.
+           */
           pb: {
-            xs: 5,
+            xs: 5.5,
             sm: 6,
             md: 0,
           },
 
+          /*
+           * Reserve space for desktop side navigation.
+           */
           pr: {
             md: 14,
             lg: 18,
@@ -477,65 +702,136 @@ export const Showcase: React.FC<ShowcaseProps> = ({
         <Box
           sx={{
             width: "100%",
-            maxWidth: 720,
 
+            maxWidth: currentSize.maxWidth,
+
+            display: "flex",
+            flexDirection: "column",
+
+            /*
+             * All content elements now scale together.
+             */
+            gap: currentSize.contentGap,
+
+            /*
+             * Never allow the content group to become taller
+             * than the available frame.
+             */
+            maxHeight: {
+              xs: "calc(100% - 16px)",
+              md: "calc(100% - 32px)",
+            },
+
+            /*
+             * Smooth transition when changing size in a
+             * playground/demo environment.
+             */
             transition:
               "opacity 500ms ease, transform 700ms cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
+          {/* =================================================
+              EYEBROW
+          ================================================= */}
+
           {currentItem.eyebrow && (
             <Typography
               variant="overline"
               sx={{
                 display: "block",
-                mb: 1.5,
+
+                fontSize: currentSize.eyebrowSize,
+
                 fontWeight: 700,
+
                 letterSpacing: "0.14em",
+
+                lineHeight: 1.2,
+
                 color: "rgba(255,255,255,0.72)",
+
+                /*
+                 * Prevent a long eyebrow from affecting
+                 * the content height unnecessarily.
+                 */
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
               }}
             >
               {currentItem.eyebrow}
             </Typography>
           )}
 
+          {/* =================================================
+              TITLE
+          ================================================= */}
+
           <Typography
             component="h2"
             sx={{
-              fontSize: {
-                xs: "clamp(3rem, 15vw, 4.8rem)",
-                sm: "clamp(4rem, 9vw, 6.5rem)",
-                md: "clamp(4.5rem, 8vw, 8rem)",
-              },
+              fontSize: currentSize.titleSize,
 
-              lineHeight: 0.9,
+              /*
+               * Tight editorial typography.
+               *
+               * The previous implementation used values up
+               * to 8rem, which could consume most of a short
+               * aspect-ratio frame.
+               */
+              lineHeight: 0.92,
+
               fontWeight: 700,
+
               letterSpacing: "-0.055em",
 
-              mb: {
-                xs: 1.5,
-                md: 2,
-              },
+              maxWidth: "100%",
+
+              /*
+               * Modern browser line balancing helps avoid
+               * awkward title wrapping.
+               */
+              textWrap: "balance",
+
+              overflowWrap: "break-word",
+
+              margin: 0,
             }}
           >
             {currentItem.title}
           </Typography>
 
+          {/* =================================================
+              DESCRIPTION
+          ================================================= */}
+
           {currentItem.description && (
             <Typography
               sx={{
-                maxWidth: 520,
+                width: "100%",
 
-                fontSize: {
-                  xs: "0.95rem",
-                  sm: "1rem",
-                  md: "1.1rem",
+                maxWidth: {
+                  xs: "100%",
+                  md: "620px",
                 },
 
-                lineHeight: 1.55,
+                fontSize: currentSize.descriptionSize,
+
+                lineHeight: 1.5,
 
                 color: "rgba(255,255,255,0.82)",
 
-                mb: 3,
+                /*
+                 * Keep descriptions from becoming huge
+                 * content blocks on narrow screens.
+                 */
+                display: "-webkit-box",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: {
+                  xs: 3,
+                  md: 3,
+                },
+                overflow: "hidden",
               }}
             >
               {currentItem.description}
@@ -543,7 +839,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
           )}
 
           {/* =================================================
-              JIVICO BUTTON
+              MUI BUTTON
           ================================================= */}
 
           {currentItem.action &&
@@ -551,11 +847,41 @@ export const Showcase: React.FC<ShowcaseProps> = ({
               <Button
                 variant={currentItem.action.variant ?? "contained"}
                 color={currentItem.action.color ?? "primary"}
+                size={currentSize.buttonSize}
                 endIcon={<ArrowRight size={16} />}
                 href={currentItem.action.href}
                 target={currentItem.action.target}
                 rel={currentItem.action.rel}
                 onClick={currentItem.action.onClick}
+                sx={{
+                  alignSelf: "flex-start",
+
+                  /*
+                   * CTA scales with Showcase size.
+                   */
+                  minHeight: currentSize.buttonHeight,
+
+                  px: currentSize.buttonPaddingX,
+
+                  borderRadius: 999,
+
+                  /*
+                   * Keep CTA on one line.
+                   */
+                  whiteSpace: "nowrap",
+
+                  flexShrink: 0,
+
+                  /*
+                   * Prevent the button from being affected
+                   * by very large surrounding typography.
+                   */
+                  lineHeight: 1.2,
+
+                  "& .MuiButton-endIcon": {
+                    marginLeft: 0.75,
+                  },
+                }}
               >
                 {currentItem.action.label}
               </Button>
@@ -563,8 +889,28 @@ export const Showcase: React.FC<ShowcaseProps> = ({
               <Button
                 variant={currentItem.action.variant ?? "contained"}
                 color={currentItem.action.color ?? "primary"}
+                size={currentSize.buttonSize}
                 endIcon={<ArrowRight size={16} />}
                 onClick={currentItem.action.onClick}
+                sx={{
+                  alignSelf: "flex-start",
+
+                  minHeight: currentSize.buttonHeight,
+
+                  px: currentSize.buttonPaddingX,
+
+                  borderRadius: 999,
+
+                  whiteSpace: "nowrap",
+
+                  flexShrink: 0,
+
+                  lineHeight: 1.2,
+
+                  "& .MuiButton-endIcon": {
+                    marginLeft: 0.75,
+                  },
+                }}
               >
                 {currentItem.action.label}
               </Button>
@@ -587,9 +933,9 @@ export const Showcase: React.FC<ShowcaseProps> = ({
               lg: 36,
             },
 
-            bottom: "50%",
+            top: "50%",
 
-            transform: "translateY(50%)",
+            transform: "translateY(-50%)",
 
             writingMode: "vertical-rl",
 
@@ -630,6 +976,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
             },
 
             display: "flex",
+
             gap: 1,
           }}
         >
@@ -836,6 +1183,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
             bottom: 0,
 
             width: "100%",
+
             height: 2,
 
             backgroundColor: "rgba(255,255,255,0.16)",
@@ -845,6 +1193,7 @@ export const Showcase: React.FC<ShowcaseProps> = ({
             key={currentIndex}
             sx={{
               width: "100%",
+
               height: "100%",
 
               transformOrigin: "left center",

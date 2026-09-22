@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Box,
   Typography,
@@ -17,6 +17,8 @@ import type {
   ShowcaseSize,
   ShowcaseTransition,
   ShowcaseNavigation,
+  ShowcaseRadius,
+  ShowcaseButtonColor,
 } from "../../../src/components/showcase/Showcase.types.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
@@ -133,10 +135,26 @@ export const ShowcasePage: React.FC = () => {
   const [size, setSize] = useState<ShowcaseSize>("hero");
   const [transition, setTransition] = useState<ShowcaseTransition>("cinematic");
   const [navigation, setNavigation] = useState<ShowcaseNavigation>("vertical");
+  const [radius, setRadius] = useState<ShowcaseRadius>("rounded");
+  const [actionColor, setActionColor] =
+    useState<ShowcaseButtonColor>("primary");
   const [autoplay, setAutoplay] = useState(true);
   const [showArrows, setShowArrows] = useState(true);
   const [showProgress, setShowProgress] = useState(true);
   const [interval, setInterval] = useState(5000);
+
+  // Dynamic Items with customized action button colors
+  const activeItems = useMemo(() => {
+    return heroShowcaseItems.map((item) => ({
+      ...item,
+      action: item.action
+        ? {
+            ...item.action,
+            color: actionColor,
+          }
+        : undefined,
+    }));
+  }, [actionColor]);
 
   return (
     <ComponentPage
@@ -154,62 +172,73 @@ export const ShowcasePage: React.FC = () => {
       <DemoBlock
         id="interactive-showcase"
         title="Interactive Showcase Playground"
-        description="Customize variant, size, transition mode, navigation style, and autoplay controls live."
+        description="Customize variant, size, transition mode, navigation style, radius, and action button color live."
         code={`import { Showcase, type ShowcaseItem } from 'jivico-glass-ui';
 
-              // Define your slider items array
-              const items: ShowcaseItem[] = [
-                {
-                  id: "originals",
-                  media: {
-                    src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600",
-                    alt: "Originals Collection",
-                    mobileSrc: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600",
-                  },
-                  eyebrow: "STUDIO EXCLUSIVE",
-                  title: "Originals by Studio",
-                  description: "Limited-edition luxury glassmorphic collections.",
-                  action: {
-                    label: "Discover Originals",
-                    href: "/originals",
-                  },
-                  sideLabel: "FALL / WINTER 2026",
-                },
-                {
-                  id: "freestyle",
-                  media: {
-                    src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1600",
-                    alt: "Freestyle Designer",
-                  },
-                  eyebrow: "DESIGN STUDIO",
-                  title: "Create Your Freestyle",
-                  description: "Upload your artwork and print 1-of-1 pieces.",
-                  action: {
-                    label: "Explore Freestyle",
-                    href: "/freestyle",
-                  },
-                },
-              ];
+// Define your slider items array
+const items: ShowcaseItem[] = [
+  {
+    id: "originals",
+    media: {
+      src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600",
+      alt: "Originals Collection",
+      mobileSrc: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600",
+    },
+    eyebrow: "STUDIO EXCLUSIVE",
+    title: "Originals by Studio",
+    description: "Limited-edition luxury glassmorphic collections.",
+    action: {
+      label: "Discover Originals",
+      href: "/originals",
+      color: "${actionColor}",
+      variant: "contained",
+    },
+    sideLabel: "FALL / WINTER 2026",
+  },
+  {
+    id: "freestyle",
+    media: {
+      src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1600",
+      alt: "Freestyle Designer",
+    },
+    eyebrow: "DESIGN STUDIO",
+    title: "Create Your Freestyle",
+    description: "Upload your artwork and print 1-of-1 pieces.",
+    action: {
+      label: "Explore Freestyle",
+      href: "/freestyle",
+      color: "${actionColor}",
+      variant: "contained",
+    },
+  },
+];
 
-              // Render Showcase component
-              <Showcase
-                items={items}
-                variant="${variant}"
-                size="${size}"
-                transition="${transition}"
-                navigation="${navigation}"
-                autoplay={${autoplay}}
-                interval={${interval}}
-                showArrows={${showArrows}}
-                showProgress={${showProgress}}
-              />`}
+// Render Showcase component
+<Showcase
+  items={items}
+  variant="${variant}"
+  size="${size}"
+  radius="${radius}"
+  transition="${transition}"
+  navigation="${navigation}"
+  autoplay={${autoplay}}
+  interval={${interval}}
+  showArrows={${showArrows}}
+  showProgress={${showProgress}}
+/>`}
       >
-        <Stack spacing={3}>
+        <Stack
+          sx={{
+            width: "100%",
+            alignItems: "stretch",
+          }}
+          spacing={3}
+        >
           {/* Controls Bar */}
           <Box
             sx={{
               p: 2.5,
-              borderRadius: "18px",
+              borderRadius: 0,
               bgcolor: isDark
                 ? "rgba(255, 255, 255, 0.04)"
                 : "rgba(17, 17, 17, 0.03)",
@@ -329,6 +358,63 @@ export const ShowcasePage: React.FC = () => {
               )}
             </Stack>
 
+            {/* Radius Selector */}
+            <Stack
+              direction="row"
+              spacing={1}
+              sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}
+            >
+              <Typography
+                variant="caption"
+                sx={{ fontWeight: 700, minWidth: 90 }}
+              >
+                Radius:
+              </Typography>
+              {(["square", "rounded", "soft"] as ShowcaseRadius[]).map((r) => (
+                <Button
+                  key={r}
+                  size="small"
+                  variant={radius === r ? "contained" : "outlined"}
+                  color="primary"
+                  onClick={() => setRadius(r)}
+                >
+                  {r}
+                </Button>
+              ))}
+            </Stack>
+
+            {/* Action Color Selector */}
+            <Stack
+              direction="row"
+              spacing={1}
+              sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}
+            >
+              <Typography
+                variant="caption"
+                sx={{ fontWeight: 700, minWidth: 90 }}
+              >
+                CTA Color:
+              </Typography>
+              {(
+                [
+                  "primary",
+                  "secondary",
+                  "accent",
+                  "glass",
+                ] as ShowcaseButtonColor[]
+              ).map((c) => (
+                <Button
+                  key={c}
+                  size="small"
+                  variant={actionColor === c ? "contained" : "outlined"}
+                  color="accent"
+                  onClick={() => setActionColor(c)}
+                >
+                  {c}
+                </Button>
+              ))}
+            </Stack>
+
             {/* Boolean Toggles */}
             <Stack direction="row" spacing={3} sx={{ flexWrap: "wrap", pt: 1 }}>
               <FormControlLabel
@@ -377,13 +463,14 @@ export const ShowcasePage: React.FC = () => {
           </Box>
 
           {/* Render Active Showcase */}
-          <Box sx={{ width: "100%", borderRadius: "24px", overflow: "hidden" }}>
+          <Box sx={{ width: "100%", overflow: "hidden" }}>
             <Showcase
-              items={heroShowcaseItems}
+              items={activeItems}
               variant={variant}
               size={size}
               transition={transition}
               navigation={navigation}
+              radius={radius}
               autoplay={autoplay}
               interval={interval}
               showArrows={showArrows}
@@ -398,13 +485,30 @@ export const ShowcasePage: React.FC = () => {
         id="image-only-showcase"
         title="1. Pure Image-Only Carousel Mode"
         description="Used for photo galleries, portfolio banners, or minimalist media sliders where only images and navigation controls are rendered."
-        code={`const imageItems: ShowcaseItem[] = [
-  { id: '1', media: { src: '/img-1.jpg', alt: 'Vista 1' }, title: '' },
-  { id: '2', media: { src: '/img-2.jpg', alt: 'Vista 2' }, title: '' },
+        code={`import { Showcase, type ShowcaseItem } from 'jivico-glass-ui';
+
+// Minimal image-only items configuration
+const imageOnlyItems: ShowcaseItem[] = [
+  {
+    id: "img-1",
+    media: {
+      src: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=1200",
+      alt: "Abstract Geometry 1",
+    },
+    title: "", // Empty string suppresses title rendering
+  },
+  {
+    id: "img-2",
+    media: {
+      src: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=1200",
+      alt: "Abstract Geometry 2",
+    },
+    title: "",
+  },
 ];
 
 <Showcase
-  items={imageItems}
+  items={imageOnlyItems}
   size="medium"
   navigation="dots"
   transition="fade"
@@ -426,17 +530,32 @@ export const ShowcasePage: React.FC = () => {
         id="title-desc-showcase"
         title="2. Title & Description Only Mode"
         description="Clean presentation slides showcasing headings and descriptive text overlays without action buttons."
-        code={`const textItems: ShowcaseItem[] = [
+        code={`import { Showcase, type ShowcaseItem } from 'jivico-glass-ui';
+
+// Heading and description overlay items (no eyebrow or CTA buttons)
+const titleDescItems: ShowcaseItem[] = [
   {
-    id: 'feature-1',
-    media: { src: '/hardware.jpg', alt: 'Hardware' },
-    title: 'Next-Gen Performance',
-    description: 'Zero layout shift, 60 FPS transitions, and native browser acceleration.',
-  }
+    id: "td-1",
+    media: {
+      src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200",
+      alt: "Microchip Hardware",
+    },
+    title: "Next-Gen Performance",
+    description: "Zero layout shift, 60 FPS transitions, and native browser hardware acceleration.",
+  },
+  {
+    id: "td-2",
+    media: {
+      src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200",
+      alt: "Global Data Network",
+    },
+    title: "Global Distribution",
+    description: "Seamlessly distributed assets optimized for ultra-fast CDN response times.",
+  },
 ];
 
 <Showcase
-  items={textItems}
+  items={titleDescItems}
   size="medium"
   navigation="vertical"
   transition="cinematic"
@@ -458,11 +577,15 @@ export const ShowcasePage: React.FC = () => {
         id="glass-variant-showcase"
         title="3. Frosted Glass Variant (variant='glass')"
         description="Applies backdrop filter blur layers across the carousel surface for modern elevated UI sections."
-        code={`<Showcase
+        code={`import { Showcase, type ShowcaseItem } from 'jivico-glass-ui';
+
+// Frosted glass background container implementation
+<Showcase
   items={items}
   variant="glass"
   size="small"
   navigation="dots"
+  radius="soft"
 />`}
       >
         <Box

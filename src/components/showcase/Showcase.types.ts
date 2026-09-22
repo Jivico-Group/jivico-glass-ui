@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-
 import type { ButtonProps } from "@mui/material/Button";
 import type { SxProps, Theme } from "@mui/material/styles";
 
@@ -54,20 +53,27 @@ export interface ShowcaseProps {
   items: ShowcaseItem[];
 
   variant?: ShowcaseVariant;
+
   size?: ShowcaseSize;
+
   transition?: ShowcaseTransition;
 
   autoplay?: boolean;
+
   interval?: number;
+
   loop?: boolean;
+
   pauseOnHover?: boolean;
 
   showArrows?: boolean;
+
   showProgress?: boolean;
 
   navigation?: ShowcaseNavigation;
 
   activeIndex?: number;
+
   defaultActiveIndex?: number;
 
   onActiveIndexChange?: (index: number, item: ShowcaseItem) => void;
@@ -77,7 +83,22 @@ export interface ShowcaseProps {
   radius?: ShowcaseRadius;
 
   /**
-   * Final MUI sx override for the Showcase container.
+   * Optional responsive aspect-ratio override.
+   *
+   * If omitted, the ratio is automatically selected
+   * from the Showcase size.
+   */
+  aspectRatio?: {
+    xs?: string;
+    sm?: string;
+    md?: string;
+    lg?: string;
+    xl?: string;
+  };
+
+  /**
+   * Allows consumers to override the Showcase
+   * container styling.
    */
   containerSx?: SxProps<Theme>;
 

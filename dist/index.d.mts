@@ -1,4 +1,4 @@
-import { Theme, Components } from '@mui/material/styles';
+import { Theme, Components, SxProps } from '@mui/material/styles';
 import * as _emotion_styled from '@emotion/styled';
 import * as react from 'react';
 import react__default, { ReactNode } from 'react';
@@ -6,6 +6,7 @@ import * as _mui_system from '@mui/system';
 import * as _mui_material from '@mui/material';
 import { BoxProps } from '@mui/material';
 import * as _mui_material_OverridableComponent from '@mui/material/OverridableComponent';
+import { ButtonProps } from '@mui/material/Button';
 
 declare const buildBrandPalette: () => {
     charcoal: string;
@@ -1695,6 +1696,8 @@ type ShowcaseTransition = "cinematic" | "fade" | "slide";
 type ShowcaseNavigation = "vertical" | "dots" | "none";
 type ShowcaseSize = "small" | "medium" | "large" | "hero";
 type ShowcaseVariant = "editorial" | "minimal" | "glass";
+type ShowcaseRadius = "square" | "rounded" | "soft";
+type ShowcaseButtonColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error" | "info" | "glass";
 interface ShowcaseMedia {
     src: string;
     alt: string;
@@ -1704,6 +1707,10 @@ interface ShowcaseAction {
     label: string;
     href?: string;
     onClick?: () => void;
+    color?: ShowcaseButtonColor;
+    variant?: ButtonProps["variant"];
+    target?: React.HTMLAttributeAnchorTarget;
+    rel?: string;
 }
 interface ShowcaseItem {
     id: string;
@@ -1731,6 +1738,25 @@ interface ShowcaseProps {
     defaultActiveIndex?: number;
     onActiveIndexChange?: (index: number, item: ShowcaseItem) => void;
     swipe?: boolean;
+    radius?: ShowcaseRadius;
+    /**
+     * Optional responsive aspect-ratio override.
+     *
+     * If omitted, the ratio is automatically selected
+     * from the Showcase size.
+     */
+    aspectRatio?: {
+        xs?: string;
+        sm?: string;
+        md?: string;
+        lg?: string;
+        xl?: string;
+    };
+    /**
+     * Allows consumers to override the Showcase
+     * container styling.
+     */
+    containerSx?: SxProps<Theme>;
     className?: string;
     "aria-label"?: string;
 }

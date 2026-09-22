@@ -40,7 +40,7 @@ export const getDrawerOverrides = (isDark: boolean): Components<Theme> => ({
 
         return {
           position: "relative",
-          overflow: "hidden",
+          overflowY: "auto",
 
           backgroundColor: glass ? glassBackground : normalBackground,
           color: glass ? glassColor : normalColor,
