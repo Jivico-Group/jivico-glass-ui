@@ -336,7 +336,7 @@ export const BottomNavigationPage: React.FC = () => {
                     active: false,
                   },
                   {
-                    name: "tokyo.art",
+                    name: "@jivico.official",
                     img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100",
                     active: true,
                   },
@@ -432,7 +432,7 @@ export const BottomNavigationPage: React.FC = () => {
                           lineHeight: 1.1,
                         }}
                       >
-                        tokyo.art
+                        @jivico.official
                       </Typography>
                       <Typography
                         variant="caption"
@@ -549,7 +549,7 @@ export const BottomNavigationPage: React.FC = () => {
                     sx={{ fontSize: "0.8rem", mt: 0.25 }}
                   >
                     <Box component="span" sx={{ fontWeight: 700, mr: 0.8 }}>
-                      tokyo.art
+                      @jivico.official
                     </Box>
                     Experience the future of mobile navigation with Jivico Glass
                     UI floating action docks! 🚀✨
@@ -588,7 +588,7 @@ export const BottomNavigationPage: React.FC = () => {
                 onChange={(_, val) => setInstaTab(val)}
                 glass={instaGlass}
                 showLabels={instaLabels}
-                size="medium"
+                size="small"
                 placement="inline"
                 sx={{
                   width: "100%",

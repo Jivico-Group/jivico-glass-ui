@@ -164,9 +164,10 @@ export const getBottomNavigationOverrides = (
   MuiBottomNavigationAction: {
     styleOverrides: {
       root: ({ ownerState }) => {
-        // Inherit parent BottomNavigation size from ownerState if available or default
         const isSmall = (ownerState as any).size === "small";
-        const showLabels = ownerState.showLabels !== false;
+        // MUI passes showLabel (singular) to BottomNavigationAction ownerState
+        const showLabelProp = ownerState.showLabel ?? (ownerState as any).showLabels;
+        const showLabels = showLabelProp !== false;
 
         const actionSize = isSmall ? 28 : 46;
 

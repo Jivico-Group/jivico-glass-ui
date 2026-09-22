@@ -6,10 +6,10 @@ import { getToolbarOverrides } from "./toolbar.js";
 import { getTabsOverrides } from "./tabs.js";
 import { getDrawerOverrides } from "./drawer.js";
 import { getMenuOverrides } from "./menus.js";
-import { getListOverrides } from "./lists.js";
 import { getPaginationOverrides } from "./pagination.js";
 import { getStepperOverrides } from "./stepper.js";
 import { getBottomNavigationOverrides } from "./bottomNavigation.js";
+import { getListOverrides } from "./list";
 
 export const getNavigationOverrides = (
   palette: JivicoPalette,
@@ -20,9 +20,8 @@ export const getNavigationOverrides = (
   ...getTabsOverrides(isDark),
   ...getDrawerOverrides(isDark),
   ...getMenuOverrides(palette, isDark),
-  ...getListOverrides(palette, isDark),
   ...getPaginationOverrides(palette),
   ...getStepperOverrides(palette, isDark),
   ...getBottomNavigationOverrides(palette, isDark),
+  ...getListOverrides(palette, isDark),
 });
-
