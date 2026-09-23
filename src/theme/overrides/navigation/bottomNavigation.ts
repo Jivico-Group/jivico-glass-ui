@@ -26,7 +26,7 @@ export const getBottomNavigationOverrides = (
 
         const glassBackground = isDark
           ? "rgba(24, 24, 27, 0.72)"
-          : "rgba(255, 255, 255, 0.76)";
+          : "rgba(255, 255, 255, 0.60)";
         const glassColor = isDark ? "#F5F5F7" : "#111111";
 
         /**
