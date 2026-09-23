@@ -743,7 +743,7 @@ declare module "@mui/material/Skeleton" {
 
 declare module "@mui/material/BottomNavigation" {
   interface BottomNavigationOwnProps {
-    glass?: boolean;
+    glass?: "true" | "false";
     size?: "small" | "medium";
     placement?:
       | "top-left"
@@ -2680,14 +2680,7 @@ interface BottomNavigationItemProps {
  */
 declare const DynamicIslandItem: react__default.ForwardRefExoticComponent<Omit<BottomNavigationItemProps, "ref"> & react__default.RefAttributes<any>>;
 
-/**
- * GlassBottomNavigation
- *
- * A styled wrapper around MUI `<BottomNavigation>` that prevents custom theme props
- * (`glass`, `placement`) from leaking down to the HTML DOM element as invalid attributes,
- * while preserving 100% of the frosted glass style overrides and ownerState evaluation.
- */
-declare const DynamicIsland: _emotion_styled.StyledComponent<_mui_material.BottomNavigationOwnProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "className" | "style" | "classes" | "children" | "sx" | "size" | "value" | "onChange" | "glass" | "placement" | "showLabels"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme>, {}, {}>;
+declare const DynamicIsland: _mui_material_OverridableComponent.OverridableComponent<_mui_material.BottomNavigationTypeMap<{}, "div">>;
 
 declare const DynamicIslandAction: _mui_material.ExtendButtonBase<_mui_material.BottomNavigationActionTypeMap<{}, "button">>;
 

@@ -390,7 +390,7 @@ declare module "@mui/material/Skeleton" {
 
 declare module "@mui/material/BottomNavigation" {
   interface BottomNavigationOwnProps {
-    glass?: boolean;
+    glass?: "true" | "false";
     size?: "small" | "medium";
     placement?:
       | "top-left"

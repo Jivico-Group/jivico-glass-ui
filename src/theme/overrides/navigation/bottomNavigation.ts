@@ -7,14 +7,14 @@ export const getBottomNavigationOverrides = (
 ): Components<Theme> => ({
   MuiBottomNavigation: {
     defaultProps: {
-      glass: false,
+      glass: "true",
       size: "medium",
       placement: "inline",
     },
 
     styleOverrides: {
       root: ({ ownerState }) => {
-        const glass = ownerState.glass === true;
+        const glass = ownerState.glass === "true";
         const placement = ownerState.placement || "inline";
         const size = ownerState.size || "medium";
 
