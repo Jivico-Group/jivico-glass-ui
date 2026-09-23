@@ -7,7 +7,6 @@ export const getBottomNavigationOverrides = (
 ): Components<Theme> => ({
   MuiBottomNavigation: {
     defaultProps: {
-      glass: false,
       size: "medium",
       placement: "inline",
     },
@@ -166,7 +165,8 @@ export const getBottomNavigationOverrides = (
       root: ({ ownerState }) => {
         const isSmall = (ownerState as any).size === "small";
         // MUI passes showLabel (singular) to BottomNavigationAction ownerState
-        const showLabelProp = ownerState.showLabel ?? (ownerState as any).showLabels;
+        const showLabelProp =
+          ownerState.showLabel ?? (ownerState as any).showLabels;
         const showLabels = showLabelProp !== false;
 
         const actionSize = isSmall ? 28 : 46;

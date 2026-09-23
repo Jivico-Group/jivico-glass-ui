@@ -281,13 +281,29 @@ const { mode, resolvedMode, setGlassMode, toggleGlassMode } = useGlassMode();
 
 ### H. Navigation (`BottomNavigation`, `Tabs`, `List`, `Stepper`)
 
-#### `<BottomNavigation>`
+#### `<BottomNavigation>` & `<BottomNavigationItem>`
 
 ```tsx
-<BottomNavigation showLabels={false} size="small" glass>
-  <BottomNavigationAction icon={<Home />} />
+import { BottomNavigation, BottomNavigationItem } from "jivico-glass-ui";
+import { Button, InputBase } from "@mui/material";
+
+<BottomNavigation glass={true} placement="top-center">
+  <BottomNavigationItem component={Button} href="/originals">
+    Originals
+  </BottomNavigationItem>
+  <BottomNavigationItem component={InputBase} placeholder="Search..." />
 </BottomNavigation>
 ```
+
+- **`BottomNavigation` Props**:
+  - **`glass`**: `boolean` (Enables 32px optical backdrop blur & specular lighting glint)
+  - **`placement`**: `"inline"` | `"top-center"` | `"top-left"` | `"top-right"` | `"bottom-center"` | `"bottom-left"` | `"bottom-right"`
+  - **`size`**: `"small"` (48px) | `"medium"` (64px)
+
+- **`<BottomNavigationItem>`**:
+  - Helper wrapper for embedding custom components (Logos, Search fields, Buttons, Icons) inside `<BottomNavigation>`.
+  - Automatically consumes and filters out MUI-injected props (`showLabel`, `selected`, `value`, `onChange`) so invalid attributes are not leaked to HTML DOM elements.
+  - Accepts `component` prop (`component={Button}`, `component={InputBase}`, `component={Link}`, etc.).
 
 - **`size`**: `small` | `medium`
 - **`showLabels={false}`**: Hides text labels cleanly for floating dynamic island docks.
