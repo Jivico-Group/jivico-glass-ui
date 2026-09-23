@@ -12,6 +12,7 @@ import {
   IconButton,
   Stack,
   Chip,
+  InputBase,
 } from "@mui/material";
 import {
   Home,
@@ -30,6 +31,9 @@ import {
   Send,
   Wifi,
   Battery,
+  Scan,
+  Loader2,
+  X,
 } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
@@ -52,6 +56,11 @@ export const BottomNavigationPage: React.FC = () => {
   const [instaFloating, setInstaFloating] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(14280);
+
+  // Expandable Search Bar State
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchPosition, setSearchPosition] = useState<"top" | "bottom">("top");
 
   return (
     <ComponentPage
@@ -630,6 +639,485 @@ export const BottomNavigationPage: React.FC = () => {
               </BottomNavigation>
             </Box>
           </Paper>
+        </Box>
+      </DemoBlock>
+
+      {/* 0.5 Expandable Floating Glass Search Dock */}
+      <DemoBlock
+        id="expandable-search-dock"
+        title="Expandable Floating Glass Search Bar"
+        description="Seamlessly embed custom inputs, brand pills, and action buttons inside `<BottomNavigation glass={true}>`. Clicking or focusing the input smoothly expands the navigation width with fluid spring transitions."
+        code={`// Custom Floating Glass Search Navigation Bar with Dynamic Expansion
+const [isExpanded, setIsExpanded] = useState(false);
+const [query, setQuery] = useState('');
+
+<BottomNavigation
+  glass={true}
+  placement="top-center"
+  sx={{
+    width: isExpanded ? { xs: '92%', sm: 540 } : { xs: '88%', sm: 360 },
+    height: 64,
+    px: 1.5,
+    py: 0.75,
+    transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 1,
+  }}
+>
+  {/* Brand Capsule Badge */}
+  <Box
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 1.25,
+      px: 1.5,
+      py: 0.75,
+      borderRadius: 9999,
+      bgcolor: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.08)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      cursor: 'pointer',
+      flexShrink: 0,
+    }}
+  >
+    <Avatar
+      sx={{
+        width: 24,
+        height: 24,
+        bgcolor: '#FFFFFF',
+        color: '#000000',
+        fontSize: '0.65rem',
+        fontWeight: 800,
+        letterSpacing: -0.5,
+      }}
+    >
+      B
+    </Avatar>
+    <Typography variant="body2" sx={{ fontWeight: 700, fontSize: '0.85rem' }}>
+      Balenciaga
+    </Typography>
+  </Box>
+
+  {/* Search Field */}
+  <InputBase
+    placeholder="Search Balenciaga..."
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
+    onFocus={() => setIsExpanded(true)}
+    sx={{
+      flex: 1,
+      fontSize: '0.875rem',
+      color: 'inherit',
+      '& input': { px: 1 },
+    }}
+  />
+
+  {/* Right Icons */}
+  <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
+    <IconButton size="small" sx={{ color: 'inherit', opacity: 0.8 }}>
+      <Scan size={18} />
+    </IconButton>
+    <IconButton size="small" sx={{ color: 'inherit', opacity: 0.8 }}>
+      <Loader2 size={18} className="animate-spin" />
+    </IconButton>
+  </Stack>
+</BottomNavigation>`}
+      >
+        {/* Controls Toolbar */}
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 2,
+            alignItems: "center",
+            justifyContent: "space-between",
+            mb: 3,
+            p: 2,
+            borderRadius: "14px",
+            bgcolor: isDark
+              ? "rgba(255, 255, 255, 0.03)"
+              : "rgba(0, 0, 0, 0.03)",
+            border: `1px solid ${
+              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
+            }`,
+          }}
+        >
+          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={isSearchExpanded}
+                  onChange={(e) => setIsSearchExpanded(e.target.checked)}
+                  color="glass"
+                  size="small"
+                />
+              }
+              label={
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                  Expand Width:{" "}
+                  <Box
+                    component="span"
+                    sx={{
+                      color: isSearchExpanded
+                        ? "primary.main"
+                        : "text.secondary",
+                    }}
+                  >
+                    {isSearchExpanded
+                      ? "Expanded (560px)"
+                      : "Collapsed (360px)"}
+                  </Box>
+                </Typography>
+              }
+            />
+
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+              <Typography variant="body2" sx={{ fontWeight: 600, mr: 1 }}>
+                Position:
+              </Typography>
+              <Button
+                size="small"
+                variant={searchPosition === "top" ? "contained" : "outlined"}
+                onClick={() => setSearchPosition("top")}
+                sx={{ borderRadius: 9999, textTransform: "none" }}
+              >
+                Top Floating
+              </Button>
+              <Button
+                size="small"
+                variant={searchPosition === "bottom" ? "contained" : "outlined"}
+                onClick={() => setSearchPosition("bottom")}
+                sx={{ borderRadius: 9999, textTransform: "none" }}
+              >
+                Bottom Floating
+              </Button>
+            </Stack>
+          </Stack>
+
+          <Chip
+            label="Click Search Field to Test Expansion"
+            color="secondary"
+            size="small"
+            variant="outlined"
+            sx={{ fontWeight: 700, fontSize: "0.75rem" }}
+          />
+        </Box>
+
+        {/* Live Simulation Viewport */}
+        <Box
+          sx={{
+            position: "relative",
+            width: "100%",
+            height: 440,
+            borderRadius: "24px",
+            overflow: "hidden",
+            border: `1px solid ${
+              isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)"
+            }`,
+            backgroundImage: isDark
+              ? "radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.12) 0%, transparent 60%), linear-gradient(180deg, #09090B 0%, #121215 100%)"
+              : "radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.15) 0%, transparent 60%), linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 100%)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent:
+              searchPosition === "top" ? "flex-start" : "flex-end",
+            p: 3,
+            transition: "all 0.3s ease",
+          }}
+        >
+          {/* Background Ambient Content Mockup */}
+          <Box
+            sx={{
+              position: "absolute",
+              inset: 0,
+              p: 4,
+              pt: searchPosition === "top" ? 14 : 4,
+              pb: searchPosition === "bottom" ? 14 : 4,
+              opacity: isSearchExpanded ? 0.35 : 0.7,
+              filter: isSearchExpanded ? "blur(3px)" : "none",
+              transition: "all 0.3s ease",
+              overflow: "hidden",
+              pointerEvents: "none",
+            }}
+          >
+            <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>
+              Winter 2026 Collection
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+              Explore luxury streetwear, oversized tailoring, and new seasonal
+              arrivals.
+            </Typography>
+            <Stack direction="row" spacing={2}>
+              {[1, 2, 3].map((item) => (
+                <Paper
+                  key={item}
+                  elevation={0}
+                  sx={{
+                    width: 140,
+                    height: 180,
+                    borderRadius: "16px",
+                    bgcolor: isDark
+                      ? "rgba(255, 255, 255, 0.05)"
+                      : "rgba(0, 0, 0, 0.04)",
+                    border: `1px solid ${
+                      isDark
+                        ? "rgba(255, 255, 255, 0.08)"
+                        : "rgba(0, 0, 0, 0.08)"
+                    }`,
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <Typography variant="caption" sx={{ fontWeight: 700 }}>
+                    Item #{item}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    $1,290
+                  </Typography>
+                </Paper>
+              ))}
+            </Stack>
+          </Box>
+
+          {/* Floating Expandable Glass Search Dock */}
+          <BottomNavigation
+            glass={true}
+            sx={{
+              position: "relative",
+              zIndex: 20,
+              width: isSearchExpanded
+                ? { xs: "96%", sm: 540 }
+                : { xs: "90%", sm: 360 },
+              height: isSearchExpanded ? 72 : 60,
+              px: 1.5,
+              py: 0.75,
+              borderRadius: 9999,
+              transition: "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 1.2,
+              boxShadow: isDark
+                ? isSearchExpanded
+                  ? "0 24px 64px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.2)"
+                  : "0 16px 48px rgba(0, 0, 0, 0.4)"
+                : isSearchExpanded
+                  ? "0 24px 56px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.08)"
+                  : "0 12px 36px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            {/* Left Brand Capsule Badge */}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1.25,
+                px: 1.5,
+                py: 0.8,
+                borderRadius: 9999,
+                bgcolor: isDark
+                  ? "rgba(255, 255, 255, 0.12)"
+                  : "rgba(0, 0, 0, 0.07)",
+                border: `1px solid ${
+                  isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.08)"
+                }`,
+                cursor: "pointer",
+                flexShrink: 0,
+                transition: "all 0.2s ease",
+                "&:hover": {
+                  bgcolor: isDark
+                    ? "rgba(255, 255, 255, 0.18)"
+                    : "rgba(0, 0, 0, 0.12)",
+                },
+              }}
+            >
+              <Avatar
+                sx={{
+                  width: 24,
+                  height: 24,
+                  bgcolor: isDark ? "#FFFFFF" : "#000000",
+                  color: isDark ? "#000000" : "#FFFFFF",
+                  fontSize: "0.65rem",
+                  fontWeight: 800,
+                  letterSpacing: -0.5,
+                }}
+              >
+                B
+              </Avatar>
+              <Typography
+                variant="body2"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: "0.85rem",
+                  letterSpacing: -0.2,
+                }}
+              >
+                Balenciaga
+              </Typography>
+            </Box>
+
+            {/* Middle Input Field */}
+            <InputBase
+              placeholder="Search Balenciaga..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setIsSearchExpanded(true)}
+              sx={{
+                flex: 1,
+                fontSize: "0.875rem",
+                color: "inherit",
+                "& input": {
+                  px: 1,
+                  py: 0.5,
+                },
+              }}
+            />
+
+            {/* Right Action Icons */}
+            <Stack
+              direction="row"
+              spacing={0.5}
+              sx={{ alignItems: "center", flexShrink: 0 }}
+            >
+              {isSearchExpanded && searchQuery && (
+                <IconButton
+                  size="small"
+                  onClick={() => setSearchQuery("")}
+                  sx={{ color: "inherit", opacity: 0.8 }}
+                >
+                  <X size={16} />
+                </IconButton>
+              )}
+
+              <IconButton
+                size="small"
+                sx={{
+                  color: "inherit",
+                  opacity: 0.85,
+                  transition: "transform 0.2s ease",
+                  "&:hover": { transform: "scale(1.1)" },
+                }}
+              >
+                <Scan size={18} />
+              </IconButton>
+
+              <IconButton
+                size="small"
+                sx={{
+                  color: "inherit",
+                  opacity: 0.85,
+                  transition: "transform 0.2s ease",
+                  "&:hover": { transform: "scale(1.1)" },
+                }}
+              >
+                <Loader2
+                  size={18}
+                  style={{
+                    animation: "spin 4s linear infinite",
+                  }}
+                />
+              </IconButton>
+
+              {isSearchExpanded && (
+                <Button
+                  size="small"
+                  variant="text"
+                  onClick={() => {
+                    setIsSearchExpanded(false);
+                    setSearchQuery("");
+                  }}
+                  sx={{
+                    ml: 0.5,
+                    px: 1.5,
+                    borderRadius: 9999,
+                    fontSize: "0.75rem",
+                    fontWeight: 700,
+                    textTransform: "none",
+                    color: "primary.main",
+                  }}
+                >
+                  Cancel
+                </Button>
+              )}
+            </Stack>
+          </BottomNavigation>
+
+          {/* Expanded Suggestions Pill Row */}
+          {isSearchExpanded && (
+            <Paper
+              elevation={12}
+              sx={{
+                mt: 1.5,
+                width: { xs: "96%", sm: 540 },
+                p: 2,
+                borderRadius: "20px",
+                bgcolor: isDark
+                  ? "rgba(24, 24, 27, 0.85)"
+                  : "rgba(255, 255, 255, 0.88)",
+                backdropFilter: "blur(24px) saturate(180%)",
+                WebkitBackdropFilter: "blur(24px) saturate(180%)",
+                border: `1px solid ${
+                  isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.08)"
+                }`,
+                display: "flex",
+                flexDirection: "column",
+                gap: 1.5,
+                zIndex: 15,
+                animation: "fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
+            >
+              <Typography
+                variant="caption"
+                sx={{
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: 0.8,
+                  color: "text.secondary",
+                  fontSize: "0.68rem",
+                }}
+              >
+                Trending Searches
+              </Typography>
+              <Stack
+                direction="row"
+                spacing={1}
+                sx={{ flexWrap: "wrap", gap: 1 }}
+              >
+                {[
+                  "Triple S Sneakers",
+                  "Track 2",
+                  "Hourglass Bag",
+                  "Speed Trainer",
+                  "Oversized Hoodie",
+                ].map((tag) => (
+                  <Chip
+                    key={tag}
+                    label={tag}
+                    size="small"
+                    onClick={() => setSearchQuery(tag)}
+                    sx={{
+                      borderRadius: 9999,
+                      fontWeight: 600,
+                      fontSize: "0.75rem",
+                      cursor: "pointer",
+                      bgcolor: isDark
+                        ? "rgba(255, 255, 255, 0.08)"
+                        : "rgba(0, 0, 0, 0.05)",
+                      "&:hover": {
+                        bgcolor: isDark
+                          ? "rgba(255, 255, 255, 0.16)"
+                          : "rgba(0, 0, 0, 0.1)",
+                      },
+                    }}
+                  />
+                ))}
+              </Stack>
+            </Paper>
+          )}
         </Box>
       </DemoBlock>
 
