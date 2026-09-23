@@ -1,13 +1,6 @@
-Yes. I’d update the documentation to include the new `height`, `minHeight`, and `maxHeight` APIs, and also correct the default `size` to **`medium`** because that is what the current component implementation uses.
-
-I’d also clarify that `height` takes precedence over `aspectRatio`, while `maxHeight` only caps the resulting height.
-
-Here is the complete updated `usage.md`:
-
-````md
 # Spotlight
 
-`Spotlight` is a responsive visual feature component for presenting a single highlighted piece of content.
+`Spotlight` is a responsive visual feature component for presenting a single highlighted piece of content, campaign, hero section, or product launch.
 
 It is intentionally generic and independent of any database, routing, product, category, or CMS schema.
 
@@ -19,10 +12,9 @@ Use it for:
 - Editorial content
 - Customization experiences
 - Seasonal campaigns
-- Offers
+- Offers & announcement banners
 - Brand storytelling
 - Featured categories
-- Any other single highlighted visual
 
 ---
 
@@ -31,7 +23,6 @@ Use it for:
 ```tsx
 import { Spotlight } from "jivico-glass-ui";
 ```
-````
 
 ---
 
@@ -53,7 +44,34 @@ The default variant is `overlay` and the default size is `medium`.
 
 ---
 
-# Props
+# Props Overview
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `image` | `string` | **Required** | Main desktop image URL |
+| `mobileImage` | `string` | `undefined` | Mobile-specific image URL |
+| `alt` | `string` | `""` | Accessible image description |
+| `variant` | `"overlay" \| "split" \| "minimal"` | `"overlay"` | Layout mode |
+| `size` | `"small" \| "medium" \| "large"` | `"medium"` | Visual scale and spacing |
+| `eyebrow` | `ReactNode` | `undefined` | Small supporting label above title |
+| `title` | `ReactNode` | `undefined` | Primary heading |
+| `description` | `ReactNode` | `undefined` | Supporting paragraph |
+| `action` | `SpotlightAction` | `undefined` | CTA button configuration |
+| `href` | `string` | `undefined` | Semantic link destination for the full card |
+| `linkLabel` | `string` | `undefined` | Accessible label for full card anchor |
+| `onNavigate` | `(event) => void` | `undefined` | Navigation handler for full card click |
+| `ImageComponent` | `SpotlightImageComponent` | `undefined` | Custom image component (e.g. Next.js `next/image`) |
+| `renderImage` | `(context) => ReactNode` | `undefined` | Advanced custom image renderer |
+| `aspectRatio` | `string` | `"16 / 7"` | Proportional aspect ratio |
+| `height` | `number \| string \| Dimension` | `undefined` | Explicit height |
+| `minHeight` | `number \| string \| Dimension` | `undefined` | Minimum height boundary |
+| `maxHeight` | `number \| string \| Dimension` | `undefined` | Maximum height boundary |
+| `imagePosition` | `SpotlightImagePosition` | `"center"` | CSS object-position cropping |
+| `radius` | `number \| string` | Theme spacing | Border radius |
+
+---
+
+# Image Props
 
 ## `image`
 
@@ -61,23 +79,21 @@ The default variant is `overlay` and the default size is `medium`.
 image: string;
 ```
 
-Main image displayed by the Spotlight.
+Main image displayed by the Spotlight. Required.
 
 ```tsx
 <Spotlight image="/images/originals.jpg" title="ORIGINALS" />
 ```
-
-This prop is required.
 
 ---
 
 ## `mobileImage`
 
 ```ts
-mobileImage?: string
+mobileImage?: string;
 ```
 
-Optional image specifically for smaller screens.
+Optional image specifically for smaller screens. The component uses a responsive `<picture>` element so the browser loads the appropriate source.
 
 ```tsx
 <Spotlight
@@ -87,14 +103,12 @@ Optional image specifically for smaller screens.
 />
 ```
 
-The component uses a `<picture>` element so the browser can select the appropriate image.
-
 ---
 
 ## `alt`
 
 ```ts
-alt?: string
+alt?: string;
 ```
 
 Accessible description for the image.
@@ -107,14 +121,14 @@ Accessible description for the image.
 />
 ```
 
-If the image is purely decorative, the default empty value can be used.
-
 ---
+
+# Content Props
 
 ## `eyebrow`
 
 ```ts
-eyebrow?: ReactNode
+eyebrow?: ReactNode;
 ```
 
 Small supporting label displayed above the title.
@@ -127,35 +141,15 @@ Small supporting label displayed above the title.
 />
 ```
 
-It can also contain custom React content:
-
-```tsx
-<Spotlight
-  image="/images/drop.jpg"
-  eyebrow={
-    <span>
-      NEW <strong>DROP</strong>
-    </span>
-  }
-  title="THE NEW ESSENTIALS"
-/>
-```
-
 ---
 
 ## `title`
 
 ```ts
-title?: ReactNode
+title?: ReactNode;
 ```
 
-Primary Spotlight heading.
-
-```tsx
-<Spotlight image="/images/drop.jpg" title="WEAR YOUR ORIGINAL" />
-```
-
-Because the prop accepts `ReactNode`, custom markup can also be used:
+Primary Spotlight heading. Accepts `string` or custom React elements.
 
 ```tsx
 <Spotlight
@@ -175,7 +169,7 @@ Because the prop accepts `ReactNode`, custom markup can also be used:
 ## `description`
 
 ```ts
-description?: ReactNode
+description?: ReactNode;
 ```
 
 Supporting text displayed below the title.
@@ -190,25 +184,22 @@ Supporting text displayed below the title.
 
 ---
 
-# Action
+# Action & Navigation
 
 ## `action`
 
-```ts
-action?: SpotlightAction
-```
-
-Adds a CTA button.
+Adds a CTA button inside the Spotlight.
 
 ```ts
 interface SpotlightAction {
   label: string;
   href?: string;
   onClick?: () => void;
+  target?: string;
+  rel?: string;
+  ariaLabel?: string;
 }
 ```
-
-### Link
 
 ```tsx
 <Spotlight
@@ -221,42 +212,44 @@ interface SpotlightAction {
 />
 ```
 
-### Click handler
+---
+
+## Full Card Navigation (`href` & `onNavigate`)
+
+Spotlight renders a semantic HTML `<a>` element when `href` is provided, ensuring accessibility, browser status bar previews, and SEO.
+
+Native browser navigation is automatically prevented via `event.preventDefault()`, and actual routing is delegated to `onNavigate`.
 
 ```tsx
 <Spotlight
-  image="/images/freestyle.jpg"
-  title="MAKE IT YOURS"
-  action={{
-    label: "CUSTOMIZE NOW",
-    onClick: () => {
-      console.log("Open customization");
-    },
+  image="/images/originals.jpg"
+  eyebrow="STUDIO EXCLUSIVE"
+  title="Originals Collection"
+  href="/collections/originals"
+  linkLabel="View Originals Collection"
+  onNavigate={() => {
+    router.push("/collections/originals");
   }}
 />
 ```
-
-When `href` is provided, the action behaves as a link.
-
-When `href` is omitted, `onClick` is used.
 
 ---
 
 # Variants
 
-`Spotlight` supports three visual variants.
+`Spotlight` supports three visual layout variants: `overlay`, `split`, and `minimal`.
 
 ```ts
-variant?: "overlay" | "split" | "minimal"
+variant?: "overlay" | "split" | "minimal";
 ```
+
+Default: `"overlay"`.
 
 ---
 
-## Overlay
+## `overlay`
 
-The default variant.
-
-Content is positioned over the image with a cinematic gradient.
+Content is positioned over the image with a subtle cinematic gradient overlay.
 
 ```tsx
 <Spotlight
@@ -273,19 +266,16 @@ Content is positioned over the image with a cinematic gradient.
 ```
 
 ### Best for
-
-- Homepage features
-- Campaigns
-- Product launches
-- Promotional content
+- Homepage hero features
+- Major campaigns
+- Product launches & seasonal drops
 - Brand storytelling
-- Large visual sections
 
 ---
 
-## Split
+## `split`
 
-Image and content are displayed separately.
+Image and content are displayed side-by-side in a balanced grid layout. On mobile screens, the layout automatically stacks vertically.
 
 ```tsx
 <Spotlight
@@ -302,20 +292,15 @@ Image and content are displayed separately.
 ```
 
 ### Best for
-
-- Customization
+- Customization tools & interactive features
 - Editorial sections
-- Product storytelling
 - Feature explanations
-- Brand content
-
-On smaller screens, the layout automatically becomes stacked.
 
 ---
 
-## Minimal
+## `minimal`
 
-Image-focused presentation with content below the image.
+Clean vertical stacked flow with image on top and typography below.
 
 ```tsx
 <Spotlight
@@ -331,852 +316,126 @@ Image-focused presentation with content below the image.
 />
 ```
 
-### Best for
-
-- Editorial cards
-- Collection highlights
-- Smaller content sections
-- Magazine-style layouts
-
 ---
 
 # Size
 
 ```ts
-size?: "small" | "medium" | "large"
+size?: "small" | "medium" | "large";
 ```
 
-Default:
+Default: `"medium"`.
 
-```ts
-"medium";
-```
+Controls the general scale of typography, spacing, and default minimum height.
 
-Size controls the general visual scale of the Spotlight, including its default minimum height, content spacing, and title scale.
-
-It does **not** force a fixed height.
+- `small`: Compact sections and supporting cards.
+- `medium`: Standard feature sections.
+- `large`: Prominent hero banners.
 
 ---
 
-## Small
+# Dimension Control
+
+## `height`
+
+Controls explicit container height.
 
 ```tsx
-<Spotlight image="/images/drop.jpg" title="NEW DROP" size="small" />
+<Spotlight image="/images/offer.jpg" height={300} />
+<Spotlight image="/images/offer.jpg" height="50vh" />
 ```
 
-Useful for smaller sections and supporting content.
-
----
-
-## Medium
-
-```tsx
-<Spotlight image="/images/drop.jpg" title="NEW DROP" size="medium" />
-```
-
-Useful for standard feature sections.
-
----
-
-## Large
-
-```tsx
-<Spotlight image="/images/drop.jpg" title="NEW DROP" size="large" />
-```
-
-Useful for prominent homepage sections.
-
----
-
-# Height
-
-Spotlight supports explicit height control.
-
-```ts
-height?: number | string | ResponsiveDimension
-```
-
-A numeric value is interpreted as pixels.
-
-```tsx
-<Spotlight image="/images/offer.jpg" height={100} />
-```
-
-This creates a Spotlight with a height of approximately `100px`.
-
-A CSS value can also be provided:
-
-```tsx
-<Spotlight image="/images/offer.jpg" height="300px" />
-```
-
-Other CSS units can be used:
-
-```tsx
-<Spotlight image="/images/offer.jpg" height="60vh" />
-```
-
----
-
-## Responsive Height
-
-Height can be configured responsively.
+Responsive height:
 
 ```tsx
 <Spotlight
   image="/images/offer.jpg"
   height={{
-    xs: 180,
-    md: 300,
-    lg: 400,
+    xs: 200,
+    md: 360,
+    lg: 480,
   }}
 />
 ```
 
-Available breakpoints:
+---
 
-```ts
-{
-  xs?: number | string;
-  sm?: number | string;
-  md?: number | string;
-  lg?: number | string;
-  xl?: number | string;
+## `aspectRatio`
+
+Controls the proportional relationship between width and height.
+
+```tsx
+<Spotlight image="/images/campaign.jpg" aspectRatio="21 / 9" />
+<Spotlight image="/images/campaign.jpg" aspectRatio="16 / 9" />
+<Spotlight image="/images/campaign.jpg" aspectRatio="4 / 3" />
+```
+
+---
+
+## `minHeight` & `maxHeight`
+
+Set lower and upper boundary limits:
+
+```tsx
+<Spotlight
+  image="/images/offer.jpg"
+  eyebrow="LIMITED TIME"
+  title="20% OFF YOUR FIRST ORDER"
+  maxHeight={140}
+/>
+```
+
+---
+
+# Next.js Integration
+
+Spotlight remains 100% framework-agnostic. Framework-specific image renderers (such as `next/image`) can be passed via `ImageComponent`:
+
+```tsx
+// app/components/SpotlightHero.tsx
+"use client";
+
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { Spotlight } from "jivico-glass-ui";
+
+export function SpotlightHero({ data }) {
+  const router = useRouter();
+
+  return (
+    <Spotlight
+      image={data.image}
+      mobileImage={data.mobileImage}
+      alt={data.title}
+      eyebrow={data.eyebrow}
+      title={data.title}
+      description={data.description}
+      action={{
+        label: data.actionLabel,
+        href: data.href,
+      }}
+      href={data.href}
+      onNavigate={() => {
+        router.push(data.href);
+      }}
+      ImageComponent={Image}
+    />
+  );
 }
 ```
 
 ---
 
-# Maximum Height
-
-Use `maxHeight` when the Spotlight should be able to size naturally but should never exceed a specific height.
-
-```ts
-maxHeight?: number | string | ResponsiveDimension
-```
-
-For example:
-
-```tsx
-<Spotlight image="/images/offer.jpg" maxHeight={100} />
-```
-
-This is useful when you want a very compact promotional strip.
-
-For example:
-
-```tsx
-<Spotlight
-  image="/images/offer.jpg"
-  eyebrow="LIMITED TIME"
-  title="20% OFF YOUR FIRST ORDER"
-  action={{
-    label: "SHOP NOW",
-    href: "/offers",
-  }}
-  maxHeight={100}
-/>
-```
-
-A CSS value can also be used:
-
-```tsx
-<Spotlight image="/images/offer.jpg" maxHeight="400px" />
-```
-
-Responsive maximum height is supported:
-
-```tsx
-<Spotlight
-  image="/images/offer.jpg"
-  maxHeight={{
-    xs: 100,
-    md: 180,
-    lg: 240,
-  }}
-/>
-```
-
----
-
-# Minimum Height
-
-Use `minHeight` when the Spotlight should never become smaller than a specific height.
-
-```ts
-minHeight?: number | string | ResponsiveDimension
-```
-
-Example:
-
-```tsx
-<Spotlight image="/images/drop.jpg" minHeight={300} title="NEW DROP" />
-```
-
-Responsive values are supported:
-
-```tsx
-<Spotlight
-  image="/images/drop.jpg"
-  minHeight={{
-    xs: 220,
-    md: 320,
-    lg: 420,
-  }}
-/>
-```
-
----
-
-# Height vs Aspect Ratio
-
-`height` and `aspectRatio` serve different purposes.
-
-### `aspectRatio`
-
-Controls the proportional relationship between width and height.
-
-```tsx
-<Spotlight image="/images/campaign.jpg" aspectRatio="16 / 7" />
-```
-
-The height changes as the available width changes.
-
----
-
-### `height`
-
-Controls the actual height.
-
-```tsx
-<Spotlight image="/images/campaign.jpg" height={300} />
-```
-
-The Spotlight uses the specified height rather than calculating it from the aspect ratio.
-
----
-
-### `maxHeight`
-
-Places an upper limit on the height.
-
-```tsx
-<Spotlight image="/images/campaign.jpg" maxHeight={300} />
-```
-
----
-
-### Combining Them
-
-You can combine `aspectRatio` with `maxHeight`.
-
-```tsx
-<Spotlight image="/images/campaign.jpg" aspectRatio="16 / 7" maxHeight={300} />
-```
-
-This is useful when you want proportional sizing on smaller containers but don't want the Spotlight to become excessively tall.
-
----
-
-## Height Priority
-
-When controlling the Spotlight dimensions:
+# Recommended Application Architecture
 
 ```text
-height
-   ↓
-explicit height
-
-aspectRatio
-   ↓
-proportional sizing when height is not explicitly provided
-
-minHeight
-   ↓
-minimum allowed height
-
-maxHeight
-   ↓
-maximum allowed height
+Application API / Data (JSON)
+            ↓
+    Next.js Client Adapter
+            ↓
+      <Spotlight /> (UI Component)
+            ↓
+Semantic <a href="..."> + onNavigate() + ImageComponent={Image}
 ```
 
-For example:
-
-```tsx
-<Spotlight image="/images/campaign.jpg" aspectRatio="16 / 7" height={300} />
-```
-
-Here, the explicit `height` controls the Spotlight rather than the `aspectRatio`.
-
----
-
-# Aspect Ratio
-
-```ts
-aspectRatio?: string
-```
-
-Default:
-
-```ts
-"16 / 7";
-```
-
-Any valid CSS aspect ratio can be provided.
-
-### Wide
-
-```tsx
-<Spotlight
-  image="/images/campaign.jpg"
-  aspectRatio="21 / 9"
-  title="THE NEXT ORIGINAL"
-/>
-```
-
-### Standard Landscape
-
-```tsx
-<Spotlight
-  image="/images/campaign.jpg"
-  aspectRatio="16 / 9"
-  title="THE NEXT ORIGINAL"
-/>
-```
-
-### Portrait
-
-```tsx
-<Spotlight
-  image="/images/campaign.jpg"
-  aspectRatio="4 / 5"
-  title="THE NEXT ORIGINAL"
-/>
-```
-
-### Square
-
-```tsx
-<Spotlight
-  image="/images/campaign.jpg"
-  aspectRatio="1 / 1"
-  title="THE NEXT ORIGINAL"
-/>
-```
-
----
-
-# Image Position
-
-```ts
-imagePosition?: string
-```
-
-Controls the CSS `object-position` of the image.
-
-Default:
-
-```ts
-"center";
-```
-
-Examples:
-
-```tsx
-<Spotlight
-  image="/images/model.jpg"
-  imagePosition="center top"
-  title="ORIGINALS"
-/>
-```
-
-```tsx
-<Spotlight
-  image="/images/model.jpg"
-  imagePosition="50% 30%"
-  title="ORIGINALS"
-/>
-```
-
-This is especially useful when the subject of an image is not centered.
-
----
-
-# Radius
-
-```ts
-radius?: number | string
-```
-
-Controls the corner radius of the Spotlight.
-
-A numeric value uses the MUI theme spacing system.
-
-```tsx
-<Spotlight image="/images/drop.jpg" radius={3} title="NEW DROP" />
-```
-
-A CSS value can also be provided:
-
-```tsx
-<Spotlight image="/images/drop.jpg" radius="24px" title="NEW DROP" />
-```
-
-The default value uses the theme's `shape.borderRadius`.
-
-### Square
-
-```tsx
-<Spotlight image="/images/drop.jpg" radius={0} />
-```
-
-### Custom
-
-```tsx
-<Spotlight image="/images/drop.jpg" radius="32px" />
-```
-
-> If the shared Jivico radius system is later standardized across components, semantic values such as `square`, `rounded`, and `soft` can be added consistently to `Spotlight`, `Rails`, and other components.
-
----
-
-# Custom Content
-
-`children` can be used to add additional content after the standard description and action.
-
-```tsx
-<Spotlight
-  image="/images/drop.jpg"
-  title="NEW DROP"
-  description="Fresh pieces for the new season."
->
-  <Typography variant="caption">Limited collection</Typography>
-</Spotlight>
-```
-
-A more complex example:
-
-```tsx
-<Spotlight
-  image="/images/drop.jpg"
-  title="NEW DROP"
-  description="Fresh pieces for the new season."
->
-  <Stack direction="row" spacing={1}>
-    <Chip label="Limited" size="small" />
-    <Chip label="New" size="small" />
-  </Stack>
-</Spotlight>
-```
-
----
-
-# Styling
-
-Use `sx` for instance-specific customization.
-
-```tsx
-<Spotlight
-  image="/images/drop.jpg"
-  title="NEW DROP"
-  sx={{
-    maxWidth: 1200,
-    mx: "auto",
-  }}
-/>
-```
-
-Responsive styling is supported:
-
-```tsx
-<Spotlight
-  image="/images/drop.jpg"
-  sx={{
-    mt: {
-      xs: 2,
-      md: 4,
-    },
-  }}
-/>
-```
-
----
-
-# E-Commerce Example
-
-A Jivico collection feature:
-
-```tsx
-<Spotlight
-  image="/images/originals.jpg"
-  mobileImage="/images/originals-mobile.jpg"
-  alt="Jivico Originals collection"
-  eyebrow="JIVICO ORIGINALS"
-  title="SAME SOUL. NEW ESSENTIALS."
-  description="Premium everyday pieces designed to become your originals."
-  action={{
-    label: "SHOP ORIGINALS",
-    href: "/collections/originals",
-  }}
-  variant="overlay"
-  size="large"
-  aspectRatio="16 / 7"
-  radius="24px"
-/>
-```
-
----
-
-# Offer Example
-
-For a compact promotional strip:
-
-```tsx
-<Spotlight
-  image="/images/offer.jpg"
-  eyebrow="LIMITED TIME"
-  title="20% OFF YOUR FIRST ORDER"
-  description="Start your Jivico collection with something original."
-  action={{
-    label: "SHOP NOW",
-    href: "/collections/originals",
-  }}
-  variant="overlay"
-  height={100}
-  radius="16px"
-/>
-```
-
-For a responsive offer:
-
-```tsx
-<Spotlight
-  image="/images/offer.jpg"
-  eyebrow="LIMITED TIME"
-  title="20% OFF YOUR FIRST ORDER"
-  action={{
-    label: "SHOP NOW",
-    href: "/offers",
-  }}
-  variant="overlay"
-  height={{
-    xs: 140,
-    md: 180,
-    lg: 220,
-  }}
-  radius="soft"
-/>
-```
-
-> If using `radius="soft"`, make sure the shared semantic radius API has been implemented in the component type.
-
----
-
-# Freestyle Example
-
-```tsx
-<Spotlight
-  image="/images/freestyle.jpg"
-  mobileImage="/images/freestyle-mobile.jpg"
-  alt="Custom Jivico Freestyle T-shirt"
-  eyebrow="JIVICO FREESTYLE"
-  title="MAKE IT YOURS."
-  description="Upload your image. Create your piece. Make it an Original."
-  action={{
-    label: "CUSTOMIZE NOW",
-    href: "/freestyle",
-  }}
-  variant="split"
-  size="large"
-  radius="24px"
-/>
-```
-
----
-
-# Editorial Example
-
-```tsx
-<Spotlight
-  image="/images/editorial.jpg"
-  eyebrow="THE JIVICO EDIT"
-  title="WEAR YOUR STORY."
-  description="Pieces inspired by the people who make them their own."
-  action={{
-    label: "DISCOVER",
-    href: "/stories",
-  }}
-  variant="minimal"
-  size="medium"
-/>
-```
-
----
-
-# Compact Promotional Spotlight
-
-Spotlight can also be used as a compact horizontal promotional element.
-
-```tsx
-<Spotlight
-  image="/images/promo.jpg"
-  title="FREE SHIPPING"
-  action={{
-    label: "SHOP NOW",
-    href: "/shop",
-  }}
-  height={100}
-  maxHeight={100}
-  radius="16px"
-/>
-```
-
-This is useful for:
-
-- Offers
-- Shipping promotions
-- Limited-time campaigns
-- Announcement-style visual sections
-- Short promotional messages
-
----
-
-# Using Application Data
-
-`Spotlight` should remain independent from application/database models.
-
-For example, your application might have:
-
-```ts
-const campaign = {
-  id: "campaign-01",
-  slug: "originals",
-  image: "/images/originals.jpg",
-  title: "SAME SOUL. NEW ESSENTIALS.",
-  description: "Premium everyday pieces.",
-};
-```
-
-Map the application data into the component:
-
-```tsx
-<Spotlight
-  image={campaign.image}
-  title={campaign.title}
-  description={campaign.description}
-  action={{
-    label: "EXPLORE",
-    href: `/collections/${campaign.slug}`,
-  }}
-/>
-```
-
-The `Spotlight` component itself does not need to know what a `slug` is.
-
----
-
-# Homepage Composition
-
-A Jivico homepage can combine `Showcase`, `Rails`, and `Spotlight`.
-
-```tsx
-<>
-  <Showcase items={heroItems} autoplay navigation="dots" />
-
-  <CategoriesSection>
-    <Rails
-      items={categories}
-      getKey={(item) => item.id}
-      getImage={(item) => item.image}
-      getTitle={(item) => item.name}
-    />
-  </CategoriesSection>
-
-  <Spotlight
-    image="/images/offer.jpg"
-    eyebrow="LIMITED TIME"
-    title="20% OFF YOUR FIRST ORDER"
-    action={{
-      label: "SHOP NOW",
-      href: "/offers",
-    }}
-    maxHeight={180}
-  />
-
-  <BestSellersSection>
-    <Rails
-      items={bestSellers}
-      getKey={(item) => item.id}
-      getImage={(item) => item.image}
-      getTitle={(item) => item.name}
-    />
-  </BestSellersSection>
-
-  <TrendingSection>
-    <Rails
-      items={trending}
-      getKey={(item) => item.id}
-      getImage={(item) => item.image}
-      getTitle={(item) => item.name}
-    />
-  </TrendingSection>
-
-  <Spotlight
-    image="/images/freestyle.jpg"
-    eyebrow="JIVICO FREESTYLE"
-    title="MAKE IT YOURS."
-    description="Create a T-shirt from your own image."
-    action={{
-      label: "CUSTOMIZE NOW",
-      href: "/freestyle",
-    }}
-    variant="split"
-  />
-</>
-```
-
-This keeps the responsibilities clear:
-
-```text
-Showcase
-    Hero / storytelling
-         ↓
-Rails
-    Collections / categories
-         ↓
-Spotlight
-    Highlighted campaign
-         ↓
-Rails
-    Best sellers
-         ↓
-Rails
-    Trending
-         ↓
-Spotlight
-    Freestyle / editorial
-```
-
----
-
-# Accessibility
-
-Always provide meaningful `alt` text when the image conveys information.
-
-```tsx
-<Spotlight
-  image="/images/originals.jpg"
-  alt="Model wearing a black Jivico Originals T-shirt"
-  title="ORIGINALS"
-/>
-```
-
-For decorative imagery:
-
-```tsx
-<Spotlight image="/images/background.jpg" alt="" title="NEW DROP" />
-```
-
-Use `aria-label` when the Spotlight itself needs an explicit accessible label:
-
-```tsx
-<Spotlight
-  image="/images/drop.jpg"
-  aria-label="Jivico Originals new collection"
-  title="NEW DROP"
-/>
-```
-
----
-
-# Recommended Usage
-
-For Jivico, the recommended pattern is:
-
-### Homepage Hero
-
-Use `Showcase`.
-
-### Categories
-
-Use `Rails`.
-
-### Best Sellers
-
-Use `Rails`.
-
-### Trending Products
-
-Use `Rails`.
-
-### Promotional Campaign
-
-Use `Spotlight`.
-
-### Freestyle Customization
-
-Use `Spotlight`.
-
-### Editorial Story
-
-Use `Spotlight`.
-
-### Single Featured Collection
-
-Use `Spotlight`.
-
-### Compact Promotion
-
-Use `Spotlight` with `height` or `maxHeight`.
-
----
-
-# Design Principle
-
-`Spotlight` is intentionally a **single-content component**.
-
-It should not become responsible for:
-
-- Routing
-- Database models
-- Product logic
-- Collection logic
-- CMS logic
-- Slugs
-- API calls
-- Carousel behavior
-- Pagination
-- Horizontal scrolling
-
-Those responsibilities belong to the application or to more specialized components.
-
-The intended architecture is:
-
-```text
-Application Data
-
-       ↓
-
-   Mapping Layer
-
-       ↓
-
- ┌───────────────┐
- │   Showcase    │  ← multiple stories
- ├───────────────┤
- │    Rails      │  ← multiple items
- ├───────────────┤
- │   Spotlight   │  ← one highlighted story
- └───────────────┘
-
-       ↓
-
-    UI Output
-```
-
-This keeps `Spotlight` reusable across Jivico Studio, future Jivico verticals, and other projects using `jivico-glass-ui`.
-
-```
-
-One thing I intentionally corrected: the documentation no longer claims `radius="soft"` is currently supported, because the current `SpotlightProps` type only supports `number | string`. That should be added to the component API when we implement the shared semantic radius system.
-```
+This ensures that `Spotlight` remains clean, portable, and accessible across all web applications.

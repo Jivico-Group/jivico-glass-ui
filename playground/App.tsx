@@ -28,6 +28,7 @@ import { MenusPage } from "./components/Pages/MenusPage.js";
 import { ThemePage } from "./components/Pages/ThemePage.js";
 import { ShowcasePage } from "./components/Pages/ShowcasePage.js";
 import { RailsPage } from "./components/Pages/RailsPage.js";
+import { SpotlightPage } from "./components/Pages/SpotlightPage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
 const TOC_MAP: Record<string, TocItem[]> = {
@@ -46,6 +47,13 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "image-only-showcase", title: "1. Pure Image-Only Mode" },
     { id: "title-desc-showcase", title: "2. Title & Description Mode" },
     { id: "glass-variant-showcase", title: "3. Frosted Glass Variant" },
+  ],
+  spotlight: [
+    { id: "interactive-spotlight", title: "Interactive Playground" },
+    { id: "spotlight-overlay", title: "1. Overlay Variant" },
+    { id: "spotlight-split", title: "2. Split Grid Variant" },
+    { id: "spotlight-minimal", title: "3. Minimal Variant" },
+    { id: "nextjs-integration", title: "4. Next.js Integration" },
   ],
   theme: [
     { id: "global-provider-setup", title: "Global Provider Setup" },
@@ -253,6 +261,8 @@ export default function App() {
         return <ShowcasePage />;
       case "rails":
         return <RailsPage />;
+      case "spotlight":
+        return <SpotlightPage />;
       case "theme":
         return <ThemePage />;
       case "alerts":

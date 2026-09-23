@@ -52,6 +52,7 @@ export const NAV_SECTIONS: NavSection[] = [
     items: [
       { id: "rails", label: "Rails (Horizontal Rail)", badge: "NEW" },
       { id: "showcase", label: "Showcase Hero Slider", badge: "NEW" },
+      { id: "spotlight", label: "Spotlight Hero Banner", badge: "NEW" },
       { id: "menus", label: "Menu & Dropdown", badge: "NEW" },
       { id: "list", label: "List & Item", badge: "NEW" },
       { id: "bottom-nav", label: "Bottom Navigation", badge: "NEW" },

@@ -577,7 +577,7 @@ export function Spotlight({
 
             isolation: "isolate",
 
-            backgroundColor: "background.default",
+            backgroundColor: "transparent",
 
             color: "#fff",
 
@@ -643,8 +643,12 @@ export function Spotlight({
           sx={{
             position: "relative",
 
+            width: "100%",
+
+            height: "100%",
+
             minHeight: {
-              xs: 220,
+              xs: 240,
 
               md: "100%",
             },
