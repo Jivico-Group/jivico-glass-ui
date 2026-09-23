@@ -4,7 +4,7 @@ import * as react from 'react';
 import react__default, { ReactNode, ComponentType, CSSProperties, MouseEvent, Key, HTMLAttributeAnchorTarget, ElementType } from 'react';
 import * as _mui_system from '@mui/system';
 import * as _mui_material from '@mui/material';
-import { BoxProps } from '@mui/material';
+import { BoxProps, SxProps as SxProps$1 } from '@mui/material';
 import * as _mui_material_OverridableComponent from '@mui/material/OverridableComponent';
 import { ButtonProps } from '@mui/material/Button';
 
@@ -2666,7 +2666,7 @@ interface BottomNavigationItemProps {
     /**
      * Custom styling override
      */
-    sx?: any;
+    sx?: SxProps$1;
     [key: string]: any;
 }
 /**

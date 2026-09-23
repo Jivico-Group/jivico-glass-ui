@@ -478,9 +478,11 @@ export const Showcase = ({
 
   /*
    * =========================================================
-   * TOUCH / SWIPE
+   * TOUCH / MOUSE SWIPE & DRAG
    * =========================================================
    */
+
+  const isDraggingRef = useRef(false);
 
   const handleTouchStart = (event: React.TouchEvent) => {
     if (!swipe) {
@@ -488,7 +490,6 @@ export const Showcase = ({
     }
 
     const touch = event.touches[0];
-
     touchStartX.current = touch.clientX;
     touchStartY.current = touch.clientY;
     touchMoved.current = false;
@@ -504,11 +505,10 @@ export const Showcase = ({
     }
 
     const touch = event.touches[0];
-
     const deltaX = touch.clientX - touchStartX.current;
     const deltaY = touch.clientY - touchStartY.current;
 
-    if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
+    if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) {
       touchMoved.current = true;
     }
   };
@@ -523,14 +523,13 @@ export const Showcase = ({
     }
 
     const touch = event.changedTouches[0];
-
     const deltaX = touch.clientX - touchStartX.current;
     const deltaY = touch.clientY - touchStartY.current;
 
     touchStartX.current = null;
     touchStartY.current = null;
 
-    if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY)) {
+    if (Math.abs(deltaX) < 30 || Math.abs(deltaX) < Math.abs(deltaY)) {
       return;
     }
 
@@ -538,6 +537,61 @@ export const Showcase = ({
       goNext();
     } else {
       goPrevious();
+    }
+  };
+
+  const handleMouseDown = (event: React.MouseEvent) => {
+    if (!swipe) {
+      return;
+    }
+    touchStartX.current = event.clientX;
+    touchStartY.current = event.clientY;
+    touchMoved.current = false;
+    isDraggingRef.current = true;
+  };
+
+  const handleMouseMove = (event: React.MouseEvent) => {
+    if (
+      !swipe ||
+      !isDraggingRef.current ||
+      touchStartX.current === null ||
+      touchStartY.current === null
+    ) {
+      return;
+    }
+
+    const deltaX = event.clientX - touchStartX.current;
+    const deltaY = event.clientY - touchStartY.current;
+
+    if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) {
+      touchMoved.current = true;
+    }
+  };
+
+  const handleMouseUp = (event: React.MouseEvent) => {
+    if (
+      !swipe ||
+      !isDraggingRef.current ||
+      touchStartX.current === null ||
+      touchStartY.current === null
+    ) {
+      isDraggingRef.current = false;
+      return;
+    }
+
+    isDraggingRef.current = false;
+    const deltaX = event.clientX - touchStartX.current;
+    const deltaY = event.clientY - touchStartY.current;
+
+    touchStartX.current = null;
+    touchStartY.current = null;
+
+    if (Math.abs(deltaX) >= 30 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX < 0) {
+        goNext();
+      } else {
+        goPrevious();
+      }
     }
   };
 
@@ -735,20 +789,31 @@ export const Showcase = ({
           setIsHovered(true);
         }
       }}
-      onMouseLeave={() => {
+      onMouseLeave={(e) => {
         if (pauseOnHover) {
           setIsHovered(false);
         }
+        handleMouseUp(e);
       }}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
       sx={{
         position: "relative",
 
         width: "100%",
 
         overflow: "hidden",
+
+        userSelect: "none",
+        WebkitUserSelect: "none",
+        cursor: swipe ? "grab" : "default",
+        "&:active": {
+          cursor: swipe ? "grabbing" : "default",
+        },
 
         /*
          * Explicit height wins.
@@ -845,6 +910,10 @@ export const Showcase = ({
                 href={item.href}
                 label={item.linkLabel ?? `View ${item.title}`}
                 onClick={(event) => {
+                  if (touchMoved.current) {
+                    event.preventDefault();
+                    return;
+                  }
                   event.preventDefault();
 
                   onNavigate?.(item, currentIndex, event);
@@ -1103,34 +1172,22 @@ export const Showcase = ({
             disabled={!loop && currentIndex === 0}
             sx={{
               position: "absolute",
-
               zIndex: 5,
-
               left: {
                 xs: 12,
                 md: 20,
               },
-
               top: "50%",
-
               transform: "translateY(-50%)",
-
               width: currentSize.arrowSize,
-
               height: currentSize.arrowSize,
-
               color: "#fff",
-
               bgcolor: "rgba(0,0,0,0.28)",
-
               backdropFilter: "blur(12px)",
-
               border: "1px solid rgba(255,255,255,0.2)",
-
               "&:hover": {
                 bgcolor: "rgba(0,0,0,0.45)",
               },
-
               "&.Mui-disabled": {
                 opacity: 0.35,
               },
@@ -1145,34 +1202,22 @@ export const Showcase = ({
             disabled={!loop && currentIndex === itemCount - 1}
             sx={{
               position: "absolute",
-
               zIndex: 5,
-
               right: {
                 xs: 12,
                 md: 20,
               },
-
               top: "50%",
-
               transform: "translateY(-50%)",
-
               width: currentSize.arrowSize,
-
               height: currentSize.arrowSize,
-
               color: "#fff",
-
               bgcolor: "rgba(0,0,0,0.28)",
-
               backdropFilter: "blur(12px)",
-
               border: "1px solid rgba(255,255,255,0.2)",
-
               "&:hover": {
                 bgcolor: "rgba(0,0,0,0.45)",
               },
-
               "&.Mui-disabled": {
                 opacity: 0.35,
               },
@@ -1259,37 +1304,22 @@ export const Showcase = ({
                 onClick={() => updateIndex(index)}
                 sx={{
                   appearance: "none",
-
                   border: 0,
-
                   padding: 0,
-
                   margin: 0,
-
                   minWidth: navigation === "vertical" ? 28 : 8,
-
                   minHeight: navigation === "vertical" ? 38 : 8,
-
                   display: "flex",
-
                   alignItems: "center",
-
                   justifyContent: "center",
-
                   borderRadius: 999,
-
                   background: "transparent",
-
                   cursor: "pointer",
-
                   transition: "transform 300ms cubic-bezier(0.22, 1, 0.36, 1)",
-
                   "&:focus-visible": {
                     outline: `2px solid ${theme.palette.primary.main}`,
-
                     outlineOffset: 3,
                   },
-
                   "&:hover": {
                     transform:
                       navigation === "vertical" ? "scale(1.08)" : "none",
@@ -1300,17 +1330,12 @@ export const Showcase = ({
                   <Box
                     sx={{
                       width: active ? 3 : 1,
-
                       height: active ? 42 : 20,
-
                       borderRadius: 999,
-
                       backgroundColor: active
                         ? "#FFFFFF"
                         : "rgba(255,255,255,0.45)",
-
                       transition: "all 300ms cubic-bezier(0.22, 1, 0.36, 1)",
-
                       boxShadow: active
                         ? "0 0 10px rgba(255,255,255,0.18)"
                         : "none",
