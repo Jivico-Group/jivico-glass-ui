@@ -45,13 +45,13 @@ export const BottomNavigationPage: React.FC = () => {
   const isDark = mode === "dark";
 
   const [navValue, setNavValue] = useState(0);
-  const [glass, setGlass] = useState(true);
+  const [glass, setGlass] = useState<"true" | "false">("true");
   const [activePlacement, setActivePlacement] = useState<any>("inline");
   const [floatingOpen, setFloatingOpen] = useState(false);
 
   // Instagram Mockup State
   const [instaTab, setInstaTab] = useState(0);
-  const [instaGlass, setInstaGlass] = useState(true);
+  const [instaGlass, setInstaGlass] = useState<"true" | "false">("true");
   const [instaLabels, setInstaLabels] = useState(false);
   const [instaFloating, setInstaFloating] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
@@ -125,8 +125,10 @@ export const BottomNavigationPage: React.FC = () => {
             <FormControlLabel
               control={
                 <Switch
-                  checked={instaGlass}
-                  onChange={(e) => setInstaGlass(e.target.checked)}
+                  checked={instaGlass === "true"}
+                  onChange={(e) =>
+                    setInstaGlass(e.target.checked ? "true" : "false")
+                  }
                   color="glass"
                   size="small"
                 />
@@ -885,7 +887,7 @@ const [query, setQuery] = useState('');
 
           {/* Floating Expandable Glass Search Dock */}
           <BottomNavigation
-            glass={true}
+            glass={"true"}
             sx={{
               position: "relative",
               zIndex: 20,
@@ -1151,8 +1153,10 @@ const [query, setQuery] = useState('');
           <FormControlLabel
             control={
               <Switch
-                checked={glass}
-                onChange={(e) => setGlass(e.target.checked)}
+                checked={glass === "true"}
+                onChange={(e) =>
+                  setInstaGlass(e.target.checked ? "true" : "false")
+                }
                 color="glass"
               />
             }
@@ -1272,7 +1276,7 @@ const [query, setQuery] = useState('');
             <BottomNavigation
               value={navValue}
               onChange={(_, val) => setNavValue(val)}
-              glass={true}
+              glass={"true"}
               placement={activePlacement}
             >
               <BottomNavigationAction label="Home" icon={<Home size={20} />} />
@@ -1359,7 +1363,7 @@ const [query, setQuery] = useState('');
               onChange={(_, val) => setNavValue(val)}
               showLabels={false}
               size="small"
-              glass={true}
+              glass={"true"}
             >
               <BottomNavigationAction icon={<Home size={18} />} />
               <BottomNavigationAction icon={<Search size={18} />} />
@@ -1397,7 +1401,7 @@ const [query, setQuery] = useState('');
               onChange={(_, val) => setNavValue(val)}
               showLabels={false}
               size="medium"
-              glass={true}
+              glass={"true"}
             >
               <BottomNavigationAction icon={<Home size={22} />} />
               <BottomNavigationAction icon={<Search size={22} />} />
@@ -1434,7 +1438,7 @@ const [query, setQuery] = useState('');
               onChange={(_, val) => setNavValue(val)}
               showLabels={false}
               size="small"
-              glass={false}
+              glass={"false"}
             >
               <BottomNavigationAction icon={<Home size={18} />} />
               <BottomNavigationAction icon={<Search size={18} />} />
@@ -1507,7 +1511,7 @@ const [query, setQuery] = useState('');
               value={navValue}
               onChange={(_, val) => setNavValue(val)}
               size="small"
-              glass={true}
+              glass={"true"}
             >
               <BottomNavigationAction label="Home" icon={<Home size={18} />} />
               <BottomNavigationAction
@@ -1550,7 +1554,7 @@ const [query, setQuery] = useState('');
               value={navValue}
               onChange={(_, val) => setNavValue(val)}
               size="medium"
-              glass={true}
+              glass={"true"}
             >
               <BottomNavigationAction label="Home" icon={<Home size={20} />} />
               <BottomNavigationAction
