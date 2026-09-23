@@ -1389,29 +1389,34 @@ export const Showcase = ({
         <Box
           sx={{
             position: "absolute",
-
             left: 0,
-
             right: 0,
-
             bottom: 0,
-
             zIndex: 6,
-
-            height: 2,
-
-            bgcolor: "rgba(255,255,255,0.18)",
+            height: 3,
+            bgcolor: "rgba(255, 255, 255, 0.2)",
+            overflow: "hidden",
           }}
         >
           <Box
+            key={`${currentIndex}-${isHovered}-${autoplay}`}
             sx={{
               height: "100%",
-
-              width: `${((currentIndex + 1) / itemCount) * 100}%`,
-
-              bgcolor: "#fff",
-
-              transition: "width 400ms ease",
+              bgcolor: "#FFFFFF",
+              boxShadow: "0 0 10px rgba(255, 255, 255, 0.8)",
+              ...(autoplay && (!pauseOnHover || !isHovered)
+                ? {
+                    width: "0%",
+                    animation: `showcaseProgress ${interval}ms linear forwards`,
+                  }
+                : {
+                    width: `${((currentIndex + 1) / itemCount) * 100}%`,
+                    transition: "width 400ms ease",
+                  }),
+              "@keyframes showcaseProgress": {
+                "0%": { width: "0%" },
+                "100%": { width: "100%" },
+              },
             }}
           />
         </Box>
