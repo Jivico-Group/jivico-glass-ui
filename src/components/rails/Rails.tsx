@@ -640,6 +640,7 @@ export function Rails<T>({
         event: React.MouseEvent<HTMLAnchorElement>,
       ) => {
         event.preventDefault();
+        event.stopPropagation();
 
         onNavigate?.(item, index, event);
       };
