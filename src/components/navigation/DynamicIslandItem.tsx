@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { Box } from "@mui/material";
+import { Box, SxProps } from "@mui/material";
 import type { ElementType, ReactNode } from "react";
 
 export interface BottomNavigationItemProps {
@@ -17,7 +17,7 @@ export interface BottomNavigationItemProps {
   /**
    * Custom styling override
    */
-  sx?: any;
+  sx?: SxProps;
 
   [key: string]: any;
 }
