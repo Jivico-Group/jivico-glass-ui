@@ -29,7 +29,13 @@ const getRadius = (radius: number | string | undefined, theme: Theme) => {
   return radius;
 };
 
-const HighlightActionButton = ({ action }: Pick<HighlightProps, "action">) => {
+const HighlightActionButton = ({
+  action,
+  onNavigate,
+}: {
+  action?: HighlightProps["action"];
+  onNavigate?: HighlightProps["onNavigate"];
+}) => {
   if (!action) {
     return null;
   }
@@ -41,7 +47,12 @@ const HighlightActionButton = ({ action }: Pick<HighlightProps, "action">) => {
         href={action.href}
         variant="contained"
         size="small"
-        onClick={action.onClick}
+        onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+          event.preventDefault();
+          event.stopPropagation();
+          action.onClick?.(event as any);
+          onNavigate?.(event);
+        }}
         sx={{
           width: "fit-content",
           minWidth: 0,
@@ -50,6 +61,7 @@ const HighlightActionButton = ({ action }: Pick<HighlightProps, "action">) => {
           borderRadius: 999,
           fontWeight: 600,
           whiteSpace: "nowrap",
+          pointerEvents: "auto",
         }}
       >
         {action.label}
@@ -61,7 +73,10 @@ const HighlightActionButton = ({ action }: Pick<HighlightProps, "action">) => {
     <Button
       variant="contained"
       size="small"
-      onClick={action.onClick}
+      onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+        action.onClick?.(event as any);
+        onNavigate?.(event as any);
+      }}
       sx={{
         width: "fit-content",
         minWidth: 0,
@@ -70,6 +85,7 @@ const HighlightActionButton = ({ action }: Pick<HighlightProps, "action">) => {
         borderRadius: 999,
         fontWeight: 600,
         whiteSpace: "nowrap",
+        pointerEvents: "auto",
       }}
     >
       {action.label}
@@ -333,12 +349,12 @@ export const Highlight = ({
       )}
 
       {action && (
-        <Box sx={{ mt: 2 }}>
-          <HighlightActionButton action={action} />
+        <Box sx={{ mt: 2, pointerEvents: "auto" }}>
+          <HighlightActionButton action={action} onNavigate={onNavigate} />
         </Box>
       )}
 
-      {children && <Box sx={{ mt: 2 }}>{children}</Box>}
+      {children && <Box sx={{ mt: 2, pointerEvents: "auto" }}>{children}</Box>}
     </>
   );
 
@@ -485,6 +501,7 @@ export const Highlight = ({
           position: "absolute",
           inset: 0,
           zIndex: 3,
+          pointerEvents: "none",
           display: "flex",
           flexDirection: "column",
           ...contentPosition,

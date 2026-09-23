@@ -686,8 +686,20 @@ export function Rails<T>({
               ...transitionConfig.overlay,
             }}
           />
+        </Box>
+      );
 
-          {/* Full image navigation */}
+      return (
+        <Box
+          sx={{
+            position: "relative",
+
+            width: "100%",
+
+            minWidth: 0,
+          }}
+        >
+          {/* Full item navigation overlay */}
 
           {href && (
             <Box
@@ -700,7 +712,7 @@ export function Rails<T>({
 
                 inset: 0,
 
-                zIndex: 2,
+                zIndex: 3,
 
                 display: "block",
 
@@ -714,17 +726,7 @@ export function Rails<T>({
               }}
             />
           )}
-        </Box>
-      );
 
-      return (
-        <Box
-          sx={{
-            width: "100%",
-
-            minWidth: 0,
-          }}
-        >
           {/* ============================================== */}
           {/* Image                                          */}
           {/* ============================================== */}

@@ -82,9 +82,13 @@ const getDimension = (
 
 interface SpotlightActionButtonProps {
   action: SpotlightAction;
+  onNavigate?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
-function SpotlightActionButton({ action }: SpotlightActionButtonProps) {
+function SpotlightActionButton({
+  action,
+  onNavigate,
+}: SpotlightActionButtonProps) {
   if (action.href) {
     return (
       <Button
@@ -93,14 +97,11 @@ function SpotlightActionButton({ action }: SpotlightActionButtonProps) {
         target={action.target}
         rel={action.rel}
         aria-label={action.ariaLabel}
-        onClick={(event) => {
-          /*
-           * The CTA is inside the Spotlight anchor.
-           *
-           * Stop the event here so clicking the CTA does not
-           * also trigger the parent Spotlight navigation.
-           */
+        onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+          event.preventDefault();
           event.stopPropagation();
+          action.onClick?.(event as any);
+          onNavigate?.(event);
         }}
         variant="contained"
         size="medium"
@@ -119,7 +120,10 @@ function SpotlightActionButton({ action }: SpotlightActionButtonProps) {
 
   return (
     <Button
-      onClick={action.onClick}
+      onClick={(event) => {
+        action.onClick?.(event as any);
+        onNavigate?.(event as any);
+      }}
       aria-label={action.ariaLabel}
       variant="contained"
       size="medium"
@@ -439,7 +443,9 @@ export function Spotlight({
         </Typography>
       )}
 
-      {action && <SpotlightActionButton action={action} />}
+      {action && (
+        <SpotlightActionButton action={action} onNavigate={onNavigate} />
+      )}
 
       {children}
     </Box>

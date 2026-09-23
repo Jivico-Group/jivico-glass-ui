@@ -1057,7 +1057,14 @@ export const Showcase = ({
                           endIcon={<ArrowRight size={16} />}
                           target={item.action.target}
                           rel={item.action.rel}
-                          onClick={item.action.onClick}
+                          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+                            event.preventDefault();
+                            if (touchMoved.current) {
+                              return;
+                            }
+                            item.action?.onClick?.(event);
+                            onNavigate?.(item, currentIndex, event);
+                          }}
                           aria-label={item.action.ariaLabel}
                           sx={{
                             minHeight: currentSize.buttonHeight,
@@ -1083,7 +1090,13 @@ export const Showcase = ({
                           color={item.action.color ?? "primary"}
                           size={currentSize.buttonSize}
                           endIcon={<ArrowRight size={16} />}
-                          onClick={item.action.onClick}
+                          onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            if (touchMoved.current) {
+                              return;
+                            }
+                            item.action?.onClick?.(event);
+                            onNavigate?.(item, currentIndex, event as any);
+                          }}
                           aria-label={item.action.ariaLabel}
                           sx={{
                             minHeight: currentSize.buttonHeight,

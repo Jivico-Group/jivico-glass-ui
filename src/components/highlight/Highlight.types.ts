@@ -33,7 +33,7 @@ export type HighlightDimension =
 export interface HighlightAction {
   label: string;
   href?: string;
-  onClick?: () => void;
+  onClick?: (event?: MouseEvent) => void;
 }
 
 export interface HighlightImageProps {

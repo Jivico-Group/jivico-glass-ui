@@ -60,7 +60,7 @@ export interface ShowcaseMedia {
 export interface ShowcaseAction {
   label: string;
   href?: string;
-  onClick?: () => void;
+  onClick?: (event?: React.MouseEvent) => void;
 
   color?: ShowcaseButtonColor;
   variant?: ButtonProps["variant"];

@@ -1724,7 +1724,7 @@ interface ShowcaseMedia {
 interface ShowcaseAction {
     label: string;
     href?: string;
-    onClick?: () => void;
+    onClick?: (event?: React.MouseEvent) => void;
     color?: ShowcaseButtonColor;
     variant?: ButtonProps["variant"];
     target?: React.HTMLAttributeAnchorTarget;
@@ -2299,7 +2299,7 @@ interface SpotlightAction {
      *
      * Used for actions that do not navigate.
      */
-    onClick?: () => void;
+    onClick?: (event?: React.MouseEvent) => void;
     /**
      * Optional target.
      */
@@ -2575,7 +2575,7 @@ type HighlightDimension = number | string | {
 interface HighlightAction {
     label: string;
     href?: string;
-    onClick?: () => void;
+    onClick?: (event?: MouseEvent) => void;
 }
 interface HighlightImageProps {
     src: string;

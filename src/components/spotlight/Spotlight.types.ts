@@ -68,7 +68,7 @@ export interface SpotlightAction {
    *
    * Used for actions that do not navigate.
    */
-  onClick?: () => void;
+  onClick?: (event?: React.MouseEvent) => void;
 
   /**
    * Optional target.
