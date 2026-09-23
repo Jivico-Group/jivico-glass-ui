@@ -8,8 +8,6 @@ import MuiBottomNavigation from "@mui/material/BottomNavigation";
  * (`glass`, `placement`) from leaking down to the HTML DOM element as invalid attributes,
  * while preserving 100% of the frosted glass style overrides and ownerState evaluation.
  */
-export const GlassBottomNavigation = styled(MuiBottomNavigation, {
+export const DynamicIsland = styled(MuiBottomNavigation, {
   shouldForwardProp: (prop) => prop !== "glass" && prop !== "placement",
 })({});
-
-export const BottomNavigationNav = GlassBottomNavigation;
