@@ -1,7 +1,7 @@
 import { Theme, Components, SxProps } from '@mui/material/styles';
 import * as _emotion_styled from '@emotion/styled';
 import * as react from 'react';
-import react__default, { ReactNode, ComponentType, CSSProperties, MouseEvent, Key, HTMLAttributeAnchorTarget, ElementType } from 'react';
+import react__default, { ReactNode, ComponentType, CSSProperties, MouseEvent, Key, HTMLAttributeAnchorTarget, ElementType, Ref } from 'react';
 import * as _mui_system from '@mui/system';
 import * as _mui_material from '@mui/material';
 import { BoxProps, SxProps as SxProps$1 } from '@mui/material';
@@ -2686,6 +2686,134 @@ declare const DynamicIsland: react__default.ForwardRefExoticComponent<Omit<Dynam
 
 declare const DynamicIslandAction: _mui_material.ExtendButtonBase<_mui_material.BottomNavigationActionTypeMap<{}, "button">>;
 
+type VisualViewerRadius = "square" | "rounded" | "soft";
+type VisualViewerNavigation = "arrows" | "none";
+type VisualViewerThumbnailPosition = "left" | "bottom" | "auto";
+type VisualViewerObjectFit = "cover" | "contain";
+interface VisualViewerDimension {
+    xs?: string | number;
+    sm?: string | number;
+    md?: string | number;
+    lg?: string | number;
+    xl?: string | number;
+}
+interface VisualViewerItem {
+    id: string;
+    src: string;
+    alt?: string;
+    /** Optional mobile-specific image. */
+    mobileSrc?: string;
+    /** Optional thumbnail source. Falls back to src. */
+    thumbnailSrc?: string;
+    /** Optional custom content rendered over the image. */
+    overlay?: ReactNode;
+    /** Optional metadata. */
+    title?: string;
+    /** Optional custom data. */
+    [key: string]: unknown;
+}
+interface VisualViewerImageContext {
+    item: VisualViewerItem;
+    index: number;
+    active: boolean;
+    isThumbnail: boolean;
+    isFullscreen: boolean;
+}
+interface VisualViewerNavigationContext {
+    disabled: boolean;
+    onClick: () => void;
+}
+interface VisualViewerProps {
+    /** Images / visual items. */
+    items: VisualViewerItem[];
+    /** Controlled active item. */
+    activeIndex?: number;
+    /** Initial active item for uncontrolled mode. */
+    defaultActiveIndex?: number;
+    /** Called whenever active item changes. */
+    onActiveIndexChange?: (index: number, item: VisualViewerItem) => void;
+    /**
+     * Custom image renderer.
+     * Useful for Next.js Image.
+     */
+    renderImage?: (context: VisualViewerImageContext) => ReactNode;
+    /** Optional custom thumbnail renderer. */
+    renderThumbnail?: (context: VisualViewerImageContext) => ReactNode;
+    /** Responsive component height. */
+    height?: VisualViewerDimension | string | number;
+    /** Responsive minimum height. */
+    minHeight?: VisualViewerDimension | string | number;
+    /** Responsive maximum height. */
+    maxHeight?: VisualViewerDimension | string | number;
+    /**
+     * Aspect ratio when height is not supplied.
+     */
+    aspectRatio?: string | VisualViewerDimension;
+    /**
+     * Desktop thumbnail position.
+     * "auto" means: desktop → left, mobile → bottom.
+     */
+    thumbnailPosition?: VisualViewerThumbnailPosition;
+    /** Show navigation arrows. */
+    navigation?: VisualViewerNavigation;
+    /** Enable swipe. */
+    swipe?: boolean;
+    /** Enable mouse drag. */
+    mouseDrag?: boolean;
+    /** Enable keyboard navigation. */
+    keyboard?: boolean;
+    /** Enable fullscreen. */
+    fullscreen?: boolean;
+    /** Enable zoom. */
+    zoom?: boolean;
+    /** Object fit for the main image. */
+    objectFit?: VisualViewerObjectFit;
+    /** Allow wrapping from last image to first. */
+    loop?: boolean;
+    /** Radius style. */
+    radius?: VisualViewerRadius;
+    /** Width of the thumbnail rail on desktop. */
+    thumbnailWidth?: number | string;
+    /** Thumbnail size. */
+    thumbnailSize?: number | string;
+    /** Gap between thumbnails. */
+    thumbnailGap?: number;
+    /** Gap between thumbnail rail and image. */
+    mediaGap?: number;
+    /** Show fullscreen button. */
+    showFullscreenButton?: boolean;
+    /** Show zoom button. */
+    showZoomButton?: boolean;
+    /**
+     * Show thumbnail count overlay on final thumbnail.
+     * Example: 5 visible thumbnails + "+6"
+     */
+    showRemainingCount?: boolean;
+    /**
+     * Maximum visible thumbnails.
+     * Desktop default: 5, Mobile default: 5
+     */
+    maxVisibleThumbnails?: number;
+    /** Custom previous button. */
+    renderPreviousButton?: (context: VisualViewerNavigationContext) => ReactNode;
+    /** Custom next button. */
+    renderNextButton?: (context: VisualViewerNavigationContext) => ReactNode;
+    /** Custom fullscreen button. */
+    renderFullscreenButton?: (onClick: () => void) => ReactNode;
+    /** Custom zoom button. */
+    renderZoomButton?: (onClick: () => void, zoomed: boolean) => ReactNode;
+    /** Root ref. */
+    rootRef?: Ref<HTMLDivElement>;
+    /** Root sx. */
+    sx?: SxProps<Theme>;
+    /** CSS class. */
+    className?: string;
+    /** Accessibility label. */
+    "aria-label"?: string;
+}
+
+declare const VisualViewer: ({ items, activeIndex: controlledActiveIndex, defaultActiveIndex, onActiveIndexChange, renderImage, renderThumbnail, height, minHeight, maxHeight, aspectRatio, thumbnailPosition, navigation, swipe, mouseDrag, keyboard, fullscreen, zoom, objectFit, loop, radius, thumbnailWidth, thumbnailSize, thumbnailGap, mediaGap, showFullscreenButton, showZoomButton, showRemainingCount, maxVisibleThumbnails, renderPreviousButton, renderNextButton, renderFullscreenButton, renderZoomButton, rootRef, sx, className, "aria-label": ariaLabel, }: VisualViewerProps) => react__default.JSX.Element | null;
+
 type ResponsiveBreakpoint = "xs" | "sm" | "md" | "lg" | "xl";
 interface ResponsiveState {
     /**
@@ -2767,4 +2895,4 @@ interface GlassThemeScopeProps {
  */
 declare function GlassThemeScope({ mode, children }: GlassThemeScopeProps): react__default.JSX.Element;
 
-export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, BACKGROUND_COLORS, BRAND_COLORS, type BottomNavigationItemProps, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightImagePosition, type SpotlightProps, type SpotlightSize, type SpotlightVariant, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook };
+export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, BACKGROUND_COLORS, BRAND_COLORS, type BottomNavigationItemProps, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightImagePosition, type SpotlightProps, type SpotlightSize, type SpotlightVariant, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook };

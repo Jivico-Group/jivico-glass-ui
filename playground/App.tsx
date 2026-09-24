@@ -29,6 +29,7 @@ import { ThemePage } from "./components/Pages/ThemePage.js";
 import { ShowcasePage } from "./components/Pages/ShowcasePage.js";
 import { RailsPage } from "./components/Pages/RailsPage.js";
 import { SpotlightPage } from "./components/Pages/SpotlightPage.js";
+import { VisualViewerPage } from "./components/Pages/VisualViewerPage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
 const TOC_MAP: Record<string, TocItem[]> = {
@@ -54,6 +55,15 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "spotlight-split", title: "2. Split Grid Variant" },
     { id: "spotlight-minimal", title: "3. Minimal Variant" },
     { id: "nextjs-integration", title: "4. Next.js Integration" },
+  ],
+  "visual-viewer": [
+    { id: "visual-viewer-playground", title: "Interactive Playground" },
+    { id: "visual-viewer-left-thumbnail", title: "1. Left Rail — PDP" },
+    { id: "visual-viewer-bottom-thumbnail", title: "2. Bottom Strip — Gallery" },
+    { id: "visual-viewer-controlled", title: "3. Controlled Index" },
+    { id: "visual-viewer-minimal", title: "4. Minimal Swipe-Only" },
+    { id: "visual-viewer-arrows-only", title: "5. Arrows Only" },
+    { id: "visual-viewer-nextjs", title: "6. Next.js Integration" },
   ],
   theme: [
     { id: "global-provider-setup", title: "Global Provider Setup" },
@@ -263,6 +273,8 @@ export default function App() {
         return <RailsPage />;
       case "spotlight":
         return <SpotlightPage />;
+      case "visual-viewer":
+        return <VisualViewerPage />;
       case "theme":
         return <ThemePage />;
       case "alerts":

@@ -18,4 +18,6 @@ export * from './rails/index.js';
 export * from './spotlight/index.js';
 export * from './highlight/index.js';
 export * from './navigation/index.js';
+export * from './visualViewer/index.js';
+
 
