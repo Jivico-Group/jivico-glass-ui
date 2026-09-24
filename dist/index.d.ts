@@ -2814,6 +2814,125 @@ interface VisualViewerProps {
 
 declare const VisualViewer: ({ items, activeIndex: controlledActiveIndex, defaultActiveIndex, onActiveIndexChange, renderImage, renderThumbnail, height, minHeight, maxHeight, aspectRatio, thumbnailPosition, navigation, swipe, mouseDrag, keyboard, fullscreen, zoom, objectFit, loop, radius, thumbnailWidth, thumbnailSize, thumbnailGap, mediaGap, showFullscreenButton, showZoomButton, showRemainingCount, maxVisibleThumbnails, renderPreviousButton, renderNextButton, renderFullscreenButton, renderZoomButton, rootRef, sx, className, "aria-label": ariaLabel, }: VisualViewerProps) => react__default.JSX.Element | null;
 
+type GalleryColumns = {
+    xs?: number;
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+};
+type GalleryJustify = "start" | "center" | "end" | "stretch";
+type GalleryAlign = "start" | "center" | "end" | "stretch";
+type GalleryImageFit = "cover" | "contain" | "fill" | "none";
+type GalleryRadius = "square" | "rounded" | "soft";
+interface GalleryRenderContext<T> {
+    item: T;
+    index: number;
+}
+interface GalleryImageContext<T> extends GalleryRenderContext<T> {
+    src?: string;
+    alt?: string;
+}
+interface GalleryOverlayContext<T> extends GalleryRenderContext<T> {
+    src?: string;
+    alt?: string;
+}
+interface GalleryProps<T> {
+    /**
+     * Items to arrange in the gallery.
+     */
+    items: T[];
+    /**
+     * Key used for each gallery item.
+     */
+    getKey?: (item: T, index: number) => React.Key;
+    /**
+     * Complete item override.
+     *
+     * When supplied, Gallery does not render its built-in
+     * image / overlay / block structure.
+     */
+    renderItem?: (context: GalleryRenderContext<T>) => ReactNode;
+    /**
+     * Custom image renderer.
+     *
+     * If omitted, Gallery falls back to a native HTML <img>
+     * using getImage().
+     */
+    renderImage?: (context: GalleryImageContext<T>) => ReactNode;
+    /**
+     * Optional content rendered over the image.
+     */
+    renderOverlay?: (context: GalleryOverlayContext<T>) => ReactNode;
+    /**
+     * Optional content rendered below the image.
+     */
+    renderBlock?: (context: GalleryRenderContext<T>) => ReactNode;
+    /**
+     * Image source used by the native <img> fallback.
+     */
+    getImage?: (item: T, index: number) => string | undefined;
+    /**
+     * Alt text used by the native <img> fallback.
+     */
+    getImageAlt?: (item: T, index: number) => string | undefined;
+    /**
+     * Responsive number of columns.
+     */
+    columns?: GalleryColumns;
+    /**
+     * Grid gap.
+     */
+    gap?: number | string;
+    /**
+     * Optional row-specific gap.
+     */
+    rowGap?: number | string;
+    /**
+     * Optional column-specific gap.
+     */
+    columnGap?: number | string;
+    justifyItems?: GalleryJustify;
+    alignItems?: GalleryAlign;
+    /**
+     * Aspect ratio of the built-in image area.
+     *
+     * Examples:
+     * "4 / 5"
+     * "1 / 1"
+     * "16 / 9"
+     */
+    imageAspectRatio?: string;
+    /**
+     * object-fit used by the native <img> fallback.
+     */
+    imageFit?: GalleryImageFit;
+    /**
+     * Radius applied to the built-in image/item structure.
+     */
+    radius?: GalleryRadius;
+    /**
+     * Styles applied to each gallery item.
+     */
+    itemSx?: SxProps<Theme>;
+    /**
+     * Styles applied to the image area.
+     */
+    imageSx?: SxProps<Theme>;
+    /**
+     * Styles applied to the block below the image.
+     */
+    blockSx?: SxProps<Theme>;
+    /**
+     * Styles applied to the gallery root.
+     */
+    sx?: SxProps<Theme>;
+    className?: string;
+    "aria-label"?: string;
+}
+
+declare function Gallery<T>({ items, getKey, renderItem, renderImage, renderOverlay, renderBlock, getImage, getImageAlt, columns, gap, rowGap, columnGap, justifyItems, alignItems, imageAspectRatio, imageFit, radius, itemSx, imageSx, blockSx, sx, className, "aria-label": ariaLabel, }: GalleryProps<T>): react.JSX.Element;
+
 type ResponsiveBreakpoint = "xs" | "sm" | "md" | "lg" | "xl";
 interface ResponsiveState {
     /**
@@ -2895,4 +3014,4 @@ interface GlassThemeScopeProps {
  */
 declare function GlassThemeScope({ mode, children }: GlassThemeScopeProps): react__default.JSX.Element;
 
-export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, BACKGROUND_COLORS, BRAND_COLORS, type BottomNavigationItemProps, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightImagePosition, type SpotlightProps, type SpotlightSize, type SpotlightVariant, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook };
+export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, BACKGROUND_COLORS, BRAND_COLORS, type BottomNavigationItemProps, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightImagePosition, type SpotlightProps, type SpotlightSize, type SpotlightVariant, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook };

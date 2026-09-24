@@ -8,7 +8,14 @@ import React, {
   useState,
 } from "react";
 
-import { Box, IconButton, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Box,
+  Dialog,
+  IconButton,
+  Tooltip,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 
 import {
   ArrowLeft,
@@ -264,59 +271,18 @@ export const VisualViewer = ({
 
   /*
    * =========================================================
-   * FULLSCREEN
+   * FULLSCREEN  (MUI Dialog — not browser Fullscreen API)
    * =========================================================
    */
 
-  const enterFullscreen = useCallback(async () => {
-    const element = rootElementRef.current;
-
-    if (!element) {
-      return;
-    }
-
-    try {
-      if (!document.fullscreenElement) {
-        await element.requestFullscreen?.();
-      }
-    } catch {
-      // Browser may reject fullscreen.
-    }
+  const exitFullscreen = useCallback(() => {
+    setIsFullscreen(false);
   }, []);
 
-  const exitFullscreen = useCallback(async () => {
-    try {
-      if (document.fullscreenElement) {
-        await document.exitFullscreen?.();
-      }
-    } catch {
-      // Ignore browser fullscreen errors.
-    }
-  }, []);
-
-  const toggleFullscreen = useCallback(async () => {
-    if (!fullscreen) {
-      return;
-    }
-
-    if (document.fullscreenElement) {
-      await exitFullscreen();
-    } else {
-      await enterFullscreen();
-    }
-  }, [fullscreen, exitFullscreen, enterFullscreen]);
-
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(Boolean(document.fullscreenElement));
-    };
-
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-
-    return () => {
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
-    };
-  }, []);
+  const toggleFullscreen = useCallback(() => {
+    if (!fullscreen) return;
+    setIsFullscreen((prev) => !prev);
+  }, [fullscreen]);
 
   /*
    * =========================================================
@@ -370,7 +336,7 @@ export const VisualViewer = ({
           break;
 
         case "Escape":
-          if (document.fullscreenElement) {
+          if (isFullscreen) {
             event.preventDefault();
             exitFullscreen();
           }
@@ -396,14 +362,6 @@ export const VisualViewer = ({
           }
           break;
 
-        case "f":
-        case "F":
-          if (fullscreen) {
-            event.preventDefault();
-            toggleFullscreen();
-          }
-          break;
-
         default:
           break;
       }
@@ -416,6 +374,7 @@ export const VisualViewer = ({
     };
   }, [
     keyboard,
+    isFullscreen,
     goNext,
     goPrevious,
     exitFullscreen,
@@ -697,519 +656,790 @@ export const VisualViewer = ({
    */
 
   return (
-    <Box
-      ref={setRootRef}
-      className={className}
-      role="region"
-      aria-label={ariaLabel}
-      tabIndex={keyboard ? 0 : undefined}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseLeave}
-      sx={{
-        position: "relative",
-        display: "flex",
-        width: "100%",
-        height: responsiveHeight,
-        minHeight: responsiveMinHeight,
-        maxHeight: responsiveMaxHeight,
-        aspectRatio:
-          responsiveHeight === undefined ? responsiveAspectRatio : undefined,
-        overflow: "hidden",
-        isolation: "isolate",
-        borderRadius: radiusValue,
-        bgcolor: "background.paper",
-        userSelect: "none",
-        WebkitUserSelect: "none",
-        touchAction: swipe ? "pan-y" : "auto",
+    <>
+      <Box
+        ref={setRootRef}
+        className={className}
+        role="region"
+        aria-label={ariaLabel}
+        tabIndex={keyboard ? 0 : undefined}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        sx={{
+          position: "relative",
+          display: "flex",
+          width: "100%",
+          height: responsiveHeight,
+          minHeight: responsiveMinHeight,
+          maxHeight: responsiveMaxHeight,
+          aspectRatio:
+            responsiveHeight === undefined ? responsiveAspectRatio : undefined,
+          overflow: "hidden",
+          isolation: "isolate",
+          borderRadius: radiusValue,
+          bgcolor: "background.paper",
+          userSelect: "none",
+          WebkitUserSelect: "none",
+          touchAction: swipe ? "pan-y" : "auto",
 
-        "&:focus-visible": {
-          outline: `2px solid ${theme.palette.primary.main}`,
-          outlineOffset: 3,
-        },
+          "&:focus-visible": {
+            outline: `2px solid ${theme.palette.primary.main}`,
+            outlineOffset: 3,
+          },
 
-        ...sx,
-      }}
-    >
-      {/* =====================================================
+          ...sx,
+        }}
+      >
+        {/* =====================================================
           THUMBNAILS — LEFT
       ===================================================== */}
 
-      {resolvedThumbnailPosition === "left" && (
-        <Box
-          sx={{
-            flexShrink: 0,
-            width: thumbnailWidth,
-            height: "100%",
-            mr: mediaGap,
-            overflow: "hidden",
-          }}
-        >
+        {resolvedThumbnailPosition === "left" && (
           <Box
-            ref={thumbnailContainerRef}
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: thumbnailGap,
-              width: "100%",
+              flexShrink: 0,
+              width: thumbnailWidth,
               height: "100%",
-              overflowY: "auto",
-              overflowX: "hidden",
-              scrollbarWidth: "none",
-
-              "&::-webkit-scrollbar": {
-                display: "none",
-              },
+              mr: mediaGap,
+              overflow: "hidden",
             }}
           >
-            {safeItems.slice(0, visibleThumbnailCount).map((item, index) => {
-              const active = index === currentIndex;
+            <Box
+              ref={thumbnailContainerRef}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: thumbnailGap,
+                width: "100%",
+                height: "100%",
+                overflowY: "auto",
+                overflowX: "hidden",
+                scrollbarWidth: "none",
 
-              const isLastVisible = index === visibleThumbnailCount - 1;
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+              }}
+            >
+              {safeItems.slice(0, visibleThumbnailCount).map((item, index) => {
+                const active = index === currentIndex;
 
-              const showCount =
-                showRemainingCount && hasRemainingImages && isLastVisible;
+                const isLastVisible = index === visibleThumbnailCount - 1;
 
-              return (
-                <Box
-                  key={item.id}
-                  data-visual-viewer-thumbnail={index}
-                  component="button"
-                  type="button"
-                  aria-label={`View image ${index + 1}`}
-                  aria-current={active ? "true" : undefined}
-                  onClick={() => updateIndex(index)}
-                  sx={{
-                    position: "relative",
-                    flexShrink: 0,
-                    width: "100%",
-                    height: thumbnailSize,
-                    minHeight: thumbnailSize,
-                    p: 0,
-                    border: 0,
-                    borderRadius: Math.max(0, radiusValue - 2),
-                    overflow: "hidden",
-                    bgcolor: "background.default",
-                    cursor: "pointer",
-                    opacity: active ? 1 : 0.68,
-                    transition: "opacity 220ms ease, transform 220ms ease",
+                const showCount =
+                  showRemainingCount && hasRemainingImages && isLastVisible;
 
-                    "&:hover": {
-                      opacity: 1,
-                      transform: "scale(0.97)",
-                    },
+                return (
+                  <Box
+                    key={item.id}
+                    data-visual-viewer-thumbnail={index}
+                    component="button"
+                    type="button"
+                    aria-label={`View image ${index + 1}`}
+                    aria-current={active ? "true" : undefined}
+                    onClick={() => updateIndex(index)}
+                    sx={{
+                      position: "relative",
+                      flexShrink: 0,
+                      width: "100%",
+                      height: thumbnailSize,
+                      minHeight: thumbnailSize,
+                      p: 0,
+                      border: 0,
+                      borderRadius: Math.max(0, radiusValue - 2),
+                      overflow: "hidden",
+                      bgcolor: "background.default",
+                      cursor: "pointer",
+                      opacity: active ? 1 : 0.68,
+                      transition: "opacity 220ms ease, transform 220ms ease",
 
-                    "&:focus-visible": {
-                      outline: `2px solid ${theme.palette.primary.main}`,
-                      outlineOffset: 2,
-                    },
+                      "&:hover": {
+                        opacity: 1,
+                        transform: "scale(0.97)",
+                      },
 
-                    ...(active && {
-                      boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
-                    }),
-                  }}
-                >
-                  {renderDefaultThumbnail(item, index)}
+                      "&:focus-visible": {
+                        outline: `2px solid ${theme.palette.primary.main}`,
+                        outlineOffset: 2,
+                      },
 
-                  {showCount && (
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        inset: 0,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        bgcolor: "rgba(0,0,0,0.48)",
-                        color: "#FFFFFF",
-                        fontSize: "0.9rem",
-                        fontWeight: 700,
-                        letterSpacing: "0.02em",
-                      }}
-                    >
-                      +{itemCount - visibleThumbnailCount + 1}
-                    </Box>
-                  )}
-                </Box>
-              );
-            })}
-          </Box>
-        </Box>
-      )}
+                      ...(active && {
+                        boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
+                      }),
+                    }}
+                  >
+                    {renderDefaultThumbnail(item, index)}
 
-      {/* =====================================================
-          MAIN MEDIA
-      ===================================================== */}
-
-      <Box
-        ref={mediaContainerRef}
-        sx={{
-          position: "relative",
-          flex: 1,
-          minWidth: 0,
-          minHeight: 0,
-          height: "100%",
-          overflow: "hidden",
-          borderRadius:
-            resolvedThumbnailPosition === "bottom" ? radiusValue : radiusValue,
-          bgcolor: "background.default",
-          cursor: isZoomed ? "zoom-out" : zoom ? "zoom-in" : "default",
-        }}
-        onClick={() => {
-          if (zoom && dragMovedRef.current === false) {
-            toggleZoom();
-          }
-        }}
-      >
-        {renderMainImage(currentItem)}
-
-        {/* Custom overlay */}
-
-        {currentItem.overlay && (
-          <Box
-            sx={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 2,
-              pointerEvents: "none",
-            }}
-          >
-            {currentItem.overlay}
+                    {showCount && (
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          inset: 0,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          bgcolor: "rgba(0,0,0,0.48)",
+                          color: "#FFFFFF",
+                          fontSize: "0.9rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.02em",
+                        }}
+                      >
+                        +{itemCount - visibleThumbnailCount + 1}
+                      </Box>
+                    )}
+                  </Box>
+                );
+              })}
+            </Box>
           </Box>
         )}
 
-        {/* ===================================================
+        {/* =====================================================
+          MAIN MEDIA
+      ===================================================== */}
+
+        <Box
+          ref={mediaContainerRef}
+          sx={{
+            position: "relative",
+            flex: 1,
+            minWidth: 0,
+            minHeight: 0,
+            height: "100%",
+            overflow: "hidden",
+            borderRadius:
+              resolvedThumbnailPosition === "bottom"
+                ? radiusValue
+                : radiusValue,
+            bgcolor: "background.default",
+            cursor: isZoomed ? "zoom-out" : zoom ? "zoom-in" : "default",
+          }}
+          onClick={() => {
+            if (zoom && dragMovedRef.current === false) {
+              toggleZoom();
+            }
+          }}
+        >
+          {renderMainImage(currentItem)}
+
+          {/* Custom overlay */}
+
+          {currentItem.overlay && (
+            <Box
+              sx={{
+                position: "absolute",
+                inset: 0,
+                zIndex: 2,
+                pointerEvents: "none",
+              }}
+            >
+              {currentItem.overlay}
+            </Box>
+          )}
+
+          {/* ===================================================
             PREVIOUS
         =================================================== */}
 
-        {navigation === "arrows" && itemCount > 1 && (
-          <>
-            {renderPreviousButton ? (
+          {navigation === "arrows" && itemCount > 1 && (
+            <>
+              {renderPreviousButton ? (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    left: {
+                      xs: 10,
+                      md: 18,
+                    },
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    zIndex: 5,
+                  }}
+                >
+                  {renderPreviousButton({
+                    disabled: !loop && currentIndex === 0,
+                    onClick: goPrevious,
+                  })}
+                </Box>
+              ) : (
+                <IconButton
+                  aria-label="Previous image"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    goPrevious();
+                  }}
+                  disabled={!loop && currentIndex === 0}
+                  sx={{
+                    position: "absolute",
+                    left: {
+                      xs: 10,
+                      md: 18,
+                    },
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    zIndex: 5,
+                    width: {
+                      xs: 38,
+                      md: 44,
+                    },
+                    height: {
+                      xs: 38,
+                      md: 44,
+                    },
+                    color: theme.palette.text.primary,
+                    bgcolor: theme.palette.background.paper,
+                    boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                    backdropFilter: "blur(12px)",
+                    "&:hover": {
+                      bgcolor: theme.palette.background.paper,
+                    },
+                    "&.Mui-disabled": {
+                      opacity: 0.3,
+                    },
+                  }}
+                >
+                  <ArrowLeft size={18} />
+                </IconButton>
+              )}
+            </>
+          )}
+
+          {/* ===================================================
+            NEXT
+        =================================================== */}
+
+          {navigation === "arrows" && itemCount > 1 && (
+            <>
+              {renderNextButton ? (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    right: {
+                      xs: 10,
+                      md: 18,
+                    },
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    zIndex: 5,
+                  }}
+                >
+                  {renderNextButton({
+                    disabled: !loop && currentIndex === itemCount - 1,
+                    onClick: goNext,
+                  })}
+                </Box>
+              ) : (
+                <IconButton
+                  aria-label="Next image"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    goNext();
+                  }}
+                  disabled={!loop && currentIndex === itemCount - 1}
+                  sx={{
+                    position: "absolute",
+                    right: {
+                      xs: 10,
+                      md: 18,
+                    },
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    zIndex: 5,
+                    width: {
+                      xs: 38,
+                      md: 44,
+                    },
+                    height: {
+                      xs: 38,
+                      md: 44,
+                    },
+                    color: theme.palette.text.primary,
+                    bgcolor: theme.palette.background.paper,
+                    boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                    backdropFilter: "blur(12px)",
+                    "&:hover": {
+                      bgcolor: theme.palette.background.paper,
+                    },
+                    "&.Mui-disabled": {
+                      opacity: 0.3,
+                    },
+                  }}
+                >
+                  <ArrowRight size={18} />
+                </IconButton>
+              )}
+            </>
+          )}
+
+          {/* ===================================================
+            CONTROLS
+        =================================================== */}
+
+          <Box
+            sx={{
+              position: "absolute",
+              right: {
+                xs: 12,
+                md: 18,
+              },
+              bottom: {
+                xs: 12,
+                md: 18,
+              },
+              zIndex: 6,
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
+            {zoom &&
+              showZoomButton &&
+              (renderZoomButton ? (
+                renderZoomButton(toggleZoom, isZoomed)
+              ) : (
+                <IconButton
+                  aria-label={isZoomed ? "Zoom out" : "Zoom in"}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    toggleZoom();
+                  }}
+                  sx={{
+                    width: 38,
+                    height: 38,
+                    color: theme.palette.text.primary,
+                    bgcolor: theme.palette.background.paper,
+                    boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                    "&:hover": {
+                      bgcolor: theme.palette.background.paper,
+                    },
+                  }}
+                >
+                  {isZoomed ? <ZoomOut size={17} /> : <ZoomIn size={17} />}
+                </IconButton>
+              ))}
+
+            {fullscreen &&
+              showFullscreenButton &&
+              (renderFullscreenButton ? (
+                renderFullscreenButton(toggleFullscreen)
+              ) : (
+                <IconButton
+                  aria-label={
+                    isFullscreen ? "Exit fullscreen" : "View fullscreen"
+                  }
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    toggleFullscreen();
+                  }}
+                  sx={{
+                    width: 38,
+                    height: 38,
+                    color: theme.palette.text.primary,
+                    bgcolor: theme.palette.background.paper,
+                    boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                    "&:hover": {
+                      bgcolor: theme.palette.background.paper,
+                    },
+                  }}
+                >
+                  {isFullscreen ? (
+                    <Minimize2 size={17} />
+                  ) : (
+                    <Maximize2 size={17} />
+                  )}
+                </IconButton>
+              ))}
+          </Box>
+        </Box>
+
+        {/* =====================================================
+          THUMBNAILS — BOTTOM
+      ===================================================== */}
+
+        {resolvedThumbnailPosition === "bottom" && (
+          <Box
+            sx={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 7,
+              px: {
+                xs: 1.5,
+                sm: 2,
+              },
+              pb: {
+                xs: 1.5,
+                sm: 2,
+              },
+              pt: 5,
+              background:
+                "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.48) 100%)",
+              pointerEvents: "none",
+            }}
+          >
+            <Box
+              ref={thumbnailContainerRef}
+              sx={{
+                display: "flex",
+                gap: thumbnailGap,
+                width: "100%",
+                overflowX: "auto",
+                overflowY: "hidden",
+                scrollbarWidth: "none",
+                pointerEvents: "auto",
+
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+              }}
+            >
+              {safeItems.slice(0, visibleThumbnailCount).map((item, index) => {
+                const active = index === currentIndex;
+
+                const isLastVisible = index === visibleThumbnailCount - 1;
+
+                const showCount =
+                  showRemainingCount && hasRemainingImages && isLastVisible;
+
+                return (
+                  <Box
+                    key={item.id}
+                    data-visual-viewer-thumbnail={index}
+                    component="button"
+                    type="button"
+                    aria-label={`View image ${index + 1}`}
+                    aria-current={active ? "true" : undefined}
+                    onClick={() => updateIndex(index)}
+                    sx={{
+                      position: "relative",
+                      flex: `0 0 ${thumbnailSize}px`,
+                      width: thumbnailSize,
+                      height: thumbnailSize,
+                      minWidth: thumbnailSize,
+                      p: 0,
+                      border: 0,
+                      borderRadius: Math.max(0, radiusValue - 2),
+                      overflow: "hidden",
+                      bgcolor: "background.paper",
+                      cursor: "pointer",
+                      opacity: active ? 1 : 0.7,
+                      transition: "opacity 220ms ease, transform 220ms ease",
+
+                      "&:hover": {
+                        opacity: 1,
+                        transform: "scale(0.97)",
+                      },
+
+                      "&:focus-visible": {
+                        outline: `2px solid ${theme.palette.primary.main}`,
+                        outlineOffset: 2,
+                      },
+
+                      ...(active && {
+                        boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
+                      }),
+                    }}
+                  >
+                    {renderDefaultThumbnail(item, index)}
+
+                    {showCount && (
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          inset: 0,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          bgcolor: "rgba(0,0,0,0.48)",
+                          color: "#FFFFFF",
+                          fontSize: "0.85rem",
+                          fontWeight: 700,
+                        }}
+                      >
+                        +{itemCount - visibleThumbnailCount + 1}
+                      </Box>
+                    )}
+                  </Box>
+                );
+              })}
+            </Box>
+          </Box>
+        )}
+      </Box>
+
+      {/* =======================================================
+        FULLSCREEN DIALOG
+    ======================================================= */}
+
+      <Dialog
+        open={isFullscreen}
+        onClose={exitFullscreen}
+        fullScreen
+        // fullScreen
+        sx={{
+          "& .MuiDialog-paper": {
+            bgcolor: "#000",
+            display: "flex",
+            flexDirection: "column",
+            overflow: "hidden",
+            borderRadius: 0,
+          },
+        }}
+      >
+        {/* Close button */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: 12,
+            right: 12,
+            zIndex: 10,
+          }}
+        >
+          <Tooltip title="Close (Esc)">
+            <IconButton
+              aria-label="Close fullscreen"
+              onClick={exitFullscreen}
+              sx={{
+                width: 42,
+                height: 42,
+                bgcolor: "rgba(255,255,255,0.12)",
+                backdropFilter: "blur(12px)",
+                color: "#fff",
+                "&:hover": { bgcolor: "rgba(255,255,255,0.22)" },
+              }}
+            >
+              <Minimize2 size={18} />
+            </IconButton>
+          </Tooltip>
+        </Box>
+
+        {/* Image count indicator */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: 16,
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 10,
+            bgcolor: "rgba(255,255,255,0.10)",
+            backdropFilter: "blur(10px)",
+            borderRadius: 10,
+            px: 1.5,
+            py: 0.5,
+          }}
+        >
+          <Box
+            component="span"
+            sx={{ color: "#fff", fontSize: "0.78rem", fontWeight: 600 }}
+          >
+            {currentIndex + 1} / {itemCount}
+          </Box>
+        </Box>
+
+        {/* Main image area */}
+        <Box
+          sx={{
+            flex: 1,
+            position: "relative",
+            overflow: "hidden",
+            cursor: isZoomed ? "zoom-out" : "default",
+          }}
+          onClick={() => isZoomed && setIsZoomed(false)}
+        >
+          {currentItem &&
+            (renderImage ? (
               <Box
                 sx={{
                   position: "absolute",
-                  left: {
-                    xs: 10,
-                    md: 18,
-                  },
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  zIndex: 5,
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "transform 350ms cubic-bezier(0.22, 1, 0.36, 1)",
+                  transform: isZoomed ? "scale(1.5)" : "scale(1)",
+                  userSelect: "none",
                 }}
               >
-                {renderPreviousButton({
-                  disabled: !loop && currentIndex === 0,
-                  onClick: goPrevious,
+                {renderImage({
+                  item: currentItem,
+                  index: currentIndex,
+                  active: true,
+                  isThumbnail: false,
+                  isFullscreen: true,
                 })}
               </Box>
             ) : (
+              <Box
+                component="img"
+                src={currentItem.src}
+                alt={currentItem.alt ?? ""}
+                draggable={false}
+                sx={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  display: "block",
+                  transition: "transform 350ms cubic-bezier(0.22, 1, 0.36, 1)",
+                  transform: isZoomed ? "scale(1.5)" : "scale(1)",
+                  userSelect: "none",
+                }}
+              />
+            ))}
+
+          {/* Prev / Next arrows */}
+          {navigation === "arrows" && itemCount > 1 && (
+            <>
               <IconButton
                 aria-label="Previous image"
-                onClick={(event) => {
-                  event.stopPropagation();
+                onClick={(e) => {
+                  e.stopPropagation();
                   goPrevious();
                 }}
                 disabled={!loop && currentIndex === 0}
                 sx={{
                   position: "absolute",
-                  left: {
-                    xs: 10,
-                    md: 18,
-                  },
+                  left: 16,
                   top: "50%",
                   transform: "translateY(-50%)",
-                  zIndex: 5,
-                  width: {
-                    xs: 38,
-                    md: 44,
-                  },
-                  height: {
-                    xs: 38,
-                    md: 44,
-                  },
-                  color: theme.palette.text.primary,
-                  bgcolor: theme.palette.background.paper,
-                  boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                  width: 48,
+                  height: 48,
+                  bgcolor: "rgba(255,255,255,0.12)",
                   backdropFilter: "blur(12px)",
-                  "&:hover": {
-                    bgcolor: theme.palette.background.paper,
-                  },
-                  "&.Mui-disabled": {
-                    opacity: 0.3,
-                  },
+                  color: "#fff",
+                  "&:hover": { bgcolor: "rgba(255,255,255,0.22)" },
+                  "&.Mui-disabled": { opacity: 0.3 },
                 }}
               >
-                <ArrowLeft size={18} />
+                <ArrowLeft size={22} />
               </IconButton>
-            )}
-          </>
-        )}
 
-        {/* ===================================================
-            NEXT
-        =================================================== */}
-
-        {navigation === "arrows" && itemCount > 1 && (
-          <>
-            {renderNextButton ? (
-              <Box
-                sx={{
-                  position: "absolute",
-                  right: {
-                    xs: 10,
-                    md: 18,
-                  },
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  zIndex: 5,
-                }}
-              >
-                {renderNextButton({
-                  disabled: !loop && currentIndex === itemCount - 1,
-                  onClick: goNext,
-                })}
-              </Box>
-            ) : (
               <IconButton
                 aria-label="Next image"
-                onClick={(event) => {
-                  event.stopPropagation();
+                onClick={(e) => {
+                  e.stopPropagation();
                   goNext();
                 }}
                 disabled={!loop && currentIndex === itemCount - 1}
                 sx={{
                   position: "absolute",
-                  right: {
-                    xs: 10,
-                    md: 18,
-                  },
+                  right: 16,
                   top: "50%",
                   transform: "translateY(-50%)",
-                  zIndex: 5,
-                  width: {
-                    xs: 38,
-                    md: 44,
-                  },
-                  height: {
-                    xs: 38,
-                    md: 44,
-                  },
-                  color: theme.palette.text.primary,
-                  bgcolor: theme.palette.background.paper,
-                  boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                  width: 48,
+                  height: 48,
+                  bgcolor: "rgba(255,255,255,0.12)",
                   backdropFilter: "blur(12px)",
-                  "&:hover": {
-                    bgcolor: theme.palette.background.paper,
-                  },
-                  "&.Mui-disabled": {
-                    opacity: 0.3,
-                  },
+                  color: "#fff",
+                  "&:hover": { bgcolor: "rgba(255,255,255,0.22)" },
+                  "&.Mui-disabled": { opacity: 0.3 },
                 }}
               >
-                <ArrowRight size={18} />
+                <ArrowRight size={22} />
               </IconButton>
-            )}
-          </>
-        )}
+            </>
+          )}
 
-        {/* ===================================================
-            CONTROLS
-        =================================================== */}
-
-        <Box
-          sx={{
-            position: "absolute",
-            right: {
-              xs: 12,
-              md: 18,
-            },
-            bottom: {
-              xs: 12,
-              md: 18,
-            },
-            zIndex: 6,
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          {zoom &&
-            showZoomButton &&
-            (renderZoomButton ? (
-              renderZoomButton(toggleZoom, isZoomed)
-            ) : (
+          {/* Zoom button */}
+          {zoom && (
+            <Tooltip title={isZoomed ? "Zoom out" : "Zoom in"}>
               <IconButton
                 aria-label={isZoomed ? "Zoom out" : "Zoom in"}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  toggleZoom();
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsZoomed((z) => !z);
                 }}
                 sx={{
-                  width: 38,
-                  height: 38,
-                  color: theme.palette.text.primary,
-                  bgcolor: theme.palette.background.paper,
-                  boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
-                  "&:hover": {
-                    bgcolor: theme.palette.background.paper,
-                  },
+                  position: "absolute",
+                  bottom: 16,
+                  right: 16,
+                  width: 42,
+                  height: 42,
+                  bgcolor: "rgba(255,255,255,0.12)",
+                  backdropFilter: "blur(12px)",
+                  color: "#fff",
+                  "&:hover": { bgcolor: "rgba(255,255,255,0.22)" },
                 }}
               >
-                {isZoomed ? <ZoomOut size={17} /> : <ZoomIn size={17} />}
+                {isZoomed ? <ZoomOut size={18} /> : <ZoomIn size={18} />}
               </IconButton>
-            ))}
-
-          {fullscreen &&
-            showFullscreenButton &&
-            (renderFullscreenButton ? (
-              renderFullscreenButton(toggleFullscreen)
-            ) : (
-              <IconButton
-                aria-label={
-                  isFullscreen ? "Exit fullscreen" : "View fullscreen"
-                }
-                onClick={(event) => {
-                  event.stopPropagation();
-                  toggleFullscreen();
-                }}
-                sx={{
-                  width: 38,
-                  height: 38,
-                  color: theme.palette.text.primary,
-                  bgcolor: theme.palette.background.paper,
-                  boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
-                  "&:hover": {
-                    bgcolor: theme.palette.background.paper,
-                  },
-                }}
-              >
-                {isFullscreen ? (
-                  <Minimize2 size={17} />
-                ) : (
-                  <Maximize2 size={17} />
-                )}
-              </IconButton>
-            ))}
+            </Tooltip>
+          )}
         </Box>
-      </Box>
 
-      {/* =====================================================
-          THUMBNAILS — BOTTOM
-      ===================================================== */}
-
-      {resolvedThumbnailPosition === "bottom" && (
-        <Box
-          sx={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 7,
-            px: {
-              xs: 1.5,
-              sm: 2,
-            },
-            pb: {
-              xs: 1.5,
-              sm: 2,
-            },
-            pt: 5,
-            background:
-              "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.48) 100%)",
-            pointerEvents: "none",
-          }}
-        >
+        {/* Thumbnail strip */}
+        {itemCount > 1 && (
           <Box
-            ref={thumbnailContainerRef}
             sx={{
+              flexShrink: 0,
               display: "flex",
-              gap: thumbnailGap,
-              width: "100%",
+              flexDirection: "row",
+              gap: 1,
+              p: 1.5,
               overflowX: "auto",
-              overflowY: "hidden",
+              // bgcolor: "rgba(0,0,0,0.6)",
+              backdropFilter: "blur(12px)",
+              justifyContent: "center",
               scrollbarWidth: "none",
-              pointerEvents: "auto",
-
-              "&::-webkit-scrollbar": {
-                display: "none",
-              },
+              "&::-webkit-scrollbar": { display: "none" },
             }}
           >
-            {safeItems.slice(0, visibleThumbnailCount).map((item, index) => {
-              const active = index === currentIndex;
-
-              const isLastVisible = index === visibleThumbnailCount - 1;
-
-              const showCount =
-                showRemainingCount && hasRemainingImages && isLastVisible;
-
-              return (
+            {safeItems.map((item, index) => (
+              <Box
+                key={item.id}
+                component="button"
+                onClick={() => updateIndex(index)}
+                aria-label={item.alt ?? `Image ${index + 1}`}
+                sx={{
+                  flexShrink: 0,
+                  width: 64,
+                  height: 64,
+                  p: 0,
+                  border: "2px solid",
+                  borderColor:
+                    index === currentIndex
+                      ? "rgba(255,255,255,0.9)"
+                      : "rgba(255,255,255,0.2)",
+                  borderRadius: 1,
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  transition: "border-color 0.2s ease, transform 0.2s ease",
+                  transform:
+                    index === currentIndex ? "scale(1.06)" : "scale(1)",
+                  bgcolor: "transparent",
+                  "&:hover": {
+                    borderColor: "rgba(255,255,255,0.6)",
+                  },
+                }}
+              >
                 <Box
-                  key={item.id}
-                  data-visual-viewer-thumbnail={index}
-                  component="button"
-                  type="button"
-                  aria-label={`View image ${index + 1}`}
-                  aria-current={active ? "true" : undefined}
-                  onClick={() => updateIndex(index)}
+                  component="img"
+                  src={item.thumbnailSrc ?? item.src}
+                  alt={item.alt ?? ""}
+                  draggable={false}
                   sx={{
-                    position: "relative",
-                    flex: `0 0 ${thumbnailSize}px`,
-                    width: thumbnailSize,
-                    height: thumbnailSize,
-                    minWidth: thumbnailSize,
-                    p: 0,
-                    border: 0,
-                    borderRadius: Math.max(0, radiusValue - 2),
-                    overflow: "hidden",
-                    bgcolor: "background.paper",
-                    cursor: "pointer",
-                    opacity: active ? 1 : 0.7,
-                    transition: "opacity 220ms ease, transform 220ms ease",
-
-                    "&:hover": {
-                      opacity: 1,
-                      transform: "scale(0.97)",
-                    },
-
-                    "&:focus-visible": {
-                      outline: `2px solid ${theme.palette.primary.main}`,
-                      outlineOffset: 2,
-                    },
-
-                    ...(active && {
-                      boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
-                    }),
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                    pointerEvents: "none",
                   }}
-                >
-                  {renderDefaultThumbnail(item, index)}
-
-                  {showCount && (
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        inset: 0,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        bgcolor: "rgba(0,0,0,0.48)",
-                        color: "#FFFFFF",
-                        fontSize: "0.85rem",
-                        fontWeight: 700,
-                      }}
-                    >
-                      +{itemCount - visibleThumbnailCount + 1}
-                    </Box>
-                  )}
-                </Box>
-              );
-            })}
+                />
+              </Box>
+            ))}
           </Box>
-        </Box>
-      )}
-    </Box>
+        )}
+      </Dialog>
+    </>
   );
 };
 
