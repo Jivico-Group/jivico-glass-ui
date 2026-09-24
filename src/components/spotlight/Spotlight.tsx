@@ -111,6 +111,7 @@ function SpotlightActionButton({
           px: 2.5,
           py: 1.1,
           whiteSpace: "nowrap",
+          pointerEvents: "auto",
         }}
       >
         {action.label}
@@ -121,6 +122,8 @@ function SpotlightActionButton({
   return (
     <Button
       onClick={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
         action.onClick?.(event as any);
         onNavigate?.(event as any);
       }}
@@ -133,10 +136,46 @@ function SpotlightActionButton({
         px: 2.5,
         py: 1.1,
         whiteSpace: "nowrap",
+        pointerEvents: "auto",
       }}
     >
       {action.label}
     </Button>
+  );
+}
+
+interface SpotlightMediaLinkProps {
+  href: string;
+  label?: string;
+  onNavigate?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+}
+
+function SpotlightMediaLink({
+  href,
+  label,
+  onNavigate,
+}: SpotlightMediaLinkProps) {
+  return (
+    <Box
+      component="a"
+      href={href}
+      aria-label={label}
+      onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+        onNavigate?.(event);
+      }}
+      sx={{
+        position: "absolute",
+        inset: 0,
+        zIndex: 1,
+        display: "block",
+        width: "100%",
+        height: "100%",
+        textDecoration: "none",
+        cursor: "pointer",
+      }}
+    />
   );
 }
 
@@ -343,30 +382,23 @@ export function Spotlight({
 
   const currentSize = sizeStyles[size];
 
+  const resolvedLinkLabel =
+    linkLabel ||
+    (typeof title === "string" ? title : ariaLabel || "View spotlight");
+
   /*
    * ---------------------------------------------------------
-   * Navigation
+   * Media link overlay (prevents nested <a> tags)
    * ---------------------------------------------------------
    */
 
-  const handleNavigate = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    /*
-     * IMPORTANT:
-     *
-     * href exists for:
-     *
-     * - semantic HTML
-     * - SEO
-     * - accessibility
-     * - browser status bar
-     * - link discovery
-     *
-     * But Spotlight itself must NOT perform native navigation.
-     */
-    event.preventDefault();
-
-    onNavigate?.(event);
-  };
+  const mediaLink = href ? (
+    <SpotlightMediaLink
+      href={href}
+      label={resolvedLinkLabel}
+      onNavigate={onNavigate}
+    />
+  ) : null;
 
   /*
    * ---------------------------------------------------------
@@ -401,8 +433,8 @@ export function Spotlight({
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
-        cursor: "pointer",
         gap: 1.5,
+        width: "100%",
       }}
     >
       {eyebrow && (
@@ -444,10 +476,12 @@ export function Spotlight({
       )}
 
       {action && (
-        <SpotlightActionButton action={action} onNavigate={onNavigate} />
+        <Box sx={{ pointerEvents: "auto" }}>
+          <SpotlightActionButton action={action} onNavigate={onNavigate} />
+        </Box>
       )}
 
-      {children}
+      {children && <Box sx={{ pointerEvents: "auto" }}>{children}</Box>}
     </Box>
   );
 
@@ -485,48 +519,11 @@ export function Spotlight({
 
   /*
    * =========================================================
-   * Root renderer
+   * OVERLAY
    * =========================================================
-   *
-   * When href exists:
-   *
-   * <a href="...">
-   *
-   * When href does not exist:
-   *
-   * <section>
-   *
-   * This keeps Spotlight semantic without forcing
-   * every Spotlight to become a link.
    */
 
-  const renderRoot = (children: React.ReactNode) => {
-    if (href) {
-      return (
-        <Box
-          component="a"
-          href={href}
-          aria-label={
-            linkLabel ?? (typeof title === "string" ? title : ariaLabel)
-          }
-          onClick={handleNavigate}
-          className={className}
-          sx={[
-            baseRootSx,
-            {
-              display: "block",
-              color: "inherit",
-              textDecoration: "none",
-              cursor: "pointer",
-            },
-            ...(Array.isArray(sx) ? sx : [sx]),
-          ]}
-        >
-          {children}
-        </Box>
-      );
-    }
-
+  if (variant === "overlay") {
     return (
       <Box
         component="section"
@@ -534,21 +531,8 @@ export function Spotlight({
         aria-label={ariaLabel}
         sx={[baseRootSx, ...(Array.isArray(sx) ? sx : [sx])]}
       >
-        {children}
-      </Box>
-    );
-  };
-
-  /*
-   * =========================================================
-   * OVERLAY
-   * =========================================================
-   */
-
-  if (variant === "overlay") {
-    return renderRoot(
-      <>
         {imageElement}
+        {mediaLink}
 
         <Box
           sx={{
@@ -587,6 +571,8 @@ export function Spotlight({
 
             color: "#fff",
 
+            pointerEvents: href ? "none" : "auto",
+
             "&::after": {
               content: '""',
 
@@ -605,7 +591,7 @@ export function Spotlight({
         >
           {content}
         </Box>
-      </>,
+      </Box>
     );
   }
 
@@ -616,32 +602,39 @@ export function Spotlight({
    */
 
   if (variant === "split") {
-    return renderRoot(
+    return (
       <Box
-        sx={{
-          display: "grid",
+        component="section"
+        className={className}
+        aria-label={ariaLabel}
+        sx={[
+          baseRootSx,
+          {
+            display: "grid",
 
-          gridTemplateColumns: {
-            xs: "1fr",
+            gridTemplateColumns: {
+              xs: "1fr",
 
-            md: "1.15fr 0.85fr",
+              md: "1.15fr 0.85fr",
+            },
+
+            aspectRatio: height === undefined ? aspectRatio : undefined,
+
+            minHeight:
+              minHeight === undefined
+                ? {
+                    xs: currentSize.minHeight,
+
+                    md: currentSize.minHeight + 40,
+                  }
+                : dimensions.minHeight,
+
+            backgroundColor: "background.paper",
+
+            color: "text.primary",
           },
-
-          aspectRatio: height === undefined ? aspectRatio : undefined,
-
-          minHeight:
-            minHeight === undefined
-              ? {
-                  xs: currentSize.minHeight,
-
-                  md: currentSize.minHeight + 40,
-                }
-              : dimensions.minHeight,
-
-          backgroundColor: "background.paper",
-
-          color: "text.primary",
-        }}
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
       >
         {/* Image */}
 
@@ -663,6 +656,7 @@ export function Spotlight({
           }}
         >
           {imageElement}
+          {mediaLink}
         </Box>
 
         {/* Content */}
@@ -678,11 +672,15 @@ export function Spotlight({
 
               md: currentSize.padding + 1,
             },
+
+            position: "relative",
+            zIndex: 2,
+            pointerEvents: href ? "none" : "auto",
           }}
         >
           {content}
         </Box>
-      </Box>,
+      </Box>
     );
   }
 
@@ -692,8 +690,13 @@ export function Spotlight({
    * =========================================================
    */
 
-  return renderRoot(
-    <>
+  return (
+    <Box
+      component="section"
+      className={className}
+      aria-label={ariaLabel}
+      sx={[baseRootSx, ...(Array.isArray(sx) ? sx : [sx])]}
+    >
       {/* Image */}
 
       <Box
@@ -714,6 +717,7 @@ export function Spotlight({
         }}
       >
         {imageElement}
+        {mediaLink}
       </Box>
 
       {/* Content */}
@@ -725,11 +729,14 @@ export function Spotlight({
 
             md: currentSize.padding,
           },
+          position: "relative",
+          zIndex: 2,
+          pointerEvents: href ? "none" : "auto",
         }}
       >
         {content}
       </Box>
-    </>,
+    </Box>
   );
 }
 
