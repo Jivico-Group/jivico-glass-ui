@@ -432,9 +432,18 @@ export const Showcase = ({
 
   /*
    * =========================================================
-   * AUTOPLAY
+   * AUTOPLAY (WITH SMOOTH PAUSE & RESUME)
    * =========================================================
    */
+
+  const remainingTimeRef = useRef<number>(interval);
+  const startTimeRef = useRef<number>(Date.now());
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    remainingTimeRef.current = interval;
+    startTimeRef.current = Date.now();
+  }, [currentIndex, interval]);
 
   useEffect(() => {
     if (!autoplay || itemCount <= 1) {
@@ -442,15 +451,45 @@ export const Showcase = ({
     }
 
     if (pauseOnHover && isHovered) {
+      if (startTimeRef.current) {
+        const elapsed = Date.now() - startTimeRef.current;
+        remainingTimeRef.current = Math.max(
+          0,
+          remainingTimeRef.current - elapsed,
+        );
+      }
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+
       return;
     }
 
-    const timer = window.setInterval(goNext, Math.max(interval, 1000));
+    startTimeRef.current = Date.now();
+
+    const currentRemaining = Math.max(50, remainingTimeRef.current);
+
+    timerRef.current = setTimeout(() => {
+      goNext();
+    }, currentRemaining);
 
     return () => {
-      window.clearInterval(timer);
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
     };
-  }, [autoplay, interval, itemCount, pauseOnHover, isHovered, goNext]);
+  }, [
+    autoplay,
+    interval,
+    itemCount,
+    pauseOnHover,
+    isHovered,
+    currentIndex,
+    goNext,
+  ]);
 
   /*
    * =========================================================
@@ -1399,15 +1438,17 @@ export const Showcase = ({
           }}
         >
           <Box
-            key={`${currentIndex}-${isHovered}-${autoplay}`}
+            key={currentIndex}
             sx={{
               height: "100%",
               bgcolor: "#FFFFFF",
               boxShadow: "0 0 10px rgba(255, 255, 255, 0.8)",
-              ...(autoplay && (!pauseOnHover || !isHovered)
+              ...(autoplay
                 ? {
                     width: "0%",
                     animation: `showcaseProgress ${interval}ms linear forwards`,
+                    animationPlayState:
+                      pauseOnHover && isHovered ? "paused" : "running",
                   }
                 : {
                     width: `${((currentIndex + 1) / itemCount) * 100}%`,
