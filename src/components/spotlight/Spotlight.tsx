@@ -512,6 +512,10 @@ export function Spotlight({
       maxHeight: dimensions.maxHeight,
     }),
 
+    ...(height === undefined && aspectRatio !== undefined && {
+      aspectRatio,
+    }),
+
     "&:hover img": {
       transform: "scale(1.025)",
     },
@@ -542,6 +546,10 @@ export function Spotlight({
 
             width: "100%",
 
+            height: "100%",
+
+            boxSizing: "border-box",
+
             p: {
               xs: 2.5,
 
@@ -563,8 +571,6 @@ export function Spotlight({
                   }
                 : dimensions.minHeight,
 
-            aspectRatio: height === undefined ? aspectRatio : undefined,
-
             isolation: "isolate",
 
             backgroundColor: "transparent",
@@ -583,7 +589,7 @@ export function Spotlight({
               zIndex: -1,
 
               background:
-                "linear-gradient(180deg, rgba(0,0,0,0.02) 20%, rgba(0,0,0,0.68) 100%)",
+                "linear-gradient(180deg, rgba(0,0,0,0.02) 20%, rgba(0,0,0,0.78) 100%)",
 
               pointerEvents: "none",
             },
