@@ -847,6 +847,8 @@ export const Showcase = ({
 
         overflow: "hidden",
 
+        isolation: "isolate",
+
         userSelect: "none",
         WebkitUserSelect: "none",
         cursor: swipe ? "grab" : "default",
@@ -1096,7 +1098,9 @@ export const Showcase = ({
                           endIcon={<ArrowRight size={16} />}
                           target={item.action.target}
                           rel={item.action.rel}
-                          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+                          onClick={(
+                            event: React.MouseEvent<HTMLAnchorElement>,
+                          ) => {
                             event.preventDefault();
                             if (touchMoved.current) {
                               return;
@@ -1129,7 +1133,9 @@ export const Showcase = ({
                           color={item.action.color ?? "primary"}
                           size={currentSize.buttonSize}
                           endIcon={<ArrowRight size={16} />}
-                          onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                          onClick={(
+                            event: React.MouseEvent<HTMLButtonElement>,
+                          ) => {
                             if (touchMoved.current) {
                               return;
                             }
@@ -1433,7 +1439,9 @@ export const Showcase = ({
             bottom: 0,
             zIndex: 6,
             height: 3,
-            bgcolor: "rgba(255, 255, 255, 0.2)",
+            borderBottomLeftRadius: radiusValue,
+            borderBottomRightRadius: radiusValue,
+            bgcolor: "rgba(255, 255, 255, 0.25)",
             overflow: "hidden",
           }}
         >
@@ -1442,7 +1450,6 @@ export const Showcase = ({
             sx={{
               height: "100%",
               bgcolor: "#FFFFFF",
-              boxShadow: "0 0 10px rgba(255, 255, 255, 0.8)",
               ...(autoplay
                 ? {
                     width: "0%",
