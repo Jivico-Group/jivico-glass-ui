@@ -91,7 +91,7 @@ export const VisualViewer = ({
 
   loop = true,
 
-  radius = "rounded",
+  radius = "square",
 
   thumbnailWidth = DEFAULT_THUMBNAIL_WIDTH,
   thumbnailSize = DEFAULT_THUMBNAIL_SIZE,

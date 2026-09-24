@@ -30,6 +30,7 @@ import { ShowcasePage } from "./components/Pages/ShowcasePage.js";
 import { RailsPage } from "./components/Pages/RailsPage.js";
 import { SpotlightPage } from "./components/Pages/SpotlightPage.js";
 import { VisualViewerPage } from "./components/Pages/VisualViewerPage.js";
+import { GalleryPage } from "./components/Pages/GalleryPage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
 const TOC_MAP: Record<string, TocItem[]> = {
@@ -64,6 +65,14 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "visual-viewer-minimal", title: "4. Minimal Swipe-Only" },
     { id: "visual-viewer-arrows-only", title: "5. Arrows Only" },
     { id: "visual-viewer-nextjs", title: "6. Next.js Integration" },
+  ],
+  gallery: [
+    { id: "gallery-playground", title: "Interactive Playground" },
+    { id: "gallery-image-only", title: "1. Image-Only Grid" },
+    { id: "gallery-ecommerce", title: "2. E-Commerce Product Card" },
+    { id: "gallery-render-item", title: "3. Full Custom renderItem" },
+    { id: "gallery-square", title: "4. Square Grid (1:1)" },
+    { id: "gallery-nextjs", title: "5. Next.js Integration" },
   ],
   theme: [
     { id: "global-provider-setup", title: "Global Provider Setup" },
@@ -275,6 +284,8 @@ export default function App() {
         return <SpotlightPage />;
       case "visual-viewer":
         return <VisualViewerPage />;
+      case "gallery":
+        return <GalleryPage />;
       case "theme":
         return <ThemePage />;
       case "alerts":
