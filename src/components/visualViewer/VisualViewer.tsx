@@ -35,13 +35,11 @@ const getRadius = (radius: VisualViewerProps["radius"]) => {
   switch (radius) {
     case "square":
       return 0;
-
     case "soft":
-      return 14;
-
+      return 3;
     case "rounded":
     default:
-      return 8;
+      return 2;
   }
 };
 
@@ -767,7 +765,7 @@ export const VisualViewer = ({
               },
             }}
           >
-            {safeItems.map((item, index) => {
+            {safeItems.slice(0, visibleThumbnailCount).map((item, index) => {
               const active = index === currentIndex;
 
               const isLastVisible = index === visibleThumbnailCount - 1;
@@ -1139,7 +1137,7 @@ export const VisualViewer = ({
               },
             }}
           >
-            {safeItems.map((item, index) => {
+            {safeItems.slice(0, visibleThumbnailCount).map((item, index) => {
               const active = index === currentIndex;
 
               const isLastVisible = index === visibleThumbnailCount - 1;
