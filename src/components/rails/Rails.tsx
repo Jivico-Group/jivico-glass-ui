@@ -25,8 +25,9 @@ const DEFAULT_COLUMNS = {
   lg: 5,
   xl: 5,
 } as const;
+//  columns={{ xs: 2.2, sm: 3.5, md: 5, lg: 6.5, xl: 8 }}
 
-const DEFAULT_GAP = 16;
+const DEFAULT_GAP = 2;
 
 const DEFAULT_INTERVAL = 5000;
 
@@ -74,8 +75,8 @@ export function Rails<T>({
 
   transition = "scale",
 
-  imageAspectRatio = "4 / 5",
-  radius = 2,
+  imageAspectRatio = "3 / 4",
+  radius = 0,
 
   itemSx,
   sx,
