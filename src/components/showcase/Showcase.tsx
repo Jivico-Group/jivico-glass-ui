@@ -879,7 +879,7 @@ export const Showcase = ({
 
         bgcolor: "background.default",
 
-        touchAction: swipe ? "pan-y" : "auto",
+        touchAction: "auto",
 
         ...containerSx,
       }}

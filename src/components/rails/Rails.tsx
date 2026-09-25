@@ -499,20 +499,6 @@ export function Rails<T>({
    * ---------------------------------------------------------
    * Built-in image renderer
    * ---------------------------------------------------------
-   *
-   * ImageComponent:
-   *
-   * - Next.js Image
-   * - lazy-image library
-   * - custom image component
-   *
-   * renderImage:
-   *
-   * - advanced escape hatch
-   * - completely custom image rendering
-   *
-   * renderImage takes precedence over
-   * ImageComponent.
    */
 
   const renderDefaultImage = React.useCallback(
@@ -616,25 +602,6 @@ export function Rails<T>({
         typeof title === "string" && title.trim().length > 0
           ? `View ${title}`
           : "View item";
-
-      /*
-       * -----------------------------------------------------
-       * Semantic anchor
-       * -----------------------------------------------------
-       *
-       * The rail always renders a real <a href="...">.
-       *
-       * The href is intentionally preserved for:
-       *
-       * - SEO
-       * - accessibility
-       * - semantic HTML
-       *
-       * Native navigation is intentionally disabled.
-       *
-       * The consuming application can handle navigation
-       * through onNavigate.
-       */
 
       const handleItemNavigation = (
         event: React.MouseEvent<HTMLAnchorElement>,
@@ -903,14 +870,6 @@ export function Rails<T>({
    * ---------------------------------------------------------
    *
    * itemWidth ALWAYS takes precedence over columns.
-   *
-   * Example:
-   *
-   * itemWidth={{
-   *   xs: 280,
-   *   md: 600,
-   * }}
-   *
    * Otherwise columns calculates the width.
    */
 
@@ -960,6 +919,21 @@ export function Rails<T>({
 
           overflowY: "hidden",
 
+          /*
+           * Let the browser own touch gestures.
+           *
+           * IMPORTANT:
+           * Do NOT use touchAction: "pan-x" here.
+           *
+           * Native overflow scrolling handles horizontal
+           * swiping, while leaving touch-action unrestricted
+           * allows pinch-to-zoom to work normally.
+           */
+
+          WebkitOverflowScrolling: "touch",
+
+          overscrollBehaviorX: "contain",
+
           scrollBehavior: prefersReducedMotion ? "auto" : "smooth",
 
           scrollSnapType: snap ? "x mandatory" : "none",
@@ -969,12 +943,6 @@ export function Rails<T>({
           "&::-webkit-scrollbar": {
             display: "none",
           },
-
-          ...(swipe && {
-            WebkitOverflowScrolling: "touch",
-
-            touchAction: "pan-x",
-          }),
         }}
       >
         {/* ================================================ */}
@@ -991,8 +959,16 @@ export function Rails<T>({
 
             justifyContent,
 
+            /*
+             * The track should grow to the actual width of
+             * its children so horizontal overflow is real.
+             */
             width: "100%",
 
+            /*
+             * Still occupy the viewport when the content
+             * doesn't need to scroll.
+             */
             minWidth: "100%",
 
             pb: 0.5,
@@ -1002,8 +978,7 @@ export function Rails<T>({
             const key = getKey(item, index);
 
             /*
-             * renderItem completely
-             * replaces the default UI.
+             * renderItem completely replaces the default UI.
              */
 
             const content =
@@ -1023,7 +998,13 @@ export function Rails<T>({
                 sx={{
                   position: "relative",
 
+                  /*
+                   * Explicitly prevent flexbox from shrinking
+                   * the rail items.
+                   */
                   flex: `0 0 ${itemBasis}`,
+
+                  flexShrink: 0,
 
                   minWidth: 0,
 
