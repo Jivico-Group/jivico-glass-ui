@@ -7,30 +7,26 @@ import type {
   StatusShowcaseProps,
 } from "./StatusShowcase.types.js";
 
-/* -------------------------------------------------------------------------- */
-/* SIZE CONFIG                                                                */
-/* -------------------------------------------------------------------------- */
-
 const SIZE_CONFIG = {
   small: {
     maxWidth: 1180,
 
-    sectionMinHeight: {
+    minHeight: {
       xs: 620,
-      sm: 650,
-      md: 680,
+      sm: 640,
+      md: 660,
     },
 
     contentMaxWidth: {
       xs: 520,
-      md: 540,
+      md: 470,
     },
 
     visualMaxWidth: {
-      xs: 380,
-      sm: 480,
-      md: 600,
-      lg: 680,
+      xs: 360,
+      sm: 460,
+      md: 560,
+      lg: 620,
     },
 
     code: {
@@ -39,21 +35,20 @@ const SIZE_CONFIG = {
     },
 
     title: {
-      xs: "3rem",
-      sm: "3.8rem",
-      md: "4.4rem",
-      lg: "4.8rem",
+      xs: "2.35rem",
+      sm: "2.9rem",
+      md: "3.35rem",
+      lg: "3.6rem",
     },
 
     description: {
       xs: "0.875rem",
-      sm: "0.95rem",
-      md: "1rem",
+      sm: "0.9375rem",
     },
 
-    contentGap: {
-      xs: 2.5,
-      sm: 3,
+    titleBottom: {
+      xs: 16,
+      sm: 18,
     },
 
     actionTop: {
@@ -61,20 +56,77 @@ const SIZE_CONFIG = {
       sm: 3.5,
     },
 
-    signatureTop: {
-      xs: 5,
-      sm: 6,
-    },
-
     buttonHeight: 44,
-
     buttonMinWidth: 145,
+
+    signatureTop: {
+      xs: 4,
+      sm: 5,
+    },
   },
 
   medium: {
     maxWidth: 1320,
 
-    sectionMinHeight: {
+    minHeight: {
+      xs: 650,
+      sm: 690,
+      md: 710,
+    },
+
+    contentMaxWidth: {
+      xs: 540,
+      md: 520,
+    },
+
+    visualMaxWidth: {
+      xs: 400,
+      sm: 520,
+      md: 650,
+      lg: 720,
+    },
+
+    code: {
+      xs: "0.68rem",
+      sm: "0.74rem",
+    },
+
+    title: {
+      xs: "2.55rem",
+      sm: "3.2rem",
+      md: "3.8rem",
+      lg: "4.15rem",
+    },
+
+    description: {
+      xs: "0.925rem",
+      sm: "1rem",
+      md: "1.025rem",
+    },
+
+    titleBottom: {
+      xs: 17,
+      sm: 19,
+    },
+
+    actionTop: {
+      xs: 3,
+      sm: 3.5,
+    },
+
+    buttonHeight: 46,
+    buttonMinWidth: 150,
+
+    signatureTop: {
+      xs: 4.5,
+      sm: 5.5,
+    },
+  },
+
+  large: {
+    maxWidth: 1440,
+
+    minHeight: {
       xs: 680,
       sm: 720,
       md: 740,
@@ -82,75 +134,15 @@ const SIZE_CONFIG = {
     },
 
     contentMaxWidth: {
-      xs: 560,
-      md: 600,
+      xs: 520,
+      md: 560,
     },
 
     visualMaxWidth: {
       xs: 420,
       sm: 540,
-      md: 680,
-      lg: 780,
-    },
-
-    code: {
-      xs: "0.68rem",
-      sm: "0.73rem",
-    },
-
-    title: {
-      xs: "3.2rem",
-      sm: "4.2rem",
-      md: "5rem",
-      lg: "5.4rem",
-    },
-
-    description: {
-      xs: "0.9rem",
-      sm: "0.98rem",
-      md: "1.05rem",
-    },
-
-    contentGap: {
-      xs: 2.5,
-      sm: 3,
-    },
-
-    actionTop: {
-      xs: 3.25,
-      sm: 3.75,
-    },
-
-    signatureTop: {
-      xs: 5.5,
-      sm: 6.5,
-    },
-
-    buttonHeight: 46,
-
-    buttonMinWidth: 155,
-  },
-
-  large: {
-    maxWidth: 1440,
-
-    sectionMinHeight: {
-      xs: 720,
-      sm: 760,
-      md: 780,
-      lg: 820,
-    },
-
-    contentMaxWidth: {
-      xs: 580,
-      md: 640,
-    },
-
-    visualMaxWidth: {
-      xs: 440,
-      sm: 580,
-      md: 740,
-      lg: 860,
+      md: 700,
+      lg: 800,
     },
 
     code: {
@@ -159,42 +151,38 @@ const SIZE_CONFIG = {
     },
 
     title: {
-      xs: "3.5rem",
-      sm: "4.8rem",
-      md: "5.7rem",
-      lg: "6.2rem",
+      xs: "2.8rem",
+      sm: "3.5rem",
+      md: "4.1rem",
+      lg: "4.5rem",
     },
 
     description: {
       xs: "0.92rem",
       sm: "1rem",
-      md: "1.08rem",
+      md: "1.05rem",
     },
 
-    contentGap: {
-      xs: 2.75,
-      sm: 3.25,
+    titleBottom: {
+      xs: 16,
+      sm: 18,
+      md: 20,
     },
 
     actionTop: {
-      xs: 3.5,
-      sm: 4,
-    },
-
-    signatureTop: {
-      xs: 6,
-      sm: 7,
+      xs: 3,
+      sm: 3.5,
     },
 
     buttonHeight: 48,
-
     buttonMinWidth: 160,
+
+    signatureTop: {
+      xs: 4.5,
+      sm: 5.5,
+    },
   },
 } as const;
-
-/* -------------------------------------------------------------------------- */
-/* COMPONENT                                                                   */
-/* -------------------------------------------------------------------------- */
 
 export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
   image,
@@ -216,10 +204,6 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
   const config = SIZE_CONFIG[size];
 
   const isGlass = surface === "glass";
-
-  /* ------------------------------------------------------------------------ */
-  /* IMAGE RENDERER                                                           */
-  /* ------------------------------------------------------------------------ */
 
   const renderStatusImage = (imageProps: StatusShowcaseImage) => {
     if (renderImage) {
@@ -244,26 +228,12 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
     );
   };
 
-  /* ------------------------------------------------------------------------ */
-  /* COMPONENT                                                                */
-  /* ------------------------------------------------------------------------ */
-
   return (
     <Box
       className={className}
       sx={{
-        position: "relative",
-
         width: "100%",
-
-        minHeight: config.sectionMinHeight,
-
         boxSizing: "border-box",
-
-        display: "flex",
-        alignItems: "center",
-
-        overflow: "hidden",
 
         px: {
           xs: 2,
@@ -273,17 +243,19 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
         },
 
         py: {
-          xs: 6,
-          sm: 7,
-          md: 8,
-          lg: 9,
+          xs: 3,
+          sm: 4,
+          md: 5,
+          lg: 6,
         },
 
         ...(isGlass && {
+          position: "relative",
+          overflow: "hidden",
+
           borderRadius: {
             xs: 3,
             sm: 4,
-            md: 5,
           },
 
           backgroundColor: "background.paper",
@@ -296,21 +268,18 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
           WebkitBackdropFilter: "blur(24px) saturate(180%)",
 
           boxShadow: {
-            xs: "0 12px 40px rgba(0,0,0,0.06)",
-            md: "0 20px 60px rgba(0,0,0,0.08)",
+            xs: "0 12px 40px rgba(0, 0, 0, 0.06)",
+            md: "0 20px 60px rgba(0, 0, 0, 0.08)",
           },
 
           "&::before": {
             content: '""',
-
             position: "absolute",
-
             inset: 0,
-
             pointerEvents: "none",
 
             background:
-              "linear-gradient(135deg, rgba(255,255,255,0.12), transparent 42%, rgba(255,255,255,0.04))",
+              "linear-gradient(135deg, rgba(255,255,255,0.10), transparent 45%, rgba(255,255,255,0.04))",
 
             opacity: 0.7,
           },
@@ -319,19 +288,15 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
         ...sx,
       }}
     >
-      {/* ------------------------------------------------------------------ */}
-      {/* MAIN EDITORIAL GRID                                                */}
-      {/* ------------------------------------------------------------------ */}
-
       <Box
         sx={{
           position: "relative",
-
           zIndex: 1,
 
           width: "100%",
-
           maxWidth: config.maxWidth,
+
+          minHeight: config.minHeight,
 
           mx: "auto",
 
@@ -339,7 +304,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
 
           gridTemplateColumns: {
             xs: "1fr",
-            md: "minmax(0, 0.9fr) minmax(0, 1.1fr)",
+            md: "minmax(0, 0.92fr) minmax(0, 1.08fr)",
           },
 
           alignItems: "center",
@@ -347,29 +312,23 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
           columnGap: {
             xs: 0,
             md: 5,
-            lg: 7,
+            lg: 8,
           },
 
           rowGap: {
-            xs: 5,
-            sm: 6,
+            xs: 4,
+            sm: 5,
             md: 0,
           },
         }}
       >
-        {/* ================================================================ */}
-        {/* CONTENT                                                          */}
-        {/* ================================================================ */}
+        {/* ================================================== */}
+        {/* CONTENT */}
+        {/* ================================================== */}
 
-        <Box
+        <Stack
           sx={{
-            order: {
-              xs: 2,
-              md: 1,
-            },
-
             width: "100%",
-
             maxWidth: config.contentMaxWidth,
 
             justifySelf: {
@@ -377,61 +336,47 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
               md: "start",
             },
 
-            textAlign: {
-              xs: "center",
-              md: "left",
-            },
+            alignSelf: "center",
 
-            display: "flex",
+            alignItems: "flex-start",
 
-            flexDirection: "column",
-
-            alignItems: {
-              xs: "center",
-              md: "flex-start",
-            },
+            textAlign: "left",
           }}
         >
-          {/* -------------------------------------------------------------- */}
-          {/* CODE / EYEBROW                                                  */}
-          {/* -------------------------------------------------------------- */}
+          {/* CODE */}
 
           {code && (
             <Typography
               component="div"
               sx={{
+                mb: {
+                  xs: 1.5,
+                  sm: 1.75,
+                },
+
                 color: "text.secondary",
 
                 fontSize: config.code,
 
                 fontWeight: 700,
 
-                letterSpacing: "0.22em",
+                letterSpacing: "0.18em",
 
                 lineHeight: 1.2,
 
                 textTransform: "uppercase",
-
-                mb: {
-                  xs: 1.75,
-                  sm: 2,
-                },
               }}
             >
               {code}
             </Typography>
           )}
 
-          {/* -------------------------------------------------------------- */}
-          {/* TITLE                                                          */}
-          {/* -------------------------------------------------------------- */}
+          {/* TITLE */}
 
           <Typography
             component="h1"
             sx={{
               width: "100%",
-
-              maxWidth: config.contentMaxWidth,
 
               color: "text.primary",
 
@@ -442,30 +387,29 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
               letterSpacing: "-0.055em",
 
               lineHeight: {
-                xs: 0.98,
-                sm: 0.96,
-                md: 0.94,
+                xs: 1.02,
+                sm: 1,
+                md: 0.99,
+                lg: 0.98,
               },
 
               textWrap: "balance",
+
+              maxWidth: "100%",
             }}
           >
             {title}
           </Typography>
 
-          {/* -------------------------------------------------------------- */}
-          {/* DESCRIPTION                                                    */}
-          {/* -------------------------------------------------------------- */}
+          {/* DESCRIPTION */}
 
           {description && (
             <Typography
               component="p"
               sx={{
-                width: "100%",
+                maxWidth: 570,
 
-                maxWidth: 500,
-
-                mt: config.contentGap,
+                mt: config.titleBottom,
 
                 mb: 0,
 
@@ -475,7 +419,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
 
                 fontWeight: 400,
 
-                lineHeight: 1.7,
+                lineHeight: 1.65,
 
                 textWrap: "pretty",
               }}
@@ -484,15 +428,12 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
             </Typography>
           )}
 
-          {/* -------------------------------------------------------------- */}
-          {/* CUSTOM CONTENT                                                 */}
-          {/* -------------------------------------------------------------- */}
+          {/* CUSTOM CONTENT */}
 
           {children && (
             <Box
               sx={{
                 width: "100%",
-
                 mt: 3,
               }}
             >
@@ -500,9 +441,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
             </Box>
           )}
 
-          {/* -------------------------------------------------------------- */}
-          {/* ACTIONS                                                        */}
-          {/* -------------------------------------------------------------- */}
+          {/* ACTIONS */}
 
           {(actionLabel || secondaryActionLabel) && (
             <Stack
@@ -511,8 +450,8 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
                 sm: "row",
               }}
               spacing={{
-                xs: 1.5,
-                sm: 2,
+                xs: 1.25,
+                sm: 1.5,
               }}
               sx={{
                 width: {
@@ -520,14 +459,14 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
                   sm: "auto",
                 },
 
-                mt: config.actionTop,
-
-                alignItems: "center",
-
-                justifyContent: {
-                  xs: "center",
-                  md: "flex-start",
+                alignItems: {
+                  xs: "stretch",
+                  sm: "center",
                 },
+
+                justifyContent: "flex-start",
+
+                mt: config.actionTop,
               }}
             >
               {actionLabel && (
@@ -535,24 +474,18 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
                   variant="contained"
                   onClick={onAction}
                   sx={{
-                    minWidth: config.buttonMinWidth,
-
-                    minHeight: config.buttonHeight,
-
-                    px: 3,
-
-                    borderRadius: 999,
-
-                    boxShadow: "none",
-
                     width: {
                       xs: "100%",
                       sm: "auto",
                     },
 
-                    "&:hover": {
-                      boxShadow: "none",
-                    },
+                    minWidth: config.buttonMinWidth,
+
+                    minHeight: config.buttonHeight,
+
+                    px: 2.75,
+
+                    whiteSpace: "nowrap",
                   }}
                 >
                   {actionLabel}
@@ -561,27 +494,21 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
 
               {secondaryActionLabel && (
                 <Button
-                  variant="text"
+                  variant="outlined"
                   onClick={onSecondaryAction}
                   sx={{
-                    minHeight: config.buttonHeight,
-
-                    px: 1,
-
-                    borderRadius: 999,
-
                     width: {
                       xs: "100%",
                       sm: "auto",
                     },
 
-                    color: "text.primary",
+                    minWidth: config.buttonMinWidth,
 
-                    "&:hover": {
-                      backgroundColor: "transparent",
-                      textDecoration: "underline",
-                      textUnderlineOffset: "4px",
-                    },
+                    minHeight: config.buttonHeight,
+
+                    px: 2.75,
+
+                    whiteSpace: "nowrap",
                   }}
                 >
                   {secondaryActionLabel}
@@ -590,9 +517,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
             </Stack>
           )}
 
-          {/* -------------------------------------------------------------- */}
-          {/* SIGNATURE                                                      */}
-          {/* -------------------------------------------------------------- */}
+          {/* SIGNATURE */}
 
           {signature && (
             <Box
@@ -600,13 +525,8 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
                 mt: config.signatureTop,
 
                 display: "flex",
-
                 alignItems: "center",
-
-                justifyContent: {
-                  xs: "center",
-                  md: "flex-start",
-                },
+                justifyContent: "flex-start",
 
                 maxWidth: "100%",
 
@@ -616,63 +536,57 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
               {signature}
             </Box>
           )}
-        </Box>
+        </Stack>
 
-        {/* ================================================================ */}
-        {/* VISUAL                                                           */}
-        {/* ================================================================ */}
+        {/* ================================================== */}
+        {/* IMAGE */}
+        {/* ================================================== */}
 
         {image && (
           <Box
             sx={{
-              order: {
-                xs: 1,
-                md: 2,
+              width: "100%",
+
+              maxWidth: config.visualMaxWidth,
+
+              justifySelf: {
+                xs: "center",
+                md: "end",
               },
 
-              width: "100%",
+              alignSelf: "center",
 
               display: "flex",
 
               alignItems: "center",
 
-              justifyContent: {
-                xs: "center",
-                md: "flex-end",
+              justifyContent: "center",
+
+              order: {
+                xs: -1,
+                md: 0,
               },
 
-              minWidth: 0,
+              px: {
+                xs: 2,
+                sm: 3,
+                md: 0,
+              },
 
-              pointerEvents: "none",
-            }}
-          >
-            <Box
-              sx={{
+              "& img": {
+                display: "block",
+
                 width: "100%",
 
-                maxWidth: config.visualMaxWidth,
+                height: "auto",
 
-                display: "flex",
+                maxWidth: "100%",
 
-                alignItems: "center",
-
-                justifyContent: "center",
-
-                "& img": {
-                  display: "block",
-
-                  width: "100%",
-
-                  maxWidth: "100%",
-
-                  height: "auto",
-
-                  objectFit: "contain",
-                },
-              }}
-            >
-              {renderStatusImage(image)}
-            </Box>
+                objectFit: "contain",
+              },
+            }}
+          >
+            {renderStatusImage(image)}
           </Box>
         )}
       </Box>
