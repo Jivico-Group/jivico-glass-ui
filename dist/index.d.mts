@@ -2869,6 +2869,10 @@ interface GalleryProps<T> {
      */
     renderBlock?: (context: GalleryRenderContext<T>) => ReactNode;
     /**
+     * Optional content rendered below the image (alias for renderBlock).
+     */
+    renderContent?: (context: GalleryRenderContext<T>) => ReactNode;
+    /**
      * Image source used by the native <img> fallback.
      */
     getImage?: (item: T, index: number) => string | undefined;
@@ -2931,7 +2935,7 @@ interface GalleryProps<T> {
     "aria-label"?: string;
 }
 
-declare function Gallery<T>({ items, getKey, renderItem, renderImage, renderOverlay, renderBlock, getImage, getImageAlt, columns, gap, rowGap, columnGap, justifyItems, alignItems, imageAspectRatio, imageFit, radius, itemSx, imageSx, blockSx, sx, className, "aria-label": ariaLabel, }: GalleryProps<T>): react.JSX.Element;
+declare function Gallery<T>({ items, getKey, renderItem, renderImage, renderOverlay, renderBlock, renderContent, getImage, getImageAlt, columns, gap, rowGap, columnGap, justifyItems, alignItems, imageAspectRatio, imageFit, radius, itemSx, imageSx, blockSx, sx, className, "aria-label": ariaLabel, }: GalleryProps<T>): react.JSX.Element;
 
 type ResponsiveBreakpoint = "xs" | "sm" | "md" | "lg" | "xl";
 interface ResponsiveState {

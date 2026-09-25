@@ -41,6 +41,7 @@ export function Gallery<T>({
   renderImage,
   renderOverlay,
   renderBlock,
+  renderContent,
   getImage,
   getImageAlt,
   columns = {
@@ -163,7 +164,7 @@ export function Gallery<T>({
               )}
             </Box>
 
-            {renderBlock && (
+            {(renderBlock || renderContent) && (
               <Box
                 sx={{
                   width: "100%",
@@ -171,7 +172,7 @@ export function Gallery<T>({
                   ...blockSx,
                 }}
               >
-                {renderBlock({ item, index })}
+                {(renderBlock ?? renderContent)!({ item, index })}
               </Box>
             )}
           </Box>

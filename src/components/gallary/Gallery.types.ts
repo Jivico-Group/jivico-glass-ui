@@ -70,6 +70,11 @@ export interface GalleryProps<T> {
   renderBlock?: (context: GalleryRenderContext<T>) => ReactNode;
 
   /**
+   * Optional content rendered below the image (alias for renderBlock).
+   */
+  renderContent?: (context: GalleryRenderContext<T>) => ReactNode;
+
+  /**
    * Image source used by the native <img> fallback.
    */
   getImage?: (item: T, index: number) => string | undefined;
