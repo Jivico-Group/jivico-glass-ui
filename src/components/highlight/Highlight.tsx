@@ -13,6 +13,9 @@ import type {
   HighlightProps,
 } from "./Highlight.types.js";
 
+const DEFAULT_IMAGE_SIZES =
+  "(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw";
+
 const getDimension = (
   value: HighlightDimension | undefined,
 ): HighlightDimension | undefined => value;
@@ -122,7 +125,7 @@ const DefaultImage = ({
       src={src}
       alt={alt}
       loading={imagePriority ? "eager" : "lazy"}
-      sizes={imageSizes}
+      sizes={imageSizes ?? DEFAULT_IMAGE_SIZES}
       sx={{
         display: "block",
         width: "100%",
@@ -186,7 +189,7 @@ const HighlightImage = ({
   const imageProps: HighlightImageProps = {
     src: image,
     alt,
-    sizes: imageSizes,
+    sizes: imageSizes ?? DEFAULT_IMAGE_SIZES,
     priority: imagePriority,
     fill: true,
     style: {
