@@ -2935,24 +2935,16 @@ declare function Gallery<T>({ items, getKey, renderItem, renderImage, renderOver
 
 type ResponsiveBreakpoint = "xs" | "sm" | "md" | "lg" | "xl";
 interface ResponsiveState {
-    /**
-     * Current MUI breakpoint.
-     */
     breakpoint: ResponsiveBreakpoint;
-    /**
-     * Convenience device-range flags.
-     */
     isMobile: boolean;
     isTablet: boolean;
     isDesktop: boolean;
-    /**
-     * Exact MUI breakpoint flags.
-     */
     isXs: boolean;
     isSm: boolean;
     isMd: boolean;
     isLg: boolean;
     isXl: boolean;
+    isHydrated: boolean;
 }
 declare function useResponsive(): ResponsiveState;
 

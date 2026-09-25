@@ -1,39 +1,30 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useMediaQuery, useTheme } from "@mui/material";
 
-export type ResponsiveBreakpoint =
-  | "xs"
-  | "sm"
-  | "md"
-  | "lg"
-  | "xl";
+export type ResponsiveBreakpoint = "xs" | "sm" | "md" | "lg" | "xl";
 
 export interface ResponsiveState {
-  /**
-   * Current MUI breakpoint.
-   */
   breakpoint: ResponsiveBreakpoint;
-
-  /**
-   * Convenience device-range flags.
-   */
   isMobile: boolean;
   isTablet: boolean;
   isDesktop: boolean;
-
-  /**
-   * Exact MUI breakpoint flags.
-   */
   isXs: boolean;
   isSm: boolean;
   isMd: boolean;
   isLg: boolean;
   isXl: boolean;
+  isHydrated: boolean;
 }
 
 export function useResponsive(): ResponsiveState {
   const theme = useTheme();
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   const isXs = useMediaQuery(theme.breakpoints.only("xs"), {
     noSsr: true,
@@ -81,6 +72,7 @@ export function useResponsive(): ResponsiveState {
     isMd,
     isLg,
     isXl,
+    isHydrated,
   };
 }
 
