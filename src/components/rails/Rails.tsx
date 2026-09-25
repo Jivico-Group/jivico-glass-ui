@@ -25,7 +25,6 @@ const DEFAULT_COLUMNS = {
   lg: 5,
   xl: 5,
 } as const;
-//  columns={{ xs: 2.2, sm: 3.5, md: 5, lg: 6.5, xl: 8 }}
 
 const DEFAULT_GAP = 2;
 
@@ -92,6 +91,16 @@ export function Rails<T>({
    * ---------------------------------------------------------
    * Responsive breakpoint
    * ---------------------------------------------------------
+   *
+   * These values are still used for JS behaviour such as:
+   * - autoplay
+   * - navigation
+   * - priority images
+   * - dot calculation
+   *
+   * Visual item sizing is handled by CSS below so that the
+   * first server-rendered frame already has the correct
+   * responsive width.
    */
 
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
@@ -121,6 +130,56 @@ export function Rails<T>({
   );
 
   const currentItemWidth = itemWidth?.[breakpoint];
+
+  /*
+   * ---------------------------------------------------------
+   * Stable responsive item sizing
+   * ---------------------------------------------------------
+   *
+   * IMPORTANT:
+   *
+   * Do NOT calculate the visual item width exclusively from
+   * useMediaQuery.
+   *
+   * useMediaQuery can resolve differently during SSR and
+   * hydration, causing:
+   *
+   *     tiny/wrong rail
+   *          ↓
+   *     hydration
+   *          ↓
+   *     correct rail
+   *
+   * Instead, CSS receives every breakpoint value up front.
+   * The browser chooses the correct one before hydration.
+   */
+
+  const getCssItemBasis = React.useCallback(
+    (breakpointKey: keyof typeof DEFAULT_COLUMNS) => {
+      const explicitWidth = itemWidth?.[breakpointKey];
+
+      if (explicitWidth) {
+        return explicitWidth;
+      }
+
+      const columnCount =
+        columns?.[breakpointKey] ?? DEFAULT_COLUMNS[breakpointKey];
+
+      return `calc((100% - ${(columnCount - 1) * gap}px) / ${columnCount})`;
+    },
+    [columns, gap, itemWidth],
+  );
+
+  const responsiveItemFlex = React.useMemo(
+    () => ({
+      xs: `0 0 ${getCssItemBasis("xs")}`,
+      sm: `0 0 ${getCssItemBasis("sm")}`,
+      md: `0 0 ${getCssItemBasis("md")}`,
+      lg: `0 0 ${getCssItemBasis("lg")}`,
+      xl: `0 0 ${getCssItemBasis("xl")}`,
+    }),
+    [getCssItemBasis],
+  );
 
   /*
    * ---------------------------------------------------------
@@ -635,8 +694,6 @@ export function Rails<T>({
             index,
           })}
 
-          {/* Image overlay */}
-
           <Box
             className="Rail-image-overlay"
             aria-hidden
@@ -668,8 +725,6 @@ export function Rails<T>({
             minWidth: 0,
           }}
         >
-          {/* Full item navigation overlay */}
-
           {href && (
             <Box
               component="a"
@@ -696,15 +751,7 @@ export function Rails<T>({
             />
           )}
 
-          {/* ============================================== */}
-          {/* Image                                          */}
-          {/* ============================================== */}
-
           {imageContent}
-
-          {/* ============================================== */}
-          {/* Title                                          */}
-          {/* ============================================== */}
 
           {title && (
             <Box
@@ -744,10 +791,6 @@ export function Rails<T>({
               <ChevronRight size={18} strokeWidth={1.8} aria-hidden />
             </Box>
           )}
-
-          {/* ============================================== */}
-          {/* Custom content                                 */}
-          {/* ============================================== */}
 
           {renderContent && (
             <Box
@@ -797,25 +840,13 @@ export function Rails<T>({
       disabled,
     };
 
-    /*
-     * Custom previous button
-     */
-
     if (isPrevious && renderPreviousButton) {
       return renderPreviousButton(context);
     }
 
-    /*
-     * Custom next button
-     */
-
     if (!isPrevious && renderNextButton) {
       return renderNextButton(context);
     }
-
-    /*
-     * Default button
-     */
 
     return (
       <IconButton
@@ -867,19 +898,6 @@ export function Rails<T>({
 
   /*
    * ---------------------------------------------------------
-   * Item sizing
-   * ---------------------------------------------------------
-   *
-   * itemWidth ALWAYS takes precedence over columns.
-   * Otherwise columns calculates the width.
-   */
-
-  const itemBasis = currentItemWidth
-    ? currentItemWidth
-    : `calc((100% - ${(currentColumns - 1) * gap}px) / ${currentColumns})`;
-
-  /*
-   * ---------------------------------------------------------
    * Render
    * ---------------------------------------------------------
    */
@@ -920,17 +938,6 @@ export function Rails<T>({
 
           overflowY: "hidden",
 
-          /*
-           * Let the browser own touch gestures.
-           *
-           * IMPORTANT:
-           * Do NOT use touchAction: "pan-x" here.
-           *
-           * Native overflow scrolling handles horizontal
-           * swiping, while leaving touch-action unrestricted
-           * allows pinch-to-zoom to work normally.
-           */
-
           WebkitOverflowScrolling: "touch",
 
           overscrollBehaviorX: "contain",
@@ -960,16 +967,8 @@ export function Rails<T>({
 
             justifyContent,
 
-            /*
-             * The track should grow to the actual width of
-             * its children so horizontal overflow is real.
-             */
             width: "100%",
 
-            /*
-             * Still occupy the viewport when the content
-             * doesn't need to scroll.
-             */
             minWidth: "100%",
 
             pb: 0.5,
@@ -999,11 +998,7 @@ export function Rails<T>({
                 sx={{
                   position: "relative",
 
-                  /*
-                   * Explicitly prevent flexbox from shrinking
-                   * the rail items.
-                   */
-                  flex: `0 0 ${itemBasis}`,
+                  flex: responsiveItemFlex,
 
                   flexShrink: 0,
 
