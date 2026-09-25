@@ -21,6 +21,7 @@ export * from './navigation/index.js';
 export * from './visualViewer/index.js';
 export * from './gallary/index.js';
 export * from './statusShowcase/index.js';
+export * from './loading/index.js';
 
 
 

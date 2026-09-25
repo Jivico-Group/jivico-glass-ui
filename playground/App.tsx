@@ -32,6 +32,7 @@ import { SpotlightPage } from "./components/Pages/SpotlightPage.js";
 import { VisualViewerPage } from "./components/Pages/VisualViewerPage.js";
 import { GalleryPage } from "./components/Pages/GalleryPage.js";
 import { StatusShowcasePage } from "./components/Pages/StatusShowcasePage.js";
+import { LoadingShowcasePage } from "./components/Pages/LoadingShowcasePage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
 const TOC_MAP: Record<string, TocItem[]> = {
@@ -84,6 +85,14 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "glass-surface", title: "5. Glass vs Standard Surface" },
     { id: "size-matrix", title: "6. Responsive Size Matrix" },
     { id: "props-reference", title: "7. Props Reference" },
+  ],
+  "loading-showcase": [
+    { id: "interactive-loading-showcase", title: "Interactive Playground" },
+    { id: "apparel-drop", title: "1. Apparel & Drop Loading" },
+    { id: "freestyle-builder", title: "2. 3D Studio Preloading" },
+    { id: "controlled-loading", title: "3. Controlled Loading" },
+    { id: "custom-renderer", title: "4. Custom Image Renderer" },
+    { id: "props-reference", title: "5. Props Reference" },
   ],
   theme: [
     { id: "global-provider-setup", title: "Global Provider Setup" },
@@ -299,6 +308,8 @@ export default function App() {
         return <GalleryPage />;
       case "status-showcase":
         return <StatusShowcasePage />;
+      case "loading-showcase":
+        return <LoadingShowcasePage />;
       case "theme":
         return <ThemePage />;
       case "alerts":
