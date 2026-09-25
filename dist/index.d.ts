@@ -1,7 +1,7 @@
 import { Theme, Components, SxProps } from '@mui/material/styles';
 import * as _emotion_styled from '@emotion/styled';
 import * as react from 'react';
-import react__default, { ReactNode, ComponentType, CSSProperties, MouseEvent, Key, HTMLAttributeAnchorTarget, ElementType, Ref, MouseEventHandler } from 'react';
+import react__default, { ReactNode, ComponentType, CSSProperties, MouseEvent, Key, HTMLAttributeAnchorTarget, ElementType, Ref } from 'react';
 import * as _mui_system from '@mui/system';
 import * as _mui_material from '@mui/material';
 import { BoxProps, SxProps as SxProps$1 } from '@mui/material';
@@ -2958,27 +2958,46 @@ declare function Gallery<T>({ items, getKey, renderItem, renderImage, renderOver
 type StatusShowcaseSize = "small" | "medium" | "large";
 type StatusShowcaseSurface = "standard" | "glass";
 interface StatusShowcaseImage {
+    /**
+     * Image source.
+     */
     src: string;
+    /**
+     * Accessible image description.
+     */
     alt?: string;
-    width?: number | string;
-    height?: number | string;
+    /**
+     * Intrinsic image width.
+     *
+     * Used by renderImage implementations such as
+     * Next.js Image.
+     */
+    width?: number;
+    /**
+     * Intrinsic image height.
+     *
+     * Used by renderImage implementations such as
+     * Next.js Image.
+     */
+    height?: number;
 }
 interface StatusShowcaseProps {
     /**
-     * Optional illustration / image.
+     * Editorial / visual illustration.
      */
     image?: StatusShowcaseImage;
     /**
-     * Custom image renderer.
+     * Optional custom image renderer.
      *
-     * Recommended for Next.js applications so the component
-     * does not depend on next/image.
+     * Useful for Next.js Image, optimized image
+     * components, CDN loaders, etc.
      */
     renderImage?: (image: StatusShowcaseImage) => ReactNode;
     /**
-     * Small status/code displayed above the heading.
+     * Small eyebrow/status text.
      *
-     * Example: 404, 500, COMING SOON.
+     * Example:
+     * "404 — PAGE NOT FOUND"
      */
     code?: ReactNode;
     /**
@@ -2990,31 +3009,32 @@ interface StatusShowcaseProps {
      */
     description?: ReactNode;
     /**
-     * Optional content between description and actions.
+     * Optional custom content between description
+     * and actions.
      */
     children?: ReactNode;
     /**
-     * Primary CTA.
+     * Primary CTA label.
      */
     actionLabel?: ReactNode;
     /**
      * Primary CTA handler.
      */
-    onAction?: MouseEventHandler<HTMLButtonElement>;
+    onAction?: () => void;
     /**
-     * Secondary CTA.
+     * Secondary CTA label.
      */
     secondaryActionLabel?: ReactNode;
     /**
      * Secondary CTA handler.
      */
-    onSecondaryAction?: MouseEventHandler<HTMLButtonElement>;
+    onSecondaryAction?: () => void;
     /**
-     * Optional logo, signature, text, or custom React content.
+     * Optional signature / brand message.
      */
     signature?: ReactNode;
     /**
-     * Overall visual scale.
+     * Overall component scale.
      *
      * @default "medium"
      */
@@ -3026,13 +3046,13 @@ interface StatusShowcaseProps {
      */
     surface?: StatusShowcaseSurface;
     /**
+     * Additional MUI styles.
+     */
+    sx?: SxProps<Theme>;
+    /**
      * Optional class name.
      */
     className?: string;
-    /**
-     * MUI sx overrides.
-     */
-    sx?: Record<string, unknown>;
 }
 
 declare const StatusShowcase: react__default.FC<StatusShowcaseProps>;
