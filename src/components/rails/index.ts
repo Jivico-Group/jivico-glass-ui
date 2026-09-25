@@ -8,3 +8,4 @@ export type {
   RailRenderContext,
   RailNavigationContext,
 } from "./Rail.types.js";
+export type { AspectRatio } from "../../types/aspectRatio.js";

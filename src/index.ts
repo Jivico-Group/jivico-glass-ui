@@ -9,3 +9,5 @@ export * from "./hooks/index.js";
 export * from "./context/ThemeContext.js";
 export * from "./providers/JivicoGlassProvider.js";
 export * from "./providers/GlassThemeScope.js";
+// Common Shared Types
+export * from "./types/index.js";

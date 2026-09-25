@@ -10,3 +10,4 @@ export type {
   VisualViewerObjectFit,
   VisualViewerDimension,
 } from "./VisualViewer.types.js";
+export type { AspectRatio } from "../../types/aspectRatio.js";

@@ -10,3 +10,4 @@ export type {
   GalleryImageContext,
   GalleryOverlayContext,
 } from "./Gallery.types.js";
+export type { AspectRatio } from "../../types/aspectRatio.js";

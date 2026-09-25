@@ -1,5 +1,6 @@
 import type { ReactNode, Ref } from "react";
 import type { SxProps, Theme } from "@mui/material/styles";
+import type { AspectRatio } from "../../types/aspectRatio.js";
 
 export type VisualViewerRadius = "square" | "rounded" | "soft";
 
@@ -71,7 +72,7 @@ export interface VisualViewerProps {
   /**
    * Aspect ratio when height is not supplied.
    */
-  aspectRatio?: string | VisualViewerDimension;
+  aspectRatio?: AspectRatio | VisualViewerDimension;
   /**
    * Desktop thumbnail position.
    * "auto" means: desktop → left, mobile → bottom.

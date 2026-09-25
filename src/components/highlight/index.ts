@@ -8,3 +8,4 @@ export type {
   HighlightImageProps,
   HighlightDimension,
 } from "./Highlight.types.js";
+export type { AspectRatio } from "../../types/aspectRatio.js";

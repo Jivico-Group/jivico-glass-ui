@@ -7,3 +7,4 @@ export type {
   SpotlightSize,
   SpotlightImagePosition,
 } from "./Spotlight.types.js";
+export type { AspectRatio } from "../../types/aspectRatio.js";

@@ -6,6 +6,7 @@ import type {
 } from "react";
 
 import type { SxProps, Theme } from "@mui/material/styles";
+import type { AspectRatio } from "../../types/aspectRatio.js";
 
 export type HighlightVariant = "overlay" | "center" | "minimal";
 
@@ -119,7 +120,7 @@ export interface HighlightProps {
 
   maxHeight?: HighlightDimension;
 
-  aspectRatio?: string;
+  aspectRatio?: AspectRatio;
 
   imagePosition?: HighlightImagePosition;
 

@@ -7,6 +7,7 @@ import type {
 } from "react";
 
 import type { SxProps, Theme } from "@mui/material/styles";
+import type { AspectRatio } from "../../types/aspectRatio.js";
 
 /**
  * Visual layout variant.
@@ -295,7 +296,7 @@ export interface SpotlightProps {
    * "21 / 9"
    * "4 / 3"
    */
-  aspectRatio?: string;
+  aspectRatio?: AspectRatio;
 
   /**
    * Explicit height.

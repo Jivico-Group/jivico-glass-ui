@@ -7,6 +7,7 @@ import type {
 } from "react";
 
 import type { SxProps, Theme } from "@mui/material/styles";
+import type { AspectRatio } from "../../types/aspectRatio.js";
 
 /**
  * Number of visible items at each breakpoint.
@@ -450,7 +451,7 @@ export interface RailProps<T> {
    * "3 / 4"
    * "16 / 9"
    */
-  imageAspectRatio?: string;
+  imageAspectRatio?: AspectRatio;
 
   /**
    * Border radius for the built-in image renderer.

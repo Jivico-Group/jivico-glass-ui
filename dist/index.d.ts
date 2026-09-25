@@ -1693,6 +1693,30 @@ declare const TribeMemberPill: _emotion_styled.StyledComponent<_mui_system.BoxOw
 }, {}, {}>;
 declare const LiquidGlassCard: _emotion_styled.StyledComponent<_mui_system.BoxOwnProps<_mui_material.Theme> & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof _mui_system.BoxOwnProps<_mui_material.Theme>> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & LiquidGlassCardRootProps, {}, {}>;
 
+/**
+ * Standard aspect ratios with IDE autocomplete support.
+ */
+type StandardAspectRatio = '1 / 1' | '1/1' | '4 / 5' | '4/5' | '3 / 4' | '3/4' | '2 / 3' | '2/3' | '9 / 16' | '9/16' | '1 / 2' | '1/2' | '4 / 3' | '4/3' | '3 / 2' | '3/2' | '5 / 4' | '5/4' | '16 / 10' | '16/10' | '16 / 9' | '16/9' | '16 / 7' | '16/7' | '21 / 9' | '21/9' | '32 / 9' | '32/9' | '2.35 / 1' | '2.39 / 1' | 'auto';
+/**
+ * Aspect ratio type that provides IDE autocomplete for standard ratios
+ * while permitting any custom string expression (e.g. "1.91 / 1", "calc(...)").
+ */
+type AspectRatio = StandardAspectRatio | (string & {});
+/**
+ * Shorthand alias for AspectRatio.
+ */
+type AspectRt = AspectRatio;
+/**
+ * Responsive aspect ratio configuration across standard breakpoints.
+ */
+type ResponsiveAspectRatio = {
+    xs?: AspectRatio;
+    sm?: AspectRatio;
+    md?: AspectRatio;
+    lg?: AspectRatio;
+    xl?: AspectRatio;
+};
+
 type ShowcaseTransition = "cinematic" | "fade" | "slide";
 type ShowcaseNavigation = "vertical" | "dots" | "none";
 type ShowcaseSize = "small" | "medium" | "large" | "hero";
@@ -1817,13 +1841,7 @@ interface ShowcaseProps {
     height?: ShowcaseDimension;
     minHeight?: ShowcaseDimension;
     maxHeight?: ShowcaseDimension;
-    aspectRatio?: string | {
-        xs?: string;
-        sm?: string;
-        md?: string;
-        lg?: string;
-        xl?: string;
-    };
+    aspectRatio?: AspectRatio | ResponsiveAspectRatio;
     containerSx?: SxProps<Theme>;
     className?: string;
     "aria-label"?: string;
@@ -2225,7 +2243,7 @@ interface RailProps<T> {
      * "3 / 4"
      * "16 / 9"
      */
-    imageAspectRatio?: string;
+    imageAspectRatio?: AspectRatio;
     /**
      * Border radius for the built-in image renderer.
      */
@@ -2495,7 +2513,7 @@ interface SpotlightProps {
      * "21 / 9"
      * "4 / 3"
      */
-    aspectRatio?: string;
+    aspectRatio?: AspectRatio;
     /**
      * Explicit height.
      *
@@ -2642,7 +2660,7 @@ interface HighlightProps {
     height?: HighlightDimension;
     minHeight?: HighlightDimension;
     maxHeight?: HighlightDimension;
-    aspectRatio?: string;
+    aspectRatio?: AspectRatio;
     imagePosition?: HighlightImagePosition;
     imageSizes?: string;
     imagePriority?: boolean;
@@ -2748,7 +2766,7 @@ interface VisualViewerProps {
     /**
      * Aspect ratio when height is not supplied.
      */
-    aspectRatio?: string | VisualViewerDimension;
+    aspectRatio?: AspectRatio | VisualViewerDimension;
     /**
      * Desktop thumbnail position.
      * "auto" means: desktop → left, mobile → bottom.
@@ -2906,7 +2924,7 @@ interface GalleryProps<T> {
      * "1 / 1"
      * "16 / 9"
      */
-    imageAspectRatio?: string;
+    imageAspectRatio?: AspectRatio;
     /**
      * object-fit used by the native <img> fallback.
      */
@@ -3009,4 +3027,4 @@ interface GlassThemeScopeProps {
  */
 declare function GlassThemeScope({ mode, children }: GlassThemeScopeProps): react__default.JSX.Element;
 
-export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, BACKGROUND_COLORS, BRAND_COLORS, type BottomNavigationItemProps, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightImagePosition, type SpotlightProps, type SpotlightSize, type SpotlightVariant, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook };
+export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, type AspectRatio, type AspectRt, BACKGROUND_COLORS, BRAND_COLORS, type BottomNavigationItemProps, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveAspectRatio, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightImagePosition, type SpotlightProps, type SpotlightSize, type SpotlightVariant, type StandardAspectRatio, StatLabel, StatValue, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook };

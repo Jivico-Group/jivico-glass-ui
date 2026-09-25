@@ -7,6 +7,7 @@ import type {
 
 import type { ButtonProps } from "@mui/material/Button";
 import type { SxProps, Theme } from "@mui/material/styles";
+import type { AspectRatio, ResponsiveAspectRatio } from "../../types/aspectRatio.js";
 
 export type ShowcaseTransition = "cinematic" | "fade" | "slide";
 
@@ -193,15 +194,7 @@ export interface ShowcaseProps {
 
   maxHeight?: ShowcaseDimension;
 
-  aspectRatio?:
-    | string
-    | {
-        xs?: string;
-        sm?: string;
-        md?: string;
-        lg?: string;
-        xl?: string;
-      };
+  aspectRatio?: AspectRatio | ResponsiveAspectRatio;
 
   containerSx?: SxProps<Theme>;
 

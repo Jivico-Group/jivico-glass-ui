@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { SxProps, Theme } from "@mui/material/styles";
+import type { AspectRatio } from "../../types/aspectRatio.js";
 
 export type GalleryColumns = {
   xs?: number;
@@ -115,7 +116,7 @@ export interface GalleryProps<T> {
    * "1 / 1"
    * "16 / 9"
    */
-  imageAspectRatio?: string;
+  imageAspectRatio?: AspectRatio;
 
   /**
    * object-fit used by the native <img> fallback.

@@ -10,3 +10,4 @@ export type {
   ShowcaseTransition,
   ShowcaseNavigation,
 } from "./Showcase.types.js";
+export type { AspectRatio, ResponsiveAspectRatio } from "../../types/aspectRatio.js";
