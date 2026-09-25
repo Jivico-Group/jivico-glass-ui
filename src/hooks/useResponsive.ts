@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useMediaQuery, useTheme } from "@mui/material";
 
 export type ResponsiveBreakpoint = "xs" | "sm" | "md" | "lg" | "xl";
@@ -15,39 +14,41 @@ export interface ResponsiveState {
   isMd: boolean;
   isLg: boolean;
   isXl: boolean;
-  isHydrated: boolean;
 }
 
 export function useResponsive(): ResponsiveState {
   const theme = useTheme();
-  const [isHydrated, setIsHydrated] = useState(false);
 
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
+  /**
+   * IMPORTANT:
+   * Do not use `noSsr: true` here.
+   *
+   * `noSsr: true` allows the browser's matchMedia result to affect
+   * the initial client render immediately, which can cause:
+   *
+   *   Server → FlagshipDock
+   *   Client → PocketDock
+   *
+   * during hydration on xs/mobile screens.
+   *
+   * Leaving MUI's default SSR behaviour enabled gives the server
+   * and the initial client render a consistent result, after which
+   * the media query updates to the actual viewport.
+   */
+  const isXs = useMediaQuery(theme.breakpoints.only("xs"));
 
-  const isXs = useMediaQuery(theme.breakpoints.only("xs"), {
-    noSsr: true,
-  });
+  const isSm = useMediaQuery(theme.breakpoints.only("sm"));
 
-  const isSm = useMediaQuery(theme.breakpoints.only("sm"), {
-    noSsr: true,
-  });
+  const isMd = useMediaQuery(theme.breakpoints.only("md"));
 
-  const isMd = useMediaQuery(theme.breakpoints.only("md"), {
-    noSsr: true,
-  });
+  const isLg = useMediaQuery(theme.breakpoints.only("lg"));
 
-  const isLg = useMediaQuery(theme.breakpoints.only("lg"), {
-    noSsr: true,
-  });
-
-  const isXl = useMediaQuery(theme.breakpoints.only("xl"), {
-    noSsr: true,
-  });
+  const isXl = useMediaQuery(theme.breakpoints.only("xl"));
 
   const isMobile = isXs;
+
   const isTablet = isSm || isMd;
+
   const isDesktop = isLg || isXl;
 
   let breakpoint: ResponsiveBreakpoint = "xs";
@@ -72,7 +73,6 @@ export function useResponsive(): ResponsiveState {
     isMd,
     isLg,
     isXl,
-    isHydrated,
   };
 }
 

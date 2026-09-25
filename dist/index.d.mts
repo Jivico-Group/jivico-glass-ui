@@ -2944,7 +2944,6 @@ interface ResponsiveState {
     isMd: boolean;
     isLg: boolean;
     isXl: boolean;
-    isHydrated: boolean;
 }
 declare function useResponsive(): ResponsiveState;
 
