@@ -75,6 +75,7 @@ export const NAV_SECTIONS: NavSection[] = [
   {
     title: "Feedback",
     items: [
+      { id: "status-showcase", label: "Status Showcase", badge: "NEW" },
       { id: "alerts", label: "Alert & Banner", badge: "BRAND KIT" },
       { id: "tooltips", label: "Tooltip & Popover", badge: "GLASS" },
       { id: "progress", label: "Progress & Skeleton", badge: "NEW" },

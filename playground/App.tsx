@@ -31,6 +31,7 @@ import { RailsPage } from "./components/Pages/RailsPage.js";
 import { SpotlightPage } from "./components/Pages/SpotlightPage.js";
 import { VisualViewerPage } from "./components/Pages/VisualViewerPage.js";
 import { GalleryPage } from "./components/Pages/GalleryPage.js";
+import { StatusShowcasePage } from "./components/Pages/StatusShowcasePage.js";
 import { TocItem } from "./components/Layout/TableOfContents.js";
 
 const TOC_MAP: Record<string, TocItem[]> = {
@@ -73,6 +74,16 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "gallery-render-item", title: "3. Full Custom renderItem" },
     { id: "gallery-square", title: "4. Square Grid (1:1)" },
     { id: "gallery-nextjs", title: "5. Next.js Integration" },
+  ],
+  "status-showcase": [
+    { id: "interactive-status-showcase", title: "Interactive Playground" },
+    { id: "404-not-found", title: "1. 404 Not Found" },
+    { id: "coming-soon", title: "2. Coming Soon & Drops" },
+    { id: "server-error", title: "3. 500 System Error" },
+    { id: "empty-state", title: "4. Empty Archive / Bag" },
+    { id: "glass-surface", title: "5. Glass vs Standard Surface" },
+    { id: "size-matrix", title: "6. Responsive Size Matrix" },
+    { id: "props-reference", title: "7. Props Reference" },
   ],
   theme: [
     { id: "global-provider-setup", title: "Global Provider Setup" },
@@ -286,6 +297,8 @@ export default function App() {
         return <VisualViewerPage />;
       case "gallery":
         return <GalleryPage />;
+      case "status-showcase":
+        return <StatusShowcasePage />;
       case "theme":
         return <ThemePage />;
       case "alerts":
