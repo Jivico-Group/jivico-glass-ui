@@ -97,57 +97,94 @@ export const getOutlinedInputOverrides = (
       input: {
         fontSize: "0.9375rem",
         color: palette.text.primary,
+
+        "@media (max-width: 599.95px)": {
+          fontSize: "16px",
+        },
       },
+
       multiline: {
         padding: "13px 18px",
       },
     },
+
     variants: [
       {
         props: { size: "small" },
         style: {
           fontSize: "0.85rem",
+
+          "@media (max-width: 599.95px)": {
+            fontSize: "16px",
+          },
+
           "&:not(.MuiInputBase-multiline)": {
             minHeight: 36,
           },
+
           "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
             padding: "6px 14px",
             fontSize: "0.85rem",
+
+            "@media (max-width: 599.95px)": {
+              fontSize: "16px",
+            },
           },
+
           "&.MuiInputBase-multiline": {
             padding: "6px 14px",
             alignItems: "flex-start",
+
+            "& .MuiInputBase-input": {
+              fontSize: "16px",
+            },
           },
         },
       },
+
       {
         props: { size: "medium" },
         style: {
           fontSize: "0.9375rem",
+
           "&:not(.MuiInputBase-multiline)": {
             minHeight: 48,
           },
+
           "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
             padding: "12px 18px",
             fontSize: "0.9375rem",
+
+            "@media (max-width: 599.95px)": {
+              fontSize: "16px",
+            },
           },
+
           "&.MuiInputBase-multiline": {
             padding: "12px 18px",
             alignItems: "flex-start",
+
+            "& .MuiInputBase-input": {
+              fontSize: "16px",
+            },
           },
         },
       },
+
       {
         props: { size: "large" as any },
         style: {
           fontSize: "1.1rem",
+
           "&:not(.MuiInputBase-multiline)": {
             minHeight: 56,
           },
+
           "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
             padding: "16px 20px",
             fontSize: "1.1rem",
           },
+
           "&.MuiInputBase-multiline": {
             padding: "16px 20px",
             alignItems: "flex-start",
