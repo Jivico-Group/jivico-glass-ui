@@ -104,8 +104,8 @@ const SIZE_CONFIG = {
     },
 
     titleBottom: {
-      xs: 17,
-      sm: 19,
+      xs: 6,
+      sm: 8,
     },
 
     actionTop: {
@@ -163,9 +163,9 @@ const SIZE_CONFIG = {
     },
 
     titleBottom: {
-      xs: 16,
-      sm: 18,
-      md: 20,
+      xs: 6,
+      sm: 8,
+      md: 8,
     },
 
     actionTop: {
