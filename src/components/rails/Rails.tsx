@@ -834,9 +834,21 @@ export function Rails<T>({
       ? !canScrollPrevious && !loop
       : !canScrollNext && !loop;
 
-    const context: RailNavigationContext = {
-      onClick: isPrevious ? handlePrevious : handleNext,
+    const handleAction = (event?: React.MouseEvent) => {
+      event?.preventDefault();
+      event?.stopPropagation();
+      if (disabled) {
+        return;
+      }
+      if (isPrevious) {
+        handlePrevious();
+      } else {
+        handleNext();
+      }
+    };
 
+    const context: RailNavigationContext = {
+      onClick: handleAction,
       disabled,
     };
 
@@ -852,7 +864,11 @@ export function Rails<T>({
       <IconButton
         aria-label={isPrevious ? "Previous" : "Next"}
         disabled={disabled}
-        onClick={context.onClick}
+        onClick={handleAction}
+        onMouseDown={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+        }}
         sx={{
           width: 44,
 
@@ -878,6 +894,8 @@ export function Rails<T>({
 
           "&.Mui-disabled": {
             opacity: 0.35,
+            pointerEvents: "auto",
+            cursor: "not-allowed",
           },
         }}
       >
@@ -1048,7 +1066,7 @@ export function Rails<T>({
 
               left: 12,
 
-              zIndex: 2,
+              zIndex: 10,
 
               transform: "translateY(-50%)",
 
@@ -1070,7 +1088,7 @@ export function Rails<T>({
 
               right: 12,
 
-              zIndex: 2,
+              zIndex: 10,
 
               transform: "translateY(-50%)",
 
