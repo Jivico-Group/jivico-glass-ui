@@ -2846,6 +2846,8 @@ type GalleryRadius = "square" | "rounded" | "soft";
 interface GalleryRenderContext<T> {
     item: T;
     index: number;
+    href?: string;
+    onNavigate?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 interface GalleryImageContext<T> extends GalleryRenderContext<T> {
     src?: string;
@@ -2898,6 +2900,24 @@ interface GalleryProps<T> {
      * Alt text used by the native <img> fallback.
      */
     getImageAlt?: (item: T, index: number) => string | undefined;
+    /**
+     * Optional href resolver for item navigation.
+     *
+     * When provided, Gallery renders an accessible link overlay on the image
+     * and sets cursor to pointer.
+     */
+    getHref?: (item: T, index: number) => string | undefined;
+    /**
+     * Accessible link label for navigation.
+     */
+    getLinkLabel?: (item: T, index: number) => string | undefined;
+    /**
+     * Item navigation callback for client-side routing.
+     *
+     * When provided, clicking on the item invokes this callback.
+     * Sets cursor to pointer.
+     */
+    onNavigate?: (item: T, index: number, event: React.MouseEvent<HTMLElement>) => void;
     /**
      * Responsive number of columns.
      */
@@ -2953,7 +2973,7 @@ interface GalleryProps<T> {
     "aria-label"?: string;
 }
 
-declare function Gallery<T>({ items, getKey, renderItem, renderImage, renderOverlay, renderBlock, renderContent, getImage, getImageAlt, columns, gap, rowGap, columnGap, justifyItems, alignItems, imageAspectRatio, imageFit, radius, itemSx, imageSx, blockSx, sx, className, "aria-label": ariaLabel, }: GalleryProps<T>): react.JSX.Element;
+declare function Gallery<T>({ items, getKey, renderItem, renderImage, renderOverlay, renderBlock, renderContent, getImage, getImageAlt, getHref, getLinkLabel, onNavigate, columns, gap, rowGap, columnGap, justifyItems, alignItems, imageAspectRatio, imageFit, radius, itemSx, imageSx, blockSx, sx, className, "aria-label": ariaLabel, }: GalleryProps<T>): react.JSX.Element;
 
 type StatusShowcaseSize = "small" | "medium" | "large";
 type StatusShowcaseSurface = "standard" | "glass";

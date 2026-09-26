@@ -44,6 +44,9 @@ export function Gallery<T>({
   renderContent,
   getImage,
   getImageAlt,
+  getHref,
+  getLinkLabel,
+  onNavigate,
   columns = {
     xs: 2,
     sm: 2,
@@ -89,6 +92,27 @@ export function Gallery<T>({
     >
       {items.map((item, index) => {
         const key = getKey ? getKey(item, index) : index;
+        const src = getImage?.(item, index);
+        const alt = getImageAlt?.(item, index);
+        const href = getHref?.(item, index);
+        const linkLabel =
+          getLinkLabel?.(item, index) ?? (typeof alt === "string" ? alt : undefined);
+        const isInteractive = Boolean(href || onNavigate);
+
+        const handleItemNavigation = (event: React.MouseEvent<HTMLElement>) => {
+          if (onNavigate) {
+            event.preventDefault();
+          }
+          event.stopPropagation();
+          onNavigate?.(item, index, event);
+        };
+
+        const renderContext = {
+          item,
+          index,
+          href,
+          onNavigate: isInteractive ? handleItemNavigation : undefined,
+        };
 
         if (renderItem) {
           return (
@@ -100,13 +124,10 @@ export function Gallery<T>({
                 ...itemSx,
               }}
             >
-              {renderItem({ item, index })}
+              {renderItem(renderContext)}
             </Box>
           );
         }
-
-        const src = getImage?.(item, index);
-        const alt = getImageAlt?.(item, index);
 
         return (
           <Box
@@ -126,15 +147,61 @@ export function Gallery<T>({
                 aspectRatio: imageAspectRatio,
                 overflow: "hidden",
                 borderRadius: radiusMap[radius],
+                cursor: isInteractive ? "pointer" : undefined,
                 ...imageSx,
               }}
             >
+              {href && (
+                <Box
+                  component="a"
+                  href={href}
+                  aria-label={linkLabel}
+                  onClick={handleItemNavigation}
+                  sx={{
+                    position: "absolute",
+                    inset: 0,
+                    zIndex: 2,
+                    display: "block",
+                    width: "100%",
+                    height: "100%",
+                    textDecoration: "none",
+                    cursor: "pointer",
+                  }}
+                />
+              )}
+
+              {!href && onNavigate && (
+                <Box
+                  role="button"
+                  tabIndex={0}
+                  aria-label={linkLabel}
+                  onClick={handleItemNavigation}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleItemNavigation(e as any);
+                    }
+                  }}
+                  sx={{
+                    position: "absolute",
+                    inset: 0,
+                    zIndex: 2,
+                    display: "block",
+                    width: "100%",
+                    height: "100%",
+                    cursor: "pointer",
+                  }}
+                />
+              )}
+
               {renderImage
                 ? renderImage({
                     item,
                     index,
                     src,
                     alt,
+                    href,
+                    onNavigate: isInteractive ? handleItemNavigation : undefined,
                   })
                 : renderNativeImage(src, alt, imageFit)}
 
@@ -144,6 +211,7 @@ export function Gallery<T>({
                     position: "absolute",
                     inset: 0,
                     pointerEvents: "none",
+                    zIndex: 3,
                   }}
                 >
                   <Box
@@ -158,6 +226,8 @@ export function Gallery<T>({
                       index,
                       src,
                       alt,
+                      href,
+                      onNavigate: isInteractive ? handleItemNavigation : undefined,
                     })}
                   </Box>
                 </Box>
@@ -172,7 +242,12 @@ export function Gallery<T>({
                   ...blockSx,
                 }}
               >
-                {(renderBlock ?? renderContent)!({ item, index })}
+                {(renderBlock ?? renderContent)!({
+                  item,
+                  index,
+                  href,
+                  onNavigate: isInteractive ? handleItemNavigation : undefined,
+                })}
               </Box>
             )}
           </Box>

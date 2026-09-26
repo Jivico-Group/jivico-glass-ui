@@ -21,6 +21,8 @@ export type GalleryRadius = "square" | "rounded" | "soft";
 export interface GalleryRenderContext<T> {
   item: T;
   index: number;
+  href?: string;
+  onNavigate?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export interface GalleryImageContext<T> extends GalleryRenderContext<T> {
@@ -84,6 +86,31 @@ export interface GalleryProps<T> {
    * Alt text used by the native <img> fallback.
    */
   getImageAlt?: (item: T, index: number) => string | undefined;
+
+  /**
+   * Optional href resolver for item navigation.
+   *
+   * When provided, Gallery renders an accessible link overlay on the image
+   * and sets cursor to pointer.
+   */
+  getHref?: (item: T, index: number) => string | undefined;
+
+  /**
+   * Accessible link label for navigation.
+   */
+  getLinkLabel?: (item: T, index: number) => string | undefined;
+
+  /**
+   * Item navigation callback for client-side routing.
+   *
+   * When provided, clicking on the item invokes this callback.
+   * Sets cursor to pointer.
+   */
+  onNavigate?: (
+    item: T,
+    index: number,
+    event: React.MouseEvent<HTMLElement>,
+  ) => void;
 
   /**
    * Responsive number of columns.
