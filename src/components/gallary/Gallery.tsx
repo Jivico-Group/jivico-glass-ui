@@ -100,11 +100,14 @@ export function Gallery<T>({
         const isInteractive = Boolean(href || onNavigate);
 
         const handleItemNavigation = (event: React.MouseEvent<HTMLElement>) => {
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1) {
+            return;
+          }
           if (onNavigate) {
             event.preventDefault();
+            event.stopPropagation();
+            onNavigate(item, index, event);
           }
-          event.stopPropagation();
-          onNavigate?.(item, index, event);
         };
 
         const renderContext = {
@@ -151,6 +154,17 @@ export function Gallery<T>({
                 ...imageSx,
               }}
             >
+              {renderImage
+                ? renderImage({
+                    item,
+                    index,
+                    src,
+                    alt,
+                    href,
+                    onNavigate: isInteractive ? handleItemNavigation : undefined,
+                  })
+                : renderNativeImage(src, alt, imageFit)}
+
               {href && (
                 <Box
                   component="a"
@@ -160,7 +174,7 @@ export function Gallery<T>({
                   sx={{
                     position: "absolute",
                     inset: 0,
-                    zIndex: 2,
+                    zIndex: 1,
                     display: "block",
                     width: "100%",
                     height: "100%",
@@ -185,7 +199,7 @@ export function Gallery<T>({
                   sx={{
                     position: "absolute",
                     inset: 0,
-                    zIndex: 2,
+                    zIndex: 1,
                     display: "block",
                     width: "100%",
                     height: "100%",
@@ -194,42 +208,23 @@ export function Gallery<T>({
                 />
               )}
 
-              {renderImage
-                ? renderImage({
-                    item,
-                    index,
-                    src,
-                    alt,
-                    href,
-                    onNavigate: isInteractive ? handleItemNavigation : undefined,
-                  })
-                : renderNativeImage(src, alt, imageFit)}
-
               {renderOverlay && (
                 <Box
                   sx={{
                     position: "absolute",
                     inset: 0,
                     pointerEvents: "none",
-                    zIndex: 3,
+                    zIndex: 2,
                   }}
                 >
-                  <Box
-                    sx={{
-                      width: "100%",
-                      height: "100%",
-                      pointerEvents: "auto",
-                    }}
-                  >
-                    {renderOverlay({
-                      item,
-                      index,
-                      src,
-                      alt,
-                      href,
-                      onNavigate: isInteractive ? handleItemNavigation : undefined,
-                    })}
-                  </Box>
+                  {renderOverlay({
+                    item,
+                    index,
+                    src,
+                    alt,
+                    href,
+                    onNavigate: isInteractive ? handleItemNavigation : undefined,
+                  })}
                 </Box>
               )}
             </Box>
