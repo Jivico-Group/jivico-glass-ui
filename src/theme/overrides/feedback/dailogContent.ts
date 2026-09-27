@@ -101,9 +101,8 @@ export const getDialogContentOverrides = (
           isDark ? "rgba(255,255,255,.07)" : "rgba(17,17,17,.07)"
         }`,
 
-        "& .MuiButton-root": {
-          minHeight: 42,
-          borderRadius: 12,
+        "& > :not(style) ~ :not(style)": {
+          marginLeft: 0,
         },
       },
     },

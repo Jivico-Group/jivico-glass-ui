@@ -254,17 +254,13 @@ declare module "@mui/material/Card" {
 
 declare module "@mui/material/Dialog" {
   interface DialogOwnProps {
-    glass?: boolean;
-    color?: "primary" | "secondary" | "accent" | "glass";
-    variant?: "glass" | "solid" | "tonal" | "outlined";
+    glass?: "true" | "false" | boolean;
     radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
-    elevation?: "none" | "low" | "medium" | "high" | "floating";
-    glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
-    border?: "none" | "subtle" | "strong";
   }
 
   interface DialogProps {
-    glass?: boolean;
+    glass?: "true" | "false" | boolean;
+    radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
   }
 
   interface DialogPropsColorOverrides {

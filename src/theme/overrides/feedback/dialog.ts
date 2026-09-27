@@ -1,6 +1,23 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
+export type DialogRadius =
+  | "square"
+  | "small"
+  | "medium"
+  | "large"
+  | "rounded"
+  | "pill";
+
+const radiusMap: Record<DialogRadius, number> = {
+  square: 0,
+  small: 8,
+  medium: 12,
+  large: 16,
+  rounded: 20,
+  pill: 24,
+};
+
 export const getDialogOverrides = (
   _palette: JivicoPalette,
   isDark: boolean,
@@ -8,6 +25,7 @@ export const getDialogOverrides = (
   MuiDialog: {
     defaultProps: {
       disableScrollLock: false,
+      radius: "small",
     },
 
     styleOverrides: {
@@ -30,7 +48,13 @@ export const getDialogOverrides = (
        * --------------------------------------------------
        */
       paper: ({ ownerState }) => {
-        const glass = ownerState.glass === true;
+        const glass =
+          ownerState.glass === "true" || (ownerState.glass as any) === true;
+
+        const radius = (ownerState.radius ?? "large") as DialogRadius;
+        const resolvedBorderRadius = ownerState.fullScreen
+          ? 0
+          : (radiusMap[radius] ?? 20);
 
         /**
          * -----------------------------------------------
@@ -38,7 +62,6 @@ export const getDialogOverrides = (
          * -----------------------------------------------
          */
         const normalBackground = isDark ? "#18181B" : "#FFFFFF";
-
         const normalColor = isDark ? "#F5F5F7" : "#111111";
 
         /**
@@ -47,11 +70,9 @@ export const getDialogOverrides = (
          * -----------------------------------------------
          */
         const glassBackground = isDark
-          ? "rgba(24, 24, 27, 0.72)"
+          ? "rgba(24, 24, 27, 0.49)"
           : "rgba(255, 255, 255, 0.52)";
-
         const glassColor = isDark ? "#F5F5F7" : "#111111";
-
         /**
          * -----------------------------------------------
          * Border
@@ -76,23 +97,19 @@ export const getDialogOverrides = (
 
         return {
           position: "relative",
-
           width: "100%",
-
           overflow: "hidden",
 
           /**
-           * Simple radius.
+           * Radius
            */
-          borderRadius: 24,
+          borderRadius: resolvedBorderRadius,
 
           /**
            * Normal / Glass surface
            */
           backgroundColor: glass ? glassBackground : normalBackground,
-
           color: glass ? glassColor : normalColor,
-
           border: `1px solid ${borderColor}`,
 
           boxShadow: shadow,
