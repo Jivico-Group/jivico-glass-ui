@@ -6,6 +6,17 @@ export const getStepperOverrides = (
   isDark: boolean,
 ): Components<Theme> => ({
   MuiStepper: {
+    defaultProps: {
+      color: "primary",
+    },
+
+    styleOverrides: {
+      root: {
+        "--jivico-stepper-color": palette.primary.main,
+        "--jivico-stepper-contrast": palette.primary.contrastText,
+      },
+    },
+
     variants: [
       {
         props: { color: "primary" },
@@ -72,11 +83,11 @@ export const getStepperOverrides = (
 
       root: {
         "&.Mui-active .MuiStepConnector-line": {
-          borderColor: "var(--jivico-stepper-color)",
+          borderColor: `var(--jivico-stepper-color, ${palette.primary.main})`,
         },
 
         "&.Mui-completed .MuiStepConnector-line": {
-          borderColor: "var(--jivico-stepper-color)",
+          borderColor: `var(--jivico-stepper-color, ${palette.primary.main})`,
         },
       },
     },
@@ -89,24 +100,24 @@ export const getStepperOverrides = (
         transition: "color 0.2s ease, filter 0.2s ease, transform 0.2s ease",
 
         "& .MuiStepIcon-text": {
-          fill: palette.background.paper,
+          fill: `${palette.background.paper} !important`,
         },
 
         "&.Mui-active": {
-          color: "var(--jivico-stepper-color)",
-          filter:
-            "drop-shadow(0 0 6px color-mix(in srgb, var(--jivico-stepper-color) 25%, transparent))",
+          color: `var(--jivico-stepper-color, ${palette.primary.main})`,
+          filter: `drop-shadow(0 0 6px color-mix(in srgb, var(--jivico-stepper-color, ${palette.primary.main}) 25%, transparent))`,
 
           "& .MuiStepIcon-text": {
-            fill: "var(--jivico-stepper-contrast)",
+            fill: `var(--jivico-stepper-contrast, ${palette.primary.contrastText}) !important`,
+            fontWeight: 700,
           },
         },
 
         "&.Mui-completed": {
-          color: "var(--jivico-stepper-color)",
+          color: `var(--jivico-stepper-color, ${palette.primary.main})`,
 
           "& .MuiStepIcon-text": {
-            fill: "var(--jivico-stepper-contrast)",
+            fill: `var(--jivico-stepper-contrast, ${palette.primary.contrastText}) !important`,
           },
         },
       },
@@ -121,12 +132,12 @@ export const getStepperOverrides = (
         color: palette.text.secondary,
 
         "&.Mui-active": {
-          color: "var(--jivico-stepper-color)",
+          color: `var(--jivico-stepper-color, ${palette.primary.main})`,
           fontWeight: 700,
         },
 
         "&.Mui-completed": {
-          color: "var(--jivico-stepper-color)",
+          color: `var(--jivico-stepper-color, ${palette.primary.main})`,
           fontWeight: 600,
         },
       },
