@@ -1,5 +1,5 @@
-import React from 'react';
-import { GOOGLE_SANS_FLEX_URL, JIVICO_BRAND_FONTS_URL } from '../../theme/theme.js';
+import React from "react";
+import { GOOGLE_SANS_FLEX_URL } from "../../theme/theme.js";
 
 /**
  * Preloads all Jivico brand fonts:
@@ -13,11 +13,14 @@ export function JivicoFontPreload() {
   return (
     <>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
       {/* Google Sans Flex */}
       <link href={GOOGLE_SANS_FLEX_URL} rel="stylesheet" />
       {/* Montserrat + Space Grotesk */}
-      <link href={JIVICO_BRAND_FONTS_URL} rel="stylesheet" />
     </>
   );
 }

@@ -1416,13 +1416,47 @@ declare const COLORS: {
 /**
  * Jivico Studio Design System — Typography
  *
- * Font stack per Brand Kit:
- *  - Headlines / Logo: Brush Script style (handled by logo asset)
- *  - Subheadings / Accent: Montserrat · Space Grotesk
- *  - Body / UI: SF Pro Display (macOS/iOS native), Google Sans Flex
+ * Font hierarchy:
+ *
+ * 1. Apple SF Pro
+ *    - SF Pro Display
+ *    - SF Pro Text
+ *    - -apple-system
+ *    - BlinkMacSystemFont
+ *
+ * 2. Google Sans
+ *    - Google Sans Flex
+ *    - Google Sans
+ *
+ * 3. System fallbacks
+ *    - Segoe UI
+ *    - Roboto
+ *    - Helvetica
+ *    - Arial
+ *    - sans-serif
+ *
+ * Design direction:
+ *    Clean · Modern · Premium · Editorial
+ *
+ * Primary:
+ *    Apple SF Pro on Apple platforms
+ *
+ * Secondary:
+ *    Google Sans on platforms where SF Pro is unavailable
  */
 declare const typography: {
-    fontFamily: string;
+    /**
+     * ------------------------------------------------------------------------
+     * H1
+     * ------------------------------------------------------------------------
+     *
+     * Main page headings.
+     *
+     * Examples:
+     * - Checkout
+     * - Your Cart
+     * - Jivico Studio
+     */
     h1: {
         fontSize: string;
         fontWeight: number;
@@ -1430,6 +1464,13 @@ declare const typography: {
         lineHeight: number;
         fontFamily: string;
     };
+    /**
+     * ------------------------------------------------------------------------
+     * H2
+     * ------------------------------------------------------------------------
+     *
+     * Major section headings.
+     */
     h2: {
         fontSize: string;
         fontWeight: number;
@@ -1437,6 +1478,13 @@ declare const typography: {
         lineHeight: number;
         fontFamily: string;
     };
+    /**
+     * ------------------------------------------------------------------------
+     * H3
+     * ------------------------------------------------------------------------
+     *
+     * Section headings.
+     */
     h3: {
         fontSize: string;
         fontWeight: number;
@@ -1444,59 +1492,150 @@ declare const typography: {
         lineHeight: number;
         fontFamily: string;
     };
+    /**
+     * ------------------------------------------------------------------------
+     * H4
+     * ------------------------------------------------------------------------
+     *
+     * Product titles and medium section headings.
+     */
     h4: {
         fontSize: string;
         fontWeight: number;
         letterSpacing: string;
+        lineHeight: number;
         fontFamily: string;
     };
+    /**
+     * ------------------------------------------------------------------------
+     * H5
+     * ------------------------------------------------------------------------
+     *
+     * Card titles and smaller editorial headings.
+     */
     h5: {
         fontSize: string;
         fontWeight: number;
         letterSpacing: string;
+        lineHeight: number;
         fontFamily: string;
     };
+    /**
+     * ------------------------------------------------------------------------
+     * H6
+     * ------------------------------------------------------------------------
+     *
+     * Small headings.
+     */
     h6: {
         fontSize: string;
         fontWeight: number;
         letterSpacing: string;
+        lineHeight: number;
         fontFamily: string;
     };
+    /**
+     * ------------------------------------------------------------------------
+     * BODY 1
+     * ------------------------------------------------------------------------
+     *
+     * Primary body text.
+     *
+     * Used for:
+     * - Product descriptions
+     * - Marketing copy
+     * - Important supporting text
+     */
     body1: {
         fontSize: string;
         lineHeight: number;
         letterSpacing: string;
         fontWeight: number;
+        fontFamily: string;
     };
+    /**
+     * ------------------------------------------------------------------------
+     * BODY 2
+     * ------------------------------------------------------------------------
+     *
+     * Secondary UI text.
+     *
+     * Used for:
+     * - Product metadata
+     * - Supporting information
+     * - Cart information
+     * - Checkout descriptions
+     */
     body2: {
         fontSize: string;
         lineHeight: number;
         letterSpacing: string;
+        fontWeight: number;
+        fontFamily: string;
     };
+    /**
+     * ------------------------------------------------------------------------
+     * BUTTON
+     * ------------------------------------------------------------------------
+     *
+     * Jivico buttons remain sentence case.
+     *
+     * Examples:
+     * - Add to Bag
+     * - Buy Now
+     * - Proceed to Checkout
+     * - Pay ₹4,477
+     */
     button: {
         textTransform: "none";
         fontWeight: number;
         letterSpacing: string;
         fontSize: string;
+        lineHeight: number;
         fontFamily: string;
     };
+    /**
+     * ------------------------------------------------------------------------
+     * OVERLINE
+     * ------------------------------------------------------------------------
+     *
+     * Small editorial metadata.
+     *
+     * Examples:
+     * - ORIGINALS
+     * - NEW DROP
+     * - BESTSELLER
+     * - LIMITED
+     */
     overline: {
         fontSize: string;
         fontWeight: number;
         letterSpacing: string;
+        lineHeight: number;
         textTransform: "uppercase";
         fontFamily: string;
     };
 };
 /**
- * Google Fonts URL for Montserrat + Space Grotesk.
- * Import this in your <head> or via a FontPreload component.
+ * Backwards-compatible alias.
+ *
+ * Existing imports using JIVICO_FONTS_URL will continue to work.
  */
-declare const JIVICO_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
+declare const JIVICO_FONTS_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
+/**
+ * Global font stack.
+ *
+ * Priority:
+ *
+ *     SF Pro
+ *       ↓
+ *     Google Sans
+ *       ↓
+ *     System
+ */
+declare const JIVICO_FONT_FAMILY: string;
 
 declare const GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
-/** Montserrat (subheadings/accent) + Space Grotesk (body fallback) — from brand kit */
-declare const JIVICO_BRAND_FONTS_URL = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap";
 declare const JivicoGlassTheme: (mode: "light" | "dark") => Theme;
 declare const createJivicoTheme: (mode: "light" | "dark") => Theme;
 
@@ -3199,4 +3338,4 @@ interface GlassThemeScopeProps {
  */
 declare function GlassThemeScope({ mode, children }: GlassThemeScopeProps): react__default.JSX.Element;
 
-export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, type AspectRatio, type AspectRt, BACKGROUND_COLORS, BRAND_COLORS, type BottomNavigationItemProps, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_BRAND_FONTS_URL, JIVICO_FONTS_URL, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, LoadingShowcase, type LoadingShowcaseImage, type LoadingShowcaseImageRenderer, type LoadingShowcaseProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveAspectRatio, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightImagePosition, type SpotlightProps, type SpotlightSize, type SpotlightVariant, type StandardAspectRatio, StatLabel, StatValue, StatusShowcase, type StatusShowcaseImage, type StatusShowcaseProps, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook };
+export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, type AspectRatio, type AspectRt, BACKGROUND_COLORS, BRAND_COLORS, type BottomNavigationItemProps, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_FONTS_URL, JIVICO_FONT_FAMILY, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, LoadingShowcase, type LoadingShowcaseImage, type LoadingShowcaseImageRenderer, type LoadingShowcaseProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveAspectRatio, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightImagePosition, type SpotlightProps, type SpotlightSize, type SpotlightVariant, type StandardAspectRatio, StatLabel, StatValue, StatusShowcase, type StatusShowcaseImage, type StatusShowcaseProps, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook };
