@@ -64,7 +64,7 @@ export const getMenuOverrides = (
   > = {
     small: {
       listPadding: "4px",
-      itemMinHeight: 34,
+      itemMinHeight: 24,
       itemPadding: "6px 10px",
       itemFontSize: "0.8125rem",
       iconSize: 18,
@@ -73,7 +73,7 @@ export const getMenuOverrides = (
     },
     medium: {
       listPadding: "6px",
-      itemMinHeight: 42,
+      itemMinHeight: 32,
       itemPadding: "9px 12px",
       itemFontSize: "0.875rem",
       iconSize: 20,
