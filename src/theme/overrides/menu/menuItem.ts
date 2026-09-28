@@ -65,13 +65,8 @@ export const getMenuItemOverrides = (
           const size = sizeMap[state.size ?? "medium"];
 
           return {
-            minHeight: size.minHeight,
-            padding: size.padding,
-            borderRadius: size.radius,
-            fontSize: size.fontSize,
             lineHeight: 1.35,
             color: text,
-            gap: size.gap,
 
             transition: "background-color 160ms ease, color 160ms ease",
 
