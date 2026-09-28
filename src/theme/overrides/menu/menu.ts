@@ -209,6 +209,28 @@ export const getMenuOverrides = (
               color,
             },
 
+            "& .MuiMenuItem-root .MuiListItemText-root": {
+              marginTop: 0,
+              marginBottom: 0,
+            },
+
+            "& .MuiMenuItem-root .MuiListItemText-primary": {
+              color: "inherit",
+              fontSize: "inherit",
+              lineHeight: "inherit",
+            },
+
+            "& .MuiMenuItem-root .MuiListItemText-secondary": {
+              color: secondaryText,
+              fontSize: size.itemFontSize === "0.8125rem" ? "0.72rem" : "0.75rem",
+              lineHeight: 1.35,
+            },
+
+            "& .MuiMenuItem-root .MuiSvgIcon-root": {
+              fontSize: size.iconSize,
+              flexShrink: 0,
+            },
+
             "& .MuiDivider-root": {
               margin: "4px 0",
               borderColor: isGlass ? glassBorder : divider,

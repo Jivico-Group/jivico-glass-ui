@@ -99,43 +99,6 @@ export const getMenuItemOverrides = (
               opacity: 0.55,
             },
 
-            "& .MuiListItemIcon-root": {
-              minWidth: size.iconSize,
-              width: size.iconSize,
-              color: secondaryText,
-              marginRight: 0,
-              flexShrink: 0,
-            },
-
-            "&:hover .MuiListItemIcon-root": {
-              color,
-            },
-
-            "&.Mui-selected .MuiListItemIcon-root": {
-              color,
-            },
-
-            "& .MuiListItemText-root": {
-              marginTop: 0,
-              marginBottom: 0,
-            },
-
-            "& .MuiListItemText-primary": {
-              color: "inherit",
-              fontSize: "inherit",
-              lineHeight: "inherit",
-            },
-
-            "& .MuiListItemText-secondary": {
-              color: secondaryText,
-              fontSize: size.fontSize === "0.8125rem" ? "0.72rem" : "0.75rem",
-              lineHeight: 1.35,
-            },
-
-            "& .MuiSvgIcon-root": {
-              fontSize: size.iconSize,
-              flexShrink: 0,
-            },
           };
         },
       },
