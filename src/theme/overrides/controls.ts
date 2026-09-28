@@ -22,9 +22,16 @@ const resolveControlColors = (
   }
   if (colorName === "secondary") {
     return {
-      active: isDark ? "#A0A09B" : COLORS.brand.stone, // #686868 Warm Stone
+      active: isDark ? "#A0A09B" : COLORS.brand.stone,
       glow: isDark ? "rgba(160, 160, 155, 0.3)" : "rgba(104, 104, 104, 0.25)",
-      track: isDark ? "#8A8A82" : COLORS.brand.stone, // #686868 Warm Stone
+      track: isDark ? "#8A8A82" : COLORS.brand.stone,
+    };
+  }
+  if (colorName === "accent") {
+    return {
+      active: palette.accent.main,
+      glow: palette.accent.glow,
+      track: palette.accent.main,
     };
   }
   if (colorName === "default") {
@@ -34,10 +41,12 @@ const resolveControlColors = (
       track: isDark ? "rgba(255, 255, 255, 0.45)" : "rgba(17, 17, 17, 0.45)",
     };
   }
+  // accent + all semantic colors (primary, success, warning, error, info)
+  // resolved generically from the theme palette
   const pal = (theme.palette as any)[colorName];
   return {
     active: pal?.main || palette.primary.main,
-    glow: pal?.glow || palette.primary.glow,
+    glow: pal?.glow || `${pal?.main}40` || palette.primary.glow,
     track: pal?.main || palette.primary.main,
   };
 };
@@ -141,13 +150,14 @@ export const getControlOverrides = (
           theme,
         );
 
-        const thumbCheckedColor = isGlass
-          ? "#FFFFFF"
-          : colorName === "primary"
-            ? isDark
-              ? "#1D1D1F"
-              : COLORS.white
-            : COLORS.white;
+        // Thumb color when checked — white works for most vibrant backgrounds
+        // For glass (light overlay) use white; for dark/glass invert
+        const thumbCheckedColor =
+          isGlass
+            ? "#FFFFFF"
+            : colorName === "primary" && isDark
+              ? "#1D1D1F" // dark invert for primary
+              : COLORS.white; // white thumb on all other colored tracks (accent, success, etc.)
 
         return {
           width: 44,
