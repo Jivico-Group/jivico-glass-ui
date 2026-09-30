@@ -1,7 +1,7 @@
 import { Theme, Components, SxProps } from '@mui/material/styles';
 import * as _emotion_styled from '@emotion/styled';
 import * as react from 'react';
-import react__default, { ReactNode, ComponentType, CSSProperties, MouseEvent, Key, HTMLAttributeAnchorTarget, ElementType, Ref } from 'react';
+import react__default, { ReactNode, ComponentType, CSSProperties, MouseEvent, Key, ElementType, Ref } from 'react';
 import * as _mui_system from '@mui/system';
 import * as _mui_material from '@mui/material';
 import { BoxProps, SxProps as SxProps$1 } from '@mui/material';
@@ -2412,313 +2412,44 @@ interface RailProps<T> {
 
 declare function Rails<T>({ items, getKey, getImage, getTitle, getHref, renderContent, renderImage, renderItem, ImageComponent, columns, itemWidth, gap, justifyContent, navigation, renderPreviousButton, renderNextButton, swipe, autoplay, interval, pauseOnHover, loop, step, snap, transition, imageAspectRatio, radius, itemSx, sx, className, cursor, onNavigate, "aria-label": ariaLabel, }: RailProps<T>): react.JSX.Element | null;
 
-/**
- * Visual layout variant.
- */
-type SpotlightVariant = "overlay" | "split" | "minimal";
-/**
- * General visual size.
- */
-type SpotlightSize = "small" | "medium" | "large";
-/**
- * Image cropping position.
- *
- * Supports both named positions and
- * arbitrary CSS object-position values.
- */
-type SpotlightImagePosition = "top" | "center" | "bottom" | "left" | "right" | string;
-/**
- * Responsive dimension.
- */
-type SpotlightDimension = number | string | {
-    xs?: number | string;
-    sm?: number | string;
-    md?: number | string;
-    lg?: number | string;
-    xl?: number | string;
-};
-/**
- * Spotlight CTA.
- */
-interface SpotlightAction {
-    /**
-     * Button label.
-     */
-    label: string;
-    /**
-     * Optional navigation URL.
-     *
-     * This remains plain data and does not
-     * contain a React routing component.
-     */
-    href?: string;
-    /**
-     * Optional click handler.
-     *
-     * Used for actions that do not navigate.
-     */
-    onClick?: (event?: React.MouseEvent) => void;
-    /**
-     * Optional target.
-     */
-    target?: HTMLAttributeAnchorTarget;
-    /**
-     * Optional rel attribute.
-     */
-    rel?: string;
-    /**
-     * Accessible label.
-     */
-    ariaLabel?: string;
-}
-/**
- * Props passed internally to a custom image component.
- *
- * Spotlight manages the image dimensions through
- * `fill` and the surrounding container.
- */
-interface SpotlightImageProps {
-    /**
-     * Image source.
-     */
-    src: string;
-    /**
-     * Accessible image description.
-     */
-    alt: string;
-    /**
-     * Fill the Spotlight image container.
-     *
-     * Spotlight manages this internally.
-     */
-    fill?: boolean;
-    /**
-     * Responsive image sizes.
-     */
-    sizes?: string;
-    /**
-     * Whether the image should be prioritized.
-     */
-    priority?: boolean;
-    /**
-     * Optional loading strategy.
-     */
-    loading?: "lazy" | "eager";
-    /**
-     * Image styles.
-     */
-    style?: CSSProperties;
-    /**
-     * Optional class name.
-     */
-    className?: string;
-}
-/**
- * Custom image component.
- *
- * Compatible with:
- *
- * - Next.js Image
- * - lazy image libraries
- * - custom React image components
- */
-type SpotlightImageComponent = ComponentType<SpotlightImageProps>;
-/**
- * Advanced image renderer context.
- */
-interface SpotlightImageContext {
-    /**
-     * Main image source.
-     */
-    src: string;
-    /**
-     * Optional mobile image source.
-     */
-    mobileImage?: string;
-    /**
-     * Image alt text.
-     */
-    alt: string;
-    /**
-     * Image cropping position.
-     */
-    imagePosition: SpotlightImagePosition;
-}
-/**
- * Spotlight component props.
- */
+type SpotlightSize = ShowcaseSize;
+type SpotlightVariant = ShowcaseVariant;
+type SpotlightRadius = ShowcaseRadius;
+type SpotlightButtonColor = ShowcaseButtonColor;
+type SpotlightDimension = ShowcaseDimension;
+type SpotlightImageComponentProps = ShowcaseImageComponentProps;
+type SpotlightImageComponent = ShowcaseImageComponent;
+type SpotlightMedia = ShowcaseMedia;
+type SpotlightAction = ShowcaseAction;
+type SpotlightItem = ShowcaseItem;
 interface SpotlightProps {
     /**
-     * Main desktop image.
+     * Spotlight item (exact same data structure as ShowcaseItem).
      */
-    image: string;
+    item: ShowcaseItem;
     /**
-     * Optional mobile-specific image.
+     * Custom image renderer (e.g. Next/Image).
      */
-    mobileImage?: string;
-    /**
-     * Accessible image description.
-     */
-    alt?: string;
-    /**
-     * Custom image component.
-     *
-     * Example:
-     *
-     * import Image from "next/image";
-     *
-     * <Spotlight
-     *   ImageComponent={Image}
-     * />
-     */
-    ImageComponent?: SpotlightImageComponent;
-    /**
-     * Advanced custom image renderer.
-     *
-     * This takes precedence over ImageComponent.
-     */
-    renderImage?: (context: SpotlightImageContext) => ReactNode;
-    /**
-     * Optional destination for the complete Spotlight.
-     *
-     * Spotlight renders this as a semantic
-     * <a href="..."> when provided.
-     *
-     * Native browser navigation is prevented.
-     * Use `onNavigate` for actual routing.
-     */
-    href?: string;
-    /**
-     * Accessible label for the complete Spotlight link.
-     */
-    linkLabel?: string;
-    /**
-     * Handles navigation for the complete Spotlight.
-     *
-     * Spotlight renders a semantic <a href="...">,
-     * prevents native navigation, and delegates
-     * actual routing to the consuming application.
-     *
-     * Example with Next.js:
-     *
-     * const router = useRouter();
-     *
-     * <Spotlight
-     *   href="/collections/originals"
-     *   onNavigate={() => {
-     *     router.push("/collections/originals");
-     *   }}
-     * />
-     */
-    onNavigate?: (event: MouseEvent<HTMLAnchorElement>) => void;
-    /**
-     * Small text above the title.
-     */
-    eyebrow?: ReactNode;
-    /**
-     * Main spotlight title.
-     */
-    title?: ReactNode;
-    /**
-     * Supporting description.
-     */
-    description?: ReactNode;
-    /**
-     * Optional CTA.
-     */
-    action?: SpotlightAction;
-    /**
-     * Visual layout.
-     *
-     * overlay:
-     * Content appears over the image.
-     *
-     * split:
-     * Image and content appear side by side.
-     *
-     * minimal:
-     * Image followed by content underneath.
-     */
-    variant?: SpotlightVariant;
-    /**
-     * Controls the general visual size.
-     */
-    size?: SpotlightSize;
-    /**
-     * Controls the proportional aspect ratio.
-     *
-     * Examples:
-     *
-     * "16 / 7"
-     * "21 / 9"
-     * "4 / 3"
-     */
-    aspectRatio?: AspectRatio;
-    /**
-     * Explicit height.
-     *
-     * Supports:
-     *
-     * 100
-     * "100px"
-     * "60vh"
-     * responsive values
-     */
-    height?: SpotlightDimension;
-    /**
-     * Minimum height.
-     */
-    minHeight?: SpotlightDimension;
-    /**
-     * Maximum height.
-     */
-    maxHeight?: SpotlightDimension;
-    /**
-     * Controls image cropping position.
-     *
-     * Examples:
-     *
-     * "center"
-     * "top"
-     * "50% 30%"
-     */
-    imagePosition?: SpotlightImagePosition;
-    /**
-     * Responsive image sizes passed to
-     * the custom ImageComponent.
-     */
+    ImageComponent?: ShowcaseImageComponent;
     imageSizes?: string;
-    /**
-     * Whether the main image should be prioritized.
-     */
     imagePriority?: boolean;
     /**
-     * Border radius.
-     *
-     * Number values use the theme spacing system.
-     * Strings are passed directly to CSS.
+     * Handles navigation for the complete media / CTA button area.
      */
-    radius?: number | string;
-    /**
-     * Optional custom content rendered
-     * after the action.
-     */
-    children?: ReactNode;
-    /**
-     * MUI sx overrides.
-     */
-    sx?: SxProps<Theme>;
-    /**
-     * Additional CSS class.
-     */
+    onNavigate?: (item: ShowcaseItem, event: MouseEvent<HTMLAnchorElement>) => void;
+    variant?: ShowcaseVariant;
+    size?: ShowcaseSize;
+    radius?: ShowcaseRadius;
+    height?: ShowcaseDimension;
+    minHeight?: ShowcaseDimension;
+    maxHeight?: ShowcaseDimension;
+    aspectRatio?: AspectRatio | ResponsiveAspectRatio;
+    containerSx?: SxProps<Theme>;
     className?: string;
-    /**
-     * Accessible label for the Spotlight.
-     */
     "aria-label"?: string;
 }
 
-declare function Spotlight({ image, mobileImage, alt, ImageComponent, renderImage, href, linkLabel, onNavigate, eyebrow, title, description, action, variant, size, aspectRatio, height, minHeight, maxHeight, imagePosition, imageSizes, imagePriority, radius, children, sx, className, "aria-label": ariaLabel, }: SpotlightProps): react__default.JSX.Element;
+declare const Spotlight: react__default.FC<SpotlightProps>;
 
 type HighlightVariant = "overlay" | "center" | "minimal";
 type HighlightSize = "small" | "medium" | "large";
@@ -3339,4 +3070,4 @@ interface GlassThemeScopeProps {
  */
 declare function GlassThemeScope({ mode, children }: GlassThemeScopeProps): react__default.JSX.Element;
 
-export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, type AspectRatio, type AspectRt, BACKGROUND_COLORS, BRAND_COLORS, type BottomNavigationItemProps, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_FONTS_URL, JIVICO_FONT_FAMILY, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, LoadingShowcase, type LoadingShowcaseImage, type LoadingShowcaseImageRenderer, type LoadingShowcaseProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveAspectRatio, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightImagePosition, type SpotlightProps, type SpotlightSize, type SpotlightVariant, type StandardAspectRatio, StatLabel, StatValue, StatusShowcase, type StatusShowcaseImage, type StatusShowcaseProps, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook };
+export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, type AspectRatio, type AspectRt, BACKGROUND_COLORS, BRAND_COLORS, type BottomNavigationItemProps, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_FONTS_URL, JIVICO_FONT_FAMILY, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, LoadingShowcase, type LoadingShowcaseImage, type LoadingShowcaseImageRenderer, type LoadingShowcaseProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveAspectRatio, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightButtonColor, type SpotlightDimension, type SpotlightImageComponent, type SpotlightImageComponentProps, type SpotlightItem, type SpotlightMedia, type SpotlightProps, type SpotlightRadius, type SpotlightSize, type SpotlightVariant, type StandardAspectRatio, StatLabel, StatValue, StatusShowcase, type StatusShowcaseImage, type StatusShowcaseProps, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook };

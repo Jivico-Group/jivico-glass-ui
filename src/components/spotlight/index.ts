@@ -5,6 +5,13 @@ export type {
   SpotlightAction,
   SpotlightVariant,
   SpotlightSize,
-  SpotlightImagePosition,
+  SpotlightRadius,
+  SpotlightButtonColor,
+  SpotlightDimension,
+  SpotlightImageComponentProps,
+  SpotlightImageComponent,
+  SpotlightMedia,
+  SpotlightItem,
 } from "./Spotlight.types.js";
 export type { AspectRatio } from "../../types/aspectRatio.js";
+

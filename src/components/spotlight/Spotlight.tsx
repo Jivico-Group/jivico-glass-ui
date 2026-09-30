@@ -2,67 +2,27 @@
 
 import React from "react";
 
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { useTheme } from "@mui/material/styles";
+import {
+  Box,
+  Button,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 
-import type { SxProps, Theme } from "@mui/material/styles";
+import { ArrowRight } from "lucide-react";
 
 import type {
-  SpotlightAction,
+  ShowcaseItem,
+  ShowcaseSize,
+} from "../showcase/Showcase.types.js";
+
+import type {
   SpotlightDimension,
-  SpotlightImageContext,
-  SpotlightImageProps,
   SpotlightProps,
-  SpotlightSize,
 } from "./Spotlight.types.js";
 
-const sizeStyles: Record<
-  SpotlightSize,
-  {
-    minHeight: number;
-    padding: number;
-    titleVariant: "h4" | "h3" | "h2";
-  }
-> = {
-  small: {
-    minHeight: 220,
-    padding: 3,
-    titleVariant: "h4",
-  },
-
-  medium: {
-    minHeight: 320,
-    padding: 4,
-    titleVariant: "h3",
-  },
-
-  large: {
-    minHeight: 440,
-    padding: 5,
-    titleVariant: "h2",
-  },
-};
-
-const getRadius = (
-  radius: number | string | undefined,
-  theme: Theme,
-): number | string => {
-  if (radius === undefined) {
-    return theme.shape.borderRadius;
-  }
-
-  if (typeof radius === "number") {
-    return theme.spacing(radius);
-  }
-
-  return radius;
-};
-
-const getDimension = (
-  value: SpotlightDimension | undefined,
-): SpotlightDimension | undefined => {
+const getResponsiveValue = (value: SpotlightDimension | undefined) => {
   if (value === undefined) {
     return undefined;
   }
@@ -80,95 +40,231 @@ const getDimension = (
   };
 };
 
-interface SpotlightActionButtonProps {
-  action: SpotlightAction;
-  onNavigate?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-}
+const getRadius = (radius: SpotlightProps["radius"]) => {
+  switch (radius) {
+    case "square":
+      return 0;
 
-function SpotlightActionButton({
-  action,
-  onNavigate,
-}: SpotlightActionButtonProps) {
-  if (action.href) {
-    return (
-      <Button
-        component="a"
-        href={action.href}
-        target={action.target}
-        rel={action.rel}
-        aria-label={action.ariaLabel}
-        onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-          event.preventDefault();
-          event.stopPropagation();
-          action.onClick?.(event as any);
-          onNavigate?.(event);
-        }}
-        variant="contained"
-        size="medium"
-        sx={{
-          alignSelf: "flex-start",
-          borderRadius: 999,
-          px: 2.5,
-          py: 1.1,
-          whiteSpace: "nowrap",
-          pointerEvents: "auto",
-        }}
-      >
-        {action.label}
-      </Button>
-    );
+    case "soft":
+      return 14;
+
+    case "rounded":
+    default:
+      return 2;
   }
+};
 
-  return (
-    <Button
-      onClick={(event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        action.onClick?.(event as any);
-        onNavigate?.(event as any);
-      }}
-      aria-label={action.ariaLabel}
-      variant="contained"
-      size="medium"
-      sx={{
-        alignSelf: "flex-start",
-        borderRadius: 999,
-        px: 2.5,
-        py: 1.1,
-        whiteSpace: "nowrap",
-        pointerEvents: "auto",
-      }}
-    >
-      {action.label}
-    </Button>
-  );
-}
+const sizeConfig: Record<
+  ShowcaseSize,
+  {
+    minHeight: {
+      xs: number;
+      md: number;
+      lg?: number;
+    };
 
-interface SpotlightMediaLinkProps {
+    aspectRatio?: {
+      xs?: string;
+      md?: string;
+      lg?: string;
+    };
+
+    title: {
+      xs: string;
+      md: string;
+      lg: string;
+    };
+
+    description: {
+      xs: string;
+      md: string;
+    };
+
+    eyebrow: string;
+
+    buttonSize: "small" | "medium" | "large";
+
+    buttonHeight: number;
+
+    buttonPaddingX: number;
+
+    contentPadding: {
+      xs: number;
+      md: number;
+      lg: number;
+    };
+  }
+> = {
+  small: {
+    minHeight: {
+      xs: 260,
+      md: 320,
+    },
+
+    aspectRatio: {
+      xs: "16/10",
+      md: "21/9",
+    },
+
+    title: {
+      xs: "1.75rem",
+      md: "2.25rem",
+      lg: "2.75rem",
+    },
+
+    description: {
+      xs: "0.875rem",
+      md: "0.95rem",
+    },
+
+    eyebrow: "0.65rem",
+
+    buttonSize: "small",
+
+    buttonHeight: 38,
+
+    buttonPaddingX: 2,
+
+    contentPadding: {
+      xs: 2.5,
+      md: 4,
+      lg: 5,
+    },
+  },
+
+  medium: {
+    minHeight: {
+      xs: 320,
+      md: 400,
+    },
+
+    aspectRatio: {
+      xs: "16/10",
+      md: "16/8",
+    },
+
+    title: {
+      xs: "2rem",
+      md: "3rem",
+      lg: "3.5rem",
+    },
+
+    description: {
+      xs: "0.9rem",
+      md: "1rem",
+    },
+
+    eyebrow: "0.68rem",
+
+    buttonSize: "medium",
+
+    buttonHeight: 42,
+
+    buttonPaddingX: 2.5,
+
+    contentPadding: {
+      xs: 3,
+      md: 5,
+      lg: 6,
+    },
+  },
+
+  large: {
+    minHeight: {
+      xs: 380,
+      md: 480,
+    },
+
+    aspectRatio: {
+      xs: "4/3",
+      md: "16/9",
+    },
+
+    title: {
+      xs: "2.35rem",
+      md: "3.5rem",
+      lg: "4.25rem",
+    },
+
+    description: {
+      xs: "0.95rem",
+      md: "1.05rem",
+    },
+
+    eyebrow: "0.7rem",
+
+    buttonSize: "medium",
+
+    buttonHeight: 44,
+
+    buttonPaddingX: 3,
+
+    contentPadding: {
+      xs: 3.5,
+      md: 6,
+      lg: 8,
+    },
+  },
+
+  hero: {
+    minHeight: {
+      xs: 440,
+      md: 560,
+    },
+
+    aspectRatio: {
+      xs: "1/1",
+      md: "21/9",
+    },
+
+    title: {
+      xs: "2.75rem",
+      md: "4.5rem",
+      lg: "5.5rem",
+    },
+
+    description: {
+      xs: "1rem",
+      md: "1.1rem",
+    },
+
+    eyebrow: "0.72rem",
+
+    buttonSize: "large",
+
+    buttonHeight: 48,
+
+    buttonPaddingX: 3.25,
+
+    contentPadding: {
+      xs: 4,
+      md: 8,
+      lg: 10,
+    },
+  },
+};
+
+interface MediaLinkProps {
   href: string;
   label?: string;
-  onNavigate?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  target?: React.HTMLAttributeAnchorTarget;
+  rel?: string;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
-function SpotlightMediaLink({
-  href,
-  label,
-  onNavigate,
-}: SpotlightMediaLinkProps) {
+const MediaLink = ({ href, label, target, rel, onClick }: MediaLinkProps) => {
   return (
     <Box
       component="a"
       href={href}
+      target={target}
+      rel={rel}
       aria-label={label}
-      onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-        event.preventDefault();
-        event.stopPropagation();
-        onNavigate?.(event);
-      }}
+      onClick={onClick}
       sx={{
         position: "absolute",
         inset: 0,
-        zIndex: 1,
+        zIndex: 2,
         display: "block",
         width: "100%",
         height: "100%",
@@ -177,573 +273,406 @@ function SpotlightMediaLink({
       }}
     />
   );
-}
+};
 
-/**
- * Native image fallback.
- */
-function NativeSpotlightImage({
-  src,
-  alt,
-  imagePosition,
-  imagePriority,
-  imageSizes,
-}: {
-  src: string;
-  alt: string;
-  imagePosition: string;
-  imagePriority: boolean;
-  imageSizes?: string;
-}) {
-  return (
-    <Box
-      component="img"
-      src={src}
-      alt={alt}
-      loading={imagePriority ? "eager" : "lazy"}
-      sizes={imageSizes}
-      draggable={false}
-      sx={{
-        display: "block",
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        objectPosition: imagePosition,
-        userSelect: "none",
-        transition: "transform 700ms cubic-bezier(0.2, 0.65, 0.3, 1)",
-      }}
-    />
-  );
-}
-
-interface SpotlightImageRendererProps {
-  image: string;
-  mobileImage?: string;
-  alt: string;
-  imagePosition: string;
-  imageSizes?: string;
-  imagePriority: boolean;
-  ImageComponent?: SpotlightProps["ImageComponent"];
-  renderImage?: SpotlightProps["renderImage"];
-}
-
-function SpotlightImage({
-  image,
-  mobileImage,
-  alt,
-  imagePosition,
-  imageSizes,
-  imagePriority,
+export const Spotlight: React.FC<SpotlightProps> = ({
+  item,
   ImageComponent,
-  renderImage,
-}: SpotlightImageRendererProps) {
-  /*
-   * ---------------------------------------------------------
-   * Advanced custom renderer
-   * ---------------------------------------------------------
-   */
+  imageSizes = "100vw",
+  imagePriority = false,
 
-  if (renderImage) {
-    const context: SpotlightImageContext = {
-      src: image,
-      mobileImage,
-      alt,
-      imagePosition,
-    };
-
-    return renderImage(context);
-  }
-
-  /*
-   * ---------------------------------------------------------
-   * Custom image component
-   * ---------------------------------------------------------
-   */
-
-  if (ImageComponent) {
-    const CustomImage = ImageComponent;
-
-    const imageProps: SpotlightImageProps = {
-      src: image,
-      alt,
-      fill: true,
-      sizes: imageSizes,
-      priority: imagePriority,
-      style: {
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        objectPosition: imagePosition,
-        transition: "transform 700ms cubic-bezier(0.2, 0.65, 0.3, 1)",
-      },
-    };
-
-    return (
-      <picture
-        style={{
-          position: "absolute",
-          inset: 0,
-          display: "block",
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        {mobileImage && (
-          <source media="(max-width: 767px)" srcSet={mobileImage} />
-        )}
-
-        <CustomImage {...imageProps} />
-      </picture>
-    );
-  }
-
-  /*
-   * ---------------------------------------------------------
-   * Native fallback
-   * ---------------------------------------------------------
-   */
-
-  return (
-    <picture
-      style={{
-        position: "absolute",
-        inset: 0,
-        display: "block",
-        width: "100%",
-        height: "100%",
-        overflow: "hidden",
-      }}
-    >
-      {mobileImage && (
-        <source media="(max-width: 767px)" srcSet={mobileImage} />
-      )}
-
-      <NativeSpotlightImage
-        src={image}
-        alt={alt}
-        imagePosition={imagePosition}
-        imagePriority={imagePriority}
-        imageSizes={imageSizes}
-      />
-    </picture>
-  );
-}
-
-export function Spotlight({
-  image,
-  mobileImage,
-  alt = "",
-
-  ImageComponent,
-  renderImage,
-
-  href,
-  linkLabel,
-  onNavigate,
-
-  eyebrow,
-  title,
-  description,
-  action,
-
-  variant = "overlay",
+  variant = "editorial",
   size = "medium",
 
-  aspectRatio = "16 / 7",
+  radius = "rounded",
 
   height,
   minHeight,
   maxHeight,
 
-  imagePosition = "center",
+  aspectRatio,
 
-  imageSizes = "(max-width: 767px) 100vw, 100vw",
-
-  imagePriority = false,
-
-  radius,
-
-  children,
-
-  sx,
+  containerSx,
   className,
 
-  "aria-label": ariaLabel,
-}: SpotlightProps) {
+  "aria-label": ariaLabel = "Spotlight",
+  onNavigate,
+}) => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const resolvedRadius = getRadius(radius, theme);
-
-  const dimensions = {
-    height: getDimension(height),
-    minHeight: getDimension(minHeight),
-    maxHeight: getDimension(maxHeight),
-  };
-
-  const currentSize = sizeStyles[size];
-
-  const resolvedLinkLabel =
-    linkLabel ||
-    (typeof title === "string" ? title : ariaLabel || "View spotlight");
-
-  /*
-   * ---------------------------------------------------------
-   * Media link overlay (prevents nested <a> tags)
-   * ---------------------------------------------------------
-   */
-
-  const mediaLink = href ? (
-    <SpotlightMediaLink
-      href={href}
-      label={resolvedLinkLabel}
-      onNavigate={onNavigate}
-    />
-  ) : null;
-
-  /*
-   * ---------------------------------------------------------
-   * Shared image
-   * ---------------------------------------------------------
-   */
-
-  const imageElement = (
-    <SpotlightImage
-      image={image}
-      mobileImage={mobileImage}
-      alt={alt}
-      imagePosition={imagePosition}
-      imageSizes={imageSizes}
-      imagePriority={imagePriority}
-      ImageComponent={ImageComponent}
-      renderImage={renderImage}
-    />
-  );
-
-  /*
-   * ---------------------------------------------------------
-   * Shared content
-   * ---------------------------------------------------------
-   */
-
-  const content = (
-    <Box
-      sx={{
-        position: "relative",
-        zIndex: 2,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        gap: 1.5,
-        width: "100%",
-      }}
-    >
-      {eyebrow && (
-        <Typography
-          variant="overline"
-          sx={{
-            fontWeight: 600,
-            letterSpacing: "0.12em",
-          }}
-        >
-          {eyebrow}
-        </Typography>
-      )}
-
-      {title && (
-        <Typography
-          variant={currentSize.titleVariant}
-          component="h2"
-          sx={{
-            fontWeight: 700,
-            letterSpacing: "-0.035em",
-            lineHeight: 1.05,
-          }}
-        >
-          {title}
-        </Typography>
-      )}
-
-      {description && (
-        <Typography
-          variant="body1"
-          sx={{
-            maxWidth: 600,
-            opacity: 0.85,
-          }}
-        >
-          {description}
-        </Typography>
-      )}
-
-      {action && (
-        <Box sx={{ pointerEvents: "auto" }}>
-          <SpotlightActionButton action={action} onNavigate={onNavigate} />
-        </Box>
-      )}
-
-      {children && <Box sx={{ pointerEvents: "auto" }}>{children}</Box>}
-    </Box>
-  );
-
-  /*
-   * ---------------------------------------------------------
-   * Shared root styles
-   * ---------------------------------------------------------
-   */
-
-  const baseRootSx: SxProps<Theme> = {
-    position: "relative",
-
-    width: "100%",
-
-    overflow: "hidden",
-
-    borderRadius: resolvedRadius,
-
-    ...(dimensions.height !== undefined && {
-      height: dimensions.height,
-    }),
-
-    ...(dimensions.minHeight !== undefined && {
-      minHeight: dimensions.minHeight,
-    }),
-
-    ...(dimensions.maxHeight !== undefined && {
-      maxHeight: dimensions.maxHeight,
-    }),
-
-    ...(height === undefined && aspectRatio !== undefined && {
-      aspectRatio,
-    }),
-
-    "&:hover img": {
-      transform: "scale(1.025)",
-    },
-  };
-
-  /*
-   * =========================================================
-   * OVERLAY
-   * =========================================================
-   */
-
-  if (variant === "overlay") {
-    return (
-      <Box
-        component="section"
-        className={className}
-        aria-label={ariaLabel}
-        sx={[baseRootSx, ...(Array.isArray(sx) ? sx : [sx])]}
-      >
-        {imageElement}
-        {mediaLink}
-
-        <Box
-          sx={{
-            position: "relative",
-
-            zIndex: 2,
-
-            width: "100%",
-
-            height: "100%",
-
-            boxSizing: "border-box",
-
-            p: {
-              xs: 2.5,
-
-              sm: currentSize.padding,
-
-              md: currentSize.padding + 1,
-            },
-
-            display: "flex",
-
-            alignItems: "flex-end",
-
-            minHeight:
-              minHeight === undefined
-                ? {
-                    xs: currentSize.minHeight * 0.75,
-
-                    md: currentSize.minHeight,
-                  }
-                : dimensions.minHeight,
-
-            isolation: "isolate",
-
-            backgroundColor: "transparent",
-
-            color: "#fff",
-
-            pointerEvents: href ? "none" : "auto",
-
-            "&::after": {
-              content: '""',
-
-              position: "absolute",
-
-              inset: 0,
-
-              zIndex: -1,
-
-              background:
-                "linear-gradient(180deg, rgba(0,0,0,0.02) 20%, rgba(0,0,0,0.78) 100%)",
-
-              pointerEvents: "none",
-            },
-          }}
-        >
-          {content}
-        </Box>
-      </Box>
-    );
+  if (!item) {
+    return null;
   }
 
-  /*
-   * =========================================================
-   * SPLIT
-   * =========================================================
-   */
+  const currentSize = sizeConfig[size] ?? sizeConfig.medium;
+  const radiusValue = getRadius(radius);
 
-  if (variant === "split") {
+  const containerHeight = getResponsiveValue(height);
+  const containerMinHeight = getResponsiveValue(
+    minHeight ?? (height === undefined ? currentSize.minHeight : undefined),
+  );
+  const containerMaxHeight = getResponsiveValue(maxHeight);
+
+  const responsiveAspectRatio =
+    height === undefined
+      ? aspectRatio !== undefined
+        ? typeof aspectRatio === "string"
+          ? aspectRatio
+          : {
+              xs: aspectRatio.xs,
+              sm: aspectRatio.sm,
+              md: aspectRatio.md,
+              lg: aspectRatio.lg,
+              xl: aspectRatio.xl,
+            }
+        : currentSize.aspectRatio
+      : undefined;
+
+  const getVariantOverlay = () => {
+    switch (variant) {
+      case "minimal":
+        return {
+          background:
+            "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.35) 100%)",
+        };
+
+      case "glass":
+        return {
+          background:
+            "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.55) 100%)",
+        };
+
+      case "editorial":
+      default:
+        return {
+          background:
+            "linear-gradient(180deg, rgba(0,0,0,0.02) 15%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.7) 100%)",
+        };
+    }
+  };
+
+  const renderImage = (showcaseItem: ShowcaseItem) => {
+    if (ImageComponent) {
+      return (
+        <ImageComponent
+          src={
+            isMobile && showcaseItem.media.mobileSrc
+              ? showcaseItem.media.mobileSrc
+              : showcaseItem.media.src
+          }
+          alt={showcaseItem.media.alt}
+          fill
+          sizes={imageSizes}
+          priority={imagePriority}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      );
+    }
+
+    if (isMobile && showcaseItem.media.mobileSrc) {
+      return (
+        <Box
+          component="img"
+          src={showcaseItem.media.mobileSrc}
+          alt={showcaseItem.media.alt}
+          sx={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      );
+    }
+
     return (
       <Box
-        component="section"
-        className={className}
-        aria-label={ariaLabel}
-        sx={[
-          baseRootSx,
-          {
-            display: "grid",
-
-            gridTemplateColumns: {
-              xs: "1fr",
-
-              md: "1.15fr 0.85fr",
-            },
-
-            aspectRatio: height === undefined ? aspectRatio : undefined,
-
-            minHeight:
-              minHeight === undefined
-                ? {
-                    xs: currentSize.minHeight,
-
-                    md: currentSize.minHeight + 40,
-                  }
-                : dimensions.minHeight,
-
-            backgroundColor: "background.paper",
-
-            color: "text.primary",
-          },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
-      >
-        {/* Image */}
-
-        <Box
-          sx={{
-            position: "relative",
-
-            width: "100%",
-
-            height: "100%",
-
-            minHeight: {
-              xs: 240,
-
-              md: "100%",
-            },
-
-            overflow: "hidden",
-          }}
-        >
-          {imageElement}
-          {mediaLink}
-        </Box>
-
-        {/* Content */}
-
-        <Box
-          sx={{
-            display: "flex",
-
-            alignItems: "center",
-
-            p: {
-              xs: 3,
-
-              md: currentSize.padding + 1,
-            },
-
-            position: "relative",
-            zIndex: 2,
-            pointerEvents: href ? "none" : "auto",
-          }}
-        >
-          {content}
-        </Box>
-      </Box>
+        component="img"
+        src={showcaseItem.media.src}
+        alt={showcaseItem.media.alt}
+        sx={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+        }}
+      />
     );
-  }
-
-  /*
-   * =========================================================
-   * MINIMAL
-   * =========================================================
-   */
+  };
 
   return (
     <Box
-      component="section"
       className={className}
+      role="region"
       aria-label={ariaLabel}
-      sx={[baseRootSx, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={{
+        position: "relative",
+        width: "100%",
+        overflow: "hidden",
+        isolation: "isolate",
+        userSelect: "none",
+        WebkitUserSelect: "none",
+
+        height: containerHeight,
+        minHeight: containerMinHeight,
+        maxHeight: containerMaxHeight,
+        aspectRatio: responsiveAspectRatio,
+
+        borderRadius: radiusValue,
+        bgcolor: "background.default",
+        ...containerSx,
+      }}
     >
-      {/* Image */}
-
+      {/* ── Media ───────────────────────────────────────────────────────────── */}
       <Box
         sx={{
-          position: "relative",
-
+          position: "absolute",
+          inset: 0,
+          zIndex: 1,
           width: "100%",
-
-          aspectRatio: height === undefined ? aspectRatio : undefined,
-
-          height: height !== undefined ? dimensions.height : undefined,
-
-          minHeight: height !== undefined ? dimensions.minHeight : undefined,
-
-          maxHeight: height !== undefined ? dimensions.maxHeight : undefined,
-
-          overflow: "hidden",
+          height: "100%",
         }}
       >
-        {imageElement}
-        {mediaLink}
+        {renderImage(item)}
+
+        {/* Overlay */}
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 1,
+            ...getVariantOverlay(),
+          }}
+        />
       </Box>
 
-      {/* Content */}
+      {/* ── Full image link ─────────────────────────────────────────────────── */}
+      {item.href && (
+        <MediaLink
+          href={item.href}
+          label={item.linkLabel ?? `View ${item.title}`}
+          onClick={(event) => {
+            event.preventDefault();
+            onNavigate?.(item, event);
+          }}
+        />
+      )}
 
+      {/* ── Content ─────────────────────────────────────────────────────────── */}
       <Box
         sx={{
-          p: {
-            xs: 2.5,
-
-            md: currentSize.padding,
-          },
-          position: "relative",
-          zIndex: 2,
-          pointerEvents: href ? "none" : "auto",
+          position: "absolute",
+          inset: 0,
+          zIndex: 3,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          alignItems: "flex-start",
+          p: currentSize.contentPadding,
+          pointerEvents: "none",
+          color: "#fff",
         }}
       >
-        {content}
+        {item.content ? (
+          item.content
+        ) : (
+          <Box
+            sx={[
+              {
+                maxWidth: {
+                  xs: "100%",
+                  sm: "85%",
+                  md: "70%",
+                  lg: "62%",
+                },
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                gap: {
+                  xs: 1,
+                  md: 1.5,
+                },
+              },
+              ...(Array.isArray(item.contentSx) ? item.contentSx : [item.contentSx]),
+            ]}
+          >
+            {/* Eyebrow */}
+            {item.eyebrow && (
+              <Typography
+                component="div"
+                sx={[
+                  {
+                    fontSize: currentSize.eyebrow,
+                    fontWeight: 700,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    opacity: 0.9,
+                  },
+                  ...(Array.isArray(item.eyebrowSx) ? item.eyebrowSx : [item.eyebrowSx]),
+                ]}
+              >
+                {item.eyebrow}
+              </Typography>
+            )}
+
+            {/* Title */}
+            <Typography
+              component="h2"
+              sx={[
+                {
+                  fontSize: currentSize.title,
+                  lineHeight: 0.98,
+                  fontWeight: 700,
+                  letterSpacing: "-0.04em",
+                  maxWidth: {
+                    xs: "100%",
+                    md: "850px",
+                  },
+                },
+                ...(Array.isArray(item.titleSx) ? item.titleSx : [item.titleSx]),
+              ]}
+            >
+              {item.title}
+            </Typography>
+
+            {/* Description */}
+            {item.description && (
+              <Typography
+                component="p"
+                sx={[
+                  {
+                    m: 0,
+                    maxWidth: {
+                      xs: "100%",
+                      md: "650px",
+                    },
+                    fontSize: currentSize.description,
+                    lineHeight: 1.5,
+                    opacity: 0.9,
+                  },
+                  ...(Array.isArray(item.descriptionSx) ? item.descriptionSx : [item.descriptionSx]),
+                ]}
+              >
+                {item.description}
+              </Typography>
+            )}
+
+            {/* CTA Button */}
+            {item.action && (item.action.href || item.action.onClick) && (
+              <Box
+                sx={{
+                  pointerEvents: "auto",
+                  mt: {
+                    xs: 0.5,
+                    md: 1,
+                  },
+                }}
+              >
+                {item.action.href ? (
+                  <Button
+                    href={item.action.href}
+                    variant={item.action.variant ?? "contained"}
+                    color={item.action.color ?? "primary"}
+                    size={currentSize.buttonSize}
+                    endIcon={<ArrowRight size={16} />}
+                    target={item.action.target}
+                    rel={item.action.rel}
+                    onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+                      event.preventDefault();
+                      item.action?.onClick?.(event);
+                      onNavigate?.(item, event);
+                    }}
+                    aria-label={item.action.ariaLabel}
+                    sx={{
+                      minHeight: currentSize.buttonHeight,
+                      px: currentSize.buttonPaddingX,
+                      borderRadius: 999,
+                      whiteSpace: "nowrap",
+                      lineHeight: 1.2,
+                      "& .MuiButton-endIcon": {
+                        ml: 0.75,
+                      },
+                    }}
+                  >
+                    {item.action.label}
+                  </Button>
+                ) : (
+                  <Button
+                    variant={item.action.variant ?? "contained"}
+                    color={item.action.color ?? "primary"}
+                    size={currentSize.buttonSize}
+                    endIcon={<ArrowRight size={16} />}
+                    onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                      item.action?.onClick?.(event);
+                      onNavigate?.(item, event as any);
+                    }}
+                    aria-label={item.action.ariaLabel}
+                    sx={{
+                      minHeight: currentSize.buttonHeight,
+                      px: currentSize.buttonPaddingX,
+                      borderRadius: 999,
+                      whiteSpace: "nowrap",
+                      lineHeight: 1.2,
+                      "& .MuiButton-endIcon": {
+                        ml: 0.75,
+                      },
+                    }}
+                  >
+                    {item.action.label}
+                  </Button>
+                )}
+              </Box>
+            )}
+          </Box>
+        )}
       </Box>
+
+      {/* ── Rotated Side Label ─────────────────────────────────────────────── */}
+      {item.sideLabel && (
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            right: {
+              xs: 12,
+              md: 24,
+            },
+            zIndex: 4,
+            transform: "translateY(-50%) rotate(-90deg)",
+            transformOrigin: "center",
+            pointerEvents: "none",
+          }}
+        >
+          <Typography
+            sx={[
+              {
+                fontSize: "0.65rem",
+                fontWeight: 700,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "#fff",
+                opacity: 0.75,
+                whiteSpace: "nowrap",
+              },
+              ...(Array.isArray(item.sideLabelSx) ? item.sideLabelSx : [item.sideLabelSx]),
+            ]}
+          >
+            {item.sideLabel}
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
-}
+};
 
 export default Spotlight;
