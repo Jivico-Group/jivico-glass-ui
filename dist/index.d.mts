@@ -1617,7 +1617,7 @@ declare const typography: {
  *
  * Existing imports using JIVICO_FONTS_URL will continue to work.
  */
-declare const JIVICO_FONTS_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
+declare const JIVICO_FONTS_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..450,0..100&display=swap";
 /**
  * Global font stack.
  */

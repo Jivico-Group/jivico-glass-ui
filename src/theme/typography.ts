@@ -65,7 +65,7 @@ export const typography = {
    */
   h1: {
     fontSize: "3.75rem",
-    fontWeight: 700,
+    fontWeight: 550,
     letterSpacing: "-0.04em",
     lineHeight: 1.0,
     fontFamily: DISPLAY_FONT,
@@ -80,7 +80,7 @@ export const typography = {
    */
   h2: {
     fontSize: "2.85rem",
-    fontWeight: 700,
+    fontWeight: 550,
     letterSpacing: "-0.03em",
     lineHeight: 1.08,
     fontFamily: DISPLAY_FONT,
@@ -95,7 +95,7 @@ export const typography = {
    */
   h3: {
     fontSize: "2.1rem",
-    fontWeight: 700,
+    fontWeight: 550,
     letterSpacing: "-0.025em",
     lineHeight: 1.15,
     fontFamily: DISPLAY_FONT,
@@ -110,7 +110,7 @@ export const typography = {
    */
   h4: {
     fontSize: "1.5rem",
-    fontWeight: 600,
+    fontWeight: 450,
     letterSpacing: "-0.018em",
     lineHeight: 1.2,
     fontFamily: DISPLAY_FONT,
@@ -125,7 +125,7 @@ export const typography = {
    */
   h5: {
     fontSize: "1.25rem",
-    fontWeight: 600,
+    fontWeight: 450,
     letterSpacing: "-0.012em",
     lineHeight: 1.25,
     fontFamily: DISPLAY_FONT,
@@ -140,7 +140,7 @@ export const typography = {
    */
   h6: {
     fontSize: "1rem",
-    fontWeight: 600,
+    fontWeight: 450,
     letterSpacing: "-0.006em",
     lineHeight: 1.3,
     fontFamily: DISPLAY_FONT,
@@ -202,7 +202,7 @@ export const typography = {
    */
   button: {
     textTransform: "none" as const,
-    fontWeight: 600,
+    fontWeight: 450,
     letterSpacing: "0.005em",
     fontSize: "0.9375rem",
     lineHeight: 1.2,
@@ -224,7 +224,7 @@ export const typography = {
    */
   overline: {
     fontSize: "0.7rem",
-    fontWeight: 600,
+    fontWeight: 450,
     letterSpacing: "0.12em",
     lineHeight: 1.2,
     textTransform: "uppercase" as const,
@@ -250,7 +250,7 @@ export const typography = {
  *     Google Sans Flex → Google Sans → system fallback
  */
 const GOOGLE_SANS_FLEX_URL =
-  "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
+  "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..450,0..100&display=swap";
 
 /**
  * Backwards-compatible alias.
