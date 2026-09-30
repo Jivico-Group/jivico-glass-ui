@@ -67,7 +67,7 @@ const sizeConfig: Record<ShowcaseSize, SizeConfig> = {
   small: {
     minHeight: { xs: 260, md: 320 },
     aspectRatio: { xs: "16/10", md: "21/9" },
-    title: { xs: "1.2rem", md: "1.25rem", lg: "1.75rem" },
+    title: { xs: "1.5rem", md: "1.5rem", lg: "1.75rem" },
     description: { xs: "0.875rem", md: "0.95rem" },
     eyebrow: "0.65rem",
     buttonSize: "small",

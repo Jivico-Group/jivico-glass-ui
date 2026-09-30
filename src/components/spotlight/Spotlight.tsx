@@ -26,13 +26,9 @@ const getResponsiveValue = (value: SpotlightDimension | undefined) => {
 
   return {
     xs: value.xs,
-
     sm: value.sm,
-
     md: value.md,
-
     lg: value.lg,
-
     xl: value.xl,
   };
 };
@@ -41,12 +37,9 @@ const getRadius = (radius: SpotlightProps["radius"]) => {
   switch (radius) {
     case "square":
       return 0;
-
     case "soft":
       return 4;
-
     case "rounded":
-
     default:
       return 2;
   }
@@ -68,7 +61,7 @@ const sizeConfig: Record<SpotlightSize, SizeConfig> = {
   small: {
     minHeight: { xs: 240, md: 290 },
     aspectRatio: { xs: "16/10", md: "21/9" },
-    title: { xs: "1.25rem", md: "1.5rem", lg: "1.7rem" },
+    title: { xs: "1.5rem", md: "1.5rem", lg: "1.7rem" },
     description: { xs: "0.8rem", md: "0.86rem" },
     eyebrow: "0.6rem",
     buttonSize: "small",
@@ -79,7 +72,7 @@ const sizeConfig: Record<SpotlightSize, SizeConfig> = {
   medium: {
     minHeight: { xs: 300, md: 360 },
     aspectRatio: { xs: "16/10", md: "16/8" },
-    title: { xs: "1.45rem", md: "1.9rem", lg: "2.2rem" },
+    title: { xs: "1.5rem", md: "1.9rem", lg: "2.2rem" },
     description: { xs: "0.84rem", md: "0.9rem" },
     eyebrow: "0.62rem",
     buttonSize: "small",
