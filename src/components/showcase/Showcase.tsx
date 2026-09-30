@@ -993,41 +993,39 @@ export const Showcase = ({
                 item.content
               ) : (
                 <Box
-                  sx={{
-                    maxWidth: {
-                      xs: "100%",
-                      sm: "85%",
-                      md: "70%",
-                      lg: "62%",
+                  sx={[
+                    {
+                      maxWidth: {
+                        xs: "100%",
+                        sm: "85%",
+                        md: "70%",
+                        lg: "62%",
+                      },
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      gap: {
+                        xs: 1,
+                        md: 1.5,
+                      },
                     },
-
-                    display: "flex",
-
-                    flexDirection: "column",
-
-                    alignItems: "flex-start",
-
-                    gap: {
-                      xs: 1,
-                      md: 1.5,
-                    },
-                  }}
+                    ...(Array.isArray(item.contentSx) ? item.contentSx : [item.contentSx]),
+                  ]}
                 >
                   {/* Eyebrow */}
                   {item.eyebrow && (
                     <Typography
                       component="div"
-                      sx={{
-                        fontSize: currentSize.eyebrow,
-
-                        fontWeight: 700,
-
-                        letterSpacing: "0.14em",
-
-                        textTransform: "uppercase",
-
-                        opacity: 0.9,
-                      }}
+                      sx={[
+                        {
+                          fontSize: currentSize.eyebrow,
+                          fontWeight: 700,
+                          letterSpacing: "0.14em",
+                          textTransform: "uppercase",
+                          opacity: 0.9,
+                        },
+                        ...(Array.isArray(item.eyebrowSx) ? item.eyebrowSx : [item.eyebrowSx]),
+                      ]}
                     >
                       {item.eyebrow}
                     </Typography>
@@ -1036,20 +1034,19 @@ export const Showcase = ({
                   {/* Title */}
                   <Typography
                     component="h2"
-                    sx={{
-                      fontSize: currentSize.title,
-
-                      lineHeight: 0.98,
-
-                      fontWeight: 700,
-
-                      letterSpacing: "-0.04em",
-
-                      maxWidth: {
-                        xs: "100%",
-                        md: "850px",
+                    sx={[
+                      {
+                        fontSize: currentSize.title,
+                        lineHeight: 0.98,
+                        fontWeight: 700,
+                        letterSpacing: "-0.04em",
+                        maxWidth: {
+                          xs: "100%",
+                          md: "850px",
+                        },
                       },
-                    }}
+                      ...(Array.isArray(item.titleSx) ? item.titleSx : [item.titleSx]),
+                    ]}
                   >
                     {item.title}
                   </Typography>
@@ -1058,20 +1055,19 @@ export const Showcase = ({
                   {item.description && (
                     <Typography
                       component="p"
-                      sx={{
-                        m: 0,
-
-                        maxWidth: {
-                          xs: "100%",
-                          md: "650px",
+                      sx={[
+                        {
+                          m: 0,
+                          maxWidth: {
+                            xs: "100%",
+                            md: "650px",
+                          },
+                          fontSize: currentSize.description,
+                          lineHeight: 1.5,
+                          opacity: 0.9,
                         },
-
-                        fontSize: currentSize.description,
-
-                        lineHeight: 1.5,
-
-                        opacity: 0.9,
-                      }}
+                        ...(Array.isArray(item.descriptionSx) ? item.descriptionSx : [item.descriptionSx]),
+                      ]}
                     >
                       {item.description}
                     </Typography>
@@ -1194,21 +1190,18 @@ export const Showcase = ({
                 }}
               >
                 <Typography
-                  sx={{
-                    fontSize: "0.65rem",
-
-                    fontWeight: 700,
-
-                    letterSpacing: "0.18em",
-
-                    textTransform: "uppercase",
-
-                    color: "#fff",
-
-                    opacity: 0.75,
-
-                    whiteSpace: "nowrap",
-                  }}
+                  sx={[
+                    {
+                      fontSize: "0.65rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase",
+                      color: "#fff",
+                      opacity: 0.75,
+                      whiteSpace: "nowrap",
+                    },
+                    ...(Array.isArray(item.sideLabelSx) ? item.sideLabelSx : [item.sideLabelSx]),
+                  ]}
                 >
                   {item.sideLabel}
                 </Typography>

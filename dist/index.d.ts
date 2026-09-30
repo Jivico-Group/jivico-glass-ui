@@ -1912,11 +1912,16 @@ interface ShowcaseItem {
      */
     linkLabel?: string;
     eyebrow?: string;
+    eyebrowSx?: SxProps<Theme>;
     title: string;
+    titleSx?: SxProps<Theme>;
     description?: string;
+    descriptionSx?: SxProps<Theme>;
     action?: ShowcaseAction;
     content?: ReactNode;
+    contentSx?: SxProps<Theme>;
     sideLabel?: string;
+    sideLabelSx?: SxProps<Theme>;
 }
 interface ShowcaseProps {
     /**
