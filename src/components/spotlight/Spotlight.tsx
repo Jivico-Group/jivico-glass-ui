@@ -13,13 +13,10 @@ import {
 import { ArrowRight } from "lucide-react";
 
 import type {
-  ShowcaseItem,
-  ShowcaseSize,
-} from "../showcase/Showcase.types.js";
-
-import type {
   SpotlightDimension,
+  SpotlightItem,
   SpotlightProps,
+  SpotlightSize,
 } from "./Spotlight.types.js";
 
 const getResponsiveValue = (value: SpotlightDimension | undefined) => {
@@ -55,7 +52,7 @@ const getRadius = (radius: SpotlightProps["radius"]) => {
 };
 
 const sizeConfig: Record<
-  ShowcaseSize,
+  SpotlightSize,
   {
     minHeight: {
       xs: number;
@@ -352,16 +349,16 @@ export const Spotlight: React.FC<SpotlightProps> = ({
     }
   };
 
-  const renderImage = (showcaseItem: ShowcaseItem) => {
+  const renderImage = (spotlightItem: SpotlightItem) => {
     if (ImageComponent) {
       return (
         <ImageComponent
           src={
-            isMobile && showcaseItem.media.mobileSrc
-              ? showcaseItem.media.mobileSrc
-              : showcaseItem.media.src
+            isMobile && spotlightItem.media.mobileSrc
+              ? spotlightItem.media.mobileSrc
+              : spotlightItem.media.src
           }
-          alt={showcaseItem.media.alt}
+          alt={spotlightItem.media.alt}
           fill
           sizes={imageSizes}
           priority={imagePriority}
@@ -375,12 +372,12 @@ export const Spotlight: React.FC<SpotlightProps> = ({
       );
     }
 
-    if (isMobile && showcaseItem.media.mobileSrc) {
+    if (isMobile && spotlightItem.media.mobileSrc) {
       return (
         <Box
           component="img"
-          src={showcaseItem.media.mobileSrc}
-          alt={showcaseItem.media.alt}
+          src={spotlightItem.media.mobileSrc}
+          alt={spotlightItem.media.alt}
           sx={{
             position: "absolute",
             inset: 0,
@@ -396,8 +393,8 @@ export const Spotlight: React.FC<SpotlightProps> = ({
     return (
       <Box
         component="img"
-        src={showcaseItem.media.src}
-        alt={showcaseItem.media.alt}
+        src={spotlightItem.media.src}
+        alt={spotlightItem.media.alt}
         sx={{
           position: "absolute",
           inset: 0,

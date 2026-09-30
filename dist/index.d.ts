@@ -2426,23 +2426,23 @@ interface SpotlightProps {
     /**
      * Spotlight item (exact same data structure as ShowcaseItem).
      */
-    item: ShowcaseItem;
+    item: SpotlightItem;
     /**
      * Custom image renderer (e.g. Next/Image).
      */
-    ImageComponent?: ShowcaseImageComponent;
+    ImageComponent?: SpotlightImageComponent;
     imageSizes?: string;
     imagePriority?: boolean;
     /**
      * Handles navigation for the complete media / CTA button area.
      */
-    onNavigate?: (item: ShowcaseItem, event: MouseEvent<HTMLAnchorElement>) => void;
-    variant?: ShowcaseVariant;
-    size?: ShowcaseSize;
-    radius?: ShowcaseRadius;
-    height?: ShowcaseDimension;
-    minHeight?: ShowcaseDimension;
-    maxHeight?: ShowcaseDimension;
+    onNavigate?: (item: SpotlightItem, event: MouseEvent<HTMLAnchorElement>) => void;
+    variant?: SpotlightVariant;
+    size?: SpotlightSize;
+    radius?: SpotlightRadius;
+    height?: SpotlightDimension;
+    minHeight?: SpotlightDimension;
+    maxHeight?: SpotlightDimension;
     aspectRatio?: AspectRatio | ResponsiveAspectRatio;
     containerSx?: SxProps<Theme>;
     className?: string;
