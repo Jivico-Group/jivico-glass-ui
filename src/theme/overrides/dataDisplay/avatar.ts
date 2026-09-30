@@ -13,7 +13,7 @@ export const getAvatarOverrides = (
 
         return {
           fontFamily:
-            '"Google Sans Flex", "SF Pro Display", -apple-system, sans-serif',
+            '"Google Sans Flex", "Google Sans", sans-serif',
           fontWeight: 700,
           fontSize: "0.9375rem",
           letterSpacing: "-0.01em",

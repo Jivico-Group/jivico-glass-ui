@@ -265,7 +265,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
           textTransform: "none",
 
           fontFamily:
-            '"Montserrat", "Google Sans Flex", -apple-system, BlinkMacSystemFont, sans-serif',
+            '"Google Sans Flex", "Google Sans", sans-serif',
 
           fontSize: isSmall ? "0.78rem" : "0.84rem",
 

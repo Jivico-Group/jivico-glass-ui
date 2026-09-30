@@ -50,7 +50,7 @@ export const getButtonOverrides = (
           whiteSpace: "nowrap",
           boxSizing: "border-box",
           fontFamily:
-            '"Google Sans Flex", "SF Pro Display", -apple-system, sans-serif',
+            '"Google Sans Flex", "Google Sans", sans-serif',
           letterSpacing: "-0.01em",
           cursor: "pointer",
           position: "relative",

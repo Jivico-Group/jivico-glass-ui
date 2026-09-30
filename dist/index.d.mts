@@ -1620,14 +1620,6 @@ declare const typography: {
 declare const JIVICO_FONTS_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
 /**
  * Global font stack.
- *
- * Priority:
- *
- *     SF Pro
- *       ↓
- *     Google Sans
- *       ↓
- *     System
  */
 declare const JIVICO_FONT_FAMILY: string;
 

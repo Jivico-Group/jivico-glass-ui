@@ -9,6 +9,7 @@ export default defineConfig({
   minify: true,
   clean: true,
   treeshake: true,
+  publicDir: "src/fonts",
   external: [
     "react",
     "react-dom",
@@ -22,3 +23,5 @@ export default defineConfig({
     "lucide-react",
   ],
 });
+
+

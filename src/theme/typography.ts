@@ -30,90 +30,21 @@
  *    Google Sans on platforms where SF Pro is unavailable
  */
 
-/* -------------------------------------------------------------------------- */
-/* Font stacks                                                                */
-/* -------------------------------------------------------------------------- */
-
 /**
- * SF Pro Display
+ * Google Sans Flex font stack
  *
- * Used primarily for large headings and editorial typography.
- *
- * -apple-system resolves to Apple's San Francisco system font.
- * BlinkMacSystemFont provides compatibility with older Apple browsers.
+ * Dedicated Google Sans Flex variable font with all weights (100 - 900+).
  */
-const SF_PRO_DISPLAY = [
-  '"SF Pro Display"',
-  "-apple-system",
-  "BlinkMacSystemFont",
-].join(",");
-
-/**
- * SF Pro Text
- *
- * Used for body copy, controls and general UI typography.
- */
-const SF_PRO_TEXT = [
-  '"SF Pro Text"',
-  "-apple-system",
-  "BlinkMacSystemFont",
-].join(",");
-
-/**
- * Google Sans
- *
- * Used as the primary cross-platform fallback.
- *
- * Google Sans Flex is preferred because it provides a flexible
- * variable font with optical sizing and width support.
- */
-const GOOGLE_SANS = ['"Google Sans Flex"', '"Google Sans"'].join(",");
-
-/**
- * Generic system fallback.
- */
-const SYSTEM_SANS = [
-  '"Segoe UI"',
-  "Roboto",
-  "Helvetica",
-  "Arial",
+const GOOGLE_SANS_FLEX = [
+  '"Google Sans Flex"',
+  '"Google Sans"',
   "sans-serif",
 ].join(",");
 
-/**
- * Display typography:
- *
- * SF Pro Display
- *      ↓
- * Google Sans
- *      ↓
- * System fallback
- */
-const DISPLAY_FONT = [SF_PRO_DISPLAY, GOOGLE_SANS, SYSTEM_SANS].join(",");
-
-/**
- * Text typography:
- *
- * SF Pro Text
- *      ↓
- * Google Sans
- *      ↓
- * System fallback
- */
-const TEXT_FONT = [SF_PRO_TEXT, GOOGLE_SANS, SYSTEM_SANS].join(",");
-
-/**
- * Button typography.
- *
- * Buttons use the text stack rather than the display stack
- * to keep controls compact and highly readable.
- */
-const BUTTON_FONT = [SF_PRO_TEXT, GOOGLE_SANS, SYSTEM_SANS].join(",");
-
-/**
- * Labels / metadata typography.
- */
-const LABEL_FONT = [SF_PRO_TEXT, GOOGLE_SANS, SYSTEM_SANS].join(",");
+const DISPLAY_FONT = GOOGLE_SANS_FLEX;
+const TEXT_FONT = GOOGLE_SANS_FLEX;
+const BUTTON_FONT = GOOGLE_SANS_FLEX;
+const LABEL_FONT = GOOGLE_SANS_FLEX;
 
 /* -------------------------------------------------------------------------- */
 /* Typography                                                                  */
@@ -334,17 +265,5 @@ export const JIVICO_FONTS_URL = GOOGLE_SANS_FLEX_URL;
 
 /**
  * Global font stack.
- *
- * Priority:
- *
- *     SF Pro
- *       ↓
- *     Google Sans
- *       ↓
- *     System
  */
-export const JIVICO_FONT_FAMILY = [
-  SF_PRO_DISPLAY,
-  GOOGLE_SANS,
-  SYSTEM_SANS,
-].join(",");
+export const JIVICO_FONT_FAMILY = GOOGLE_SANS_FLEX;

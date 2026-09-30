@@ -172,7 +172,7 @@ export const getChipOverrides = (
             height: 28, // Medium (default) — brand kit 28px
             fontWeight: 500,
             fontFamily:
-              '"Montserrat", "Google Sans Flex", -apple-system, sans-serif',
+              '"Google Sans Flex", "Google Sans", sans-serif',
             fontSize: "0.76rem",
             letterSpacing: "0.02em",
             lineHeight: 1,

@@ -13,7 +13,9 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js",
       "default": "./dist/index.mjs"
-    }
+    },
+    "./fonts.css": "./dist/fonts.css",
+    "./*": "./dist/*"
   },
   "sideEffects": false,
   "files": [

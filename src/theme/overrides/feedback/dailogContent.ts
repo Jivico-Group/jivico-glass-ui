@@ -9,7 +9,7 @@ export const getDialogContentOverrides = (
     styleOverrides: {
       root: {
         fontFamily:
-          '"Google Sans Flex", "SF Pro Display", -apple-system, sans-serif',
+          '"Google Sans Flex", "Google Sans", sans-serif',
 
         fontWeight: 700,
         fontSize: "1.25rem",
