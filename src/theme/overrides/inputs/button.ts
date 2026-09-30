@@ -49,8 +49,7 @@ export const getButtonOverrides = (
           textTransform: "none",
           whiteSpace: "nowrap",
           boxSizing: "border-box",
-          fontFamily:
-            '"Google Sans Flex", "Google Sans", sans-serif',
+          fontFamily: '"Google Sans Flex", "Google Sans", sans-serif',
           letterSpacing: "-0.01em",
           cursor: "pointer",
           position: "relative",

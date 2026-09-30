@@ -171,8 +171,7 @@ export const getChipOverrides = (
             borderRadius: 9999,
             height: 28, // Medium (default) — brand kit 28px
             fontWeight: 500,
-            fontFamily:
-              '"Google Sans Flex", "Google Sans", sans-serif',
+            fontFamily: '"Google Sans Flex", "Google Sans", sans-serif',
             fontSize: "0.76rem",
             letterSpacing: "0.02em",
             lineHeight: 1,

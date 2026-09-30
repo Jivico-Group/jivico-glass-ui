@@ -4,7 +4,7 @@ export const getDrawerOverrides = (isDark: boolean): Components<Theme> => ({
   MuiDrawer: {
     styleOverrides: {
       paper: ({ ownerState }) => {
-        const glass = ownerState.glass === true;
+        const glass = ownerState.glass === "true" || ownerState.glass === true;
 
         /**
          * Normal surface

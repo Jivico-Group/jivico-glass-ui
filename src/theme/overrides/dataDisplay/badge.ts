@@ -1,7 +1,6 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette";
 
-
 export const getBadgeOverrides = (
   palette: JivicoPalette,
   isDark: boolean,

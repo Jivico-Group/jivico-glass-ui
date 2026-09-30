@@ -49,7 +49,7 @@ export const getDialogOverrides = (
        */
       paper: ({ ownerState }) => {
         const glass =
-          ownerState.glass === "true" || (ownerState.glass as any) === true;
+          ownerState.glass === "true" || ownerState.glass === true;
 
         const radius = (ownerState.radius ?? "large") as DialogRadius;
         const resolvedBorderRadius = ownerState.fullScreen

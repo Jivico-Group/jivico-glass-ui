@@ -15,7 +15,7 @@ export const getTooltipOverrides = (
 
     styleOverrides: {
       tooltip: ({ ownerState }) => {
-        const glass = ownerState.glass === true;
+        const glass = ownerState.glass === "true" || ownerState.glass === true;
 
         /**
          * Inverted Tooltip Surfaces:
@@ -107,7 +107,7 @@ export const getTooltipOverrides = (
       },
 
       arrow: ({ ownerState }) => {
-        const glass = ownerState.glass === true;
+        const glass = ownerState.glass === "true" || ownerState.glass === true;
         const arrowBackground = glass
           ? isDark
             ? "rgba(245, 245, 247, 0.82)"

@@ -533,7 +533,7 @@ declare module "@mui/material/Chip" {
   }
 
   interface ChipOwnProps {
-    glass?: boolean;
+    glass?: boolean | "true" | "false";
   }
 }
 
@@ -586,7 +586,7 @@ declare module "@mui/material/Card" {
     radius?: "none" | "small" | "medium" | "large" | "full";
     hoverEffect?: boolean;
     variant?: "elevation" | "outlined" | "tonal";
-    glass?: boolean;
+    glass?: boolean | "true" | "false";
   }
 
   interface CardProps {
@@ -602,18 +602,18 @@ declare module "@mui/material/Card" {
     radius?: "none" | "small" | "medium" | "large" | "full";
     hoverEffect?: boolean;
     variant?: "elevation" | "outlined" | "tonal";
-    glass?: boolean;
+    glass?: boolean | "true" | "false";
   }
 }
 
 declare module "@mui/material/Dialog" {
   interface DialogOwnProps {
-    glass?: "true" | "false" | boolean;
+    glass?: boolean | "true" | "false";
     radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
   }
 
   interface DialogProps {
-    glass?: "true" | "false" | boolean;
+    glass?: boolean | "true" | "false";
     radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
   }
 
@@ -634,21 +634,21 @@ declare module "@mui/material/Dialog" {
 
 declare module "@mui/material/Drawer" {
   interface DrawerProps {
-    glass?: boolean;
+    glass?: boolean | "true" | "false";
   }
 
   interface DrawerOwnProps {
-    glass?: boolean;
+    glass?: boolean | "true" | "false";
   }
 }
 
 declare module "@mui/material/Tooltip" {
   interface TooltipProps {
-    glass?: boolean;
+    glass?: boolean | "true" | "false";
   }
 
   interface TooltipOwnProps {
-    glass?: boolean;
+    glass?: boolean | "true" | "false";
   }
 }
 
@@ -662,6 +662,7 @@ declare module "@mui/material/Alert" {
   }
 
   interface AlertProps {
+    glass?: boolean | "true" | "false";
     appearance?: "solid" | "tonal" | "glass" | "outlined";
     radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
     glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
@@ -669,7 +670,7 @@ declare module "@mui/material/Alert" {
   }
 
   interface AlertOwnProps {
-    glass?: boolean;
+    glass?: boolean | "true" | "false";
     appearance?: "solid" | "tonal" | "glass" | "outlined";
     radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
     glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
@@ -685,6 +686,7 @@ declare module "@mui/material/LinearProgress" {
   }
 
   interface LinearProgressProps {
+    glass?: boolean | "true" | "false";
     appearance?: "solid" | "tonal" | "glass" | "outlined";
     radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
     size?: "thin" | "small" | "medium" | "large";
@@ -693,7 +695,7 @@ declare module "@mui/material/LinearProgress" {
   }
 
   interface LinearProgressOwnProps {
-    glass?: boolean;
+    glass?: boolean | "true" | "false";
     appearance?: "solid" | "tonal" | "glass" | "outlined";
     radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
     size?: "thin" | "small" | "medium" | "large";
@@ -715,7 +717,7 @@ declare module "@mui/material/Skeleton" {
   }
 
   interface SkeletonOwnProps {
-    glass?: boolean;
+    glass?: boolean | "true" | "false";
     appearance?: "solid" | "tonal" | "glass" | "outlined";
     radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
     glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
@@ -740,7 +742,7 @@ declare module "@mui/material/Skeleton" {
 
 declare module "@mui/material/BottomNavigation" {
   interface BottomNavigationOwnProps {
-    glass?: "true" | "false";
+    glass?: boolean | "true" | "false";
     size?: "small" | "medium";
     placement?:
       | "top-left"
@@ -755,7 +757,7 @@ declare module "@mui/material/BottomNavigation" {
 
 declare module "@mui/material/Tabs" {
   interface TabsOwnProps {
-    glass?: boolean;
+    glass?: boolean | "true" | "false";
     size?: "small" | "medium";
     placement?:
       | "top-left"

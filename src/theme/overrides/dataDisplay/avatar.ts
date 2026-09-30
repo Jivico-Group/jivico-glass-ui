@@ -12,8 +12,7 @@ export const getAvatarOverrides = (
         const isRounded = ownerState.variant === "rounded";
 
         return {
-          fontFamily:
-            '"Google Sans Flex", "Google Sans", sans-serif',
+          fontFamily: '"Google Sans Flex", "Google Sans", sans-serif',
           fontWeight: 700,
           fontSize: "0.9375rem",
           letterSpacing: "-0.01em",

@@ -152,12 +152,11 @@ export const getControlOverrides = (
 
         // Thumb color when checked — white works for most vibrant backgrounds
         // For glass (light overlay) use white; for dark/glass invert
-        const thumbCheckedColor =
-          isGlass
-            ? "#FFFFFF"
-            : colorName === "primary" && isDark
-              ? "#1D1D1F" // dark invert for primary
-              : COLORS.white; // white thumb on all other colored tracks (accent, success, etc.)
+        const thumbCheckedColor = isGlass
+          ? "#FFFFFF"
+          : colorName === "primary" && isDark
+            ? "#1D1D1F" // dark invert for primary
+            : COLORS.white; // white thumb on all other colored tracks (accent, success, etc.)
 
         return {
           width: 44,
