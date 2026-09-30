@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-
 import {
   Box,
   Button,
@@ -9,9 +8,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-
 import { ArrowRight } from "lucide-react";
-
 import type {
   SpotlightDimension,
   SpotlightItem,
@@ -20,14 +17,8 @@ import type {
 } from "./Spotlight.types.js";
 
 const getResponsiveValue = (value: SpotlightDimension | undefined) => {
-  if (value === undefined) {
-    return undefined;
-  }
-
-  if (typeof value === "number" || typeof value === "string") {
-    return value;
-  }
-
+  if (value === undefined) return undefined;
+  if (typeof value === "number" || typeof value === "string") return value;
   return {
     xs: value.xs,
     sm: value.sm,
@@ -157,7 +148,6 @@ export const Spotlight: React.FC<SpotlightProps> = ({
   onNavigate,
 }) => {
   const theme = useTheme();
-
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   if (!item) {
@@ -165,17 +155,12 @@ export const Spotlight: React.FC<SpotlightProps> = ({
   }
 
   const currentSize = sizeConfig[size] ?? sizeConfig.medium;
-
   const radiusValue = getRadius(radius);
-
   const containerHeight = getResponsiveValue(height);
-
   const containerMinHeight = getResponsiveValue(
-    minHeight ?? (height === undefined ? currentSize.minHeight : undefined),
+    minHeight ?? (height === undefined ? currentSize.minHeight : undefined)
   );
-
   const containerMaxHeight = getResponsiveValue(maxHeight);
-
   const responsiveAspectRatio =
     height === undefined
       ? aspectRatio !== undefined
@@ -196,21 +181,18 @@ export const Spotlight: React.FC<SpotlightProps> = ({
       case "minimal":
         return {
           background:
-            "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.35) 100%)",
+            "linear-gradient(90deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.14) 44%, rgba(0,0,0,0.02) 72%)",
         };
-
       case "glass":
         return {
           background:
-            "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.55) 100%)",
+            "linear-gradient(90deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.20) 46%, rgba(0,0,0,0.03) 75%)",
         };
-
       case "editorial":
-
       default:
         return {
           background:
-            "linear-gradient(180deg, rgba(0,0,0,0.02) 15%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.7) 100%)",
+            "linear-gradient(90deg, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.34) 34%, rgba(0,0,0,0.10) 58%, rgba(0,0,0,0.02) 78%), linear-gradient(180deg, rgba(0,0,0,0.04) 55%, rgba(0,0,0,0.28) 100%)",
         };
     }
   };
@@ -295,7 +277,6 @@ export const Spotlight: React.FC<SpotlightProps> = ({
       }}
     >
       {/* ── Media ───────────────────────────────────────────────────────────── */}
-
       <Box
         sx={{
           position: "absolute",
@@ -306,9 +287,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
         }}
       >
         {renderImage(item)}
-
         {/* Overlay */}
-
         <Box
           sx={{
             position: "absolute",
@@ -320,26 +299,21 @@ export const Spotlight: React.FC<SpotlightProps> = ({
       </Box>
 
       {/* ── Full image link ─────────────────────────────────────────────────── */}
-
       {item.href && (
         <MediaLink
           href={item.href}
           label={
             item.linkLabel ??
-            (item.title
-              ? `View ${item.title}`
-              : item.media.alt || "View details")
+            (item.title ? `View ${item.title}` : item.media.alt || "View details")
           }
           onClick={(event) => {
             event.preventDefault();
-
             onNavigate?.(item, event);
           }}
         />
       )}
 
       {/* ── Content ─────────────────────────────────────────────────────────── */}
-
       <Box
         sx={{
           position: "absolute",
@@ -362,16 +336,11 @@ export const Spotlight: React.FC<SpotlightProps> = ({
           <Box
             sx={[
               {
-                maxWidth: {
-                  xs: "100%",
-                  sm: "85%",
-                  md: "70%",
-                  lg: "62%",
-                },
+                maxWidth: { xs: "92%", sm: "78%", md: "58%", lg: "50%" },
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
-                gap: { xs: 1, md: 1.5 },
+                gap: { xs: 0.9, md: 1.15 },
               },
               ...(Array.isArray(item.contentSx)
                 ? item.contentSx
@@ -379,7 +348,6 @@ export const Spotlight: React.FC<SpotlightProps> = ({
             ]}
           >
             {/* Eyebrow */}
-
             {item.eyebrow && (
               <Typography
                 component="div"
@@ -402,7 +370,6 @@ export const Spotlight: React.FC<SpotlightProps> = ({
             )}
 
             {/* Title */}
-
             {item.title && (
               <Typography
                 component="h2"
@@ -412,7 +379,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                     lineHeight: 1.02,
                     fontWeight: 550,
                     letterSpacing: "-0.025em",
-                    maxWidth: { xs: "100%", md: "850px" },
+                    maxWidth: { xs: "100%", md: "720px" },
                   },
                   ...(Array.isArray(item.titleSx)
                     ? item.titleSx
@@ -424,14 +391,13 @@ export const Spotlight: React.FC<SpotlightProps> = ({
             )}
 
             {/* Description */}
-
             {item.description && (
               <Typography
                 component="p"
                 sx={[
                   {
                     m: 0,
-                    maxWidth: { xs: "100%", md: "650px" },
+                    maxWidth: { xs: "100%", md: "560px" },
                     fontSize: currentSize.description,
                     fontWeight: 400,
                     letterSpacing: "-0.005em",
@@ -448,7 +414,6 @@ export const Spotlight: React.FC<SpotlightProps> = ({
             )}
 
             {/* CTA Button */}
-
             {item.action && (item.action.href || item.action.onClick) && (
               <Box
                 sx={{
@@ -467,9 +432,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                     rel={item.action.rel}
                     onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
                       event.preventDefault();
-
                       item.action?.onClick?.(event);
-
                       onNavigate?.(item, event);
                     }}
                     aria-label={item.action.ariaLabel}
@@ -497,7 +460,6 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                     endIcon={<ArrowRight size={16} />}
                     onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
                       item.action?.onClick?.(event);
-
                       onNavigate?.(item, event as any);
                     }}
                     aria-label={item.action.ariaLabel}
@@ -525,7 +487,6 @@ export const Spotlight: React.FC<SpotlightProps> = ({
       </Box>
 
       {/* ── Rotated Side Label ─────────────────────────────────────────────── */}
-
       {item.sideLabel && (
         <Box
           sx={{

@@ -771,11 +771,8 @@ export function Rails<T>({
                 variant="body2"
                 sx={{
                   minWidth: 0,
-
                   flex: 1,
-
-                  fontWeight: 600,
-
+                  fontWeight: 450,
                   color: "text.primary",
 
                   overflow: "hidden",

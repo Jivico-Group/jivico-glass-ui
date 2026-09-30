@@ -26,12 +26,8 @@ import type {
 const DEFAULT_INTERVAL = 5000;
 
 const getResponsiveValue = (value: ShowcaseDimension | undefined) => {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (typeof value === "number" || typeof value === "string") {
-    return value;
-  }
+  if (value === undefined) return undefined;
+  if (typeof value === "number" || typeof value === "string") return value;
   return {
     xs: value.xs,
     sm: value.sm,
@@ -40,6 +36,7 @@ const getResponsiveValue = (value: ShowcaseDimension | undefined) => {
     xl: value.xl,
   };
 };
+
 const getRadius = (radius: ShowcaseProps["radius"]) => {
   switch (radius) {
     case "square":
@@ -51,6 +48,7 @@ const getRadius = (radius: ShowcaseProps["radius"]) => {
       return 2;
   }
 };
+
 type SizeConfig = {
   minHeight: { xs: number; md: number; lg?: number };
   aspectRatio?: { xs?: string; md?: string; lg?: string };
@@ -69,7 +67,7 @@ const sizeConfig: Record<ShowcaseSize, SizeConfig> = {
   small: {
     minHeight: { xs: 260, md: 320 },
     aspectRatio: { xs: "16/10", md: "21/9" },
-    title: { xs: "1.75rem", md: "2.25rem", lg: "2.75rem" },
+    title: { xs: "1.2rem", md: "1.25rem", lg: "1.75rem" },
     description: { xs: "0.875rem", md: "0.95rem" },
     eyebrow: "0.65rem",
     buttonSize: "small",
@@ -119,6 +117,7 @@ const sizeConfig: Record<ShowcaseSize, SizeConfig> = {
     navigationGap: 1.75,
   },
 };
+
 interface MediaLinkProps {
   href: string;
   label?: string;
@@ -126,6 +125,7 @@ interface MediaLinkProps {
   rel?: string;
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
+
 const MediaLink = ({ href, label, target, rel, onClick }: MediaLinkProps) => {
   return (
     <Box
@@ -148,6 +148,7 @@ const MediaLink = ({ href, label, target, rel, onClick }: MediaLinkProps) => {
     />
   );
 };
+
 export const Showcase = ({
   items,
   ImageComponent,
@@ -186,20 +187,21 @@ export const Showcase = ({
     ? controlledActiveIndex
     : internalActiveIndex;
   const [isHovered, setIsHovered] = useState(false);
+
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
   const touchMoved = useRef(false);
+
   const currentSize = sizeConfig[size] ?? sizeConfig.hero;
   const safeItems = useMemo(() => items.filter(Boolean), [items]);
   const itemCount = safeItems.length;
   const currentIndex =
     itemCount === 0 ? 0 : Math.min(Math.max(activeIndex, 0), itemCount - 1);
   const currentItem = safeItems[currentIndex];
+
   const updateIndex = useCallback(
     (nextIndex: number) => {
-      if (!itemCount) {
-        return;
-      }
+      if (!itemCount) return;
       let normalizedIndex = nextIndex;
       if (loop) {
         normalizedIndex = (nextIndex + itemCount) % itemCount;
@@ -216,40 +218,32 @@ export const Showcase = ({
     },
     [itemCount, loop, isControlled, onActiveIndexChange, safeItems],
   );
+
   const goNext = useCallback(() => {
-    if (!itemCount) {
-      return;
-    }
-    if (!loop && currentIndex >= itemCount - 1) {
-      return;
-    }
+    if (!itemCount) return;
+    if (!loop && currentIndex >= itemCount - 1) return;
     updateIndex(currentIndex + 1);
   }, [currentIndex, itemCount, loop, updateIndex]);
+
   const goPrevious = useCallback(() => {
-    if (!itemCount) {
-      return;
-    }
-    if (!loop && currentIndex <= 0) {
-      return;
-    }
+    if (!itemCount) return;
+    if (!loop && currentIndex <= 0) return;
     updateIndex(currentIndex - 1);
   }, [currentIndex, itemCount, loop, updateIndex]);
-  /*
-   * =========================================================
-   * AUTOPLAY (WITH SMOOTH PAUSE & RESUME)
-   * =========================================================
-   */
+
+  /* ── Autoplay ─────────────────────────────────────────────────────────── */
   const remainingTimeRef = useRef<number>(interval);
   const startTimeRef = useRef<number>(Date.now());
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
     remainingTimeRef.current = interval;
     startTimeRef.current = Date.now();
   }, [currentIndex, interval]);
+
   useEffect(() => {
-    if (!autoplay || itemCount <= 1) {
-      return;
-    }
+    if (!autoplay || itemCount <= 1) return;
+
     if (pauseOnHover && isHovered) {
       if (startTimeRef.current) {
         const elapsed = Date.now() - startTimeRef.current;
@@ -264,11 +258,14 @@ export const Showcase = ({
       }
       return;
     }
+
     startTimeRef.current = Date.now();
     const currentRemaining = Math.max(50, remainingTimeRef.current);
+
     timerRef.current = setTimeout(() => {
       goNext();
     }, currentRemaining);
+
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
@@ -284,48 +281,31 @@ export const Showcase = ({
     currentIndex,
     goNext,
   ]);
-  /*
-   * =========================================================
-   * KEYBOARD NAVIGATION
-   * =========================================================
-   */
+
+  /* ── Keyboard Navigation ──────────────────────────────────────────────── */
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowRight") {
-        goNext();
-      }
-      if (event.key === "ArrowLeft") {
-        goPrevious();
-      }
+      if (event.key === "ArrowRight") goNext();
+      if (event.key === "ArrowLeft") goPrevious();
     };
     window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [goNext, goPrevious]);
-  /*
-   * =========================================================
-   * TOUCH / MOUSE SWIPE & DRAG
-   * =========================================================
-   */
+
+  /* ── Touch / Swipe ────────────────────────────────────────────────────── */
   const isDraggingRef = useRef(false);
+
   const handleTouchStart = (event: React.TouchEvent) => {
-    if (!swipe) {
-      return;
-    }
+    if (!swipe) return;
     const touch = event.touches[0];
     touchStartX.current = touch.clientX;
     touchStartY.current = touch.clientY;
     touchMoved.current = false;
   };
+
   const handleTouchMove = (event: React.TouchEvent) => {
-    if (
-      !swipe ||
-      touchStartX.current === null ||
-      touchStartY.current === null
-    ) {
+    if (!swipe || touchStartX.current === null || touchStartY.current === null)
       return;
-    }
     const touch = event.touches[0];
     const deltaX = touch.clientX - touchStartX.current;
     const deltaY = touch.clientY - touchStartY.current;
@@ -333,52 +313,43 @@ export const Showcase = ({
       touchMoved.current = true;
     }
   };
+
   const handleTouchEnd = (event: React.TouchEvent) => {
-    if (
-      !swipe ||
-      touchStartX.current === null ||
-      touchStartY.current === null
-    ) {
+    if (!swipe || touchStartX.current === null || touchStartY.current === null)
       return;
-    }
     const touch = event.changedTouches[0];
     const deltaX = touch.clientX - touchStartX.current;
     const deltaY = touch.clientY - touchStartY.current;
     touchStartX.current = null;
     touchStartY.current = null;
-    if (Math.abs(deltaX) < 30 || Math.abs(deltaX) < Math.abs(deltaY)) {
-      return;
-    }
-    if (deltaX < 0) {
-      goNext();
-    } else {
-      goPrevious();
-    }
+    if (Math.abs(deltaX) < 30 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+    if (deltaX < 0) goNext();
+    else goPrevious();
   };
+
   const handleMouseDown = (event: React.MouseEvent) => {
-    if (!swipe) {
-      return;
-    }
+    if (!swipe) return;
     touchStartX.current = event.clientX;
     touchStartY.current = event.clientY;
     touchMoved.current = false;
     isDraggingRef.current = true;
   };
+
   const handleMouseMove = (event: React.MouseEvent) => {
     if (
       !swipe ||
       !isDraggingRef.current ||
       touchStartX.current === null ||
       touchStartY.current === null
-    ) {
+    )
       return;
-    }
     const deltaX = event.clientX - touchStartX.current;
     const deltaY = event.clientY - touchStartY.current;
     if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) {
       touchMoved.current = true;
     }
   };
+
   const handleMouseUp = (event: React.MouseEvent) => {
     if (
       !swipe ||
@@ -395,40 +366,20 @@ export const Showcase = ({
     touchStartX.current = null;
     touchStartY.current = null;
     if (Math.abs(deltaX) >= 30 && Math.abs(deltaX) > Math.abs(deltaY)) {
-      if (deltaX < 0) {
-        goNext();
-      } else {
-        goPrevious();
-      }
+      if (deltaX < 0) goNext();
+      else goPrevious();
     }
   };
-  if (!currentItem) {
-    return null;
-  }
+
+  if (!currentItem) return null;
+
   const radiusValue = getRadius(radius);
-  /*
-   * =========================================================
-   * RESPONSIVE DIMENSIONS
-   * =========================================================
-   *
-   * Priority:
-   *
-   * 1. Explicit height
-   * 2. Explicit minHeight
-   * 3. Size defaults
-   *
-   * When explicit height is supplied, the default size
-   * minHeight is not allowed to override it.
-   *
-   * Likewise, when explicit height is supplied, the
-   * default aspectRatio is disabled because height is
-   * now the controlling dimension.
-   */
   const containerHeight = getResponsiveValue(height);
   const containerMinHeight = getResponsiveValue(
     minHeight ?? (height === undefined ? currentSize.minHeight : undefined),
   );
   const containerMaxHeight = getResponsiveValue(maxHeight);
+
   const responsiveAspectRatio =
     height === undefined
       ? aspectRatio !== undefined
@@ -443,11 +394,8 @@ export const Showcase = ({
             }
         : currentSize.aspectRatio
       : undefined;
-  /*
-   * =========================================================
-   * TRANSITIONS
-   * =========================================================
-   */
+
+  /* ── Transitions ──────────────────────────────────────────────────────── */
   const getTransition = (index: number) => {
     const isActive = index === currentIndex;
     if (transition === "fade") {
@@ -475,36 +423,30 @@ export const Showcase = ({
         "opacity 900ms ease, transform 1400ms cubic-bezier(0.22, 1, 0.36, 1)",
     };
   };
-  /*
-   * =========================================================
-   * VARIANT OVERLAY
-   * =========================================================
-   */
+
+  /* ── Overlays ─────────────────────────────────────────────────────────── */
   const getVariantOverlay = () => {
     switch (variant) {
       case "minimal":
         return {
           background:
-            "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.35) 100%)",
+            "linear-gradient(90deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.14) 44%, rgba(0,0,0,0.02) 72%)",
         };
       case "glass":
         return {
           background:
-            "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.55) 100%)",
+            "linear-gradient(90deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.20) 46%, rgba(0,0,0,0.03) 75%)",
         };
       case "editorial":
       default:
         return {
           background:
-            "linear-gradient(180deg, rgba(0,0,0,0.02) 15%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.7) 100%)",
+            "linear-gradient(90deg, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.34) 34%, rgba(0,0,0,0.10) 58%, rgba(0,0,0,0.02) 78%), linear-gradient(180deg, rgba(0,0,0,0.04) 55%, rgba(0,0,0,0.28) 100%)",
         };
     }
   };
-  /*
-   * =========================================================
-   * IMAGE
-   * =========================================================
-   */
+
+  /* ── Image ────────────────────────────────────────────────────────────── */
   const renderImage = (item: ShowcaseItem, active: boolean) => {
     if (ImageComponent) {
       return (
@@ -527,6 +469,7 @@ export const Showcase = ({
         />
       );
     }
+
     if (isMobile && item.media.mobileSrc) {
       return (
         <Box
@@ -544,6 +487,7 @@ export const Showcase = ({
         />
       );
     }
+
     return (
       <Box
         component="img"
@@ -560,20 +504,17 @@ export const Showcase = ({
       />
     );
   };
+
   return (
     <Box
       className={className}
       role="region"
       aria-label={ariaLabel}
       onMouseEnter={() => {
-        if (pauseOnHover) {
-          setIsHovered(true);
-        }
+        if (pauseOnHover) setIsHovered(true);
       }}
       onMouseLeave={(e) => {
-        if (pauseOnHover) {
-          setIsHovered(false);
-        }
+        if (pauseOnHover) setIsHovered(false);
         handleMouseUp(e);
       }}
       onTouchStart={handleTouchStart}
@@ -593,20 +534,9 @@ export const Showcase = ({
         "&:active": {
           cursor: swipe ? "grabbing" : "default",
         },
-        /*
-         * Explicit height wins.
-         */
         height: containerHeight,
-        /*
-         * If no explicit minHeight was supplied,
-         * use the selected size's responsive defaults.
-         */
         minHeight: containerMinHeight,
         maxHeight: containerMaxHeight,
-        /*
-         * If no explicit height is supplied,
-         * use the selected size's responsive aspect ratio.
-         */
         aspectRatio: responsiveAspectRatio,
         borderRadius: radiusValue,
         bgcolor: "background.default",
@@ -614,11 +544,10 @@ export const Showcase = ({
         ...containerSx,
       }}
     >
-      {/* =====================================================
-          SLIDES
-      ===================================================== */}
+      {/* ── Slides ─────────────────────────────────────────────────────────── */}
       {safeItems.map((item, index) => {
         const active = index === currentIndex;
+
         return (
           <Box
             key={item.id}
@@ -633,9 +562,7 @@ export const Showcase = ({
               ...getTransition(index),
             }}
           >
-            {/* =================================================
-                MEDIA
-            ================================================= */}
+            {/* Media */}
             <Box
               sx={{
                 position: "absolute",
@@ -646,7 +573,6 @@ export const Showcase = ({
               }}
             >
               {renderImage(item, active)}
-              {/* Overlay */}
               <Box
                 sx={{
                   position: "absolute",
@@ -656,9 +582,8 @@ export const Showcase = ({
                 }}
               />
             </Box>
-            {/* =================================================
-                FULL IMAGE / MEDIA LINK
-            ================================================= */}
+
+            {/* Full Image Link */}
             {active && item.href && (
               <MediaLink
                 href={item.href}
@@ -678,9 +603,8 @@ export const Showcase = ({
                 }}
               />
             )}
-            {/* =================================================
-                CONTENT
-            ================================================= */}
+
+            {/* Content */}
             <Box
               sx={{
                 position: "absolute",
@@ -703,16 +627,11 @@ export const Showcase = ({
                 <Box
                   sx={[
                     {
-                      maxWidth: {
-                        xs: "100%",
-                        sm: "85%",
-                        md: "70%",
-                        lg: "62%",
-                      },
+                      maxWidth: { xs: "92%", sm: "78%", md: "58%", lg: "50%" },
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "flex-start",
-                      gap: { xs: 1, md: 1.5 },
+                      gap: { xs: 0.9, md: 1.15 },
                     },
                     ...(Array.isArray(item.contentSx)
                       ? item.contentSx
@@ -740,6 +659,7 @@ export const Showcase = ({
                       {item.eyebrow}
                     </Typography>
                   )}
+
                   {/* Title */}
                   {item.title && (
                     <Typography
@@ -750,7 +670,7 @@ export const Showcase = ({
                           lineHeight: 1.02,
                           fontWeight: 550,
                           letterSpacing: "-0.025em",
-                          maxWidth: { xs: "100%", md: "850px" },
+                          maxWidth: { xs: "100%", md: "720px" },
                         },
                         ...(Array.isArray(item.titleSx)
                           ? item.titleSx
@@ -760,6 +680,7 @@ export const Showcase = ({
                       {item.title}
                     </Typography>
                   )}
+
                   {/* Description */}
                   {item.description && (
                     <Typography
@@ -767,7 +688,7 @@ export const Showcase = ({
                       sx={[
                         {
                           m: 0,
-                          maxWidth: { xs: "100%", md: "650px" },
+                          maxWidth: { xs: "100%", md: "560px" },
                           fontSize: currentSize.description,
                           fontWeight: 400,
                           lineHeight: 1.5,
@@ -782,6 +703,7 @@ export const Showcase = ({
                       {item.description}
                     </Typography>
                   )}
+
                   {/* CTA */}
                   {item.action && (item.action.href || item.action.onClick) && (
                     <Box
@@ -803,9 +725,7 @@ export const Showcase = ({
                             event: React.MouseEvent<HTMLAnchorElement>,
                           ) => {
                             event.preventDefault();
-                            if (touchMoved.current) {
-                              return;
-                            }
+                            if (touchMoved.current) return;
                             item.action?.onClick?.(event);
                             onNavigate?.(item, currentIndex, event);
                           }}
@@ -835,9 +755,7 @@ export const Showcase = ({
                           onClick={(
                             event: React.MouseEvent<HTMLButtonElement>,
                           ) => {
-                            if (touchMoved.current) {
-                              return;
-                            }
+                            if (touchMoved.current) return;
                             item.action?.onClick?.(event);
                             onNavigate?.(item, currentIndex, event as any);
                           }}
@@ -864,9 +782,8 @@ export const Showcase = ({
                 </Box>
               )}
             </Box>
-            {/* =================================================
-                SIDE LABEL
-            ================================================= */}
+
+            {/* Side Label */}
             {item.sideLabel && (
               <Box
                 sx={{
@@ -903,9 +820,8 @@ export const Showcase = ({
           </Box>
         );
       })}
-      {/* =====================================================
-          ARROWS
-      ===================================================== */}
+
+      {/* ── Arrows ─────────────────────────────────────────────────────────── */}
       {showArrows && itemCount > 1 && (
         <>
           <IconButton
@@ -921,11 +837,11 @@ export const Showcase = ({
               width: currentSize.arrowSize,
               height: currentSize.arrowSize,
               color: "#fff",
-              bgcolor: "rgba(0,0,0,0.28)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(255,255,255,0.2)",
+              bgcolor: "rgba(255,255,255,0.14)",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(255,255,255,0.28)",
               "&:hover": {
-                bgcolor: "rgba(0,0,0,0.45)",
+                bgcolor: "rgba(255,255,255,0.22)",
               },
               "&.Mui-disabled": {
                 opacity: 0.35,
@@ -934,6 +850,7 @@ export const Showcase = ({
           >
             <ArrowLeft size={isMobile ? 18 : 20} />
           </IconButton>
+
           <IconButton
             aria-label="Next slide"
             onClick={goNext}
@@ -947,11 +864,11 @@ export const Showcase = ({
               width: currentSize.arrowSize,
               height: currentSize.arrowSize,
               color: "#fff",
-              bgcolor: "rgba(0,0,0,0.28)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(255,255,255,0.2)",
+              bgcolor: "rgba(255,255,255,0.14)",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(255,255,255,0.28)",
               "&:hover": {
-                bgcolor: "rgba(0,0,0,0.45)",
+                bgcolor: "rgba(255,255,255,0.22)",
               },
               "&.Mui-disabled": {
                 opacity: 0.35,
@@ -962,16 +879,8 @@ export const Showcase = ({
           </IconButton>
         </>
       )}
-      {/* =====================================================
-          NAVIGATION
-          RESTORED:
-          - No glass container
-          - No visible rail
-          - Soft rounded hit areas
-          - Thin liquid-clay indicators
-          - Tall active indicator
-          - Subtle expansion on hover
-          ===================================================== */}
+
+      {/* ── Navigation (Liquid Dots) ───────────────────────────────────────── */}
       {navigation !== "none" && itemCount > 1 && (
         <Box
           sx={{
@@ -1002,6 +911,7 @@ export const Showcase = ({
         >
           {safeItems.map((item, index) => {
             const active = index === currentIndex;
+
             return (
               <Box
                 key={item.id}
@@ -1070,9 +980,8 @@ export const Showcase = ({
           })}
         </Box>
       )}
-      {/* =====================================================
-          PROGRESS
-      ===================================================== */}
+
+      {/* ── Progress Bar ───────────────────────────────────────────────────── */}
       {showProgress && itemCount > 1 && (
         <Box
           sx={{
@@ -1081,7 +990,7 @@ export const Showcase = ({
             right: 0,
             bottom: 0,
             zIndex: 6,
-            height: 3,
+            height: 2,
             borderBottomLeftRadius: radiusValue,
             borderBottomRightRadius: radiusValue,
             bgcolor: "rgba(255, 255, 255, 0.25)",
@@ -1115,4 +1024,5 @@ export const Showcase = ({
     </Box>
   );
 };
+
 export default Showcase;
