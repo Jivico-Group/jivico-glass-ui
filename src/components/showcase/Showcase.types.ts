@@ -99,7 +99,7 @@ export interface ShowcaseItem {
   eyebrow?: string;
   eyebrowSx?: SxProps<Theme>;
 
-  title: string;
+  title?: string;
   titleSx?: SxProps<Theme>;
 
   description?: string;

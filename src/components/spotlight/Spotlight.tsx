@@ -457,7 +457,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
       {item.href && (
         <MediaLink
           href={item.href}
-          label={item.linkLabel ?? `View ${item.title}`}
+          label={item.linkLabel ?? (item.title ? `View ${item.title}` : (item.media.alt || "View details"))}
           onClick={(event) => {
             event.preventDefault();
             onNavigate?.(item, event);
@@ -523,24 +523,26 @@ export const Spotlight: React.FC<SpotlightProps> = ({
             )}
 
             {/* Title */}
-            <Typography
-              component="h2"
-              sx={[
-                {
-                  fontSize: currentSize.title,
-                  lineHeight: 0.98,
-                  fontWeight: 700,
-                  letterSpacing: "-0.04em",
-                  maxWidth: {
-                    xs: "100%",
-                    md: "850px",
+            {item.title && (
+              <Typography
+                component="h2"
+                sx={[
+                  {
+                    fontSize: currentSize.title,
+                    lineHeight: 0.98,
+                    fontWeight: 700,
+                    letterSpacing: "-0.04em",
+                    maxWidth: {
+                      xs: "100%",
+                      md: "850px",
+                    },
                   },
-                },
-                ...(Array.isArray(item.titleSx) ? item.titleSx : [item.titleSx]),
-              ]}
-            >
-              {item.title}
-            </Typography>
+                  ...(Array.isArray(item.titleSx) ? item.titleSx : [item.titleSx]),
+                ]}
+              >
+                {item.title}
+              </Typography>
+            )}
 
             {/* Description */}
             {item.description && (

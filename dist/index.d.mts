@@ -1913,7 +1913,7 @@ interface ShowcaseItem {
     linkLabel?: string;
     eyebrow?: string;
     eyebrowSx?: SxProps<Theme>;
-    title: string;
+    title?: string;
     titleSx?: SxProps<Theme>;
     description?: string;
     descriptionSx?: SxProps<Theme>;
