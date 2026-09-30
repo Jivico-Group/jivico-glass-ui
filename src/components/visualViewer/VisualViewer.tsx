@@ -987,11 +987,15 @@ export const VisualViewer = ({
                 xs: 12,
                 md: 18,
               },
-              bottom: {
-                xs: 12,
-                md: 18,
-              },
-              zIndex: 6,
+              top:
+                resolvedThumbnailPosition === "bottom"
+                  ? { xs: 12, md: 16 }
+                  : { xs: 12, md: "auto" },
+              bottom:
+                resolvedThumbnailPosition === "bottom"
+                  ? "auto"
+                  : { xs: "auto", md: 18 },
+              zIndex: 10,
               display: "flex",
               alignItems: "center",
               gap: 1,
