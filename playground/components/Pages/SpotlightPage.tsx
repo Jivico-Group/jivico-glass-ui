@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Box,
   Typography,
   Stack,
-  Button,
   FormControl,
   FormLabel,
   RadioGroup,
@@ -13,7 +12,6 @@ import {
   Radio,
   Select,
   MenuItem,
-  TextField,
   Switch,
 } from "@mui/material";
 
@@ -22,15 +20,17 @@ import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { Spotlight } from "../../../src/components/spotlight/Spotlight.js";
 import type {
+  SpotlightItem,
   SpotlightVariant,
   SpotlightSize,
-  SpotlightImagePosition,
-  SpotlightImageProps,
+  SpotlightRadius,
+  SpotlightImageComponentProps,
 } from "../../../src/components/spotlight/Spotlight.types.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 /**
- * Mock image renderer component for demonstration
+ * Mock image renderer component for demonstration.
+ * In a Next.js application, pass `import Image from "next/image"`.
  */
 const MockImage = ({
   src,
@@ -40,7 +40,7 @@ const MockImage = ({
   priority,
   style,
   className,
-}: SpotlightImageProps) => (
+}: SpotlightImageComponentProps) => (
   <img
     src={src}
     alt={alt}
@@ -57,31 +57,74 @@ const MockImage = ({
   />
 );
 
+const sampleSpotlightItem: SpotlightItem = {
+  id: "spotlight-hero-1",
+  media: {
+    src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80",
+    alt: "Originals Collection 2026",
+  },
+  href: "#originals",
+  linkLabel: "Explore Originals",
+  eyebrow: "STUDIO EXCLUSIVE",
+  title: "Originals Collection 2026",
+  description:
+    "Limited-edition luxury glassmorphic pieces crafted with real-time physics and liquid depth.",
+  action: {
+    label: "Discover Originals",
+    href: "#originals",
+  },
+  sideLabel: "FALL / WINTER 2026",
+};
+
 export const SpotlightPage: React.FC = () => {
   const { resolvedMode } = useGlassMode();
   const isDark = resolvedMode === "dark";
 
   // Interactive Playground State
-  const [variant, setVariant] = useState<SpotlightVariant>("overlay");
-  const [size, setSize] = useState<SpotlightSize>("medium");
-  const [imagePosition, setImagePosition] =
-    useState<SpotlightImagePosition>("center");
-  const [radius, setRadius] = useState<number>(6);
+  const [variant, setVariant] = useState<SpotlightVariant>("editorial");
+  const [size, setSize] = useState<SpotlightSize>("large");
+  const [radius, setRadius] = useState<SpotlightRadius>("rounded");
   const [showEyebrow, setShowEyebrow] = useState(true);
   const [showDescription, setShowDescription] = useState(true);
   const [showAction, setShowAction] = useState(true);
+  const [showSideLabel, setShowSideLabel] = useState(true);
   const [enableHref, setEnableHref] = useState(true);
 
-  const mockNavigation = (href?: string) => {
-    if (href) {
-      console.log(`[Spotlight onNavigate] Navigating to: ${href}`);
+  const activeItem: SpotlightItem = useMemo(
+    () => ({
+      id: "interactive-spotlight",
+      media: {
+        src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80",
+        alt: "Originals Collection",
+      },
+      href: enableHref ? "#originals" : undefined,
+      linkLabel: enableHref ? "View Originals Collection" : undefined,
+      eyebrow: showEyebrow ? "STUDIO EXCLUSIVE" : undefined,
+      title: "Originals Collection 2026",
+      description: showDescription
+        ? "Limited-edition luxury glassmorphic items crafted with real-time physics and liquid depth."
+        : undefined,
+      action: showAction
+        ? {
+            label: "Explore Originals",
+            href: "#originals",
+          }
+        : undefined,
+      sideLabel: showSideLabel ? "LIMITED RELEASE" : undefined,
+    }),
+    [enableHref, showEyebrow, showDescription, showAction, showSideLabel]
+  );
+
+  const mockNavigation = (item: SpotlightItem) => {
+    if (item.href) {
+      console.log(`[Spotlight onNavigate] Navigating to: ${item.href}`);
     }
   };
 
   return (
     <ComponentPage
       title="Spotlight Component"
-      description="Feature heroes, editorial banners, and high-impact promo blocks with responsive layout modes, full-image semantic links, and Next.js integration."
+      description="Feature single heroes, editorial banners, and high-impact promo blocks with responsive sizing, frosted glass cards, and Next.js integration."
       category="Surfaces"
       badges={["Banner", "Hero", "Glass", "Editorial"]}
     >
@@ -92,25 +135,33 @@ export const SpotlightPage: React.FC = () => {
       <DemoBlock
         id="interactive-spotlight"
         title="Interactive Spotlight Playground"
-        description="Customize variant, size, image cropping position, typography layers, and navigation behaviors live."
+        description="Customize variant, size, corner radius, typography layers, and navigation behaviors live."
         code={`import { Spotlight } from 'jivico-glass-ui';
 
+const item = {
+  id: "originals-2026",
+  media: {
+    src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600",
+    alt: "Originals Collection",
+  },
+${showEyebrow ? '  eyebrow: "STUDIO EXCLUSIVE",\n' : ""}\
+  title: "Originals Collection 2026",
+${showDescription ? '  description: "Limited-edition luxury glassmorphic pieces crafted with real-time physics.",\n' : ""}\
+${showAction ? '  action: { label: "Explore Originals", href: "#originals" },\n' : ""}\
+${showSideLabel ? '  sideLabel: "LIMITED RELEASE",\n' : ""}\
+${enableHref ? '  href: "#originals",\n' : ""}\
+};
+
 <Spotlight
-  image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600"
+  item={item}
   variant="${variant}"
   size="${size}"
-  imagePosition="${imagePosition}"
-  radius={${radius}}
-${showEyebrow ? '  eyebrow="STUDIO EXCLUSIVE"\n' : ""}\
-  title="Originals Collection 2026"
-${showDescription ? '  description="Limited-edition luxury glassmorphic pieces crafted with real-time physics."\n' : ""}\
-${showAction ? '  action={{ label: "Explore Collection", href: "#originals" }}\n' : ""}\
-${enableHref ? '  href="#originals"\n  onNavigate={() => router.push("#originals")}\n' : ""}\
+  radius="${radius}"
+${enableHref ? '  onNavigate={(item) => router.push(item.href)}\n' : ""}\
 />`}
       >
         <Stack spacing={3} sx={{ width: "100%" }}>
           {/* Controls Panel */}
-
           <Box
             sx={{
               p: 3,
@@ -124,8 +175,7 @@ ${enableHref ? '  href="#originals"\n  onNavigate={() => router.push("#originals
             }}
           >
             <Stack spacing={3}>
-              {/* Row 1: Layout & Size */}
-
+              {/* Row 1: Variant & Size */}
               <Stack
                 direction={{ xs: "column", md: "row" }}
                 spacing={3}
@@ -144,7 +194,6 @@ ${enableHref ? '  href="#originals"\n  onNavigate={() => router.push("#originals
                   >
                     Variant
                   </FormLabel>
-
                   <RadioGroup
                     row
                     value={variant}
@@ -153,14 +202,14 @@ ${enableHref ? '  href="#originals"\n  onNavigate={() => router.push("#originals
                     }
                   >
                     <FormControlLabel
-                      value="overlay"
+                      value="editorial"
                       control={<Radio size="small" />}
-                      label="Overlay"
+                      label="Editorial"
                     />
                     <FormControlLabel
-                      value="split"
+                      value="glass"
                       control={<Radio size="small" />}
-                      label="Split"
+                      label="Glass"
                     />
                     <FormControlLabel
                       value="minimal"
@@ -183,7 +232,6 @@ ${enableHref ? '  href="#originals"\n  onNavigate={() => router.push("#originals
                   >
                     Size
                   </FormLabel>
-
                   <RadioGroup
                     row
                     value={size}
@@ -204,12 +252,16 @@ ${enableHref ? '  href="#originals"\n  onNavigate={() => router.push("#originals
                       control={<Radio size="small" />}
                       label="Large"
                     />
+                    <FormControlLabel
+                      value="hero"
+                      control={<Radio size="small" />}
+                      label="Hero"
+                    />
                   </RadioGroup>
                 </FormControl>
               </Stack>
 
-              {/* Row 2: Image Position & Radius */}
-
+              {/* Row 2: Radius & Toggles */}
               <Stack
                 direction={{ xs: "column", sm: "row" }}
                 spacing={3}
@@ -225,50 +277,22 @@ ${enableHref ? '  href="#originals"\n  onNavigate={() => router.push("#originals
                       mb: 0.5,
                     }}
                   >
-                    Image Crop Position
-                  </FormLabel>
-
-                  <Select
-                    value={imagePosition}
-                    onChange={(e) =>
-                      setImagePosition(e.target.value as SpotlightImagePosition)
-                    }
-                  >
-                    <MenuItem value="center">Center</MenuItem>
-                    <MenuItem value="top">Top</MenuItem>
-                    <MenuItem value="bottom">Bottom</MenuItem>
-                    <MenuItem value="left">Left</MenuItem>
-                    <MenuItem value="right">Right</MenuItem>
-                  </Select>
-                </FormControl>
-
-                <FormControl size="small" sx={{ minWidth: 160 }}>
-                  <FormLabel
-                    sx={{
-                      fontSize: "0.75rem",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.08em",
-                      mb: 0.5,
-                    }}
-                  >
                     Corner Radius
                   </FormLabel>
-
                   <Select
                     value={radius}
-                    onChange={(e) => setRadius(Number(e.target.value))}
+                    onChange={(e) =>
+                      setRadius(e.target.value as SpotlightRadius)
+                    }
                   >
-                    <MenuItem value={0}>Square (0px)</MenuItem>
-                    <MenuItem value={12}>Soft (12px)</MenuItem>
-                    <MenuItem value={24}>Rounded (24px)</MenuItem>
-                    <MenuItem value={40}>Pill (40px)</MenuItem>
+                    <MenuItem value="square">Square</MenuItem>
+                    <MenuItem value="rounded">Rounded</MenuItem>
+                    <MenuItem value="soft">Soft</MenuItem>
                   </Select>
                 </FormControl>
               </Stack>
 
               {/* Row 3: Content Toggles */}
-
               <Stack direction="row" spacing={3} sx={{ flexWrap: "wrap" }}>
                 <FormControlLabel
                   control={
@@ -319,6 +343,21 @@ ${enableHref ? '  href="#originals"\n  onNavigate={() => router.push("#originals
                   control={
                     <Switch
                       size="small"
+                      checked={showSideLabel}
+                      onChange={(e) => setShowSideLabel(e.target.checked)}
+                    />
+                  }
+                  label={
+                    <Typography variant="caption" sx={{ fontWeight: 600 }}>
+                      Side Label
+                    </Typography>
+                  }
+                />
+
+                <FormControlLabel
+                  control={
+                    <Switch
+                      size="small"
                       checked={enableHref}
                       onChange={(e) => setEnableHref(e.target.checked)}
                     />
@@ -334,127 +373,141 @@ ${enableHref ? '  href="#originals"\n  onNavigate={() => router.push("#originals
           </Box>
 
           {/* Render Active Spotlight */}
-
           <Box sx={{ width: "100%", overflow: "hidden" }}>
             <Spotlight
-              image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80"
-              alt="Originals Collection"
+              item={activeItem}
               variant={variant}
               size={size}
-              imagePosition={imagePosition}
               radius={radius}
-              eyebrow={showEyebrow ? "STUDIO EXCLUSIVE" : undefined}
-              title="Originals Collection 2026"
-              description={
-                showDescription
-                  ? "Limited-edition luxury glassmorphic items crafted with real-time physics and liquid depth."
-                  : undefined
-              }
-              action={
-                showAction
-                  ? {
-                      label: "Explore Originals",
-                      href: "#originals",
-                      onClick: () => console.log("CTA Clicked"),
-                    }
-                  : undefined
-              }
-              href={enableHref ? "#originals" : undefined}
-              linkLabel="View Originals Collection"
-              onNavigate={() => mockNavigation("#originals")}
+              ImageComponent={MockImage}
+              onNavigate={mockNavigation}
             />
           </Box>
         </Stack>
       </DemoBlock>
 
       {/* ============================================================
-          2. Overlay Variant
+          2. Editorial Variant
           ============================================================ */}
 
       <DemoBlock
-        id="spotlight-overlay"
-        title="1. Overlay Variant (variant='overlay')"
-        description="High-impact hero banners with full background media, dark gradient overlays, and legibility-optimized typography."
+        id="spotlight-editorial"
+        title="1. Editorial Variant (variant='editorial')"
+        description="Full-bleed visual hero banner with cinematic vignette gradients and modern editorial typography."
         code={`import { Spotlight } from 'jivico-glass-ui';
 
-<Spotlight
-  image="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1600"
-  alt="Freestyle Design Studio"
-  variant="overlay"
-  size="large"
-  eyebrow="DESIGN STUDIO"
-  title="Create Your Freestyle"
-  description="Upload custom artwork and print 1-of-1 heavyweight apparel with studio finish."
-  action={{
+const item = {
+  id: "freestyle-hero",
+  media: {
+    src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=1600",
+    alt: "Freestyle Design Studio",
+  },
+  eyebrow: "DESIGN STUDIO",
+  title: "Create Your Freestyle",
+  description: "Upload custom artwork and print 1-of-1 heavyweight apparel with studio finish.",
+  action: {
     label: "Start Customizer",
     href: "/customizer",
-  }}
-  href="/customizer"
-  radius={24}
+  },
+  href: "/customizer",
+  sideLabel: "STUDIO 2026",
+};
+
+<Spotlight
+  item={item}
+  variant="editorial"
+  size="large"
+  radius="rounded"
 />`}
       >
         <Box sx={{ width: "100%" }}>
           <Spotlight
-            image="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1600&q=80"
-            alt="Freestyle Design Studio"
-            variant="overlay"
-            size="large"
-            eyebrow="DESIGN STUDIO"
-            title="Create Your Freestyle"
-            description="Upload custom artwork and print 1-of-1 heavyweight apparel with studio finish."
-            action={{
-              label: "Start Customizer",
+            item={{
+              id: "freestyle-hero",
+              media: {
+                src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1600&q=80",
+                alt: "Freestyle Design Studio",
+              },
+              eyebrow: "DESIGN STUDIO",
+              title: "Create Your Freestyle",
+              description:
+                "Upload custom artwork and print 1-of-1 heavyweight apparel with studio finish.",
+              action: {
+                label: "Start Customizer",
+                href: "#customizer",
+              },
               href: "#customizer",
+              sideLabel: "STUDIO 2026",
             }}
-            href="#customizer"
-            radius={24}
-            onNavigate={() => mockNavigation("#customizer")}
+            variant="editorial"
+            size="large"
+            radius="rounded"
+            ImageComponent={MockImage}
+            onNavigate={mockNavigation}
           />
         </Box>
       </DemoBlock>
 
       {/* ============================================================
-          3. Split Variant
+          3. Glass Variant
           ============================================================ */}
 
       <DemoBlock
-        id="spotlight-split"
-        title="2. Split Grid Variant (variant='split')"
-        description="Side-by-side balanced layouts pairing rich media with clean editorial content and action triggers."
+        id="spotlight-glass"
+        title="2. Glassmorphic Card Variant (variant='glass')"
+        description="Features an elevated frosted glass overlay panel with real-time backdrop blur, ambient borders, and vibrant CTA triggers."
         code={`import { Spotlight } from 'jivico-glass-ui';
 
-<Spotlight
-  image="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600"
-  alt="Liquid Glass Architecture"
-  variant="split"
-  size="medium"
-  eyebrow="MATERIAL UI V9"
-  title="Liquid Glass System"
-  description="Real-time backdrop blur filters with ambient dynamic lighting for modern React interfaces."
-  action={{
+const item = {
+  id: "liquid-glass-hero",
+  media: {
+    src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600",
+    alt: "Liquid Glass Architecture",
+  },
+  eyebrow: "MATERIAL UI V9",
+  title: "Liquid Glass System",
+  description: "Real-time backdrop blur filters with ambient dynamic lighting for modern React interfaces.",
+  action: {
     label: "View Architecture",
-    href: "/docs/architecture",
-  }}
-  href="/docs/architecture"
-  radius={20}
+    href: "#architecture",
+    color: "glass",
+  },
+  href: "#architecture",
+  sideLabel: "V0.1.1 RELEASE",
+};
+
+<Spotlight
+  item={item}
+  variant="glass"
+  size="medium"
+  radius="soft"
 />`}
       >
         <Box sx={{ width: "100%" }}>
           <Spotlight
-            image="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
-            alt="Liquid Glass Architecture"
-            variant="split"
-            size="medium"
-            eyebrow="MATERIAL UI V9"
-            title="Liquid Glass System"
-            description="Real-time backdrop blur filters with ambient dynamic lighting for modern React interfaces."
-            action={{
-              label: "View Architecture",
+            item={{
+              id: "liquid-glass-hero",
+              media: {
+                src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+                alt: "Liquid Glass Architecture",
+              },
+              eyebrow: "MATERIAL UI V9",
+              title: "Liquid Glass System",
+              description:
+                "Real-time backdrop blur filters with ambient dynamic lighting for modern React interfaces.",
+              action: {
+                label: "View Architecture",
+                href: "#architecture",
+                color: "glass",
+              },
               href: "#architecture",
+              sideLabel: "V0.1.1 RELEASE",
             }}
-            href="#architecture"
-            radius={20}
-            onNavigate={() => mockNavigation("#architecture")}
+            variant="glass"
+            size="medium"
+            radius="soft"
+            ImageComponent={MockImage}
+            onNavigate={mockNavigation}
           />
         </Box>
       </DemoBlock>
@@ -465,42 +518,56 @@ ${enableHref ? '  href="#originals"\n  onNavigate={() => router.push("#originals
 
       <DemoBlock
         id="spotlight-minimal"
-        title="3. Minimal Stacked Variant (variant='minimal')"
-        description="Clean vertical flow featuring stacked media header and crisp content block beneath."
+        title="3. Minimal Variant (variant='minimal')"
+        description="Crisp and streamlined visual block with subtle typography and clean button treatments."
         code={`import { Spotlight } from 'jivico-glass-ui';
 
+const item = {
+  id: "hardware-hero",
+  media: {
+    src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200",
+    alt: "Microchip Hardware",
+  },
+  eyebrow: "HARDWARE ENGINE",
+  title: "Next-Gen Engine",
+  description: "Zero layout shift, 60 FPS GPU-accelerated transitions.",
+  action: {
+    label: "Benchmark Test",
+    href: "#benchmarks",
+  },
+  href: "#benchmarks",
+};
+
 <Spotlight
-  image="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200"
-  alt="Microchip Hardware"
+  item={item}
   variant="minimal"
   size="small"
-  eyebrow="HARDWARE ENGINE"
-  title="Next-Gen Engine"
-  description="Zero layout shift, 60 FPS GPU-accelerated transitions."
-  action={{
-    label: "Benchmark Test",
-    href: "/benchmarks",
-  }}
-  href="/benchmarks"
-  radius={16}
+  radius="rounded"
 />`}
       >
-        <Box sx={{ width: "100%", maxWidth: 640, mx: "auto" }}>
+        <Box sx={{ width: "100%" }}>
           <Spotlight
-            image="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
-            alt="Microchip Hardware"
-            variant="minimal"
-            size="small"
-            eyebrow="HARDWARE ENGINE"
-            title="Next-Gen Engine"
-            description="Zero layout shift, 60 FPS GPU-accelerated transitions."
-            action={{
-              label: "Benchmark Test",
+            item={{
+              id: "hardware-hero",
+              media: {
+                src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+                alt: "Microchip Hardware",
+              },
+              eyebrow: "HARDWARE ENGINE",
+              title: "Next-Gen Engine",
+              description:
+                "Zero layout shift, 60 FPS GPU-accelerated transitions.",
+              action: {
+                label: "Benchmark Test",
+                href: "#benchmarks",
+              },
               href: "#benchmarks",
             }}
-            href="#benchmarks"
-            radius={16}
-            onNavigate={() => mockNavigation("#benchmarks")}
+            variant="minimal"
+            size="small"
+            radius="rounded"
+            ImageComponent={MockImage}
+            onNavigate={mockNavigation}
           />
         </Box>
       </DemoBlock>
@@ -520,25 +587,19 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Spotlight } from "jivico-glass-ui";
 
-export function SpotlightHero({ data }) {
+export function SpotlightHero({ item }) {
   const router = useRouter();
 
   return (
     <Spotlight
-      image={data.image}
-      alt={data.title}
-      eyebrow={data.eyebrow}
-      title={data.title}
-      description={data.description}
-      action={{
-        label: data.actionLabel,
-        href: data.href,
-      }}
-      href={data.href}
-      onNavigate={() => {
-        router.push(data.href);
-      }}
+      item={item}
+      variant="editorial"
+      size="hero"
+      radius="rounded"
       ImageComponent={Image}
+      onNavigate={(item) => {
+        if (item.href) router.push(item.href);
+      }}
     />
   );
 }`}

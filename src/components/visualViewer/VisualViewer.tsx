@@ -882,7 +882,7 @@ export const VisualViewer = ({
                     },
                     top: "50%",
                     transform: "translateY(-50%)",
-                    zIndex: 5,
+                    zIndex: 8,
                     width: {
                       xs: 38,
                       md: 44,
@@ -891,15 +891,34 @@ export const VisualViewer = ({
                       xs: 38,
                       md: 44,
                     },
-                    color: theme.palette.text.primary,
-                    bgcolor: theme.palette.background.paper,
-                    boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                    color:
+                      theme.palette.mode === "dark"
+                        ? "#fff"
+                        : theme.palette.text.primary,
+                    bgcolor:
+                      theme.palette.mode === "dark"
+                        ? "rgba(255, 255, 255, 0.14)"
+                        : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
+                    border:
+                      theme.palette.mode === "dark"
+                        ? "1px solid rgba(255, 255, 255, 0.28)"
+                        : "1px solid rgba(255, 255, 255, 0.6)",
+                    boxShadow:
+                      theme.palette.mode === "dark"
+                        ? "0 4px 20px rgba(0, 0, 0, 0.25)"
+                        : "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    transition:
+                      "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
-                      bgcolor: theme.palette.background.paper,
+                      bgcolor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(255, 255, 255, 0.22)"
+                          : "rgba(255, 255, 255, 0.85)",
+                      transform: "translateY(-50%) scale(1.04)",
                     },
                     "&.Mui-disabled": {
-                      opacity: 0.3,
+                      opacity: 0.35,
                     },
                   }}
                 >
@@ -925,7 +944,7 @@ export const VisualViewer = ({
                     },
                     top: "50%",
                     transform: "translateY(-50%)",
-                    zIndex: 5,
+                    zIndex: 8,
                   }}
                 >
                   {renderNextButton({
@@ -949,7 +968,7 @@ export const VisualViewer = ({
                     },
                     top: "50%",
                     transform: "translateY(-50%)",
-                    zIndex: 5,
+                    zIndex: 8,
                     width: {
                       xs: 38,
                       md: 44,
@@ -958,15 +977,34 @@ export const VisualViewer = ({
                       xs: 38,
                       md: 44,
                     },
-                    color: theme.palette.text.primary,
-                    bgcolor: theme.palette.background.paper,
-                    boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                    color:
+                      theme.palette.mode === "dark"
+                        ? "#fff"
+                        : theme.palette.text.primary,
+                    bgcolor:
+                      theme.palette.mode === "dark"
+                        ? "rgba(255, 255, 255, 0.14)"
+                        : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
+                    border:
+                      theme.palette.mode === "dark"
+                        ? "1px solid rgba(255, 255, 255, 0.28)"
+                        : "1px solid rgba(255, 255, 255, 0.6)",
+                    boxShadow:
+                      theme.palette.mode === "dark"
+                        ? "0 4px 20px rgba(0, 0, 0, 0.25)"
+                        : "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    transition:
+                      "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
-                      bgcolor: theme.palette.background.paper,
+                      bgcolor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(255, 255, 255, 0.22)"
+                          : "rgba(255, 255, 255, 0.85)",
+                      transform: "translateY(-50%) scale(1.04)",
                     },
                     "&.Mui-disabled": {
-                      opacity: 0.3,
+                      opacity: 0.35,
                     },
                   }}
                 >
@@ -1015,11 +1053,31 @@ export const VisualViewer = ({
                   sx={{
                     width: 38,
                     height: 38,
-                    color: theme.palette.text.primary,
-                    bgcolor: theme.palette.background.paper,
-                    boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                    color:
+                      theme.palette.mode === "dark"
+                        ? "#fff"
+                        : theme.palette.text.primary,
+                    bgcolor:
+                      theme.palette.mode === "dark"
+                        ? "rgba(255, 255, 255, 0.14)"
+                        : "rgba(255, 255, 255, 0.65)",
+                    backdropFilter: "blur(12px)",
+                    border:
+                      theme.palette.mode === "dark"
+                        ? "1px solid rgba(255, 255, 255, 0.28)"
+                        : "1px solid rgba(255, 255, 255, 0.6)",
+                    boxShadow:
+                      theme.palette.mode === "dark"
+                        ? "0 4px 20px rgba(0, 0, 0, 0.25)"
+                        : "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    transition:
+                      "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
-                      bgcolor: theme.palette.background.paper,
+                      bgcolor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(255, 255, 255, 0.22)"
+                          : "rgba(255, 255, 255, 0.85)",
+                      transform: "scale(1.04)",
                     },
                   }}
                 >
@@ -1043,11 +1101,31 @@ export const VisualViewer = ({
                   sx={{
                     width: 38,
                     height: 38,
-                    color: theme.palette.text.primary,
-                    bgcolor: theme.palette.background.paper,
-                    boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                    color:
+                      theme.palette.mode === "dark"
+                        ? "#fff"
+                        : theme.palette.text.primary,
+                    bgcolor:
+                      theme.palette.mode === "dark"
+                        ? "rgba(255, 255, 255, 0.14)"
+                        : "rgba(255, 255, 255, 0.65)",
+                    backdropFilter: "blur(12px)",
+                    border:
+                      theme.palette.mode === "dark"
+                        ? "1px solid rgba(255, 255, 255, 0.28)"
+                        : "1px solid rgba(255, 255, 255, 0.6)",
+                    boxShadow:
+                      theme.palette.mode === "dark"
+                        ? "0 4px 20px rgba(0, 0, 0, 0.25)"
+                        : "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    transition:
+                      "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
-                      bgcolor: theme.palette.background.paper,
+                      bgcolor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(255, 255, 255, 0.22)"
+                          : "rgba(255, 255, 255, 0.85)",
+                      transform: "scale(1.04)",
                     },
                   }}
                 >
@@ -1317,10 +1395,12 @@ export const VisualViewer = ({
                   transform: "translateY(-50%)",
                   width: 48,
                   height: 48,
-                  bgcolor: "rgba(255,255,255,0.12)",
+                  bgcolor: "rgba(255,255,255,0.14)",
                   backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.28)",
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
                   color: "#fff",
-                  "&:hover": { bgcolor: "rgba(255,255,255,0.22)" },
+                  "&:hover": { bgcolor: "rgba(255,255,255,0.24)", transform: "translateY(-50%) scale(1.04)" },
                   "&.Mui-disabled": { opacity: 0.3 },
                 }}
               >
@@ -1341,10 +1421,12 @@ export const VisualViewer = ({
                   transform: "translateY(-50%)",
                   width: 48,
                   height: 48,
-                  bgcolor: "rgba(255,255,255,0.12)",
+                  bgcolor: "rgba(255,255,255,0.14)",
                   backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.28)",
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
                   color: "#fff",
-                  "&:hover": { bgcolor: "rgba(255,255,255,0.22)" },
+                  "&:hover": { bgcolor: "rgba(255,255,255,0.24)", transform: "translateY(-50%) scale(1.04)" },
                   "&.Mui-disabled": { opacity: 0.3 },
                 }}
               >
@@ -1368,10 +1450,12 @@ export const VisualViewer = ({
                   right: 16,
                   width: 42,
                   height: 42,
-                  bgcolor: "rgba(255,255,255,0.12)",
+                  bgcolor: "rgba(255,255,255,0.14)",
                   backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.28)",
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
                   color: "#fff",
-                  "&:hover": { bgcolor: "rgba(255,255,255,0.22)" },
+                  "&:hover": { bgcolor: "rgba(255,255,255,0.24)", transform: "scale(1.04)" },
                 }}
               >
                 {isZoomed ? <ZoomOut size={18} /> : <ZoomIn size={18} />}

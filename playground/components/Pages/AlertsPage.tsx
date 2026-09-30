@@ -1,31 +1,10 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Alert,
-  AlertTitle,
-  Button,
-  IconButton,
-  Collapse,
-} from "@mui/material";
-import {
-  Info,
-  CheckCircle2,
-  AlertTriangle,
-  AlertOctagon,
-  Sparkles,
-  X,
-  RefreshCw,
-  Bell,
-  ShieldAlert,
-} from "lucide-react";
+import { Box, Alert, AlertTitle, Button, Collapse } from "@mui/material";
+import { RefreshCw } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const AlertsPage: React.FC = () => {
-  const { mode } = useGlassMode();
-  const isDark = mode === "dark";
-
   const [showAlert, setShowAlert] = useState(true);
 
   return (

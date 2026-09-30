@@ -868,27 +868,32 @@ export function Rails<T>({
         }}
         sx={{
           width: 44,
-
           height: 44,
-
           borderRadius: "50%",
-
-          border: `1px solid ${theme.palette.divider}`,
-
-          backgroundColor: theme.palette.background.paper,
-
-          color: "text.primary",
-
+          color:
+            theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
+          bgcolor:
+            theme.palette.mode === "dark"
+              ? "rgba(255, 255, 255, 0.14)"
+              : "rgba(255, 255, 255, 0.65)",
           backdropFilter: "blur(12px)",
-
-          transition: "transform 180ms ease, background-color 180ms ease",
-
+          border:
+            theme.palette.mode === "dark"
+              ? "1px solid rgba(255, 255, 255, 0.28)"
+              : "1px solid rgba(255, 255, 255, 0.6)",
+          boxShadow:
+            theme.palette.mode === "dark"
+              ? "0 4px 20px rgba(0, 0, 0, 0.25)"
+              : "0 4px 20px rgba(0, 0, 0, 0.08)",
+          transition:
+            "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
           "&:hover": {
-            backgroundColor: theme.palette.action.hover,
-
+            bgcolor:
+              theme.palette.mode === "dark"
+                ? "rgba(255, 255, 255, 0.22)"
+                : "rgba(255, 255, 255, 0.85)",
             transform: "translateY(-1px)",
           },
-
           "&.Mui-disabled": {
             opacity: 0.35,
             pointerEvents: "auto",
