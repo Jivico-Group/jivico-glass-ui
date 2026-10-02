@@ -65,6 +65,7 @@ declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
     accent: true;
     glass: true;
+    "dark-glass": true;
     "glass-surface": true;
   }
 }
@@ -73,6 +74,7 @@ declare module "@mui/material/IconButton" {
   interface IconButtonPropsColorOverrides {
     accent: true;
     glass: true;
+    "dark-glass": true;
     "glass-surface": true;
   }
 }
@@ -81,6 +83,7 @@ declare module "@mui/material/ButtonGroup" {
   interface ButtonGroupPropsColorOverrides {
     accent: true;
     glass: true;
+    "dark-glass": true;
     "glass-surface": true;
   }
 }
