@@ -1172,21 +1172,25 @@ export function Rails<T>({
                   });
                 }}
                 sx={{
-                  width: active ? 22 : 6,
-
-                  height: 6,
-
-                  p: 0,
-
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minWidth: 32,
+                  minHeight: 32,
+                  p: "13px 4px",
                   border: 0,
-
                   borderRadius: 999,
-
                   cursor: "pointer",
-
-                  backgroundColor: active ? "text.primary" : "action.disabled",
-
-                  transition: "all 220ms ease",
+                  backgroundColor: "transparent",
+                  "&::before": {
+                    content: '""',
+                    display: "block",
+                    width: active ? 22 : 6,
+                    height: 6,
+                    borderRadius: 999,
+                    backgroundColor: active ? "text.primary" : "action.disabled",
+                    transition: "all 220ms ease",
+                  },
                 }}
               />
             );

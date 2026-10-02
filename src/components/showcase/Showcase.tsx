@@ -1011,21 +1011,24 @@ export const Showcase = ({
             key={currentIndex}
             sx={{
               height: "100%",
+              width: "100%",
               bgcolor: "#FFFFFF",
+              transformOrigin: "left center",
+              willChange: "transform",
               ...(autoplay
                 ? {
-                    width: "0%",
+                    transform: "scaleX(0)",
                     animation: `showcaseProgress ${interval}ms linear forwards`,
                     animationPlayState:
                       pauseOnHover && isHovered ? "paused" : "running",
                   }
                 : {
-                    width: `${((currentIndex + 1) / itemCount) * 100}%`,
-                    transition: "width 400ms ease",
+                    transform: `scaleX(${(currentIndex + 1) / itemCount})`,
+                    transition: "transform 400ms ease",
                   }),
               "@keyframes showcaseProgress": {
-                "0%": { width: "0%" },
-                "100%": { width: "100%" },
+                "0%": { transform: "scaleX(0)" },
+                "100%": { transform: "scaleX(1)" },
               },
             }}
           />
