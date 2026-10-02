@@ -1019,31 +1019,21 @@ export function Rails<T>({
                   position: "relative",
 
                   flex: responsiveItemFlex,
-
                   flexShrink: 0,
-
                   minWidth: 0,
-
                   boxSizing: "border-box",
-
                   scrollSnapAlign: snap ? "start" : "none",
-
                   scrollSnapStop: snap ? "normal" : "unset",
-
                   ...transitionConfig.item,
-
                   "&:hover": {
                     ...transitionConfig.hoverItem,
                   },
-
                   "&:hover img": {
                     ...transitionConfig.hoverImage,
                   },
-
                   "&:hover .Rail-image-overlay": {
                     ...transitionConfig.hoverOverlay,
                   },
-
                   ...itemSx,
                 }}
               >
@@ -1063,20 +1053,11 @@ export function Rails<T>({
           <Box
             sx={{
               position: "absolute",
-
               top: "50%",
-
               left: 12,
-
               zIndex: 10,
-
               transform: "translateY(-50%)",
-
-              display: {
-                xs: "none",
-
-                sm: "block",
-              },
+              display: { xs: "none", sm: "block" },
             }}
           >
             {renderNavigationButton("previous")}
@@ -1114,13 +1095,9 @@ export function Rails<T>({
         <Box
           sx={{
             display: "flex",
-
             justifyContent: "center",
-
             alignItems: "center",
-
             gap: 0.75,
-
             mt: 2,
           }}
         >
@@ -1131,21 +1108,16 @@ export function Rails<T>({
             ),
           }).map((_, index) => {
             const viewport = viewportRef.current;
-
             const firstItem =
               viewport?.querySelector<HTMLElement>("[data-rail-item]");
-
             const firstItemWidth = firstItem?.offsetWidth ?? 0;
-
             const pageWidth =
               firstItemWidth * currentColumns +
               gap * Math.max(0, currentColumns - 1);
-
             const activePage =
               pageWidth > 0
                 ? Math.round((viewport?.scrollLeft ?? 0) / pageWidth)
                 : 0;
-
             const active = activePage === index;
 
             return (
@@ -1156,18 +1128,12 @@ export function Rails<T>({
                 aria-label={`Go to page ${index + 1}`}
                 onClick={() => {
                   const viewport = viewportRef.current;
-
-                  if (!viewport || !firstItem) {
-                    return;
-                  }
-
-                  const pageWidth =
-                    firstItem.offsetWidth * currentColumns +
-                    gap * Math.max(0, currentColumns - 1);
-
+                  if (!viewport) return;
+                  const stepDistance = getStepDistance();
+                  const targetItems = Math.floor(currentColumns) || 1;
+                  const targetScroll = index * (stepDistance * targetItems);
                   viewport.scrollTo({
-                    left: pageWidth * index,
-
+                    left: targetScroll,
                     behavior: prefersReducedMotion ? "auto" : "smooth",
                   });
                 }}
