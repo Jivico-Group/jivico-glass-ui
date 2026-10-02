@@ -119,6 +119,7 @@ export function Rails<T>({
 
   const transitionConfig = React.useMemo(() => {
     const easing = "cubic-bezier(0.22, 1, 0.36, 1)";
+
     switch (transition) {
       case "fade":
         return {
@@ -129,6 +130,7 @@ export function Rails<T>({
           hoverImage: {},
           hoverOverlay: { opacity: 1 },
         };
+
       case "scale":
         return {
           item: {
@@ -169,6 +171,7 @@ export function Rails<T>({
 
   const updateScrollState = React.useCallback(() => {
     const viewport = viewportRef.current;
+
     if (!viewport) return;
 
     const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
@@ -178,6 +181,7 @@ export function Rails<T>({
     setCanScrollNext(scrollLeft < maxScroll - 1);
 
     const firstItem = viewport.querySelector<HTMLElement>("[data-rail-item]");
+
     if (!firstItem) {
       setActivePage(0);
       return;
@@ -185,12 +189,15 @@ export function Rails<T>({
 
     const parent = firstItem.parentElement;
     const computedStyle = window.getComputedStyle(parent ?? firstItem);
+
     const gapValue =
       parseFloat(computedStyle.columnGap) ||
       parseFloat(computedStyle.gap) ||
       gap;
+
     const itemWidth = firstItem.getBoundingClientRect().width;
     const columnsCount = Math.max(1, currentColumns);
+
     const pageWidth =
       itemWidth * columnsCount + gapValue * Math.max(0, columnsCount - 1);
 
@@ -205,21 +212,30 @@ export function Rails<T>({
     }
 
     const calculatedPage = Math.round(scrollLeft / pageWidth);
+
     setActivePage(Math.min(Math.max(calculatedPage, 0), pageCount - 1));
   }, [currentColumns, gap, pageCount]);
 
   React.useEffect(() => {
     updateScrollState();
+
     const viewport = viewportRef.current;
+
     if (!viewport) return;
 
     const resizeObserver = new ResizeObserver(updateScrollState);
+
     resizeObserver.observe(viewport);
 
     const content = viewport.firstElementChild;
-    if (content instanceof HTMLElement) resizeObserver.observe(content);
 
-    viewport.addEventListener("scroll", updateScrollState, { passive: true });
+    if (content instanceof HTMLElement) {
+      resizeObserver.observe(content);
+    }
+
+    viewport.addEventListener("scroll", updateScrollState, {
+      passive: true,
+    });
 
     return () => {
       resizeObserver.disconnect();
@@ -288,7 +304,6 @@ export function Rails<T>({
       scrollBy("previous");
       return;
     }
-
     if (loop) scrollToEnd();
   }, [canScrollPrevious, loop, scrollBy, scrollToEnd]);
 
@@ -307,26 +322,24 @@ export function Rails<T>({
       prefersReducedMotion ||
       (pauseOnHover && isHovered) ||
       items.length <= currentColumns
-    )
+    ) {
       return;
+    }
 
     const safeInterval = Math.max(1000, interval);
 
     const timer = window.setInterval(() => {
       const viewport = viewportRef.current;
       if (!viewport) return;
-
       const maxScroll = Math.max(
         0,
         viewport.scrollWidth - viewport.clientWidth,
       );
       const isAtEnd = viewport.scrollLeft >= maxScroll - 2;
-
       if (isAtEnd) {
         if (loop) scrollToStart();
         return;
       }
-
       scrollBy("next");
     }, safeInterval);
 
@@ -404,6 +417,7 @@ export function Rails<T>({
       const image = getImage(item, index);
       const title = getTitle?.(item, index);
       const href = getHref?.(item, index);
+
       const linkLabel =
         typeof title === "string" && title.trim().length > 0
           ? `View ${title}`
@@ -433,6 +447,7 @@ export function Rails<T>({
             alt: typeof title === "string" ? title : "",
             index,
           })}
+
           <Box
             className="Rail-image-overlay"
             aria-hidden
@@ -450,7 +465,13 @@ export function Rails<T>({
       );
 
       return (
-        <Box sx={{ position: "relative", width: "100%", minWidth: 0 }}>
+        <Box
+          sx={{
+            position: "relative",
+            width: "100%",
+            minWidth: 0,
+          }}
+        >
           {href && (
             <Box
               component="a"
@@ -496,6 +517,7 @@ export function Rails<T>({
               >
                 {title}
               </Typography>
+
               <ChevronRight size={18} strokeWidth={1.8} aria-hidden />
             </Box>
           )}
@@ -524,6 +546,7 @@ export function Rails<T>({
 
   const renderNavigationButton = (direction: "previous" | "next") => {
     const isPrevious = direction === "previous";
+
     const disabled = isPrevious
       ? !canScrollPrevious && !loop
       : !canScrollNext && !loop;
@@ -531,16 +554,28 @@ export function Rails<T>({
     const handleAction = (event?: React.MouseEvent) => {
       event?.preventDefault();
       event?.stopPropagation();
+
       if (disabled) return;
-      if (isPrevious) handlePrevious();
-      else handleNext();
+
+      if (isPrevious) {
+        handlePrevious();
+      } else {
+        handleNext();
+      }
     };
 
-    const context: RailNavigationContext = { onClick: handleAction, disabled };
+    const context: RailNavigationContext = {
+      onClick: handleAction,
+      disabled,
+    };
 
-    if (isPrevious && renderPreviousButton)
+    if (isPrevious && renderPreviousButton) {
       return renderPreviousButton(context);
-    if (!isPrevious && renderNextButton) return renderNextButton(context);
+    }
+
+    if (!isPrevious && renderNextButton) {
+      return renderNextButton(context);
+    }
 
     return (
       <IconButton
@@ -604,7 +639,13 @@ export function Rails<T>({
       onMouseLeave={() => {
         if (pauseOnHover) setIsHovered(false);
       }}
-      sx={{ position: "relative", cursor, width: "100%", minWidth: 0, ...sx }}
+      sx={{
+        position: "relative",
+        cursor,
+        width: "100%",
+        minWidth: 0,
+        ...sx,
+      }}
     >
       <Box
         ref={viewportRef}
@@ -618,7 +659,9 @@ export function Rails<T>({
           scrollSnapType: snap ? "x mandatory" : "none",
           scrollbarWidth: "none",
           touchAction: swipe ? "pan-x" : "auto",
-          "&::-webkit-scrollbar": { display: "none" },
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
         }}
       >
         <Box
@@ -634,6 +677,7 @@ export function Rails<T>({
         >
           {items.map((item, index) => {
             const key = getKey(item, index);
+
             const content =
               renderItem?.({ item, index }) ??
               defaultRenderItem({ item, index });
@@ -651,8 +695,12 @@ export function Rails<T>({
                   scrollSnapAlign: snap ? "start" : "none",
                   scrollSnapStop: snap ? "normal" : "unset",
                   ...transitionConfig.item,
-                  "&:hover": { ...transitionConfig.hoverItem },
-                  "&:hover img": { ...transitionConfig.hoverImage },
+                  "&:hover": {
+                    ...transitionConfig.hoverItem,
+                  },
+                  "&:hover img": {
+                    ...transitionConfig.hoverImage,
+                  },
                   "&:hover .Rail-image-overlay": {
                     ...transitionConfig.hoverOverlay,
                   },
@@ -675,11 +723,15 @@ export function Rails<T>({
               left: 12,
               zIndex: 10,
               transform: "translateY(-50%)",
-              display: { xs: "none", sm: "block" },
+              display: {
+                xs: "none",
+                sm: "block",
+              },
             }}
           >
             {renderNavigationButton("previous")}
           </Box>
+
           <Box
             sx={{
               position: "absolute",
@@ -687,7 +739,10 @@ export function Rails<T>({
               right: 12,
               zIndex: 10,
               transform: "translateY(-50%)",
-              display: { xs: "none", sm: "block" },
+              display: {
+                xs: "none",
+                sm: "block",
+              },
             }}
           >
             {renderNavigationButton("next")}
@@ -701,7 +756,7 @@ export function Rails<T>({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            gap: 0.75,
+            gap: 0.25,
             mt: 2,
           }}
         >
@@ -717,25 +772,32 @@ export function Rails<T>({
                 aria-current={active ? "true" : undefined}
                 onClick={() => {
                   const viewport = viewportRef.current;
+
                   if (!viewport) return;
 
                   const firstItem =
                     viewport.querySelector<HTMLElement>("[data-rail-item]");
+
                   if (!firstItem) return;
 
                   const parent = firstItem.parentElement;
                   const computedStyle = window.getComputedStyle(
                     parent ?? firstItem,
                   );
+
                   const gapValue =
                     parseFloat(computedStyle.columnGap) ||
                     parseFloat(computedStyle.gap) ||
                     gap;
+
                   const itemWidth = firstItem.getBoundingClientRect().width;
+
                   const columnsCount = Math.max(1, currentColumns);
+
                   const pageWidth =
                     itemWidth * columnsCount +
                     gapValue * Math.max(0, columnsCount - 1);
+
                   const maxScroll = Math.max(
                     0,
                     viewport.scrollWidth - viewport.clientWidth,
@@ -754,18 +816,35 @@ export function Rails<T>({
                   });
                 }}
                 sx={{
-                  width: active ? 22 : 6,
-                  height: 6,
+                  width: 24,
+                  height: 24,
+                  minWidth: 24,
+                  minHeight: 24,
                   p: 0,
+                  m: 0,
                   border: 0,
-                  borderRadius: 999,
+                  borderRadius: "50%",
+                  background: "transparent",
                   cursor: "pointer",
-                  backgroundColor: active ? "text.primary" : "action.disabled",
-                  transition: "width 220ms ease",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  position: "relative",
+                  "&::before": {
+                    content: '""',
+                    display: "block",
+                    width: active ? 22 : 6,
+                    height: 6,
+                    borderRadius: 999,
+                    backgroundColor: active
+                      ? "text.primary"
+                      : "action.disabled",
+                    transition: "width 220ms ease",
+                  },
                   "&:focus-visible": {
                     outline: "2px solid",
                     outlineColor: "primary.main",
-                    outlineOffset: 3,
+                    outlineOffset: 1,
                   },
                 }}
               />
