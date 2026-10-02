@@ -223,7 +223,7 @@ export const getButtonOverrides = (
             isGlass && {
               background: isDark
                 ? "rgba(255, 255, 255, 0.12)"
-                : "rgba(255, 255, 255, 0.72)",
+                : "rgba(255, 255, 255, 0.34)",
               color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
               backdropFilter: "blur(18px)",
               WebkitBackdropFilter: "blur(18px)",
