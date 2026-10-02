@@ -447,7 +447,9 @@ export const Showcase = ({
   };
 
   /* ── Image ────────────────────────────────────────────────────────────── */
-  const renderImage = (item: ShowcaseItem, active: boolean) => {
+  const renderImage = (item: ShowcaseItem, active: boolean, index: number) => {
+    const isPriority = Boolean(imagePriority && (active || index === 0));
+
     if (ImageComponent) {
       return (
         <ImageComponent
@@ -459,7 +461,9 @@ export const Showcase = ({
           alt={item.media.alt}
           fill
           sizes={imageSizes}
-          priority={imagePriority && active}
+          priority={isPriority}
+          loading={isPriority ? "eager" : "lazy"}
+          fetchPriority={isPriority ? "high" : "auto"}
           style={{
             width: "100%",
             height: "100%",
@@ -476,6 +480,8 @@ export const Showcase = ({
           component="img"
           src={item.media.mobileSrc}
           alt={item.media.alt}
+          loading={isPriority ? "eager" : "lazy"}
+          fetchPriority={isPriority ? "high" : "auto"}
           sx={{
             position: "absolute",
             inset: 0,
@@ -493,6 +499,8 @@ export const Showcase = ({
         component="img"
         src={item.media.src}
         alt={item.media.alt}
+        loading={isPriority ? "eager" : "lazy"}
+        fetchPriority={isPriority ? "high" : "auto"}
         sx={{
           position: "absolute",
           inset: 0,
@@ -572,7 +580,7 @@ export const Showcase = ({
                 height: "100%",
               }}
             >
-              {renderImage(item, active)}
+              {renderImage(item, active, index)}
               <Box
                 sx={{
                   position: "absolute",

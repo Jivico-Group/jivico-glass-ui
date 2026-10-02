@@ -46,6 +46,8 @@ export interface ShowcaseImageComponentProps {
   fill?: boolean;
   sizes?: string;
   priority?: boolean;
+  loading?: "eager" | "lazy";
+  fetchPriority?: "high" | "low" | "auto";
   style?: CSSProperties;
   className?: string;
 }

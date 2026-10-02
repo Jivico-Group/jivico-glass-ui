@@ -237,6 +237,8 @@ export const Spotlight: React.FC<SpotlightProps> = ({
   };
 
   const renderImage = (spotlightItem: SpotlightItem) => {
+    const isPriority = Boolean(imagePriority);
+
     if (ImageComponent) {
       return (
         <ImageComponent
@@ -248,14 +250,13 @@ export const Spotlight: React.FC<SpotlightProps> = ({
           alt={spotlightItem.media.alt}
           fill
           sizes={imageSizes}
-          priority={imagePriority}
+          priority={isPriority}
+          loading={isPriority ? "eager" : "lazy"}
+          fetchPriority={isPriority ? "high" : "auto"}
           style={{
             width: "100%",
-
             height: "100%",
-
             objectFit: "cover",
-
             display: "block",
           }}
         />
@@ -268,17 +269,14 @@ export const Spotlight: React.FC<SpotlightProps> = ({
           component="img"
           src={spotlightItem.media.mobileSrc}
           alt={spotlightItem.media.alt}
+          loading={isPriority ? "eager" : "lazy"}
+          fetchPriority={isPriority ? "high" : "auto"}
           sx={{
             position: "absolute",
-
             inset: 0,
-
             width: "100%",
-
             height: "100%",
-
             objectFit: "cover",
-
             display: "block",
           }}
         />
@@ -290,17 +288,14 @@ export const Spotlight: React.FC<SpotlightProps> = ({
         component="img"
         src={spotlightItem.media.src}
         alt={spotlightItem.media.alt}
+        loading={isPriority ? "eager" : "lazy"}
+        fetchPriority={isPriority ? "high" : "auto"}
         sx={{
           position: "absolute",
-
           inset: 0,
-
           width: "100%",
-
           height: "100%",
-
           objectFit: "cover",
-
           display: "block",
         }}
       />
