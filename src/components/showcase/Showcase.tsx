@@ -726,6 +726,7 @@ export const Showcase = ({
                           variant={item.action.variant ?? "contained"}
                           color={item.action.color ?? "primary"}
                           size={currentSize.buttonSize}
+                          tabIndex={active ? 0 : -1}
                           endIcon={<ArrowRight size={16} />}
                           target={item.action.target}
                           rel={item.action.rel}
@@ -759,6 +760,7 @@ export const Showcase = ({
                           variant={item.action.variant ?? "contained"}
                           color={item.action.color ?? "primary"}
                           size={currentSize.buttonSize}
+                          tabIndex={active ? 0 : -1}
                           endIcon={<ArrowRight size={16} />}
                           onClick={(
                             event: React.MouseEvent<HTMLButtonElement>,
@@ -933,8 +935,8 @@ export const Showcase = ({
                   border: 0,
                   padding: 0,
                   margin: 0,
-                  minWidth: navigation === "vertical" ? 28 : 8,
-                  minHeight: navigation === "vertical" ? 38 : 8,
+                  minWidth: 44,
+                  minHeight: 44,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
