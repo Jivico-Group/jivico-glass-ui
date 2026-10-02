@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-
 import {
   Box,
   IconButton,
@@ -9,117 +8,68 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
-
 import type {
   RailProps,
   RailRenderContext,
   RailNavigationContext,
 } from "./Rail.types.js";
 
-const DEFAULT_COLUMNS = {
-  xs: 2,
-  sm: 3,
-  md: 4,
-  lg: 5,
-  xl: 5,
-} as const;
-
+const DEFAULT_COLUMNS = { xs: 2, sm: 3, md: 4, lg: 5, xl: 5 } as const;
 const DEFAULT_GAP = 2;
-
 const DEFAULT_INTERVAL = 5000;
 
 const resolveResponsiveValue = <T,>(
   value: Record<string, T> | undefined,
   fallback: Record<string, T>,
   breakpoint: string,
-): T => {
-  return value?.[breakpoint] ?? fallback[breakpoint];
-};
+): T => value?.[breakpoint] ?? fallback[breakpoint];
 
 export function Rails<T>({
   items,
-
   getKey,
   getImage,
   getTitle,
   getHref,
-
   renderContent,
   renderImage,
   renderItem,
-
   ImageComponent,
-
   columns = DEFAULT_COLUMNS,
   itemWidth,
-
   gap = DEFAULT_GAP,
   justifyContent = "flex-start",
-
   navigation = "arrows",
   renderPreviousButton,
   renderNextButton,
-
   swipe = true,
-
   autoplay = false,
   interval = DEFAULT_INTERVAL,
   pauseOnHover = true,
-
   loop = false,
   step = 1,
   snap = true,
-
   transition = "scale",
-
   imageAspectRatio = "3 / 4",
   radius = 0,
-
   itemSx,
   sx,
-
   className,
   cursor,
   onNavigate,
   "aria-label": ariaLabel = "Content rail",
 }: RailProps<T>) {
   const theme = useTheme();
-
-  /*
-   * ---------------------------------------------------------
-   * Responsive breakpoint
-   * ---------------------------------------------------------
-   *
-   * These values are still used for JS behaviour such as:
-   * - autoplay
-   * - navigation
-   * - priority images
-   * - dot calculation
-   *
-   * Visual item sizing is handled by CSS below so that the
-   * first server-rendered frame already has the correct
-   * responsive width.
-   */
-
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
-
   const isSm = useMediaQuery(theme.breakpoints.between("sm", "md"));
-
   const isMd = useMediaQuery(theme.breakpoints.between("md", "lg"));
-
   const isLg = useMediaQuery(theme.breakpoints.between("lg", "xl"));
 
   const breakpoint = React.useMemo(() => {
     if (isXs) return "xs";
-
     if (isSm) return "sm";
-
     if (isMd) return "md";
-
     if (isLg) return "lg";
-
     return "xl";
   }, [isXs, isSm, isMd, isLg]);
 
@@ -128,43 +78,24 @@ export function Rails<T>({
     DEFAULT_COLUMNS,
     breakpoint,
   );
-
   const currentItemWidth = itemWidth?.[breakpoint];
+  const viewportRef = React.useRef<HTMLDivElement | null>(null);
 
-  /*
-   * ---------------------------------------------------------
-   * Stable responsive item sizing
-   * ---------------------------------------------------------
-   *
-   * IMPORTANT:
-   *
-   * Do NOT calculate the visual item width exclusively from
-   * useMediaQuery.
-   *
-   * useMediaQuery can resolve differently during SSR and
-   * hydration, causing:
-   *
-   *     tiny/wrong rail
-   *          ↓
-   *     hydration
-   *          ↓
-   *     correct rail
-   *
-   * Instead, CSS receives every breakpoint value up front.
-   * The browser chooses the correct one before hydration.
-   */
+  const [isHovered, setIsHovered] = React.useState(false);
+  const [canScrollPrevious, setCanScrollPrevious] = React.useState(false);
+  const [canScrollNext, setCanScrollNext] = React.useState(false);
+  const [activePage, setActivePage] = React.useState(0);
+
+  const prefersReducedMotion = useMediaQuery(
+    "(prefers-reduced-motion: reduce)",
+  );
 
   const getCssItemBasis = React.useCallback(
     (breakpointKey: keyof typeof DEFAULT_COLUMNS) => {
       const explicitWidth = itemWidth?.[breakpointKey];
-
-      if (explicitWidth) {
-        return explicitWidth;
-      }
-
+      if (explicitWidth) return explicitWidth;
       const columnCount =
         columns?.[breakpointKey] ?? DEFAULT_COLUMNS[breakpointKey];
-
       return `calc((100% - ${(columnCount - 1) * gap}px) / ${columnCount})`;
     },
     [columns, gap, itemWidth],
@@ -181,215 +112,131 @@ export function Rails<T>({
     [getCssItemBasis],
   );
 
-  /*
-   * ---------------------------------------------------------
-   * Viewport
-   * ---------------------------------------------------------
-   */
-
-  const viewportRef = React.useRef<HTMLDivElement | null>(null);
-
-  /*
-   * ---------------------------------------------------------
-   * Interaction state
-   * ---------------------------------------------------------
-   */
-
-  const [isHovered, setIsHovered] = React.useState(false);
-
-  const [canScrollPrevious, setCanScrollPrevious] = React.useState(false);
-
-  const [canScrollNext, setCanScrollNext] = React.useState(false);
-
-  /*
-   * ---------------------------------------------------------
-   * Reduced motion
-   * ---------------------------------------------------------
-   */
-
-  const prefersReducedMotion = useMediaQuery(
-    "(prefers-reduced-motion: reduce)",
+  const pageCount = React.useMemo(
+    () => Math.max(1, Math.ceil(items.length / Math.max(1, currentColumns))),
+    [items.length, currentColumns],
   );
-
-  /*
-   * ---------------------------------------------------------
-   * Transition configuration
-   * ---------------------------------------------------------
-   */
 
   const transitionConfig = React.useMemo(() => {
     const easing = "cubic-bezier(0.22, 1, 0.36, 1)";
-
     switch (transition) {
       case "fade":
         return {
-          item: {
-            transition: "box-shadow 300ms ease",
-          },
-
-          image: {
-            transition: `transform 500ms ${easing}`,
-          },
-
-          overlay: {
-            transition: "opacity 250ms ease",
-          },
-
+          item: { transition: "box-shadow 300ms ease" },
+          image: { transition: `transform 500ms ${easing}` },
+          overlay: { transition: "opacity 250ms ease" },
           hoverItem: {},
-
           hoverImage: {},
-
-          hoverOverlay: {
-            opacity: 1,
-          },
+          hoverOverlay: { opacity: 1 },
         };
-
       case "scale":
         return {
           item: {
             transition: `transform 500ms ${easing}, box-shadow 300ms ease`,
           },
-
-          image: {
-            transition: `transform 500ms ${easing}`,
-          },
-
-          overlay: {
-            transition: "opacity 250ms ease",
-          },
-
+          image: { transition: `transform 500ms ${easing}` },
+          overlay: { transition: "opacity 250ms ease" },
           hoverItem: {},
-
-          hoverImage: {
-            transform: "scale(1.025)",
-          },
-
-          hoverOverlay: {
-            opacity: 1,
-          },
+          hoverImage: { transform: "scale(1.025)" },
+          hoverOverlay: { opacity: 1 },
         };
-
       case "lift":
         return {
           item: {
             transition: `transform 500ms ${easing}, box-shadow 300ms ease`,
           },
-
-          image: {
-            transition: `transform 500ms ${easing}`,
-          },
-
-          overlay: {
-            transition: "opacity 250ms ease",
-          },
-
+          image: { transition: `transform 500ms ${easing}` },
+          overlay: { transition: "opacity 250ms ease" },
           hoverItem: {
             transform: "translateY(-4px)",
             boxShadow: theme.shadows[6],
           },
-
-          hoverImage: {
-            transform: "scale(1.035)",
-          },
-
-          hoverOverlay: {
-            opacity: 1,
-          },
+          hoverImage: { transform: "scale(1.035)" },
+          hoverOverlay: { opacity: 1 },
         };
-
       case "none":
       default:
         return {
           item: {},
-
           image: {},
-
           overlay: {},
-
           hoverItem: {},
-
           hoverImage: {},
-
           hoverOverlay: {},
         };
     }
   }, [theme.shadows, transition]);
 
-  /*
-   * ---------------------------------------------------------
-   * Scroll state
-   * ---------------------------------------------------------
-   */
-
   const updateScrollState = React.useCallback(() => {
     const viewport = viewportRef.current;
+    if (!viewport) return;
 
-    if (!viewport) {
+    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    const scrollLeft = viewport.scrollLeft;
+
+    setCanScrollPrevious(scrollLeft > 1);
+    setCanScrollNext(scrollLeft < maxScroll - 1);
+
+    const firstItem = viewport.querySelector<HTMLElement>("[data-rail-item]");
+    if (!firstItem) {
+      setActivePage(0);
       return;
     }
 
-    const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+    const parent = firstItem.parentElement;
+    const computedStyle = window.getComputedStyle(parent ?? firstItem);
+    const gapValue =
+      parseFloat(computedStyle.columnGap) ||
+      parseFloat(computedStyle.gap) ||
+      gap;
+    const itemWidth = firstItem.getBoundingClientRect().width;
+    const columnsCount = Math.max(1, currentColumns);
+    const pageWidth =
+      itemWidth * columnsCount + gapValue * Math.max(0, columnsCount - 1);
 
-    setCanScrollPrevious(viewport.scrollLeft > 1);
+    if (pageWidth <= 0) {
+      setActivePage(0);
+      return;
+    }
 
-    setCanScrollNext(viewport.scrollLeft < maxScroll - 1);
-  }, []);
+    if (maxScroll > 0 && scrollLeft >= maxScroll - 2) {
+      setActivePage(pageCount - 1);
+      return;
+    }
+
+    const calculatedPage = Math.round(scrollLeft / pageWidth);
+    setActivePage(Math.min(Math.max(calculatedPage, 0), pageCount - 1));
+  }, [currentColumns, gap, pageCount]);
 
   React.useEffect(() => {
     updateScrollState();
-
     const viewport = viewportRef.current;
-
-    if (!viewport) {
-      return;
-    }
+    if (!viewport) return;
 
     const resizeObserver = new ResizeObserver(updateScrollState);
-
     resizeObserver.observe(viewport);
 
     const content = viewport.firstElementChild;
+    if (content instanceof HTMLElement) resizeObserver.observe(content);
 
-    if (content instanceof HTMLElement) {
-      resizeObserver.observe(content);
-    }
-
-    viewport.addEventListener("scroll", updateScrollState, {
-      passive: true,
-    });
+    viewport.addEventListener("scroll", updateScrollState, { passive: true });
 
     return () => {
       resizeObserver.disconnect();
-
       viewport.removeEventListener("scroll", updateScrollState);
     };
   }, [updateScrollState, items.length, currentColumns, currentItemWidth, gap]);
 
-  /*
-   * ---------------------------------------------------------
-   * Scroll distance
-   * ---------------------------------------------------------
-   */
-
   const getStepDistance = React.useCallback(() => {
     const viewport = viewportRef.current;
-
-    if (!viewport) {
-      return 0;
-    }
+    if (!viewport) return 0;
 
     const firstItem = viewport.querySelector<HTMLElement>("[data-rail-item]");
-
-    if (!firstItem) {
-      return viewport.clientWidth;
-    }
+    if (!firstItem) return viewport.clientWidth;
 
     const itemRect = firstItem.getBoundingClientRect();
-
     const parent = firstItem.parentElement;
-
     const computedStyle = window.getComputedStyle(parent ?? firstItem);
-
     const gapValue =
       parseFloat(computedStyle.columnGap) ||
       parseFloat(computedStyle.gap) ||
@@ -398,22 +245,12 @@ export function Rails<T>({
     return itemRect.width + gapValue;
   }, [gap]);
 
-  /*
-   * ---------------------------------------------------------
-   * Scroll by items
-   * ---------------------------------------------------------
-   */
-
   const scrollBy = React.useCallback(
     (direction: "previous" | "next") => {
       const viewport = viewportRef.current;
-
-      if (!viewport) {
-        return;
-      }
+      if (!viewport) return;
 
       const distance = getStepDistance() * Math.max(1, step);
-
       const amount = direction === "next" ? distance : -distance;
 
       viewport.scrollBy({
@@ -424,18 +261,9 @@ export function Rails<T>({
     [getStepDistance, step, prefersReducedMotion],
   );
 
-  /*
-   * ---------------------------------------------------------
-   * Scroll to start
-   * ---------------------------------------------------------
-   */
-
   const scrollToStart = React.useCallback(() => {
     const viewport = viewportRef.current;
-
-    if (!viewport) {
-      return;
-    }
+    if (!viewport) return;
 
     viewport.scrollTo({
       left: 0,
@@ -443,105 +271,66 @@ export function Rails<T>({
     });
   }, [prefersReducedMotion]);
 
-  /*
-   * ---------------------------------------------------------
-   * Scroll to end
-   * ---------------------------------------------------------
-   */
-
   const scrollToEnd = React.useCallback(() => {
     const viewport = viewportRef.current;
+    if (!viewport) return;
 
-    if (!viewport) {
-      return;
-    }
+    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
 
     viewport.scrollTo({
-      left: viewport.scrollWidth,
+      left: maxScroll,
       behavior: prefersReducedMotion ? "auto" : "smooth",
     });
   }, [prefersReducedMotion]);
 
-  /*
-   * ---------------------------------------------------------
-   * Navigation handlers
-   * ---------------------------------------------------------
-   */
-
   const handlePrevious = React.useCallback(() => {
     if (canScrollPrevious) {
       scrollBy("previous");
-
       return;
     }
 
-    if (loop) {
-      scrollToEnd();
-    }
+    if (loop) scrollToEnd();
   }, [canScrollPrevious, loop, scrollBy, scrollToEnd]);
 
   const handleNext = React.useCallback(() => {
     if (canScrollNext) {
       scrollBy("next");
-
       return;
     }
 
-    if (loop) {
-      scrollToStart();
-    }
+    if (loop) scrollToStart();
   }, [canScrollNext, loop, scrollBy, scrollToStart]);
 
-  /*
-   * ---------------------------------------------------------
-   * Autoplay
-   * ---------------------------------------------------------
-   */
-
   React.useEffect(() => {
-    if (!autoplay) {
+    if (
+      !autoplay ||
+      prefersReducedMotion ||
+      (pauseOnHover && isHovered) ||
+      items.length <= currentColumns
+    )
       return;
-    }
-
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    if (pauseOnHover && isHovered) {
-      return;
-    }
-
-    if (items.length <= currentColumns) {
-      return;
-    }
 
     const safeInterval = Math.max(1000, interval);
 
     const timer = window.setInterval(() => {
       const viewport = viewportRef.current;
+      if (!viewport) return;
 
-      if (!viewport) {
-        return;
-      }
-
-      const maxScroll = viewport.scrollWidth - viewport.clientWidth;
-
+      const maxScroll = Math.max(
+        0,
+        viewport.scrollWidth - viewport.clientWidth,
+      );
       const isAtEnd = viewport.scrollLeft >= maxScroll - 2;
 
       if (isAtEnd) {
-        if (loop) {
-          scrollToStart();
-        }
-
+        if (loop) scrollToStart();
         return;
       }
 
       scrollBy("next");
     }, safeInterval);
 
-    return () => {
-      window.clearInterval(timer);
-    };
+    return () => window.clearInterval(timer);
   }, [
     autoplay,
     interval,
@@ -555,33 +344,11 @@ export function Rails<T>({
     scrollToStart,
   ]);
 
-  /*
-   * ---------------------------------------------------------
-   * Built-in image renderer
-   * ---------------------------------------------------------
-   */
-
   const renderDefaultImage = React.useCallback(
     ({ src, alt, index }: { src: string; alt: string; index: number }) => {
-      /*
-       * -----------------------------------------------------
-       * Advanced custom renderer
-       * -----------------------------------------------------
-       */
-
       if (renderImage) {
-        return renderImage({
-          item: items[index],
-          index,
-          src,
-        });
+        return renderImage({ item: items[index], index, src });
       }
-
-      /*
-       * -----------------------------------------------------
-       * Consumer supplied ImageComponent
-       * -----------------------------------------------------
-       */
 
       if (ImageComponent) {
         const CustomImage = ImageComponent;
@@ -604,12 +371,6 @@ export function Rails<T>({
         );
       }
 
-      /*
-       * -----------------------------------------------------
-       * Native fallback
-       * -----------------------------------------------------
-       */
-
       return (
         <Box
           component="img"
@@ -619,17 +380,11 @@ export function Rails<T>({
           draggable={false}
           sx={{
             display: "block",
-
             width: "100%",
-
             height: "100%",
-
             objectFit: "cover",
-
             objectPosition: "center",
-
             userSelect: "none",
-
             ...transitionConfig.image,
           }}
         />
@@ -644,20 +399,11 @@ export function Rails<T>({
     ],
   );
 
-  /*
-   * ---------------------------------------------------------
-   * Default item renderer
-   * ---------------------------------------------------------
-   */
-
   const defaultRenderItem = React.useCallback(
     ({ item, index }: RailRenderContext<T>) => {
       const image = getImage(item, index);
-
       const title = getTitle?.(item, index);
-
       const href = getHref?.(item, index);
-
       const linkLabel =
         typeof title === "string" && title.trim().length > 0
           ? `View ${title}`
@@ -668,7 +414,6 @@ export function Rails<T>({
       ) => {
         event.preventDefault();
         event.stopPropagation();
-
         onNavigate?.(item, index, event);
       };
 
@@ -676,15 +421,10 @@ export function Rails<T>({
         <Box
           sx={{
             position: "relative",
-
             width: "100%",
-
             aspectRatio: imageAspectRatio,
-
             overflow: "hidden",
-
             borderRadius: radius,
-
             backgroundColor: theme.palette.action.hover,
           }}
         >
@@ -693,22 +433,16 @@ export function Rails<T>({
             alt: typeof title === "string" ? title : "",
             index,
           })}
-
           <Box
             className="Rail-image-overlay"
             aria-hidden
             sx={{
               position: "absolute",
-
               inset: 0,
-
               pointerEvents: "none",
-
               background:
                 "linear-gradient(to top, rgba(0,0,0,0.22), transparent 45%)",
-
               opacity: 0,
-
               ...transitionConfig.overlay,
             }}
           />
@@ -716,15 +450,7 @@ export function Rails<T>({
       );
 
       return (
-        <Box
-          sx={{
-            position: "relative",
-
-            width: "100%",
-
-            minWidth: 0,
-          }}
-        >
+        <Box sx={{ position: "relative", width: "100%", minWidth: 0 }}>
           {href && (
             <Box
               component="a"
@@ -733,19 +459,12 @@ export function Rails<T>({
               onClick={handleItemNavigation}
               sx={{
                 position: "absolute",
-
                 inset: 0,
-
                 zIndex: 3,
-
                 display: "block",
-
                 width: "100%",
-
                 height: "100%",
-
                 textDecoration: "none",
-
                 cursor: "pointer",
               }}
             />
@@ -757,13 +476,9 @@ export function Rails<T>({
             <Box
               sx={{
                 display: "flex",
-
                 alignItems: "center",
-
                 justifyContent: "space-between",
-
                 gap: 1.5,
-
                 pt: 1.5,
               }}
             >
@@ -774,31 +489,20 @@ export function Rails<T>({
                   flex: 1,
                   fontWeight: 450,
                   color: "text.primary",
-
                   overflow: "hidden",
-
                   textOverflow: "ellipsis",
-
                   whiteSpace: "nowrap",
                 }}
               >
                 {title}
               </Typography>
-
               <ChevronRight size={18} strokeWidth={1.8} aria-hidden />
             </Box>
           )}
 
           {renderContent && (
-            <Box
-              sx={{
-                pt: title ? 0.5 : 1.5,
-              }}
-            >
-              {renderContent({
-                item,
-                index,
-              })}
+            <Box sx={{ pt: title ? 0.5 : 1.5 }}>
+              {renderContent({ item, index })}
             </Box>
           )}
         </Box>
@@ -818,15 +522,8 @@ export function Rails<T>({
     ],
   );
 
-  /*
-   * ---------------------------------------------------------
-   * Navigation button
-   * ---------------------------------------------------------
-   */
-
   const renderNavigationButton = (direction: "previous" | "next") => {
     const isPrevious = direction === "previous";
-
     const disabled = isPrevious
       ? !canScrollPrevious && !loop
       : !canScrollNext && !loop;
@@ -834,28 +531,16 @@ export function Rails<T>({
     const handleAction = (event?: React.MouseEvent) => {
       event?.preventDefault();
       event?.stopPropagation();
-      if (disabled) {
-        return;
-      }
-      if (isPrevious) {
-        handlePrevious();
-      } else {
-        handleNext();
-      }
+      if (disabled) return;
+      if (isPrevious) handlePrevious();
+      else handleNext();
     };
 
-    const context: RailNavigationContext = {
-      onClick: handleAction,
-      disabled,
-    };
+    const context: RailNavigationContext = { onClick: handleAction, disabled };
 
-    if (isPrevious && renderPreviousButton) {
+    if (isPrevious && renderPreviousButton)
       return renderPreviousButton(context);
-    }
-
-    if (!isPrevious && renderNextButton) {
-      return renderNextButton(context);
-    }
+    if (!isPrevious && renderNextButton) return renderNextButton(context);
 
     return (
       <IconButton
@@ -906,21 +591,7 @@ export function Rails<T>({
     );
   };
 
-  /*
-   * ---------------------------------------------------------
-   * Empty state
-   * ---------------------------------------------------------
-   */
-
-  if (!items.length) {
-    return null;
-  }
-
-  /*
-   * ---------------------------------------------------------
-   * Render
-   * ---------------------------------------------------------
-   */
+  if (!items.length) return null;
 
   return (
     <Box
@@ -928,88 +599,44 @@ export function Rails<T>({
       className={className}
       aria-label={ariaLabel}
       onMouseEnter={() => {
-        if (pauseOnHover) {
-          setIsHovered(true);
-        }
+        if (pauseOnHover) setIsHovered(true);
       }}
       onMouseLeave={() => {
-        if (pauseOnHover) {
-          setIsHovered(false);
-        }
+        if (pauseOnHover) setIsHovered(false);
       }}
-      sx={{
-        position: "relative",
-        cursor,
-        width: "100%",
-        minWidth: 0,
-        ...sx,
-      }}
+      sx={{ position: "relative", cursor, width: "100%", minWidth: 0, ...sx }}
     >
-      {/* ================================================== */}
-      {/* Viewport                                           */}
-      {/* ================================================== */}
-
       <Box
         ref={viewportRef}
         sx={{
           width: "100%",
-
           overflowX: "auto",
-
           overflowY: "hidden",
-
           WebkitOverflowScrolling: "touch",
-
           overscrollBehaviorX: "contain",
-
           scrollBehavior: prefersReducedMotion ? "auto" : "smooth",
-
           scrollSnapType: snap ? "x mandatory" : "none",
-
           scrollbarWidth: "none",
-
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
+          touchAction: swipe ? "pan-x" : "auto",
+          "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {/* ================================================ */}
-        {/* Track                                            */}
-        {/* ================================================ */}
-
         <Box
           sx={{
             display: "flex",
-
             flexWrap: "nowrap",
-
             gap,
-
             justifyContent,
-
             width: "100%",
-
             minWidth: "100%",
-
             pb: 0.5,
           }}
         >
           {items.map((item, index) => {
             const key = getKey(item, index);
-
-            /*
-             * renderItem completely replaces the default UI.
-             */
-
             const content =
-              renderItem?.({
-                item,
-                index,
-              }) ??
-              defaultRenderItem({
-                item,
-                index,
-              });
+              renderItem?.({ item, index }) ??
+              defaultRenderItem({ item, index });
 
             return (
               <Box
@@ -1017,7 +644,6 @@ export function Rails<T>({
                 data-rail-item
                 sx={{
                   position: "relative",
-
                   flex: responsiveItemFlex,
                   flexShrink: 0,
                   minWidth: 0,
@@ -1025,12 +651,8 @@ export function Rails<T>({
                   scrollSnapAlign: snap ? "start" : "none",
                   scrollSnapStop: snap ? "normal" : "unset",
                   ...transitionConfig.item,
-                  "&:hover": {
-                    ...transitionConfig.hoverItem,
-                  },
-                  "&:hover img": {
-                    ...transitionConfig.hoverImage,
-                  },
+                  "&:hover": { ...transitionConfig.hoverItem },
+                  "&:hover img": { ...transitionConfig.hoverImage },
                   "&:hover .Rail-image-overlay": {
                     ...transitionConfig.hoverOverlay,
                   },
@@ -1043,10 +665,6 @@ export function Rails<T>({
           })}
         </Box>
       </Box>
-
-      {/* ================================================== */}
-      {/* Arrow navigation                                   */}
-      {/* ================================================== */}
 
       {(navigation === "arrows" || navigation === "both") && (
         <>
@@ -1062,34 +680,20 @@ export function Rails<T>({
           >
             {renderNavigationButton("previous")}
           </Box>
-
           <Box
             sx={{
               position: "absolute",
-
               top: "50%",
-
               right: 12,
-
               zIndex: 10,
-
               transform: "translateY(-50%)",
-
-              display: {
-                xs: "none",
-
-                sm: "block",
-              },
+              display: { xs: "none", sm: "block" },
             }}
           >
             {renderNavigationButton("next")}
           </Box>
         </>
       )}
-
-      {/* ================================================== */}
-      {/* Dot navigation                                     */}
-      {/* ================================================== */}
 
       {(navigation === "dots" || navigation === "both") && (
         <Box
@@ -1101,23 +705,7 @@ export function Rails<T>({
             mt: 2,
           }}
         >
-          {Array.from({
-            length: Math.max(
-              1,
-              Math.ceil(items.length / Math.max(1, currentColumns)),
-            ),
-          }).map((_, index) => {
-            const viewport = viewportRef.current;
-            const firstItem =
-              viewport?.querySelector<HTMLElement>("[data-rail-item]");
-            const firstItemWidth = firstItem?.offsetWidth ?? 0;
-            const pageWidth =
-              firstItemWidth * currentColumns +
-              gap * Math.max(0, currentColumns - 1);
-            const activePage =
-              pageWidth > 0
-                ? Math.round((viewport?.scrollLeft ?? 0) / pageWidth)
-                : 0;
+          {Array.from({ length: pageCount }).map((_, index) => {
             const active = activePage === index;
 
             return (
@@ -1126,36 +714,58 @@ export function Rails<T>({
                 component="button"
                 type="button"
                 aria-label={`Go to page ${index + 1}`}
+                aria-current={active ? "true" : undefined}
                 onClick={() => {
                   const viewport = viewportRef.current;
                   if (!viewport) return;
-                  const stepDistance = getStepDistance();
-                  const targetItems = Math.floor(currentColumns) || 1;
-                  const targetScroll = index * (stepDistance * targetItems);
+
+                  const firstItem =
+                    viewport.querySelector<HTMLElement>("[data-rail-item]");
+                  if (!firstItem) return;
+
+                  const parent = firstItem.parentElement;
+                  const computedStyle = window.getComputedStyle(
+                    parent ?? firstItem,
+                  );
+                  const gapValue =
+                    parseFloat(computedStyle.columnGap) ||
+                    parseFloat(computedStyle.gap) ||
+                    gap;
+                  const itemWidth = firstItem.getBoundingClientRect().width;
+                  const columnsCount = Math.max(1, currentColumns);
+                  const pageWidth =
+                    itemWidth * columnsCount +
+                    gapValue * Math.max(0, columnsCount - 1);
+                  const maxScroll = Math.max(
+                    0,
+                    viewport.scrollWidth - viewport.clientWidth,
+                  );
+
+                  const target =
+                    index === pageCount - 1
+                      ? maxScroll
+                      : Math.min(pageWidth * index, maxScroll);
+
+                  setActivePage(index);
+
                   viewport.scrollTo({
-                    left: targetScroll,
+                    left: target,
                     behavior: prefersReducedMotion ? "auto" : "smooth",
                   });
                 }}
                 sx={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  minWidth: 32,
-                  minHeight: 32,
-                  p: "13px 4px",
+                  width: active ? 22 : 6,
+                  height: 6,
+                  p: 0,
                   border: 0,
                   borderRadius: 999,
                   cursor: "pointer",
-                  backgroundColor: "transparent",
-                  "&::before": {
-                    content: '""',
-                    display: "block",
-                    width: active ? 22 : 6,
-                    height: 6,
-                    borderRadius: 999,
-                    backgroundColor: active ? "text.primary" : "action.disabled",
-                    transition: "all 220ms ease",
+                  backgroundColor: active ? "text.primary" : "action.disabled",
+                  transition: "width 220ms ease",
+                  "&:focus-visible": {
+                    outline: "2px solid",
+                    outlineColor: "primary.main",
+                    outlineOffset: 3,
                   },
                 }}
               />
