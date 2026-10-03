@@ -799,10 +799,15 @@ export const Showcase = ({
                 sx={{
                   position: "absolute",
                   top: "50%",
-                  right: { xs: 12, md: 24 },
+                  right: { xs: 85, md: 105, lg: 120 },
                   zIndex: 4,
                   transform: "translateY(-50%) rotate(-90deg)",
-                  transformOrigin: "center",
+                  transformOrigin: "center center",
+                  width: 0,
+                  height: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   pointerEvents: "none",
                 }}
               >
