@@ -719,7 +719,7 @@ export const Showcase = ({
                   )}
 
                   {/* CTA */}
-                  {item.action && (item.action.href || item.action.onClick) && (
+                  {item.action && (item.action.label || item.action.href || item.action.onClick) && (
                     <Box
                       sx={{
                         pointerEvents: "auto",
