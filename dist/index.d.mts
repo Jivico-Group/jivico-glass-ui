@@ -1852,7 +1852,7 @@ type ResponsiveAspectRatio = {
 type ShowcaseTransition = "cinematic" | "fade" | "slide";
 type ShowcaseNavigation = "vertical" | "dots" | "none";
 type ShowcaseSize = "small" | "medium" | "large" | "hero";
-type ShowcaseVariant = "editorial" | "minimal" | "glass";
+type ShowcaseVariant = "editorial" | "minimal" | "glass" | "none";
 type ShowcaseRadius = "square" | "rounded" | "soft";
 type ShowcaseButtonColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error" | "info" | "glass";
 type ShowcaseDimension = number | string | {
@@ -1921,6 +1921,11 @@ interface ShowcaseItem {
     contentSx?: SxProps<Theme>;
     sideLabel?: string;
     sideLabelSx?: SxProps<Theme>;
+    /**
+     * Optional per-item overlay variant override.
+     * If omitted, falls back to the Showcase component's variant.
+     */
+    variant?: ShowcaseVariant;
 }
 interface ShowcaseProps {
     /**

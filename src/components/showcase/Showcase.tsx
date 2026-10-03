@@ -21,6 +21,7 @@ import type {
   ShowcaseItem,
   ShowcaseProps,
   ShowcaseSize,
+  ShowcaseVariant,
 } from "./Showcase.types";
 
 const DEFAULT_INTERVAL = 5000;
@@ -425,8 +426,13 @@ export const Showcase = ({
   };
 
   /* ── Overlays ─────────────────────────────────────────────────────────── */
-  const getVariantOverlay = () => {
-    switch (variant) {
+  const getVariantOverlay = (itemVariant?: ShowcaseVariant) => {
+    const effectiveVariant = itemVariant ?? variant;
+    switch (effectiveVariant) {
+      case "none":
+        return {
+          display: "none",
+        };
       case "minimal":
         return {
           background:
@@ -586,7 +592,7 @@ export const Showcase = ({
                   position: "absolute",
                   inset: 0,
                   zIndex: 1,
-                  ...getVariantOverlay(),
+                  ...getVariantOverlay(item.variant),
                 }}
               />
             </Box>

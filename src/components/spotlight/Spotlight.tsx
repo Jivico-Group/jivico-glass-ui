@@ -17,6 +17,7 @@ import type {
   SpotlightItem,
   SpotlightProps,
   SpotlightSize,
+  SpotlightVariant,
 } from "./Spotlight.types.js";
 
 const getResponsiveValue = (value: SpotlightDimension | undefined) => {
@@ -177,8 +178,14 @@ export const Spotlight: React.FC<SpotlightProps> = ({
         : currentSize.aspectRatio
       : undefined;
 
-  const getVariantOverlay = () => {
-    switch (variant) {
+  const getVariantOverlay = (itemVariant?: SpotlightVariant) => {
+    const effectiveVariant = itemVariant ?? variant;
+    switch (effectiveVariant) {
+      case "none":
+        return {
+          display: "none",
+        };
+
       case "minimal":
         return {
           background:
@@ -306,7 +313,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
             position: "absolute",
             inset: 0,
             zIndex: 1,
-            ...getVariantOverlay(),
+            ...getVariantOverlay(item.variant),
           }}
         />
       </Box>

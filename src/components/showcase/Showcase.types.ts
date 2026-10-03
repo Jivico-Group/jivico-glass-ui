@@ -7,7 +7,10 @@ import type {
 
 import type { ButtonProps } from "@mui/material/Button";
 import type { SxProps, Theme } from "@mui/material/styles";
-import type { AspectRatio, ResponsiveAspectRatio } from "../../types/aspectRatio.js";
+import type {
+  AspectRatio,
+  ResponsiveAspectRatio,
+} from "../../types/aspectRatio.js";
 
 export type ShowcaseTransition = "cinematic" | "fade" | "slide";
 
@@ -15,7 +18,7 @@ export type ShowcaseNavigation = "vertical" | "dots" | "none";
 
 export type ShowcaseSize = "small" | "medium" | "large" | "hero";
 
-export type ShowcaseVariant = "editorial" | "minimal" | "glass";
+export type ShowcaseVariant = "editorial" | "minimal" | "glass" | "none";
 
 export type ShowcaseRadius = "square" | "rounded" | "soft";
 
@@ -114,6 +117,12 @@ export interface ShowcaseItem {
 
   sideLabel?: string;
   sideLabelSx?: SxProps<Theme>;
+
+  /**
+   * Optional per-item overlay variant override.
+   * If omitted, falls back to the Showcase component's variant.
+   */
+  variant?: ShowcaseVariant;
 }
 
 export interface ShowcaseProps {
