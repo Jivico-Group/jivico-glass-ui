@@ -328,7 +328,7 @@ export const Highlight = ({
           component="h3"
           variant={sizeStyles.titleVariant}
           sx={{
-            fontWeight: 700,
+            fontWeight: 500,
             lineHeight: 1.05,
             letterSpacing: "-0.025em",
           }}
