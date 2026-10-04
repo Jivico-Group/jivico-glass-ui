@@ -15,6 +15,7 @@ import type {
   ShowcaseRadius,
   ShowcaseSize,
   ShowcaseVariant,
+  ShowcaseContentAlign,
 } from "../showcase/Showcase.types.js";
 
 // ─── Re-exported Spotlight Types (Exact 1:1 match with Showcase) ─────────────
@@ -29,6 +30,7 @@ export type SpotlightImageComponent = ShowcaseImageComponent;
 export type SpotlightMedia = ShowcaseMedia;
 export type SpotlightAction = ShowcaseAction;
 export type SpotlightItem = ShowcaseItem;
+export type SpotlightContentAlign = ShowcaseContentAlign;
 
 export interface SpotlightProps {
   /**

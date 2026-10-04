@@ -627,7 +627,12 @@ export const Showcase = ({
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-end",
-                alignItems: "flex-start",
+                alignItems:
+                  item.contentAlign === "center"
+                    ? "center"
+                    : item.contentAlign === "right"
+                      ? "flex-end"
+                      : "flex-start",
                 p: currentSize.contentPadding,
                 pointerEvents: "none",
                 color: "#fff",
@@ -644,7 +649,18 @@ export const Showcase = ({
                       maxWidth: { xs: "92%", sm: "78%", md: "58%", lg: "50%" },
                       display: "flex",
                       flexDirection: "column",
-                      alignItems: "flex-start",
+                      alignItems:
+                        item.contentAlign === "center"
+                          ? "center"
+                          : item.contentAlign === "right"
+                            ? "flex-end"
+                            : "flex-start",
+                      textAlign:
+                        item.contentAlign === "center"
+                          ? "center"
+                          : item.contentAlign === "right"
+                            ? "right"
+                            : "left",
                       gap: { xs: 0.9, md: 1.15 },
                     },
                     ...(Array.isArray(item.contentSx)
@@ -719,82 +735,85 @@ export const Showcase = ({
                   )}
 
                   {/* CTA */}
-                  {item.action && (item.action.label || item.action.href || item.action.onClick) && (
-                    <Box
-                      sx={{
-                        pointerEvents: "auto",
-                        mt: { xs: 0.5, md: 1 },
-                      }}
-                    >
-                      {item.action.href ? (
-                        <Button
-                          href={item.action.href}
-                          variant={item.action.variant ?? "contained"}
-                          color={item.action.color ?? "primary"}
-                          size={currentSize.buttonSize}
-                          tabIndex={active ? 0 : -1}
-                          endIcon={<ArrowRight size={16} />}
-                          target={item.action.target}
-                          rel={item.action.rel}
-                          onClick={(
-                            event: React.MouseEvent<HTMLAnchorElement>,
-                          ) => {
-                            event.preventDefault();
-                            if (touchMoved.current) return;
-                            item.action?.onClick?.(event);
-                            onNavigate?.(item, currentIndex, event);
-                          }}
-                          aria-label={item.action.ariaLabel}
-                          sx={{
-                            minHeight: currentSize.buttonHeight,
-                            px: currentSize.buttonPaddingX,
-                            borderRadius: 999,
-                            whiteSpace: "nowrap",
-                            fontWeight: 550,
-                            letterSpacing: "-0.01em",
-                            textTransform: "none",
-                            lineHeight: 1.2,
-                            "& .MuiButton-endIcon": {
-                              ml: 0.75,
-                            },
-                          }}
-                        >
-                          {item.action.label}
-                        </Button>
-                      ) : (
-                        <Button
-                          variant={item.action.variant ?? "contained"}
-                          color={item.action.color ?? "primary"}
-                          size={currentSize.buttonSize}
-                          tabIndex={active ? 0 : -1}
-                          endIcon={<ArrowRight size={16} />}
-                          onClick={(
-                            event: React.MouseEvent<HTMLButtonElement>,
-                          ) => {
-                            if (touchMoved.current) return;
-                            item.action?.onClick?.(event);
-                            onNavigate?.(item, currentIndex, event as any);
-                          }}
-                          aria-label={item.action.ariaLabel}
-                          sx={{
-                            minHeight: currentSize.buttonHeight,
-                            px: currentSize.buttonPaddingX,
-                            borderRadius: 999,
-                            whiteSpace: "nowrap",
-                            fontWeight: 550,
-                            letterSpacing: "-0.01em",
-                            textTransform: "none",
-                            lineHeight: 1.2,
-                            "& .MuiButton-endIcon": {
-                              ml: 0.75,
-                            },
-                          }}
-                        >
-                          {item.action.label}
-                        </Button>
-                      )}
-                    </Box>
-                  )}
+                  {item.action &&
+                    (item.action.label ||
+                      item.action.href ||
+                      item.action.onClick) && (
+                      <Box
+                        sx={{
+                          pointerEvents: "auto",
+                          mt: { xs: 0.5, md: 1 },
+                        }}
+                      >
+                        {item.action.href ? (
+                          <Button
+                            href={item.action.href}
+                            variant={item.action.variant ?? "contained"}
+                            color={item.action.color ?? "primary"}
+                            size={currentSize.buttonSize}
+                            tabIndex={active ? 0 : -1}
+                            endIcon={<ArrowRight size={16} />}
+                            target={item.action.target}
+                            rel={item.action.rel}
+                            onClick={(
+                              event: React.MouseEvent<HTMLAnchorElement>,
+                            ) => {
+                              event.preventDefault();
+                              if (touchMoved.current) return;
+                              item.action?.onClick?.(event);
+                              onNavigate?.(item, currentIndex, event);
+                            }}
+                            aria-label={item.action.ariaLabel}
+                            sx={{
+                              minHeight: currentSize.buttonHeight,
+                              px: currentSize.buttonPaddingX,
+                              borderRadius: 999,
+                              whiteSpace: "nowrap",
+                              fontWeight: 550,
+                              letterSpacing: "-0.01em",
+                              textTransform: "none",
+                              lineHeight: 1.2,
+                              "& .MuiButton-endIcon": {
+                                ml: 0.75,
+                              },
+                            }}
+                          >
+                            {item.action.label}
+                          </Button>
+                        ) : (
+                          <Button
+                            variant={item.action.variant ?? "contained"}
+                            color={item.action.color ?? "primary"}
+                            size={currentSize.buttonSize}
+                            tabIndex={active ? 0 : -1}
+                            endIcon={<ArrowRight size={16} />}
+                            onClick={(
+                              event: React.MouseEvent<HTMLButtonElement>,
+                            ) => {
+                              if (touchMoved.current) return;
+                              item.action?.onClick?.(event);
+                              onNavigate?.(item, currentIndex, event as any);
+                            }}
+                            aria-label={item.action.ariaLabel}
+                            sx={{
+                              minHeight: currentSize.buttonHeight,
+                              px: currentSize.buttonPaddingX,
+                              borderRadius: 999,
+                              whiteSpace: "nowrap",
+                              fontWeight: 550,
+                              letterSpacing: "-0.01em",
+                              textTransform: "none",
+                              lineHeight: 1.2,
+                              "& .MuiButton-endIcon": {
+                                ml: 0.75,
+                              },
+                            }}
+                          >
+                            {item.action.label}
+                          </Button>
+                        )}
+                      </Box>
+                    )}
                 </Box>
               )}
             </Box>

@@ -22,9 +22,7 @@ import type {
 
 const getResponsiveValue = (value: SpotlightDimension | undefined) => {
   if (value === undefined) return undefined;
-
   if (typeof value === "number" || typeof value === "string") return value;
-
   return {
     xs: value.xs,
     sm: value.sm,
@@ -178,26 +176,37 @@ export const Spotlight: React.FC<SpotlightProps> = ({
         : currentSize.aspectRatio
       : undefined;
 
+  const contentAlign = item.contentAlign ?? "left";
+  const contentAlignItems =
+    contentAlign === "center"
+      ? "center"
+      : contentAlign === "right"
+        ? "flex-end"
+        : "flex-start";
+  const contentTextAlign =
+    contentAlign === "center"
+      ? "center"
+      : contentAlign === "right"
+        ? "right"
+        : "left";
+  const contentJustifyContent =
+    contentAlign === "center" ? "center" : "flex-end";
+
   const getVariantOverlay = (itemVariant?: SpotlightVariant) => {
     const effectiveVariant = itemVariant ?? variant;
     switch (effectiveVariant) {
       case "none":
-        return {
-          display: "none",
-        };
-
+        return { display: "none" };
       case "minimal":
         return {
           background:
             "linear-gradient(90deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.14) 44%, rgba(0,0,0,0.02) 72%)",
         };
-
       case "glass":
         return {
           background:
             "linear-gradient(90deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.20) 46%, rgba(0,0,0,0.03) 75%)",
         };
-
       case "editorial":
       default:
         return {
@@ -345,8 +354,8 @@ export const Spotlight: React.FC<SpotlightProps> = ({
           zIndex: 3,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-end",
-          alignItems: "flex-start",
+          justifyContent: contentJustifyContent,
+          alignItems: contentAlignItems,
           p: currentSize.contentPadding,
           pointerEvents: "none",
           color: "#fff",
@@ -360,10 +369,16 @@ export const Spotlight: React.FC<SpotlightProps> = ({
           <Box
             sx={[
               {
-                maxWidth: { xs: "92%", sm: "78%", md: "58%", lg: "50%" },
+                maxWidth: {
+                  xs: "92%",
+                  sm: "78%",
+                  md: contentAlign === "center" ? "70%" : "58%",
+                  lg: contentAlign === "center" ? "60%" : "50%",
+                },
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "flex-start",
+                alignItems: contentAlignItems,
+                textAlign: contentTextAlign,
                 gap: { xs: 0.9, md: 1.15 },
               },
               ...(Array.isArray(item.contentSx)
@@ -442,75 +457,77 @@ export const Spotlight: React.FC<SpotlightProps> = ({
 
             {/* CTA Button */}
 
-            {item.action && (item.action.label || item.action.href || item.action.onClick) && (
-              <Box
-                sx={{
-                  pointerEvents: "auto",
-                  mt: { xs: 0.5, md: 1 },
-                }}
-              >
-                {item.action.href ? (
-                  <Button
-                    href={item.action.href}
-                    variant={item.action.variant ?? "contained"}
-                    color={item.action.color ?? "primary"}
-                    size={currentSize.buttonSize}
-                    endIcon={<ArrowRight size={16} />}
-                    target={item.action.target}
-                    rel={item.action.rel}
-                    onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-                      event.preventDefault();
-                      item.action?.onClick?.(event);
-                      onNavigate?.(item, event);
-                    }}
-                    aria-label={item.action.ariaLabel}
-                    sx={{
-                      minHeight: currentSize.buttonHeight,
-                      px: currentSize.buttonPaddingX,
-                      borderRadius: 999,
-                      whiteSpace: "nowrap",
-                      fontWeight: 550,
-                      letterSpacing: "-0.01em",
-                      textTransform: "none",
-                      lineHeight: 1.2,
-                      "& .MuiButton-endIcon": {
-                        ml: 0.75,
-                      },
-                    }}
-                  >
-                    {item.action.label}
-                  </Button>
-                ) : (
-                  <Button
-                    variant={item.action.variant ?? "contained"}
-                    color={item.action.color ?? "primary"}
-                    size={currentSize.buttonSize}
-                    endIcon={<ArrowRight size={16} />}
-                    onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                      item.action?.onClick?.(event);
-
-                      onNavigate?.(item, event as any);
-                    }}
-                    aria-label={item.action.ariaLabel}
-                    sx={{
-                      minHeight: currentSize.buttonHeight,
-                      px: currentSize.buttonPaddingX,
-                      borderRadius: 999,
-                      whiteSpace: "nowrap",
-                      fontWeight: 550,
-                      letterSpacing: "-0.01em",
-                      textTransform: "none",
-                      lineHeight: 1.2,
-                      "& .MuiButton-endIcon": {
-                        ml: 0.75,
-                      },
-                    }}
-                  >
-                    {item.action.label}
-                  </Button>
-                )}
-              </Box>
-            )}
+            {item.action &&
+              (item.action.label ||
+                item.action.href ||
+                item.action.onClick) && (
+                <Box
+                  sx={{
+                    pointerEvents: "auto",
+                    mt: { xs: 0.5, md: 1 },
+                  }}
+                >
+                  {item.action.href ? (
+                    <Button
+                      href={item.action.href}
+                      variant={item.action.variant ?? "contained"}
+                      color={item.action.color ?? "primary"}
+                      size={currentSize.buttonSize}
+                      endIcon={<ArrowRight size={16} />}
+                      target={item.action.target}
+                      rel={item.action.rel}
+                      onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+                        event.preventDefault();
+                        item.action?.onClick?.(event);
+                        onNavigate?.(item, event);
+                      }}
+                      aria-label={item.action.ariaLabel}
+                      sx={{
+                        minHeight: currentSize.buttonHeight,
+                        px: currentSize.buttonPaddingX,
+                        borderRadius: 999,
+                        whiteSpace: "nowrap",
+                        fontWeight: 550,
+                        letterSpacing: "-0.01em",
+                        textTransform: "none",
+                        lineHeight: 1.2,
+                        "& .MuiButton-endIcon": {
+                          ml: 0.75,
+                        },
+                      }}
+                    >
+                      {item.action.label}
+                    </Button>
+                  ) : (
+                    <Button
+                      variant={item.action.variant ?? "contained"}
+                      color={item.action.color ?? "primary"}
+                      size={currentSize.buttonSize}
+                      endIcon={<ArrowRight size={16} />}
+                      onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                        item.action?.onClick?.(event);
+                        onNavigate?.(item, event as any);
+                      }}
+                      aria-label={item.action.ariaLabel}
+                      sx={{
+                        minHeight: currentSize.buttonHeight,
+                        px: currentSize.buttonPaddingX,
+                        borderRadius: 999,
+                        whiteSpace: "nowrap",
+                        fontWeight: 550,
+                        letterSpacing: "-0.01em",
+                        textTransform: "none",
+                        lineHeight: 1.2,
+                        "& .MuiButton-endIcon": {
+                          ml: 0.75,
+                        },
+                      }}
+                    >
+                      {item.action.label}
+                    </Button>
+                  )}
+                </Box>
+              )}
           </Box>
         )}
       </Box>
@@ -541,7 +558,6 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                 opacity: 0.75,
                 whiteSpace: "nowrap",
               },
-
               ...(Array.isArray(item.sideLabelSx)
                 ? item.sideLabelSx
                 : [item.sideLabelSx]),

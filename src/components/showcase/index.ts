@@ -9,5 +9,6 @@ export type {
   ShowcaseSize,
   ShowcaseTransition,
   ShowcaseNavigation,
+  ShowcaseContentAlign,
 } from "./Showcase.types.js";
 export type { AspectRatio, ResponsiveAspectRatio } from "../../types/aspectRatio.js";

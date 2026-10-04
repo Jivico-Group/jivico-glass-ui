@@ -12,6 +12,7 @@ export type {
   SpotlightImageComponent,
   SpotlightMedia,
   SpotlightItem,
+  SpotlightContentAlign,
 } from "./Spotlight.types.js";
 export type { AspectRatio } from "../../types/aspectRatio.js";
 

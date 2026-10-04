@@ -22,6 +22,8 @@ export type ShowcaseVariant = "editorial" | "minimal" | "glass" | "none";
 
 export type ShowcaseRadius = "square" | "rounded" | "soft";
 
+export type ShowcaseContentAlign = "left" | "center" | "right";
+
 export type ShowcaseButtonColor =
   | "primary"
   | "secondary"
@@ -67,10 +69,8 @@ export interface ShowcaseAction {
   label: string;
   href?: string;
   onClick?: (event?: React.MouseEvent) => void;
-
   color?: ShowcaseButtonColor;
   variant?: ButtonProps["variant"];
-
   target?: React.HTMLAttributeAnchorTarget;
   rel?: string;
   ariaLabel?: string;
@@ -114,6 +114,13 @@ export interface ShowcaseItem {
 
   content?: ReactNode;
   contentSx?: SxProps<Theme>;
+
+  /**
+   * Horizontal alignment of the default content block.
+   *
+   * Defaults to "left".
+   */
+  contentAlign?: ShowcaseContentAlign;
 
   sideLabel?: string;
   sideLabelSx?: SxProps<Theme>;
