@@ -1446,6 +1446,31 @@ declare const COLORS: {
  *    Google Sans on platforms where SF Pro is unavailable
  */
 declare const typography: {
+    fontFamily: string;
+    /**
+     * ------------------------------------------------------------------------
+     * Subtitle 1
+     * ------------------------------------------------------------------------
+     */
+    subtitle1: {
+        fontSize: string;
+        fontWeight: number;
+        letterSpacing: string;
+        lineHeight: number;
+        fontFamily: string;
+    };
+    /**
+     * ------------------------------------------------------------------------
+     * Subtitle 2
+     * ------------------------------------------------------------------------
+     */
+    subtitle2: {
+        fontSize: string;
+        fontWeight: number;
+        letterSpacing: string;
+        lineHeight: number;
+        fontFamily: string;
+    };
     /**
      * ------------------------------------------------------------------------
      * H1
@@ -1608,6 +1633,20 @@ declare const typography: {
      * - BESTSELLER
      * - LIMITED
      */
+    /**
+     * ------------------------------------------------------------------------
+     * CAPTION
+     * ------------------------------------------------------------------------
+     *
+     * Small auxiliary, copyright, and timestamp text.
+     */
+    caption: {
+        fontSize: string;
+        fontWeight: number;
+        letterSpacing: string;
+        lineHeight: number;
+        fontFamily: string;
+    };
     overline: {
         fontSize: string;
         fontWeight: number;

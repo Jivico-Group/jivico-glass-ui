@@ -51,6 +51,33 @@ const LABEL_FONT = GOOGLE_SANS_FLEX;
 /* -------------------------------------------------------------------------- */
 
 export const typography = {
+  fontFamily: GOOGLE_SANS_FLEX,
+
+  /**
+   * ------------------------------------------------------------------------
+   * Subtitle 1
+   * ------------------------------------------------------------------------
+   */
+  subtitle1: {
+    fontSize: "1rem",
+    fontWeight: 450,
+    letterSpacing: "-0.006em",
+    lineHeight: 1.4,
+    fontFamily: TEXT_FONT,
+  },
+
+  /**
+   * ------------------------------------------------------------------------
+   * Subtitle 2
+   * ------------------------------------------------------------------------
+   */
+  subtitle2: {
+    fontSize: "0.875rem",
+    fontWeight: 500,
+    letterSpacing: "-0.004em",
+    lineHeight: 1.4,
+    fontFamily: TEXT_FONT,
+  },
   /**
    * ------------------------------------------------------------------------
    * H1
@@ -222,6 +249,21 @@ export const typography = {
    * - BESTSELLER
    * - LIMITED
    */
+  /**
+   * ------------------------------------------------------------------------
+   * CAPTION
+   * ------------------------------------------------------------------------
+   *
+   * Small auxiliary, copyright, and timestamp text.
+   */
+  caption: {
+    fontSize: "0.75rem",
+    fontWeight: 400,
+    letterSpacing: "0.01em",
+    lineHeight: 1.4,
+    fontFamily: TEXT_FONT,
+  },
+
   overline: {
     fontSize: "0.7rem",
     fontWeight: 450,
