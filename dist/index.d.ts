@@ -1894,6 +1894,7 @@ type ShowcaseSize = "small" | "medium" | "large" | "hero";
 type ShowcaseVariant = "editorial" | "minimal" | "glass" | "none";
 type ShowcaseRadius = "square" | "rounded" | "soft";
 type ShowcaseContentAlign = "left" | "center" | "right";
+type ShowcaseButtonSize = "small" | "medium" | "large";
 type ShowcaseButtonColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error" | "info" | "glass";
 type ShowcaseDimension = number | string | {
     xs?: number | string;
@@ -1925,6 +1926,9 @@ interface ShowcaseAction {
     onClick?: (event?: React.MouseEvent) => void;
     color?: ShowcaseButtonColor;
     variant?: ButtonProps["variant"];
+    size?: ShowcaseButtonSize;
+    showArrow?: boolean;
+    sx?: SxProps<Theme>;
     target?: React.HTMLAttributeAnchorTarget;
     rel?: string;
     ariaLabel?: string;

@@ -51,7 +51,6 @@ type SizeConfig = {
   description: { xs: string; md: string };
   eyebrow: string;
   buttonSize: "small" | "medium" | "large";
-  buttonHeight: number;
   buttonPaddingX: number;
   contentPadding: { xs: number; md: number; lg: number };
 };
@@ -64,7 +63,6 @@ const sizeConfig: Record<SpotlightSize, SizeConfig> = {
     description: { xs: "0.8rem", md: "0.86rem" },
     eyebrow: "0.6rem",
     buttonSize: "small",
-    buttonHeight: 34,
     buttonPaddingX: 1.8,
     contentPadding: { xs: 2.25, md: 3.25, lg: 4 },
   },
@@ -75,7 +73,6 @@ const sizeConfig: Record<SpotlightSize, SizeConfig> = {
     description: { xs: "0.84rem", md: "0.9rem" },
     eyebrow: "0.62rem",
     buttonSize: "small",
-    buttonHeight: 36,
     buttonPaddingX: 2,
     contentPadding: { xs: 2.5, md: 4, lg: 4.75 },
   },
@@ -86,7 +83,6 @@ const sizeConfig: Record<SpotlightSize, SizeConfig> = {
     description: { xs: "0.88rem", md: "0.94rem" },
     eyebrow: "0.64rem",
     buttonSize: "medium",
-    buttonHeight: 40,
     buttonPaddingX: 2.25,
     contentPadding: { xs: 3, md: 4.5, lg: 5.5 },
   },
@@ -97,7 +93,6 @@ const sizeConfig: Record<SpotlightSize, SizeConfig> = {
     description: { xs: "0.9rem", md: "0.98rem" },
     eyebrow: "0.65rem",
     buttonSize: "medium",
-    buttonHeight: 40,
     buttonPaddingX: 2.35,
     contentPadding: { xs: 3.25, md: 5, lg: 6.25 },
   },
@@ -472,8 +467,12 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                       href={item.action.href}
                       variant={item.action.variant ?? "contained"}
                       color={item.action.color ?? "primary"}
-                      size={currentSize.buttonSize}
-                      endIcon={<ArrowRight size={16} />}
+                      size={item.action.size ?? currentSize.buttonSize}
+                      endIcon={
+                        item.action.showArrow !== false ? (
+                          <ArrowRight size={16} />
+                        ) : undefined
+                      }
                       target={item.action.target}
                       rel={item.action.rel}
                       onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -482,19 +481,23 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                         onNavigate?.(item, event);
                       }}
                       aria-label={item.action.ariaLabel}
-                      sx={{
-                        minHeight: currentSize.buttonHeight,
-                        px: currentSize.buttonPaddingX,
-                        borderRadius: 999,
-                        whiteSpace: "nowrap",
-                        fontWeight: 550,
-                        letterSpacing: "-0.01em",
-                        textTransform: "none",
-                        lineHeight: 1.2,
-                        "& .MuiButton-endIcon": {
-                          ml: 0.75,
+                      sx={[
+                        {
+                          px: currentSize.buttonPaddingX,
+                          borderRadius: 999,
+                          whiteSpace: "nowrap",
+                          fontWeight: 550,
+                          letterSpacing: "-0.01em",
+                          textTransform: "none",
+                          lineHeight: 1.2,
+                          "& .MuiButton-endIcon": {
+                            ml: 0.75,
+                          },
                         },
-                      }}
+                        ...(Array.isArray(item.action.sx)
+                          ? item.action.sx
+                          : [item.action.sx]),
+                      ]}
                     >
                       {item.action.label}
                     </Button>
@@ -502,26 +505,34 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                     <Button
                       variant={item.action.variant ?? "contained"}
                       color={item.action.color ?? "primary"}
-                      size={currentSize.buttonSize}
-                      endIcon={<ArrowRight size={16} />}
+                      size={item.action.size ?? currentSize.buttonSize}
+                      endIcon={
+                        item.action.showArrow !== false ? (
+                          <ArrowRight size={16} />
+                        ) : undefined
+                      }
                       onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
                         item.action?.onClick?.(event);
                         onNavigate?.(item, event as any);
                       }}
                       aria-label={item.action.ariaLabel}
-                      sx={{
-                        minHeight: currentSize.buttonHeight,
-                        px: currentSize.buttonPaddingX,
-                        borderRadius: 999,
-                        whiteSpace: "nowrap",
-                        fontWeight: 550,
-                        letterSpacing: "-0.01em",
-                        textTransform: "none",
-                        lineHeight: 1.2,
-                        "& .MuiButton-endIcon": {
-                          ml: 0.75,
+                      sx={[
+                        {
+                          px: currentSize.buttonPaddingX,
+                          borderRadius: 999,
+                          whiteSpace: "nowrap",
+                          fontWeight: 550,
+                          letterSpacing: "-0.01em",
+                          textTransform: "none",
+                          lineHeight: 1.2,
+                          "& .MuiButton-endIcon": {
+                            ml: 0.75,
+                          },
                         },
-                      }}
+                        ...(Array.isArray(item.action.sx)
+                          ? item.action.sx
+                          : [item.action.sx]),
+                      ]}
                     >
                       {item.action.label}
                     </Button>

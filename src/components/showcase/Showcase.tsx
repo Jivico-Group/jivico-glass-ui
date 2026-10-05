@@ -57,7 +57,6 @@ type SizeConfig = {
   description: { xs: string; md: string };
   eyebrow: string;
   buttonSize: "small" | "medium" | "large";
-  buttonHeight: number;
   buttonPaddingX: number;
   contentPadding: { xs: number; md: number; lg: number };
   arrowSize: number;
@@ -72,7 +71,6 @@ const sizeConfig: Record<ShowcaseSize, SizeConfig> = {
     description: { xs: "0.875rem", md: "0.95rem" },
     eyebrow: "0.65rem",
     buttonSize: "small",
-    buttonHeight: 38,
     buttonPaddingX: 2,
     contentPadding: { xs: 2.5, md: 4, lg: 5 },
     arrowSize: 36,
@@ -85,7 +83,6 @@ const sizeConfig: Record<ShowcaseSize, SizeConfig> = {
     description: { xs: "0.9rem", md: "1rem" },
     eyebrow: "0.68rem",
     buttonSize: "medium",
-    buttonHeight: 42,
     buttonPaddingX: 2.5,
     contentPadding: { xs: 3, md: 5, lg: 6 },
     arrowSize: 40,
@@ -98,7 +95,6 @@ const sizeConfig: Record<ShowcaseSize, SizeConfig> = {
     description: { xs: "0.95rem", md: "1.05rem" },
     eyebrow: "0.7rem",
     buttonSize: "medium",
-    buttonHeight: 44,
     buttonPaddingX: 3,
     contentPadding: { xs: 3.5, md: 6, lg: 8 },
     arrowSize: 44,
@@ -112,7 +108,6 @@ const sizeConfig: Record<ShowcaseSize, SizeConfig> = {
     description: { xs: "1rem", md: "1.1rem" },
     eyebrow: "0.72rem",
     buttonSize: "large",
-    buttonHeight: 48,
     buttonPaddingX: 3.25,
     contentPadding: { xs: 4, md: 8, lg: 10 },
     arrowSize: 48,
@@ -847,9 +842,13 @@ export const Showcase = ({
                             href={item.action.href}
                             variant={item.action.variant ?? "contained"}
                             color={item.action.color ?? "primary"}
-                            size={currentSize.buttonSize}
+                            size={item.action.size ?? currentSize.buttonSize}
                             tabIndex={active ? 0 : -1}
-                            endIcon={<ArrowRight size={16} />}
+                            endIcon={
+                              item.action.showArrow !== false ? (
+                                <ArrowRight size={16} />
+                              ) : undefined
+                            }
                             target={item.action.target}
                             rel={item.action.rel}
                             onClick={(
@@ -866,20 +865,24 @@ export const Showcase = ({
                               onNavigate?.(item, currentIndex, event);
                             }}
                             aria-label={item.action.ariaLabel}
-                            sx={{
-                              minHeight: currentSize.buttonHeight,
-                              px: currentSize.buttonPaddingX,
-                              borderRadius: 999,
-                              whiteSpace: "nowrap",
-                              fontWeight: 550,
-                              letterSpacing: "-0.01em",
-                              textTransform: "none",
-                              lineHeight: 1.2,
+                            sx={[
+                              {
+                                px: currentSize.buttonPaddingX,
+                                borderRadius: 999,
+                                whiteSpace: "nowrap",
+                                fontWeight: 550,
+                                letterSpacing: "-0.01em",
+                                textTransform: "none",
+                                lineHeight: 1.2,
 
-                              "& .MuiButton-endIcon": {
-                                ml: 0.75,
+                                "& .MuiButton-endIcon": {
+                                  ml: 0.75,
+                                },
                               },
-                            }}
+                              ...(Array.isArray(item.action.sx)
+                                ? item.action.sx
+                                : [item.action.sx]),
+                            ]}
                           >
                             {item.action.label}
                           </Button>
@@ -887,9 +890,13 @@ export const Showcase = ({
                           <Button
                             variant={item.action.variant ?? "contained"}
                             color={item.action.color ?? "primary"}
-                            size={currentSize.buttonSize}
+                            size={item.action.size ?? currentSize.buttonSize}
                             tabIndex={active ? 0 : -1}
-                            endIcon={<ArrowRight size={16} />}
+                            endIcon={
+                              item.action.showArrow !== false ? (
+                                <ArrowRight size={16} />
+                              ) : undefined
+                            }
                             onClick={(
                               event: React.MouseEvent<HTMLButtonElement>,
                             ) => {
@@ -902,20 +909,24 @@ export const Showcase = ({
                               onNavigate?.(item, currentIndex, event as any);
                             }}
                             aria-label={item.action.ariaLabel}
-                            sx={{
-                              minHeight: currentSize.buttonHeight,
-                              px: currentSize.buttonPaddingX,
-                              borderRadius: 999,
-                              whiteSpace: "nowrap",
-                              fontWeight: 550,
-                              letterSpacing: "-0.01em",
-                              textTransform: "none",
-                              lineHeight: 1.2,
+                            sx={[
+                              {
+                                px: currentSize.buttonPaddingX,
+                                borderRadius: 999,
+                                whiteSpace: "nowrap",
+                                fontWeight: 550,
+                                letterSpacing: "-0.01em",
+                                textTransform: "none",
+                                lineHeight: 1.2,
 
-                              "& .MuiButton-endIcon": {
-                                ml: 0.75,
+                                "& .MuiButton-endIcon": {
+                                  ml: 0.75,
+                                },
                               },
-                            }}
+                              ...(Array.isArray(item.action.sx)
+                                ? item.action.sx
+                                : [item.action.sx]),
+                            ]}
                           >
                             {item.action.label}
                           </Button>
