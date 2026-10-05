@@ -21,10 +21,9 @@ export const AccordionPage: React.FC = () => {
 
   const [expandedPanel, setExpandedPanel] = useState<string | false>("panel1");
 
-  const handleChangePanel =
-    (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpandedPanel(isExpanded ? panel : false);
-    };
+  const handleChangePanel = (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
+    setExpandedPanel(isExpanded ? panel : false);
+  };
 
   return (
     <ComponentPage
@@ -61,7 +60,8 @@ export const AccordionPage: React.FC = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                Update your personal info, profile avatar, display name, and verified billing address for studio invoices.
+                Update your personal info, profile avatar, display name, and verified billing address for studio
+                invoices.
               </Typography>
               <Button size="small" variant="contained" color="primary">
                 Edit Profile
@@ -80,7 +80,8 @@ export const AccordionPage: React.FC = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="body2" color="text.secondary">
-                Two-factor authentication (2FA) is currently enabled via authenticator app. Last password reset was 30 days ago.
+                Two-factor authentication (2FA) is currently enabled via authenticator app. Last password reset was 30
+                days ago.
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -96,7 +97,10 @@ export const AccordionPage: React.FC = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                <FormControlLabel control={<Switch defaultChecked size="small" />} label="Email invoice notifications" />
+                <FormControlLabel
+                  control={<Switch defaultChecked size="small" />}
+                  label="Email invoice notifications"
+                />
                 <FormControlLabel control={<Switch defaultChecked size="small" />} label="Real-time order updates" />
               </Box>
             </AccordionDetails>
@@ -123,7 +127,9 @@ export const AccordionPage: React.FC = () => {
         <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: 1.5 }}>
           <Accordion expanded={expandedPanel === "panel1"} onChange={handleChangePanel("panel1")}>
             <AccordionSummary expandIcon={<ChevronDown size={18} />}>
-              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", pr: 2 }}>
+              <Box
+                sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", pr: 2 }}
+              >
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
                   <CreditCard size={18} />
                   <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
@@ -145,7 +151,9 @@ export const AccordionPage: React.FC = () => {
 
           <Accordion expanded={expandedPanel === "panel2"} onChange={handleChangePanel("panel2")}>
             <AccordionSummary expandIcon={<ChevronDown size={18} />}>
-              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", pr: 2 }}>
+              <Box
+                sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", pr: 2 }}
+              >
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
                   <Lock size={18} />
                   <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>

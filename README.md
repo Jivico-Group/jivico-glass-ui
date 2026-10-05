@@ -135,11 +135,7 @@ export const metadata: Metadata = {
   description: "Jivico Ecosystem Application",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -614,12 +610,7 @@ import { JivicoFontPreload } from "jivico-glass-ui";
 ## Glass Card + Theme Control
 
 ```tsx
-import {
-  GlassPanel,
-  GradientText,
-  ChipSoft,
-  useGlassMode,
-} from "jivico-glass-ui";
+import { GlassPanel, GradientText, ChipSoft, useGlassMode } from "jivico-glass-ui";
 
 import { Button, Typography, Box } from "@mui/material";
 
@@ -649,9 +640,7 @@ export function AnalyticsWidget() {
 
         <Button
           onClick={toggleGlassMode}
-          startIcon={
-            resolvedMode === "dark" ? <Sun size={16} /> : <Moon size={16} />
-          }
+          startIcon={resolvedMode === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           size="small"
         >
           {resolvedMode === "dark" ? "Light" : "Dark"}

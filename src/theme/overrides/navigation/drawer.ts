@@ -15,9 +15,7 @@ export const getDrawerOverrides = (isDark: boolean): Components<Theme> => ({
         /**
          * Glass surface
          */
-        const glassBackground = isDark
-          ? "rgba(24, 24, 27, 0.72)"
-          : "rgba(255, 255, 255, 0.72)";
+        const glassBackground = isDark ? "rgba(24, 24, 27, 0.72)" : "rgba(255, 255, 255, 0.72)";
         const glassColor = isDark ? "#F5F5F7" : "#111111";
 
         /**
@@ -34,9 +32,7 @@ export const getDrawerOverrides = (isDark: boolean): Components<Theme> => ({
         /**
          * Shadow
          */
-        const shadow = isDark
-          ? "0 24px 70px rgba(0, 0, 0, 0.45)"
-          : "0 24px 70px rgba(0, 0, 0, 0.14)";
+        const shadow = isDark ? "0 24px 70px rgba(0, 0, 0, 0.45)" : "0 24px 70px rgba(0, 0, 0, 0.14)";
 
         return {
           position: "relative",
@@ -83,9 +79,7 @@ export const getDrawerOverrides = (isDark: boolean): Components<Theme> => ({
               right: 0,
               height: 1,
               pointerEvents: "none",
-              background: isDark
-                ? "rgba(255,255,255,0.16)"
-                : "rgba(255,255,255,0.95)",
+              background: isDark ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.95)",
               zIndex: 2,
             },
           }),

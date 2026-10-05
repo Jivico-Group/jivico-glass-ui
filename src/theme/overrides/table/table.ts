@@ -1,49 +1,26 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export type TableColor =
-  | "primary"
-  | "secondary"
-  | "accent"
-  | "success"
-  | "warning"
-  | "error";
+export type TableColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error";
 
 export type TableVariant = "standard" | "glass";
 
-export const getTableOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getTableOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   const normalText = isDark ? "#F6F5F2" : "#111111";
 
-  const secondaryText = isDark
-    ? "rgba(246, 245, 242, 0.62)"
-    : "rgba(17, 17, 17, 0.62)";
+  const secondaryText = isDark ? "rgba(246, 245, 242, 0.62)" : "rgba(17, 17, 17, 0.62)";
 
-  const divider = isDark
-    ? "rgba(255, 255, 255, 0.08)"
-    : "rgba(17, 17, 17, 0.08)";
+  const divider = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)";
 
-  const hoverBackground = isDark
-    ? "rgba(255, 255, 255, 0.045)"
-    : "rgba(17, 17, 17, 0.035)";
+  const hoverBackground = isDark ? "rgba(255, 255, 255, 0.045)" : "rgba(17, 17, 17, 0.035)";
 
-  const selectedBackground = isDark
-    ? "rgba(255, 255, 255, 0.09)"
-    : "rgba(17, 17, 17, 0.07)";
+  const selectedBackground = isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.07)";
 
-  const glassBackground = isDark
-    ? "rgba(255, 255, 255, 0.055)"
-    : "rgba(255, 255, 255, 0.62)";
+  const glassBackground = isDark ? "rgba(255, 255, 255, 0.055)" : "rgba(255, 255, 255, 0.62)";
 
-  const glassBorder = isDark
-    ? "rgba(255, 255, 255, 0.10)"
-    : "rgba(255, 255, 255, 0.72)";
+  const glassBorder = isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(255, 255, 255, 0.72)";
 
-  const glassShadow = isDark
-    ? "0 14px 40px rgba(0, 0, 0, 0.24)"
-    : "0 14px 40px rgba(17, 17, 17, 0.07)";
+  const glassShadow = isDark ? "0 14px 40px rgba(0, 0, 0, 0.24)" : "0 14px 40px rgba(17, 17, 17, 0.07)";
 
   const colorMap: Record<
     TableColor,
@@ -72,27 +49,21 @@ export const getTableOverrides = (
       main: palette.accent.main,
       header: isDark ? "rgba(255, 255, 255, 0.065)" : "rgba(17, 17, 17, 0.055)",
       hover: isDark ? "rgba(255, 255, 255, 0.065)" : "rgba(17, 17, 17, 0.055)",
-      selected: isDark
-        ? "rgba(255, 255, 255, 0.13)"
-        : "rgba(17, 17, 17, 0.095)",
+      selected: isDark ? "rgba(255, 255, 255, 0.13)" : "rgba(17, 17, 17, 0.095)",
     },
 
     success: {
       main: palette.success.main,
       header: isDark ? "rgba(16, 185, 129, 0.10)" : "rgba(16, 185, 129, 0.065)",
       hover: isDark ? "rgba(16, 185, 129, 0.10)" : "rgba(16, 185, 129, 0.065)",
-      selected: isDark
-        ? "rgba(16, 185, 129, 0.17)"
-        : "rgba(16, 185, 129, 0.10)",
+      selected: isDark ? "rgba(16, 185, 129, 0.17)" : "rgba(16, 185, 129, 0.10)",
     },
 
     warning: {
       main: palette.warning.main,
       header: isDark ? "rgba(245, 158, 11, 0.10)" : "rgba(245, 158, 11, 0.065)",
       hover: isDark ? "rgba(245, 158, 11, 0.10)" : "rgba(245, 158, 11, 0.065)",
-      selected: isDark
-        ? "rgba(245, 158, 11, 0.17)"
-        : "rgba(245, 158, 11, 0.10)",
+      selected: isDark ? "rgba(245, 158, 11, 0.17)" : "rgba(245, 158, 11, 0.10)",
     },
 
     error: {
@@ -172,9 +143,7 @@ export const getTableOverrides = (
 
             "& .MuiTableHead-root .MuiTableCell-root": {
               padding: size.headerPadding,
-              backgroundColor: isGlass
-                ? "rgba(255, 255, 255, 0.04)"
-                : color.header,
+              backgroundColor: isGlass ? "rgba(255, 255, 255, 0.04)" : color.header,
               color: normalText,
               fontSize: size.headerFontSize,
               fontWeight: 700,
@@ -215,9 +184,7 @@ export const getTableOverrides = (
               "& .MuiTableCell-root": {
                 color: secondaryText,
                 fontWeight: 500,
-                backgroundColor: isGlass
-                  ? "rgba(255, 255, 255, 0.025)"
-                  : "transparent",
+                backgroundColor: isGlass ? "rgba(255, 255, 255, 0.025)" : "transparent",
               },
             },
 

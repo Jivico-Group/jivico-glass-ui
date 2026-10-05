@@ -2,10 +2,7 @@ import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette";
 import { liquidGlassPopupRecipe } from "../glassRecipe";
 
-export const getPaperOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getPaperOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiPaper: {
     styleOverrides: {
       root: {
@@ -15,9 +12,7 @@ export const getPaperOverrides = (
 
         backgroundImage: "none",
 
-        border: `1px solid ${
-          isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"
-        }`,
+        border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"}`,
 
         boxShadow: "none",
 

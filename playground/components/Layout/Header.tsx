@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Box,
-  Typography,
-  IconButton,
-  Tooltip,
-  Chip,
-  Button,
-} from "@mui/material";
+import { AppBar, Toolbar, Box, Typography, IconButton, Tooltip, Chip, Button } from "@mui/material";
 
 import { Menu as MenuIcon, Search } from "lucide-react";
 import { useGlassMode } from "../../../src/context/ThemeContext";
@@ -72,10 +63,7 @@ function MoonIcon() {
   );
 }
 
-export const Header: React.FC<HeaderProps> = ({
-  onToggleMobileSidebar,
-  onOpenSearch,
-}) => {
+export const Header: React.FC<HeaderProps> = ({ onToggleMobileSidebar, onOpenSearch }) => {
   const { mode, toggleGlassMode } = useGlassMode();
   const isDark = mode === "dark";
 
@@ -125,9 +113,7 @@ export const Header: React.FC<HeaderProps> = ({
               fontWeight: 800,
               fontFamily: '"Space Grotesk", sans-serif',
               fontSize: "1.1rem",
-              boxShadow: isDark
-                ? "0 2px 10px rgba(255,255,255,0.2)"
-                : "0 2px 10px rgba(0,0,0,0.2)",
+              boxShadow: isDark ? "0 2px 10px rgba(255,255,255,0.2)" : "0 2px 10px rgba(0,0,0,0.2)",
             }}
           >
             J
@@ -150,13 +136,9 @@ export const Header: React.FC<HeaderProps> = ({
               height: 20,
               fontSize: "0.68rem",
               fontWeight: 600,
-              backgroundColor: isDark
-                ? "rgba(255,255,255,0.08)"
-                : "rgba(17,17,17,0.06)",
+              backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)",
               color: isDark ? "#F6F5F2" : "#111111",
-              border: `1px solid ${
-                isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.08)"
-              }`,
+              border: `1px solid ${isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.08)"}`,
               "& .MuiChip-label": { px: 0.8 },
               display: { xs: "none", sm: "inline-flex" },
             }}
@@ -176,30 +158,19 @@ export const Header: React.FC<HeaderProps> = ({
             px: { xs: 1.5, sm: 2 },
             height: 34,
             borderRadius: "10px",
-            borderColor: isDark
-              ? "rgba(255, 255, 255, 0.14)"
-              : "rgba(17, 17, 17, 0.12)",
-            backgroundColor: isDark
-              ? "rgba(255, 255, 255, 0.04)"
-              : "rgba(17, 17, 17, 0.02)",
+            borderColor: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(17, 17, 17, 0.12)",
+            backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.02)",
             color: "text.secondary",
             fontWeight: 400,
             textTransform: "none",
             fontSize: "0.82rem",
             "&:hover": {
-              borderColor: isDark
-                ? "rgba(255, 255, 255, 0.3)"
-                : "rgba(17, 17, 17, 0.3)",
-              backgroundColor: isDark
-                ? "rgba(255, 255, 255, 0.08)"
-                : "rgba(17, 17, 17, 0.05)",
+              borderColor: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(17, 17, 17, 0.3)",
+              backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.05)",
             },
           }}
         >
-          <Box
-            component="span"
-            sx={{ display: { xs: "none", sm: "inline" }, mr: 3 }}
-          >
+          <Box component="span" sx={{ display: { xs: "none", sm: "inline" }, mr: 3 }}>
             Search components...
           </Box>
           <Box component="span" sx={{ display: { xs: "inline", sm: "none" } }}>
@@ -213,12 +184,8 @@ export const Header: React.FC<HeaderProps> = ({
               fontWeight: 700,
               padding: "2px 5px",
               borderRadius: "5px",
-              backgroundColor: isDark
-                ? "rgba(255, 255, 255, 0.08)"
-                : "rgba(17, 17, 17, 0.06)",
-              border: `1px solid ${
-                isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.1)"
-              }`,
+              backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)",
+              border: `1px solid ${isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.1)"}`,
             }}
           >
             ⌘K
@@ -239,13 +206,9 @@ export const Header: React.FC<HeaderProps> = ({
               height: 36,
               mr: 1,
               borderRadius: "9px",
-              border: `1px solid ${
-                isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.1)"
-              }`,
+              border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.1)"}`,
               "&:hover": {
-                backgroundColor: isDark
-                  ? "rgba(255,255,255,0.08)"
-                  : "rgba(17,17,17,0.06)",
+                backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)",
               },
             }}
           >
@@ -263,13 +226,9 @@ export const Header: React.FC<HeaderProps> = ({
               width: 36,
               height: 36,
               borderRadius: "9px",
-              border: `1px solid ${
-                isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.1)"
-              }`,
+              border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.1)"}`,
               "&:hover": {
-                backgroundColor: isDark
-                  ? "rgba(255,255,255,0.08)"
-                  : "rgba(17,17,17,0.06)",
+                backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)",
               },
             }}
           >
@@ -278,8 +237,7 @@ export const Header: React.FC<HeaderProps> = ({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                transition:
-                  "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease",
+                transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease",
                 transform: isDark ? "rotate(0deg)" : "rotate(180deg)",
               }}
             >

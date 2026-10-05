@@ -28,50 +28,47 @@ import { Rails } from "jivico-glass-ui";
 The minimum required props are `items`, `getKey`, and `getImage`.
 
 ```tsx
-<Rails
-  items={categories}
-  getKey={(category) => category.id}
-  getImage={(category) => category.image}
-/>
+<Rails items={categories} getKey={(category) => category.id} getImage={(category) => category.image} />
 ```
 
 ---
 
 # Props Overview
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `items` | `T[]` | **Required** | Data items array |
-| `getKey` | `(item, index) => Key` | **Required** | Unique item key resolver |
-| `getImage` | `(item, index) => string` | **Required** | Image URL resolver for built-in renderer |
-| `getTitle` | `(item, index) => ReactNode` | `undefined` | Title resolver for built-in renderer |
-| `getHref` | `(item, index) => string \| undefined` | `undefined` | URL resolver for semantic item anchor link |
-| `onNavigate` | `(item, index, event) => void` | `undefined` | Item navigation callback for client routing |
-| `ImageComponent` | `RailImageComponent` | `undefined` | Custom image component (e.g. Next.js `next/image`) |
-| `columns` | `RailColumns` | `{ xs: 2, sm: 3, md: 4, lg: 5 }` | Visible items count per breakpoint |
-| `itemWidth` | `RailItemWidth` | `undefined` | Explicit item width per breakpoint (overrides `columns`) |
-| `gap` | `number` | `16` | Spacing between items in pixels |
-| `justifyContent` | `"flex-start" \| "center" \| "flex-end"` | `"flex-start"` | Horizontal alignment when items don't fill track |
-| `navigation` | `"arrows" \| "dots" \| "both" \| "none"` | `"arrows"` | Navigation controls style |
-| `transition` | `"none" \| "fade" \| "scale" \| "lift"` | `"scale"` | Hover/interaction animation style |
-| `autoplay` | `boolean` | `false` | Automatic rail advancement |
-| `interval` | `number` | `5000` | Autoplay interval in milliseconds |
-| `loop` | `boolean` | `false` | Wrap navigation around at boundaries |
-| `pauseOnHover` | `boolean` | `true` | Pause autoplay while hovering over the rail |
-| `step` | `number` | `1` | Number of items moved per navigation action |
-| `snap` | `boolean` | `true` | Snap items into position after scrolling |
-| `swipe` | `boolean` | `true` | Enable horizontal touch scrolling |
-| `imageAspectRatio` | `string` | `"4 / 5"` | Built-in image aspect ratio |
-| `radius` | `number \| string` | `16` | Built-in image border radius |
-| `renderContent` | `(context) => ReactNode` | `undefined` | Custom content below title (price, rating, badges) |
-| `renderItem` | `(context) => ReactNode` | `undefined` | Completely replace built-in item card renderer |
-| `renderImage` | `(context) => ReactNode` | `undefined` | Advanced custom image renderer |
+| Prop               | Type                                     | Default                          | Description                                              |
+| :----------------- | :--------------------------------------- | :------------------------------- | :------------------------------------------------------- |
+| `items`            | `T[]`                                    | **Required**                     | Data items array                                         |
+| `getKey`           | `(item, index) => Key`                   | **Required**                     | Unique item key resolver                                 |
+| `getImage`         | `(item, index) => string`                | **Required**                     | Image URL resolver for built-in renderer                 |
+| `getTitle`         | `(item, index) => ReactNode`             | `undefined`                      | Title resolver for built-in renderer                     |
+| `getHref`          | `(item, index) => string \| undefined`   | `undefined`                      | URL resolver for semantic item anchor link               |
+| `onNavigate`       | `(item, index, event) => void`           | `undefined`                      | Item navigation callback for client routing              |
+| `ImageComponent`   | `RailImageComponent`                     | `undefined`                      | Custom image component (e.g. Next.js `next/image`)       |
+| `columns`          | `RailColumns`                            | `{ xs: 2, sm: 3, md: 4, lg: 5 }` | Visible items count per breakpoint                       |
+| `itemWidth`        | `RailItemWidth`                          | `undefined`                      | Explicit item width per breakpoint (overrides `columns`) |
+| `gap`              | `number`                                 | `16`                             | Spacing between items in pixels                          |
+| `justifyContent`   | `"flex-start" \| "center" \| "flex-end"` | `"flex-start"`                   | Horizontal alignment when items don't fill track         |
+| `navigation`       | `"arrows" \| "dots" \| "both" \| "none"` | `"arrows"`                       | Navigation controls style                                |
+| `transition`       | `"none" \| "fade" \| "scale" \| "lift"`  | `"scale"`                        | Hover/interaction animation style                        |
+| `autoplay`         | `boolean`                                | `false`                          | Automatic rail advancement                               |
+| `interval`         | `number`                                 | `5000`                           | Autoplay interval in milliseconds                        |
+| `loop`             | `boolean`                                | `false`                          | Wrap navigation around at boundaries                     |
+| `pauseOnHover`     | `boolean`                                | `true`                           | Pause autoplay while hovering over the rail              |
+| `step`             | `number`                                 | `1`                              | Number of items moved per navigation action              |
+| `snap`             | `boolean`                                | `true`                           | Snap items into position after scrolling                 |
+| `swipe`            | `boolean`                                | `true`                           | Enable horizontal touch scrolling                        |
+| `imageAspectRatio` | `string`                                 | `"4 / 5"`                        | Built-in image aspect ratio                              |
+| `radius`           | `number \| string`                       | `16`                             | Built-in image border radius                             |
+| `renderContent`    | `(context) => ReactNode`                 | `undefined`                      | Custom content below title (price, rating, badges)       |
+| `renderItem`       | `(context) => ReactNode`                 | `undefined`                      | Completely replace built-in item card renderer           |
+| `renderImage`      | `(context) => ReactNode`                 | `undefined`                      | Advanced custom image renderer                           |
 
 ---
 
 # Built-in Item Renderer & Navigation
 
 `Rails` provides a built-in card renderer. When `getHref` and `onNavigate` are provided:
+
 - The item image is wrapped in a semantic HTML `<a>` tag with the resolved `href`.
 - Native browser navigation is prevented via `event.preventDefault()`.
 - Client-side routing is passed to `onNavigate`.
@@ -118,7 +115,7 @@ interface Product {
       ₹{item.price}
     </Typography>
   )}
-/>
+/>;
 ```
 
 ---

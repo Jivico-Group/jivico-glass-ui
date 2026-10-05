@@ -32,15 +32,7 @@ import { useGlassMode } from "../../../src/context/ThemeContext.js";
  * Mock image renderer component for demonstration.
  * In a Next.js application, pass `import Image from "next/image"`.
  */
-const MockImage = ({
-  src,
-  alt,
-  fill,
-  sizes,
-  priority,
-  style,
-  className,
-}: SpotlightImageComponentProps) => (
+const MockImage = ({ src, alt, fill, sizes, priority, style, className }: SpotlightImageComponentProps) => (
   <img
     src={src}
     alt={alt}
@@ -67,8 +59,7 @@ const sampleSpotlightItem: SpotlightItem = {
   linkLabel: "Explore Originals",
   eyebrow: "STUDIO EXCLUSIVE",
   title: "Originals Collection 2026",
-  description:
-    "Limited-edition luxury glassmorphic pieces crafted with real-time physics and liquid depth.",
+  description: "Limited-edition luxury glassmorphic pieces crafted with real-time physics and liquid depth.",
   action: {
     label: "Discover Originals",
     href: "#originals",
@@ -112,7 +103,7 @@ export const SpotlightPage: React.FC = () => {
         : undefined,
       sideLabel: showSideLabel ? "LIMITED RELEASE" : undefined,
     }),
-    [enableHref, showEyebrow, showDescription, showAction, showSideLabel]
+    [enableHref, showEyebrow, showDescription, showAction, showSideLabel],
   );
 
   const mockNavigation = (item: SpotlightItem) => {
@@ -157,7 +148,7 @@ ${enableHref ? '  href: "#originals",\n' : ""}\
   variant="${variant}"
   size="${size}"
   radius="${radius}"
-${enableHref ? '  onNavigate={(item) => router.push(item.href)}\n' : ""}\
+${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
 />`}
       >
         <Stack spacing={3} sx={{ width: "100%" }}>
@@ -166,12 +157,8 @@ ${enableHref ? '  onNavigate={(item) => router.push(item.href)}\n' : ""}\
             sx={{
               p: 3,
               borderRadius: "20px",
-              bgcolor: isDark
-                ? "rgba(255, 255, 255, 0.03)"
-                : "rgba(17, 17, 17, 0.02)",
-              border: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"
-              }`,
+              bgcolor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(17, 17, 17, 0.02)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"}`,
             }}
           >
             <Stack spacing={3}>
@@ -194,28 +181,10 @@ ${enableHref ? '  onNavigate={(item) => router.push(item.href)}\n' : ""}\
                   >
                     Variant
                   </FormLabel>
-                  <RadioGroup
-                    row
-                    value={variant}
-                    onChange={(e) =>
-                      setVariant(e.target.value as SpotlightVariant)
-                    }
-                  >
-                    <FormControlLabel
-                      value="editorial"
-                      control={<Radio size="small" />}
-                      label="Editorial"
-                    />
-                    <FormControlLabel
-                      value="glass"
-                      control={<Radio size="small" />}
-                      label="Glass"
-                    />
-                    <FormControlLabel
-                      value="minimal"
-                      control={<Radio size="small" />}
-                      label="Minimal"
-                    />
+                  <RadioGroup row value={variant} onChange={(e) => setVariant(e.target.value as SpotlightVariant)}>
+                    <FormControlLabel value="editorial" control={<Radio size="small" />} label="Editorial" />
+                    <FormControlLabel value="glass" control={<Radio size="small" />} label="Glass" />
+                    <FormControlLabel value="minimal" control={<Radio size="small" />} label="Minimal" />
                   </RadioGroup>
                 </FormControl>
 
@@ -232,31 +201,11 @@ ${enableHref ? '  onNavigate={(item) => router.push(item.href)}\n' : ""}\
                   >
                     Size
                   </FormLabel>
-                  <RadioGroup
-                    row
-                    value={size}
-                    onChange={(e) => setSize(e.target.value as SpotlightSize)}
-                  >
-                    <FormControlLabel
-                      value="small"
-                      control={<Radio size="small" />}
-                      label="Small"
-                    />
-                    <FormControlLabel
-                      value="medium"
-                      control={<Radio size="small" />}
-                      label="Medium"
-                    />
-                    <FormControlLabel
-                      value="large"
-                      control={<Radio size="small" />}
-                      label="Large"
-                    />
-                    <FormControlLabel
-                      value="hero"
-                      control={<Radio size="small" />}
-                      label="Hero"
-                    />
+                  <RadioGroup row value={size} onChange={(e) => setSize(e.target.value as SpotlightSize)}>
+                    <FormControlLabel value="small" control={<Radio size="small" />} label="Small" />
+                    <FormControlLabel value="medium" control={<Radio size="small" />} label="Medium" />
+                    <FormControlLabel value="large" control={<Radio size="small" />} label="Large" />
+                    <FormControlLabel value="hero" control={<Radio size="small" />} label="Hero" />
                   </RadioGroup>
                 </FormControl>
               </Stack>
@@ -279,12 +228,7 @@ ${enableHref ? '  onNavigate={(item) => router.push(item.href)}\n' : ""}\
                   >
                     Corner Radius
                   </FormLabel>
-                  <Select
-                    value={radius}
-                    onChange={(e) =>
-                      setRadius(e.target.value as SpotlightRadius)
-                    }
-                  >
+                  <Select value={radius} onChange={(e) => setRadius(e.target.value as SpotlightRadius)}>
                     <MenuItem value="square">Square</MenuItem>
                     <MenuItem value="rounded">Rounded</MenuItem>
                     <MenuItem value="soft">Soft</MenuItem>
@@ -296,11 +240,7 @@ ${enableHref ? '  onNavigate={(item) => router.push(item.href)}\n' : ""}\
               <Stack direction="row" spacing={3} sx={{ flexWrap: "wrap" }}>
                 <FormControlLabel
                   control={
-                    <Switch
-                      size="small"
-                      checked={showEyebrow}
-                      onChange={(e) => setShowEyebrow(e.target.checked)}
-                    />
+                    <Switch size="small" checked={showEyebrow} onChange={(e) => setShowEyebrow(e.target.checked)} />
                   }
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
@@ -326,11 +266,7 @@ ${enableHref ? '  onNavigate={(item) => router.push(item.href)}\n' : ""}\
 
                 <FormControlLabel
                   control={
-                    <Switch
-                      size="small"
-                      checked={showAction}
-                      onChange={(e) => setShowAction(e.target.checked)}
-                    />
+                    <Switch size="small" checked={showAction} onChange={(e) => setShowAction(e.target.checked)} />
                   }
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
@@ -341,11 +277,7 @@ ${enableHref ? '  onNavigate={(item) => router.push(item.href)}\n' : ""}\
 
                 <FormControlLabel
                   control={
-                    <Switch
-                      size="small"
-                      checked={showSideLabel}
-                      onChange={(e) => setShowSideLabel(e.target.checked)}
-                    />
+                    <Switch size="small" checked={showSideLabel} onChange={(e) => setShowSideLabel(e.target.checked)} />
                   }
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
@@ -356,11 +288,7 @@ ${enableHref ? '  onNavigate={(item) => router.push(item.href)}\n' : ""}\
 
                 <FormControlLabel
                   control={
-                    <Switch
-                      size="small"
-                      checked={enableHref}
-                      onChange={(e) => setEnableHref(e.target.checked)}
-                    />
+                    <Switch size="small" checked={enableHref} onChange={(e) => setEnableHref(e.target.checked)} />
                   }
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
@@ -430,8 +358,7 @@ const item = {
               },
               eyebrow: "DESIGN STUDIO",
               title: "Create Your Freestyle",
-              description:
-                "Upload custom artwork and print 1-of-1 heavyweight apparel with studio finish.",
+              description: "Upload custom artwork and print 1-of-1 heavyweight apparel with studio finish.",
               action: {
                 label: "Start Customizer",
                 href: "#customizer",
@@ -493,8 +420,7 @@ const item = {
               },
               eyebrow: "MATERIAL UI V9",
               title: "Liquid Glass System",
-              description:
-                "Real-time backdrop blur filters with ambient dynamic lighting for modern React interfaces.",
+              description: "Real-time backdrop blur filters with ambient dynamic lighting for modern React interfaces.",
               action: {
                 label: "View Architecture",
                 href: "#architecture",
@@ -555,8 +481,7 @@ const item = {
               },
               eyebrow: "HARDWARE ENGINE",
               title: "Next-Gen Engine",
-              description:
-                "Zero layout shift, 60 FPS GPU-accelerated transitions.",
+              description: "Zero layout shift, 60 FPS GPU-accelerated transitions.",
               action: {
                 label: "Benchmark Test",
                 href: "#benchmarks",
@@ -609,45 +534,30 @@ export function SpotlightHero({ item }) {
             sx={{
               p: 3,
               borderRadius: 3,
-              bgcolor: isDark
-                ? "rgba(255, 255, 255, 0.04)"
-                : "rgba(17, 17, 17, 0.03)",
-              border: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
-              }`,
+              bgcolor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
-            <Typography
-              variant="overline"
-              sx={{ display: "block", mb: 1, fontWeight: 700 }}
-            >
+            <Typography variant="overline" sx={{ display: "block", mb: 1, fontWeight: 700 }}>
               ARCHITECTURE & ACCESSIBILITY
             </Typography>
 
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ mb: 2, lineHeight: 1.7 }}
-            >
-              Spotlight remains completely decoupled from framework routers. The
-              component renders standard HTML5 <code>&lt;a href="..."&gt;</code>{" "}
-              anchors, enabling browser status previews and search engine
-              indexing, while <code>onNavigate</code> triggers client-side
-              router navigation.
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7 }}>
+              Spotlight remains completely decoupled from framework routers. The component renders standard HTML5{" "}
+              <code>&lt;a href="..."&gt;</code> anchors, enabling browser status previews and search engine indexing,
+              while <code>onNavigate</code> triggers client-side router navigation.
             </Typography>
 
             <Stack spacing={1}>
               <Typography variant="body2">
-                <strong>1. Semantic HTML:</strong> Renders real{" "}
-                <code>href</code> attributes on card boundaries.
+                <strong>1. Semantic HTML:</strong> Renders real <code>href</code> attributes on card boundaries.
               </Typography>
               <Typography variant="body2">
-                <strong>2. Application Routing:</strong> Consuming app controls
-                routing with <code>router.push()</code>.
+                <strong>2. Application Routing:</strong> Consuming app controls routing with <code>router.push()</code>.
               </Typography>
               <Typography variant="body2">
-                <strong>3. Injectable Media:</strong> Optionally pass Next.js{" "}
-                <code>next/image</code> via <code>ImageComponent</code>.
+                <strong>3. Injectable Media:</strong> Optionally pass Next.js <code>next/image</code> via{" "}
+                <code>ImageComponent</code>.
               </Typography>
             </Stack>
           </Box>

@@ -1,10 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export const getBottomNavigationOverrides = (
-  _palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getBottomNavigationOverrides = (_palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiBottomNavigation: {
     defaultProps: {
       glass: "true",
@@ -24,9 +21,7 @@ export const getBottomNavigationOverrides = (
         const normalBackground = isDark ? "#18181B" : "#FFFFFF";
         const normalColor = isDark ? "#F5F5F7" : "#111111";
 
-        const glassBackground = isDark
-          ? "rgba(24, 24, 27, 0.72)"
-          : "rgba(255, 255, 255, 0.60)";
+        const glassBackground = isDark ? "rgba(24, 24, 27, 0.72)" : "rgba(255, 255, 255, 0.60)";
         const glassColor = isDark ? "#F5F5F7" : "#111111";
 
         /**
@@ -43,9 +38,7 @@ export const getBottomNavigationOverrides = (
         /**
          * Shadow
          */
-        const shadow = isDark
-          ? "0 16px 48px rgba(0, 0, 0, 0.5)"
-          : "0 12px 36px rgba(0, 0, 0, 0.1)";
+        const shadow = isDark ? "0 16px 48px rgba(0, 0, 0, 0.5)" : "0 12px 36px rgba(0, 0, 0, 0.1)";
 
         /**
          * Sizes
@@ -166,8 +159,7 @@ export const getBottomNavigationOverrides = (
       root: ({ ownerState }) => {
         const isSmall = (ownerState as any).size === "small";
         // MUI passes showLabel (singular) to BottomNavigationAction ownerState
-        const showLabelProp =
-          ownerState.showLabel ?? (ownerState as any).showLabels;
+        const showLabelProp = ownerState.showLabel ?? (ownerState as any).showLabels;
         const showLabels = showLabelProp !== false;
 
         const actionSize = isSmall ? 28 : 46;
@@ -192,17 +184,13 @@ export const getBottomNavigationOverrides = (
 
           "&:hover": {
             color: isDark ? "#F5F5F7" : "#111111",
-            backgroundColor: isDark
-              ? "rgba(255, 255, 255, 0.06)"
-              : "rgba(17, 17, 17, 0.04)",
+            backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)",
           },
 
           "&.Mui-selected": {
             color: isDark ? "#F5F5F7" : "#111111",
             fontWeight: 700,
-            backgroundColor: isDark
-              ? "rgba(255, 255, 255, 0.15)"
-              : "rgba(17, 17, 17, 0.08)",
+            backgroundColor: isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.08)",
             boxShadow: isDark
               ? isSmall
                 ? "inset 0 1px 1px rgba(255, 255, 255, 0.12), 0 2px 8px rgba(0,0,0,0.25)"

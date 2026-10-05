@@ -1,9 +1,4 @@
-import type {
-  ComponentType,
-  CSSProperties,
-  MouseEvent,
-  ReactNode,
-} from "react";
+import type { ComponentType, CSSProperties, MouseEvent, ReactNode } from "react";
 
 import type { SxProps, Theme } from "@mui/material/styles";
 import type { AspectRatio } from "../../types/aspectRatio.js";
@@ -12,13 +7,7 @@ export type HighlightVariant = "overlay" | "center" | "minimal";
 
 export type HighlightSize = "small" | "medium" | "large";
 
-export type HighlightImagePosition =
-  | "top"
-  | "center"
-  | "bottom"
-  | "left"
-  | "right"
-  | string;
+export type HighlightImagePosition = "top" | "center" | "bottom" | "left" | "right" | string;
 
 export type HighlightDimension =
   | number

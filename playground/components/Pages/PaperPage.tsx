@@ -37,17 +37,13 @@ export const PaperPage: React.FC = () => {
           }}
         >
           <Paper elevation={0} sx={{ p: 3 }}>
-            <Box
-              sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1.5 }}
-            >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1.5 }}>
               <Box
                 sx={{
                   width: 36,
                   height: 36,
                   borderRadius: "10px",
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.08)"
-                    : "rgba(17,17,17,0.06)",
+                  bgcolor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -60,8 +56,8 @@ export const PaperPage: React.FC = () => {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              Default elevation={0} removes harsh Material shadows and applies a
-              sleek 1px perimeter line with 12px corner radius.
+              Default elevation={0} removes harsh Material shadows and applies a sleek 1px perimeter line with 12px
+              corner radius.
             </Typography>
             <Button size="small" variant="outlined" color="primary">
               Paper Action
@@ -69,17 +65,13 @@ export const PaperPage: React.FC = () => {
           </Paper>
 
           <Paper elevation={0} sx={{ p: 3, borderRadius: "20px" }}>
-            <Box
-              sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1.5 }}
-            >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1.5 }}>
               <Box
                 sx={{
                   width: 36,
                   height: 36,
                   borderRadius: "10px",
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.08)"
-                    : "rgba(17,17,17,0.06)",
+                  bgcolor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -92,15 +84,9 @@ export const PaperPage: React.FC = () => {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              Easily customize corner radius via sx property (e.g. borderRadius:
-              '20px') for modern curved layouts.
+              Easily customize corner radius via sx property (e.g. borderRadius: '20px') for modern curved layouts.
             </Typography>
-            <Button
-              size="small"
-              variant="contained"
-              color="accent"
-              startIcon={<Sparkles size={14} />}
-            >
+            <Button size="small" variant="contained" color="accent" startIcon={<Sparkles size={14} />}>
               Rounded Panel
             </Button>
           </Paper>
@@ -144,9 +130,7 @@ export const PaperPage: React.FC = () => {
             sx={{
               p: 3.5,
               borderRadius: "18px",
-              backgroundColor: isDark
-                ? "rgba(255, 255, 255, 0.08)"
-                : "rgba(255, 255, 255, 0.72)",
+              backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.72)",
               backdropFilter: "blur(20px) saturate(180%)",
               WebkitBackdropFilter: "blur(20px) saturate(180%)",
               border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.85)"}`,
@@ -164,12 +148,7 @@ export const PaperPage: React.FC = () => {
               }}
             >
               <Chip label="FROSTED GLASS CANVAS" size="small" color="accent" />
-              <Button
-                size="small"
-                variant="text"
-                color="primary"
-                endIcon={<ExternalLink size={14} />}
-              >
+              <Button size="small" variant="text" color="primary" endIcon={<ExternalLink size={14} />}>
                 Details
               </Button>
             </Box>
@@ -177,8 +156,8 @@ export const PaperPage: React.FC = () => {
               Liquid Glass Paper Sheet
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              High-definition backdrop blur sheet designed for floating modal
-              dialogs, drawer panels, and hero section cards.
+              High-definition backdrop blur sheet designed for floating modal dialogs, drawer panels, and hero section
+              cards.
             </Typography>
           </Paper>
         </Box>

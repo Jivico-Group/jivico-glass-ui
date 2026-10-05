@@ -2,10 +2,7 @@ import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette";
 import { liquidGlassPopupRecipe } from "../glassRecipe";
 
-export const getAutocompleteOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getAutocompleteOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiAutocomplete: {
     defaultProps: {
       slotProps: {

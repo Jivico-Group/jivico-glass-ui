@@ -3,27 +3,16 @@ import type { JivicoPalette } from "../../palette/index.js";
 
 import type { TableColor } from "./table.js";
 
-export const getTableBodyOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getTableBodyOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   const text = isDark ? "#F6F5F2" : "#111111";
 
-  const secondaryText = isDark
-    ? "rgba(246, 245, 242, 0.62)"
-    : "rgba(17, 17, 17, 0.62)";
+  const secondaryText = isDark ? "rgba(246, 245, 242, 0.62)" : "rgba(17, 17, 17, 0.62)";
 
-  const divider = isDark
-    ? "rgba(255, 255, 255, 0.08)"
-    : "rgba(17, 17, 17, 0.08)";
+  const divider = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)";
 
-  const hoverBackground = isDark
-    ? "rgba(255, 255, 255, 0.045)"
-    : "rgba(17, 17, 17, 0.035)";
+  const hoverBackground = isDark ? "rgba(255, 255, 255, 0.045)" : "rgba(17, 17, 17, 0.035)";
 
-  const selectedBackground = isDark
-    ? "rgba(255, 255, 255, 0.09)"
-    : "rgba(17, 17, 17, 0.07)";
+  const selectedBackground = isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.07)";
 
   const colorMap: Record<TableColor, string> = {
     primary: palette.primary.main,
@@ -54,13 +43,7 @@ export const getTableBodyOverrides = (
 
               "& .MuiTableCell-root": {
                 color: text,
-                borderBottom: `1px solid ${
-                  isGlass
-                    ? isDark
-                      ? "rgba(255, 255, 255, 0.065)"
-                      : "rgba(17, 17, 17, 0.065)"
-                    : divider
-                }`,
+                borderBottom: `1px solid ${isGlass ? (isDark ? "rgba(255, 255, 255, 0.065)" : "rgba(17, 17, 17, 0.065)") : divider}`,
                 verticalAlign: "middle",
               },
 
@@ -165,9 +148,7 @@ export const getTableBodyOverrides = (
               },
 
               "&:hover": {
-                backgroundColor: isDark
-                  ? "rgba(255, 255, 255, 0.06)"
-                  : "rgba(17, 17, 17, 0.05)",
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.05)",
               },
 
               "&.Mui-focusVisible": {

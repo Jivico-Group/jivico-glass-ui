@@ -1,27 +1,18 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export const getOutlinedInputOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiOutlinedInput: {
     styleOverrides: {
       root: ({ ownerState }) => {
-        const colorKey = (
-          ownerState.color ? ownerState.color : "primary"
-        ) as keyof typeof palette;
-        const activeColorGroup = (palette[colorKey] ||
-          palette.primary) as Record<string, string>;
+        const colorKey = (ownerState.color ? ownerState.color : "primary") as keyof typeof palette;
+        const activeColorGroup = (palette[colorKey] || palette.primary) as Record<string, string>;
         const activeColor = activeColorGroup.main;
         const hoverColor = activeColorGroup.hover || activeColor;
         const glowColor = activeColorGroup.glow;
         const isGlass = (colorKey as string) === "glass";
         const isSemantic =
-          colorKey === "success" ||
-          colorKey === "warning" ||
-          colorKey === "error" ||
-          colorKey === "info";
+          colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
 
         return {
           borderRadius: 12,
@@ -31,9 +22,7 @@ export const getOutlinedInputOverrides = (
               : "rgba(255, 255, 255, 0.55)"
             : palette.glass.buttonBg,
           backdropFilter: isGlass ? "blur(20px) saturate(190%)" : "blur(8px)",
-          WebkitBackdropFilter: isGlass
-            ? "blur(20px) saturate(190%)"
-            : "blur(8px)",
+          WebkitBackdropFilter: isGlass ? "blur(20px) saturate(190%)" : "blur(8px)",
           boxShadow: isGlass
             ? isDark
               ? "inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 4px 14px rgba(0, 0, 0, 0.2)"
@@ -54,9 +43,7 @@ export const getOutlinedInputOverrides = (
 
           "&:hover": {
             ...(isGlass && {
-              backgroundColor: isDark
-                ? "rgba(255, 255, 255, 0.09)"
-                : "rgba(255, 255, 255, 0.70)",
+              backgroundColor: isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.70)",
             }),
           },
 
@@ -77,11 +64,7 @@ export const getOutlinedInputOverrides = (
                 : "rgba(255, 255, 255, 0.90)"
               : palette.glass.inputFocusBg,
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: isGlass
-                ? isDark
-                  ? "#F6F5F2"
-                  : "#111111"
-                : activeColor,
+              borderColor: isGlass ? (isDark ? "#F6F5F2" : "#111111") : activeColor,
               borderWidth: "1.5px",
             },
           },

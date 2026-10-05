@@ -4,10 +4,7 @@ import React, { useEffect, useId, useRef, useState } from "react";
 import { Box, LinearProgress, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import type {
-  LoadingShowcaseImage,
-  LoadingShowcaseProps,
-} from "./LoadingShowcase.types.js";
+import type { LoadingShowcaseImage, LoadingShowcaseProps } from "./LoadingShowcase.types.js";
 
 /* -------------------------------------------------------------------------- */
 /* Helpers                                                                    */
@@ -609,48 +606,22 @@ export const LoadingShowcase: React.FC<LoadingShowcaseProps> = ({
   };
 
   return (
-    <Root
-      className={className}
-      aria-busy={loading}
-      aria-label={loading ? "Loading" : undefined}
-    >
+    <Root className={className} aria-busy={loading} aria-label={loading ? "Loading" : undefined}>
       <Content>
         {image && (
           <Visual>
             <OrbitOne viewBox="0 0 700 300" aria-hidden="true">
               <defs>
-                <linearGradient
-                  id={orbitOneGradient}
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
+                <linearGradient id={orbitOneGradient} x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="currentColor" stopOpacity="0" />
 
-                  <stop
-                    offset="30%"
-                    stopColor="currentColor"
-                    stopOpacity="0.32"
-                  />
+                  <stop offset="30%" stopColor="currentColor" stopOpacity="0.32" />
 
-                  <stop
-                    offset="55%"
-                    stopColor="currentColor"
-                    stopOpacity="0.7"
-                  />
+                  <stop offset="55%" stopColor="currentColor" stopOpacity="0.7" />
 
-                  <stop
-                    offset="80%"
-                    stopColor="currentColor"
-                    stopOpacity="0.18"
-                  />
+                  <stop offset="80%" stopColor="currentColor" stopOpacity="0.18" />
 
-                  <stop
-                    offset="100%"
-                    stopColor="currentColor"
-                    stopOpacity="0"
-                  />
+                  <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
                 </linearGradient>
               </defs>
 
@@ -666,38 +637,16 @@ export const LoadingShowcase: React.FC<LoadingShowcaseProps> = ({
             </OrbitOne>
             <OrbitTwo viewBox="0 0 700 300" aria-hidden="true">
               <defs>
-                <linearGradient
-                  id={orbitTwoGradient}
-                  x1="0%"
-                  y1="100%"
-                  x2="100%"
-                  y2="0%"
-                >
+                <linearGradient id={orbitTwoGradient} x1="0%" y1="100%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="currentColor" stopOpacity="0" />
 
-                  <stop
-                    offset="25%"
-                    stopColor="currentColor"
-                    stopOpacity="0.18"
-                  />
+                  <stop offset="25%" stopColor="currentColor" stopOpacity="0.18" />
 
-                  <stop
-                    offset="52%"
-                    stopColor="currentColor"
-                    stopOpacity="0.65"
-                  />
+                  <stop offset="52%" stopColor="currentColor" stopOpacity="0.65" />
 
-                  <stop
-                    offset="78%"
-                    stopColor="currentColor"
-                    stopOpacity="0.18"
-                  />
+                  <stop offset="78%" stopColor="currentColor" stopOpacity="0.18" />
 
-                  <stop
-                    offset="100%"
-                    stopColor="currentColor"
-                    stopOpacity="0"
-                  />
+                  <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
                 </linearGradient>
               </defs>
 
@@ -722,11 +671,7 @@ export const LoadingShowcase: React.FC<LoadingShowcaseProps> = ({
         )}
         <Title>{title}</Title>
         <ProgressSection>
-          <ProgressBar
-            variant="determinate"
-            value={progress}
-            aria-label="Loading"
-          />
+          <ProgressBar variant="determinate" value={progress} aria-label="Loading" />
           <ProgressLabel>
             <span>{loadingLabel}</span>
             <ProgressDot aria-hidden="true">·</ProgressDot>

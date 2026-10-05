@@ -1,13 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export type DialogRadius =
-  | "square"
-  | "small"
-  | "medium"
-  | "large"
-  | "rounded"
-  | "pill";
+export type DialogRadius = "square" | "small" | "medium" | "large" | "rounded" | "pill";
 
 const radiusMap: Record<DialogRadius, number> = {
   square: 0,
@@ -18,10 +12,7 @@ const radiusMap: Record<DialogRadius, number> = {
   pill: 24,
 };
 
-export const getDialogOverrides = (
-  _palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getDialogOverrides = (_palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiDialog: {
     defaultProps: {
       disableScrollLock: false,
@@ -48,13 +39,10 @@ export const getDialogOverrides = (
        * --------------------------------------------------
        */
       paper: ({ ownerState }) => {
-        const glass =
-          ownerState.glass === "true" || ownerState.glass === true;
+        const glass = ownerState.glass === "true" || ownerState.glass === true;
 
         const radius = (ownerState.radius ?? "large") as DialogRadius;
-        const resolvedBorderRadius = ownerState.fullScreen
-          ? 0
-          : (radiusMap[radius] ?? 20);
+        const resolvedBorderRadius = ownerState.fullScreen ? 0 : (radiusMap[radius] ?? 20);
 
         /**
          * -----------------------------------------------
@@ -69,9 +57,7 @@ export const getDialogOverrides = (
          * Glass surface
          * -----------------------------------------------
          */
-        const glassBackground = isDark
-          ? "rgba(24, 24, 27, 0.49)"
-          : "rgba(255, 255, 255, 0.52)";
+        const glassBackground = isDark ? "rgba(24, 24, 27, 0.49)" : "rgba(255, 255, 255, 0.52)";
         const glassColor = isDark ? "#F5F5F7" : "#111111";
         /**
          * -----------------------------------------------
@@ -91,9 +77,7 @@ export const getDialogOverrides = (
          * Shadow
          * -----------------------------------------------
          */
-        const shadow = isDark
-          ? "0 24px 70px rgba(0, 0, 0, 0.45)"
-          : "0 24px 70px rgba(0, 0, 0, 0.14)";
+        const shadow = isDark ? "0 24px 70px rgba(0, 0, 0, 0.45)" : "0 24px 70px rgba(0, 0, 0, 0.14)";
 
         return {
           position: "relative",
@@ -177,9 +161,7 @@ export const getDialogOverrides = (
 
               pointerEvents: "none",
 
-              background: isDark
-                ? "rgba(255,255,255,0.16)"
-                : "rgba(255,255,255,0.95)",
+              background: isDark ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.95)",
 
               zIndex: 2,
             },

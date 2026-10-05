@@ -1,12 +1,12 @@
-import { Box, Typography, styled } from '@mui/material';
-import { GlassPanel } from './GlassPanel.js';
+import { Box, Typography, styled } from "@mui/material";
+import { GlassPanel } from "./GlassPanel.js";
 
 export const HeroSection = styled(Box)({
-  position: 'relative',
+  position: "relative",
   zIndex: 1,
   paddingTop: 48,
   paddingBottom: 128,
-  '@media (max-width:899.95px)': {
+  "@media (max-width:899.95px)": {
     paddingTop: 32,
     paddingBottom: 80,
   },
@@ -15,11 +15,11 @@ export const HeroSection = styled(Box)({
 export const HeroTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 800,
   marginBottom: theme.spacing(3),
-  letterSpacing: '-0.03em',
-  fontSize: '4.2rem',
+  letterSpacing: "-0.03em",
+  fontSize: "4.2rem",
   lineHeight: 1.08,
-  [theme.breakpoints.down('md')]: {
-    fontSize: '1.8rem',
+  [theme.breakpoints.down("md")]: {
+    fontSize: "1.8rem",
   },
 }));
 
@@ -29,34 +29,34 @@ export const HeroDescription = styled(Typography)(({ theme }) => ({
   fontWeight: 400,
   maxWidth: 480,
   lineHeight: 1.6,
-  fontSize: '1.05rem',
+  fontSize: "1.05rem",
 }));
 
 export const HeroActions = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
+  display: "flex",
+  alignItems: "center",
   gap: theme.spacing(2),
-  flexWrap: 'wrap',
-  [theme.breakpoints.down('sm')]: {
+  flexWrap: "wrap",
+  [theme.breakpoints.down("sm")]: {
     gap: theme.spacing(0),
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
 }));
 
 export const HeroStatsPanel = styled(GlassPanel)(({ theme }) => ({
-  position: 'absolute',
+  position: "absolute",
   bottom: 20,
   left: 20,
   right: 20,
   padding: 24,
-  display: 'flex',
-  justifyContent: 'space-around',
-  textAlign: 'center',
-  [theme.breakpoints.down('sm')]: {
+  display: "flex",
+  justifyContent: "space-around",
+  textAlign: "center",
+  [theme.breakpoints.down("sm")]: {
     bottom: 14,
     left: 14,
     right: 14,
-    padding: '14px 16px',
+    padding: "14px 16px",
     borderRadius: 20,
   },
 }));
@@ -70,29 +70,29 @@ export const StatLabel = styled(Typography)({
 });
 
 export const HeroImageFrame = styled(Box, {
-  shouldForwardProp: (p) => p !== 'isDark',
+  shouldForwardProp: (p) => p !== "isDark",
 })<{ isDark: boolean }>(({ theme, isDark }) => ({
-  position: 'relative',
-  width: '100%',
-  aspectRatio: '4/3',
-  borderRadius: '32px',
-  overflow: 'hidden',
-  boxShadow: isDark ? '0 24px 80px rgba(0,0,0,0.5)' : '0 24px 80px rgba(0,0,0,0.08)',
-  [theme.breakpoints.down('md')]: {
-    aspectRatio: '4/5',
+  position: "relative",
+  width: "100%",
+  aspectRatio: "4/3",
+  borderRadius: "32px",
+  overflow: "hidden",
+  boxShadow: isDark ? "0 24px 80px rgba(0,0,0,0.5)" : "0 24px 80px rgba(0,0,0,0.08)",
+  [theme.breakpoints.down("md")]: {
+    aspectRatio: "4/5",
     minHeight: 450,
-    borderRadius: '26px',
+    borderRadius: "26px",
   },
-  [theme.breakpoints.down('sm')]: {
-    aspectRatio: '3/4',
+  [theme.breakpoints.down("sm")]: {
+    aspectRatio: "3/4",
     minHeight: 480,
-    borderRadius: '22px',
+    borderRadius: "22px",
   },
 }));
 
-export const CoverImage = styled('img')({
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  display: 'block',
+export const CoverImage = styled("img")({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  display: "block",
 });

@@ -11,10 +11,7 @@ interface TableOfContentsProps {
   activeId?: string;
 }
 
-export const TableOfContents: React.FC<TableOfContentsProps> = ({
-  items,
-  activeId,
-}) => {
+export const TableOfContents: React.FC<TableOfContentsProps> = ({ items, activeId }) => {
   if (!items || items.length === 0) return null;
 
   const handleScrollTo = (id: string) => {
@@ -63,10 +60,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
                 py: 0.4,
                 px: 1,
                 borderRadius: "6px",
-                borderLeft: (theme) =>
-                  `2px solid ${
-                    isActive ? theme.palette.text.primary : "transparent"
-                  }`,
+                borderLeft: (theme) => `2px solid ${isActive ? theme.palette.text.primary : "transparent"}`,
                 color: isActive ? "text.primary" : "text.secondary",
                 fontWeight: isActive ? 600 : 400,
                 "&:hover": {

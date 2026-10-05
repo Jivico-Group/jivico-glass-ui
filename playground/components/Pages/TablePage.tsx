@@ -47,8 +47,7 @@ const mockTransactions: TransactionData[] = [
     user: {
       name: "Sophia Martinez",
       email: "sophia@jivico.design",
-      avatar:
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100",
     },
     amount: "$2,450.00",
     date: "Sep 22, 2026",
@@ -60,8 +59,7 @@ const mockTransactions: TransactionData[] = [
     user: {
       name: "Marcus Vance",
       email: "marcus@jivico.dev",
-      avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100",
     },
     amount: "$890.50",
     date: "Sep 21, 2026",
@@ -73,8 +71,7 @@ const mockTransactions: TransactionData[] = [
     user: {
       name: "Elena Rostova",
       email: "elena@jivico.ai",
-      avatar:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100",
     },
     amount: "$5,120.00",
     date: "Sep 20, 2026",
@@ -86,8 +83,7 @@ const mockTransactions: TransactionData[] = [
     user: {
       name: "Liam O'Connor",
       email: "liam@jivico.io",
-      avatar:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
     },
     amount: "$120.00",
     date: "Sep 19, 2026",
@@ -164,12 +160,7 @@ export const TablePage: React.FC = () => {
       title="Table & Data Grid"
       description="Frosted glassmorphic data tables (variant='glass') with 20px optical backdrop blur, tabular numeric alignment, selectable rows, and scale-adjusted sizes."
       category="Data Display"
-      badges={[
-        "variant='glass'",
-        "size='small | medium'",
-        "color palette",
-        "Selectable Rows",
-      ]}
+      badges={["variant='glass'", "size='small | medium'", "color palette", "Selectable Rows"]}
     >
       {/* 1. Frosted Glass Spotlight */}
       <DemoBlock
@@ -208,9 +199,7 @@ export const TablePage: React.FC = () => {
               : "linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80')",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            boxShadow: isDark
-              ? "0 24px 60px rgba(0, 0, 0, 0.7)"
-              : "0 20px 48px rgba(0, 0, 0, 0.15)",
+            boxShadow: isDark ? "0 24px 60px rgba(0, 0, 0, 0.7)" : "0 20px 48px rgba(0, 0, 0, 0.15)",
           }}
         >
           {/* Ambient Light Mesh Orbs */}
@@ -222,8 +211,7 @@ export const TablePage: React.FC = () => {
               width: 260,
               height: 260,
               borderRadius: "50%",
-              background:
-                "radial-gradient(circle, rgba(99, 102, 241, 0.65) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(99, 102, 241, 0.65) 0%, transparent 70%)",
               filter: "blur(30px)",
             }}
           />
@@ -235,30 +223,20 @@ export const TablePage: React.FC = () => {
               width: 280,
               height: 280,
               borderRadius: "50%",
-              background:
-                "radial-gradient(circle, rgba(236, 72, 153, 0.65) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(236, 72, 153, 0.65) 0%, transparent 70%)",
               filter: "blur(30px)",
             }}
           />
 
-          <TableContainer
-            data-glass="true"
-            sx={{ position: "relative", zIndex: 2, borderRadius: "18px" }}
-          >
+          <TableContainer data-glass="true" sx={{ position: "relative", zIndex: 2, borderRadius: "18px" }}>
             <Table variant="glass" color="accent">
               <TableHead>
                 <TableRow>
                   <TableCell padding="checkbox">
                     <Checkbox
                       color="primary"
-                      indeterminate={
-                        selectedRows.length > 0 &&
-                        selectedRows.length < mockTransactions.length
-                      }
-                      checked={
-                        mockTransactions.length > 0 &&
-                        selectedRows.length === mockTransactions.length
-                      }
+                      indeterminate={selectedRows.length > 0 && selectedRows.length < mockTransactions.length}
+                      checked={mockTransactions.length > 0 && selectedRows.length === mockTransactions.length}
                       onChange={handleSelectAll}
                     />
                   </TableCell>
@@ -276,23 +254,12 @@ export const TablePage: React.FC = () => {
                   return (
                     <TableRow key={row.id} selected={isItemSelected}>
                       <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          onChange={() => handleSelectOne(row.id)}
-                        />
+                        <Checkbox color="primary" checked={isItemSelected} onChange={() => handleSelectOne(row.id)} />
                       </TableCell>
 
                       <TableCell>
-                        <Stack
-                          direction="row"
-                          spacing={1.5}
-                          sx={{ alignItems: "center" }}
-                        >
-                          <Avatar
-                            src={row.user.avatar}
-                            sx={{ width: 34, height: 34 }}
-                          />
+                        <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
+                          <Avatar src={row.user.avatar} sx={{ width: 34, height: 34 }} />
                           <Box>
                             <Typography
                               variant="subtitle2"
@@ -304,10 +271,7 @@ export const TablePage: React.FC = () => {
                             >
                               {row.user.name}
                             </Typography>
-                            <Typography
-                              variant="caption"
-                              sx={{ fontSize: "0.7rem", opacity: 0.65 }}
-                            >
+                            <Typography variant="caption" sx={{ fontSize: "0.7rem", opacity: 0.65 }}>
                               {row.user.email}
                             </Typography>
                           </Box>
@@ -315,10 +279,7 @@ export const TablePage: React.FC = () => {
                       </TableCell>
 
                       <TableCell>
-                        <Typography
-                          variant="body2"
-                          sx={{ fontSize: "0.82rem", fontWeight: 500 }}
-                        >
+                        <Typography variant="body2" sx={{ fontSize: "0.82rem", fontWeight: 500 }}>
                           {row.type}
                         </Typography>
                       </TableCell>
@@ -358,9 +319,7 @@ export const TablePage: React.FC = () => {
                       rowsPerPage={rowsPerPage}
                       page={page}
                       onPageChange={(_, newPage) => setPage(newPage)}
-                      onRowsPerPageChange={(e) =>
-                        setRowsPerPage(parseInt(e.target.value, 10))
-                      }
+                      onRowsPerPageChange={(e) => setRowsPerPage(parseInt(e.target.value, 10))}
                     />
                   </TableCell>
                 </TableRow>
@@ -407,9 +366,7 @@ export const TablePage: React.FC = () => {
               elevation={0}
               sx={{
                 borderRadius: "14px",
-                border: `1px solid ${
-                  isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
-                }`,
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
               }}
             >
               <Table size="small">
@@ -458,9 +415,7 @@ export const TablePage: React.FC = () => {
               elevation={0}
               sx={{
                 borderRadius: "16px",
-                border: `1px solid ${
-                  isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
-                }`,
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
               }}
             >
               <Table size="medium">
@@ -519,9 +474,7 @@ export const TablePage: React.FC = () => {
           elevation={0}
           sx={{
             borderRadius: "16px",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
-            }`,
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
           }}
         >
           <Table color={activeColor}>
@@ -535,9 +488,7 @@ export const TablePage: React.FC = () => {
             </TableHead>
             <TableBody>
               <TableRow selected>
-                <TableCell sx={{ fontWeight: 600 }}>
-                  PROD-101 (Selected Row)
-                </TableCell>
+                <TableCell sx={{ fontWeight: 600 }}>PROD-101 (Selected Row)</TableCell>
                 <TableCell>Hardware</TableCell>
                 <TableCell align="right" sx={{ fontWeight: 700 }}>
                   $1,299.00

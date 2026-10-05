@@ -1,10 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette";
 
-export const getBadgeOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getBadgeOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiBadge: {
     styleOverrides: {
       badge: ({ ownerState }) => {
@@ -12,15 +9,10 @@ export const getBadgeOverrides = (
         const isGlass = color === "glass";
         const isDot = ownerState.variant === "dot";
 
-        const colorGroup =
-          (palette as Record<string, any>)[color] || palette.primary;
+        const colorGroup = (palette as Record<string, any>)[color] || palette.primary;
 
         if (isDot) {
-          const dotColor = isGlass
-            ? isDark
-              ? "#F6F5F2"
-              : "#111111"
-            : colorGroup.main;
+          const dotColor = isGlass ? (isDark ? "#F6F5F2" : "#111111") : colorGroup.main;
 
           return {
             height: 10,
@@ -39,13 +31,9 @@ export const getBadgeOverrides = (
 
         if (isGlass) {
           return {
-            backgroundColor: isDark
-              ? "rgba(255, 255, 255, 0.16)"
-              : "rgba(255, 255, 255, 0.75)",
+            backgroundColor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.75)",
             color: isDark ? "#F6F5F2" : "#111111",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(255, 255, 255, 0.9)"
-            }`,
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(255, 255, 255, 0.9)"}`,
             backdropFilter: "blur(16px) saturate(180%)",
             WebkitBackdropFilter: "blur(16px) saturate(180%)",
             boxShadow: isDark
@@ -63,9 +51,7 @@ export const getBadgeOverrides = (
         return {
           backgroundColor: colorGroup.main,
           color: colorGroup.contrastText || "#FFFFFF",
-          border: `1.5px solid ${
-            isDark ? "rgba(20, 24, 32, 0.9)" : "rgba(255, 255, 255, 0.95)"
-          }`,
+          border: `1.5px solid ${isDark ? "rgba(20, 24, 32, 0.9)" : "rgba(255, 255, 255, 0.95)"}`,
           boxShadow: `0 2px 8px ${colorGroup.glow || "rgba(0, 0, 0, 0.15)"}`,
           fontWeight: 700,
           fontSize: "0.72rem",

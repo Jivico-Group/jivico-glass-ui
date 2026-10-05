@@ -28,6 +28,8 @@
     "predeploy": "npm run build:docs",
     "deploy": "gh-pages -d dist-docs --nojekyll",
     "playground": "vite",
+    "prettier": "prettier --write .",
+    "format": "prettier --write .",
     "prepare": "npm run build"
   },
   "peerDependencies": {
@@ -50,6 +52,7 @@
     "framer-motion": "^12.4.7",
     "gh-pages": "^6.3.0",
     "lucide-react": "^1.16.0",
+    "prettier": "^3.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tsup": "^8.3.6",

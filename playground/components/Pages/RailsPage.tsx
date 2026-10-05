@@ -2,15 +2,7 @@
 
 import React, { useState } from "react";
 
-import {
-  Box,
-  Typography,
-  Stack,
-  Button,
-  FormControlLabel,
-  Switch,
-  Rating,
-} from "@mui/material";
+import { Box, Typography, Stack, Button, FormControlLabel, Switch, Rating } from "@mui/material";
 
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
@@ -18,11 +10,7 @@ import { DemoBlock } from "../Common/DemoBlock.js";
 import { Rails } from "../../../src/components/rails/Rails.js";
 import { Highlight } from "../../../src/components/highlight/Highlight.js";
 
-import type {
-  RailColumns,
-  RailNavigation,
-  RailTransition,
-} from "../../../src/components/rails/Rail.types.js";
+import type { RailColumns, RailNavigation, RailTransition } from "../../../src/components/rails/Rail.types.js";
 
 /* =========================================================
  * Sample Types
@@ -63,48 +51,42 @@ const CATEGORIES: SampleCategory[] = [
   {
     id: "cat-1",
     name: "Heavyweight Tees",
-    image:
-      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
     count: 24,
     slug: "heavyweight-tees",
   },
   {
     id: "cat-2",
     name: "Luxury Hoodies",
-    image:
-      "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
     count: 18,
     slug: "luxury-hoodies",
   },
   {
     id: "cat-3",
     name: "Overalls & Denim",
-    image:
-      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80",
     count: 12,
     slug: "overalls-denim",
   },
   {
     id: "cat-4",
     name: "Glass Outerwear",
-    image:
-      "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
     count: 15,
     slug: "glass-outerwear",
   },
   {
     id: "cat-5",
     name: "Footwear & Boots",
-    image:
-      "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80",
     count: 30,
     slug: "footwear-boots",
   },
   {
     id: "cat-6",
     name: "Studio Accessories",
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
     count: 42,
     slug: "studio-accessories",
   },
@@ -118,8 +100,7 @@ const PRODUCTS: SampleProduct[] = [
   {
     id: "prod-1",
     name: "Originals Oversized Tee",
-    image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
     price: 899,
     rating: 4.8,
     colors: 4,
@@ -128,8 +109,7 @@ const PRODUCTS: SampleProduct[] = [
   {
     id: "prod-2",
     name: "Freestyle Heavy Hoodie",
-    image:
-      "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80",
     price: 1499,
     rating: 4.9,
     colors: 3,
@@ -138,8 +118,7 @@ const PRODUCTS: SampleProduct[] = [
   {
     id: "prod-3",
     name: "Liquid Glass Bomber",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
     price: 2499,
     rating: 4.7,
     colors: 2,
@@ -148,8 +127,7 @@ const PRODUCTS: SampleProduct[] = [
   {
     id: "prod-4",
     name: "Washed Cargo Trousers",
-    image:
-      "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=800&q=80",
     price: 1299,
     rating: 4.6,
     colors: 5,
@@ -158,8 +136,7 @@ const PRODUCTS: SampleProduct[] = [
   {
     id: "prod-5",
     name: "Minimalist Cap",
-    image:
-      "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=80",
     price: 499,
     rating: 4.5,
     colors: 6,
@@ -177,8 +154,7 @@ const HIGHLIGHTS: SampleHighlight[] = [
     eyebrow: "JIVICO ORIGINALS",
     title: "Graphic Tees",
     description: "Bold graphics. Everyday essentials.",
-    image:
-      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=85",
     href: "/collections/graphic-tees",
   },
   {
@@ -186,8 +162,7 @@ const HIGHLIGHTS: SampleHighlight[] = [
     eyebrow: "JIVICO ORIGINALS",
     title: "Oversized Tees",
     description: "Relaxed silhouettes made for everyday wear.",
-    image:
-      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1200&q=85",
     href: "/collections/oversized-tees",
   },
   {
@@ -195,8 +170,7 @@ const HIGHLIGHTS: SampleHighlight[] = [
     eyebrow: "THE ESSENTIALS",
     title: "Minimal Tees",
     description: "Clean lines. Quiet confidence.",
-    image:
-      "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1200&q=85",
     href: "/collections/minimal-tees",
   },
   {
@@ -204,8 +178,7 @@ const HIGHLIGHTS: SampleHighlight[] = [
     eyebrow: "THE EDIT",
     title: "Streetwear",
     description: "Built for the city.",
-    image:
-      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=85",
     href: "/collections/streetwear",
   },
   {
@@ -213,8 +186,7 @@ const HIGHLIGHTS: SampleHighlight[] = [
     eyebrow: "JUST DROPPED",
     title: "New Arrivals",
     description: "Fresh pieces. New energy.",
-    image:
-      "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1200&q=85",
     href: "/collections/new-arrivals",
   },
   {
@@ -222,8 +194,7 @@ const HIGHLIGHTS: SampleHighlight[] = [
     eyebrow: "CREATE YOURS",
     title: "Freestyle",
     description: "Turn your idea into something wearable.",
-    image:
-      "https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=1200&q=85",
     href: "/freestyle",
   },
 ];
@@ -286,13 +257,7 @@ export const RailsPage: React.FC = () => {
       title="Rails Component"
       description="A responsive horizontal content rail for categories, products, editorial cards, highlights, and other generic data."
       category="Navigation"
-      badges={[
-        "<Rails />",
-        "Generic Data",
-        "Touch Swipe",
-        "Snap Scrolling",
-        "Autoplay",
-      ]}
+      badges={["<Rails />", "Generic Data", "Touch Swipe", "Snap Scrolling", "Autoplay"]}
     >
       {/* ================================================== */}
       {/* 1. Interactive Playground                         */}
@@ -375,19 +340,17 @@ export const RailsPage: React.FC = () => {
                 Navigation:
               </Typography>
 
-              {(["arrows", "dots", "both", "none"] as RailNavigation[]).map(
-                (nav) => (
-                  <Button
-                    key={nav}
-                    size="small"
-                    variant={navigation === nav ? "contained" : "outlined"}
-                    color="accent"
-                    onClick={() => setNavigation(nav)}
-                  >
-                    {nav}
-                  </Button>
-                ),
-              )}
+              {(["arrows", "dots", "both", "none"] as RailNavigation[]).map((nav) => (
+                <Button
+                  key={nav}
+                  size="small"
+                  variant={navigation === nav ? "contained" : "outlined"}
+                  color="accent"
+                  onClick={() => setNavigation(nav)}
+                >
+                  {nav}
+                </Button>
+              ))}
             </Stack>
 
             {/* Mobile columns */}
@@ -517,9 +480,7 @@ export const RailsPage: React.FC = () => {
                 <Button
                   key={ratio}
                   size="small"
-                  variant={
-                    imageAspectRatio === ratio ? "contained" : "outlined"
-                  }
+                  variant={imageAspectRatio === ratio ? "contained" : "outlined"}
                   color="accent"
                   onClick={() => setImageAspectRatio(ratio)}
                 >
@@ -596,19 +557,17 @@ export const RailsPage: React.FC = () => {
                 Transition:
               </Typography>
 
-              {(["none", "fade", "scale", "lift"] as RailTransition[]).map(
-                (value) => (
-                  <Button
-                    key={value}
-                    size="small"
-                    variant={transition === value ? "contained" : "outlined"}
-                    color="accent"
-                    onClick={() => setTransition(value)}
-                  >
-                    {value}
-                  </Button>
-                ),
-              )}
+              {(["none", "fade", "scale", "lift"] as RailTransition[]).map((value) => (
+                <Button
+                  key={value}
+                  size="small"
+                  variant={transition === value ? "contained" : "outlined"}
+                  color="accent"
+                  onClick={() => setTransition(value)}
+                >
+                  {value}
+                </Button>
+              ))}
             </Stack>
 
             {/* Boolean controls */}
@@ -622,13 +581,7 @@ export const RailsPage: React.FC = () => {
               }}
             >
               <FormControlLabel
-                control={
-                  <Switch
-                    size="small"
-                    checked={swipe}
-                    onChange={(event) => setSwipe(event.target.checked)}
-                  />
-                }
+                control={<Switch size="small" checked={swipe} onChange={(event) => setSwipe(event.target.checked)} />}
                 label={
                   <Typography variant="caption" sx={{ fontWeight: 600 }}>
                     Swipe / Touch
@@ -637,13 +590,7 @@ export const RailsPage: React.FC = () => {
               />
 
               <FormControlLabel
-                control={
-                  <Switch
-                    size="small"
-                    checked={snap}
-                    onChange={(event) => setSnap(event.target.checked)}
-                  />
-                }
+                control={<Switch size="small" checked={snap} onChange={(event) => setSnap(event.target.checked)} />}
                 label={
                   <Typography variant="caption" sx={{ fontWeight: 600 }}>
                     Snap Scrolling
@@ -652,13 +599,7 @@ export const RailsPage: React.FC = () => {
               />
 
               <FormControlLabel
-                control={
-                  <Switch
-                    size="small"
-                    checked={loop}
-                    onChange={(event) => setLoop(event.target.checked)}
-                  />
-                }
+                control={<Switch size="small" checked={loop} onChange={(event) => setLoop(event.target.checked)} />}
                 label={
                   <Typography variant="caption" sx={{ fontWeight: 600 }}>
                     Loop Wrap
@@ -668,11 +609,7 @@ export const RailsPage: React.FC = () => {
 
               <FormControlLabel
                 control={
-                  <Switch
-                    size="small"
-                    checked={autoplay}
-                    onChange={(event) => setAutoplay(event.target.checked)}
-                  />
+                  <Switch size="small" checked={autoplay} onChange={(event) => setAutoplay(event.target.checked)} />
                 }
                 label={
                   <Typography variant="caption" sx={{ fontWeight: 600 }}>
@@ -1082,12 +1019,7 @@ export const RailsPage: React.FC = () => {
                   </Typography>
                 </Box>
 
-                <Rating
-                  value={item.rating}
-                  precision={0.1}
-                  size="small"
-                  readOnly
-                />
+                <Rating value={item.rating} precision={0.1} size="small" readOnly />
               </Box>
             )}
           />
@@ -1380,10 +1312,9 @@ export function CollectionHighlight() {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Rails and Highlight do not import Next.js or depend on any
-                routing framework. The application owns routing through
-                onNavigate, while framework-specific image rendering can be
-                injected through ImageComponent.
+                Rails and Highlight do not import Next.js or depend on any routing framework. The application owns
+                routing through onNavigate, while framework-specific image rendering can be injected through
+                ImageComponent.
               </Typography>
 
               <Stack
@@ -1399,50 +1330,46 @@ export function CollectionHighlight() {
                   },
                 }}
               >
-                {[
-                  "API JSON",
-                  "Next.js Page",
-                  "Rails / Highlight",
-                  "onNavigate",
-                  "ImageComponent",
-                ].map((label, index) => (
-                  <React.Fragment key={label}>
-                    <Box
-                      sx={{
-                        px: 1.5,
-                        py: 1,
-                        borderRadius: 2,
-                        bgcolor: "background.paper",
-                        border: 1,
-                        borderColor: "divider",
-                        textAlign: "center",
-                      }}
-                    >
-                      <Typography
-                        variant="caption"
+                {["API JSON", "Next.js Page", "Rails / Highlight", "onNavigate", "ImageComponent"].map(
+                  (label, index) => (
+                    <React.Fragment key={label}>
+                      <Box
                         sx={{
-                          fontWeight: 700,
+                          px: 1.5,
+                          py: 1,
+                          borderRadius: 2,
+                          bgcolor: "background.paper",
+                          border: 1,
+                          borderColor: "divider",
+                          textAlign: "center",
                         }}
                       >
-                        {label}
-                      </Typography>
-                    </Box>
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            fontWeight: 700,
+                          }}
+                        >
+                          {label}
+                        </Typography>
+                      </Box>
 
-                    {index < 4 && (
-                      <Typography
-                        sx={{
-                          display: {
-                            xs: "none",
-                            sm: "block",
-                          },
-                          color: "text.secondary",
-                        }}
-                      >
-                        →
-                      </Typography>
-                    )}
-                  </React.Fragment>
-                ))}
+                      {index < 4 && (
+                        <Typography
+                          sx={{
+                            display: {
+                              xs: "none",
+                              sm: "block",
+                            },
+                            color: "text.secondary",
+                          }}
+                        >
+                          →
+                        </Typography>
+                      )}
+                    </React.Fragment>
+                  ),
+                )}
               </Stack>
             </Stack>
           </Box>
@@ -1469,9 +1396,8 @@ export function CollectionHighlight() {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Your backend only needs to return serializable data such as IDs,
-                titles, images, and slugs. No React components, router objects,
-                or Next.js objects are included.
+                Your backend only needs to return serializable data such as IDs, titles, images, and slugs. No React
+                components, router objects, or Next.js objects are included.
               </Typography>
 
               <Box
@@ -1518,9 +1444,8 @@ export function CollectionHighlight() {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Rails renders a real anchor with the resolved href, but prevents
-                native navigation. The consuming application receives the item
-                through onNavigate and decides how routing should happen.
+                Rails renders a real anchor with the resolved href, but prevents native navigation. The consuming
+                application receives the item through onNavigate and decides how routing should happen.
               </Typography>
 
               <Box
@@ -1570,9 +1495,8 @@ onNavigate={(item) => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Highlight uses the same principle. Its full image becomes a
-                semantic anchor when href is provided. Native navigation is
-                prevented and onNavigate controls the actual application route.
+                Highlight uses the same principle. Its full image becomes a semantic anchor when href is provided.
+                Native navigation is prevented and onNavigate controls the actual application route.
               </Typography>
 
               <Box
@@ -1621,9 +1545,8 @@ onNavigate={(item) => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                The href remains in the DOM as a real anchor destination. This
-                provides semantic link information, while onNavigate owns the
-                actual client-side navigation.
+                The href remains in the DOM as a real anchor destination. This provides semantic link information, while
+                onNavigate owns the actual client-side navigation.
               </Typography>
 
               <Box
@@ -1671,9 +1594,8 @@ onNavigate={() => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                ImageComponent remains available independently from routing.
-                This allows Rails and Highlight to use next/image without
-                coupling either component to Next.js.
+                ImageComponent remains available independently from routing. This allows Rails and Highlight to use
+                next/image without coupling either component to Next.js.
               </Typography>
 
               <Box
@@ -1723,9 +1645,8 @@ onNavigate={() => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Keep the API framework-independent. Keep Rails and Highlight
-                framework-independent. Let the consuming application own routing
-                and optionally provide framework-specific image rendering.
+                Keep the API framework-independent. Keep Rails and Highlight framework-independent. Let the consuming
+                application own routing and optionally provide framework-specific image rendering.
               </Typography>
 
               <Typography
@@ -1734,8 +1655,7 @@ onNavigate={() => {
                   fontWeight: 700,
                 }}
               >
-                API → JSON → Next.js → Rails / Highlight → onNavigate /
-                ImageComponent
+                API → JSON → Next.js → Rails / Highlight → onNavigate / ImageComponent
               </Typography>
             </Stack>
           </Box>

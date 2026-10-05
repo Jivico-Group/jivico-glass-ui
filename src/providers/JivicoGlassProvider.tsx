@@ -2,11 +2,7 @@ import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import JivicoGlassTheme from "../theme/theme.js";
-import {
-  GlassModeProvider,
-  useGlassMode,
-  ThemeMode,
-} from "../context/ThemeContext.js";
+import { GlassModeProvider, useGlassMode, ThemeMode } from "../context/ThemeContext.js";
 
 function InternalMuiWrapper({
   children,
@@ -17,10 +13,7 @@ function InternalMuiWrapper({
 }) {
   const { resolvedMode } = useGlassMode();
 
-  const theme = React.useMemo(
-    () => JivicoGlassTheme(resolvedMode),
-    [resolvedMode],
-  );
+  const theme = React.useMemo(() => JivicoGlassTheme(resolvedMode), [resolvedMode]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -45,9 +38,7 @@ export function JivicoGlassProvider({
 }: JivicoGlassProviderProps) {
   return (
     <GlassModeProvider defaultMode={defaultMode} storageKey={storageKey}>
-      <InternalMuiWrapper enableCssBaseline={enableCssBaseline}>
-        {children}
-      </InternalMuiWrapper>
+      <InternalMuiWrapper enableCssBaseline={enableCssBaseline}>{children}</InternalMuiWrapper>
     </GlassModeProvider>
   );
 }

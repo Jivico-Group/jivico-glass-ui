@@ -2,10 +2,7 @@ import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette.js";
 import { liquidGlassPopupRecipe } from "../glassRecipe.js";
 
-export const getMenuOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiPopover: {
     styleOverrides: {
       paper: {

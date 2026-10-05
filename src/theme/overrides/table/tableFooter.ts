@@ -3,23 +3,14 @@ import type { JivicoPalette } from "../../palette/index.js";
 
 import type { TableColor } from "./table.js";
 
-export const getTableFooterOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getTableFooterOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   const text = isDark ? "#F6F5F2" : "#111111";
 
-  const secondaryText = isDark
-    ? "rgba(246, 245, 242, 0.62)"
-    : "rgba(17, 17, 17, 0.62)";
+  const secondaryText = isDark ? "rgba(246, 245, 242, 0.62)" : "rgba(17, 17, 17, 0.62)";
 
-  const divider = isDark
-    ? "rgba(255, 255, 255, 0.08)"
-    : "rgba(17, 17, 17, 0.08)";
+  const divider = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)";
 
-  const glassBackground = isDark
-    ? "rgba(255, 255, 255, 0.025)"
-    : "rgba(255, 255, 255, 0.32)";
+  const glassBackground = isDark ? "rgba(255, 255, 255, 0.025)" : "rgba(255, 255, 255, 0.32)";
 
   const colorMap: Record<TableColor, string> = {
     primary: palette.primary.main,
@@ -58,13 +49,7 @@ export const getTableFooterOverrides = (
               color: secondaryText,
               fontWeight: 500,
               verticalAlign: "middle",
-              borderTop: `1px solid ${
-                isGlass
-                  ? isDark
-                    ? "rgba(255, 255, 255, 0.10)"
-                    : "rgba(17, 17, 17, 0.08)"
-                  : divider
-              }`,
+              borderTop: `1px solid ${isGlass ? (isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.08)") : divider}`,
               borderBottom: 0,
 
               "&.MuiTableCell-alignLeft": {
@@ -127,15 +112,11 @@ export const getTableFooterOverrides = (
 
                 "&:hover": {
                   color,
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.06)"
-                    : "rgba(17, 17, 17, 0.05)",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.05)",
                 },
 
                 "&.Mui-disabled": {
-                  color: isDark
-                    ? "rgba(246, 245, 242, 0.25)"
-                    : "rgba(17, 17, 17, 0.25)",
+                  color: isDark ? "rgba(246, 245, 242, 0.25)" : "rgba(17, 17, 17, 0.25)",
                 },
 
                 "&.Mui-focusVisible": {

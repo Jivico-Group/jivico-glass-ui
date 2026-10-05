@@ -2,10 +2,7 @@ import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 import { liquidGlassPopupRecipe } from "../glassRecipe.js";
 
-export const getSelectOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getSelectOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiSelect: {
     defaultProps: {
       MenuProps: {

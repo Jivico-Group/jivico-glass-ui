@@ -55,12 +55,7 @@ export const ListPage: React.FC = () => {
       title="List & List Item"
       description="Theme-aware lists with frosted glassmorphic surfaces (variant='glass'), scale-adjusted sizes (small / medium / large), and semantic color highlights for active selection."
       category="Navigation"
-      badges={[
-        "variant='glass'",
-        "size='small | medium | large'",
-        "color palette",
-        "Subheaders & Actions",
-      ]}
+      badges={["variant='glass'", "size='small | medium | large'", "color palette", "Subheaders & Actions"]}
     >
       {/* 1. Frosted Glass Spotlight */}
       <DemoBlock
@@ -92,9 +87,7 @@ export const ListPage: React.FC = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            boxShadow: isDark
-              ? "0 24px 60px rgba(0, 0, 0, 0.7)"
-              : "0 20px 48px rgba(0, 0, 0, 0.2)",
+            boxShadow: isDark ? "0 24px 60px rgba(0, 0, 0, 0.7)" : "0 20px 48px rgba(0, 0, 0, 0.2)",
           }}
         >
           {/* Glowing Ambient Mesh Orbs */}
@@ -106,8 +99,7 @@ export const ListPage: React.FC = () => {
               width: 220,
               height: 220,
               borderRadius: "50%",
-              background:
-                "radial-gradient(circle, rgba(99, 102, 241, 0.7) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(99, 102, 241, 0.7) 0%, transparent 70%)",
               filter: "blur(25px)",
             }}
           />
@@ -119,8 +111,7 @@ export const ListPage: React.FC = () => {
               width: 240,
               height: 240,
               borderRadius: "50%",
-              background:
-                "radial-gradient(circle, rgba(236, 72, 153, 0.7) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(236, 72, 153, 0.7) 0%, transparent 70%)",
               filter: "blur(25px)",
             }}
           />
@@ -134,64 +125,35 @@ export const ListPage: React.FC = () => {
               width: "100%",
             }}
           >
-            <ListItemButton
-              selected={selectedGlass === 0}
-              onClick={() => setSelectedGlass(0)}
-            >
+            <ListItemButton selected={selectedGlass === 0} onClick={() => setSelectedGlass(0)}>
               <ListItemIcon>
                 <Home size={20} />
               </ListItemIcon>
-              <ListItemText
-                primary="Dashboard"
-                secondary="Overview & live performance metrics"
-              />
+              <ListItemText primary="Dashboard" secondary="Overview & live performance metrics" />
               <ChevronRight size={18} opacity={0.6} />
             </ListItemButton>
 
-            <ListItemButton
-              selected={selectedGlass === 1}
-              onClick={() => setSelectedGlass(1)}
-            >
+            <ListItemButton selected={selectedGlass === 1} onClick={() => setSelectedGlass(1)}>
               <ListItemIcon>
                 <User size={20} />
               </ListItemIcon>
-              <ListItemText
-                primary="User Profile"
-                secondary="Personal information & bio"
-              />
+              <ListItemText primary="User Profile" secondary="Personal information & bio" />
               <ChevronRight size={18} opacity={0.6} />
             </ListItemButton>
 
-            <ListItemButton
-              selected={selectedGlass === 2}
-              onClick={() => setSelectedGlass(2)}
-            >
+            <ListItemButton selected={selectedGlass === 2} onClick={() => setSelectedGlass(2)}>
               <ListItemIcon>
                 <Sparkles size={20} />
               </ListItemIcon>
-              <ListItemText
-                primary="AI Assistants"
-                secondary="Custom prompt workflows"
-              />
-              <Chip
-                label="Pro"
-                size="small"
-                color="primary"
-                sx={{ height: 20, fontSize: "0.65rem" }}
-              />
+              <ListItemText primary="AI Assistants" secondary="Custom prompt workflows" />
+              <Chip label="Pro" size="small" color="primary" sx={{ height: 20, fontSize: "0.65rem" }} />
             </ListItemButton>
 
-            <ListItemButton
-              selected={selectedGlass === 3}
-              onClick={() => setSelectedGlass(3)}
-            >
+            <ListItemButton selected={selectedGlass === 3} onClick={() => setSelectedGlass(3)}>
               <ListItemIcon>
                 <Settings size={20} />
               </ListItemIcon>
-              <ListItemText
-                primary="Preferences"
-                secondary="System themes & shortcuts"
-              />
+              <ListItemText primary="Preferences" secondary="System themes & shortcuts" />
               <ChevronRight size={18} opacity={0.6} />
             </ListItemButton>
           </List>
@@ -221,17 +183,38 @@ export const ListPage: React.FC = () => {
         <Stack spacing={4} sx={{ width: "100%", maxWidth: 650, mx: "auto" }}>
           {/* Small Size */}
           <Box>
-            <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1, display: "block" }}>
+            <Typography
+              variant="caption"
+              sx={{
+                fontWeight: 700,
+                letterSpacing: 1,
+                textTransform: "uppercase",
+                opacity: 0.6,
+                mb: 1,
+                display: "block",
+              }}
+            >
               Small Scale (size="small" — 36px min-height)
             </Typography>
-            <Paper elevation={0} sx={{ p: 1, borderRadius: "14px", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}` }}>
+            <Paper
+              elevation={0}
+              sx={{
+                p: 1,
+                borderRadius: "14px",
+                border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}`,
+              }}
+            >
               <List size="small">
                 <ListItemButton selected={selectedSize === 0} onClick={() => setSelectedSize(0)}>
-                  <ListItemIcon><Mail size={18} /></ListItemIcon>
+                  <ListItemIcon>
+                    <Mail size={18} />
+                  </ListItemIcon>
                   <ListItemText primary="Inbox" secondary="12 unread messages" />
                 </ListItemButton>
                 <ListItemButton selected={selectedSize === 1} onClick={() => setSelectedSize(1)}>
-                  <ListItemIcon><Star size={18} /></ListItemIcon>
+                  <ListItemIcon>
+                    <Star size={18} />
+                  </ListItemIcon>
                   <ListItemText primary="Starred" secondary="Important bookmarks" />
                 </ListItemButton>
               </List>
@@ -240,18 +223,43 @@ export const ListPage: React.FC = () => {
 
           {/* Medium Size */}
           <Box>
-            <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1, display: "block" }}>
+            <Typography
+              variant="caption"
+              sx={{
+                fontWeight: 700,
+                letterSpacing: 1,
+                textTransform: "uppercase",
+                opacity: 0.6,
+                mb: 1,
+                display: "block",
+              }}
+            >
               Medium Scale (size="medium" — 44px min-height - Default)
             </Typography>
-            <Paper elevation={0} sx={{ p: 1.5, borderRadius: "16px", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}` }}>
+            <Paper
+              elevation={0}
+              sx={{
+                p: 1.5,
+                borderRadius: "16px",
+                border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}`,
+              }}
+            >
               <List size="medium">
                 <ListItemButton selected={selectedSize === 2} onClick={() => setSelectedSize(2)}>
-                  <ListItemIcon><Bell size={20} /></ListItemIcon>
+                  <ListItemIcon>
+                    <Bell size={20} />
+                  </ListItemIcon>
                   <ListItemText primary="Push Notifications" secondary="Configure mobile & web alerts" />
                 </ListItemButton>
                 <ListItemButton selected={selectedSize === 3} onClick={() => setSelectedSize(3)}>
-                  <ListItemIcon><Shield size={20} /></ListItemIcon>
-                  <ListItemText primary="Security & Privacy" font-size="inherit" secondary="Two-factor authentication & password" />
+                  <ListItemIcon>
+                    <Shield size={20} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Security & Privacy"
+                    font-size="inherit"
+                    secondary="Two-factor authentication & password"
+                  />
                 </ListItemButton>
               </List>
             </Paper>
@@ -259,18 +267,45 @@ export const ListPage: React.FC = () => {
 
           {/* Large Size */}
           <Box>
-            <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1, display: "block" }}>
+            <Typography
+              variant="caption"
+              sx={{
+                fontWeight: 700,
+                letterSpacing: 1,
+                textTransform: "uppercase",
+                opacity: 0.6,
+                mb: 1,
+                display: "block",
+              }}
+            >
               Large Scale (size="large" — 52px min-height)
             </Typography>
-            <Paper elevation={0} sx={{ p: 1.5, borderRadius: "18px", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}` }}>
+            <Paper
+              elevation={0}
+              sx={{
+                p: 1.5,
+                borderRadius: "18px",
+                border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}`,
+              }}
+            >
               <List size="large">
                 <ListItemButton selected={selectedSize === 4} onClick={() => setSelectedSize(4)}>
-                  <ListItemIcon><CreditCard size={22} /></ListItemIcon>
-                  <ListItemText primary="Billing & Subscriptions" secondary="Manage payment methods and active invoices" />
+                  <ListItemIcon>
+                    <CreditCard size={22} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Billing & Subscriptions"
+                    secondary="Manage payment methods and active invoices"
+                  />
                 </ListItemButton>
                 <ListItemButton selected={selectedSize === 5} onClick={() => setSelectedSize(5)}>
-                  <ListItemIcon><HelpCircle size={22} /></ListItemIcon>
-                  <ListItemText primary="Help & Customer Support" secondary="Access 24/7 priority live chat assistance" />
+                  <ListItemIcon>
+                    <HelpCircle size={22} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Help & Customer Support"
+                    secondary="Access 24/7 priority live chat assistance"
+                  />
                 </ListItemButton>
               </List>
             </Paper>
@@ -296,19 +331,13 @@ export const ListPage: React.FC = () => {
             p: 3,
             borderRadius: "20px",
             bgcolor: isDark ? "rgba(255, 255, 255, 0.02)" : "rgba(0, 0, 0, 0.02)",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
-            }`,
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
             maxWidth: 480,
             mx: "auto",
           }}
         >
           <List>
-            <ListItemButton
-              color="primary"
-              selected={selectedColor === 0}
-              onClick={() => setSelectedColor(0)}
-            >
+            <ListItemButton color="primary" selected={selectedColor === 0} onClick={() => setSelectedColor(0)}>
               <ListItemIcon>
                 <Home size={20} />
               </ListItemIcon>
@@ -316,11 +345,7 @@ export const ListPage: React.FC = () => {
               <Chip label="Primary" color="primary" size="small" sx={{ height: 20, fontSize: "0.65rem" }} />
             </ListItemButton>
 
-            <ListItemButton
-              color="accent"
-              selected={selectedColor === 1}
-              onClick={() => setSelectedColor(1)}
-            >
+            <ListItemButton color="accent" selected={selectedColor === 1} onClick={() => setSelectedColor(1)}>
               <ListItemIcon>
                 <Sparkles size={20} />
               </ListItemIcon>
@@ -328,11 +353,7 @@ export const ListPage: React.FC = () => {
               <Chip label="Accent" color="accent" size="small" sx={{ height: 20, fontSize: "0.65rem" }} />
             </ListItemButton>
 
-            <ListItemButton
-              color="success"
-              selected={selectedColor === 2}
-              onClick={() => setSelectedColor(2)}
-            >
+            <ListItemButton color="success" selected={selectedColor === 2} onClick={() => setSelectedColor(2)}>
               <ListItemIcon>
                 <CheckCircle2 size={20} />
               </ListItemIcon>
@@ -340,11 +361,7 @@ export const ListPage: React.FC = () => {
               <Chip label="Success" color="success" size="small" sx={{ height: 20, fontSize: "0.65rem" }} />
             </ListItemButton>
 
-            <ListItemButton
-              color="warning"
-              selected={selectedColor === 3}
-              onClick={() => setSelectedColor(3)}
-            >
+            <ListItemButton color="warning" selected={selectedColor === 3} onClick={() => setSelectedColor(3)}>
               <ListItemIcon>
                 <AlertCircle size={20} />
               </ListItemIcon>
@@ -352,11 +369,7 @@ export const ListPage: React.FC = () => {
               <Chip label="Warning" color="warning" size="small" sx={{ height: 20, fontSize: "0.65rem" }} />
             </ListItemButton>
 
-            <ListItemButton
-              color="error"
-              selected={selectedColor === 4}
-              onClick={() => setSelectedColor(4)}
-            >
+            <ListItemButton color="error" selected={selectedColor === 4} onClick={() => setSelectedColor(4)}>
               <ListItemIcon>
                 <Trash2 size={20} />
               </ListItemIcon>
@@ -397,9 +410,7 @@ export const ListPage: React.FC = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            boxShadow: isDark
-              ? "0 24px 60px rgba(0, 0, 0, 0.7)"
-              : "0 20px 48px rgba(0, 0, 0, 0.2)",
+            boxShadow: isDark ? "0 24px 60px rgba(0, 0, 0, 0.7)" : "0 20px 48px rgba(0, 0, 0, 0.2)",
           }}
         >
           {/* Ambient Lighting Orbs */}
@@ -411,8 +422,7 @@ export const ListPage: React.FC = () => {
               width: 250,
               height: 250,
               borderRadius: "50%",
-              background:
-                "radial-gradient(circle, rgba(168, 85, 247, 0.6) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(168, 85, 247, 0.6) 0%, transparent 70%)",
               filter: "blur(30px)",
             }}
           />
@@ -432,31 +442,16 @@ export const ListPage: React.FC = () => {
               <ListItemAvatar>
                 <Avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" />
               </ListItemAvatar>
-              <ListItemText
-                primary="Sarah Jenkins"
-                secondary="Owner • sarah@jivico.design"
-              />
-              <Chip
-                label="Admin"
-                size="small"
-                color="accent"
-                sx={{ height: 20, fontSize: "0.65rem" }}
-              />
+              <ListItemText primary="Sarah Jenkins" secondary="Owner • sarah@jivico.design" />
+              <Chip label="Admin" size="small" color="accent" sx={{ height: 20, fontSize: "0.65rem" }} />
             </ListItem>
 
             <ListItem>
               <ListItemAvatar>
                 <Avatar src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" />
               </ListItemAvatar>
-              <ListItemText
-                primary="David Chen"
-                secondary="Developer • david@jivico.dev"
-              />
-              <Chip
-                label="Member"
-                size="small"
-                sx={{ height: 20, fontSize: "0.65rem" }}
-              />
+              <ListItemText primary="David Chen" secondary="Developer • david@jivico.dev" />
+              <Chip label="Member" size="small" sx={{ height: 20, fontSize: "0.65rem" }} />
             </ListItem>
 
             <ListSubheader disableSticky>Quick Controls</ListSubheader>
@@ -465,10 +460,7 @@ export const ListPage: React.FC = () => {
               <ListItemIcon>
                 <Bell size={20} />
               </ListItemIcon>
-              <ListItemText
-                primary="Push Notifications"
-                secondary="Receive instant sound alerts"
-              />
+              <ListItemText primary="Push Notifications" secondary="Receive instant sound alerts" />
               <ListItemSecondaryAction>
                 <Switch
                   checked={notificationsEnabled}
@@ -483,10 +475,7 @@ export const ListPage: React.FC = () => {
               <ListItemIcon>
                 <Lock size={20} />
               </ListItemIcon>
-              <ListItemText
-                primary="Biometric Lock"
-                secondary="Require Face ID on open"
-              />
+              <ListItemText primary="Biometric Lock" secondary="Require Face ID on open" />
               <ListItemSecondaryAction>
                 <Switch
                   checked={securityLock}

@@ -2,35 +2,17 @@ import type { Components, Theme } from "@mui/material/styles";
 import { linearProgressClasses } from "@mui/material/LinearProgress";
 import type { JivicoPalette } from "../../palette/index.js";
 
-
-type ProgressColor =
-  | "primary"
-  | "secondary"
-  | "accent"
-  | "success"
-  | "info"
-  | "warning"
-  | "error"
-  | "glass";
+type ProgressColor = "primary" | "secondary" | "accent" | "success" | "info" | "warning" | "error" | "glass";
 
 type ProgressAppearance = "solid" | "tonal" | "glass" | "outlined";
 
-type ProgressRadius =
-  | "square"
-  | "small"
-  | "medium"
-  | "large"
-  | "rounded"
-  | "pill";
+type ProgressRadius = "square" | "small" | "medium" | "large" | "rounded" | "pill";
 
 type ProgressSize = "thin" | "small" | "medium" | "large";
 
 type GlassIntensity = "subtle" | "medium" | "strong" | "ultra";
 
-export const getLinearProgressOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   /*
    * -----------------------------------------
    * RADIUS
@@ -132,13 +114,9 @@ export const getLinearProgressOverrides = (
    * -----------------------------------------
    */
 
-  const defaultTrack = isDark
-    ? "rgba(255, 255, 255, 0.12)"
-    : "rgba(0, 0, 0, 0.08)";
+  const defaultTrack = isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.08)";
 
-  const glassTrack = isDark
-    ? "rgba(255, 255, 255, 0.10)"
-    : "rgba(255, 255, 255, 0.70)";
+  const glassTrack = isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(255, 255, 255, 0.70)";
 
   /*
    * -----------------------------------------
@@ -146,9 +124,7 @@ export const getLinearProgressOverrides = (
    * -----------------------------------------
    */
 
-  const glassBorder = isDark
-    ? "rgba(255, 255, 255, 0.12)"
-    : "rgba(0, 0, 0, 0.08)";
+  const glassBorder = isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.08)";
 
   /*
    * -----------------------------------------
@@ -172,15 +148,13 @@ export const getLinearProgressOverrides = (
         root: ({ ownerState }) => {
           const color = (ownerState.color ?? "glass") as ProgressColor;
 
-          const appearance = (ownerState.appearance ??
-            "glass") as ProgressAppearance;
+          const appearance = (ownerState.appearance ?? "glass") as ProgressAppearance;
 
           const radius = (ownerState.radius ?? "pill") as ProgressRadius;
 
           const size = (ownerState.size ?? "medium") as ProgressSize;
 
-          const glassIntensity = (ownerState.glassIntensity ??
-            "strong") as GlassIntensity;
+          const glassIntensity = (ownerState.glassIntensity ?? "strong") as GlassIntensity;
 
           const selected = colors[color];
 
@@ -191,9 +165,7 @@ export const getLinearProgressOverrides = (
            */
 
           if (appearance === "solid") {
-            trackBackground = isDark
-              ? "rgba(255,255,255,0.12)"
-              : "rgba(0,0,0,0.08)";
+            trackBackground = isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)";
           }
 
           /*
@@ -265,15 +237,9 @@ export const getLinearProgressOverrides = (
              * Glass blur.
              */
 
-            backdropFilter:
-              appearance === "glass"
-                ? `saturate(180%) ${blurMap[glassIntensity]}`
-                : undefined,
+            backdropFilter: appearance === "glass" ? `saturate(180%) ${blurMap[glassIntensity]}` : undefined,
 
-            WebkitBackdropFilter:
-              appearance === "glass"
-                ? `saturate(180%) ${blurMap[glassIntensity]}`
-                : undefined,
+            WebkitBackdropFilter: appearance === "glass" ? `saturate(180%) ${blurMap[glassIntensity]}` : undefined,
 
             /*
              * Glass surface.
@@ -328,40 +294,37 @@ export const getLinearProgressOverrides = (
              * Determinate bar.
              */
 
-            [`&.${linearProgressClasses.determinate} > .${linearProgressClasses.bar}`]:
-              {
-                opacity: 1,
+            [`&.${linearProgressClasses.determinate} > .${linearProgressClasses.bar}`]: {
+              opacity: 1,
 
-                visibility: "visible",
+              visibility: "visible",
 
-                display: "block",
-              },
+              display: "block",
+            },
 
             /*
              * Indeterminate bar.
              */
 
-            [`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar}`]:
-              {
-                opacity: 1,
+            [`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar}`]: {
+              opacity: 1,
 
-                visibility: "visible",
+              visibility: "visible",
 
-                display: "block",
-              },
+              display: "block",
+            },
 
             /*
              * Query bar.
              */
 
-            [`&.${linearProgressClasses.query} > .${linearProgressClasses.bar}`]:
-              {
-                opacity: 1,
+            [`&.${linearProgressClasses.query} > .${linearProgressClasses.bar}`]: {
+              opacity: 1,
 
-                visibility: "visible",
+              visibility: "visible",
 
-                display: "block",
-              },
+              display: "block",
+            },
 
             /*
              * ---------------------------------
@@ -382,8 +345,7 @@ export const getLinearProgressOverrides = (
 
                     borderRadius: "inherit",
 
-                    background:
-                      "linear-gradient(90deg, rgba(255,255,255,0.12), transparent 50%)",
+                    background: "linear-gradient(90deg, rgba(255,255,255,0.12), transparent 50%)",
 
                     zIndex: 2,
                   }
@@ -424,26 +386,16 @@ export const getLinearProgressOverrides = (
 
         bar: ({ ownerState }) => {
           const color = (ownerState.color ?? "glass") as ProgressColor;
-          const appearance = (ownerState.appearance ??
-            "glass") as ProgressAppearance;
+          const appearance = (ownerState.appearance ?? "glass") as ProgressAppearance;
           const radius = (ownerState.radius ?? "pill") as ProgressRadius;
           const glow = ownerState.glow ?? true;
 
           const selected = colors[color];
 
-          const barColor =
-            color === "glass"
-              ? isDark
-                ? "#F5F5F5"
-                : "#111111"
-              : selected.main;
+          const barColor = color === "glass" ? (isDark ? "#F5F5F5" : "#111111") : selected.main;
 
           const glowColor =
-            color === "glass"
-              ? isDark
-                ? "rgba(255,255,255,0.35)"
-                : "rgba(0,0,0,0.20)"
-              : `${selected.main}55`;
+            color === "glass" ? (isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.20)") : `${selected.main}55`;
 
           return {
             position: "relative",
@@ -469,12 +421,9 @@ export const getLinearProgressOverrides = (
                   : "linear-gradient(90deg, rgba(0,0,0,0.16), rgba(0,0,0,0.07))"
                 : "none",
 
-            boxShadow: glow
-              ? `0 0 10px ${glowColor}, 0 0 20px ${glowColor}`
-              : "none",
+            boxShadow: glow ? `0 0 10px ${glowColor}, 0 0 20px ${glowColor}` : "none",
 
-            transition:
-              "transform 300ms cubic-bezier(0.22, 1, 0.36, 1), width 300ms cubic-bezier(0.22, 1, 0.36, 1)",
+            transition: "transform 300ms cubic-bezier(0.22, 1, 0.36, 1), width 300ms cubic-bezier(0.22, 1, 0.36, 1)",
 
             "&::before": {
               content: '""',
@@ -499,11 +448,7 @@ export const getLinearProgressOverrides = (
               height: "1px",
               borderRadius: "inherit",
               background:
-                appearance === "glass"
-                  ? isDark
-                    ? "rgba(255,255,255,0.28)"
-                    : "rgba(255,255,255,0.70)"
-                  : "transparent",
+                appearance === "glass" ? (isDark ? "rgba(255,255,255,0.28)" : "rgba(255,255,255,0.70)") : "transparent",
               pointerEvents: "none",
             },
           };

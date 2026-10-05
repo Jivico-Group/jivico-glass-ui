@@ -1,8 +1,6 @@
 import type { Components, Theme } from "@mui/material/styles";
 
-export const getButtonGroupOverrides = (
-  isDark: boolean,
-): Components<Theme> => ({
+export const getButtonGroupOverrides = (isDark: boolean): Components<Theme> => ({
   MuiButtonGroup: {
     styleOverrides: {
       root: ({ ownerState }) => {
@@ -18,17 +16,13 @@ export const getButtonGroupOverrides = (
               border: "none !important",
             },
             "& .MuiButton-root + .MuiButton-root": {
-              borderLeft: `1px solid ${
-                isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)"
-              } !important`,
+              borderLeft: `1px solid ${isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)"} !important`,
             },
           }),
 
           ...(isOutlined && {
             overflow: "visible",
-            border: `1.5px solid ${
-              isDark ? "rgba(255,255,255,0.25)" : "rgba(17,17,17,0.3)"
-            }`,
+            border: `1.5px solid ${isDark ? "rgba(255,255,255,0.25)" : "rgba(17,17,17,0.3)"}`,
             "& .MuiButton-root": {
               borderRadius: 0,
               border: "none !important",
@@ -36,9 +30,7 @@ export const getButtonGroupOverrides = (
               background: "transparent",
 
               "&:hover": {
-                background: isDark
-                  ? "rgba(255,255,255,0.06)"
-                  : "rgba(17,17,17,0.05)",
+                background: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.05)",
                 boxShadow: "none !important",
                 transform: "none",
               },
@@ -60,9 +52,7 @@ export const getButtonGroupOverrides = (
             },
 
             "& .MuiButton-root + .MuiButton-root": {
-              borderLeft: `1px solid ${
-                isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.2)"
-              } !important`,
+              borderLeft: `1px solid ${isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.2)"} !important`,
             },
           }),
         };

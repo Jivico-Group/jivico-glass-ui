@@ -292,7 +292,7 @@ import { Button, InputBase } from "@mui/material";
     Originals
   </BottomNavigationItem>
   <BottomNavigationItem component={InputBase} placeholder="Search..." />
-</BottomNavigation>
+</BottomNavigation>;
 ```
 
 - **`BottomNavigation` Props**:
@@ -381,6 +381,7 @@ const items: ShowcaseItem[] = [
 ```
 
 #### `ShowcaseItem` Interface
+
 - `id`: `string` (Unique slide key)
 - `media`: `{ src: string; alt: string; mobileSrc?: string }`
 - `eyebrow?`: `string` (Top tracking category badge text)
@@ -390,6 +391,7 @@ const items: ShowcaseItem[] = [
 - `sideLabel?`: `string` (Desktop side vertical text accent)
 
 #### `<Showcase>` Props
+
 - `variant`: `"editorial" | "minimal" | "glass"`
 - `size`: `"small" | "medium" | "large" | "hero"`
 - `transition`: `"cinematic" | "fade" | "slide"`
@@ -400,5 +402,3 @@ const items: ShowcaseItem[] = [
 - `pauseOnHover`: `boolean` (Default: `true`)
 - `showArrows`: `boolean` (Default: `true`)
 - `showProgress`: `boolean` (Default: `true`)
-
-

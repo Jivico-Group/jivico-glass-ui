@@ -7,18 +7,11 @@ import { useTheme } from "@mui/material/styles";
 
 import type { Theme } from "@mui/material/styles";
 
-import type {
-  HighlightDimension,
-  HighlightImageProps,
-  HighlightProps,
-} from "./Highlight.types.js";
+import type { HighlightDimension, HighlightImageProps, HighlightProps } from "./Highlight.types.js";
 
-const DEFAULT_IMAGE_SIZES =
-  "(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw";
+const DEFAULT_IMAGE_SIZES = "(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw";
 
-const getDimension = (
-  value: HighlightDimension | undefined,
-): HighlightDimension | undefined => value;
+const getDimension = (value: HighlightDimension | undefined): HighlightDimension | undefined => value;
 
 const getRadius = (radius: number | string | undefined, theme: Theme) => {
   if (radius === undefined) {
@@ -210,11 +203,7 @@ interface HighlightMediaLinkProps {
   onNavigate?: HighlightProps["onNavigate"];
 }
 
-const HighlightMediaLink = ({
-  href,
-  label,
-  onNavigate,
-}: HighlightMediaLinkProps) => {
+const HighlightMediaLink = ({ href, label, onNavigate }: HighlightMediaLinkProps) => {
   return (
     <Box
       component="a"
@@ -296,16 +285,9 @@ export const Highlight = ({
   const resolvedMinHeight = getDimension(minHeight);
   const resolvedMaxHeight = getDimension(maxHeight);
 
-  const resolvedLinkLabel =
-    linkLabel || (alt ? `View ${alt}` : "View highlight");
+  const resolvedLinkLabel = linkLabel || (alt ? `View ${alt}` : "View highlight");
 
-  const mediaLink = href ? (
-    <HighlightMediaLink
-      href={href}
-      label={resolvedLinkLabel}
-      onNavigate={onNavigate}
-    />
-  ) : null;
+  const mediaLink = href ? <HighlightMediaLink href={href} label={resolvedLinkLabel} onNavigate={onNavigate} /> : null;
 
   const content = (
     <>

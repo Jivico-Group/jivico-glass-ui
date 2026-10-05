@@ -1,28 +1,9 @@
 "use client";
 
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import {
-  Box,
-  Button,
-  IconButton,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Box, Button, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import type {
-  ShowcaseDimension,
-  ShowcaseItem,
-  ShowcaseProps,
-  ShowcaseSize,
-  ShowcaseVariant,
-} from "./Showcase.types";
+import type { ShowcaseDimension, ShowcaseItem, ShowcaseProps, ShowcaseSize, ShowcaseVariant } from "./Showcase.types";
 
 const DEFAULT_INTERVAL = 5000;
 
@@ -57,7 +38,6 @@ type SizeConfig = {
   description: { xs: string; md: string };
   eyebrow: string;
   buttonSize: "small" | "medium" | "large";
-  buttonPaddingX: number;
   contentPadding: { xs: number; md: number; lg: number };
   arrowSize: number;
   navigationGap: number;
@@ -71,7 +51,6 @@ const sizeConfig: Record<ShowcaseSize, SizeConfig> = {
     description: { xs: "0.875rem", md: "0.95rem" },
     eyebrow: "0.65rem",
     buttonSize: "small",
-    buttonPaddingX: 2,
     contentPadding: { xs: 2.5, md: 4, lg: 5 },
     arrowSize: 36,
     navigationGap: 1,
@@ -83,7 +62,6 @@ const sizeConfig: Record<ShowcaseSize, SizeConfig> = {
     description: { xs: "0.9rem", md: "1rem" },
     eyebrow: "0.68rem",
     buttonSize: "medium",
-    buttonPaddingX: 2.5,
     contentPadding: { xs: 3, md: 5, lg: 6 },
     arrowSize: 40,
     navigationGap: 1.25,
@@ -95,7 +73,6 @@ const sizeConfig: Record<ShowcaseSize, SizeConfig> = {
     description: { xs: "0.95rem", md: "1.05rem" },
     eyebrow: "0.7rem",
     buttonSize: "medium",
-    buttonPaddingX: 3,
     contentPadding: { xs: 3.5, md: 6, lg: 8 },
     arrowSize: 44,
     navigationGap: 1.5,
@@ -108,7 +85,6 @@ const sizeConfig: Record<ShowcaseSize, SizeConfig> = {
     description: { xs: "1rem", md: "1.1rem" },
     eyebrow: "0.72rem",
     buttonSize: "large",
-    buttonPaddingX: 3.25,
     contentPadding: { xs: 4, md: 8, lg: 10 },
     arrowSize: 48,
     navigationGap: 1.75,
@@ -177,50 +153,28 @@ export const Showcase = ({
 }: ShowcaseProps) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [internalActiveIndex, setInternalActiveIndex] =
-    useState(defaultActiveIndex);
+  const [internalActiveIndex, setInternalActiveIndex] = useState(defaultActiveIndex);
   const isControlled = controlledActiveIndex !== undefined;
-  const activeIndex = isControlled
-    ? controlledActiveIndex
-    : internalActiveIndex;
+  const activeIndex = isControlled ? controlledActiveIndex : internalActiveIndex;
   const [isHovered, setIsHovered] = useState(false);
-
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
   const touchMoved = useRef(false);
-
   const currentSize = sizeConfig[size] ?? sizeConfig.hero;
-
   const safeItems = useMemo(() => items.filter(Boolean), [items]);
-
   const itemCount = safeItems.length;
-
-  const currentIndex =
-    itemCount === 0 ? 0 : Math.min(Math.max(activeIndex, 0), itemCount - 1);
-
+  const currentIndex = itemCount === 0 ? 0 : Math.min(Math.max(activeIndex, 0), itemCount - 1);
   const currentItem = safeItems[currentIndex];
 
   const updateIndex = useCallback(
     (nextIndex: number) => {
       if (!itemCount) return;
-
       let normalizedIndex = nextIndex;
-
-      if (loop) {
-        normalizedIndex = (nextIndex + itemCount) % itemCount;
-      } else {
-        normalizedIndex = Math.max(0, Math.min(nextIndex, itemCount - 1));
-      }
-
-      if (!isControlled) {
-        setInternalActiveIndex(normalizedIndex);
-      }
-
+      if (loop) normalizedIndex = (nextIndex + itemCount) % itemCount;
+      else normalizedIndex = Math.max(0, Math.min(nextIndex, itemCount - 1));
+      if (!isControlled) setInternalActiveIndex(normalizedIndex);
       const item = safeItems[normalizedIndex];
-
-      if (item) {
-        onActiveIndexChange?.(normalizedIndex, item);
-      }
+      if (item) onActiveIndexChange?.(normalizedIndex, item);
     },
     [itemCount, loop, isControlled, onActiveIndexChange, safeItems],
   );
@@ -249,18 +203,13 @@ export const Showcase = ({
   }, [currentIndex, interval]);
 
   useEffect(() => {
-    if (!autoplay || itemCount <= 1) {
-      return;
-    }
+    if (!autoplay || itemCount <= 1) return;
 
     if (pauseOnHover && isHovered) {
       if (startTimeRef.current) {
         const elapsed = Date.now() - startTimeRef.current;
-
-        remainingTimeRef.current = Math.max(
-          0,
-          remainingTimeRef.current - elapsed,
-        );
+        const elapsedSubtracted = remainingTimeRef.current - elapsed;
+        remainingTimeRef.current = Math.max(0, elapsedSubtracted);
       }
 
       if (timerRef.current) {
@@ -272,9 +221,7 @@ export const Showcase = ({
     }
 
     startTimeRef.current = Date.now();
-
     const currentRemaining = Math.max(50, remainingTimeRef.current);
-
     timerRef.current = setTimeout(() => {
       goNext();
     }, currentRemaining);
@@ -285,15 +232,7 @@ export const Showcase = ({
         timerRef.current = null;
       }
     };
-  }, [
-    autoplay,
-    interval,
-    itemCount,
-    pauseOnHover,
-    isHovered,
-    currentIndex,
-    goNext,
-  ]);
+  }, [autoplay, interval, itemCount, pauseOnHover, isHovered, currentIndex, goNext]);
 
   /* ── Keyboard Navigation ──────────────────────────────────────────────── */
 
@@ -313,34 +252,25 @@ export const Showcase = ({
 
   const handleTouchStart = (event: React.TouchEvent) => {
     if (!swipe) return;
-
     const touch = event.touches[0];
-
     touchStartX.current = touch.clientX;
     touchStartY.current = touch.clientY;
     touchMoved.current = false;
   };
 
   const handleTouchMove = (event: React.TouchEvent) => {
-    if (!swipe || touchStartX.current === null || touchStartY.current === null)
-      return;
+    if (!swipe || touchStartX.current === null || touchStartY.current === null) return;
     const touch = event.touches[0];
     const deltaX = touch.clientX - touchStartX.current;
     const deltaY = touch.clientY - touchStartY.current;
-
-    if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) {
-      touchMoved.current = true;
-    }
+    if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) touchMoved.current = true;
   };
 
   const handleTouchEnd = (event: React.TouchEvent) => {
-    if (!swipe || touchStartX.current === null || touchStartY.current === null)
-      return;
+    if (!swipe || touchStartX.current === null || touchStartY.current === null) return;
     const touch = event.changedTouches[0];
-
     const deltaX = touch.clientX - touchStartX.current;
     const deltaY = touch.clientY - touchStartY.current;
-
     touchStartX.current = null;
     touchStartY.current = null;
     if (Math.abs(deltaX) < 30 || Math.abs(deltaX) < Math.abs(deltaY)) return;
@@ -350,7 +280,6 @@ export const Showcase = ({
 
   const handleMouseDown = (event: React.MouseEvent) => {
     if (!swipe) return;
-
     touchStartX.current = event.clientX;
     touchStartY.current = event.clientY;
     touchMoved.current = false;
@@ -358,62 +287,37 @@ export const Showcase = ({
   };
 
   const handleMouseMove = (event: React.MouseEvent) => {
-    if (
-      !swipe ||
-      !isDraggingRef.current ||
-      touchStartX.current === null ||
-      touchStartY.current === null
-    ) {
+    if (!swipe || !isDraggingRef.current || touchStartX.current === null || touchStartY.current === null) {
       return;
     }
-
     const deltaX = event.clientX - touchStartX.current;
     const deltaY = event.clientY - touchStartY.current;
-
-    if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) {
-      touchMoved.current = true;
-    }
+    if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) touchMoved.current = true;
   };
 
   const handleMouseUp = (event: React.MouseEvent) => {
-    if (
-      !swipe ||
-      !isDraggingRef.current ||
-      touchStartX.current === null ||
-      touchStartY.current === null
-    ) {
+    if (!swipe || !isDraggingRef.current || touchStartX.current === null || touchStartY.current === null) {
       isDraggingRef.current = false;
       return;
     }
 
     isDraggingRef.current = false;
-
     const deltaX = event.clientX - touchStartX.current;
     const deltaY = event.clientY - touchStartY.current;
-
     touchStartX.current = null;
     touchStartY.current = null;
-
     if (Math.abs(deltaX) >= 30 && Math.abs(deltaX) > Math.abs(deltaY)) {
       if (deltaX < 0) goNext();
       else goPrevious();
     }
   };
-
-  if (!currentItem) {
-    return null;
-  }
-
+  if (!currentItem) return null;
   const radiusValue = getRadius(radius);
-
   const containerHeight = getResponsiveValue(height);
-
   const containerMinHeight = getResponsiveValue(
     minHeight ?? (height === undefined ? currentSize.minHeight : undefined),
   );
-
   const containerMaxHeight = getResponsiveValue(maxHeight);
-
   const responsiveAspectRatio =
     height === undefined
       ? aspectRatio !== undefined
@@ -433,7 +337,6 @@ export const Showcase = ({
 
   const getTransition = (index: number) => {
     const isActive = index === currentIndex;
-
     if (transition === "fade") {
       return {
         opacity: isActive ? 1 : 0,
@@ -441,24 +344,17 @@ export const Showcase = ({
         transition: "opacity 700ms ease",
       };
     }
-
     if (transition === "slide") {
       return {
         opacity: isActive ? 1 : 0,
-        transform: isActive
-          ? "translateX(0)"
-          : index < currentIndex
-            ? "translateX(-4%)"
-            : "translateX(4%)",
+        transform: isActive ? "translateX(0)" : index < currentIndex ? "translateX(-4%)" : "translateX(4%)",
         transition: "opacity 700ms ease, transform 700ms ease",
       };
     }
-
     return {
       opacity: isActive ? 1 : 0,
       transform: isActive ? "scale(1)" : "scale(1.035)",
-      transition:
-        "opacity 900ms ease, transform 1400ms cubic-bezier(0.22, 1, 0.36, 1)",
+      transition: "opacity 900ms ease, transform 1400ms cubic-bezier(0.22, 1, 0.36, 1)",
     };
   };
 
@@ -475,14 +371,12 @@ export const Showcase = ({
 
       case "minimal":
         return {
-          background:
-            "linear-gradient(90deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.14) 44%, rgba(0,0,0,0.02) 72%)",
+          background: "linear-gradient(90deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.14) 44%, rgba(0,0,0,0.02) 72%)",
         };
 
       case "glass":
         return {
-          background:
-            "linear-gradient(90deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.20) 46%, rgba(0,0,0,0.03) 75%)",
+          background: "linear-gradient(90deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.20) 46%, rgba(0,0,0,0.03) 75%)",
         };
 
       case "editorial":
@@ -502,11 +396,7 @@ export const Showcase = ({
     if (ImageComponent) {
       return (
         <ImageComponent
-          src={
-            isMobile && item.media.mobileSrc
-              ? item.media.mobileSrc
-              : item.media.src
-          }
+          src={isMobile && item.media.mobileSrc ? item.media.mobileSrc : item.media.src}
           alt={item.media.alt}
           fill
           sizes={imageSizes}
@@ -650,20 +540,13 @@ export const Showcase = ({
             {active && item.href && (
               <MediaLink
                 href={item.href}
-                label={
-                  item.linkLabel ??
-                  (item.title
-                    ? `View ${item.title}`
-                    : item.media.alt || "View details")
-                }
+                label={item.linkLabel ?? (item.title ? `View ${item.title}` : item.media.alt || "View details")}
                 onClick={(event) => {
                   if (touchMoved.current) {
                     event.preventDefault();
                     return;
                   }
-
                   event.preventDefault();
-
                   onNavigate?.(item, currentIndex, event);
                 }}
               />
@@ -686,15 +569,10 @@ export const Showcase = ({
                  * right  -> X: right  / Y: bottom
                  * center -> X: center / Y: center
                  */
-                justifyContent:
-                  item.contentAlign === "center" ? "center" : "flex-end",
+                justifyContent: item.contentAlign === "center" ? "center" : "flex-end",
 
                 alignItems:
-                  item.contentAlign === "center"
-                    ? "center"
-                    : item.contentAlign === "right"
-                      ? "flex-end"
-                      : "flex-start",
+                  item.contentAlign === "center" ? "center" : item.contentAlign === "right" ? "flex-end" : "flex-start",
 
                 p: currentSize.contentPadding,
                 pointerEvents: "none",
@@ -709,39 +587,21 @@ export const Showcase = ({
                 <Box
                   sx={[
                     {
-                      maxWidth: {
-                        xs: "92%",
-                        sm: "78%",
-                        md: "58%",
-                        lg: "50%",
-                      },
-
+                      maxWidth: { xs: "92%", sm: "78%", md: "58%", lg: "50%" },
                       display: "flex",
                       flexDirection: "column",
-
                       alignItems:
                         item.contentAlign === "center"
                           ? "center"
                           : item.contentAlign === "right"
                             ? "flex-end"
                             : "flex-start",
-
                       textAlign:
-                        item.contentAlign === "center"
-                          ? "center"
-                          : item.contentAlign === "right"
-                            ? "right"
-                            : "left",
-
-                      gap: {
-                        xs: 0.9,
-                        md: 1.15,
-                      },
+                        item.contentAlign === "center" ? "center" : item.contentAlign === "right" ? "right" : "left",
+                      gap: { xs: 0.9, md: 1.15 },
                     },
 
-                    ...(Array.isArray(item.contentSx)
-                      ? item.contentSx
-                      : [item.contentSx]),
+                    ...(Array.isArray(item.contentSx) ? item.contentSx : [item.contentSx]),
                   ]}
                 >
                   {/* Eyebrow */}
@@ -759,9 +619,7 @@ export const Showcase = ({
                           opacity: 0.9,
                         },
 
-                        ...(Array.isArray(item.eyebrowSx)
-                          ? item.eyebrowSx
-                          : [item.eyebrowSx]),
+                        ...(Array.isArray(item.eyebrowSx) ? item.eyebrowSx : [item.eyebrowSx]),
                       ]}
                     >
                       {item.eyebrow}
@@ -779,15 +637,10 @@ export const Showcase = ({
                           lineHeight: 1.02,
                           fontWeight: 550,
                           letterSpacing: "-0.025em",
-                          maxWidth: {
-                            xs: "100%",
-                            md: "720px",
-                          },
+                          maxWidth: { xs: "100%", md: "720px" },
                         },
 
-                        ...(Array.isArray(item.titleSx)
-                          ? item.titleSx
-                          : [item.titleSx]),
+                        ...(Array.isArray(item.titleSx) ? item.titleSx : [item.titleSx]),
                       ]}
                     >
                       {item.title}
@@ -802,10 +655,7 @@ export const Showcase = ({
                       sx={[
                         {
                           m: 0,
-                          maxWidth: {
-                            xs: "100%",
-                            md: "560px",
-                          },
+                          maxWidth: { xs: "100%", md: "560px" },
                           fontSize: currentSize.description,
                           fontWeight: 400,
                           lineHeight: 1.5,
@@ -813,9 +663,7 @@ export const Showcase = ({
                           opacity: 0.9,
                         },
 
-                        ...(Array.isArray(item.descriptionSx)
-                          ? item.descriptionSx
-                          : [item.descriptionSx]),
+                        ...(Array.isArray(item.descriptionSx) ? item.descriptionSx : [item.descriptionSx]),
                       ]}
                     >
                       {item.description}
@@ -824,115 +672,76 @@ export const Showcase = ({
 
                   {/* CTA */}
 
-                  {item.action &&
-                    (item.action.label ||
-                      item.action.href ||
-                      item.action.onClick) && (
-                      <Box
-                        sx={{
-                          pointerEvents: "auto",
-                          mt: {
-                            xs: 0.5,
-                            md: 1,
-                          },
-                        }}
-                      >
-                        {item.action.href ? (
-                          <Button
-                            href={item.action.href}
-                            variant={item.action.variant ?? "contained"}
-                            color={item.action.color ?? "primary"}
-                            size={item.action.size ?? currentSize.buttonSize}
-                            tabIndex={active ? 0 : -1}
-                            endIcon={
-                              item.action.showArrow !== false ? (
-                                <ArrowRight size={16} />
-                              ) : undefined
-                            }
-                            target={item.action.target}
-                            rel={item.action.rel}
-                            onClick={(
-                              event: React.MouseEvent<HTMLAnchorElement>,
-                            ) => {
-                              event.preventDefault();
-
-                              if (touchMoved.current) {
-                                return;
-                              }
-
-                              item.action?.onClick?.(event);
-
-                              onNavigate?.(item, currentIndex, event);
-                            }}
-                            aria-label={item.action.ariaLabel}
-                            sx={[
-                              {
-                                px: currentSize.buttonPaddingX,
-                                borderRadius: 999,
-                                whiteSpace: "nowrap",
-                                fontWeight: 550,
-                                letterSpacing: "-0.01em",
-                                textTransform: "none",
-                                lineHeight: 1.2,
-
-                                "& .MuiButton-endIcon": {
-                                  ml: 0.75,
-                                },
-                              },
-                              ...(Array.isArray(item.action.sx)
-                                ? item.action.sx
-                                : [item.action.sx]),
-                            ]}
-                          >
-                            {item.action.label}
-                          </Button>
-                        ) : (
-                          <Button
-                            variant={item.action.variant ?? "contained"}
-                            color={item.action.color ?? "primary"}
-                            size={item.action.size ?? currentSize.buttonSize}
-                            tabIndex={active ? 0 : -1}
-                            endIcon={
-                              item.action.showArrow !== false ? (
-                                <ArrowRight size={16} />
-                              ) : undefined
-                            }
-                            onClick={(
-                              event: React.MouseEvent<HTMLButtonElement>,
-                            ) => {
-                              if (touchMoved.current) {
-                                return;
-                              }
-
-                              item.action?.onClick?.(event);
-
-                              onNavigate?.(item, currentIndex, event as any);
-                            }}
-                            aria-label={item.action.ariaLabel}
-                            sx={[
-                              {
-                                px: currentSize.buttonPaddingX,
-                                borderRadius: 999,
-                                whiteSpace: "nowrap",
-                                fontWeight: 550,
-                                letterSpacing: "-0.01em",
-                                textTransform: "none",
-                                lineHeight: 1.2,
-
-                                "& .MuiButton-endIcon": {
-                                  ml: 0.75,
-                                },
-                              },
-                              ...(Array.isArray(item.action.sx)
-                                ? item.action.sx
-                                : [item.action.sx]),
-                            ]}
-                          >
-                            {item.action.label}
-                          </Button>
-                        )}
-                      </Box>
-                    )}
+                  {item.action && (item.action.label || item.action.href || item.action.onClick) && (
+                    <Box
+                      sx={{
+                        pointerEvents: "auto",
+                        mt: { xs: 0.5, md: 1 },
+                      }}
+                    >
+                      {item.action.href ? (
+                        <Button
+                          href={item.action.href}
+                          variant={item.action.variant ?? "contained"}
+                          color={item.action.color ?? "primary"}
+                          size={item.action.size ?? currentSize.buttonSize}
+                          tabIndex={active ? 0 : -1}
+                          endIcon={item.action.showArrow !== false ? <ArrowRight size={16} /> : undefined}
+                          target={item.action.target}
+                          rel={item.action.rel}
+                          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+                            event.preventDefault();
+                            if (touchMoved.current) return;
+                            item.action?.onClick?.(event);
+                            onNavigate?.(item, currentIndex, event);
+                          }}
+                          aria-label={item.action.ariaLabel}
+                          sx={[
+                            {
+                              borderRadius: 999,
+                              whiteSpace: "nowrap",
+                              fontWeight: 550,
+                              letterSpacing: "-0.01em",
+                              textTransform: "none",
+                              lineHeight: 1.2,
+                              "& .MuiButton-endIcon": { ml: 0.75 },
+                            },
+                            ...(Array.isArray(item.action.sx) ? item.action.sx : [item.action.sx]),
+                          ]}
+                        >
+                          {item.action.label}
+                        </Button>
+                      ) : (
+                        <Button
+                          variant={item.action.variant ?? "contained"}
+                          color={item.action.color ?? "primary"}
+                          size={item.action.size ?? currentSize.buttonSize}
+                          tabIndex={active ? 0 : -1}
+                          endIcon={item.action.showArrow !== false ? <ArrowRight size={16} /> : undefined}
+                          onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            if (touchMoved.current) return;
+                            item.action?.onClick?.(event);
+                            onNavigate?.(item, currentIndex, event as any);
+                          }}
+                          aria-label={item.action.ariaLabel}
+                          sx={[
+                            {
+                              borderRadius: 999,
+                              whiteSpace: "nowrap",
+                              fontWeight: 550,
+                              letterSpacing: "-0.01em",
+                              textTransform: "none",
+                              lineHeight: 1.2,
+                              "& .MuiButton-endIcon": { ml: 0.75 },
+                            },
+                            ...(Array.isArray(item.action.sx) ? item.action.sx : [item.action.sx]),
+                          ]}
+                        >
+                          {item.action.label}
+                        </Button>
+                      )}
+                    </Box>
+                  )}
                 </Box>
               )}
             </Box>
@@ -944,11 +753,7 @@ export const Showcase = ({
                 sx={{
                   position: "absolute",
                   top: "50%",
-                  right: {
-                    xs: 85,
-                    md: 105,
-                    lg: 120,
-                  },
+                  right: { xs: 85, md: 105, lg: 120 },
                   zIndex: 4,
                   transform: "translateY(-50%) rotate(-90deg)",
                   transformOrigin: "center center",
@@ -973,9 +778,7 @@ export const Showcase = ({
                       whiteSpace: "nowrap",
                     },
 
-                    ...(Array.isArray(item.sideLabelSx)
-                      ? item.sideLabelSx
-                      : [item.sideLabelSx]),
+                    ...(Array.isArray(item.sideLabelSx) ? item.sideLabelSx : [item.sideLabelSx]),
                   ]}
                 >
                   {item.sideLabel}
@@ -997,10 +800,7 @@ export const Showcase = ({
             sx={{
               position: "absolute",
               zIndex: 5,
-              left: {
-                xs: 12,
-                md: 20,
-              },
+              left: { xs: 12, md: 20 },
               top: "50%",
               transform: "translateY(-50%)",
               width: currentSize.arrowSize,
@@ -1009,14 +809,8 @@ export const Showcase = ({
               bgcolor: "rgba(255,255,255,0.14)",
               backdropFilter: "blur(10px)",
               border: "1px solid rgba(255,255,255,0.28)",
-
-              "&:hover": {
-                bgcolor: "rgba(255,255,255,0.22)",
-              },
-
-              "&.Mui-disabled": {
-                opacity: 0.35,
-              },
+              "&:hover": { bgcolor: "rgba(255,255,255,0.22)" },
+              "&.Mui-disabled": { opacity: 0.35 },
             }}
           >
             <ArrowLeft size={isMobile ? 18 : 20} />
@@ -1029,10 +823,7 @@ export const Showcase = ({
             sx={{
               position: "absolute",
               zIndex: 5,
-              right: {
-                xs: 12,
-                md: 20,
-              },
+              right: { xs: 12, md: 20 },
               top: "50%",
               transform: "translateY(-50%)",
               width: currentSize.arrowSize,
@@ -1041,14 +832,8 @@ export const Showcase = ({
               bgcolor: "rgba(255,255,255,0.14)",
               backdropFilter: "blur(10px)",
               border: "1px solid rgba(255,255,255,0.28)",
-
-              "&:hover": {
-                bgcolor: "rgba(255,255,255,0.22)",
-              },
-
-              "&.Mui-disabled": {
-                opacity: 0.35,
-              },
+              "&:hover": { bgcolor: "rgba(255,255,255,0.22)" },
+              "&.Mui-disabled": { opacity: 0.35 },
             }}
           >
             <ArrowRight size={isMobile ? 18 : 20} />
@@ -1066,11 +851,7 @@ export const Showcase = ({
 
             ...(navigation === "vertical"
               ? {
-                  right: {
-                    xs: 14,
-                    md: 58,
-                    lg: 76,
-                  },
+                  right: { xs: 14, md: 58, lg: 76 },
                   top: "50%",
                   transform: "translateY(-50%)",
                   display: "flex",
@@ -1081,10 +862,7 @@ export const Showcase = ({
                 }
               : {
                   left: "50%",
-                  bottom: {
-                    xs: 16,
-                    sm: 24,
-                  },
+                  bottom: { xs: 16, sm: 24 },
                   transform: "translateX(-50%)",
                   display: "flex",
                   flexDirection: "row",
@@ -1119,15 +897,12 @@ export const Showcase = ({
                   background: "transparent",
                   cursor: "pointer",
                   transition: "transform 300ms cubic-bezier(0.22, 1, 0.36, 1)",
-
                   "&:focus-visible": {
                     outline: `2px solid ${theme.palette.primary.main}`,
                     outlineOffset: 3,
                   },
-
                   "&:hover": {
-                    transform:
-                      navigation === "vertical" ? "scale(1.08)" : "none",
+                    transform: navigation === "vertical" ? "scale(1.08)" : "none",
                   },
                 }}
               >
@@ -1137,13 +912,9 @@ export const Showcase = ({
                       width: active ? 3 : 1,
                       height: active ? 42 : 20,
                       borderRadius: 999,
-                      backgroundColor: active
-                        ? "#FFFFFF"
-                        : "rgba(255,255,255,0.45)",
+                      backgroundColor: active ? "#FFFFFF" : "rgba(255,255,255,0.45)",
                       transition: "all 300ms cubic-bezier(0.22, 1, 0.36, 1)",
-                      boxShadow: active
-                        ? "0 0 10px rgba(255,255,255,0.18)"
-                        : "none",
+                      boxShadow: active ? "0 0 10px rgba(255,255,255,0.18)" : "none",
                     }}
                   />
                 ) : (
@@ -1152,13 +923,9 @@ export const Showcase = ({
                       width: active ? 24 : 7,
                       height: 7,
                       borderRadius: 999,
-                      backgroundColor: active
-                        ? "#FFFFFF"
-                        : "rgba(255,255,255,0.48)",
+                      backgroundColor: active ? "#FFFFFF" : "rgba(255,255,255,0.48)",
                       transition: "all 300ms cubic-bezier(0.22, 1, 0.36, 1)",
-                      boxShadow: active
-                        ? "0 0 10px rgba(255,255,255,0.16)"
-                        : "none",
+                      boxShadow: active ? "0 0 10px rgba(255,255,255,0.16)" : "none",
                     }}
                   />
                 )}
@@ -1195,8 +962,7 @@ export const Showcase = ({
                 ? {
                     width: "0%",
                     animation: `showcaseProgress ${interval}ms linear forwards`,
-                    animationPlayState:
-                      pauseOnHover && isHovered ? "paused" : "running",
+                    animationPlayState: pauseOnHover && isHovered ? "paused" : "running",
                   }
                 : {
                     width: `${((currentIndex + 1) / itemCount) * 100}%`,
@@ -1204,13 +970,8 @@ export const Showcase = ({
                   }),
 
               "@keyframes showcaseProgress": {
-                "0%": {
-                  width: "0%",
-                },
-
-                "100%": {
-                  width: "100%",
-                },
+                "0%": { width: "0%" },
+                "100%": { width: "100%" },
               },
             }}
           />

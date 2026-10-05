@@ -10,11 +10,7 @@ const radiusMap = {
   soft: 1,
 } as const;
 
-function renderNativeImage<T>(
-  src: string | undefined,
-  alt: string | undefined,
-  imageFit: GalleryProps<T>["imageFit"],
-) {
+function renderNativeImage<T>(src: string | undefined, alt: string | undefined, imageFit: GalleryProps<T>["imageFit"]) {
   if (!src) {
     return null;
   }
@@ -95,8 +91,7 @@ export function Gallery<T>({
         const src = getImage?.(item, index);
         const alt = getImageAlt?.(item, index);
         const href = getHref?.(item, index);
-        const linkLabel =
-          getLinkLabel?.(item, index) ?? (typeof alt === "string" ? alt : undefined);
+        const linkLabel = getLinkLabel?.(item, index) ?? (typeof alt === "string" ? alt : undefined);
         const isInteractive = Boolean(href || onNavigate);
 
         const handleItemNavigation = (event: React.MouseEvent<HTMLElement>) => {

@@ -1,10 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette";
 
-export const getAccordionOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getAccordionOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiAccordion: {
     defaultProps: {
       elevation: 0,
@@ -20,9 +17,7 @@ export const getAccordionOverrides = (
 
         backgroundImage: "none",
 
-        border: `1px solid ${
-          isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.09)"
-        }`,
+        border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.09)"}`,
 
         boxShadow: "none",
 
@@ -44,9 +39,7 @@ export const getAccordionOverrides = (
         "&:hover": {
           backgroundColor: isDark ? "#191919" : "#FCFCFC",
 
-          borderColor: isDark
-            ? "rgba(255, 255, 255, 0.13)"
-            : "rgba(17, 17, 17, 0.13)",
+          borderColor: isDark ? "rgba(255, 255, 255, 0.13)" : "rgba(17, 17, 17, 0.13)",
         },
 
         /*
@@ -57,9 +50,7 @@ export const getAccordionOverrides = (
 
           backgroundColor: isDark ? "#181818" : "#FAFAFA",
 
-          borderColor: isDark
-            ? "rgba(255, 255, 255, 0.14)"
-            : "rgba(17, 17, 17, 0.14)",
+          borderColor: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(17, 17, 17, 0.14)",
         },
 
         /*

@@ -46,8 +46,7 @@ export const AlertsPage: React.FC = () => {
         >
           <Alert severity="info">
             <AlertTitle>System Information</AlertTitle>
-            New design system update (v2.4.0) with frosted glass token system is
-            ready.
+            New design system update (v2.4.0) with frosted glass token system is ready.
           </Alert>
 
           <Alert severity="success">
@@ -57,14 +56,12 @@ export const AlertsPage: React.FC = () => {
 
           <Alert severity="warning">
             <AlertTitle>Storage Capacity Warning</AlertTitle>
-            Workspace cloud storage limit is at 88% capacity. Consider upgrading
-            tier.
+            Workspace cloud storage limit is at 88% capacity. Consider upgrading tier.
           </Alert>
 
           <Alert severity="error">
             <AlertTitle>Authentication Failed</AlertTitle>
-            Security token expired or invalid. Please re-authenticate your
-            session.
+            Security token expired or invalid. Please re-authenticate your session.
           </Alert>
         </Box>
       </DemoBlock>
@@ -89,29 +86,26 @@ export const AlertsPage: React.FC = () => {
         >
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Alert severity="info" appearance="glass">
-              <strong>Glass Appearance</strong> — Frosted glass background with
-              optical blur and specular border.
+              <strong>Glass Appearance</strong> — Frosted glass background with optical blur and specular border.
             </Alert>
           </Box>
 
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Alert severity="info" appearance="tonal">
-              <strong>Tonal Appearance</strong> — Soft translucent color wash
-              tailored for content-heavy cards.
+              <strong>Tonal Appearance</strong> — Soft translucent color wash tailored for content-heavy cards.
             </Alert>
           </Box>
 
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Alert severity="info" appearance="solid">
-              <strong>Solid Appearance</strong> — High contrast solid fill for
-              critical callouts requiring maximum attention.
+              <strong>Solid Appearance</strong> — High contrast solid fill for critical callouts requiring maximum
+              attention.
             </Alert>
           </Box>
 
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Alert severity="info" appearance="outlined">
-              <strong>Outlined Appearance</strong> — Clean vector border overlay
-              with transparent backdrop background.
+              <strong>Outlined Appearance</strong> — Clean vector border overlay with transparent backdrop background.
             </Alert>
           </Box>
         </Box>
@@ -186,11 +180,7 @@ export const AlertsPage: React.FC = () => {
             severity="success"
             radius="pill"
             action={
-              <Button
-                color="inherit"
-                size="small"
-                startIcon={<RefreshCw size={14} />}
-              >
+              <Button color="inherit" size="small" startIcon={<RefreshCw size={14} />}>
                 REFRESH
               </Button>
             }
@@ -207,29 +197,18 @@ export const AlertsPage: React.FC = () => {
               </Button>
             }
           >
-            Your free trial expires in 3 days. Upgrade to Pro for unlimited
-            tokens.
+            Your free trial expires in 3 days. Upgrade to Pro for unlimited tokens.
           </Alert>
 
           <Collapse in={showAlert}>
-            <Alert
-              severity="error"
-              radius="large"
-              onClose={() => setShowAlert(false)}
-            >
-              Dismissible alert banner with smooth collapse animation. Click the
-              close button!
+            <Alert severity="error" radius="large" onClose={() => setShowAlert(false)}>
+              Dismissible alert banner with smooth collapse animation. Click the close button!
             </Alert>
           </Collapse>
 
           {!showAlert && (
             <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                variant="outlined"
-                color="glass"
-                size="small"
-                onClick={() => setShowAlert(true)}
-              >
+              <Button variant="outlined" color="glass" size="small" onClick={() => setShowAlert(true)}>
                 Re-open Dismissed Alert
               </Button>
             </Box>

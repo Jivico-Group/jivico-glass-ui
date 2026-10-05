@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Typography,
-  Card,
-  CardActionArea,
-  Tooltip,
-  Tabs,
-  Tab,
-} from "@mui/material";
+import { Box, Typography, Card, CardActionArea, Tooltip, Tabs, Tab } from "@mui/material";
 import { Copy, Check, Sun, Moon } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
@@ -49,8 +41,7 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
     value.includes("255, 255, 255") ||
     value.includes("246, 245, 242");
 
-  const effectiveTextColor =
-    textColor || (isLightColor ? "#111111" : "#FFFFFF");
+  const effectiveTextColor = textColor || (isLightColor ? "#111111" : "#FFFFFF");
 
   return (
     <Card
@@ -58,18 +49,12 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
       sx={{
         borderRadius: "14px",
         overflow: "hidden",
-        border: `1px solid ${
-          isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.08)"
-        }`,
-        backgroundColor: isDark
-          ? "rgba(255, 255, 255, 0.03)"
-          : "rgba(17, 17, 17, 0.015)",
+        border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.08)"}`,
+        backgroundColor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(17, 17, 17, 0.015)",
         transition: "transform 0.15s ease, box-shadow 0.15s ease",
         "&:hover": {
           transform: "translateY(-2px)",
-          boxShadow: isDark
-            ? "0 8px 24px rgba(0, 0, 0, 0.4)"
-            : "0 8px 20px rgba(0, 0, 0, 0.06)",
+          boxShadow: isDark ? "0 8px 24px rgba(0, 0, 0, 0.4)" : "0 8px 20px rgba(0, 0, 0, 0.06)",
         },
       }}
     >
@@ -85,9 +70,7 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
             alignItems: "flex-end",
             justifyContent: "space-between",
             p: 1.5,
-            borderBottom: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)"
-            }`,
+            borderBottom: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)"}`,
             // Checkerboard pattern backdrop for translucent / glass tokens
             ...(isTranslucent && {
               backgroundImage: `linear-gradient(45deg, rgba(120, 120, 120, 0.2) 25%, transparent 25%), 
@@ -130,9 +113,7 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
                 display: "inline-flex",
                 p: 0.5,
                 borderRadius: "6px",
-                backgroundColor: isLightColor
-                  ? "rgba(0, 0, 0, 0.08)"
-                  : "rgba(255, 255, 255, 0.2)",
+                backgroundColor: isLightColor ? "rgba(0, 0, 0, 0.08)" : "rgba(255, 255, 255, 0.2)",
                 color: effectiveTextColor,
               }}
             >
@@ -188,15 +169,9 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
 export const ColorsPage: React.FC = () => {
   const { mode } = useGlassMode();
   const isDark = mode === "dark";
-  const [semanticMode, setSemanticMode] = useState<"light" | "dark">(
-    isDark ? "dark" : "light",
-  );
-  const [primaryMode, setPrimaryMode] = useState<"light" | "dark">(
-    isDark ? "dark" : "light",
-  );
-  const [glassMode, setGlassMode] = useState<"light" | "dark">(
-    isDark ? "dark" : "light",
-  );
+  const [semanticMode, setSemanticMode] = useState<"light" | "dark">(isDark ? "dark" : "light");
+  const [primaryMode, setPrimaryMode] = useState<"light" | "dark">(isDark ? "dark" : "light");
+  const [glassMode, setGlassMode] = useState<"light" | "dark">(isDark ? "dark" : "light");
 
   return (
     <ComponentPage
@@ -305,11 +280,7 @@ const primaryGlow = theme.palette.primary.glow;`}
                 fontWeight: 600,
                 mr: 1,
                 bgcolor:
-                  primaryMode === "light"
-                    ? isDark
-                      ? "rgba(255,255,255,0.15)"
-                      : "rgba(17,17,17,0.08)"
-                    : "transparent",
+                  primaryMode === "light" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
             <Tab
@@ -326,11 +297,7 @@ const primaryGlow = theme.palette.primary.glow;`}
                 textTransform: "none",
                 fontWeight: 600,
                 bgcolor:
-                  primaryMode === "dark"
-                    ? isDark
-                      ? "rgba(255,255,255,0.15)"
-                      : "rgba(17,17,17,0.08)"
-                    : "transparent",
+                  primaryMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
           </Tabs>
@@ -372,52 +339,32 @@ const primaryGlow = theme.palette.primary.glow;`}
           <ColorSwatch
             name="Hover"
             token={`COLORS.primary.hover${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.primary.hoverLight
-                : COLORS.primary.hoverDark
-            }
+            value={primaryMode === "light" ? COLORS.primary.hoverLight : COLORS.primary.hoverDark}
             description="Hover state"
           />
           <ColorSwatch
             name="Active"
             token={`COLORS.primary.active${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.primary.activeLight
-                : COLORS.primary.activeDark
-            }
+            value={primaryMode === "light" ? COLORS.primary.activeLight : COLORS.primary.activeDark}
             description="Pressed state"
           />
           <ColorSwatch
             name="Disabled"
             token={`COLORS.primary.disabled${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.primary.disabledLight
-                : COLORS.primary.disabledDark
-            }
+            value={primaryMode === "light" ? COLORS.primary.disabledLight : COLORS.primary.disabledDark}
             description="Inactive controls"
           />
           <ColorSwatch
             name="Glow Accent"
             token={`COLORS.primary.glow${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.primary.glowLight
-                : COLORS.primary.glowDark
-            }
+            value={primaryMode === "light" ? COLORS.primary.glowLight : COLORS.primary.glowDark}
             isTranslucent
             description="Halo & focus ring"
           />
           <ColorSwatch
             name="Contrast Text"
             token={`COLORS.primary.text${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.primary.textLight
-                : COLORS.primary.textDark
-            }
+            value={primaryMode === "light" ? COLORS.primary.textLight : COLORS.primary.textDark}
             description="Text on primary fill"
           />
         </Box>
@@ -458,52 +405,32 @@ const primaryGlow = theme.palette.primary.glow;`}
           <ColorSwatch
             name="Hover"
             token={`COLORS.secondary.hover${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.secondary.hoverLight
-                : COLORS.secondary.hoverDark
-            }
+            value={primaryMode === "light" ? COLORS.secondary.hoverLight : COLORS.secondary.hoverDark}
             description="Hover state"
           />
           <ColorSwatch
             name="Active"
             token={`COLORS.secondary.active${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.secondary.activeLight
-                : COLORS.secondary.activeDark
-            }
+            value={primaryMode === "light" ? COLORS.secondary.activeLight : COLORS.secondary.activeDark}
             description="Active state fill"
           />
           <ColorSwatch
             name="Disabled"
             token={`COLORS.secondary.disabled${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.secondary.disabledLight
-                : COLORS.secondary.disabledDark
-            }
+            value={primaryMode === "light" ? COLORS.secondary.disabledLight : COLORS.secondary.disabledDark}
             description="Inactive secondary"
           />
           <ColorSwatch
             name="Glow Accent"
             token={`COLORS.secondary.glow${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.secondary.glowLight
-                : COLORS.secondary.glowDark
-            }
+            value={primaryMode === "light" ? COLORS.secondary.glowLight : COLORS.secondary.glowDark}
             isTranslucent
             description="Halo & focus ring"
           />
           <ColorSwatch
             name="Contrast Text"
             token={`COLORS.secondary.text${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.secondary.textLight
-                : COLORS.secondary.textDark
-            }
+            value={primaryMode === "light" ? COLORS.secondary.textLight : COLORS.secondary.textDark}
             description="Text on secondary fill"
           />
         </Box>
@@ -543,52 +470,32 @@ const primaryGlow = theme.palette.primary.glow;`}
           <ColorSwatch
             name="Hover"
             token={`COLORS.accent.hover${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.accent.hoverLight
-                : COLORS.accent.hoverDark
-            }
+            value={primaryMode === "light" ? COLORS.accent.hoverLight : COLORS.accent.hoverDark}
             description="Hover state"
           />
           <ColorSwatch
             name="Active"
             token={`COLORS.accent.active${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.accent.activeLight
-                : COLORS.accent.activeDark
-            }
+            value={primaryMode === "light" ? COLORS.accent.activeLight : COLORS.accent.activeDark}
             description="Active state fill"
           />
           <ColorSwatch
             name="Disabled"
             token={`COLORS.accent.disabled${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.accent.disabledLight
-                : COLORS.accent.disabledDark
-            }
+            value={primaryMode === "light" ? COLORS.accent.disabledLight : COLORS.accent.disabledDark}
             description="Inactive accent"
           />
           <ColorSwatch
             name="Glow Accent"
             token={`COLORS.accent.glow${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.accent.glowLight
-                : COLORS.accent.glowDark
-            }
+            value={primaryMode === "light" ? COLORS.accent.glowLight : COLORS.accent.glowDark}
             isTranslucent
             description="Gold halo & focus ring"
           />
           <ColorSwatch
             name="Contrast Text"
             token={`COLORS.accent.text${primaryMode === "light" ? "Light" : "Dark"}`}
-            value={
-              primaryMode === "light"
-                ? COLORS.accent.textLight
-                : COLORS.accent.textDark
-            }
+            value={primaryMode === "light" ? COLORS.accent.textLight : COLORS.accent.textDark}
             description="Text on gold fill"
           />
         </Box>
@@ -651,11 +558,7 @@ const errorColor = theme.palette.error.main;`}
                 textTransform: "none",
                 fontWeight: 600,
                 bgcolor:
-                  semanticMode === "dark"
-                    ? isDark
-                      ? "rgba(255,255,255,0.15)"
-                      : "rgba(17,17,17,0.08)"
-                    : "transparent",
+                  semanticMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
           </Tabs>
@@ -675,10 +578,7 @@ const errorColor = theme.palette.error.main;`}
         >
           {/* Success */}
           <Box>
-            <Typography
-              variant="subtitle2"
-              sx={{ fontWeight: 700, mb: 1, color: "success.main" }}
-            >
+            <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1, color: "success.main" }}>
               SUCCESS
             </Typography>
             <ColorSwatch
@@ -691,11 +591,7 @@ const errorColor = theme.palette.error.main;`}
               <ColorSwatch
                 name="Glow"
                 token={`COLORS.success.glow${semanticMode === "light" ? "Light" : "Dark"}`}
-                value={
-                  semanticMode === "light"
-                    ? COLORS.success.glowLight
-                    : COLORS.success.glowDark
-                }
+                value={semanticMode === "light" ? COLORS.success.glowLight : COLORS.success.glowDark}
                 isTranslucent
                 description="Status aura & focus ring"
               />
@@ -704,10 +600,7 @@ const errorColor = theme.palette.error.main;`}
 
           {/* Warning */}
           <Box>
-            <Typography
-              variant="subtitle2"
-              sx={{ fontWeight: 700, mb: 1, color: "warning.main" }}
-            >
+            <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1, color: "warning.main" }}>
               WARNING
             </Typography>
             <ColorSwatch
@@ -720,11 +613,7 @@ const errorColor = theme.palette.error.main;`}
               <ColorSwatch
                 name="Glow"
                 token={`COLORS.warning.glow${semanticMode === "light" ? "Light" : "Dark"}`}
-                value={
-                  semanticMode === "light"
-                    ? COLORS.warning.glowLight
-                    : COLORS.warning.glowDark
-                }
+                value={semanticMode === "light" ? COLORS.warning.glowLight : COLORS.warning.glowDark}
                 isTranslucent
                 description="Warning glow & border aura"
               />
@@ -733,10 +622,7 @@ const errorColor = theme.palette.error.main;`}
 
           {/* Error */}
           <Box>
-            <Typography
-              variant="subtitle2"
-              sx={{ fontWeight: 700, mb: 1, color: "error.main" }}
-            >
+            <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1, color: "error.main" }}>
               ERROR
             </Typography>
             <ColorSwatch
@@ -749,11 +635,7 @@ const errorColor = theme.palette.error.main;`}
               <ColorSwatch
                 name="Glow"
                 token={`COLORS.error.glow${semanticMode === "light" ? "Light" : "Dark"}`}
-                value={
-                  semanticMode === "light"
-                    ? COLORS.error.glowLight
-                    : COLORS.error.glowDark
-                }
+                value={semanticMode === "light" ? COLORS.error.glowLight : COLORS.error.glowDark}
                 isTranslucent
                 description="Critical halo & invalid ring"
               />
@@ -762,10 +644,7 @@ const errorColor = theme.palette.error.main;`}
 
           {/* Info */}
           <Box>
-            <Typography
-              variant="subtitle2"
-              sx={{ fontWeight: 700, mb: 1, color: "info.main" }}
-            >
+            <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1, color: "info.main" }}>
               INFO
             </Typography>
             <ColorSwatch
@@ -778,11 +657,7 @@ const errorColor = theme.palette.error.main;`}
               <ColorSwatch
                 name="Glow"
                 token={`COLORS.info.glow${semanticMode === "light" ? "Light" : "Dark"}`}
-                value={
-                  semanticMode === "light"
-                    ? COLORS.info.glowLight
-                    : COLORS.info.glowDark
-                }
+                value={semanticMode === "light" ? COLORS.info.glowLight : COLORS.info.glowDark}
                 isTranslucent
                 description="Informational glow aura"
               />
@@ -887,11 +762,7 @@ const glassBorder = theme.palette.glass.paperBorder;`}
                 fontWeight: 600,
                 mr: 1,
                 bgcolor:
-                  glassMode === "light"
-                    ? isDark
-                      ? "rgba(255,255,255,0.15)"
-                      : "rgba(17,17,17,0.08)"
-                    : "transparent",
+                  glassMode === "light" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
             <Tab
@@ -908,11 +779,7 @@ const glassBorder = theme.palette.glass.paperBorder;`}
                 textTransform: "none",
                 fontWeight: 600,
                 bgcolor:
-                  glassMode === "dark"
-                    ? isDark
-                      ? "rgba(255,255,255,0.15)"
-                      : "rgba(17,17,17,0.08)"
-                    : "transparent",
+                  glassMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
           </Tabs>
@@ -933,88 +800,56 @@ const glassBorder = theme.palette.glass.paperBorder;`}
           <ColorSwatch
             name="Glass Main"
             token={`COLORS.glass.main${glassMode === "light" ? "Light" : "Dark"}`}
-            value={
-              glassMode === "light"
-                ? COLORS.glass.mainLight
-                : COLORS.glass.mainDark
-            }
+            value={glassMode === "light" ? COLORS.glass.mainLight : COLORS.glass.mainDark}
             isTranslucent
             description="Default frosted glass fill"
           />
           <ColorSwatch
             name="Glass Light"
             token={`COLORS.glass.light${glassMode === "light" ? "Light" : "Dark"}`}
-            value={
-              glassMode === "light"
-                ? COLORS.glass.lightLight
-                : COLORS.glass.lightDark
-            }
+            value={glassMode === "light" ? COLORS.glass.lightLight : COLORS.glass.lightDark}
             isTranslucent
             description="High-translucency glass layer"
           />
           <ColorSwatch
             name="Glass Button Border"
             token={`COLORS.glass.buttonBorder${glassMode === "light" ? "Light" : "Dark"}`}
-            value={
-              glassMode === "light"
-                ? COLORS.glass.buttonBorderLight
-                : COLORS.glass.buttonBorderDark
-            }
+            value={glassMode === "light" ? COLORS.glass.buttonBorderLight : COLORS.glass.buttonBorderDark}
             isTranslucent
             description="Glass button boundary stroke"
           />
           <ColorSwatch
             name="Glass Glow Halo"
             token={`COLORS.glass.glow${glassMode === "light" ? "Light" : "Dark"}`}
-            value={
-              glassMode === "light"
-                ? COLORS.glass.glowLight
-                : COLORS.glass.glowDark
-            }
+            value={glassMode === "light" ? COLORS.glass.glowLight : COLORS.glass.glowDark}
             isTranslucent
             description="Glass refraction glow"
           />
           <ColorSwatch
             name="Paper Glass Fill"
             token={`COLORS.glass.paperBg${glassMode === "light" ? "Light" : "Dark"}`}
-            value={
-              glassMode === "light"
-                ? COLORS.glass.paperBgLight
-                : COLORS.glass.paperBgDark
-            }
+            value={glassMode === "light" ? COLORS.glass.paperBgLight : COLORS.glass.paperBgDark}
             isTranslucent
             description="Surface background for GlassPanel"
           />
           <ColorSwatch
             name="Paper Glass Border"
             token={`COLORS.glass.paperBorder${glassMode === "light" ? "Light" : "Dark"}`}
-            value={
-              glassMode === "light"
-                ? COLORS.glass.paperBorderLight
-                : COLORS.glass.paperBorderDark
-            }
+            value={glassMode === "light" ? COLORS.glass.paperBorderLight : COLORS.glass.paperBorderDark}
             isTranslucent
             description="Edge line for panels & modals"
           />
           <ColorSwatch
             name="Dialog Glass Fill"
             token={`COLORS.glass.dialogBg${glassMode === "light" ? "Light" : "Dark"}`}
-            value={
-              glassMode === "light"
-                ? COLORS.glass.dialogBgLight
-                : COLORS.glass.dialogBgDark
-            }
+            value={glassMode === "light" ? COLORS.glass.dialogBgLight : COLORS.glass.dialogBgDark}
             isTranslucent
             description="Modal backdrops and dialog bodies"
           />
           <ColorSwatch
             name="Tooltip Glass Fill"
             token={`COLORS.glass.tooltipBg${glassMode === "light" ? "Light" : "Dark"}`}
-            value={
-              glassMode === "light"
-                ? COLORS.glass.tooltipBgLight
-                : COLORS.glass.tooltipBgDark
-            }
+            value={glassMode === "light" ? COLORS.glass.tooltipBgLight : COLORS.glass.tooltipBgDark}
             isTranslucent
             description="Translucent tooltip container"
           />

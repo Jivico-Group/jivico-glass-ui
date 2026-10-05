@@ -9,10 +9,7 @@ import { getTableCellOverrides } from "./tableCell.js";
 import { getTableContainerOverrides } from "./tableContainer.js";
 import { getTableFooterOverrides } from "./tableFooter.js";
 
-export const getTableRootOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getTableRootOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   ...getTableOverrides(palette, isDark),
   ...getTableHeadOverrides(palette, isDark),
   ...getTableBodyOverrides(palette, isDark),

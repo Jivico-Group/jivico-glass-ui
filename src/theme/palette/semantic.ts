@@ -7,9 +7,7 @@ export const buildSemanticPalette = (isDark: boolean) => ({
     dark: COLORS.success.light,
     hover: isDark ? COLORS.success.hoverDark : COLORS.success.hoverLight,
     active: isDark ? COLORS.success.activeDark : COLORS.success.activeLight,
-    disabled: isDark
-      ? COLORS.success.disabledDark
-      : COLORS.success.disabledLight,
+    disabled: isDark ? COLORS.success.disabledDark : COLORS.success.disabledLight,
     glow: isDark ? COLORS.success.glowDark : COLORS.success.glowLight,
     contrastText: isDark ? COLORS.success.textDark : COLORS.success.textLight,
   },
@@ -20,9 +18,7 @@ export const buildSemanticPalette = (isDark: boolean) => ({
     dark: COLORS.warning.light,
     hover: isDark ? COLORS.warning.hoverDark : COLORS.warning.hoverLight,
     active: isDark ? COLORS.warning.activeDark : COLORS.warning.activeLight,
-    disabled: isDark
-      ? COLORS.warning.disabledDark
-      : COLORS.warning.disabledLight,
+    disabled: isDark ? COLORS.warning.disabledDark : COLORS.warning.disabledLight,
     glow: isDark ? COLORS.warning.glowDark : COLORS.warning.glowLight,
     contrastText: isDark ? COLORS.warning.textDark : COLORS.warning.textLight,
   },
@@ -49,4 +45,3 @@ export const buildSemanticPalette = (isDark: boolean) => ({
     contrastText: isDark ? COLORS.info.textDark : COLORS.info.textLight,
   },
 });
-

@@ -46,28 +46,28 @@ The default variant is `overlay` and the default size is `medium`.
 
 # Props Overview
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `image` | `string` | **Required** | Main desktop image URL |
-| `mobileImage` | `string` | `undefined` | Mobile-specific image URL |
-| `alt` | `string` | `""` | Accessible image description |
-| `variant` | `"overlay" \| "split" \| "minimal"` | `"overlay"` | Layout mode |
-| `size` | `"small" \| "medium" \| "large"` | `"medium"` | Visual scale and spacing |
-| `eyebrow` | `ReactNode` | `undefined` | Small supporting label above title |
-| `title` | `ReactNode` | `undefined` | Primary heading |
-| `description` | `ReactNode` | `undefined` | Supporting paragraph |
-| `action` | `SpotlightAction` | `undefined` | CTA button configuration |
-| `href` | `string` | `undefined` | Semantic link destination for the full card |
-| `linkLabel` | `string` | `undefined` | Accessible label for full card anchor |
-| `onNavigate` | `(event) => void` | `undefined` | Navigation handler for full card click |
-| `ImageComponent` | `SpotlightImageComponent` | `undefined` | Custom image component (e.g. Next.js `next/image`) |
-| `renderImage` | `(context) => ReactNode` | `undefined` | Advanced custom image renderer |
-| `aspectRatio` | `string` | `"16 / 7"` | Proportional aspect ratio |
-| `height` | `number \| string \| Dimension` | `undefined` | Explicit height |
-| `minHeight` | `number \| string \| Dimension` | `undefined` | Minimum height boundary |
-| `maxHeight` | `number \| string \| Dimension` | `undefined` | Maximum height boundary |
-| `imagePosition` | `SpotlightImagePosition` | `"center"` | CSS object-position cropping |
-| `radius` | `number \| string` | Theme spacing | Border radius |
+| Prop             | Type                                | Default       | Description                                        |
+| :--------------- | :---------------------------------- | :------------ | :------------------------------------------------- |
+| `image`          | `string`                            | **Required**  | Main desktop image URL                             |
+| `mobileImage`    | `string`                            | `undefined`   | Mobile-specific image URL                          |
+| `alt`            | `string`                            | `""`          | Accessible image description                       |
+| `variant`        | `"overlay" \| "split" \| "minimal"` | `"overlay"`   | Layout mode                                        |
+| `size`           | `"small" \| "medium" \| "large"`    | `"medium"`    | Visual scale and spacing                           |
+| `eyebrow`        | `ReactNode`                         | `undefined`   | Small supporting label above title                 |
+| `title`          | `ReactNode`                         | `undefined`   | Primary heading                                    |
+| `description`    | `ReactNode`                         | `undefined`   | Supporting paragraph                               |
+| `action`         | `SpotlightAction`                   | `undefined`   | CTA button configuration                           |
+| `href`           | `string`                            | `undefined`   | Semantic link destination for the full card        |
+| `linkLabel`      | `string`                            | `undefined`   | Accessible label for full card anchor              |
+| `onNavigate`     | `(event) => void`                   | `undefined`   | Navigation handler for full card click             |
+| `ImageComponent` | `SpotlightImageComponent`           | `undefined`   | Custom image component (e.g. Next.js `next/image`) |
+| `renderImage`    | `(context) => ReactNode`            | `undefined`   | Advanced custom image renderer                     |
+| `aspectRatio`    | `string`                            | `"16 / 7"`    | Proportional aspect ratio                          |
+| `height`         | `number \| string \| Dimension`     | `undefined`   | Explicit height                                    |
+| `minHeight`      | `number \| string \| Dimension`     | `undefined`   | Minimum height boundary                            |
+| `maxHeight`      | `number \| string \| Dimension`     | `undefined`   | Maximum height boundary                            |
+| `imagePosition`  | `SpotlightImagePosition`            | `"center"`    | CSS object-position cropping                       |
+| `radius`         | `number \| string`                  | Theme spacing | Border radius                                      |
 
 ---
 
@@ -96,11 +96,7 @@ mobileImage?: string;
 Optional image specifically for smaller screens. The component uses a responsive `<picture>` element so the browser loads the appropriate source.
 
 ```tsx
-<Spotlight
-  image="/images/originals-desktop.jpg"
-  mobileImage="/images/originals-mobile.jpg"
-  title="ORIGINALS"
-/>
+<Spotlight image="/images/originals-desktop.jpg" mobileImage="/images/originals-mobile.jpg" title="ORIGINALS" />
 ```
 
 ---
@@ -114,11 +110,7 @@ alt?: string;
 Accessible description for the image.
 
 ```tsx
-<Spotlight
-  image="/images/originals.jpg"
-  alt="Model wearing a Jivico Originals T-shirt"
-  title="ORIGINALS"
-/>
+<Spotlight image="/images/originals.jpg" alt="Model wearing a Jivico Originals T-shirt" title="ORIGINALS" />
 ```
 
 ---
@@ -134,11 +126,7 @@ eyebrow?: ReactNode;
 Small supporting label displayed above the title.
 
 ```tsx
-<Spotlight
-  image="/images/drop.jpg"
-  eyebrow="JIVICO ORIGINALS"
-  title="THE NEW ESSENTIALS"
-/>
+<Spotlight image="/images/drop.jpg" eyebrow="JIVICO ORIGINALS" title="THE NEW ESSENTIALS" />
 ```
 
 ---
@@ -175,11 +163,7 @@ description?: ReactNode;
 Supporting text displayed below the title.
 
 ```tsx
-<Spotlight
-  image="/images/drop.jpg"
-  title="NEW DROP"
-  description="Fresh pieces made for everyday expression."
-/>
+<Spotlight image="/images/drop.jpg" title="NEW DROP" description="Fresh pieces made for everyday expression." />
 ```
 
 ---
@@ -266,6 +250,7 @@ Content is positioned over the image with a subtle cinematic gradient overlay.
 ```
 
 ### Best for
+
 - Homepage hero features
 - Major campaigns
 - Product launches & seasonal drops
@@ -292,6 +277,7 @@ Image and content are displayed side-by-side in a balanced grid layout. On mobil
 ```
 
 ### Best for
+
 - Customization tools & interactive features
 - Editorial sections
 - Feature explanations
@@ -377,12 +363,7 @@ Controls the proportional relationship between width and height.
 Set lower and upper boundary limits:
 
 ```tsx
-<Spotlight
-  image="/images/offer.jpg"
-  eyebrow="LIMITED TIME"
-  title="20% OFF YOUR FIRST ORDER"
-  maxHeight={140}
-/>
+<Spotlight image="/images/offer.jpg" eyebrow="LIMITED TIME" title="20% OFF YOUR FIRST ORDER" maxHeight={140} />
 ```
 
 ---

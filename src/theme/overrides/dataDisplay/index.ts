@@ -7,10 +7,7 @@ import { getDividerOverrides } from "./divider";
 import { getBadgeOverrides } from "./badge";
 import { getTypographyOverrides } from "./typography";
 
-export const getDataDisplayOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getDataDisplayOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   ...getChipOverrides(palette, isDark),
   ...getAvatarOverrides(palette, isDark),
   ...getDividerOverrides(palette),

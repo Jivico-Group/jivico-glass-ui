@@ -5,13 +5,7 @@ import type { JivicoPalette } from "../../palette/index.js";
 // TYPES
 // ============================================================
 
-export type ListColor =
-  | "primary"
-  | "secondary"
-  | "accent"
-  | "success"
-  | "warning"
-  | "error";
+export type ListColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error";
 
 export type ListVariant = "standard" | "glass";
 export type ListSize = "small" | "medium" | "large";
@@ -20,43 +14,28 @@ export type ListSize = "small" | "medium" | "large";
 // OVERRIDES
 // ============================================================
 
-export const getListOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   // ==========================================================
   // BASE COLORS
   // ==========================================================
 
   const normalText = isDark ? "#F6F5F2" : "#111111";
 
-  const secondaryText = isDark
-    ? "rgba(246, 245, 242, 0.62)"
-    : "rgba(17, 17, 17, 0.62)";
+  const secondaryText = isDark ? "rgba(246, 245, 242, 0.62)" : "rgba(17, 17, 17, 0.62)";
 
-  const iconColor = isDark
-    ? "rgba(246, 245, 242, 0.72)"
-    : "rgba(17, 17, 17, 0.68)";
+  const iconColor = isDark ? "rgba(246, 245, 242, 0.72)" : "rgba(17, 17, 17, 0.68)";
 
   // ==========================================================
   // GLASS
   // ==========================================================
 
-  const glassBackground = isDark
-    ? "rgba(255, 255, 255, 0.06)"
-    : "rgba(255, 255, 255, 0.62)";
+  const glassBackground = isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.62)";
 
-  const glassBorder = isDark
-    ? "rgba(255, 255, 255, 0.10)"
-    : "rgba(255, 255, 255, 0.72)";
+  const glassBorder = isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(255, 255, 255, 0.72)";
 
-  const glassShadow = isDark
-    ? "0 12px 40px rgba(0, 0, 0, 0.28)"
-    : "0 12px 40px rgba(17, 17, 17, 0.08)";
+  const glassShadow = isDark ? "0 12px 40px rgba(0, 0, 0, 0.28)" : "0 12px 40px rgba(17, 17, 17, 0.08)";
 
-  const glassHover = isDark
-    ? "rgba(255, 255, 255, 0.08)"
-    : "rgba(255, 255, 255, 0.48)";
+  const glassHover = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.48)";
 
   // ==========================================================
   // COLOR MAP
@@ -265,14 +244,10 @@ export const getListOverrides = (
             ...(isGlass
               ? {
                   "& .MuiListItemButton-root.Mui-selected": {
-                    backgroundColor: isDark
-                      ? "rgba(255, 255, 255, 0.12)"
-                      : "rgba(255, 255, 255, 0.52)",
+                    backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.52)",
 
                     "&:hover": {
-                      backgroundColor: isDark
-                        ? "rgba(255, 255, 255, 0.16)"
-                        : "rgba(255, 255, 255, 0.64)",
+                      backgroundColor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.64)",
                     },
                   },
                 }
@@ -293,9 +268,7 @@ export const getListOverrides = (
           paddingBottom: 2,
 
           "&.MuiListItem-divider": {
-            borderBottom: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"
-            }`,
+            borderBottom: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"}`,
           },
         },
       },
@@ -323,8 +296,7 @@ export const getListOverrides = (
 
             color: normalText,
 
-            transition:
-              "background-color 160ms ease, color 160ms ease, transform 160ms ease",
+            transition: "background-color 160ms ease, color 160ms ease, transform 160ms ease",
 
             // ------------------------------------------------
             // Hover
@@ -471,22 +443,13 @@ export const getListOverrides = (
             minWidth: size.iconMinWidth + 8,
 
             "& .MuiAvatar-root": {
-              width:
-                state.size === "small" ? 30 : state.size === "large" ? 42 : 36,
+              width: state.size === "small" ? 30 : state.size === "large" ? 42 : 36,
 
-              height:
-                state.size === "small" ? 30 : state.size === "large" ? 42 : 36,
+              height: state.size === "small" ? 30 : state.size === "large" ? 42 : 36,
 
-              fontSize:
-                state.size === "small"
-                  ? "0.75rem"
-                  : state.size === "large"
-                    ? "1rem"
-                    : "0.875rem",
+              fontSize: state.size === "small" ? "0.75rem" : state.size === "large" ? "1rem" : "0.875rem",
 
-              border: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.08)"
-              }`,
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.08)"}`,
             },
           };
         },
@@ -508,9 +471,7 @@ export const getListOverrides = (
             transition: "background-color 160ms ease, color 160ms ease",
 
             "&:hover": {
-              backgroundColor: isDark
-                ? "rgba(255, 255, 255, 0.08)"
-                : "rgba(17, 17, 17, 0.06)",
+              backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)",
 
               color: normalText,
             },
@@ -536,9 +497,7 @@ export const getListOverrides = (
 
           backgroundColor: "transparent",
 
-          color: isDark
-            ? "rgba(246, 245, 242, 0.52)"
-            : "rgba(17, 17, 17, 0.52)",
+          color: isDark ? "rgba(246, 245, 242, 0.52)" : "rgba(17, 17, 17, 0.52)",
 
           fontSize: "0.7rem",
           fontWeight: 700,
@@ -550,9 +509,7 @@ export const getListOverrides = (
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
 
-            backgroundColor: isDark
-              ? "rgba(17, 17, 17, 0.72)"
-              : "rgba(246, 245, 242, 0.72)",
+            backgroundColor: isDark ? "rgba(17, 17, 17, 0.72)" : "rgba(246, 245, 242, 0.72)",
           },
         },
       },

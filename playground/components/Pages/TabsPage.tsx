@@ -25,12 +25,7 @@ export const TabsPage: React.FC = () => {
       title="Tabs (Segmented Control)"
       description="Segmented controls organize content across different screens, data sets, and other interactions. Designed with a fully rounded capsule pill track and an animated floating pill indicator matching the Jivico design system."
       category="Navigation"
-      badges={[
-        "Brand Kit",
-        "Segmented Control",
-        "Capsule Pill",
-        "Color Variants",
-      ]}
+      badges={["Brand Kit", "Segmented Control", "Capsule Pill", "Color Variants"]}
     >
       {/* =========================================================
           1. SECONDARY — DEFAULT
@@ -378,12 +373,8 @@ export const TabsPage: React.FC = () => {
           p: 2.5,
           mt: 4,
           borderRadius: "14px",
-          border: `1px solid ${
-            isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"
-          }`,
-          backgroundColor: isDark
-            ? "rgba(255,255,255,0.02)"
-            : "rgba(255,255,255,0.5)",
+          border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
+          backgroundColor: isDark ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.5)",
           display: "flex",
           flexWrap: "wrap",
           gap: 3,
@@ -442,11 +433,7 @@ export const TabsPage: React.FC = () => {
                 height: 14,
                 borderRadius: "50%",
                 bgcolor: c.hex,
-                border: c.border
-                  ? `1px solid ${
-                      isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.15)"
-                    }`
-                  : "none",
+                border: c.border ? `1px solid ${isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.15)"}` : "none",
               }}
             />
 

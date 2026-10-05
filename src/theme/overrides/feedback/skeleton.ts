@@ -1,31 +1,14 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
-type SkeletonColor =
-  | "primary"
-  | "secondary"
-  | "accent"
-  | "success"
-  | "info"
-  | "warning"
-  | "error"
-  | "glass";
+type SkeletonColor = "primary" | "secondary" | "accent" | "success" | "info" | "warning" | "error" | "glass";
 
 type SkeletonAppearance = "solid" | "tonal" | "glass" | "outlined";
 
-type SkeletonRadius =
-  | "square"
-  | "small"
-  | "medium"
-  | "large"
-  | "rounded"
-  | "pill";
+type SkeletonRadius = "square" | "small" | "medium" | "large" | "rounded" | "pill";
 
 type GlassIntensity = "subtle" | "medium" | "strong" | "ultra";
 
-export const getSkeletonOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getSkeletonOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   const radiusMap: Record<SkeletonRadius, number> = {
     square: 0,
     small: 6,
@@ -97,13 +80,11 @@ export const getSkeletonOverrides = (
         root: ({ ownerState }) => {
           const color = (ownerState.color ?? "glass") as SkeletonColor;
 
-          const appearance = (ownerState.appearance ??
-            "glass") as SkeletonAppearance;
+          const appearance = (ownerState.appearance ?? "glass") as SkeletonAppearance;
 
           const radius = (ownerState.radius ?? "medium") as SkeletonRadius;
 
-          const glassIntensity = (ownerState.glassIntensity ??
-            "strong") as GlassIntensity;
+          const glassIntensity = (ownerState.glassIntensity ?? "strong") as GlassIntensity;
 
           const glow = ownerState.glow ?? true;
 
@@ -115,9 +96,7 @@ export const getSkeletonOverrides = (
            * SOLID
            */
           if (appearance === "solid") {
-            backgroundColor = isDark
-              ? "rgba(255,255,255,0.10)"
-              : "rgba(0,0,0,0.07)";
+            backgroundColor = isDark ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.07)";
           }
 
           /*
@@ -127,9 +106,7 @@ export const getSkeletonOverrides = (
             backgroundColor =
               color === "glass"
                 ? palette.glass.skeletonBg
-                : `color-mix(in srgb, ${selected.main} ${
-                    isDark ? "16%" : "9%"
-                  }, transparent)`;
+                : `color-mix(in srgb, ${selected.main} ${isDark ? "16%" : "9%"}, transparent)`;
           }
 
           /*
@@ -159,20 +136,12 @@ export const getSkeletonOverrides = (
               appearance === "outlined"
                 ? `1px solid ${selected.main}`
                 : appearance === "glass"
-                  ? `1px solid ${
-                      isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.05)"
-                    }`
+                  ? `1px solid ${isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.05)"}`
                   : "none",
 
-            backdropFilter:
-              appearance === "glass"
-                ? `saturate(180%) ${blurMap[glassIntensity]}`
-                : undefined,
+            backdropFilter: appearance === "glass" ? `saturate(180%) ${blurMap[glassIntensity]}` : undefined,
 
-            WebkitBackdropFilter:
-              appearance === "glass"
-                ? `saturate(180%) ${blurMap[glassIntensity]}`
-                : undefined,
+            WebkitBackdropFilter: appearance === "glass" ? `saturate(180%) ${blurMap[glassIntensity]}` : undefined,
 
             boxShadow:
               appearance === "glass"
@@ -208,8 +177,7 @@ export const getSkeletonOverrides = (
 
                     borderRadius: "inherit",
 
-                    background:
-                      "linear-gradient(135deg, rgba(255,255,255,0.16), transparent 50%)",
+                    background: "linear-gradient(135deg, rgba(255,255,255,0.16), transparent 50%)",
 
                     opacity: 0.9,
                   }
@@ -233,8 +201,7 @@ export const getSkeletonOverrides = (
              * with the Jivico glass surface.
              */
             "&.MuiSkeleton-wave::after": {
-              background:
-                "linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent)",
+              background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent)",
 
               opacity: appearance === "glass" ? 1 : 0.65,
             },

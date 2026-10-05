@@ -8,10 +8,7 @@ import { getDialogContentOverrides } from "./dailogContent";
 import { getLinearProgressOverrides } from "./linearProgress";
 import { getSkeletonOverrides } from "./skeleton";
 
-export const getFeedbackOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getFeedbackOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   ...getAlertOverrides(palette, isDark),
   ...getTooltipOverrides(palette, isDark),
   ...getDialogOverrides(palette, isDark),

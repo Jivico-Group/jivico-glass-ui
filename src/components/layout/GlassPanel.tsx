@@ -9,9 +9,7 @@ export const GlassPanel = styled(Box, {
 })<GlassPanelProps>(({ theme, isDark: explicitDark }) => {
   const isDark = explicitDark ?? theme.palette.mode === "dark";
   return {
-    backgroundColor: isDark
-      ? "rgba(28, 31, 38, 0.65)"
-      : "rgba(255, 255, 255, 0.24)",
+    backgroundColor: isDark ? "rgba(28, 31, 38, 0.65)" : "rgba(255, 255, 255, 0.24)",
     backgroundImage: isDark
       ? "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%)"
       : "linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(248, 250, 252, 0.4) 100%)",

@@ -51,11 +51,7 @@ export const ButtonsPage: React.FC = () => {
   // State for Split Button
   const [splitAnchor, setSplitAnchor] = useState<null | HTMLElement>(null);
   const [selectedOption, setSelectedOption] = useState("Merge Pull Request");
-  const splitOptions = [
-    "Merge Pull Request",
-    "Squash and Merge",
-    "Rebase and Merge",
-  ];
+  const splitOptions = ["Merge Pull Request", "Squash and Merge", "Rebase and Merge"];
 
   return (
     <ComponentPage
@@ -311,18 +307,10 @@ export const ButtonsPage: React.FC = () => {
           <Button variant="text" color="glass">
             Text Glass
           </Button>
-          <Button
-            variant="contained"
-            color="glass"
-            startIcon={<Sparkles size={16} />}
-          >
+          <Button variant="contained" color="glass" startIcon={<Sparkles size={16} />}>
             AI Enhance
           </Button>
-          <Button
-            variant="outlined"
-            color="glass"
-            startIcon={<Star size={16} />}
-          >
+          <Button variant="outlined" color="glass" startIcon={<Star size={16} />}>
             Favorite
           </Button>
           <Button variant="contained" color="glass" disabled>
@@ -457,60 +445,28 @@ export const ButtonsPage: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={<Plus size={16} />}
-          >
+          <Button variant="contained" color="primary" startIcon={<Plus size={16} />}>
             Add Item
           </Button>
-          <Button
-            variant="contained"
-            color="accent"
-            startIcon={<Sparkles size={16} />}
-          >
+          <Button variant="contained" color="accent" startIcon={<Sparkles size={16} />}>
             Upgrade Plan
           </Button>
-          <Button
-            variant="contained"
-            color="glass"
-            endIcon={<ArrowRight size={16} />}
-          >
+          <Button variant="contained" color="glass" endIcon={<ArrowRight size={16} />}>
             Continue
           </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            startIcon={<Send size={16} />}
-          >
+          <Button variant="contained" color="secondary" startIcon={<Send size={16} />}>
             Submit
           </Button>
-          <Button
-            variant="outlined"
-            color="accent"
-            startIcon={<Star size={16} />}
-          >
+          <Button variant="outlined" color="accent" startIcon={<Star size={16} />}>
             Premium Feature
           </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            startIcon={<Download size={16} />}
-          >
+          <Button variant="outlined" color="primary" startIcon={<Download size={16} />}>
             Export
           </Button>
-          <Button
-            variant="outlined"
-            color="glass"
-            startIcon={<ShoppingCart size={16} />}
-          >
+          <Button variant="outlined" color="glass" startIcon={<ShoppingCart size={16} />}>
             Cart (3)
           </Button>
-          <Button
-            variant="text"
-            color="glass"
-            startIcon={<ArrowLeft size={16} />}
-          >
+          <Button variant="text" color="glass" startIcon={<ArrowLeft size={16} />}>
             Go Back
           </Button>
         </Box>
@@ -546,13 +502,9 @@ export const ButtonsPage: React.FC = () => {
           >
             <IconButton
               sx={{
-                backgroundColor: isDark
-                  ? "rgba(255, 255, 255, 0.08)"
-                  : "rgba(17, 17, 17, 0.06)",
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)",
                 "&:hover": {
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.15)"
-                    : "rgba(17, 17, 17, 0.1)",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.1)",
                 },
               }}
             >
@@ -561,18 +513,12 @@ export const ButtonsPage: React.FC = () => {
 
             <IconButton
               sx={{
-                backgroundColor: isDark
-                  ? "rgba(255, 255, 255, 0.12)"
-                  : "rgba(255, 255, 255, 0.8)",
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.8)",
                 backdropFilter: "blur(12px)",
-                border: `1px solid ${
-                  isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.1)"
-                }`,
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.1)"}`,
                 "&:hover": {
                   transform: "translateY(-1px)",
-                  boxShadow: isDark
-                    ? "0 4px 16px rgba(0,0,0,0.4)"
-                    : "0 4px 14px rgba(0,0,0,0.06)",
+                  boxShadow: isDark ? "0 4px 16px rgba(0,0,0,0.4)" : "0 4px 14px rgba(0,0,0,0.06)",
                 },
               }}
             >
@@ -581,13 +527,9 @@ export const ButtonsPage: React.FC = () => {
 
             <IconButton
               sx={{
-                backgroundColor: isDark
-                  ? "rgba(255, 255, 255, 0.12)"
-                  : "rgba(255, 255, 255, 0.8)",
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.8)",
                 backdropFilter: "blur(12px)",
-                border: `1px solid ${
-                  isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.1)"
-                }`,
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.1)"}`,
               }}
             >
               <Star size={18} />
@@ -597,9 +539,7 @@ export const ButtonsPage: React.FC = () => {
               sx={{
                 color: "error.main",
                 "&:hover": {
-                  backgroundColor: isDark
-                    ? "rgba(234, 67, 53, 0.15)"
-                    : "rgba(234, 67, 53, 0.08)",
+                  backgroundColor: isDark ? "rgba(234, 67, 53, 0.15)" : "rgba(234, 67, 53, 0.08)",
                 },
               }}
             >
@@ -610,9 +550,7 @@ export const ButtonsPage: React.FC = () => {
               sx={{
                 color: "primary.main",
                 "&:hover": {
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.1)"
-                    : "rgba(17, 17, 17, 0.06)",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.06)",
                 },
               }}
             >
@@ -629,28 +567,16 @@ export const ButtonsPage: React.FC = () => {
               alignItems: "center",
             }}
           >
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 600, color: "text.secondary", mr: 1 }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary", mr: 1 }}>
               Sizes:
             </Typography>
-            <IconButton
-              size="small"
-              sx={{ border: "1px solid", borderColor: "divider" }}
-            >
+            <IconButton size="small" sx={{ border: "1px solid", borderColor: "divider" }}>
               <Plus size={14} />
             </IconButton>
-            <IconButton
-              size="medium"
-              sx={{ border: "1px solid", borderColor: "divider" }}
-            >
+            <IconButton size="medium" sx={{ border: "1px solid", borderColor: "divider" }}>
               <Plus size={18} />
             </IconButton>
-            <IconButton
-              size="large"
-              sx={{ border: "1px solid", borderColor: "divider" }}
-            >
+            <IconButton size="large" sx={{ border: "1px solid", borderColor: "divider" }}>
               <Plus size={22} />
             </IconButton>
           </Box>
@@ -703,20 +629,12 @@ export const ButtonsPage: React.FC = () => {
             {/* Custom Glass FAB */}
             <Fab
               sx={{
-                backgroundColor: isDark
-                  ? "rgba(255, 255, 255, 0.12)"
-                  : "rgba(255, 255, 255, 0.8)",
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.8)",
                 color: "text.primary",
                 backdropFilter: "blur(16px)",
-                border: `1px solid ${
-                  isDark
-                    ? "rgba(255, 255, 255, 0.18)"
-                    : "rgba(255, 255, 255, 0.9)"
-                }`,
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.9)"}`,
                 "&:hover": {
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.2)"
-                    : "#FFFFFF",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.2)" : "#FFFFFF",
                 },
               }}
               aria-label="favorite"
@@ -745,20 +663,12 @@ export const ButtonsPage: React.FC = () => {
             <Fab
               variant="extended"
               sx={{
-                backgroundColor: isDark
-                  ? "rgba(255, 255, 255, 0.12)"
-                  : "rgba(255, 255, 255, 0.8)",
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.8)",
                 color: "text.primary",
                 backdropFilter: "blur(16px)",
-                border: `1px solid ${
-                  isDark
-                    ? "rgba(255, 255, 255, 0.18)"
-                    : "rgba(255, 255, 255, 0.9)"
-                }`,
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.9)"}`,
                 "&:hover": {
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.2)"
-                    : "#FFFFFF",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.2)" : "#FFFFFF",
                 },
               }}
             >
@@ -836,14 +746,8 @@ export const ButtonsPage: React.FC = () => {
             }}
           >
             <ButtonGroup variant="contained" color="primary">
-              <Button onClick={() => alert(`Executed: ${selectedOption}`)}>
-                {selectedOption}
-              </Button>
-              <Button
-                size="small"
-                onClick={(e) => setSplitAnchor(e.currentTarget)}
-                sx={{ px: 1 }}
-              >
+              <Button onClick={() => alert(`Executed: ${selectedOption}`)}>{selectedOption}</Button>
+              <Button size="small" onClick={(e) => setSplitAnchor(e.currentTarget)} sx={{ px: 1 }}>
                 <ChevronDown size={18} />
               </Button>
             </ButtonGroup>
@@ -856,12 +760,8 @@ export const ButtonsPage: React.FC = () => {
                   sx: {
                     borderRadius: "12px",
                     mt: 0.5,
-                    border: `1px solid ${
-                      isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.1)"
-                    }`,
-                    backgroundColor: isDark
-                      ? "rgba(22, 22, 22, 0.95)"
-                      : "rgba(255, 255, 255, 0.98)",
+                    border: `1px solid ${isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.1)"}`,
+                    backgroundColor: isDark ? "rgba(22, 22, 22, 0.95)" : "rgba(255, 255, 255, 0.98)",
                     backdropFilter: "blur(20px)",
                   },
                 },
@@ -883,11 +783,7 @@ export const ButtonsPage: React.FC = () => {
             </Menu>
 
             {/* Vertical Button Group */}
-            <ButtonGroup
-              orientation="vertical"
-              variant="outlined"
-              color="glass"
-            >
+            <ButtonGroup orientation="vertical" variant="outlined" color="glass">
               <Button>Top Action</Button>
               <Button>Middle Action</Button>
               <Button>Bottom Action</Button>
@@ -917,18 +813,10 @@ export const ButtonsPage: React.FC = () => {
         >
           {/* Alignment Toggle (Exclusive) */}
           <Box>
-            <Typography
-              variant="caption"
-              sx={{ display: "block", fontWeight: 600, mb: 1 }}
-            >
+            <Typography variant="caption" sx={{ display: "block", fontWeight: 600, mb: 1 }}>
               Text Alignment (Single Choice)
             </Typography>
-            <ToggleButtonGroup
-              value={alignment}
-              exclusive
-              onChange={(_, val) => val && setAlignment(val)}
-              size="small"
-            >
+            <ToggleButtonGroup value={alignment} exclusive onChange={(_, val) => val && setAlignment(val)} size="small">
               <ToggleButton value="left" aria-label="left aligned">
                 <AlignLeft size={16} />
               </ToggleButton>
@@ -943,17 +831,10 @@ export const ButtonsPage: React.FC = () => {
 
           {/* Text Formats Toggle (Multiple) */}
           <Box>
-            <Typography
-              variant="caption"
-              sx={{ display: "block", fontWeight: 600, mb: 1 }}
-            >
+            <Typography variant="caption" sx={{ display: "block", fontWeight: 600, mb: 1 }}>
               Formatting (Multiple Choices)
             </Typography>
-            <ToggleButtonGroup
-              value={formats}
-              onChange={(_, val) => setFormats(val)}
-              size="small"
-            >
+            <ToggleButtonGroup value={formats} onChange={(_, val) => setFormats(val)} size="small">
               <ToggleButton value="bold" aria-label="bold">
                 <Bold size={16} />
               </ToggleButton>
@@ -968,18 +849,10 @@ export const ButtonsPage: React.FC = () => {
 
           {/* View Mode Toggle */}
           <Box>
-            <Typography
-              variant="caption"
-              sx={{ display: "block", fontWeight: 600, mb: 1 }}
-            >
+            <Typography variant="caption" sx={{ display: "block", fontWeight: 600, mb: 1 }}>
               Layout View
             </Typography>
-            <ToggleButtonGroup
-              value={viewMode}
-              exclusive
-              onChange={(_, val) => val && setViewMode(val)}
-              size="small"
-            >
+            <ToggleButtonGroup value={viewMode} exclusive onChange={(_, val) => val && setViewMode(val)} size="small">
               <ToggleButton value="grid" aria-label="grid view">
                 <GridIcon size={16} style={{ marginRight: 6 }} /> Grid
               </ToggleButton>
@@ -1022,18 +895,10 @@ export const ButtonsPage: React.FC = () => {
               alignItems: "center",
             }}
           >
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<CircularProgress size={16} color="inherit" />}
-            >
+            <Button variant="contained" color="primary" startIcon={<CircularProgress size={16} color="inherit" />}>
               Submitting Order...
             </Button>
-            <Button
-              variant="contained"
-              color="glass"
-              startIcon={<CircularProgress size={16} color="inherit" />}
-            >
+            <Button variant="contained" color="glass" startIcon={<CircularProgress size={16} color="inherit" />}>
               Loading Data...
             </Button>
             <Button variant="contained" color="primary" disabled>

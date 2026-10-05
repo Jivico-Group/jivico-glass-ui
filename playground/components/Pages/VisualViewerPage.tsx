@@ -116,8 +116,7 @@ export const VisualViewerPage: React.FC = () => {
   const isDark = resolvedMode === "dark";
 
   // Interactive Playground state
-  const [thumbnailPosition, setThumbnailPosition] =
-    useState<VisualViewerThumbnailPosition>("auto");
+  const [thumbnailPosition, setThumbnailPosition] = useState<VisualViewerThumbnailPosition>("auto");
   const [navigation, setNavigation] = useState<VisualViewerNavigation>("arrows");
   const [radius, setRadius] = useState<VisualViewerRadius>("rounded");
   const [objectFit, setObjectFit] = useState<VisualViewerObjectFit>("contain");
@@ -185,11 +184,7 @@ export const VisualViewerPage: React.FC = () => {
           <Box sx={controlsBox}>
             <Stack spacing={3}>
               {/* Row 1 */}
-              <Stack
-                direction={{ xs: "column", md: "row" }}
-                spacing={3}
-                sx={{ alignItems: { md: "flex-start" } }}
-              >
+              <Stack direction={{ xs: "column", md: "row" }} spacing={3} sx={{ alignItems: { md: "flex-start" } }}>
                 <FormControl component="fieldset">
                   <FormLabel component="legend" sx={labelSx}>
                     Thumbnail Position
@@ -197,11 +192,7 @@ export const VisualViewerPage: React.FC = () => {
                   <RadioGroup
                     row
                     value={thumbnailPosition}
-                    onChange={(e) =>
-                      setThumbnailPosition(
-                        e.target.value as VisualViewerThumbnailPosition,
-                      )
-                    }
+                    onChange={(e) => setThumbnailPosition(e.target.value as VisualViewerThumbnailPosition)}
                   >
                     {(["auto", "left", "bottom"] as const).map((v) => (
                       <FormControlLabel
@@ -221,9 +212,7 @@ export const VisualViewerPage: React.FC = () => {
                   <RadioGroup
                     row
                     value={navigation}
-                    onChange={(e) =>
-                      setNavigation(e.target.value as VisualViewerNavigation)
-                    }
+                    onChange={(e) => setNavigation(e.target.value as VisualViewerNavigation)}
                   >
                     {(["arrows", "none"] as const).map((v) => (
                       <FormControlLabel
@@ -240,13 +229,7 @@ export const VisualViewerPage: React.FC = () => {
                   <FormLabel component="legend" sx={labelSx}>
                     Radius
                   </FormLabel>
-                  <RadioGroup
-                    row
-                    value={radius}
-                    onChange={(e) =>
-                      setRadius(e.target.value as VisualViewerRadius)
-                    }
-                  >
+                  <RadioGroup row value={radius} onChange={(e) => setRadius(e.target.value as VisualViewerRadius)}>
                     {(["square", "rounded", "soft"] as const).map((v) => (
                       <FormControlLabel
                         key={v}
@@ -260,28 +243,17 @@ export const VisualViewerPage: React.FC = () => {
               </Stack>
 
               {/* Row 2 */}
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={3}
-                sx={{ alignItems: { sm: "flex-end" } }}
-              >
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={3} sx={{ alignItems: { sm: "flex-end" } }}>
                 <FormControl size="small" sx={{ minWidth: 160 }}>
                   <FormLabel sx={labelSx}>Object Fit</FormLabel>
-                  <Select
-                    value={objectFit}
-                    onChange={(e) =>
-                      setObjectFit(e.target.value as VisualViewerObjectFit)
-                    }
-                  >
+                  <Select value={objectFit} onChange={(e) => setObjectFit(e.target.value as VisualViewerObjectFit)}>
                     <MenuItem value="contain">Contain</MenuItem>
                     <MenuItem value="cover">Cover</MenuItem>
                   </Select>
                 </FormControl>
 
                 <Box sx={{ minWidth: 180 }}>
-                  <Typography sx={{ ...labelSx, mb: 1 }}>
-                    Max Visible Thumbnails: {maxVisible}
-                  </Typography>
+                  <Typography sx={{ ...labelSx, mb: 1 }}>Max Visible Thumbnails: {maxVisible}</Typography>
                   <Slider
                     value={maxVisible}
                     onChange={(_, v) => setMaxVisible(v as number)}
@@ -294,9 +266,7 @@ export const VisualViewerPage: React.FC = () => {
                 </Box>
 
                 <Box sx={{ minWidth: 180 }}>
-                  <Typography sx={{ ...labelSx, mb: 1 }}>
-                    Thumbnail Size: {thumbnailSize}px
-                  </Typography>
+                  <Typography sx={{ ...labelSx, mb: 1 }}>Thumbnail Size: {thumbnailSize}px</Typography>
                   <Slider
                     value={thumbnailSize}
                     onChange={(_, v) => setThumbnailSize(v as number)}
@@ -323,13 +293,7 @@ export const VisualViewerPage: React.FC = () => {
                 ].map(({ label, value, set }) => (
                   <FormControlLabel
                     key={label}
-                    control={
-                      <Switch
-                        size="small"
-                        checked={value}
-                        onChange={(e) => set(e.target.checked)}
-                      />
-                    }
+                    control={<Switch size="small" checked={value} onChange={(e) => set(e.target.checked)} />}
                     label={
                       <Typography variant="caption" sx={{ fontWeight: 600 }}>
                         {label}
@@ -468,8 +432,7 @@ export const VisualViewerPage: React.FC = () => {
                   overflow: "hidden",
                   cursor: "pointer",
                   transition: "all 0.2s ease",
-                  transform:
-                    index === controlledIndex ? "scale(1.08)" : "scale(1)",
+                  transform: index === controlledIndex ? "scale(1.08)" : "scale(1)",
                   "&:hover": { transform: "scale(1.05)" },
                 }}
               >
@@ -488,8 +451,7 @@ export const VisualViewerPage: React.FC = () => {
             ))}
           </Stack>
           <Typography variant="caption" color="text.secondary">
-            Active: <strong>{FASHION_ITEMS[controlledIndex]?.title}</strong> (
-            index {controlledIndex})
+            Active: <strong>{FASHION_ITEMS[controlledIndex]?.title}</strong> ( index {controlledIndex})
           </Typography>
           <VisualViewer
             items={FASHION_ITEMS}
@@ -610,10 +572,7 @@ export const VisualViewerPage: React.FC = () => {
             border: `1px solid ${isDark ? "rgba(255,255,255,0.10)" : "rgba(17,17,17,0.10)"}`,
           }}
         >
-          <Typography
-            variant="overline"
-            sx={{ display: "block", mb: 1, fontWeight: 700 }}
-          >
+          <Typography variant="overline" sx={{ display: "block", mb: 1, fontWeight: 700 }}>
             Architecture notes
           </Typography>
           <Stack spacing={1.5}>
@@ -636,17 +595,10 @@ export const VisualViewerPage: React.FC = () => {
               },
             ].map(({ title, desc }) => (
               <Box key={title}>
-                <Typography
-                  variant="body2"
-                  sx={{ fontWeight: 700, mb: 0.25 }}
-                >
+                <Typography variant="body2" sx={{ fontWeight: 700, mb: 0.25 }}>
                   {title}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ lineHeight: 1.65 }}
-                >
+                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.65 }}>
                   {desc}
                 </Typography>
               </Box>

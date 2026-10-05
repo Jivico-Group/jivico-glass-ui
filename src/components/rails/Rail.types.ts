@@ -1,10 +1,4 @@
-import type {
-  ComponentType,
-  CSSProperties,
-  Key,
-  MouseEvent,
-  ReactNode,
-} from "react";
+import type { ComponentType, CSSProperties, Key, MouseEvent, ReactNode } from "react";
 
 import type { SxProps, Theme } from "@mui/material/styles";
 import type { AspectRatio } from "../../types/aspectRatio.js";
@@ -260,11 +254,7 @@ export interface RailProps<T> {
    *   router.push(`/products/${item.slug}`);
    * }}
    */
-  onNavigate?: (
-    item: T,
-    index: number,
-    event: MouseEvent<HTMLAnchorElement>,
-  ) => void;
+  onNavigate?: (item: T, index: number, event: MouseEvent<HTMLAnchorElement>) => void;
 
   /**
    * Custom image component.

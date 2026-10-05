@@ -16,17 +16,7 @@ import {
   TextField,
   Alert,
 } from "@mui/material";
-import {
-  Moon,
-  Sun,
-  Layers,
-  ShieldCheck,
-  CheckCircle2,
-  Lock,
-  Palette,
-  Sparkles,
-  Zap,
-} from "lucide-react";
+import { Moon, Sun, Layers, ShieldCheck, CheckCircle2, Lock, Palette, Sparkles, Zap } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { GlassThemeScope } from "../../../src/providers/GlassThemeScope.js";
@@ -44,12 +34,7 @@ export const ThemePage: React.FC = () => {
       title="Theme Setup & GlassThemeScope"
       description="Learn how to configure global dark/light glass mode using JivicoGlassProvider, how to use components without setup, and how to isolate subtrees with GlassThemeScope."
       category="Overview"
-      badges={[
-        "JivicoGlassProvider",
-        "<GlassThemeScope>",
-        "Zero-Setup Standalone",
-        "Material-UI v9",
-      ]}
+      badges={["JivicoGlassProvider", "<GlassThemeScope>", "Zero-Setup Standalone", "Material-UI v9"]}
     >
       {/* 1. Global Theme Switcher & Status Banner */}
       <Box
@@ -57,12 +42,8 @@ export const ThemePage: React.FC = () => {
           p: 3,
           mb: 4,
           borderRadius: "20px",
-          bgcolor: isDark
-            ? "rgba(255, 255, 255, 0.04)"
-            : "rgba(17, 17, 17, 0.03)",
-          border: `1px solid ${
-            isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.1)"
-          }`,
+          bgcolor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
+          border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.1)"}`,
           backdropFilter: "blur(16px)",
           display: "flex",
           alignItems: "center",
@@ -77,9 +58,7 @@ export const ThemePage: React.FC = () => {
               width: 44,
               height: 44,
               borderRadius: "12px",
-              bgcolor: isDark
-                ? "rgba(168, 85, 247, 0.2)"
-                : "rgba(99, 102, 241, 0.1)",
+              bgcolor: isDark ? "rgba(168, 85, 247, 0.2)" : "rgba(99, 102, 241, 0.1)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -89,16 +68,10 @@ export const ThemePage: React.FC = () => {
             {isDark ? <Moon size={22} /> : <Sun size={22} />}
           </Box>
           <Box>
-            <Typography
-              variant="subtitle1"
-              sx={{ fontWeight: 700, lineHeight: 1.2 }}
-            >
+            <Typography variant="subtitle1" sx={{ fontWeight: 700, lineHeight: 1.2 }}>
               Active Playground Theme: {resolvedMode.toUpperCase()}
             </Typography>
-            <Typography
-              variant="caption"
-              sx={{ color: "text.secondary", mt: 0.5, display: "block" }}
-            >
+            <Typography variant="caption" sx={{ color: "text.secondary", mt: 0.5, display: "block" }}>
               Toggle the global playground theme to see how both global app providers and local theme scopes respond.
             </Typography>
           </Box>
@@ -143,7 +116,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 );`}
       >
         <Alert severity="info" sx={{ borderRadius: "14px", mb: 2 }}>
-          <code>JivicoGlassProvider</code> accepts <code>defaultMode="system" | "light" | "dark"</code> and automatically persists theme preference in local storage.
+          <code>JivicoGlassProvider</code> accepts <code>defaultMode="system" | "light" | "dark"</code> and
+          automatically persists theme preference in local storage.
         </Alert>
       </DemoBlock>
 
@@ -192,7 +166,8 @@ function SpecificPage() {
               </Typography>
             </Stack>
             <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.88rem" }}>
-              Because Jivico Glass UI is built directly on native Material-UI v9 theme overrides, all components are standard MUI elements. No wrapper boilerplate required.
+              Because Jivico Glass UI is built directly on native Material-UI v9 theme overrides, all components are
+              standard MUI elements. No wrapper boilerplate required.
             </Typography>
           </Stack>
         </Paper>
@@ -220,11 +195,7 @@ import { Card, Button, Chip } from '@mui/material';
   </Card>
 </GlassThemeScope>`}
       >
-        <Stack
-          direction={{ xs: "column", md: "row" }}
-          spacing={3}
-          sx={{ width: "100%" }}
-        >
+        <Stack direction={{ xs: "column", md: "row" }} spacing={3} sx={{ width: "100%" }}>
           {/* Left: Forced Dark Scope Card */}
           <Box sx={{ flex: 1 }}>
             <Typography
@@ -261,16 +232,9 @@ import { Card, Button, Chip } from '@mui/material';
                       justifyContent: "space-between",
                     }}
                   >
-                    <Stack
-                      direction="row"
-                      spacing={1}
-                      sx={{ alignItems: "center" }}
-                    >
+                    <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                       <Lock size={18} color="#C084FC" />
-                      <Typography
-                        variant="subtitle2"
-                        sx={{ fontWeight: 700, color: "#FFFFFF" }}
-                      >
+                      <Typography variant="subtitle2" sx={{ fontWeight: 700, color: "#FFFFFF" }}>
                         Always Dark Glass Card
                       </Typography>
                     </Stack>
@@ -283,14 +247,10 @@ import { Card, Button, Chip } from '@mui/material';
                       fontSize: "0.85rem",
                     }}
                   >
-                    All child MUI components (Buttons, Inputs, Text) inherit
-                    full dark mode color rules, borders, and typography.
+                    All child MUI components (Buttons, Inputs, Text) inherit full dark mode color rules, borders, and
+                    typography.
                   </Typography>
-                  <TextField
-                    size="small"
-                    placeholder="Dark scoped text input..."
-                    fullWidth
-                  />
+                  <TextField size="small" placeholder="Dark scoped text input..." fullWidth />
                   <Stack direction="row" spacing={1}>
                     <Button variant="contained" color="accent" size="small">
                       Accent Action
@@ -339,33 +299,18 @@ import { Card, Button, Chip } from '@mui/material';
                       justifyContent: "space-between",
                     }}
                   >
-                    <Stack
-                      direction="row"
-                      spacing={1}
-                      sx={{ alignItems: "center" }}
-                    >
+                    <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                       <Sun size={18} color="#4F46E5" />
-                      <Typography
-                        variant="subtitle2"
-                        sx={{ fontWeight: 700, color: "#111111" }}
-                      >
+                      <Typography variant="subtitle2" sx={{ fontWeight: 700, color: "#111111" }}>
                         Always Light Card
                       </Typography>
                     </Stack>
                     <Chip label="Forced Light" size="small" color="primary" />
                   </Stack>
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "rgba(17, 17, 17, 0.7)", fontSize: "0.85rem" }}
-                  >
-                    Ideal for printable reports, light embedded widgets, or
-                    clean daytime preview containers.
+                  <Typography variant="body2" sx={{ color: "rgba(17, 17, 17, 0.7)", fontSize: "0.85rem" }}>
+                    Ideal for printable reports, light embedded widgets, or clean daytime preview containers.
                   </Typography>
-                  <TextField
-                    size="small"
-                    placeholder="Light scoped text input..."
-                    fullWidth
-                  />
+                  <TextField size="small" placeholder="Light scoped text input..." fullWidth />
                   <Stack direction="row" spacing={1}>
                     <Button variant="contained" color="primary" size="small">
                       Primary Action
@@ -427,17 +372,13 @@ import { Card, Button, Chip } from '@mui/material';
               width: 250,
               height: 250,
               borderRadius: "50%",
-              background:
-                "radial-gradient(circle, rgba(168, 85, 247, 0.6) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(168, 85, 247, 0.6) 0%, transparent 70%)",
               filter: "blur(40px)",
             }}
           />
 
           <GlassThemeScope mode="dark">
-            <TableContainer
-              data-glass="true"
-              sx={{ position: "relative", zIndex: 2, borderRadius: "18px" }}
-            >
+            <TableContainer data-glass="true" sx={{ position: "relative", zIndex: 2, borderRadius: "18px" }}>
               <Table variant="glass" color="accent">
                 <TableHead>
                   <TableRow>
@@ -450,11 +391,7 @@ import { Card, Button, Chip } from '@mui/material';
                 <TableBody>
                   <TableRow selected>
                     <TableCell sx={{ fontWeight: 700 }}>
-                      <Stack
-                        direction="row"
-                        spacing={1}
-                        sx={{ alignItems: "center" }}
-                      >
+                      <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                         <ShieldCheck size={18} color="#A855F7" />
                         <span>Forced Dark Table Container</span>
                       </Stack>
@@ -471,18 +408,11 @@ import { Card, Button, Chip } from '@mui/material';
                       0.2ms
                     </TableCell>
                     <TableCell align="center">
-                      <Chip
-                        icon={<CheckCircle2 size={12} />}
-                        label="Active"
-                        color="success"
-                        size="small"
-                      />
+                      <Chip icon={<CheckCircle2 size={12} />} label="Active" color="success" size="small" />
                     </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell sx={{ fontWeight: 600 }}>
-                      Subcomponent Styling
-                    </TableCell>
+                    <TableCell sx={{ fontWeight: 600 }}>Subcomponent Styling</TableCell>
                     <TableCell>TableHead, TableCell & Chips Scoped</TableCell>
                     <TableCell align="right" sx={{ fontWeight: 700 }}>
                       0.1ms
@@ -551,16 +481,9 @@ import { Card, Button, Chip } from '@mui/material';
                 sx={{
                   p: 3,
                   borderRadius: "20px",
-                  bgcolor:
-                    forcedMode === "dark"
-                      ? "rgba(24, 24, 27, 0.95)"
-                      : "#FFFFFF",
+                  bgcolor: forcedMode === "dark" ? "rgba(24, 24, 27, 0.95)" : "#FFFFFF",
                   color: forcedMode === "dark" ? "#F5F5F7" : "#111111",
-                  border: `1px solid ${
-                    forcedMode === "dark"
-                      ? "rgba(255, 255, 255, 0.12)"
-                      : "rgba(0, 0, 0, 0.12)"
-                  }`,
+                  border: `1px solid ${forcedMode === "dark" ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.12)"}`,
                   boxShadow: "0 16px 40px rgba(0, 0, 0, 0.15)",
                 }}
               >
@@ -572,19 +495,9 @@ import { Card, Button, Chip } from '@mui/material';
                       justifyContent: "space-between",
                     }}
                   >
-                    <Stack
-                      direction="row"
-                      spacing={1}
-                      sx={{ alignItems: "center" }}
-                    >
-                      <Layers
-                        size={20}
-                        color={forcedMode === "dark" ? "#A855F7" : "#6366F1"}
-                      />
-                      <Typography
-                        variant="h6"
-                        sx={{ fontWeight: 700, fontSize: "1.05rem" }}
-                      >
+                    <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+                      <Layers size={20} color={forcedMode === "dark" ? "#A855F7" : "#6366F1"} />
+                      <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.05rem" }}>
                         Scope Target: {forcedMode.toUpperCase()}
                       </Typography>
                     </Stack>
@@ -595,12 +508,8 @@ import { Card, Button, Chip } from '@mui/material';
                     />
                   </Stack>
 
-                  <Typography
-                    variant="body2"
-                    sx={{ opacity: 0.85, fontSize: "0.88rem" }}
-                  >
-                    This container is dynamically scoped to{" "}
-                    <strong>{forcedMode.toUpperCase()} MODE</strong>. Toggling
+                  <Typography variant="body2" sx={{ opacity: 0.85, fontSize: "0.88rem" }}>
+                    This container is dynamically scoped to <strong>{forcedMode.toUpperCase()} MODE</strong>. Toggling
                     the global app header theme leaves this target intact!
                   </Typography>
 

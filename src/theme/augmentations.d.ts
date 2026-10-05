@@ -223,15 +223,7 @@ declare module "@mui/material/Typography" {
 
 declare module "@mui/material/Card" {
   interface CardOwnProps {
-    color?:
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "info"
-      | "success"
-      | "warning"
-      | "error"
-      | "glass";
+    color?: "primary" | "secondary" | "accent" | "info" | "success" | "warning" | "error" | "glass";
     radius?: "none" | "small" | "medium" | "large" | "full";
     hoverEffect?: boolean;
     variant?: "elevation" | "outlined" | "tonal";
@@ -239,15 +231,7 @@ declare module "@mui/material/Card" {
   }
 
   interface CardProps {
-    color?:
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "info"
-      | "success"
-      | "warning"
-      | "error"
-      | "glass";
+    color?: "primary" | "secondary" | "accent" | "info" | "success" | "warning" | "error" | "glass";
     radius?: "none" | "small" | "medium" | "large" | "full";
     hoverEffect?: boolean;
     variant?: "elevation" | "outlined" | "tonal";
@@ -371,15 +355,7 @@ declare module "@mui/material/Skeleton" {
     radius?: "square" | "small" | "medium" | "large" | "rounded" | "pill";
     glassIntensity?: "subtle" | "medium" | "strong" | "ultra";
     glow?: boolean;
-    color?:
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "success"
-      | "info"
-      | "warning"
-      | "error"
-      | "glass";
+    color?: "primary" | "secondary" | "accent" | "success" | "info" | "warning" | "error" | "glass";
   }
 }
 
@@ -393,14 +369,7 @@ declare module "@mui/material/BottomNavigation" {
   interface BottomNavigationOwnProps {
     glass?: boolean | "true" | "false";
     size?: "small" | "medium";
-    placement?:
-      | "top-left"
-      | "top-center"
-      | "top-right"
-      | "bottom-left"
-      | "bottom-center"
-      | "bottom-right"
-      | "inline";
+    placement?: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right" | "inline";
   }
 }
 
@@ -408,33 +377,10 @@ declare module "@mui/material/Tabs" {
   interface TabsOwnProps {
     glass?: boolean | "true" | "false";
     size?: "small" | "medium";
-    placement?:
-      | "top-left"
-      | "top-center"
-      | "top-right"
-      | "bottom-left"
-      | "bottom-center"
-      | "bottom-right"
-      | "inline";
+    placement?: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right" | "inline";
     textColorOverride?:
-      | "primary"
-      | "secondary"
-      | "inherit"
-      | "accent"
-      | "glass"
-      | "info"
-      | "success"
-      | "warning"
-      | "error";
-    indicatorColorOverride?:
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "glass"
-      | "info"
-      | "success"
-      | "warning"
-      | "error";
+      "primary" | "secondary" | "inherit" | "accent" | "glass" | "info" | "success" | "warning" | "error";
+    indicatorColorOverride?: "primary" | "secondary" | "accent" | "glass" | "info" | "success" | "warning" | "error";
   }
 
   interface TabsPropsColorOverrides {
@@ -468,14 +414,7 @@ declare module "@mui/material/Stepper" {
   }
 
   interface StepperOwnProps {
-    color?:
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "success"
-      | "warning"
-      | "error"
-      | "info";
+    color?: "primary" | "secondary" | "accent" | "success" | "warning" | "error" | "info";
   }
 }
 
@@ -513,13 +452,7 @@ declare module "@mui/material/Box" {
 
 declare module "@mui/material/List" {
   interface ListOwnProps {
-    color?:
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "success"
-      | "warning"
-      | "error";
+    color?: "primary" | "secondary" | "accent" | "success" | "warning" | "error";
     variant?: "standard" | "glass";
     size?: "small" | "medium" | "large";
   }
@@ -527,13 +460,7 @@ declare module "@mui/material/List" {
 
 declare module "@mui/material/ListItemButton" {
   interface ListItemButtonOwnProps {
-    color?:
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "success"
-      | "warning"
-      | "error";
+    color?: "primary" | "secondary" | "accent" | "success" | "warning" | "error";
     size?: "small" | "medium" | "large";
   }
 }
@@ -546,13 +473,7 @@ declare module "@mui/material/ListItemButton" {
 
 declare module "@mui/material/Table" {
   interface TableOwnProps {
-    color?:
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "success"
-      | "warning"
-      | "error";
+    color?: "primary" | "secondary" | "accent" | "success" | "warning" | "error";
     variant?: "standard" | "glass";
   }
 }
@@ -565,26 +486,14 @@ declare module "@mui/material/Table" {
 
 declare module "@mui/material/Menu" {
   interface MenuOwnProps {
-    color?:
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "success"
-      | "warning"
-      | "error";
+    color?: "primary" | "secondary" | "accent" | "success" | "warning" | "error";
     surface?: "standard" | "glass";
     variant?: "standard" | "glass";
     size?: "small" | "medium";
   }
 
   interface MenuProps {
-    color?:
-      | "primary"
-      | "secondary"
-      | "accent"
-      | "success"
-      | "warning"
-      | "error";
+    color?: "primary" | "secondary" | "accent" | "success" | "warning" | "error";
     surface?: "standard" | "glass";
     variant?: "standard" | "glass";
     size?: "small" | "medium";

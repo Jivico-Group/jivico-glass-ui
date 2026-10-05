@@ -15,32 +15,12 @@ import {
   Chip,
   Grid,
 } from "@mui/material";
-import {
-  Sparkles,
-  Heart,
-  Bookmark,
-  Star,
-  Sun,
-  Moon,
-  Bell,
-  Lock,
-  Volume2,
-  Wifi,
-  Shield,
-} from "lucide-react";
+import { Sparkles, Heart, Bookmark, Star, Sun, Moon, Bell, Lock, Volume2, Wifi, Shield } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
-type PaletteColor =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "error"
-  | "warning"
-  | "info"
-  | "default"
-  | "glass";
+type PaletteColor = "primary" | "secondary" | "success" | "error" | "warning" | "info" | "default" | "glass";
 
 const ALL_COLORS: {
   key: PaletteColor;
@@ -109,9 +89,7 @@ export const SwitchesPage: React.FC = () => {
   const [glassSlider, setGlassSlider] = useState<number>(65);
 
   // States for color switches
-  const [colorSwitches, setColorSwitches] = useState<
-    Record<PaletteColor, boolean>
-  >({
+  const [colorSwitches, setColorSwitches] = useState<Record<PaletteColor, boolean>>({
     primary: true,
     secondary: true,
     success: true,
@@ -123,18 +101,16 @@ export const SwitchesPage: React.FC = () => {
   });
 
   // States for color checkboxes
-  const [colorChecks, setColorChecks] = useState<Record<PaletteColor, boolean>>(
-    {
-      primary: true,
-      secondary: true,
-      success: true,
-      error: true,
-      warning: true,
-      info: true,
-      default: true,
-      glass: true,
-    },
-  );
+  const [colorChecks, setColorChecks] = useState<Record<PaletteColor, boolean>>({
+    primary: true,
+    secondary: true,
+    success: true,
+    error: true,
+    warning: true,
+    info: true,
+    default: true,
+    glass: true,
+  });
 
   // State for color radio groups
   const [colorRadios, setColorRadios] = useState<Record<PaletteColor, string>>({
@@ -186,12 +162,8 @@ export const SwitchesPage: React.FC = () => {
             background: isDark
               ? "linear-gradient(135deg, rgba(30, 20, 45, 0.75) 0%, rgba(15, 25, 40, 0.85) 50%, rgba(20, 35, 30, 0.75) 100%)"
               : "linear-gradient(135deg, #FAF7F2 0%, #EAE5D9 40%, #E4DEC9 70%, #F5F1E8 100%)",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.1)"
-            }`,
-            boxShadow: isDark
-              ? "0 20px 50px rgba(0, 0, 0, 0.6)"
-              : "0 20px 50px rgba(0, 0, 0, 0.08)",
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.1)"}`,
+            boxShadow: isDark ? "0 20px 50px rgba(0, 0, 0, 0.6)" : "0 20px 50px rgba(0, 0, 0, 0.08)",
           }}
         >
           {/* Ambient Glow Orbs */}
@@ -233,33 +205,16 @@ export const SwitchesPage: React.FC = () => {
               zIndex: 1,
               p: { xs: 2, sm: 3 },
               borderRadius: "16px",
-              backgroundColor: isDark
-                ? "rgba(18, 20, 26, 0.55)"
-                : "rgba(255, 255, 255, 0.65)",
+              backgroundColor: isDark ? "rgba(18, 20, 26, 0.55)" : "rgba(255, 255, 255, 0.65)",
               backdropFilter: "blur(24px) saturate(180%)",
               WebkitBackdropFilter: "blur(24px) saturate(180%)",
-              border: `1px solid ${
-                isDark
-                  ? "rgba(255, 255, 255, 0.15)"
-                  : "rgba(255, 255, 255, 0.85)"
-              }`,
-              boxShadow: isDark
-                ? "0 8px 32px rgba(0, 0, 0, 0.35)"
-                : "0 8px 32px rgba(0, 0, 0, 0.05)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(255, 255, 255, 0.85)"}`,
+              boxShadow: isDark ? "0 8px 32px rgba(0, 0, 0, 0.35)" : "0 8px 32px rgba(0, 0, 0, 0.05)",
             }}
           >
-            <Box
-              sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 3 }}
-            >
-              <Sparkles
-                size={22}
-                color={isDark ? "#F6F5F2" : "#111111"}
-                style={{ opacity: 0.85 }}
-              />
-              <Typography
-                variant="h6"
-                sx={{ fontWeight: 700, fontSize: "1.05rem" }}
-              >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 3 }}>
+              <Sparkles size={22} color={isDark ? "#F6F5F2" : "#111111"} style={{ opacity: 0.85 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.05rem" }}>
                 Apple Liquid Glass Controls
               </Typography>
               <Chip
@@ -270,9 +225,7 @@ export const SwitchesPage: React.FC = () => {
                   fontSize: "0.62rem",
                   fontWeight: 700,
                   letterSpacing: "0.05em",
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.12)"
-                    : "rgba(17, 17, 17, 0.08)",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)",
                 }}
               />
             </Box>
@@ -293,14 +246,8 @@ export const SwitchesPage: React.FC = () => {
                 sx={{
                   p: 2,
                   borderRadius: "12px",
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.04)"
-                    : "rgba(255, 255, 255, 0.5)",
-                  border: `1px solid ${
-                    isDark
-                      ? "rgba(255, 255, 255, 0.08)"
-                      : "rgba(17, 17, 17, 0.06)"
-                  }`,
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.5)",
+                  border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)"}`,
                 }}
               >
                 <Typography
@@ -316,11 +263,7 @@ export const SwitchesPage: React.FC = () => {
                 </Typography>
                 <FormControlLabel
                   control={
-                    <Switch
-                      color="glass"
-                      checked={glassSwitch}
-                      onChange={(e) => setGlassSwitch(e.target.checked)}
-                    />
+                    <Switch color="glass" checked={glassSwitch} onChange={(e) => setGlassSwitch(e.target.checked)} />
                   }
                   label={glassSwitch ? "Liquid Active" : "Liquid Inactive"}
                   sx={{
@@ -337,14 +280,8 @@ export const SwitchesPage: React.FC = () => {
                 sx={{
                   p: 2,
                   borderRadius: "12px",
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.04)"
-                    : "rgba(255, 255, 255, 0.5)",
-                  border: `1px solid ${
-                    isDark
-                      ? "rgba(255, 255, 255, 0.08)"
-                      : "rgba(17, 17, 17, 0.06)"
-                  }`,
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.5)",
+                  border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)"}`,
                 }}
               >
                 <Typography
@@ -360,11 +297,7 @@ export const SwitchesPage: React.FC = () => {
                 </Typography>
                 <FormControlLabel
                   control={
-                    <Checkbox
-                      color="glass"
-                      checked={glassCheck}
-                      onChange={(e) => setGlassCheck(e.target.checked)}
-                    />
+                    <Checkbox color="glass" checked={glassCheck} onChange={(e) => setGlassCheck(e.target.checked)} />
                   }
                   label={glassCheck ? "Checked" : "Unchecked"}
                   sx={{
@@ -381,14 +314,8 @@ export const SwitchesPage: React.FC = () => {
                 sx={{
                   p: 2,
                   borderRadius: "12px",
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.04)"
-                    : "rgba(255, 255, 255, 0.5)",
-                  border: `1px solid ${
-                    isDark
-                      ? "rgba(255, 255, 255, 0.08)"
-                      : "rgba(17, 17, 17, 0.06)"
-                  }`,
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.5)",
+                  border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)"}`,
                 }}
               >
                 <Typography
@@ -402,12 +329,7 @@ export const SwitchesPage: React.FC = () => {
                 >
                   GLASS RADIO
                 </Typography>
-                <RadioGroup
-                  row
-                  value={glassRadio}
-                  onChange={(e) => setGlassRadio(e.target.value)}
-                  sx={{ gap: 1 }}
-                >
+                <RadioGroup row value={glassRadio} onChange={(e) => setGlassRadio(e.target.value)} sx={{ gap: 1 }}>
                   <FormControlLabel
                     value="pro"
                     control={<Radio color="glass" />}
@@ -438,14 +360,8 @@ export const SwitchesPage: React.FC = () => {
                 sx={{
                   p: 2,
                   borderRadius: "12px",
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.04)"
-                    : "rgba(255, 255, 255, 0.5)",
-                  border: `1px solid ${
-                    isDark
-                      ? "rgba(255, 255, 255, 0.08)"
-                      : "rgba(17, 17, 17, 0.06)"
-                  }`,
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.5)",
+                  border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)"}`,
                 }}
               >
                 <Typography
@@ -507,19 +423,11 @@ export const SwitchesPage: React.FC = () => {
                 sx={{
                   p: 2.2,
                   borderRadius: "14px",
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.03)"
-                    : "rgba(17, 17, 17, 0.02)",
-                  border: `1px solid ${
-                    isDark
-                      ? "rgba(255, 255, 255, 0.08)"
-                      : "rgba(17, 17, 17, 0.07)"
-                  }`,
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(17, 17, 17, 0.02)",
+                  border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.07)"}`,
                   transition: "all 0.2s ease",
                   "&:hover": {
-                    borderColor: isDark
-                      ? "rgba(255, 255, 255, 0.16)"
-                      : "rgba(17, 17, 17, 0.15)",
+                    borderColor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(17, 17, 17, 0.15)",
                   },
                 }}
               >
@@ -531,10 +439,7 @@ export const SwitchesPage: React.FC = () => {
                     mb: 1.5,
                   }}
                 >
-                  <Typography
-                    variant="subtitle2"
-                    sx={{ fontWeight: 700, fontSize: "0.88rem" }}
-                  >
+                  <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: "0.88rem" }}>
                     {item.label}
                   </Typography>
                   <Chip
@@ -639,14 +544,8 @@ export const SwitchesPage: React.FC = () => {
                 sx={{
                   p: 2.2,
                   borderRadius: "14px",
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.03)"
-                    : "rgba(17, 17, 17, 0.02)",
-                  border: `1px solid ${
-                    isDark
-                      ? "rgba(255, 255, 255, 0.08)"
-                      : "rgba(17, 17, 17, 0.07)"
-                  }`,
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(17, 17, 17, 0.02)",
+                  border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.07)"}`,
                 }}
               >
                 <Box
@@ -657,10 +556,7 @@ export const SwitchesPage: React.FC = () => {
                     mb: 1.2,
                   }}
                 >
-                  <Typography
-                    variant="subtitle2"
-                    sx={{ fontWeight: 700, fontSize: "0.88rem" }}
-                  >
+                  <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: "0.88rem" }}>
                     {item.label}
                   </Typography>
                   <Chip
@@ -714,9 +610,7 @@ export const SwitchesPage: React.FC = () => {
                     }}
                   />
                   <FormControlLabel
-                    control={
-                      <Checkbox color={item.key} indeterminate defaultChecked />
-                    }
+                    control={<Checkbox color={item.key} indeterminate defaultChecked />}
                     label="Indeterminate"
                     sx={{
                       "& .MuiFormControlLabel-label": { fontSize: "0.82rem" },
@@ -768,14 +662,8 @@ export const SwitchesPage: React.FC = () => {
                 sx={{
                   p: 2.2,
                   borderRadius: "14px",
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.03)"
-                    : "rgba(17, 17, 17, 0.02)",
-                  border: `1px solid ${
-                    isDark
-                      ? "rgba(255, 255, 255, 0.08)"
-                      : "rgba(17, 17, 17, 0.07)"
-                  }`,
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(17, 17, 17, 0.02)",
+                  border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.07)"}`,
                 }}
               >
                 <Box
@@ -786,10 +674,7 @@ export const SwitchesPage: React.FC = () => {
                     mb: 1.2,
                   }}
                 >
-                  <Typography
-                    variant="subtitle2"
-                    sx={{ fontWeight: 700, fontSize: "0.88rem" }}
-                  >
+                  <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: "0.88rem" }}>
                     {item.label}
                   </Typography>
                   <Chip
@@ -900,22 +785,10 @@ export const SwitchesPage: React.FC = () => {
                 gap: 3,
               }}
             >
-              <FormControlLabel
-                control={<Switch defaultChecked />}
-                label="Standard (44px)"
-              />
-              <FormControlLabel
-                control={<Switch size="small" defaultChecked />}
-                label="Small (34px)"
-              />
-              <FormControlLabel
-                control={<Switch disabled defaultChecked />}
-                label="Disabled On"
-              />
-              <FormControlLabel
-                control={<Switch disabled />}
-                label="Disabled Off"
-              />
+              <FormControlLabel control={<Switch defaultChecked />} label="Standard (44px)" />
+              <FormControlLabel control={<Switch size="small" defaultChecked />} label="Small (34px)" />
+              <FormControlLabel control={<Switch disabled defaultChecked />} label="Disabled On" />
+              <FormControlLabel control={<Switch disabled />} label="Disabled Off" />
             </Box>
           </Box>
 
@@ -940,22 +813,10 @@ export const SwitchesPage: React.FC = () => {
                 gap: 3,
               }}
             >
-              <FormControlLabel
-                control={<Checkbox defaultChecked />}
-                label="Standard Checkbox"
-              />
-              <FormControlLabel
-                control={<Checkbox size="small" defaultChecked />}
-                label="Small Checkbox"
-              />
-              <FormControlLabel
-                control={<Checkbox disabled defaultChecked />}
-                label="Disabled Checked"
-              />
-              <FormControlLabel
-                control={<Checkbox disabled />}
-                label="Disabled Unchecked"
-              />
+              <FormControlLabel control={<Checkbox defaultChecked />} label="Standard Checkbox" />
+              <FormControlLabel control={<Checkbox size="small" defaultChecked />} label="Small Checkbox" />
+              <FormControlLabel control={<Checkbox disabled defaultChecked />} label="Disabled Checked" />
+              <FormControlLabel control={<Checkbox disabled />} label="Disabled Unchecked" />
             </Box>
           </Box>
 
@@ -980,22 +841,10 @@ export const SwitchesPage: React.FC = () => {
                 gap: 3,
               }}
             >
-              <FormControlLabel
-                control={<Radio defaultChecked />}
-                label="Standard Radio"
-              />
-              <FormControlLabel
-                control={<Radio size="small" defaultChecked />}
-                label="Small Radio"
-              />
-              <FormControlLabel
-                control={<Radio disabled defaultChecked />}
-                label="Disabled Selected"
-              />
-              <FormControlLabel
-                control={<Radio disabled />}
-                label="Disabled Unselected"
-              />
+              <FormControlLabel control={<Radio defaultChecked />} label="Standard Radio" />
+              <FormControlLabel control={<Radio size="small" defaultChecked />} label="Small Radio" />
+              <FormControlLabel control={<Radio disabled defaultChecked />} label="Disabled Selected" />
+              <FormControlLabel control={<Radio disabled />} label="Disabled Unselected" />
             </Box>
           </Box>
         </Box>
@@ -1247,19 +1096,14 @@ export const SwitchesPage: React.FC = () => {
               gridTemplateColumns: { xs: "1fr", md: "repeat(2, 1fr)" },
               gap: 4,
               pt: 2,
-              borderTop: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.07)"
-              }`,
+              borderTop: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.07)"}`,
             }}
           >
             <Box>
               <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5 }}>
                 Discrete Steps with Marks ({discreteVal}%)
               </Typography>
-              <Typography
-                variant="caption"
-                sx={{ color: "text.secondary", display: "block", mb: 2 }}
-              >
+              <Typography variant="caption" sx={{ color: "text.secondary", display: "block", mb: 2 }}>
                 Step increments of 20 with snap stops
               </Typography>
               <Slider
@@ -1283,10 +1127,7 @@ export const SwitchesPage: React.FC = () => {
               <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5 }}>
                 Dual Thumb Range Slider ({rangeVal[0]}% – {rangeVal[1]}%)
               </Typography>
-              <Typography
-                variant="caption"
-                sx={{ color: "text.secondary", display: "block", mb: 2 }}
-              >
+              <Typography variant="caption" sx={{ color: "text.secondary", display: "block", mb: 2 }}>
                 Allows setting both minimum and maximum thresholds
               </Typography>
               <Slider
@@ -1318,22 +1159,14 @@ export const SwitchesPage: React.FC = () => {
             maxWidth: 640,
             p: 3,
             borderRadius: "16px",
-            backgroundColor: isDark
-              ? "rgba(255, 255, 255, 0.03)"
-              : "rgba(255, 255, 255, 0.7)",
+            backgroundColor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.7)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"
-            }`,
-            boxShadow: isDark
-              ? "0 12px 36px rgba(0, 0, 0, 0.3)"
-              : "0 12px 36px rgba(0, 0, 0, 0.04)",
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"}`,
+            boxShadow: isDark ? "0 12px 36px rgba(0, 0, 0, 0.3)" : "0 12px 36px rgba(0, 0, 0, 0.04)",
           }}
         >
-          <Box
-            sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2.5 }}
-          >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2.5 }}>
             <Shield size={20} color={isDark ? "#F6F5F2" : "#111111"} />
             <Box>
               <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
@@ -1403,11 +1236,7 @@ export const SwitchesPage: React.FC = () => {
             <Box
               sx={{
                 pt: 2,
-                borderTop: `1px solid ${
-                  isDark
-                    ? "rgba(255, 255, 255, 0.06)"
-                    : "rgba(17, 17, 17, 0.06)"
-                }`,
+                borderTop: `1px solid ${isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.06)"}`,
               }}
             >
               <FormControlLabel
@@ -1417,10 +1246,7 @@ export const SwitchesPage: React.FC = () => {
                     <Typography variant="body2" sx={{ fontWeight: 600 }}>
                       Weekly Security Audit Digest
                     </Typography>
-                    <Typography
-                      variant="caption"
-                      sx={{ color: "text.secondary" }}
-                    >
+                    <Typography variant="caption" sx={{ color: "text.secondary" }}>
                       Summary of all sign-ins and session revocations
                     </Typography>
                   </Box>
@@ -1433,17 +1259,12 @@ export const SwitchesPage: React.FC = () => {
                 <FormControlLabel
                   control={<Checkbox color="error" />}
                   label={
-                    <Typography
-                      variant="body2"
-                      sx={{ fontWeight: 600, color: "error.main" }}
-                    >
+                    <Typography variant="body2" sx={{ fontWeight: 600, color: "error.main" }}>
                       Accept Terms of Service & Privacy Agreement (Required)
                     </Typography>
                   }
                 />
-                <FormHelperText sx={{ ml: 4 }}>
-                  You must accept the terms before proceeding
-                </FormHelperText>
+                <FormHelperText sx={{ ml: 4 }}>You must accept the terms before proceeding</FormHelperText>
               </FormControl>
             </Box>
           </FormGroup>

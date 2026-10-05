@@ -11,14 +11,7 @@ import {
   Stack,
   Chip,
 } from "@mui/material";
-import {
-  Sparkles,
-  RefreshCw,
-  Layers,
-  Activity,
-  Zap,
-  CheckCircle2,
-} from "lucide-react";
+import { Sparkles, RefreshCw, Layers, Activity, Zap, CheckCircle2 } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
@@ -74,13 +67,7 @@ export const ProgressPage: React.FC = () => {
                 {Math.round(progress)}%
               </Typography>
             </Box>
-            <LinearProgress
-              color="glass"
-              appearance="glass"
-              variant="determinate"
-              value={progress}
-              size="medium"
-            />
+            <LinearProgress color="glass" appearance="glass" variant="determinate" value={progress} size="medium" />
           </Box>
 
           <Box>
@@ -92,13 +79,7 @@ export const ProgressPage: React.FC = () => {
                 {Math.round(progress)}%
               </Typography>
             </Box>
-            <LinearProgress
-              color="primary"
-              appearance="tonal"
-              variant="determinate"
-              value={progress}
-              size="medium"
-            />
+            <LinearProgress color="primary" appearance="tonal" variant="determinate" value={progress} size="medium" />
           </Box>
 
           <Box>
@@ -110,13 +91,7 @@ export const ProgressPage: React.FC = () => {
                 {Math.round(progress)}%
               </Typography>
             </Box>
-            <LinearProgress
-              color="accent"
-              appearance="solid"
-              variant="determinate"
-              value={progress}
-              size="medium"
-            />
+            <LinearProgress color="accent" appearance="solid" variant="determinate" value={progress} size="medium" />
           </Box>
 
           <Box>
@@ -128,13 +103,7 @@ export const ProgressPage: React.FC = () => {
                 {Math.round(progress)}%
               </Typography>
             </Box>
-            <LinearProgress
-              color="info"
-              appearance="outlined"
-              variant="determinate"
-              value={progress}
-              size="medium"
-            />
+            <LinearProgress color="info" appearance="outlined" variant="determinate" value={progress} size="medium" />
           </Box>
         </Box>
       </DemoBlock>
@@ -242,29 +211,10 @@ export const ProgressPage: React.FC = () => {
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2.5 }}>
-              <Skeleton
-                variant="circular"
-                width={48}
-                height={48}
-                appearance="glass"
-                animation="wave"
-              />
+              <Skeleton variant="circular" width={48} height={48} appearance="glass" animation="wave" />
               <Box sx={{ flex: 1 }}>
-                <Skeleton
-                  variant="text"
-                  width="60%"
-                  height={22}
-                  appearance="glass"
-                  animation="wave"
-                  sx={{ mb: 0.5 }}
-                />
-                <Skeleton
-                  variant="text"
-                  width="40%"
-                  height={16}
-                  appearance="glass"
-                  animation="wave"
-                />
+                <Skeleton variant="text" width="60%" height={22} appearance="glass" animation="wave" sx={{ mb: 0.5 }} />
+                <Skeleton variant="text" width="40%" height={16} appearance="glass" animation="wave" />
               </Box>
             </Box>
 
@@ -279,22 +229,8 @@ export const ProgressPage: React.FC = () => {
             />
 
             <Box sx={{ display: "flex", gap: 1 }}>
-              <Skeleton
-                variant="rounded"
-                width={80}
-                height={28}
-                radius="pill"
-                appearance="glass"
-                animation="wave"
-              />
-              <Skeleton
-                variant="rounded"
-                width={100}
-                height={28}
-                radius="pill"
-                appearance="glass"
-                animation="wave"
-              />
+              <Skeleton variant="rounded" width={80} height={28} radius="pill" appearance="glass" animation="wave" />
+              <Skeleton variant="rounded" width={100} height={28} radius="pill" appearance="glass" animation="wave" />
             </Box>
           </Box>
         </Box>

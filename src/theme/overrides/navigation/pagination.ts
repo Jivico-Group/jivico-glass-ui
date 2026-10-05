@@ -1,9 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette.js";
 
-export const getPaginationOverrides = (
-  palette: JivicoPalette,
-): Components<Theme> => ({
+export const getPaginationOverrides = (palette: JivicoPalette): Components<Theme> => ({
   MuiPaginationItem: {
     styleOverrides: {
       root: {

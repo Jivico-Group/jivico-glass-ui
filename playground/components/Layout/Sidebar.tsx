@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  List,
-  ListItemButton,
-  ListItemText,
-  Chip,
-  Drawer,
-} from "@mui/material";
+import { Box, Typography, List, ListItemButton, ListItemText, Chip, Drawer } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext";
 
 export interface NavItem {
@@ -92,12 +84,7 @@ interface SidebarProps {
   onCloseMobile?: () => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({
-  activeId,
-  onSelect,
-  mobileOpen = false,
-  onCloseMobile,
-}) => {
+export const Sidebar: React.FC<SidebarProps> = ({ activeId, onSelect, mobileOpen = false, onCloseMobile }) => {
   const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
@@ -166,13 +153,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                               ? "#F6F5F2"
                               : "#111111",
                         color:
-                          item.badge === "GLASS"
-                            ? isDark
-                              ? "#F6F5F2"
-                              : "#111111"
-                            : isDark
-                              ? "#111111"
-                              : "#FFFFFF",
+                          item.badge === "GLASS" ? (isDark ? "#F6F5F2" : "#111111") : isDark ? "#111111" : "#FFFFFF",
                         "& .MuiChip-label": {
                           px: 0.7,
                         },
@@ -206,12 +187,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
             top: 60,
             bottom: 0,
             overflowY: "auto",
-            borderRight: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"
-            }`,
-            backgroundColor: isDark
-              ? "rgba(18, 18, 18, 0.4)"
-              : "rgba(255, 255, 255, 0.4)",
+            borderRight: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"}`,
+            backgroundColor: isDark ? "rgba(18, 18, 18, 0.4)" : "rgba(255, 255, 255, 0.4)",
             backdropFilter: "blur(16px)",
             WebkitBackdropFilter: "blur(16px)",
           }}
@@ -230,9 +207,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           display: { xs: "block", md: "none" },
           "& .MuiDrawer-paper": {
             width: 260,
-            backgroundColor: isDark
-              ? "rgba(20, 20, 20, 0.95)"
-              : "rgba(255, 255, 255, 0.95)",
+            backgroundColor: isDark ? "rgba(20, 20, 20, 0.95)" : "rgba(255, 255, 255, 0.95)",
             backdropFilter: "blur(20px)",
           },
         }}

@@ -38,27 +38,27 @@ import { Highlight } from "jivico-glass-ui";
 
 # Props Overview
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `image` | `string` | **Required** | Main image URL |
-| `mobileImage` | `string` | `undefined` | Mobile-specific image URL |
-| `alt` | `string` | `""` | Accessible image description |
-| `variant` | `"overlay" \| "center" \| "minimal"` | `"overlay"` | Visual presentation layout |
-| `size` | `"small" \| "medium" \| "large"` | `"medium"` | Typography scale and content spacing |
-| `eyebrow` | `ReactNode` | `undefined` | Small supporting label above title |
-| `title` | `ReactNode` | `undefined` | Primary heading |
-| `description` | `ReactNode` | `undefined` | Supporting paragraph |
-| `action` | `HighlightAction` | `undefined` | Optional CTA button |
-| `href` | `string` | `undefined` | Semantic link destination for full image navigation |
-| `linkLabel` | `string` | `undefined` | Accessible label for the image link |
-| `onNavigate` | `(event) => void` | `undefined` | Navigation handler for full image click |
-| `ImageComponent` | `HighlightImageComponent` | `undefined` | Custom image component (e.g. Next.js `next/image`) |
-| `aspectRatio` | `string` | `"4 / 5"` | Proportional container aspect ratio |
-| `height` | `number \| string \| Dimension` | `undefined` | Explicit height |
-| `minHeight` | `number \| string \| Dimension` | `undefined` | Minimum height boundary |
-| `maxHeight` | `number \| string \| Dimension` | `undefined` | Maximum height boundary |
-| `imagePosition` | `HighlightImagePosition` | `"center"` | CSS object-position cropping |
-| `radius` | `number \| string` | `16` | Corner border radius |
+| Prop             | Type                                 | Default      | Description                                         |
+| :--------------- | :----------------------------------- | :----------- | :-------------------------------------------------- |
+| `image`          | `string`                             | **Required** | Main image URL                                      |
+| `mobileImage`    | `string`                             | `undefined`  | Mobile-specific image URL                           |
+| `alt`            | `string`                             | `""`         | Accessible image description                        |
+| `variant`        | `"overlay" \| "center" \| "minimal"` | `"overlay"`  | Visual presentation layout                          |
+| `size`           | `"small" \| "medium" \| "large"`     | `"medium"`   | Typography scale and content spacing                |
+| `eyebrow`        | `ReactNode`                          | `undefined`  | Small supporting label above title                  |
+| `title`          | `ReactNode`                          | `undefined`  | Primary heading                                     |
+| `description`    | `ReactNode`                          | `undefined`  | Supporting paragraph                                |
+| `action`         | `HighlightAction`                    | `undefined`  | Optional CTA button                                 |
+| `href`           | `string`                             | `undefined`  | Semantic link destination for full image navigation |
+| `linkLabel`      | `string`                             | `undefined`  | Accessible label for the image link                 |
+| `onNavigate`     | `(event) => void`                    | `undefined`  | Navigation handler for full image click             |
+| `ImageComponent` | `HighlightImageComponent`            | `undefined`  | Custom image component (e.g. Next.js `next/image`)  |
+| `aspectRatio`    | `string`                             | `"4 / 5"`    | Proportional container aspect ratio                 |
+| `height`         | `number \| string \| Dimension`      | `undefined`  | Explicit height                                     |
+| `minHeight`      | `number \| string \| Dimension`      | `undefined`  | Minimum height boundary                             |
+| `maxHeight`      | `number \| string \| Dimension`      | `undefined`  | Maximum height boundary                             |
+| `imagePosition`  | `HighlightImagePosition`             | `"center"`   | CSS object-position cropping                        |
+| `radius`         | `number \| string`                   | `16`         | Corner border radius                                |
 
 ---
 
@@ -77,11 +77,7 @@ Default: `"overlay"`.
 - `"minimal"`: Clean text content positioned below the image card.
 
 ```tsx
-<Highlight
-  image="/images/streetwear.jpg"
-  title="Streetwear Essentials"
-  variant="overlay"
-/>
+<Highlight image="/images/streetwear.jpg" title="Streetwear Essentials" variant="overlay" />
 ```
 
 ---

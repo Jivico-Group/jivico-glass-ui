@@ -1,36 +1,12 @@
 "use client";
 
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import {
-  Box,
-  Dialog,
-  IconButton,
-  Tooltip,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, Dialog, IconButton, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 
-import {
-  ArrowLeft,
-  ArrowRight,
-  Maximize2,
-  Minimize2,
-  ZoomIn,
-  ZoomOut,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, Maximize2, Minimize2, ZoomIn, ZoomOut } from "lucide-react";
 
-import type {
-  VisualViewerImageContext,
-  VisualViewerItem,
-  VisualViewerProps,
-} from "./VisualViewer.types";
+import type { VisualViewerImageContext, VisualViewerItem, VisualViewerProps } from "./VisualViewer.types";
 
 const DEFAULT_THUMBNAIL_WIDTH = 112;
 const DEFAULT_THUMBNAIL_SIZE = 112;
@@ -136,15 +112,11 @@ export const VisualViewer = ({
 
   const isControlled = controlledActiveIndex !== undefined;
 
-  const [internalActiveIndex, setInternalActiveIndex] =
-    useState(defaultActiveIndex);
+  const [internalActiveIndex, setInternalActiveIndex] = useState(defaultActiveIndex);
 
-  const activeIndex = isControlled
-    ? controlledActiveIndex
-    : internalActiveIndex;
+  const activeIndex = isControlled ? controlledActiveIndex : internalActiveIndex;
 
-  const currentIndex =
-    itemCount === 0 ? 0 : Math.min(Math.max(activeIndex, 0), itemCount - 1);
+  const currentIndex = itemCount === 0 ? 0 : Math.min(Math.max(activeIndex, 0), itemCount - 1);
 
   const currentItem = safeItems[currentIndex];
 
@@ -177,8 +149,7 @@ export const VisualViewer = ({
       if (typeof rootRef === "function") {
         rootRef(element);
       } else if (rootRef) {
-        (rootRef as React.MutableRefObject<HTMLDivElement | null>).current =
-          element;
+        (rootRef as React.MutableRefObject<HTMLDivElement | null>).current = element;
       }
     },
     [rootRef],
@@ -254,9 +225,7 @@ export const VisualViewer = ({
       return;
     }
 
-    const thumbnail = container.querySelector<HTMLElement>(
-      `[data-visual-viewer-thumbnail="${index}"]`,
-    );
+    const thumbnail = container.querySelector<HTMLElement>(`[data-visual-viewer-thumbnail="${index}"]`);
 
     thumbnail?.scrollIntoView({
       behavior: "smooth",
@@ -316,11 +285,7 @@ export const VisualViewer = ({
     const handleKeyDown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
 
-      if (
-        target?.tagName === "INPUT" ||
-        target?.tagName === "TEXTAREA" ||
-        target?.isContentEditable
-      ) {
+      if (target?.tagName === "INPUT" || target?.tagName === "TEXTAREA" || target?.isContentEditable) {
         return;
       }
 
@@ -372,17 +337,7 @@ export const VisualViewer = ({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [
-    keyboard,
-    isFullscreen,
-    goNext,
-    goPrevious,
-    exitFullscreen,
-    toggleFullscreen,
-    fullscreen,
-    zoom,
-    isZoomed,
-  ]);
+  }, [keyboard, isFullscreen, goNext, goPrevious, exitFullscreen, toggleFullscreen, fullscreen, zoom, isZoomed]);
 
   /*
    * =========================================================
@@ -403,11 +358,7 @@ export const VisualViewer = ({
   };
 
   const handleTouchEnd = (event: React.TouchEvent) => {
-    if (
-      !swipe ||
-      touchStartX.current === null ||
-      touchStartY.current === null
-    ) {
+    if (!swipe || touchStartX.current === null || touchStartY.current === null) {
       return;
     }
 
@@ -456,12 +407,7 @@ export const VisualViewer = ({
   };
 
   const handleMouseMove = (event: React.MouseEvent) => {
-    if (
-      !mouseDrag ||
-      !isDraggingRef.current ||
-      dragStartX.current === null ||
-      dragStartY.current === null
-    ) {
+    if (!mouseDrag || !isDraggingRef.current || dragStartX.current === null || dragStartY.current === null) {
       return;
     }
 
@@ -544,12 +490,7 @@ export const VisualViewer = ({
    * =========================================================
    */
 
-  const resolvedThumbnailPosition =
-    thumbnailPosition === "auto"
-      ? isMobile
-        ? "bottom"
-        : "left"
-      : thumbnailPosition;
+  const resolvedThumbnailPosition = thumbnailPosition === "auto" ? (isMobile ? "bottom" : "left") : thumbnailPosition;
 
   /*
    * =========================================================
@@ -676,8 +617,7 @@ export const VisualViewer = ({
           height: responsiveHeight,
           minHeight: responsiveMinHeight,
           maxHeight: responsiveMaxHeight,
-          aspectRatio:
-            responsiveHeight === undefined ? responsiveAspectRatio : undefined,
+          aspectRatio: responsiveHeight === undefined ? responsiveAspectRatio : undefined,
           overflow: "hidden",
           isolation: "isolate",
           borderRadius: radiusValue,
@@ -730,8 +670,7 @@ export const VisualViewer = ({
 
                 const isLastVisible = index === visibleThumbnailCount - 1;
 
-                const showCount =
-                  showRemainingCount && hasRemainingImages && isLastVisible;
+                const showCount = showRemainingCount && hasRemainingImages && isLastVisible;
 
                 return (
                   <Box
@@ -812,10 +751,7 @@ export const VisualViewer = ({
             minHeight: 0,
             height: "100%",
             overflow: "hidden",
-            borderRadius:
-              resolvedThumbnailPosition === "bottom"
-                ? radiusValue
-                : radiusValue,
+            borderRadius: resolvedThumbnailPosition === "bottom" ? radiusValue : radiusValue,
             bgcolor: "background.default",
             cursor: isZoomed ? "zoom-out" : zoom ? "zoom-in" : "default",
           }}
@@ -891,14 +827,8 @@ export const VisualViewer = ({
                       xs: 38,
                       md: 44,
                     },
-                    color:
-                      theme.palette.mode === "dark"
-                        ? "#fff"
-                        : theme.palette.text.primary,
-                    bgcolor:
-                      theme.palette.mode === "dark"
-                        ? "rgba(255, 255, 255, 0.14)"
-                        : "rgba(255, 255, 255, 0.65)",
+                    color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
+                    bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
                     border:
                       theme.palette.mode === "dark"
@@ -908,13 +838,10 @@ export const VisualViewer = ({
                       theme.palette.mode === "dark"
                         ? "0 4px 20px rgba(0, 0, 0, 0.25)"
                         : "0 4px 20px rgba(0, 0, 0, 0.08)",
-                    transition:
-                      "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
+                    transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
                       bgcolor:
-                        theme.palette.mode === "dark"
-                          ? "rgba(255, 255, 255, 0.22)"
-                          : "rgba(255, 255, 255, 0.85)",
+                        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
                       transform: "translateY(-50%) scale(1.04)",
                     },
                     "&.Mui-disabled": {
@@ -977,14 +904,8 @@ export const VisualViewer = ({
                       xs: 38,
                       md: 44,
                     },
-                    color:
-                      theme.palette.mode === "dark"
-                        ? "#fff"
-                        : theme.palette.text.primary,
-                    bgcolor:
-                      theme.palette.mode === "dark"
-                        ? "rgba(255, 255, 255, 0.14)"
-                        : "rgba(255, 255, 255, 0.65)",
+                    color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
+                    bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
                     border:
                       theme.palette.mode === "dark"
@@ -994,13 +915,10 @@ export const VisualViewer = ({
                       theme.palette.mode === "dark"
                         ? "0 4px 20px rgba(0, 0, 0, 0.25)"
                         : "0 4px 20px rgba(0, 0, 0, 0.08)",
-                    transition:
-                      "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
+                    transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
                       bgcolor:
-                        theme.palette.mode === "dark"
-                          ? "rgba(255, 255, 255, 0.22)"
-                          : "rgba(255, 255, 255, 0.85)",
+                        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
                       transform: "translateY(-50%) scale(1.04)",
                     },
                     "&.Mui-disabled": {
@@ -1025,14 +943,8 @@ export const VisualViewer = ({
                 xs: 12,
                 md: 18,
               },
-              top:
-                resolvedThumbnailPosition === "bottom"
-                  ? { xs: 12, md: 16 }
-                  : { xs: 12, md: "auto" },
-              bottom:
-                resolvedThumbnailPosition === "bottom"
-                  ? "auto"
-                  : { xs: "auto", md: 18 },
+              top: resolvedThumbnailPosition === "bottom" ? { xs: 12, md: 16 } : { xs: 12, md: "auto" },
+              bottom: resolvedThumbnailPosition === "bottom" ? "auto" : { xs: "auto", md: 18 },
               zIndex: 10,
               display: "flex",
               alignItems: "center",
@@ -1053,14 +965,8 @@ export const VisualViewer = ({
                   sx={{
                     width: 38,
                     height: 38,
-                    color:
-                      theme.palette.mode === "dark"
-                        ? "#fff"
-                        : theme.palette.text.primary,
-                    bgcolor:
-                      theme.palette.mode === "dark"
-                        ? "rgba(255, 255, 255, 0.14)"
-                        : "rgba(255, 255, 255, 0.65)",
+                    color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
+                    bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
                     border:
                       theme.palette.mode === "dark"
@@ -1070,13 +976,10 @@ export const VisualViewer = ({
                       theme.palette.mode === "dark"
                         ? "0 4px 20px rgba(0, 0, 0, 0.25)"
                         : "0 4px 20px rgba(0, 0, 0, 0.08)",
-                    transition:
-                      "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
+                    transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
                       bgcolor:
-                        theme.palette.mode === "dark"
-                          ? "rgba(255, 255, 255, 0.22)"
-                          : "rgba(255, 255, 255, 0.85)",
+                        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
                       transform: "scale(1.04)",
                     },
                   }}
@@ -1091,9 +994,7 @@ export const VisualViewer = ({
                 renderFullscreenButton(toggleFullscreen)
               ) : (
                 <IconButton
-                  aria-label={
-                    isFullscreen ? "Exit fullscreen" : "View fullscreen"
-                  }
+                  aria-label={isFullscreen ? "Exit fullscreen" : "View fullscreen"}
                   onClick={(event) => {
                     event.stopPropagation();
                     toggleFullscreen();
@@ -1101,14 +1002,8 @@ export const VisualViewer = ({
                   sx={{
                     width: 38,
                     height: 38,
-                    color:
-                      theme.palette.mode === "dark"
-                        ? "#fff"
-                        : theme.palette.text.primary,
-                    bgcolor:
-                      theme.palette.mode === "dark"
-                        ? "rgba(255, 255, 255, 0.14)"
-                        : "rgba(255, 255, 255, 0.65)",
+                    color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
+                    bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
                     border:
                       theme.palette.mode === "dark"
@@ -1118,22 +1013,15 @@ export const VisualViewer = ({
                       theme.palette.mode === "dark"
                         ? "0 4px 20px rgba(0, 0, 0, 0.25)"
                         : "0 4px 20px rgba(0, 0, 0, 0.08)",
-                    transition:
-                      "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
+                    transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
                       bgcolor:
-                        theme.palette.mode === "dark"
-                          ? "rgba(255, 255, 255, 0.22)"
-                          : "rgba(255, 255, 255, 0.85)",
+                        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
                       transform: "scale(1.04)",
                     },
                   }}
                 >
-                  {isFullscreen ? (
-                    <Minimize2 size={17} />
-                  ) : (
-                    <Maximize2 size={17} />
-                  )}
+                  {isFullscreen ? <Minimize2 size={17} /> : <Maximize2 size={17} />}
                 </IconButton>
               ))}
           </Box>
@@ -1160,8 +1048,7 @@ export const VisualViewer = ({
                 sm: 2,
               },
               pt: 5,
-              background:
-                "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.48) 100%)",
+              background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.48) 100%)",
               pointerEvents: "none",
             }}
           >
@@ -1186,8 +1073,7 @@ export const VisualViewer = ({
 
                 const isLastVisible = index === visibleThumbnailCount - 1;
 
-                const showCount =
-                  showRemainingCount && hasRemainingImages && isLastVisible;
+                const showCount = showRemainingCount && hasRemainingImages && isLastVisible;
 
                 return (
                   <Box
@@ -1316,10 +1202,7 @@ export const VisualViewer = ({
             py: 0.5,
           }}
         >
-          <Box
-            component="span"
-            sx={{ color: "#fff", fontSize: "0.78rem", fontWeight: 600 }}
-          >
+          <Box component="span" sx={{ color: "#fff", fontSize: "0.78rem", fontWeight: 600 }}>
             {currentIndex + 1} / {itemCount}
           </Box>
         </Box>
@@ -1493,16 +1376,12 @@ export const VisualViewer = ({
                   height: 64,
                   p: 0,
                   border: "2px solid",
-                  borderColor:
-                    index === currentIndex
-                      ? "rgba(255,255,255,0.9)"
-                      : "rgba(255,255,255,0.2)",
+                  borderColor: index === currentIndex ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.2)",
                   borderRadius: 1,
                   overflow: "hidden",
                   cursor: "pointer",
                   transition: "border-color 0.2s ease, transform 0.2s ease",
-                  transform:
-                    index === currentIndex ? "scale(1.06)" : "scale(1)",
+                  transform: index === currentIndex ? "scale(1.06)" : "scale(1)",
                   bgcolor: "transparent",
                   "&:hover": {
                     borderColor: "rgba(255,255,255,0.6)",

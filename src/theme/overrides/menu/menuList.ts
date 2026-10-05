@@ -1,15 +1,10 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export const getMenuListOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getMenuListOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   const text = isDark ? "#F6F5F2" : "#111111";
 
-  const divider = isDark
-    ? "rgba(255, 255, 255, 0.08)"
-    : "rgba(17, 17, 17, 0.08)";
+  const divider = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)";
 
   return {
     MuiMenuList: {

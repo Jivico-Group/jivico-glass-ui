@@ -1,12 +1,5 @@
 import React, { useMemo, useState } from "react";
-import {
-  Box,
-  Typography,
-  Stack,
-  Button,
-  FormControlLabel,
-  Switch,
-} from "@mui/material";
+import { Box, Typography, Stack, Button, FormControlLabel, Switch } from "@mui/material";
 
 import "../../../src/theme/augmentations.d.ts";
 import { ComponentPage } from "../Common/ComponentPage.js";
@@ -39,15 +32,7 @@ import { useGlassMode } from "../../../src/context/ThemeContext.js";
  * Image rendering remains injectable because it is a rendering concern,
  * not a routing concern.
  */
-const MockImage = ({
-  src,
-  alt,
-  fill,
-  sizes,
-  priority,
-  style,
-  className,
-}: ShowcaseImageComponentProps) => (
+const MockImage = ({ src, alt, fill, sizes, priority, style, className }: ShowcaseImageComponentProps) => (
   <img
     src={src}
     alt={alt}
@@ -80,8 +65,7 @@ const heroShowcaseItems: ShowcaseItem[] = [
 
     eyebrow: "STUDIO EXCLUSIVE",
     title: "Originals by Studio",
-    description:
-      "Limited-edition luxury glassmorphic collections. Crafted with physics, designed for perfection.",
+    description: "Limited-edition luxury glassmorphic collections. Crafted with physics, designed for perfection.",
     action: {
       label: "Discover Originals",
       href: "#originals",
@@ -100,8 +84,7 @@ const heroShowcaseItems: ShowcaseItem[] = [
 
     eyebrow: "DESIGN STUDIO",
     title: "Create Your Freestyle",
-    description:
-      "Upload your artwork, pick your canvas, and print 1-of-1 pieces on 280 GSM heavyweight cotton.",
+    description: "Upload your artwork, pick your canvas, and print 1-of-1 pieces on 280 GSM heavyweight cotton.",
     action: {
       label: "Explore Freestyle",
       href: "#freestyle",
@@ -120,8 +103,7 @@ const heroShowcaseItems: ShowcaseItem[] = [
 
     eyebrow: "MATERIAL UI V9",
     title: "Liquid Glass System",
-    description:
-      "Real-time backdrop blur filters with ambient dynamic lighting for modern React interfaces.",
+    description: "Real-time backdrop blur filters with ambient dynamic lighting for modern React interfaces.",
     action: {
       label: "View Documentation",
       href: "#setup",
@@ -167,8 +149,7 @@ const titleDescItems: ShowcaseItem[] = [
       alt: "Microchip Hardware",
     },
     title: "Next-Gen Performance",
-    description:
-      "Zero layout shift, 60 FPS transitions, and native browser hardware acceleration.",
+    description: "Zero layout shift, 60 FPS transitions, and native browser hardware acceleration.",
   },
   {
     id: "td-2",
@@ -177,8 +158,7 @@ const titleDescItems: ShowcaseItem[] = [
       alt: "Global Data Network",
     },
     title: "Global Distribution",
-    description:
-      "Seamlessly distributed assets optimized for ultra-fast CDN response times.",
+    description: "Seamlessly distributed assets optimized for ultra-fast CDN response times.",
   },
 ];
 
@@ -198,8 +178,7 @@ export const ShowcasePage: React.FC = () => {
 
   const [radius, setRadius] = useState<ShowcaseRadius>("rounded");
 
-  const [actionColor, setActionColor] =
-    useState<ShowcaseButtonColor>("primary");
+  const [actionColor, setActionColor] = useState<ShowcaseButtonColor>("primary");
 
   const [autoplay, setAutoplay] = useState(true);
 
@@ -230,12 +209,7 @@ export const ShowcasePage: React.FC = () => {
       title="Showcase Carousel Component"
       description="A high-performance, cinematic glassmorphic slider/carousel primitive with touch swipe, vertical/dot navigation, autoplay progress timers, and versatile layout modes."
       category="Navigation"
-      badges={[
-        "<Showcase />",
-        "Cinematic & Fade",
-        "Touch Swipe",
-        "Keyboard Nav",
-      ]}
+      badges={["<Showcase />", "Cinematic & Fade", "Touch Swipe", "Keyboard Nav"]}
     >
       {/* ============================================================
           1. Interactive Showcase Playground
@@ -328,12 +302,8 @@ const handleNavigate = (item: ShowcaseItem) => {
             sx={{
               p: 2.5,
               borderRadius: 0,
-              bgcolor: isDark
-                ? "rgba(255, 255, 255, 0.04)"
-                : "rgba(17, 17, 17, 0.03)",
-              border: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.1)"
-              }`,
+              bgcolor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.1)"}`,
               display: "flex",
               flexDirection: "column",
               gap: 2,
@@ -359,19 +329,17 @@ const handleNavigate = (item: ShowcaseItem) => {
                 Variant:
               </Typography>
 
-              {(["editorial", "minimal", "glass"] as ShowcaseVariant[]).map(
-                (v) => (
-                  <Button
-                    key={v}
-                    size="small"
-                    variant={variant === v ? "contained" : "outlined"}
-                    color="accent"
-                    onClick={() => setVariant(v)}
-                  >
-                    {v}
-                  </Button>
-                ),
-              )}
+              {(["editorial", "minimal", "glass"] as ShowcaseVariant[]).map((v) => (
+                <Button
+                  key={v}
+                  size="small"
+                  variant={variant === v ? "contained" : "outlined"}
+                  color="accent"
+                  onClick={() => setVariant(v)}
+                >
+                  {v}
+                </Button>
+              ))}
             </Stack>
 
             {/* Size Selector */}
@@ -394,19 +362,17 @@ const handleNavigate = (item: ShowcaseItem) => {
                 Size:
               </Typography>
 
-              {(["small", "medium", "large", "hero"] as ShowcaseSize[]).map(
-                (s) => (
-                  <Button
-                    key={s}
-                    size="small"
-                    variant={size === s ? "contained" : "outlined"}
-                    color="primary"
-                    onClick={() => setSize(s)}
-                  >
-                    {s}
-                  </Button>
-                ),
-              )}
+              {(["small", "medium", "large", "hero"] as ShowcaseSize[]).map((s) => (
+                <Button
+                  key={s}
+                  size="small"
+                  variant={size === s ? "contained" : "outlined"}
+                  color="primary"
+                  onClick={() => setSize(s)}
+                >
+                  {s}
+                </Button>
+              ))}
             </Stack>
 
             {/* Transition Selector */}
@@ -429,19 +395,17 @@ const handleNavigate = (item: ShowcaseItem) => {
                 Transition:
               </Typography>
 
-              {(["cinematic", "fade", "slide"] as ShowcaseTransition[]).map(
-                (t) => (
-                  <Button
-                    key={t}
-                    size="small"
-                    variant={transition === t ? "contained" : "outlined"}
-                    color="secondary"
-                    onClick={() => setTransition(t)}
-                  >
-                    {t}
-                  </Button>
-                ),
-              )}
+              {(["cinematic", "fade", "slide"] as ShowcaseTransition[]).map((t) => (
+                <Button
+                  key={t}
+                  size="small"
+                  variant={transition === t ? "contained" : "outlined"}
+                  color="secondary"
+                  onClick={() => setTransition(t)}
+                >
+                  {t}
+                </Button>
+              ))}
             </Stack>
 
             {/* Navigation Style Selector */}
@@ -464,19 +428,17 @@ const handleNavigate = (item: ShowcaseItem) => {
                 Navigation:
               </Typography>
 
-              {(["vertical", "dots", "none"] as ShowcaseNavigation[]).map(
-                (n) => (
-                  <Button
-                    key={n}
-                    size="small"
-                    variant={navigation === n ? "contained" : "outlined"}
-                    color="accent"
-                    onClick={() => setNavigation(n)}
-                  >
-                    {n}
-                  </Button>
-                ),
-              )}
+              {(["vertical", "dots", "none"] as ShowcaseNavigation[]).map((n) => (
+                <Button
+                  key={n}
+                  size="small"
+                  variant={navigation === n ? "contained" : "outlined"}
+                  color="accent"
+                  onClick={() => setNavigation(n)}
+                >
+                  {n}
+                </Button>
+              ))}
             </Stack>
 
             {/* Radius Selector */}
@@ -532,14 +494,7 @@ const handleNavigate = (item: ShowcaseItem) => {
                 CTA Color:
               </Typography>
 
-              {(
-                [
-                  "primary",
-                  "secondary",
-                  "accent",
-                  "glass",
-                ] as ShowcaseButtonColor[]
-              ).map((c) => (
+              {(["primary", "secondary", "accent", "glass"] as ShowcaseButtonColor[]).map((c) => (
                 <Button
                   key={c}
                   size="small"
@@ -562,13 +517,7 @@ const handleNavigate = (item: ShowcaseItem) => {
               }}
             >
               <FormControlLabel
-                control={
-                  <Switch
-                    size="small"
-                    checked={autoplay}
-                    onChange={(e) => setAutoplay(e.target.checked)}
-                  />
-                }
+                control={<Switch size="small" checked={autoplay} onChange={(e) => setAutoplay(e.target.checked)} />}
                 label={
                   <Typography
                     variant="caption"
@@ -582,13 +531,7 @@ const handleNavigate = (item: ShowcaseItem) => {
               />
 
               <FormControlLabel
-                control={
-                  <Switch
-                    size="small"
-                    checked={showArrows}
-                    onChange={(e) => setShowArrows(e.target.checked)}
-                  />
-                }
+                control={<Switch size="small" checked={showArrows} onChange={(e) => setShowArrows(e.target.checked)} />}
                 label={
                   <Typography
                     variant="caption"
@@ -603,11 +546,7 @@ const handleNavigate = (item: ShowcaseItem) => {
 
               <FormControlLabel
                 control={
-                  <Switch
-                    size="small"
-                    checked={showProgress}
-                    onChange={(e) => setShowProgress(e.target.checked)}
-                  />
+                  <Switch size="small" checked={showProgress} onChange={(e) => setShowProgress(e.target.checked)} />
                 }
                 label={
                   <Typography
@@ -694,13 +633,7 @@ const imageOnlyItems: ShowcaseItem[] = [
             overflow: "hidden",
           }}
         >
-          <Showcase
-            items={imageOnlyItems}
-            size="medium"
-            navigation="dots"
-            transition="fade"
-            interval={4000}
-          />
+          <Showcase items={imageOnlyItems} size="medium" navigation="dots" transition="fade" interval={4000} />
         </Box>
       </DemoBlock>
 
@@ -749,13 +682,7 @@ const titleDescItems: ShowcaseItem[] = [
             overflow: "hidden",
           }}
         >
-          <Showcase
-            items={titleDescItems}
-            size="medium"
-            navigation="vertical"
-            transition="cinematic"
-            interval={5000}
-          />
+          <Showcase items={titleDescItems} size="medium" navigation="vertical" transition="cinematic" interval={5000} />
         </Box>
       </DemoBlock>
 
@@ -781,8 +708,7 @@ const titleDescItems: ShowcaseItem[] = [
           sx={{
             p: 3,
             borderRadius: "24px",
-            backgroundImage:
-              "linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(168, 85, 247, 0.4) 100%)",
+            backgroundImage: "linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(168, 85, 247, 0.4) 100%)",
           }}
         >
           <Showcase
@@ -851,12 +777,8 @@ export function ShowcaseClient({
             sx={{
               p: 3,
               borderRadius: 3,
-              bgcolor: isDark
-                ? "rgba(255, 255, 255, 0.04)"
-                : "rgba(17, 17, 17, 0.03)",
-              border: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
-              }`,
+              bgcolor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
             <Typography
@@ -877,9 +799,8 @@ export function ShowcaseClient({
                 lineHeight: 1.8,
               }}
             >
-              Showcase does not know about Next.js routing. Your API returns
-              framework-agnostic data, while the Next.js application provides
-              the routing implementation and optional image renderer.
+              Showcase does not know about Next.js routing. Your API returns framework-agnostic data, while the Next.js
+              application provides the routing implementation and optional image renderer.
             </Typography>
 
             <Stack spacing={1}>
@@ -888,23 +809,20 @@ export function ShowcaseClient({
               </Typography>
 
               <Typography variant="body2">
-                <strong>2. Showcase</strong> → Renders a semantic{" "}
-                <code>&lt;a href="..."&gt;</code>.
+                <strong>2. Showcase</strong> → Renders a semantic <code>&lt;a href="..."&gt;</code>.
               </Typography>
 
               <Typography variant="body2">
-                <strong>3. onNavigate</strong> → Showcase prevents native
-                navigation and gives the application the navigation event.
+                <strong>3. onNavigate</strong> → Showcase prevents native navigation and gives the application the
+                navigation event.
               </Typography>
 
               <Typography variant="body2">
-                <strong>4. Next.js</strong> → Calls <code>router.push()</code>{" "}
-                for client-side navigation.
+                <strong>4. Next.js</strong> → Calls <code>router.push()</code> for client-side navigation.
               </Typography>
 
               <Typography variant="body2">
-                <strong>5. ImageComponent</strong> → Can optionally receive{" "}
-                <code>next/image</code>.
+                <strong>5. ImageComponent</strong> → Can optionally receive <code>next/image</code>.
               </Typography>
             </Stack>
           </Box>
@@ -917,12 +835,8 @@ export function ShowcaseClient({
             sx={{
               p: 3,
               borderRadius: 3,
-              bgcolor: isDark
-                ? "rgba(255, 255, 255, 0.04)"
-                : "rgba(17, 17, 17, 0.03)",
-              border: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
-              }`,
+              bgcolor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
             <Typography
@@ -944,9 +858,8 @@ export function ShowcaseClient({
                 lineHeight: 1.7,
               }}
             >
-              Your backend only needs to return serializable data. There is no{" "}
-              <code>Link</code>, <code>Image</code>, or other React component
-              inside the response.
+              Your backend only needs to return serializable data. There is no <code>Link</code>, <code>Image</code>, or
+              other React component inside the response.
             </Typography>
 
             <Typography
@@ -1006,12 +919,8 @@ export function ShowcaseClient({
             sx={{
               p: 3,
               borderRadius: 3,
-              bgcolor: isDark
-                ? "rgba(255, 255, 255, 0.04)"
-                : "rgba(17, 17, 17, 0.03)",
-              border: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
-              }`,
+              bgcolor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
             <Typography
@@ -1033,9 +942,8 @@ export function ShowcaseClient({
                 lineHeight: 1.7,
               }}
             >
-              Showcase always renders the full media area as a semantic{" "}
-              <code>&lt;a href="..."&gt;</code>. It prevents the browser's
-              default navigation and calls <code>onNavigate</code> instead.
+              Showcase always renders the full media area as a semantic <code>&lt;a href="..."&gt;</code>. It prevents
+              the browser's default navigation and calls <code>onNavigate</code> instead.
             </Typography>
 
             <Typography
@@ -1066,12 +974,8 @@ export function ShowcaseClient({
             sx={{
               p: 3,
               borderRadius: 3,
-              bgcolor: isDark
-                ? "rgba(255, 255, 255, 0.04)"
-                : "rgba(17, 17, 17, 0.03)",
-              border: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
-              }`,
+              bgcolor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
             <Typography
@@ -1093,8 +997,8 @@ export function ShowcaseClient({
                 lineHeight: 1.7,
               }}
             >
-              The client adapter owns the actual Next.js navigation. This keeps
-              routing concerns outside the reusable UI component.
+              The client adapter owns the actual Next.js navigation. This keeps routing concerns outside the reusable UI
+              component.
             </Typography>
 
             <Typography
@@ -1135,12 +1039,8 @@ const router = useRouter();
             sx={{
               p: 3,
               borderRadius: 3,
-              bgcolor: isDark
-                ? "rgba(255, 255, 255, 0.04)"
-                : "rgba(17, 17, 17, 0.03)",
-              border: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
-              }`,
+              bgcolor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
             <Typography
@@ -1156,29 +1056,25 @@ const router = useRouter();
 
             <Stack spacing={1.25}>
               <Typography variant="body2">
-                <strong>Reusable:</strong> Showcase remains independent from
-                Next.js and other routing frameworks.
+                <strong>Reusable:</strong> Showcase remains independent from Next.js and other routing frameworks.
               </Typography>
 
               <Typography variant="body2">
-                <strong>API-friendly:</strong> Backend responses contain only
-                serializable data.
+                <strong>API-friendly:</strong> Backend responses contain only serializable data.
               </Typography>
 
               <Typography variant="body2">
-                <strong>Semantic:</strong> The media area remains a real{" "}
-                <code>&lt;a href="..."&gt;</code> element.
+                <strong>Semantic:</strong> The media area remains a real <code>&lt;a href="..."&gt;</code> element.
               </Typography>
 
               <Typography variant="body2">
-                <strong>Framework-safe:</strong> Next.js, React Router, Remix,
-                or another application can provide its own navigation logic.
+                <strong>Framework-safe:</strong> Next.js, React Router, Remix, or another application can provide its
+                own navigation logic.
               </Typography>
 
               <Typography variant="body2">
-                <strong>Application-owned routing:</strong> The reusable
-                component does not need to know which router the application
-                uses.
+                <strong>Application-owned routing:</strong> The reusable component does not need to know which router
+                the application uses.
               </Typography>
             </Stack>
           </Box>
@@ -1191,12 +1087,8 @@ const router = useRouter();
             sx={{
               p: 3,
               borderRadius: 3,
-              bgcolor: isDark
-                ? "rgba(255, 255, 255, 0.04)"
-                : "rgba(17, 17, 17, 0.03)",
-              border: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
-              }`,
+              bgcolor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
             <Typography
@@ -1255,12 +1147,8 @@ Next.js router
             sx={{
               p: 3,
               borderRadius: 3,
-              bgcolor: isDark
-                ? "rgba(255, 255, 255, 0.04)"
-                : "rgba(17, 17, 17, 0.03)",
-              border: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"
-              }`,
+              bgcolor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
             <Typography
@@ -1282,9 +1170,8 @@ Next.js router
                 lineHeight: 1.7,
               }}
             >
-              The reusable component only needs the data and navigation
-              callback. Next.js-specific routing stays at the application
-              boundary.
+              The reusable component only needs the data and navigation callback. Next.js-specific routing stays at the
+              application boundary.
             </Typography>
 
             <Typography
@@ -1320,8 +1207,8 @@ Next.js router
               lineHeight: 1.7,
             }}
           >
-            Keep API responses framework-agnostic. Let Showcase provide semantic
-            links while the consuming application owns actual navigation.
+            Keep API responses framework-agnostic. Let Showcase provide semantic links while the consuming application
+            owns actual navigation.
           </Typography>
         </Stack>
       </DemoBlock>

@@ -35,11 +35,7 @@
  *
  * Dedicated Google Sans Flex variable font with all weights (100 - 900+).
  */
-const GOOGLE_SANS_FLEX = [
-  '"Google Sans Flex"',
-  '"Google Sans"',
-  "sans-serif",
-].join(",");
+const GOOGLE_SANS_FLEX = ['"Google Sans Flex"', '"Google Sans"', "sans-serif"].join(",");
 
 const DISPLAY_FONT = GOOGLE_SANS_FLEX;
 const TEXT_FONT = GOOGLE_SANS_FLEX;

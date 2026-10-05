@@ -11,10 +11,7 @@ import { getStepperOverrides } from "./stepper.js";
 import { getBottomNavigationOverrides } from "./bottomNavigation.js";
 import { getListOverrides } from "./list";
 
-export const getNavigationOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getNavigationOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   ...getAppBarOverrides(palette, isDark),
   ...getToolbarOverrides(),
   ...getTabsOverrides(isDark),

@@ -459,11 +459,7 @@ You can separately control them:
 ### Native fallback
 
 ```tsx
-<Gallery
-  items={products}
-  getImage={(item) => item.image}
-  getImageAlt={(item) => item.name}
-/>
+<Gallery items={products} getImage={(item) => item.image} getImageAlt={(item) => item.name} />
 ```
 
 No `renderImage` required.
@@ -479,14 +475,7 @@ Gallery uses:
 ```tsx
 <Gallery
   items={products}
-  renderImage={({ item }) => (
-    <Image
-      src={item.image}
-      alt={item.name}
-      fill
-      sizes="(max-width: 768px) 50vw, 25vw"
-    />
-  )}
+  renderImage={({ item }) => <Image src={item.image} alt={item.name} fill sizes="(max-width: 768px) 50vw, 25vw" />}
 />
 ```
 

@@ -1,45 +1,26 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export type MenuColor =
-  | "primary"
-  | "secondary"
-  | "accent"
-  | "success"
-  | "warning"
-  | "error";
+export type MenuColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error";
 
 export type MenuSurface = "standard" | "glass";
 
 export type MenuSize = "small" | "medium";
 
-export const getMenuOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   const text = isDark ? "#F6F5F2" : "#111111";
 
-  const secondaryText = isDark
-    ? "rgba(246, 245, 242, 0.62)"
-    : "rgba(17, 17, 17, 0.62)";
+  const secondaryText = isDark ? "rgba(246, 245, 242, 0.62)" : "rgba(17, 17, 17, 0.62)";
 
-  const divider = isDark
-    ? "rgba(255, 255, 255, 0.08)"
-    : "rgba(17, 17, 17, 0.08)";
+  const divider = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)";
 
   const standardBackground = isDark ? "#1B1B1B" : "#FFFFFF";
 
-  const glassBackground = isDark
-    ? "rgba(255, 255, 255, 0.075)"
-    : "rgba(255, 255, 255, 0.72)";
+  const glassBackground = isDark ? "rgba(255, 255, 255, 0.075)" : "rgba(255, 255, 255, 0.72)";
 
-  const glassBorder = isDark
-    ? "rgba(255, 255, 255, 0.12)"
-    : "rgba(255, 255, 255, 0.78)";
+  const glassBorder = isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.78)";
 
-  const glassShadow = isDark
-    ? "0 18px 45px rgba(0, 0, 0, 0.30)"
-    : "0 18px 45px rgba(17, 17, 17, 0.10)";
+  const glassShadow = isDark ? "0 18px 45px rgba(0, 0, 0, 0.30)" : "0 18px 45px rgba(17, 17, 17, 0.10)";
 
   const colorMap: Record<MenuColor, string> = {
     primary: palette.primary.main,
@@ -91,9 +72,7 @@ export const getMenuOverrides = (
             backgroundColor: standardBackground,
             border: `1px solid ${divider}`,
             borderRadius: 12,
-            boxShadow: isDark
-              ? "0 14px 36px rgba(0, 0, 0, 0.28)"
-              : "0 14px 36px rgba(17, 17, 17, 0.10)",
+            boxShadow: isDark ? "0 14px 36px rgba(0, 0, 0, 0.28)" : "0 14px 36px rgba(17, 17, 17, 0.10)",
             backgroundImage: "none",
             overflow: "hidden",
           },

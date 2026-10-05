@@ -1,27 +1,8 @@
 import React from "react";
-import {
-  Box,
-  Avatar,
-  AvatarGroup,
-  Badge,
-  Tooltip,
-  Button,
-  Typography,
-  Chip,
-  IconButton,
-} from "@mui/material";
+import { Box, Avatar, AvatarGroup, Badge, Tooltip, Button, Typography, Chip, IconButton } from "@mui/material";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import {
-  Mail,
-  Bell,
-  Sparkles,
-  User,
-  Shield,
-  MessageSquare,
-  Camera,
-  Check,
-} from "lucide-react";
+import { Mail, Bell, Sparkles, User, Shield, MessageSquare, Camera, Check } from "lucide-react";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const DataDisplayPage: React.FC = () => {
@@ -70,12 +51,8 @@ export const DataDisplayPage: React.FC = () => {
             background: isDark
               ? "linear-gradient(135deg, rgba(30, 20, 45, 0.75) 0%, rgba(15, 25, 40, 0.85) 50%, rgba(20, 35, 30, 0.75) 100%)"
               : "linear-gradient(135deg, #FAF7F2 0%, #EAE5D9 40%, #E4DEC9 70%, #F5F1E8 100%)",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.1)"
-            }`,
-            boxShadow: isDark
-              ? "0 20px 50px rgba(0, 0, 0, 0.6)"
-              : "0 20px 50px rgba(0, 0, 0, 0.08)",
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.1)"}`,
+            boxShadow: isDark ? "0 20px 50px rgba(0, 0, 0, 0.6)" : "0 20px 50px rgba(0, 0, 0, 0.08)",
           }}
         >
           {/* Ambient Glow */}
@@ -102,33 +79,16 @@ export const DataDisplayPage: React.FC = () => {
               zIndex: 1,
               p: { xs: 2.5, sm: 3.5 },
               borderRadius: "16px",
-              backgroundColor: isDark
-                ? "rgba(18, 20, 26, 0.55)"
-                : "rgba(255, 255, 255, 0.65)",
+              backgroundColor: isDark ? "rgba(18, 20, 26, 0.55)" : "rgba(255, 255, 255, 0.65)",
               backdropFilter: "blur(24px) saturate(180%)",
               WebkitBackdropFilter: "blur(24px) saturate(180%)",
-              border: `1px solid ${
-                isDark
-                  ? "rgba(255, 255, 255, 0.15)"
-                  : "rgba(255, 255, 255, 0.85)"
-              }`,
-              boxShadow: isDark
-                ? "0 8px 32px rgba(0, 0, 0, 0.35)"
-                : "0 8px 32px rgba(0, 0, 0, 0.05)",
+              border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(255, 255, 255, 0.85)"}`,
+              boxShadow: isDark ? "0 8px 32px rgba(0, 0, 0, 0.35)" : "0 8px 32px rgba(0, 0, 0, 0.05)",
             }}
           >
-            <Box
-              sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 3 }}
-            >
-              <Sparkles
-                size={22}
-                color={isDark ? "#F6F5F2" : "#111111"}
-                style={{ opacity: 0.85 }}
-              />
-              <Typography
-                variant="h6"
-                sx={{ fontWeight: 700, fontSize: "1.05rem" }}
-              >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 3 }}>
+              <Sparkles size={22} color={isDark ? "#F6F5F2" : "#111111"} style={{ opacity: 0.85 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.05rem" }}>
                 Liquid Glass Identity Primitives
               </Typography>
               <Chip
@@ -138,9 +98,7 @@ export const DataDisplayPage: React.FC = () => {
                   height: 20,
                   fontSize: "0.62rem",
                   fontWeight: 700,
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.12)"
-                    : "rgba(17, 17, 17, 0.08)",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)",
                 }}
               />
             </Box>
@@ -181,10 +139,7 @@ export const DataDisplayPage: React.FC = () => {
                     JV
                   </Avatar>
                 </Badge>
-                <Typography
-                  variant="caption"
-                  sx={{ fontWeight: 600, color: "text.secondary" }}
-                >
+                <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
                   Apple Squircle
                 </Typography>
               </Box>
@@ -210,10 +165,7 @@ export const DataDisplayPage: React.FC = () => {
                     sx={{ width: 64, height: 64 }}
                   />
                 </Badge>
-                <Typography
-                  variant="caption"
-                  sx={{ fontWeight: 600, color: "text.secondary" }}
-                >
+                <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
                   Active Online
                 </Typography>
               </Box>
@@ -232,18 +184,13 @@ export const DataDisplayPage: React.FC = () => {
                     sx={{
                       width: 64,
                       height: 64,
-                      bgcolor: isDark
-                        ? "rgba(255, 255, 255, 0.14)"
-                        : "rgba(255, 255, 255, 0.75)",
+                      bgcolor: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.75)",
                     }}
                   >
                     <User size={28} />
                   </Avatar>
                 </Badge>
-                <Typography
-                  variant="caption"
-                  sx={{ fontWeight: 600, color: "text.secondary" }}
-                >
+                <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
                   Glass Icon
                 </Typography>
               </Box>
@@ -257,10 +204,7 @@ export const DataDisplayPage: React.FC = () => {
                   gap: 1,
                 }}
               >
-                <AvatarGroup
-                  max={4}
-                  sx={{ "& .MuiAvatar-root": { width: 46, height: 46 } }}
-                >
+                <AvatarGroup max={4} sx={{ "& .MuiAvatar-root": { width: 46, height: 46 } }}>
                   <Avatar
                     alt="Remy Sharp"
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
@@ -275,10 +219,7 @@ export const DataDisplayPage: React.FC = () => {
                   />
                   <Avatar>+6</Avatar>
                 </AvatarGroup>
-                <Typography
-                  variant="caption"
-                  sx={{ fontWeight: 600, color: "text.secondary" }}
-                >
+                <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
                   Glass AvatarGroup
                 </Typography>
               </Box>
@@ -389,10 +330,7 @@ export const DataDisplayPage: React.FC = () => {
             >
               XS
             </Avatar>
-            <Typography
-              variant="caption"
-              sx={{ color: "text.secondary", fontWeight: 600 }}
-            >
+            <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
               28px
             </Typography>
           </Box>
@@ -409,22 +347,14 @@ export const DataDisplayPage: React.FC = () => {
             >
               SM
             </Avatar>
-            <Typography
-              variant="caption"
-              sx={{ color: "text.secondary", fontWeight: 600 }}
-            >
+            <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
               36px
             </Typography>
           </Box>
 
           <Box sx={{ textAlign: "center" }}>
-            <Avatar sx={{ width: 44, height: 44, mx: "auto", mb: 1 }}>
-              MD
-            </Avatar>
-            <Typography
-              variant="caption"
-              sx={{ color: "text.secondary", fontWeight: 600 }}
-            >
+            <Avatar sx={{ width: 44, height: 44, mx: "auto", mb: 1 }}>MD</Avatar>
+            <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
               44px
             </Typography>
           </Box>
@@ -441,10 +371,7 @@ export const DataDisplayPage: React.FC = () => {
             >
               LG
             </Avatar>
-            <Typography
-              variant="caption"
-              sx={{ color: "text.secondary", fontWeight: 600 }}
-            >
+            <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
               56px
             </Typography>
           </Box>
@@ -461,10 +388,7 @@ export const DataDisplayPage: React.FC = () => {
             >
               XL
             </Avatar>
-            <Typography
-              variant="caption"
-              sx={{ color: "text.secondary", fontWeight: 600 }}
-            >
+            <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
               72px
             </Typography>
           </Box>
@@ -509,21 +433,14 @@ export const DataDisplayPage: React.FC = () => {
                 sx={{
                   p: 1.5,
                   borderRadius: "12px",
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.06)"
-                    : "rgba(17,17,17,0.04)",
-                  border: `1px solid ${
-                    isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"
-                  }`,
+                  bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
+                  border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
                 }}
               >
                 <Sparkles size={22} />
               </Box>
             </Badge>
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 600, color: "text.secondary" }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
               Glass Badge
             </Typography>
           </Box>
@@ -542,21 +459,14 @@ export const DataDisplayPage: React.FC = () => {
                 sx={{
                   p: 1.5,
                   borderRadius: "12px",
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.06)"
-                    : "rgba(17,17,17,0.04)",
-                  border: `1px solid ${
-                    isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"
-                  }`,
+                  bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
+                  border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
                 }}
               >
                 <Mail size={22} />
               </Box>
             </Badge>
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 600, color: "text.secondary" }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
               Primary Charcoal
             </Typography>
           </Box>
@@ -575,21 +485,14 @@ export const DataDisplayPage: React.FC = () => {
                 sx={{
                   p: 1.5,
                   borderRadius: "12px",
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.06)"
-                    : "rgba(17,17,17,0.04)",
-                  border: `1px solid ${
-                    isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"
-                  }`,
+                  bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
+                  border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
                 }}
               >
                 <Bell size={22} />
               </Box>
             </Badge>
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 600, color: "text.secondary" }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
               Error Crimson
             </Typography>
           </Box>
@@ -608,21 +511,14 @@ export const DataDisplayPage: React.FC = () => {
                 sx={{
                   p: 1.5,
                   borderRadius: "12px",
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.06)"
-                    : "rgba(17,17,17,0.04)",
-                  border: `1px solid ${
-                    isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"
-                  }`,
+                  bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
+                  border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
                 }}
               >
                 <Shield size={22} />
               </Box>
             </Badge>
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 600, color: "text.secondary" }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
               Success Emerald
             </Typography>
           </Box>
@@ -641,21 +537,14 @@ export const DataDisplayPage: React.FC = () => {
                 sx={{
                   p: 1.5,
                   borderRadius: "12px",
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.06)"
-                    : "rgba(17,17,17,0.04)",
-                  border: `1px solid ${
-                    isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"
-                  }`,
+                  bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
+                  border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
                 }}
               >
                 <MessageSquare size={22} />
               </Box>
             </Badge>
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 600, color: "text.secondary" }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
               Max Overflow 99+
             </Typography>
           </Box>

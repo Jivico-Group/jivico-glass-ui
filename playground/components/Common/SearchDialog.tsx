@@ -21,11 +21,7 @@ interface SearchDialogProps {
   onSelect: (id: string) => void;
 }
 
-export const SearchDialog: React.FC<SearchDialogProps> = ({
-  open,
-  onClose,
-  onSelect,
-}) => {
+export const SearchDialog: React.FC<SearchDialogProps> = ({ open, onClose, onSelect }) => {
   const [query, setQuery] = useState("");
   const { mode } = useGlassMode();
   const isDark = mode === "dark";
@@ -54,11 +50,7 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({
   const filtered = React.useMemo(() => {
     if (!query.trim()) return allItems;
     const q = query.toLowerCase();
-    return allItems.filter(
-      (item) =>
-        item.label.toLowerCase().includes(q) ||
-        item.category.toLowerCase().includes(q),
-    );
+    return allItems.filter((item) => item.label.toLowerCase().includes(q) || item.category.toLowerCase().includes(q));
   }, [allItems, query]);
 
   // Global ⌘K listener
@@ -87,17 +79,11 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({
         paper: {
           sx: {
             borderRadius: "16px",
-            backgroundColor: isDark
-              ? "rgba(22, 22, 22, 0.95)"
-              : "rgba(255, 255, 255, 0.98)",
+            backgroundColor: isDark ? "rgba(22, 22, 22, 0.95)" : "rgba(255, 255, 255, 0.98)",
             backdropFilter: "blur(24px)",
             WebkitBackdropFilter: "blur(24px)",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.1)"
-            }`,
-            boxShadow: isDark
-              ? "0 20px 60px rgba(0,0,0,0.6)"
-              : "0 20px 60px rgba(0,0,0,0.15)",
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.1)"}`,
+            boxShadow: isDark ? "0 20px 60px rgba(0,0,0,0.6)" : "0 20px 60px rgba(0,0,0,0.15)",
             overflow: "hidden",
           },
         },
@@ -122,9 +108,7 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({
               sx: {
                 borderRadius: "10px",
                 fontSize: "0.95rem",
-                backgroundColor: isDark
-                  ? "rgba(255, 255, 255, 0.04)"
-                  : "rgba(17, 17, 17, 0.02)",
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.02)",
               },
             },
           }}
@@ -133,9 +117,7 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({
         <List sx={{ mt: 1.5, maxHeight: 360, overflowY: "auto", p: 0 }}>
           {filtered.length === 0 ? (
             <Box sx={{ py: 4, textAlign: "center", color: "text.secondary" }}>
-              <Typography variant="body2">
-                No components found for &quot;{query}&quot;
-              </Typography>
+              <Typography variant="body2">No components found for &quot;{query}&quot;</Typography>
             </Box>
           ) : (
             filtered.map((item) => (
@@ -152,9 +134,7 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({
                   px: 1.5,
                   mb: 0.5,
                   "&:hover": {
-                    backgroundColor: isDark
-                      ? "rgba(255, 255, 255, 0.08)"
-                      : "rgba(17, 17, 17, 0.05)",
+                    backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.05)",
                   },
                 }}
               >
@@ -190,9 +170,7 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({
                       height: 20,
                       fontSize: "0.62rem",
                       fontWeight: 700,
-                      backgroundColor: isDark
-                        ? "rgba(255,255,255,0.1)"
-                        : "rgba(17,17,17,0.06)",
+                      backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.06)",
                     }}
                   />
                 )}

@@ -20,10 +20,7 @@ const CloseDeleteIcon = (props: React.SVGProps<SVGSVGElement>) =>
     React.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" }),
   );
 
-export const getChipOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   const chipColor = (
     colorKey: string,
   ): {
@@ -49,9 +46,7 @@ export const getChipOverrides = (
         main: "#4285F4",
         hover: isDark ? "#5A95F5" : "#3367D6",
         active: isDark ? "#3367D6" : "#2A56C6",
-        disabled: isDark
-          ? "rgba(66, 133, 244, 0.3)"
-          : "rgba(66, 133, 244, 0.25)",
+        disabled: isDark ? "rgba(66, 133, 244, 0.3)" : "rgba(66, 133, 244, 0.25)",
         glow: "rgba(66, 133, 244, 0.35)",
         text: "#FFFFFF",
       },
@@ -87,18 +82,10 @@ export const getChipOverrides = (
 
     if (colorKey === "glass") {
       return {
-        main: isDark
-          ? "rgba(255, 255, 255, 0.12)"
-          : "rgba(255, 255, 255, 0.68)",
-        hover: isDark
-          ? "rgba(255, 255, 255, 0.18)"
-          : "rgba(255, 255, 255, 0.88)",
-        active: isDark
-          ? "rgba(255, 255, 255, 0.1)"
-          : "rgba(255, 255, 255, 0.75)",
-        disabled: isDark
-          ? "rgba(255, 255, 255, 0.04)"
-          : "rgba(255, 255, 255, 0.3)",
+        main: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.68)",
+        hover: isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.88)",
+        active: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.75)",
+        disabled: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.3)",
         glow: isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(0, 0, 0, 0.08)",
         text: isDark ? "#F6F5F2" : "#111111",
       };
@@ -126,13 +113,12 @@ export const getChipOverrides = (
             height: 32,
             fontSize: "0.82rem",
             padding: "0 12px",
-            "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before":
-              {
-                width: 10,
-                height: 10,
-                borderWidth: "2px",
-                marginRight: "7px",
-              },
+            "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before": {
+              width: 10,
+              height: 10,
+              borderWidth: "2px",
+              marginRight: "7px",
+            },
             "& .MuiChip-avatar": {
               width: 24,
               height: 24,
@@ -160,8 +146,7 @@ export const getChipOverrides = (
           const isGlass = (color as string) === "glass";
           const isPrimary = color === "primary";
           const isSecondary = color === "secondary";
-          const isSemantic =
-            !isPrimary && !isSecondary && !isGlass && color !== "default";
+          const isSemantic = !isPrimary && !isSecondary && !isGlass && color !== "default";
           const cc = chipColor(color === "default" ? "primary" : color);
 
           return {
@@ -189,19 +174,18 @@ export const getChipOverrides = (
 
             // ── Brand Kit Signature Circle Indicator Before Label ────────
             // Displayed on all chips unless a custom icon or avatar is provided
-            "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before":
-              {
-                content: '""',
-                display: "inline-block",
-                width: 8.5,
-                height: 8.5,
-                borderRadius: "50%",
-                border: "1.75px solid currentColor",
-                boxSizing: "border-box",
-                marginRight: "6px",
-                flexShrink: 0,
-                opacity: 0.9,
-              },
+            "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before": {
+              content: '""',
+              display: "inline-block",
+              width: 8.5,
+              height: 8.5,
+              borderRadius: "50%",
+              border: "1.75px solid currentColor",
+              boxSizing: "border-box",
+              marginRight: "6px",
+              flexShrink: 0,
+              opacity: 0.9,
+            },
 
             // Delete icon
             "& .MuiChip-deleteIcon": {
@@ -255,18 +239,14 @@ export const getChipOverrides = (
                 "&.MuiChip-clickable:hover": {
                   backgroundColor: isDark ? "#E8E7E4" : "#2A2A2A",
                   transform: "translateY(-1px)",
-                  boxShadow: isDark
-                    ? "0 6px 16px rgba(0,0,0,0.4)"
-                    : "0 6px 14px rgba(0,0,0,0.12)",
+                  boxShadow: isDark ? "0 6px 16px rgba(0,0,0,0.4)" : "0 6px 14px rgba(0,0,0,0.12)",
                 },
                 "&.MuiChip-clickable:active": {
                   backgroundColor: isDark ? "#D9D8D4" : "#1A1A1A",
                   transform: "translateY(0) scale(0.98)",
                 },
                 "&.Mui-disabled": {
-                  backgroundColor: isDark
-                    ? "rgba(255,255,255,0.12)"
-                    : "#EBEBEB",
+                  backgroundColor: isDark ? "rgba(255,255,255,0.12)" : "#EBEBEB",
                   color: isDark ? "rgba(255,255,255,0.3)" : "#A0A0A0",
                   boxShadow: "none",
                   opacity: 1,
@@ -281,29 +261,19 @@ export const getChipOverrides = (
                 border: `1px solid ${isDark ? "rgba(255,255,255,0.14)" : "rgba(17,17,17,0.12)"}`,
                 backdropFilter: "blur(12px)",
                 WebkitBackdropFilter: "blur(12px)",
-                boxShadow: isDark
-                  ? "0 2px 8px rgba(0,0,0,0.25)"
-                  : "0 2px 6px rgba(0,0,0,0.04)",
+                boxShadow: isDark ? "0 2px 8px rgba(0,0,0,0.25)" : "0 2px 6px rgba(0,0,0,0.04)",
 
                 "&.MuiChip-clickable:hover": {
-                  backgroundColor: isDark
-                    ? "rgba(255,255,255,0.16)"
-                    : "#EDECE8",
+                  backgroundColor: isDark ? "rgba(255,255,255,0.16)" : "#EDECE8",
                   transform: "translateY(-1px)",
                 },
                 "&.MuiChip-clickable:active": {
-                  backgroundColor: isDark
-                    ? "rgba(255,255,255,0.22)"
-                    : "#D9D9CF",
+                  backgroundColor: isDark ? "rgba(255,255,255,0.22)" : "#D9D9CF",
                   transform: "translateY(0) scale(0.98)",
                 },
                 "&.Mui-disabled": {
-                  backgroundColor: isDark
-                    ? "rgba(255,255,255,0.05)"
-                    : "rgba(246,245,242,0.6)",
-                  color: isDark
-                    ? "rgba(255,255,255,0.3)"
-                    : "rgba(17,17,17,0.3)",
+                  backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(246,245,242,0.6)",
+                  color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
                   boxShadow: "none",
                   opacity: 1,
                 },
@@ -312,15 +282,9 @@ export const getChipOverrides = (
             // ── Glass Filled — Pure Frosted Glass Chip ────────────────────
             ...(variant === "filled" &&
               isGlass && {
-                backgroundColor: isDark
-                  ? "rgba(255, 255, 255, 0.12)"
-                  : "rgba(255, 255, 255, 0.68)",
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.68)",
                 color: isDark ? "#F6F5F2" : "#111111",
-                border: `1px solid ${
-                  isDark
-                    ? "rgba(255, 255, 255, 0.18)"
-                    : "rgba(255, 255, 255, 0.85)"
-                }`,
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.85)"}`,
                 backdropFilter: "blur(16px)",
                 WebkitBackdropFilter: "blur(16px)",
                 boxShadow: isDark
@@ -328,30 +292,20 @@ export const getChipOverrides = (
                   : "0 3px 12px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.9)",
 
                 "&.MuiChip-clickable:hover": {
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.18)"
-                    : "rgba(255, 255, 255, 0.88)",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.88)",
                   transform: "translateY(-1px)",
                   boxShadow: isDark
                     ? "0 8px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.3)"
                     : "0 6px 18px rgba(0,0,0,0.08), inset 0 1px 0 #FFFFFF",
                 },
                 "&.MuiChip-clickable:active": {
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.1)"
-                    : "rgba(255, 255, 255, 0.75)",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.75)",
                   transform: "translateY(0) scale(0.98)",
                 },
                 "&.Mui-disabled": {
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.04)"
-                    : "rgba(255, 255, 255, 0.3)",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.3)",
                   color: isDark ? "rgba(255,255,255,0.28)" : "rgba(0,0,0,0.28)",
-                  border: `1px solid ${
-                    isDark
-                      ? "rgba(255, 255, 255, 0.06)"
-                      : "rgba(255, 255, 255, 0.4)"
-                  }`,
+                  border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.4)"}`,
                   boxShadow: "none",
                   backdropFilter: "none",
                   WebkitBackdropFilter: "none",
@@ -365,16 +319,12 @@ export const getChipOverrides = (
                 backgroundColor: cc.main,
                 color: cc.text,
                 border: "1px solid transparent",
-                boxShadow: isDark
-                  ? `0 2px 8px rgba(0,0,0,0.3)`
-                  : `0 2px 6px ${cc.glow}`,
+                boxShadow: isDark ? `0 2px 8px rgba(0,0,0,0.3)` : `0 2px 6px ${cc.glow}`,
 
                 "&.MuiChip-clickable:hover": {
                   backgroundColor: cc.hover,
                   transform: "translateY(-1px)",
-                  boxShadow: isDark
-                    ? `0 6px 16px rgba(0,0,0,0.4)`
-                    : `0 6px 14px ${cc.glow}`,
+                  boxShadow: isDark ? `0 6px 16px rgba(0,0,0,0.4)` : `0 6px 14px ${cc.glow}`,
                 },
                 "&.MuiChip-clickable:active": {
                   backgroundColor: cc.active,
@@ -382,9 +332,7 @@ export const getChipOverrides = (
                 },
                 "&.Mui-disabled": {
                   backgroundColor: cc.disabled,
-                  color: isDark
-                    ? "rgba(255,255,255,0.4)"
-                    : "rgba(255,255,255,0.5)",
+                  color: isDark ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.5)",
                   boxShadow: "none",
                   opacity: 1,
                 },
@@ -393,36 +341,24 @@ export const getChipOverrides = (
             // ── Default Filled — Neutral Glass ───────────────────────────
             ...(variant === "filled" &&
               color === "default" && {
-                backgroundColor: isDark
-                  ? "rgba(255,255,255,0.07)"
-                  : "rgba(17,17,17,0.05)",
+                backgroundColor: isDark ? "rgba(255,255,255,0.07)" : "rgba(17,17,17,0.05)",
                 border: `1px solid ${isDark ? "rgba(255,255,255,0.14)" : "rgba(17,17,17,0.12)"}`,
                 color: palette.text.primary,
                 backdropFilter: "blur(12px)",
                 WebkitBackdropFilter: "blur(12px)",
-                boxShadow: isDark
-                  ? "0 2px 8px rgba(0,0,0,0.2)"
-                  : "0 2px 6px rgba(0,0,0,0.04)",
+                boxShadow: isDark ? "0 2px 8px rgba(0,0,0,0.2)" : "0 2px 6px rgba(0,0,0,0.04)",
 
                 "&.MuiChip-clickable:hover": {
-                  backgroundColor: isDark
-                    ? "rgba(255,255,255,0.12)"
-                    : "rgba(17,17,17,0.08)",
+                  backgroundColor: isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.08)",
                   transform: "translateY(-1px)",
                 },
                 "&.MuiChip-clickable:active": {
-                  backgroundColor: isDark
-                    ? "rgba(255,255,255,0.16)"
-                    : "rgba(17,17,17,0.12)",
+                  backgroundColor: isDark ? "rgba(255,255,255,0.16)" : "rgba(17,17,17,0.12)",
                   transform: "translateY(0) scale(0.98)",
                 },
                 "&.Mui-disabled": {
-                  backgroundColor: isDark
-                    ? "rgba(255,255,255,0.04)"
-                    : "rgba(17,17,17,0.03)",
-                  color: isDark
-                    ? "rgba(255,255,255,0.3)"
-                    : "rgba(17,17,17,0.3)",
+                  backgroundColor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)",
+                  color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
                   boxShadow: "none",
                   opacity: 1,
                 },
@@ -441,21 +377,13 @@ export const getChipOverrides = (
                 boxShadow: "none",
 
                 "&.MuiChip-clickable:hover": {
-                  backgroundColor: isDark
-                    ? "rgba(246,245,242,0.08)"
-                    : "rgba(17,17,17,0.06)",
+                  backgroundColor: isDark ? "rgba(246,245,242,0.08)" : "rgba(17,17,17,0.06)",
                   transform: "translateY(-1px)",
-                  boxShadow: isDark
-                    ? "0 4px 12px rgba(0,0,0,0.25)"
-                    : "0 4px 10px rgba(0,0,0,0.07)",
+                  boxShadow: isDark ? "0 4px 12px rgba(0,0,0,0.25)" : "0 4px 10px rgba(0,0,0,0.07)",
                 },
                 "&.Mui-disabled": {
-                  borderColor: isDark
-                    ? "rgba(246,245,242,0.2)"
-                    : "rgba(17,17,17,0.2)",
-                  color: isDark
-                    ? "rgba(246,245,242,0.3)"
-                    : "rgba(17,17,17,0.3)",
+                  borderColor: isDark ? "rgba(246,245,242,0.2)" : "rgba(17,17,17,0.2)",
+                  color: isDark ? "rgba(246,245,242,0.3)" : "rgba(17,17,17,0.3)",
                   opacity: 1,
                 },
               }),
@@ -469,18 +397,12 @@ export const getChipOverrides = (
                 boxShadow: "none",
 
                 "&.MuiChip-clickable:hover": {
-                  backgroundColor: isDark
-                    ? "rgba(255,255,255,0.06)"
-                    : "rgba(17,17,17,0.04)",
+                  backgroundColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
                   transform: "translateY(-1px)",
                 },
                 "&.Mui-disabled": {
-                  borderColor: isDark
-                    ? "rgba(255,255,255,0.12)"
-                    : "rgba(17,17,17,0.1)",
-                  color: isDark
-                    ? "rgba(255,255,255,0.3)"
-                    : "rgba(17,17,17,0.3)",
+                  borderColor: isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.1)",
+                  color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
                   opacity: 1,
                 },
               }),
@@ -488,46 +410,26 @@ export const getChipOverrides = (
             // ── Glass Outlined — Airy Translucent Border Chip ─────────────
             ...(variant === "outlined" &&
               isGlass && {
-                backgroundColor: isDark
-                  ? "rgba(255, 255, 255, 0.04)"
-                  : "rgba(255, 255, 255, 0.28)",
-                border: `1.5px solid ${
-                  isDark
-                    ? "rgba(255, 255, 255, 0.22)"
-                    : "rgba(17, 17, 17, 0.16)"
-                }`,
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.28)",
+                border: `1.5px solid ${isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(17, 17, 17, 0.16)"}`,
                 color: isDark ? "#F6F5F2" : "#111111",
                 backdropFilter: "blur(12px)",
                 WebkitBackdropFilter: "blur(12px)",
-                boxShadow: isDark
-                  ? "0 2px 10px rgba(0,0,0,0.25)"
-                  : "0 2px 8px rgba(0,0,0,0.03)",
+                boxShadow: isDark ? "0 2px 10px rgba(0,0,0,0.25)" : "0 2px 8px rgba(0,0,0,0.03)",
 
                 "&.MuiChip-clickable:hover": {
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.09)"
-                    : "rgba(255, 255, 255, 0.55)",
-                  borderColor: isDark
-                    ? "rgba(255, 255, 255, 0.35)"
-                    : "rgba(17, 17, 17, 0.3)",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.55)",
+                  borderColor: isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.3)",
                   transform: "translateY(-1px)",
-                  boxShadow: isDark
-                    ? "0 6px 18px rgba(0,0,0,0.35)"
-                    : "0 4px 14px rgba(0,0,0,0.06)",
+                  boxShadow: isDark ? "0 6px 18px rgba(0,0,0,0.35)" : "0 4px 14px rgba(0,0,0,0.06)",
                 },
                 "&.MuiChip-clickable:active": {
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.06)"
-                    : "rgba(255, 255, 255, 0.4)",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.4)",
                   transform: "translateY(0) scale(0.98)",
                 },
                 "&.Mui-disabled": {
-                  borderColor: isDark
-                    ? "rgba(255,255,255,0.08)"
-                    : "rgba(17,17,17,0.08)",
-                  color: isDark
-                    ? "rgba(255,255,255,0.25)"
-                    : "rgba(17,17,17,0.25)",
+                  borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)",
+                  color: isDark ? "rgba(255,255,255,0.25)" : "rgba(17,17,17,0.25)",
                   backgroundColor: "transparent",
                   opacity: 1,
                 },
@@ -546,9 +448,7 @@ export const getChipOverrides = (
                     ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"},0.12)`
                     : `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"},0.07)`,
                   transform: "translateY(-1px)",
-                  boxShadow: isDark
-                    ? "0 4px 12px rgba(0,0,0,0.25)"
-                    : "0 4px 10px rgba(0,0,0,0.07)",
+                  boxShadow: isDark ? "0 4px 12px rgba(0,0,0,0.25)" : "0 4px 10px rgba(0,0,0,0.07)",
                 },
                 "&.Mui-disabled": {
                   borderColor: cc.disabled,
@@ -566,18 +466,12 @@ export const getChipOverrides = (
                 boxShadow: "none",
 
                 "&.MuiChip-clickable:hover": {
-                  backgroundColor: isDark
-                    ? "rgba(255,255,255,0.06)"
-                    : "rgba(17,17,17,0.04)",
+                  backgroundColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.04)",
                   transform: "translateY(-1px)",
                 },
                 "&.Mui-disabled": {
-                  borderColor: isDark
-                    ? "rgba(255,255,255,0.12)"
-                    : "rgba(17,17,17,0.1)",
-                  color: isDark
-                    ? "rgba(255,255,255,0.3)"
-                    : "rgba(17,17,17,0.3)",
+                  borderColor: isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.1)",
+                  color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
                   opacity: 1,
                 },
               }),
@@ -667,13 +561,12 @@ export const getChipOverrides = (
               height: 32,
               fontSize: "0.82rem",
               padding: "0 12px",
-              "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before":
-                {
-                  width: 10,
-                  height: 10,
-                  borderWidth: "2px",
-                  marginRight: "7px",
-                },
+              "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before": {
+                width: 10,
+                height: 10,
+                borderWidth: "2px",
+                marginRight: "7px",
+              },
               "& .MuiChip-avatar": {
                 width: 24,
                 height: 24,
@@ -700,13 +593,12 @@ export const getChipOverrides = (
           height: 24,
           fontSize: "0.68rem",
           padding: "0 8px",
-          "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before":
-            {
-              width: 7,
-              height: 7,
-              borderWidth: "1.5px",
-              marginRight: "5px",
-            },
+          "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before": {
+            width: 7,
+            height: 7,
+            borderWidth: "1.5px",
+            marginRight: "5px",
+          },
           "& .MuiChip-avatar": {
             width: 16,
             height: 16,
@@ -730,13 +622,12 @@ export const getChipOverrides = (
           height: 28,
           fontSize: "0.76rem",
           padding: "0 11px",
-          "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before":
-            {
-              width: 8.5,
-              height: 8.5,
-              borderWidth: "1.75px",
-              marginRight: "6px",
-            },
+          "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before": {
+            width: 8.5,
+            height: 8.5,
+            borderWidth: "1.75px",
+            marginRight: "6px",
+          },
         },
       },
     },

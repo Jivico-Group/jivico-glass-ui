@@ -13,11 +13,7 @@ export function JivicoFontPreload() {
   return (
     <>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin="anonymous"
-      />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       {/* Google Sans Flex */}
       <link href={GOOGLE_SANS_FLEX_URL} rel="stylesheet" />
       {/* Montserrat + Space Grotesk */}

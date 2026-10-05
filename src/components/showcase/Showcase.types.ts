@@ -1,16 +1,8 @@
-import type {
-  CSSProperties,
-  ComponentType,
-  MouseEvent,
-  ReactNode,
-} from "react";
+import type { CSSProperties, ComponentType, MouseEvent, ReactNode } from "react";
 
 import type { ButtonProps } from "@mui/material/Button";
 import type { SxProps, Theme } from "@mui/material/styles";
-import type {
-  AspectRatio,
-  ResponsiveAspectRatio,
-} from "../../types/aspectRatio.js";
+import type { AspectRatio, ResponsiveAspectRatio } from "../../types/aspectRatio.js";
 
 export type ShowcaseTransition = "cinematic" | "fade" | "slide";
 
@@ -27,14 +19,7 @@ export type ShowcaseContentAlign = "left" | "center" | "right";
 export type ShowcaseButtonSize = "small" | "medium" | "large";
 
 export type ShowcaseButtonColor =
-  | "primary"
-  | "secondary"
-  | "accent"
-  | "success"
-  | "warning"
-  | "error"
-  | "info"
-  | "glass";
+  "primary" | "secondary" | "accent" | "success" | "warning" | "error" | "info" | "glass";
 
 export type ShowcaseDimension =
   | number
@@ -174,11 +159,7 @@ export interface ShowcaseProps {
    *   }}
    * />
    */
-  onNavigate?: (
-    item: ShowcaseItem,
-    index: number,
-    event: MouseEvent<HTMLAnchorElement>,
-  ) => void;
+  onNavigate?: (item: ShowcaseItem, index: number, event: MouseEvent<HTMLAnchorElement>) => void;
 
   variant?: ShowcaseVariant;
 

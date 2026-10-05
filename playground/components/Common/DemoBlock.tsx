@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Typography,
-  IconButton,
-  Tooltip,
-  Collapse,
-  Button,
-} from "@mui/material";
+import { Box, Typography, IconButton, Tooltip, Collapse, Button } from "@mui/material";
 
 import { Code, Copy, Check } from "lucide-react";
 import { useGlassMode } from "../../../src/context/ThemeContext";
@@ -19,13 +12,7 @@ interface DemoBlockProps {
   children: React.ReactNode;
 }
 
-export const DemoBlock: React.FC<DemoBlockProps> = ({
-  id,
-  title,
-  description,
-  code,
-  children,
-}) => {
+export const DemoBlock: React.FC<DemoBlockProps> = ({ id, title, description, code, children }) => {
   const { mode } = useGlassMode();
   const isDark = mode === "dark";
   const [showCode, setShowCode] = useState(false);
@@ -54,11 +41,7 @@ export const DemoBlock: React.FC<DemoBlockProps> = ({
         </Typography>
       )}
       {description && (
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ mb: 2, fontSize: "0.88rem", lineHeight: 1.6 }}
-        >
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontSize: "0.88rem", lineHeight: 1.6 }}>
           {description}
         </Typography>
       )}
@@ -67,20 +50,14 @@ export const DemoBlock: React.FC<DemoBlockProps> = ({
       <Box
         sx={{
           borderRadius: "16px",
-          border: `1px solid ${
-            isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.08)"
-          }`,
-          backgroundColor: isDark
-            ? "rgba(255, 255, 255, 0.02)"
-            : "rgba(255, 255, 255, 0.6)",
+          border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.08)"}`,
+          backgroundColor: isDark ? "rgba(255, 255, 255, 0.02)" : "rgba(255, 255, 255, 0.6)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
           overflow: "hidden",
           transition: "border-color 0.2s ease, box-shadow 0.2s ease",
           "&:hover": {
-            borderColor: isDark
-              ? "rgba(255, 255, 255, 0.16)"
-              : "rgba(17, 17, 17, 0.15)",
+            borderColor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(17, 17, 17, 0.15)",
           },
         }}
       >
@@ -109,12 +86,8 @@ export const DemoBlock: React.FC<DemoBlockProps> = ({
               alignItems: "center",
               py: 0.8,
               px: 2,
-              borderTop: `1px solid ${
-                isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.06)"
-              }`,
-              backgroundColor: isDark
-                ? "rgba(0, 0, 0, 0.2)"
-                : "rgba(0, 0, 0, 0.015)",
+              borderTop: `1px solid ${isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.06)"}`,
+              backgroundColor: isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0.015)",
             }}
           >
             <Button
@@ -129,9 +102,7 @@ export const DemoBlock: React.FC<DemoBlockProps> = ({
                 mr: 1,
                 "&:hover": {
                   color: "text.primary",
-                  backgroundColor: isDark
-                    ? "rgba(255, 255, 255, 0.06)"
-                    : "rgba(0, 0, 0, 0.04)",
+                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.04)",
                 },
               }}
             >
@@ -162,19 +133,12 @@ export const DemoBlock: React.FC<DemoBlockProps> = ({
                 m: 0,
                 p: 2.5,
                 fontSize: "0.78rem",
-                fontFamily:
-                  '"JetBrains Mono", "Fira Code", SFMono-Regular, Consolas, monospace',
+                fontFamily: '"JetBrains Mono", "Fira Code", SFMono-Regular, Consolas, monospace',
                 lineHeight: 1.55,
-                backgroundColor: isDark
-                  ? "rgba(10, 10, 10, 0.9)"
-                  : "rgba(246, 245, 242, 0.85)",
+                backgroundColor: isDark ? "rgba(10, 10, 10, 0.9)" : "rgba(246, 245, 242, 0.85)",
                 color: isDark ? "#ECEAE5" : "#1A1A1A",
                 overflowX: "auto",
-                borderTop: `1px solid ${
-                  isDark
-                    ? "rgba(255, 255, 255, 0.06)"
-                    : "rgba(17, 17, 17, 0.06)"
-                }`,
+                borderTop: `1px solid ${isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.06)"}`,
               }}
             >
               <code>{code}</code>

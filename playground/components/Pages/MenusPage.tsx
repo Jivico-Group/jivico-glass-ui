@@ -38,12 +38,8 @@ export const MenusPage: React.FC = () => {
 
   // Menu anchor states
   const [glassAnchor, setGlassAnchor] = useState<null | HTMLElement>(null);
-  const [standardAnchor, setStandardAnchor] = useState<null | HTMLElement>(
-    null,
-  );
-  const [sizeSmallAnchor, setSizeSmallAnchor] = useState<null | HTMLElement>(
-    null,
-  );
+  const [standardAnchor, setStandardAnchor] = useState<null | HTMLElement>(null);
+  const [sizeSmallAnchor, setSizeSmallAnchor] = useState<null | HTMLElement>(null);
   const [colorAnchor, setColorAnchor] = useState<null | HTMLElement>(null);
 
   const [selectedColor, setSelectedColor] = useState<any>("accent");
@@ -54,12 +50,7 @@ export const MenusPage: React.FC = () => {
       title="Menu & Dropdown"
       description="Frosted glass dropdown menus (surface='glass') with 24px optical backdrop blur, specular border highlights, scale-adjusted sizes, and semantic color accents."
       category="Navigation"
-      badges={[
-        "surface='glass'",
-        "size='small | medium'",
-        "color palette",
-        "Dropdowns & Contextual",
-      ]}
+      badges={["surface='glass'", "size='small | medium'", "color palette", "Dropdowns & Contextual"]}
     >
       {/* 1. Frosted Glass Spotlight */}
       <DemoBlock
@@ -106,9 +97,7 @@ export const MenusPage: React.FC = () => {
             flexDirection: "column",
             alignItems: "center",
             gap: 3,
-            boxShadow: isDark
-              ? "0 24px 60px rgba(0, 0, 0, 0.7)"
-              : "0 20px 48px rgba(0, 0, 0, 0.15)",
+            boxShadow: isDark ? "0 24px 60px rgba(0, 0, 0, 0.7)" : "0 20px 48px rgba(0, 0, 0, 0.15)",
           }}
         >
           {/* Ambient Light Mesh Orbs */}
@@ -120,8 +109,7 @@ export const MenusPage: React.FC = () => {
               width: 260,
               height: 260,
               borderRadius: "50%",
-              background:
-                "radial-gradient(circle, rgba(99, 102, 241, 0.65) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(99, 102, 241, 0.65) 0%, transparent 70%)",
               filter: "blur(30px)",
             }}
           />
@@ -133,8 +121,7 @@ export const MenusPage: React.FC = () => {
               width: 280,
               height: 280,
               borderRadius: "50%",
-              background:
-                "radial-gradient(circle, rgba(236, 72, 153, 0.65) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(236, 72, 153, 0.65) 0%, transparent 70%)",
               filter: "blur(30px)",
             }}
           />
@@ -161,10 +148,7 @@ export const MenusPage: React.FC = () => {
               <ListItemIcon>
                 <User size={20} />
               </ListItemIcon>
-              <ListItemText
-                primary="Personal Account"
-                secondary="alex@jivico.design"
-              />
+              <ListItemText primary="Personal Account" secondary="alex@jivico.design" />
             </MenuItem>
 
             <MenuItem onClick={() => setGlassAnchor(null)}>
@@ -172,12 +156,7 @@ export const MenusPage: React.FC = () => {
                 <Sparkles size={20} />
               </ListItemIcon>
               <ListItemText primary="AI Workflows" />
-              <Chip
-                label="Pro"
-                size="small"
-                color="primary"
-                sx={{ height: 20, fontSize: "0.65rem" }}
-              />
+              <Chip label="Pro" size="small" color="primary" sx={{ height: 20, fontSize: "0.65rem" }} />
             </MenuItem>
 
             <MenuItem onClick={() => setGlassAnchor(null)}>
@@ -284,10 +263,7 @@ export const MenusPage: React.FC = () => {
             <ListItemIcon>
               <CreditCard size={20} />
             </ListItemIcon>
-            <ListItemText
-              primary="Billing Details"
-              secondary="Payment methods"
-            />
+            <ListItemText primary="Billing Details" secondary="Payment methods" />
           </MenuItem>
         </Menu>
       </DemoBlock>
@@ -320,18 +296,16 @@ export const MenusPage: React.FC = () => {
               width: "100%",
             }}
           >
-            {["primary", "accent", "success", "warning", "error"].map(
-              (color) => (
-                <Chip
-                  key={color}
-                  label={color}
-                  color={color as any}
-                  variant={selectedColor === color ? "filled" : "outlined"}
-                  onClick={() => setSelectedColor(color)}
-                  sx={{ textTransform: "capitalize", fontWeight: 700 }}
-                />
-              ),
-            )}
+            {["primary", "accent", "success", "warning", "error"].map((color) => (
+              <Chip
+                key={color}
+                label={color}
+                color={color as any}
+                variant={selectedColor === color ? "filled" : "outlined"}
+                onClick={() => setSelectedColor(color)}
+                sx={{ textTransform: "capitalize", fontWeight: 700 }}
+              />
+            ))}
           </Stack>
 
           <Button

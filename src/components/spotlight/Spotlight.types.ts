@@ -1,6 +1,4 @@
-import type {
-  MouseEvent,
-} from "react";
+import type { MouseEvent } from "react";
 
 import type { SxProps, Theme } from "@mui/material/styles";
 import type { AspectRatio, ResponsiveAspectRatio } from "../../types/aspectRatio.js";
@@ -51,10 +49,7 @@ export interface SpotlightProps {
   /**
    * Handles navigation for the complete media / CTA button area.
    */
-  onNavigate?: (
-    item: SpotlightItem,
-    event: MouseEvent<HTMLAnchorElement>,
-  ) => void;
+  onNavigate?: (item: SpotlightItem, event: MouseEvent<HTMLAnchorElement>) => void;
 
   variant?: SpotlightVariant;
   size?: SpotlightSize;

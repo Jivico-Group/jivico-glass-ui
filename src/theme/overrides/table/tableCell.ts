@@ -3,19 +3,12 @@ import type { JivicoPalette } from "../../palette/index.js";
 
 import type { TableColor } from "./table.js";
 
-export const getTableCellOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getTableCellOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   const text = isDark ? "#F6F5F2" : "#111111";
 
-  const secondaryText = isDark
-    ? "rgba(246, 245, 242, 0.62)"
-    : "rgba(17, 17, 17, 0.62)";
+  const secondaryText = isDark ? "rgba(246, 245, 242, 0.62)" : "rgba(17, 17, 17, 0.62)";
 
-  const divider = isDark
-    ? "rgba(255, 255, 255, 0.08)"
-    : "rgba(17, 17, 17, 0.08)";
+  const divider = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)";
 
   const colorMap: Record<TableColor, string> = {
     primary: palette.primary.main,
@@ -50,13 +43,7 @@ export const getTableCellOverrides = (
             padding,
             fontSize,
             color: text,
-            borderBottom: `1px solid ${
-              isGlass
-                ? isDark
-                  ? "rgba(255, 255, 255, 0.065)"
-                  : "rgba(17, 17, 17, 0.065)"
-                : divider
-            }`,
+            borderBottom: `1px solid ${isGlass ? (isDark ? "rgba(255, 255, 255, 0.065)" : "rgba(17, 17, 17, 0.065)") : divider}`,
             verticalAlign: "middle",
             lineHeight: 1.45,
 
@@ -78,13 +65,7 @@ export const getTableCellOverrides = (
               fontWeight: 500,
               color: secondaryText,
               borderBottom: 0,
-              borderTop: `1px solid ${
-                isGlass
-                  ? isDark
-                    ? "rgba(255, 255, 255, 0.10)"
-                    : "rgba(17, 17, 17, 0.08)"
-                  : divider
-              }`,
+              borderTop: `1px solid ${isGlass ? (isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.08)") : divider}`,
             },
 
             "&.MuiTableCell-alignLeft": {
@@ -148,9 +129,7 @@ export const getTableCellOverrides = (
 
               "&:hover": {
                 color,
-                backgroundColor: isDark
-                  ? "rgba(255, 255, 255, 0.06)"
-                  : "rgba(17, 17, 17, 0.05)",
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.05)",
               },
 
               "&.Mui-focusVisible": {
@@ -167,9 +146,7 @@ export const getTableCellOverrides = (
               },
 
               "&:hover": {
-                backgroundColor: isDark
-                  ? "rgba(255, 255, 255, 0.06)"
-                  : "rgba(17, 17, 17, 0.05)",
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.05)",
               },
 
               "&.Mui-focusVisible": {

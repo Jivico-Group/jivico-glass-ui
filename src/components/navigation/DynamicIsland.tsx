@@ -8,10 +8,7 @@ import MuiBottomNavigation, {
 
 export type DynamicIslandProps = MuiBottomNavigationProps;
 
-export const DynamicIsland = React.forwardRef<
-  HTMLDivElement,
-  DynamicIslandProps
->(({ children, ...props }, ref) => {
+export const DynamicIsland = React.forwardRef<HTMLDivElement, DynamicIslandProps>(({ children, ...props }, ref) => {
   return (
     <MuiBottomNavigation ref={ref} {...props}>
       {children}

@@ -1,33 +1,18 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export const getTableContainerOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
-  const glassBackground = isDark
-    ? "rgba(255, 255, 255, 0.055)"
-    : "rgba(255, 255, 255, 0.62)";
+export const getTableContainerOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
+  const glassBackground = isDark ? "rgba(255, 255, 255, 0.055)" : "rgba(255, 255, 255, 0.62)";
 
-  const glassBorder = isDark
-    ? "rgba(255, 255, 255, 0.10)"
-    : "rgba(255, 255, 255, 0.72)";
+  const glassBorder = isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(255, 255, 255, 0.72)";
 
-  const glassShadow = isDark
-    ? "0 14px 40px rgba(0, 0, 0, 0.24)"
-    : "0 14px 40px rgba(17, 17, 17, 0.07)";
+  const glassShadow = isDark ? "0 14px 40px rgba(0, 0, 0, 0.24)" : "0 14px 40px rgba(17, 17, 17, 0.07)";
 
-  const scrollbarTrack = isDark
-    ? "rgba(255, 255, 255, 0.04)"
-    : "rgba(17, 17, 17, 0.04)";
+  const scrollbarTrack = isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.04)";
 
-  const scrollbarThumb = isDark
-    ? "rgba(255, 255, 255, 0.18)"
-    : "rgba(17, 17, 17, 0.16)";
+  const scrollbarThumb = isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(17, 17, 17, 0.16)";
 
-  const scrollbarThumbHover = isDark
-    ? "rgba(255, 255, 255, 0.28)"
-    : "rgba(17, 17, 17, 0.24)";
+  const scrollbarThumbHover = isDark ? "rgba(255, 255, 255, 0.28)" : "rgba(17, 17, 17, 0.24)";
 
   return {
     MuiTableContainer: {

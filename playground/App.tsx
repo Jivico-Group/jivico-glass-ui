@@ -223,16 +223,12 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "linear-progress-sizes", title: "Progress Track Scale" },
     { id: "skeleton-placeholders", title: "Glass Skeleton Shimmer" },
   ],
-  feedback: [
-    { id: "alerts", title: "Severity Levels" },
-  ],
+  feedback: [{ id: "alerts", title: "Severity Levels" }],
   typography: [
     { id: "gradient-text", title: "Gradient Text" },
     { id: "headings", title: "Heading Scale" },
   ],
-  steppers: [
-    { id: "horizontal-stepper", title: "Horizontal Stepper" },
-  ],
+  steppers: [{ id: "horizontal-stepper", title: "Horizontal Stepper" }],
 };
 
 export default function App() {
@@ -340,11 +336,7 @@ export default function App() {
         {renderPage()}
       </DocLayout>
 
-      <SearchDialog
-        open={searchOpen}
-        onClose={() => setSearchOpen(false)}
-        onSelect={handleRouteChange}
-      />
+      <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} onSelect={handleRouteChange} />
     </Box>
   );
 }

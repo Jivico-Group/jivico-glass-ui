@@ -3,23 +3,14 @@ import type { JivicoPalette } from "../../palette/index.js";
 
 import type { TableColor } from "./table.js";
 
-export const getTableHeadOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getTableHeadOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   const text = isDark ? "#F6F5F2" : "#111111";
 
-  const secondaryText = isDark
-    ? "rgba(246, 245, 242, 0.62)"
-    : "rgba(17, 17, 17, 0.62)";
+  const secondaryText = isDark ? "rgba(246, 245, 242, 0.62)" : "rgba(17, 17, 17, 0.62)";
 
-  const divider = isDark
-    ? "rgba(255, 255, 255, 0.08)"
-    : "rgba(17, 17, 17, 0.08)";
+  const divider = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)";
 
-  const glassBackground = isDark
-    ? "rgba(255, 255, 255, 0.045)"
-    : "rgba(255, 255, 255, 0.42)";
+  const glassBackground = isDark ? "rgba(255, 255, 255, 0.045)" : "rgba(255, 255, 255, 0.42)";
 
   const colorMap: Record<TableColor, string> = {
     primary: palette.primary.main,
@@ -61,13 +52,7 @@ export const getTableHeadOverrides = (
               textTransform: "uppercase",
               verticalAlign: "middle",
               whiteSpace: "nowrap",
-              borderBottom: `1px solid ${
-                isGlass
-                  ? isDark
-                    ? "rgba(255, 255, 255, 0.10)"
-                    : "rgba(255, 255, 255, 0.64)"
-                  : divider
-              }`,
+              borderBottom: `1px solid ${isGlass ? (isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(255, 255, 255, 0.64)") : divider}`,
 
               "&.MuiTableCell-alignLeft": {
                 textAlign: "left",

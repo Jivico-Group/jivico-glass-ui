@@ -8,10 +8,7 @@ type AlertRadius = "square" | "small" | "medium" | "large" | "rounded" | "pill";
 type GlassIntensity = "subtle" | "medium" | "strong" | "ultra";
 type AlertSeverity = "success" | "info" | "warning" | "error";
 
-export const getAlertOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getAlertOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   const radiusMap: Record<AlertRadius, number> = {
     square: 0,
     small: 8,
@@ -59,9 +56,7 @@ export const getAlertOverrides = (
         return COLORS.alertRgb.success;
 
       case "warning":
-        return isDark
-          ? COLORS.alertRgb.warningDark
-          : COLORS.alertRgb.warningLight;
+        return isDark ? COLORS.alertRgb.warningDark : COLORS.alertRgb.warningLight;
 
       case "error":
         return COLORS.alertRgb.error;
@@ -80,13 +75,11 @@ export const getAlertOverrides = (
 
           const color = (ownerState.color ?? "glass") as AlertColor;
 
-          const appearance = (ownerState.appearance ??
-            "glass") as AlertAppearance;
+          const appearance = (ownerState.appearance ?? "glass") as AlertAppearance;
 
           const radius = (ownerState.radius ?? "large") as AlertRadius;
 
-          const glassIntensity = (ownerState.glassIntensity ??
-            "strong") as GlassIntensity;
+          const glassIntensity = (ownerState.glassIntensity ?? "strong") as GlassIntensity;
 
           const glow = ownerState.glow ?? true;
 
@@ -96,8 +89,7 @@ export const getAlertOverrides = (
            * When using a Jivico semantic color,
            * use that color instead of severity.
            */
-          const alertColor =
-            color === "glass" ? severityPalette : palette[color];
+          const alertColor = color === "glass" ? severityPalette : palette[color];
 
           const mainColor = alertColor.main;
 
@@ -168,15 +160,9 @@ export const getAlertOverrides = (
             /*
              * Glass treatment.
              */
-            backdropFilter:
-              appearance === "glass"
-                ? `saturate(180%) ${blurMap[glassIntensity]}`
-                : undefined,
+            backdropFilter: appearance === "glass" ? `saturate(180%) ${blurMap[glassIntensity]}` : undefined,
 
-            WebkitBackdropFilter:
-              appearance === "glass"
-                ? `saturate(180%) ${blurMap[glassIntensity]}`
-                : undefined,
+            WebkitBackdropFilter: appearance === "glass" ? `saturate(180%) ${blurMap[glassIntensity]}` : undefined,
 
             /*
              * Subtle depth.
@@ -206,8 +192,7 @@ export const getAlertOverrides = (
 
                     borderRadius: "inherit",
 
-                    background:
-                      "linear-gradient(135deg, rgba(255,255,255,0.12), transparent 55%)",
+                    background: "linear-gradient(135deg, rgba(255,255,255,0.12), transparent 55%)",
 
                     opacity: isDark ? 0.8 : 1,
                   }
@@ -225,8 +210,7 @@ export const getAlertOverrides = (
              * Alert icon.
              */
             "& .MuiAlert-icon": {
-              color:
-                appearance === "solid" ? alertColor.contrastText : mainColor,
+              color: appearance === "solid" ? alertColor.contrastText : mainColor,
 
               opacity: 1,
 
@@ -248,16 +232,13 @@ export const getAlertOverrides = (
               paddingRight: 0,
 
               "& .MuiIconButton-root": {
-                color:
-                  appearance === "solid" ? alertColor.contrastText : mainColor,
+                color: appearance === "solid" ? alertColor.contrastText : mainColor,
 
                 transition: "background-color 180ms ease, transform 180ms ease",
 
                 "&:hover": {
                   backgroundColor:
-                    appearance === "solid"
-                      ? "rgba(255,255,255,0.12)"
-                      : `rgba(${rgb}, ${isDark ? 0.12 : 0.08})`,
+                    appearance === "solid" ? "rgba(255,255,255,0.12)" : `rgba(${rgb}, ${isDark ? 0.12 : 0.08})`,
                 },
 
                 "&:active": {
@@ -274,8 +255,7 @@ export const getAlertOverrides = (
 
               fontWeight: 700,
 
-              color:
-                appearance === "solid" ? alertColor.contrastText : mainColor,
+              color: appearance === "solid" ? alertColor.contrastText : mainColor,
             },
           };
         },

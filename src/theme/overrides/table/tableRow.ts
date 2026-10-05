@@ -3,23 +3,14 @@ import type { JivicoPalette } from "../../palette/index.js";
 
 import type { TableColor } from "./table.js";
 
-export const getTableRowOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => {
+export const getTableRowOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   const text = isDark ? "#F6F5F2" : "#111111";
 
-  const divider = isDark
-    ? "rgba(255, 255, 255, 0.08)"
-    : "rgba(17, 17, 17, 0.08)";
+  const divider = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)";
 
-  const hoverBackground = isDark
-    ? "rgba(255, 255, 255, 0.045)"
-    : "rgba(17, 17, 17, 0.035)";
+  const hoverBackground = isDark ? "rgba(255, 255, 255, 0.045)" : "rgba(17, 17, 17, 0.035)";
 
-  const selectedBackground = isDark
-    ? "rgba(255, 255, 255, 0.09)"
-    : "rgba(17, 17, 17, 0.07)";
+  const selectedBackground = isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.07)";
 
   const colorMap: Record<TableColor, string> = {
     primary: palette.primary.main,
@@ -47,17 +38,10 @@ export const getTableRowOverrides = (
 
           return {
             color: text,
-            transition:
-              "background-color 160ms ease, box-shadow 160ms ease, border-color 160ms ease",
+            transition: "background-color 160ms ease, box-shadow 160ms ease, border-color 160ms ease",
 
             "& .MuiTableCell-root": {
-              borderBottom: `1px solid ${
-                isGlass
-                  ? isDark
-                    ? "rgba(255, 255, 255, 0.065)"
-                    : "rgba(17, 17, 17, 0.065)"
-                  : divider
-              }`,
+              borderBottom: `1px solid ${isGlass ? (isDark ? "rgba(255, 255, 255, 0.065)" : "rgba(17, 17, 17, 0.065)") : divider}`,
             },
 
             "&:hover": {

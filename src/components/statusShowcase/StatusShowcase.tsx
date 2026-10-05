@@ -3,10 +3,7 @@ import React from "react";
 
 import { Box, Button, Stack, Typography } from "@mui/material";
 
-import type {
-  StatusShowcaseImage,
-  StatusShowcaseProps,
-} from "./StatusShowcase.types.js";
+import type { StatusShowcaseImage, StatusShowcaseProps } from "./StatusShowcase.types.js";
 
 const SIZE_CONFIG = {
   small: {
@@ -276,8 +273,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
             inset: 0,
             pointerEvents: "none",
 
-            background:
-              "linear-gradient(135deg, rgba(255,255,255,0.10), transparent 45%, rgba(255,255,255,0.04))",
+            background: "linear-gradient(135deg, rgba(255,255,255,0.10), transparent 45%, rgba(255,255,255,0.04))",
 
             opacity: 0.7,
           },

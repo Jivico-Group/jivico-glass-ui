@@ -1,23 +1,9 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Stepper,
-  Step,
-  StepLabel,
-  Button,
-  Typography,
-} from "@mui/material";
+import { Box, Stepper, Step, StepLabel, Button, Typography } from "@mui/material";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 
-type StepperColor =
-  | "primary"
-  | "secondary"
-  | "accent"
-  | "info"
-  | "success"
-  | "warning"
-  | "error";
+type StepperColor = "primary" | "secondary" | "accent" | "info" | "success" | "warning" | "error";
 
 export const SteppersPage: React.FC = () => {
   const [activeStep, setActiveStep] = useState(1);
@@ -105,12 +91,7 @@ export const SteppersPage: React.FC = () => {
               </Step>
             ))}
           </Stepper>
-          <Stepper
-            activeStep={activeStep}
-            color="accent"
-            alternativeLabel
-            sx={{ mb: 4 }}
-          >
+          <Stepper activeStep={activeStep} color="accent" alternativeLabel sx={{ mb: 4 }}>
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
@@ -124,13 +105,7 @@ export const SteppersPage: React.FC = () => {
               justifyContent: "flex-end",
             }}
           >
-            <Button
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              variant="outlined"
-              color="glass"
-              size="small"
-            >
+            <Button disabled={activeStep === 0} onClick={handleBack} variant="outlined" color="glass" size="small">
               Back
             </Button>
 

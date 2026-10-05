@@ -1,10 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export const getStepperOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getStepperOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiStepper: {
     defaultProps: {
       color: "primary",
@@ -73,9 +70,7 @@ export const getStepperOverrides = (
   MuiStepConnector: {
     styleOverrides: {
       line: {
-        borderColor: isDark
-          ? "rgba(255, 255, 255, 0.22)"
-          : "rgba(17, 17, 17, 0.22)",
+        borderColor: isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(17, 17, 17, 0.22)",
 
         borderTopWidth: 2,
         borderRadius: 1,

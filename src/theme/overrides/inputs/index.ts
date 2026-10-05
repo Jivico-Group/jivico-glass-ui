@@ -10,10 +10,7 @@ import { getFormHelperTextOverrides } from "./formHelperText";
 import { getSelectOverrides } from "./select";
 import { getAutocompleteOverrides } from "./autocomplete";
 
-export const getInputOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getInputOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   ...getButtonOverrides(palette, isDark),
   ...getButtonGroupOverrides(isDark),
   ...getFabOverrides(palette),

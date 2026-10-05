@@ -106,11 +106,7 @@ export interface GalleryProps<T> {
    * When provided, clicking on the item invokes this callback.
    * Sets cursor to pointer.
    */
-  onNavigate?: (
-    item: T,
-    index: number,
-    event: React.MouseEvent<HTMLElement>,
-  ) => void;
+  onNavigate?: (item: T, index: number, event: React.MouseEvent<HTMLElement>) => void;
 
   /**
    * Responsive number of columns.

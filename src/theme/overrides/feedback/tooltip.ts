@@ -1,10 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export const getTooltipOverrides = (
-  _palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getTooltipOverrides = (_palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiTooltip: {
     defaultProps: {
       arrow: true,
@@ -32,9 +29,7 @@ export const getTooltipOverrides = (
         /**
          * Glass surface
          */
-        const glassBackground = isDark
-          ? "rgba(245, 245, 247, 0.82)"
-          : "rgba(17, 17, 17, 0.78)";
+        const glassBackground = isDark ? "rgba(245, 245, 247, 0.82)" : "rgba(17, 17, 17, 0.78)";
         const glassColor = isDark ? "#111111" : "#FFFFFF";
 
         /**
@@ -51,9 +46,7 @@ export const getTooltipOverrides = (
         /**
          * Shadow
          */
-        const shadow = isDark
-          ? "0 8px 28px rgba(0, 0, 0, 0.18)"
-          : "0 12px 36px rgba(0, 0, 0, 0.45)";
+        const shadow = isDark ? "0 8px 28px rgba(0, 0, 0, 0.18)" : "0 12px 36px rgba(0, 0, 0, 0.45)";
 
         return {
           position: "relative",
@@ -92,9 +85,7 @@ export const getTooltipOverrides = (
               right: 0,
               height: 1,
               pointerEvents: "none",
-              background: isDark
-                ? "rgba(255,255,255,0.95)"
-                : "rgba(255,255,255,0.22)",
+              background: isDark ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.22)",
               zIndex: 2,
             },
           }),

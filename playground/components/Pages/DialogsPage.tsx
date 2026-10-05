@@ -136,13 +136,7 @@ export const DialogsPage: React.FC = () => {
         </Box>
 
         {/* Frosted Glass Dialog (glass=true) */}
-        <Dialog
-          open={glassModalOpen}
-          glass={true}
-          onClose={() => setGlassModalOpen(false)}
-          maxWidth="xs"
-          fullWidth
-        >
+        <Dialog open={glassModalOpen} glass={true} onClose={() => setGlassModalOpen(false)} maxWidth="xs" fullWidth>
           <Box
             sx={{
               display: "flex",
@@ -152,9 +146,7 @@ export const DialogsPage: React.FC = () => {
               pt: 1,
             }}
           >
-            <DialogTitle
-              sx={{ display: "flex", alignItems: "center", gap: 1.5, pb: 0 }}
-            >
+            <DialogTitle sx={{ display: "flex", alignItems: "center", gap: 1.5, pb: 0 }}>
               <Sparkles size={20} />
               Frosted Glass Dialog
             </DialogTitle>
@@ -164,22 +156,15 @@ export const DialogsPage: React.FC = () => {
           </Box>
           <DialogContent>
             <DialogContentText sx={{ pt: 1 }}>
-              This dialog renders with <strong>glass={"{true}"}</strong> featuring 32px backdrop blur, specular top perimeter light reflection, and refined contrast typography.
+              This dialog renders with <strong>glass={"{true}"}</strong> featuring 32px backdrop blur, specular top
+              perimeter light reflection, and refined contrast typography.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="outlined"
-              color="glass"
-              onClick={() => setGlassModalOpen(false)}
-            >
+            <Button variant="outlined" color="glass" onClick={() => setGlassModalOpen(false)}>
               Cancel
             </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => setGlassModalOpen(false)}
-            >
+            <Button variant="contained" color="primary" onClick={() => setGlassModalOpen(false)}>
               Confirm
             </Button>
           </DialogActions>
@@ -209,15 +194,12 @@ export const DialogsPage: React.FC = () => {
           </Box>
           <DialogContent>
             <DialogContentText sx={{ pt: 1 }}>
-              This dialog renders with <strong>glass={"{false}"}</strong> using the clean 24px rounded surface palette with 70px drop shadow.
+              This dialog renders with <strong>glass={"{false}"}</strong> using the clean 24px rounded surface palette
+              with 70px drop shadow.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="outlined"
-              color="glass"
-              onClick={() => setStandardModalOpen(false)}
-            >
+            <Button variant="outlined" color="glass" onClick={() => setStandardModalOpen(false)}>
               Close
             </Button>
           </DialogActions>
@@ -278,13 +260,7 @@ export const DialogsPage: React.FC = () => {
         </Box>
 
         {/* Preset Confirmation Dialog */}
-        <Dialog
-          open={confirmOpen}
-          glass={true}
-          onClose={() => setConfirmOpen(false)}
-          maxWidth="xs"
-          fullWidth
-        >
+        <Dialog open={confirmOpen} glass={true} onClose={() => setConfirmOpen(false)} maxWidth="xs" fullWidth>
           <Box
             sx={{
               display: "flex",
@@ -294,17 +270,13 @@ export const DialogsPage: React.FC = () => {
               pt: 1,
             }}
           >
-            <DialogTitle
-              sx={{ display: "flex", alignItems: "center", gap: 1.5, pb: 0 }}
-            >
+            <DialogTitle sx={{ display: "flex", alignItems: "center", gap: 1.5, pb: 0 }}>
               <Box
                 sx={{
                   width: 36,
                   height: 36,
                   borderRadius: "10px",
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.1)"
-                    : "rgba(17,17,17,0.06)",
+                  bgcolor: isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.06)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -320,16 +292,12 @@ export const DialogsPage: React.FC = () => {
           </Box>
           <DialogContent>
             <DialogContentText sx={{ pt: 1 }}>
-              Revoking this session will instantly sign out the user from all
-              active browsers and revoke hardware security key tokens.
+              Revoking this session will instantly sign out the user from all active browsers and revoke hardware
+              security key tokens.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="outlined"
-              color="glass"
-              onClick={() => setConfirmOpen(false)}
-            >
+            <Button variant="outlined" color="glass" onClick={() => setConfirmOpen(false)}>
               Cancel
             </Button>
             <Button
@@ -344,13 +312,7 @@ export const DialogsPage: React.FC = () => {
         </Dialog>
 
         {/* Preset Form Settings Dialog */}
-        <Dialog
-          open={formOpen}
-          glass={true}
-          onClose={() => setFormOpen(false)}
-          maxWidth="sm"
-          fullWidth
-        >
+        <Dialog open={formOpen} glass={true} onClose={() => setFormOpen(false)} maxWidth="sm" fullWidth>
           <Box
             sx={{
               display: "flex",
@@ -377,18 +339,14 @@ export const DialogsPage: React.FC = () => {
                 onChange={(e) => setProjectName(e.target.value)}
               />
               <FormControl fullWidth>
-                <InputLabel id="dialog-select-visibility">
-                  Visibility Tier
-                </InputLabel>
+                <InputLabel id="dialog-select-visibility">Visibility Tier</InputLabel>
                 <Select
                   labelId="dialog-select-visibility"
                   value={visibility}
                   label="Visibility Tier"
                   onChange={(e) => setVisibility(e.target.value)}
                 >
-                  <MenuItem value="private">
-                    Private (Team Members Only)
-                  </MenuItem>
+                  <MenuItem value="private">Private (Team Members Only)</MenuItem>
                   <MenuItem value="internal">Internal Organization</MenuItem>
                   <MenuItem value="public">Public Open Source</MenuItem>
                 </Select>
@@ -397,31 +355,20 @@ export const DialogsPage: React.FC = () => {
                 sx={{
                   p: 2,
                   borderRadius: "14px",
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.04)"
-                    : "rgba(17,17,17,0.03)",
-                  border: `1px solid ${
-                    isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"
-                  }`,
+                  bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)",
+                  border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
                 }}
               >
                 <FormControlLabel
                   control={
-                    <Switch
-                      color="glass"
-                      checked={twoFactor}
-                      onChange={(e) => setTwoFactor(e.target.checked)}
-                    />
+                    <Switch color="glass" checked={twoFactor} onChange={(e) => setTwoFactor(e.target.checked)} />
                   }
                   label={
                     <Box>
                       <Typography variant="body2" sx={{ fontWeight: 600 }}>
                         Hardware Glass Passkey
                       </Typography>
-                      <Typography
-                        variant="caption"
-                        sx={{ color: "text.secondary" }}
-                      >
+                      <Typography variant="caption" sx={{ color: "text.secondary" }}>
                         Require biometrics or security key on sign in
                       </Typography>
                     </Box>
@@ -431,11 +378,7 @@ export const DialogsPage: React.FC = () => {
             </Box>
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="outlined"
-              color="glass"
-              onClick={() => setFormOpen(false)}
-            >
+            <Button variant="outlined" color="glass" onClick={() => setFormOpen(false)}>
               Cancel
             </Button>
             <Button
@@ -468,12 +411,8 @@ export const DialogsPage: React.FC = () => {
               alignItems: "center",
               justifyContent: "space-between",
               p: 2.5,
-              borderBottom: `1px solid ${
-                isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.08)"
-              }`,
-              backgroundColor: isDark
-                ? "rgba(18, 20, 26, 0.7)"
-                : "rgba(246, 245, 242, 0.7)",
+              borderBottom: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.08)"}`,
+              backgroundColor: isDark ? "rgba(18, 20, 26, 0.7)" : "rgba(246, 245, 242, 0.7)",
               backdropFilter: "blur(24px)",
             }}
           >
@@ -485,11 +424,7 @@ export const DialogsPage: React.FC = () => {
                 Full-Screen Glass Workspace
               </Typography>
             </Box>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => setFullScreenOpen(false)}
-            >
+            <Button variant="contained" color="primary" onClick={() => setFullScreenOpen(false)}>
               Done
             </Button>
           </Box>
@@ -497,23 +432,16 @@ export const DialogsPage: React.FC = () => {
             <Typography variant="h4" sx={{ fontWeight: 800, mb: 2 }}>
               Immersive Liquid Experience
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{ color: "text.secondary", mb: 4, lineHeight: 1.7 }}
-            >
-              Full-screen modals expand smoothly from the bottom with Apple
-              spring physics, preserving background context through translucent navigation headers.
+            <Typography variant="body1" sx={{ color: "text.secondary", mb: 4, lineHeight: 1.7 }}>
+              Full-screen modals expand smoothly from the bottom with Apple spring physics, preserving background
+              context through translucent navigation headers.
             </Typography>
             <Box
               sx={{
                 p: 3,
                 borderRadius: "16px",
-                bgcolor: isDark
-                  ? "rgba(255,255,255,0.04)"
-                  : "rgba(255,255,255,0.6)",
-                border: `1px solid ${
-                  isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.08)"
-                }`,
+                bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.6)",
+                border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.08)"}`,
                 backdropFilter: "blur(16px)",
               }}
             >
@@ -550,13 +478,7 @@ export const DialogsPage: React.FC = () => {
       >
         <Box sx={{ mb: 3 }}>
           <FormControlLabel
-            control={
-              <Switch
-                checked={drawerGlass}
-                onChange={(e) => setDrawerGlass(e.target.checked)}
-                color="glass"
-              />
-            }
+            control={<Switch checked={drawerGlass} onChange={(e) => setDrawerGlass(e.target.checked)} color="glass" />}
             label={
               <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                 Drawer Surface Mode:{" "}
@@ -629,12 +551,7 @@ export const DialogsPage: React.FC = () => {
         </Box>
 
         {/* Bottom Sheet Drawer */}
-        <Drawer
-          anchor="bottom"
-          glass={drawerGlass}
-          open={bottomSheetOpen}
-          onClose={() => setBottomSheetOpen(false)}
-        >
+        <Drawer anchor="bottom" glass={drawerGlass} open={bottomSheetOpen} onClose={() => setBottomSheetOpen(false)}>
           <Box
             sx={{
               maxWidth: 600,
@@ -650,9 +567,7 @@ export const DialogsPage: React.FC = () => {
                 width: 44,
                 height: 5,
                 borderRadius: 3,
-                bgcolor: isDark
-                  ? "rgba(255,255,255,0.3)"
-                  : "rgba(17,17,17,0.25)",
+                bgcolor: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.25)",
                 mx: "auto",
                 mb: 2.5,
               }}
@@ -674,10 +589,7 @@ export const DialogsPage: React.FC = () => {
                   Rendering with glass={drawerGlass ? "true" : "false"}
                 </Typography>
               </Box>
-              <IconButton
-                onClick={() => setBottomSheetOpen(false)}
-                size="small"
-              >
+              <IconButton onClick={() => setBottomSheetOpen(false)} size="small">
                 <X size={18} />
               </IconButton>
             </Box>
@@ -688,18 +600,13 @@ export const DialogsPage: React.FC = () => {
                   onClick={() => setBottomSheetOpen(false)}
                   sx={{
                     borderRadius: "12px",
-                    bgcolor: isDark
-                      ? "rgba(255,255,255,0.04)"
-                      : "rgba(17,17,17,0.03)",
+                    bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)",
                   }}
                 >
                   <ListItemIcon>
                     <Copy size={20} />
                   </ListItemIcon>
-                  <ListItemText
-                    primary="Copy Workspace Link"
-                    secondary="https://jivico.design/sheet/9a8f2"
-                  />
+                  <ListItemText primary="Copy Workspace Link" secondary="https://jivico.design/sheet/9a8f2" />
                 </ListItemButton>
               </ListItem>
 
@@ -708,18 +615,13 @@ export const DialogsPage: React.FC = () => {
                   onClick={() => setBottomSheetOpen(false)}
                   sx={{
                     borderRadius: "12px",
-                    bgcolor: isDark
-                      ? "rgba(255,255,255,0.04)"
-                      : "rgba(17,17,17,0.03)",
+                    bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)",
                   }}
                 >
                   <ListItemIcon>
                     <Share2 size={20} />
                   </ListItemIcon>
-                  <ListItemText
-                    primary="AirDrop to Nearby Devices"
-                    secondary="Share directly to macOS and iOS"
-                  />
+                  <ListItemText primary="AirDrop to Nearby Devices" secondary="Share directly to macOS and iOS" />
                 </ListItemButton>
               </ListItem>
 
@@ -728,18 +630,13 @@ export const DialogsPage: React.FC = () => {
                   onClick={() => setBottomSheetOpen(false)}
                   sx={{
                     borderRadius: "12px",
-                    bgcolor: isDark
-                      ? "rgba(255,255,255,0.04)"
-                      : "rgba(17,17,17,0.03)",
+                    bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)",
                   }}
                 >
                   <ListItemIcon>
                     <Sliders size={20} />
                   </ListItemIcon>
-                  <ListItemText
-                    primary="Export Tokens as JSON"
-                    secondary="Figma and Style Dictionary compatible"
-                  />
+                  <ListItemText primary="Export Tokens as JSON" secondary="Figma and Style Dictionary compatible" />
                 </ListItemButton>
               </ListItem>
             </List>
@@ -747,12 +644,7 @@ export const DialogsPage: React.FC = () => {
         </Drawer>
 
         {/* Right Drawer */}
-        <Drawer
-          anchor="right"
-          glass={drawerGlass}
-          open={rightDrawerOpen}
-          onClose={() => setRightDrawerOpen(false)}
-        >
+        <Drawer anchor="right" glass={drawerGlass} open={rightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
           <Box
             sx={{
               width: { xs: 300, sm: 380 },
@@ -773,10 +665,7 @@ export const DialogsPage: React.FC = () => {
               <Typography variant="h6" sx={{ fontWeight: 700 }}>
                 Inspection Panel
               </Typography>
-              <IconButton
-                onClick={() => setRightDrawerOpen(false)}
-                size="small"
-              >
+              <IconButton onClick={() => setRightDrawerOpen(false)} size="small">
                 <X size={18} />
               </IconButton>
             </Box>
@@ -784,9 +673,7 @@ export const DialogsPage: React.FC = () => {
             <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5 }}>
               Drawer Surface Properties
             </Typography>
-            <Box
-              sx={{ display: "flex", flexDirection: "column", gap: 1.5, mb: 3 }}
-            >
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, mb: 3 }}>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   Glass Prop:
@@ -818,22 +705,13 @@ export const DialogsPage: React.FC = () => {
             <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5 }}>
               Notifications
             </Typography>
-            <Box
-              sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2 }}
-            >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2 }}>
               <Bell size={18} opacity={0.7} />
-              <Typography variant="body2">
-                Drawer styles synchronized cleanly
-              </Typography>
+              <Typography variant="body2">Drawer styles synchronized cleanly</Typography>
             </Box>
 
             <Box sx={{ mt: "auto", pt: 2 }}>
-              <Button
-                variant="contained"
-                color="primary"
-                fullWidth
-                onClick={() => setRightDrawerOpen(false)}
-              >
+              <Button variant="contained" color="primary" fullWidth onClick={() => setRightDrawerOpen(false)}>
                 Close Panel
               </Button>
             </Box>
@@ -841,12 +719,7 @@ export const DialogsPage: React.FC = () => {
         </Drawer>
 
         {/* Left Drawer */}
-        <Drawer
-          anchor="left"
-          glass={drawerGlass}
-          open={leftDrawerOpen}
-          onClose={() => setLeftDrawerOpen(false)}
-        >
+        <Drawer anchor="left" glass={drawerGlass} open={leftDrawerOpen} onClose={() => setLeftDrawerOpen(false)}>
           <Box sx={{ width: 280, p: 3, height: "100%" }}>
             <Box
               sx={{
@@ -864,17 +737,9 @@ export const DialogsPage: React.FC = () => {
               </IconButton>
             </Box>
             <List sx={{ pt: 0 }}>
-              {[
-                "Dashboard Overview",
-                "Design System Tokens",
-                "Glass Primitives",
-                "Settings",
-              ].map((text) => (
+              {["Dashboard Overview", "Design System Tokens", "Glass Primitives", "Settings"].map((text) => (
                 <ListItem key={text} disablePadding sx={{ mb: 0.5 }}>
-                  <ListItemButton
-                    onClick={() => setLeftDrawerOpen(false)}
-                    sx={{ borderRadius: "8px" }}
-                  >
+                  <ListItemButton onClick={() => setLeftDrawerOpen(false)} sx={{ borderRadius: "8px" }}>
                     <ListItemText primary={text} />
                   </ListItemButton>
                 </ListItem>
@@ -884,12 +749,7 @@ export const DialogsPage: React.FC = () => {
         </Drawer>
 
         {/* Top Drawer */}
-        <Drawer
-          anchor="top"
-          glass={drawerGlass}
-          open={topDrawerOpen}
-          onClose={() => setTopDrawerOpen(false)}
-        >
+        <Drawer anchor="top" glass={drawerGlass} open={topDrawerOpen} onClose={() => setTopDrawerOpen(false)}>
           <Box
             sx={{
               p: 3,
@@ -912,11 +772,7 @@ export const DialogsPage: React.FC = () => {
                 </Typography>
               </Box>
             </Box>
-            <Button
-              variant="outlined"
-              color="glass"
-              onClick={() => setTopDrawerOpen(false)}
-            >
+            <Button variant="outlined" color="glass" onClick={() => setTopDrawerOpen(false)}>
               Dismiss
             </Button>
           </Box>
@@ -925,4 +781,3 @@ export const DialogsPage: React.FC = () => {
     </ComponentPage>
   );
 };
-

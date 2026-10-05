@@ -5,10 +5,7 @@ import { getCardOverrides } from "./card";
 import { getPaperOverrides } from "./paper";
 import { getAccordionOverrides } from "./accordion";
 
-export const getSurfaceOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getSurfaceOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   ...getCardOverrides(palette, isDark),
   ...getPaperOverrides(palette, isDark),
   ...getAccordionOverrides(palette, isDark),

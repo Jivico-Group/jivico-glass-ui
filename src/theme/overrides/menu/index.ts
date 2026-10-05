@@ -6,10 +6,7 @@ import { getMenuItemOverrides } from "./menuItem.js";
 import { getMenuListOverrides } from "./menuList.js";
 import { getMenuPaperOverrides } from "./menuPaper.js";
 
-export const getMenuRootOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getMenuRootOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   ...getMenuOverrides(palette, isDark),
   ...getMenuItemOverrides(palette, isDark),
   ...getMenuListOverrides(palette, isDark),

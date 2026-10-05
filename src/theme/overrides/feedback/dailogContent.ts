@@ -1,15 +1,11 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette.js";
 
-export const getDialogContentOverrides = (
-  palette: JivicoPalette,
-  isDark?: boolean,
-): Components<Theme> => ({
+export const getDialogContentOverrides = (palette: JivicoPalette, isDark?: boolean): Components<Theme> => ({
   MuiDialogTitle: {
     styleOverrides: {
       root: {
-        fontFamily:
-          '"Google Sans Flex", "Google Sans", sans-serif',
+        fontFamily: '"Google Sans Flex", "Google Sans", sans-serif',
 
         fontWeight: 700,
         fontSize: "1.25rem",
@@ -30,22 +26,16 @@ export const getDialogContentOverrides = (
 
           color: palette.text.secondary,
 
-          backgroundColor: isDark
-            ? "rgba(255,255,255,.055)"
-            : "rgba(17,17,17,.045)",
+          backgroundColor: isDark ? "rgba(255,255,255,.055)" : "rgba(17,17,17,.045)",
 
-          border: `1px solid ${
-            isDark ? "rgba(255,255,255,.08)" : "rgba(17,17,17,.08)"
-          }`,
+          border: `1px solid ${isDark ? "rgba(255,255,255,.08)" : "rgba(17,17,17,.08)"}`,
 
           transition: "all 180ms cubic-bezier(.2,.8,.2,1)",
 
           "&:hover": {
             color: palette.text.primary,
 
-            backgroundColor: isDark
-              ? "rgba(255,255,255,.10)"
-              : "rgba(17,17,17,.08)",
+            backgroundColor: isDark ? "rgba(255,255,255,.10)" : "rgba(17,17,17,.08)",
 
             transform: "scale(1.04)",
           },
@@ -77,9 +67,7 @@ export const getDialogContentOverrides = (
         },
 
         "&::-webkit-scrollbar-thumb": {
-          backgroundColor: isDark
-            ? "rgba(255,255,255,.16)"
-            : "rgba(17,17,17,.14)",
+          backgroundColor: isDark ? "rgba(255,255,255,.16)" : "rgba(17,17,17,.14)",
           borderRadius: 999,
         },
 
@@ -97,9 +85,7 @@ export const getDialogContentOverrides = (
 
         gap: 10,
 
-        borderTop: `1px solid ${
-          isDark ? "rgba(255,255,255,.07)" : "rgba(17,17,17,.07)"
-        }`,
+        borderTop: `1px solid ${isDark ? "rgba(255,255,255,.07)" : "rgba(17,17,17,.07)"}`,
 
         "& > :not(style) ~ :not(style)": {
           marginLeft: 0,

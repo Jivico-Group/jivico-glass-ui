@@ -5,15 +5,8 @@ export const buildSecondaryPalette = (isDark: boolean) => ({
   light: COLORS.secondary.dark,
   dark: COLORS.secondary.light,
   hover: isDark ? COLORS.secondary.hoverDark : COLORS.secondary.hoverLight,
-  active: isDark
-    ? COLORS.secondary.activeDark
-    : COLORS.secondary.activeLight,
-  disabled: isDark
-    ? COLORS.secondary.disabledDark
-    : COLORS.secondary.disabledLight,
+  active: isDark ? COLORS.secondary.activeDark : COLORS.secondary.activeLight,
+  disabled: isDark ? COLORS.secondary.disabledDark : COLORS.secondary.disabledLight,
   glow: isDark ? COLORS.secondary.glowDark : COLORS.secondary.glowLight,
-  contrastText: isDark
-    ? COLORS.secondary.textDark
-    : COLORS.secondary.textLight,
+  contrastText: isDark ? COLORS.secondary.textDark : COLORS.secondary.textLight,
 });
-

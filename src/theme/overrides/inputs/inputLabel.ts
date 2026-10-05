@@ -1,23 +1,15 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export const getInputLabelOverrides = (
-  palette: JivicoPalette,
-): Components<Theme> => ({
+export const getInputLabelOverrides = (palette: JivicoPalette): Components<Theme> => ({
   MuiInputLabel: {
     styleOverrides: {
       root: ({ ownerState }) => {
-        const colorKey = (
-          ownerState.color ? ownerState.color : "primary"
-        ) as keyof typeof palette;
-        const activeColorGroup = (palette[colorKey] ||
-          palette.primary) as Record<string, string>;
+        const colorKey = (ownerState.color ? ownerState.color : "primary") as keyof typeof palette;
+        const activeColorGroup = (palette[colorKey] || palette.primary) as Record<string, string>;
         const activeColor = activeColorGroup.main;
         const isSemantic =
-          colorKey === "success" ||
-          colorKey === "warning" ||
-          colorKey === "error" ||
-          colorKey === "info";
+          colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
 
         let translate = "translate(18px, 13px) scale(1)"; // medium
         let shrinkTranslate = "translate(18px, -9px) scale(0.75)";
@@ -46,12 +38,7 @@ export const getInputLabelOverrides = (
           ...(ownerState.variant === "outlined" && {
             // Also ensure that the legend width accommodates the horizontal padding changes
             "& + .MuiOutlinedInput-root > fieldset > legend": {
-              marginLeft:
-                ownerState.size === "small"
-                  ? 0
-                  : (ownerState.size as string) === "large"
-                    ? 6
-                    : 4,
+              marginLeft: ownerState.size === "small" ? 0 : (ownerState.size as string) === "large" ? 6 : 4,
             },
           }),
         };

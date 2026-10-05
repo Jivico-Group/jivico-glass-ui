@@ -21,16 +21,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import {
-  Search,
-  RotateCw,
-  Sparkles,
-  ShoppingBag,
-  AlertTriangle,
-  ArrowRight,
-  ShieldAlert,
-  Send,
-} from "lucide-react";
+import { Search, RotateCw, Sparkles, ShoppingBag, AlertTriangle, ArrowRight, ShieldAlert, Send } from "lucide-react";
 
 import "../../../src/theme/augmentations.d.ts";
 import { ComponentPage } from "../Common/ComponentPage.js";
@@ -225,13 +216,7 @@ ${
       title="StatusShowcase"
       description="A clean, state-of-the-art status and error presentation primitive. Designed for 404 Not Found, 500 Server Error, Coming Soon drops, maintenance banners, and empty archive states. Features built-in responsive sizing, liquid glass frosted backdrops, and flexible action button slots."
       category="Feedback & Status"
-      badges={[
-        "Status",
-        "404 Page",
-        "Coming Soon",
-        "Glass Surface",
-        "Empty State",
-      ]}
+      badges={["Status", "404 Page", "Coming Soon", "Glass Surface", "Empty State"]}
     >
       {/* ============================================================
           1. Interactive Playground
@@ -251,11 +236,7 @@ ${
                 <Typography sx={labelSx} color="text.secondary">
                   Choose Scenario Preset
                 </Typography>
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  sx={{ gap: 1, mt: 0.5, flexWrap: "wrap" }}
-                >
+                <Stack direction="row" spacing={1} sx={{ gap: 1, mt: 0.5, flexWrap: "wrap" }}>
                   {Object.entries(PRESETS).map(([key, p]) => (
                     <Chip
                       key={key}
@@ -279,25 +260,11 @@ ${
                   <RadioGroup
                     row
                     value={size}
-                    onChange={(e) =>
-                      setSize(e.target.value as "small" | "medium" | "large")
-                    }
+                    onChange={(e) => setSize(e.target.value as "small" | "medium" | "large")}
                   >
-                    <FormControlLabel
-                      value="small"
-                      control={<Radio size="small" />}
-                      label="Small"
-                    />
-                    <FormControlLabel
-                      value="medium"
-                      control={<Radio size="small" />}
-                      label="Medium"
-                    />
-                    <FormControlLabel
-                      value="large"
-                      control={<Radio size="small" />}
-                      label="Large"
-                    />
+                    <FormControlLabel value="small" control={<Radio size="small" />} label="Small" />
+                    <FormControlLabel value="medium" control={<Radio size="small" />} label="Medium" />
+                    <FormControlLabel value="large" control={<Radio size="small" />} label="Large" />
                   </RadioGroup>
                 </Box>
 
@@ -305,23 +272,9 @@ ${
                   <Typography sx={labelSx} color="text.secondary">
                     Visual Surface
                   </Typography>
-                  <RadioGroup
-                    row
-                    value={surface}
-                    onChange={(e) =>
-                      setSurface(e.target.value as "standard" | "glass")
-                    }
-                  >
-                    <FormControlLabel
-                      value="standard"
-                      control={<Radio size="small" />}
-                      label="Standard"
-                    />
-                    <FormControlLabel
-                      value="glass"
-                      control={<Radio size="small" />}
-                      label="Glass Surface"
-                    />
+                  <RadioGroup row value={surface} onChange={(e) => setSurface(e.target.value as "standard" | "glass")}>
+                    <FormControlLabel value="standard" control={<Radio size="small" />} label="Standard" />
+                    <FormControlLabel value="glass" control={<Radio size="small" />} label="Glass Surface" />
                   </RadioGroup>
                 </Box>
               </Stack>
@@ -334,21 +287,13 @@ ${
                 <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
                   <FormControlLabel
                     control={
-                      <Switch
-                        size="small"
-                        checked={showImage}
-                        onChange={(e) => setShowImage(e.target.checked)}
-                      />
+                      <Switch size="small" checked={showImage} onChange={(e) => setShowImage(e.target.checked)} />
                     }
                     label={<Typography variant="body2">Image</Typography>}
                   />
                   <FormControlLabel
                     control={
-                      <Switch
-                        size="small"
-                        checked={showAction}
-                        onChange={(e) => setShowAction(e.target.checked)}
-                      />
+                      <Switch size="small" checked={showAction} onChange={(e) => setShowAction(e.target.checked)} />
                     }
                     label={<Typography variant="body2">Primary CTA</Typography>}
                   />
@@ -357,26 +302,16 @@ ${
                       <Switch
                         size="small"
                         checked={showSecondaryAction}
-                        onChange={(e) =>
-                          setShowSecondaryAction(e.target.checked)
-                        }
+                        onChange={(e) => setShowSecondaryAction(e.target.checked)}
                       />
                     }
-                    label={
-                      <Typography variant="body2">Secondary CTA</Typography>
-                    }
+                    label={<Typography variant="body2">Secondary CTA</Typography>}
                   />
                   <FormControlLabel
                     control={
-                      <Switch
-                        size="small"
-                        checked={showChildren}
-                        onChange={(e) => setShowChildren(e.target.checked)}
-                      />
+                      <Switch size="small" checked={showChildren} onChange={(e) => setShowChildren(e.target.checked)} />
                     }
-                    label={
-                      <Typography variant="body2">Children Slot</Typography>
-                    }
+                    label={<Typography variant="body2">Children Slot</Typography>}
                   />
                   <FormControlLabel
                     control={
@@ -386,9 +321,7 @@ ${
                         onChange={(e) => setShowSignature(e.target.checked)}
                       />
                     }
-                    label={
-                      <Typography variant="body2">Signature Slot</Typography>
-                    }
+                    label={<Typography variant="body2">Signature Slot</Typography>}
                   />
                 </Stack>
               </Box>
@@ -483,26 +416,13 @@ ${
               description={description}
               size={size}
               surface={surface}
-              actionLabel={
-                showAction
-                  ? PRESETS[selectedPreset]?.actionLabel || "Action"
-                  : undefined
-              }
-              onAction={() =>
-                alert(
-                  `Triggered primary action: ${PRESETS[selectedPreset]?.actionLabel}`,
-                )
-              }
+              actionLabel={showAction ? PRESETS[selectedPreset]?.actionLabel || "Action" : undefined}
+              onAction={() => alert(`Triggered primary action: ${PRESETS[selectedPreset]?.actionLabel}`)}
               secondaryActionLabel={
-                showSecondaryAction
-                  ? PRESETS[selectedPreset]?.secondaryActionLabel ||
-                    "Secondary Action"
-                  : undefined
+                showSecondaryAction ? PRESETS[selectedPreset]?.secondaryActionLabel || "Secondary Action" : undefined
               }
               onSecondaryAction={() =>
-                alert(
-                  `Triggered secondary action: ${PRESETS[selectedPreset]?.secondaryActionLabel}`,
-                )
+                alert(`Triggered secondary action: ${PRESETS[selectedPreset]?.secondaryActionLabel}`)
               }
               signature={
                 showSignature ? (
@@ -540,9 +460,7 @@ ${
                     sx={{
                       "& .MuiOutlinedInput-root": {
                         borderRadius: "9999px",
-                        bgcolor: isDark
-                          ? "rgba(255,255,255,0.04)"
-                          : "rgba(255,255,255,0.8)",
+                        bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.8)",
                       },
                     }}
                   />
@@ -758,10 +676,7 @@ ${
             description="We encountered an issue retrieving real-time stock levels from our cluster. Please retry or check our operational status."
             actionLabel={
               <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-                <RotateCw
-                  size={15}
-                  className={isRetrying ? "spin-animation" : ""}
-                />
+                <RotateCw size={15} className={isRetrying ? "spin-animation" : ""} />
                 <span>{isRetrying ? "Connecting..." : "Retry Connection"}</span>
               </Stack>
             }
@@ -815,10 +730,7 @@ ${
                 }}
               >
                 <ShoppingBag size={14} />
-                <Typography
-                  component="span"
-                  sx={{ fontWeight: 700, fontSize: "0.72rem" }}
-                >
+                <Typography component="span" sx={{ fontWeight: 700, fontSize: "0.72rem" }}>
                   ARCHIVE BAG · 0 ITEMS
                 </Typography>
               </Stack>
@@ -993,9 +905,7 @@ ${
             <TableHead>
               <TableRow
                 sx={{
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.03)"
-                    : "rgba(0,0,0,0.02)",
+                  bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)",
                 }}
               >
                 <TableCell sx={{ fontWeight: 700 }}>Prop</TableCell>
@@ -1101,11 +1011,7 @@ ${
                   >
                     {row.prop}
                   </TableCell>
-                  <TableCell
-                    sx={{ fontFamily: "monospace", fontSize: "0.8rem" }}
-                  >
-                    {row.type}
-                  </TableCell>
+                  <TableCell sx={{ fontFamily: "monospace", fontSize: "0.8rem" }}>{row.type}</TableCell>
                   <TableCell
                     sx={{
                       fontFamily: "monospace",
@@ -1115,11 +1021,7 @@ ${
                   >
                     {row.default}
                   </TableCell>
-                  <TableCell
-                    sx={{ fontSize: "0.85rem", color: "text.secondary" }}
-                  >
-                    {row.desc}
-                  </TableCell>
+                  <TableCell sx={{ fontSize: "0.85rem", color: "text.secondary" }}>{row.desc}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

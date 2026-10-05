@@ -13,10 +13,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
         const isSmall = (ownerState as any).size === "small";
         const isScrollable = ownerState.variant === "scrollable";
 
-        const textColor =
-          (ownerState as any).textColorOverride ||
-          (ownerState.textColor as string) ||
-          "secondary";
+        const textColor = (ownerState as any).textColorOverride || (ownerState.textColor as string) || "secondary";
 
         const selectedTextColors: Record<string, string> = {
           primary: "#111111",
@@ -30,8 +27,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
           glass: isDark ? "#F6F5F2" : "#111111",
         };
 
-        const selectedText =
-          selectedTextColors[textColor] || selectedTextColors.secondary;
+        const selectedText = selectedTextColors[textColor] || selectedTextColors.secondary;
 
         return {
           minHeight: isSmall ? 32 : 44,
@@ -43,9 +39,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
 
           padding: isSmall ? "3px" : "4px",
 
-          border: `1px solid ${
-            isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.04)"
-          }`,
+          border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.04)"}`,
 
           display: ownerState.variant === "fullWidth" ? "flex" : "inline-flex",
 
@@ -53,9 +47,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
 
           maxWidth: "100%",
 
-          boxShadow: isDark
-            ? "inset 0 1px 3px rgba(0,0,0,0.35)"
-            : "inset 0 1px 2px rgba(0,0,0,0.04)",
+          boxShadow: isDark ? "inset 0 1px 3px rgba(0,0,0,0.35)" : "inset 0 1px 2px rgba(0,0,0,0.04)",
 
           backdropFilter: "blur(14px)",
           WebkitBackdropFilter: "blur(14px)",
@@ -93,9 +85,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
           },
 
           "& .MuiTabs-scrollButtons": {
-            color: isDark
-              ? "rgba(255, 255, 255, 0.7)"
-              : "rgba(17, 17, 17, 0.7)",
+            color: isDark ? "rgba(255, 255, 255, 0.7)" : "rgba(17, 17, 17, 0.7)",
 
             borderRadius: 9999,
 
@@ -126,9 +116,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
 
       indicator: ({ ownerState }) => {
         const color =
-          (ownerState as any).indicatorColorOverride ||
-          (ownerState.indicatorColor as string) ||
-          "secondary";
+          (ownerState as any).indicatorColorOverride || (ownerState.indicatorColor as string) || "secondary";
 
         const colors = {
           primary: {
@@ -136,8 +124,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
             dark: "#F6F5F2",
             lightBorder: "rgba(0, 0, 0, 0.03)",
             darkBorder: "transparent",
-            lightShadow:
-              "0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04)",
+            lightShadow: "0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04)",
             darkShadow: "0 4px 16px rgba(0, 0, 0, 0.45)",
           },
 
@@ -146,8 +133,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
             dark: "#F6F5F2",
             lightBorder: "rgba(0, 0, 0, 0.03)",
             darkBorder: "transparent",
-            lightShadow:
-              "0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04)",
+            lightShadow: "0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04)",
             darkShadow: "0 4px 16px rgba(0, 0, 0, 0.45)",
           },
 
@@ -156,10 +142,8 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
             dark: "#D4B77A",
             lightBorder: "rgba(128, 98, 56, 0.25)",
             darkBorder: "rgba(224, 199, 143, 0.25)",
-            lightShadow:
-              "0 3px 12px rgba(176, 141, 87, 0.22), 0 1px 3px rgba(176, 141, 87, 0.12)",
-            darkShadow:
-              "0 4px 16px rgba(212, 183, 122, 0.22), 0 1px 3px rgba(212, 183, 122, 0.12)",
+            lightShadow: "0 3px 12px rgba(176, 141, 87, 0.22), 0 1px 3px rgba(176, 141, 87, 0.12)",
+            darkShadow: "0 4px 16px rgba(212, 183, 122, 0.22), 0 1px 3px rgba(212, 183, 122, 0.12)",
           },
 
           info: {
@@ -199,8 +183,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
           },
         };
 
-        const selected =
-          colors[color as keyof typeof colors] ?? colors.secondary;
+        const selected = colors[color as keyof typeof colors] ?? colors.secondary;
 
         const isGlass = color === "glass";
 
@@ -219,14 +202,8 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
               : selected.light,
 
           border: isGlass
-            ? `1px solid ${
-                isDark
-                  ? "rgba(255, 255, 255, 0.22)"
-                  : "rgba(255, 255, 255, 0.9)"
-              }`
-            : `1px solid ${
-                isDark ? selected.darkBorder : selected.lightBorder
-              }`,
+            ? `1px solid ${isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.9)"}`
+            : `1px solid ${isDark ? selected.darkBorder : selected.lightBorder}`,
 
           boxShadow: isGlass
             ? isDark
@@ -264,8 +241,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
           zIndex: 2,
           textTransform: "none",
 
-          fontFamily:
-            '"Google Sans Flex", "Google Sans", sans-serif',
+          fontFamily: '"Google Sans Flex", "Google Sans", sans-serif',
 
           fontSize: isSmall ? "0.78rem" : "0.84rem",
 
@@ -284,8 +260,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
 
           color: isDark ? "rgba(255, 255, 255, 0.62)" : "#686868",
 
-          transition:
-            "color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
+          transition: "color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
 
           userSelect: "none",
 
@@ -308,9 +283,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
           },
 
           "&.Mui-disabled": {
-            color: isDark
-              ? "rgba(255, 255, 255, 0.25)"
-              : "rgba(104, 104, 104, 0.35)",
+            color: isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(104, 104, 104, 0.35)",
 
             opacity: 0.6,
           },

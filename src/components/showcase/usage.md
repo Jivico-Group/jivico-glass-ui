@@ -59,39 +59,39 @@ const items: ShowcaseItem[] = [
   },
 ];
 
-<Showcase items={items} autoplay />
+<Showcase items={items} autoplay />;
 ```
 
 ---
 
 # Props Overview
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `items` | `ShowcaseItem[]` | **Required** | Plain data items array |
-| `variant` | `"editorial" \| "minimal" \| "glass"` | `"editorial"` | Visual presentation overlay style |
-| `size` | `"hero" \| "large" \| "medium" \| "small"` | `"hero"` | Scale, padding, button, and typography size |
-| `transition` | `"cinematic" \| "fade" \| "slide"` | `"cinematic"` | Slide transition animation |
-| `navigation` | `"vertical" \| "dots" \| "none"` | `"dots"` | Indicator navigation style |
-| `radius` | `"rounded" \| "soft" \| "square"` | `"rounded"` | Frame corner radius |
-| `autoplay` | `boolean` | `false` | Automatic slide advancement |
-| `interval` | `number` | `5000` | Autoplay interval in milliseconds |
-| `loop` | `boolean` | `true` | Wrap around from last slide to first |
-| `pauseOnHover` | `boolean` | `true` | Pause autoplay on hover |
-| `showArrows` | `boolean` | `true` | Previous/Next arrow navigation buttons |
-| `showProgress` | `boolean` | `true` | Bottom autoplay progress bar |
-| `swipe` | `boolean` | `true` | Touch swipe gestures |
-| `onNavigate` | `(item, index, event) => void` | `undefined` | Custom routing callback for full-slide links |
-| `ImageComponent` | `ShowcaseImageComponent` | `undefined` | Custom image renderer (e.g. Next.js `next/image`) |
-| `imageSizes` | `string` | `"100vw"` | Image sizes hint |
-| `imagePriority` | `boolean` | `false` | Prioritize active image loading |
-| `activeIndex` | `number` | `undefined` | Controlled active slide index |
-| `defaultActiveIndex`| `number` | `0` | Initial active index (uncontrolled) |
-| `onActiveIndexChange`| `(index, item) => void` | `undefined` | Slide change listener |
-| `height` | `number \| string \| Dimension` | `undefined` | Explicit container height |
-| `minHeight` | `number \| string \| Dimension` | Size default | Minimum height boundary |
-| `maxHeight` | `number \| string \| Dimension` | `undefined` | Maximum height boundary |
-| `aspectRatio` | `string \| ResponsiveObject` | Size default | Proportional container aspect ratio |
+| Prop                  | Type                                       | Default       | Description                                       |
+| :-------------------- | :----------------------------------------- | :------------ | :------------------------------------------------ |
+| `items`               | `ShowcaseItem[]`                           | **Required**  | Plain data items array                            |
+| `variant`             | `"editorial" \| "minimal" \| "glass"`      | `"editorial"` | Visual presentation overlay style                 |
+| `size`                | `"hero" \| "large" \| "medium" \| "small"` | `"hero"`      | Scale, padding, button, and typography size       |
+| `transition`          | `"cinematic" \| "fade" \| "slide"`         | `"cinematic"` | Slide transition animation                        |
+| `navigation`          | `"vertical" \| "dots" \| "none"`           | `"dots"`      | Indicator navigation style                        |
+| `radius`              | `"rounded" \| "soft" \| "square"`          | `"rounded"`   | Frame corner radius                               |
+| `autoplay`            | `boolean`                                  | `false`       | Automatic slide advancement                       |
+| `interval`            | `number`                                   | `5000`        | Autoplay interval in milliseconds                 |
+| `loop`                | `boolean`                                  | `true`        | Wrap around from last slide to first              |
+| `pauseOnHover`        | `boolean`                                  | `true`        | Pause autoplay on hover                           |
+| `showArrows`          | `boolean`                                  | `true`        | Previous/Next arrow navigation buttons            |
+| `showProgress`        | `boolean`                                  | `true`        | Bottom autoplay progress bar                      |
+| `swipe`               | `boolean`                                  | `true`        | Touch swipe gestures                              |
+| `onNavigate`          | `(item, index, event) => void`             | `undefined`   | Custom routing callback for full-slide links      |
+| `ImageComponent`      | `ShowcaseImageComponent`                   | `undefined`   | Custom image renderer (e.g. Next.js `next/image`) |
+| `imageSizes`          | `string`                                   | `"100vw"`     | Image sizes hint                                  |
+| `imagePriority`       | `boolean`                                  | `false`       | Prioritize active image loading                   |
+| `activeIndex`         | `number`                                   | `undefined`   | Controlled active slide index                     |
+| `defaultActiveIndex`  | `number`                                   | `0`           | Initial active index (uncontrolled)               |
+| `onActiveIndexChange` | `(index, item) => void`                    | `undefined`   | Slide change listener                             |
+| `height`              | `number \| string \| Dimension`            | `undefined`   | Explicit container height                         |
+| `minHeight`           | `number \| string \| Dimension`            | Size default  | Minimum height boundary                           |
+| `maxHeight`           | `number \| string \| Dimension`            | `undefined`   | Maximum height boundary                           |
+| `aspectRatio`         | `string \| ResponsiveObject`               | Size default  | Proportional container aspect ratio               |
 
 ---
 
@@ -178,12 +178,7 @@ Three smooth 60 FPS transitions are available:
 - `showProgress`: Toggle bottom progress bar during autoplay.
 
 ```tsx
-<Showcase
-  items={items}
-  navigation="vertical"
-  showArrows={true}
-  showProgress={true}
-/>
+<Showcase items={items} navigation="vertical" showArrows={true} showProgress={true} />
 ```
 
 ---

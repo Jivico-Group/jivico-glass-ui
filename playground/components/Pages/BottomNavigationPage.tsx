@@ -67,12 +67,7 @@ export const BottomNavigationPage: React.FC = () => {
       title="Bottom Navigation & Dynamic Island Dock"
       description="Frosted glass floating action docks and dynamic island navigation bars with Apple liquid glass pill styling, specular glint lighting, flexible screen placement, and tactile spring animations."
       category="Navigation"
-      badges={[
-        "Dynamic Island Dock",
-        "glass prop",
-        "Floating Placements",
-        "Liquid Pill",
-      ]}
+      badges={["Dynamic Island Dock", "glass prop", "Floating Placements", "Liquid Pill"]}
     >
       {/* 0. Flagship Showcase: Instagram Mobile Preview */}
       <DemoBlock
@@ -113,12 +108,8 @@ export const BottomNavigationPage: React.FC = () => {
             mb: 3,
             p: 2,
             borderRadius: "14px",
-            bgcolor: isDark
-              ? "rgba(255, 255, 255, 0.03)"
-              : "rgba(0, 0, 0, 0.03)",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
-            }`,
+            bgcolor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.03)",
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
           }}
         >
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
@@ -126,9 +117,7 @@ export const BottomNavigationPage: React.FC = () => {
               control={
                 <Switch
                   checked={instaGlass === "true"}
-                  onChange={(e) =>
-                    setInstaGlass(e.target.checked ? "true" : "false")
-                  }
+                  onChange={(e) => setInstaGlass(e.target.checked ? "true" : "false")}
                   color="glass"
                   size="small"
                 />
@@ -212,8 +201,7 @@ export const BottomNavigationPage: React.FC = () => {
                 : "0 32px 80px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.1)",
               bgcolor: isDark ? "#000000" : "#FFFFFF",
               color: isDark ? "#FFFFFF" : "#000000",
-              fontFamily:
-                '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
             }}
           >
             {/* Mobile Top Status Bar */}
@@ -235,10 +223,7 @@ export const BottomNavigationPage: React.FC = () => {
                   : "linear-gradient(180deg, rgba(255,255,255,0.7) 0%, transparent 100%)",
               }}
             >
-              <Typography
-                variant="caption"
-                sx={{ fontWeight: 700, fontSize: "0.85rem" }}
-              >
+              <Typography variant="caption" sx={{ fontWeight: 700, fontSize: "0.85rem" }}>
                 9:41
               </Typography>
 
@@ -280,16 +265,13 @@ export const BottomNavigationPage: React.FC = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                borderBottom: `1px solid ${
-                  isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)"
-                }`,
+                borderBottom: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)"}`,
               }}
             >
               <Typography
                 variant="h6"
                 sx={{
-                  fontFamily:
-                    '"Grand Hotel", "Brush Script MT", cursive, sans-serif',
+                  fontFamily: '"Grand Hotel", "Brush Script MT", cursive, sans-serif',
                   fontWeight: 700,
                   fontSize: "1.6rem",
                   letterSpacing: -0.5,
@@ -334,9 +316,7 @@ export const BottomNavigationPage: React.FC = () => {
                   px: 2,
                   py: 1.5,
                   overflowX: "auto",
-                  borderBottom: `1px solid ${
-                    isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)"
-                  }`,
+                  borderBottom: `1px solid ${isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)"}`,
                   "::-webkit-scrollbar": { display: "none" },
                 }}
               >
@@ -425,11 +405,7 @@ export const BottomNavigationPage: React.FC = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <Stack
-                    direction="row"
-                    spacing={1.5}
-                    sx={{ alignItems: "center" }}
-                  >
+                  <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
                     <Avatar
                       src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100"
                       sx={{ width: 34, height: 34 }}
@@ -445,10 +421,7 @@ export const BottomNavigationPage: React.FC = () => {
                       >
                         @jivico.official
                       </Typography>
-                      <Typography
-                        variant="caption"
-                        sx={{ fontSize: "0.68rem", opacity: 0.6 }}
-                      >
+                      <Typography variant="caption" sx={{ fontSize: "0.68rem", opacity: 0.6 }}>
                         Shibuya Crossing, Tokyo
                       </Typography>
                     </Box>
@@ -466,8 +439,7 @@ export const BottomNavigationPage: React.FC = () => {
                     width: "100%",
                     height: 280,
                     bgcolor: isDark ? "#18181B" : "#F4F4F5",
-                    background:
-                      "linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%)",
+                    background: "linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -549,21 +521,14 @@ export const BottomNavigationPage: React.FC = () => {
 
                 {/* Likes & Caption */}
                 <Box sx={{ px: 2, pb: 2 }}>
-                  <Typography
-                    variant="subtitle2"
-                    sx={{ fontWeight: 700, fontSize: "0.8rem" }}
-                  >
+                  <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: "0.8rem" }}>
                     {likeCount.toLocaleString()} likes
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ fontSize: "0.8rem", mt: 0.25 }}
-                  >
+                  <Typography variant="body2" sx={{ fontSize: "0.8rem", mt: 0.25 }}>
                     <Box component="span" sx={{ fontWeight: 700, mr: 0.8 }}>
                       @jivico.official
                     </Box>
-                    Experience the future of mobile navigation with Jivico Glass
-                    UI floating action docks! 🚀✨
+                    Experience the future of mobile navigation with Jivico Glass UI floating action docks! 🚀✨
                   </Typography>
                   <Typography
                     variant="caption"
@@ -618,26 +583,11 @@ export const BottomNavigationPage: React.FC = () => {
                       }),
                 }}
               >
-                <BottomNavigationAction
-                  label="Feed"
-                  icon={<Home size={22} />}
-                />
-                <BottomNavigationAction
-                  label="Search"
-                  icon={<Search size={22} />}
-                />
-                <BottomNavigationAction
-                  label="Post"
-                  icon={<PlusSquare size={22} />}
-                />
-                <BottomNavigationAction
-                  label="Reels"
-                  icon={<Film size={22} />}
-                />
-                <BottomNavigationAction
-                  label="Profile"
-                  icon={<User size={22} />}
-                />
+                <BottomNavigationAction label="Feed" icon={<Home size={22} />} />
+                <BottomNavigationAction label="Search" icon={<Search size={22} />} />
+                <BottomNavigationAction label="Post" icon={<PlusSquare size={22} />} />
+                <BottomNavigationAction label="Reels" icon={<Film size={22} />} />
+                <BottomNavigationAction label="Profile" icon={<User size={22} />} />
               </BottomNavigation>
             </Box>
           </Paper>
@@ -737,12 +687,8 @@ const [query, setQuery] = useState('');
             mb: 3,
             p: 2,
             borderRadius: "14px",
-            bgcolor: isDark
-              ? "rgba(255, 255, 255, 0.03)"
-              : "rgba(0, 0, 0, 0.03)",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
-            }`,
+            bgcolor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.03)",
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
           }}
         >
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
@@ -761,14 +707,10 @@ const [query, setQuery] = useState('');
                   <Box
                     component="span"
                     sx={{
-                      color: isSearchExpanded
-                        ? "primary.main"
-                        : "text.secondary",
+                      color: isSearchExpanded ? "primary.main" : "text.secondary",
                     }}
                   >
-                    {isSearchExpanded
-                      ? "Expanded (560px)"
-                      : "Collapsed (360px)"}
+                    {isSearchExpanded ? "Expanded (560px)" : "Collapsed (360px)"}
                   </Box>
                 </Typography>
               }
@@ -814,17 +756,14 @@ const [query, setQuery] = useState('');
             height: 440,
             borderRadius: "24px",
             overflow: "hidden",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)"
-            }`,
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)"}`,
             backgroundImage: isDark
               ? "radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.12) 0%, transparent 60%), linear-gradient(180deg, #09090B 0%, #121215 100%)"
               : "radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.15) 0%, transparent 60%), linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 100%)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent:
-              searchPosition === "top" ? "flex-start" : "flex-end",
+            justifyContent: searchPosition === "top" ? "flex-start" : "flex-end",
             p: 3,
             transition: "all 0.3s ease",
           }}
@@ -848,8 +787,7 @@ const [query, setQuery] = useState('');
               Winter 2026 Collection
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-              Explore luxury streetwear, oversized tailoring, and new seasonal
-              arrivals.
+              Explore luxury streetwear, oversized tailoring, and new seasonal arrivals.
             </Typography>
             <Stack direction="row" spacing={2}>
               {[1, 2, 3].map((item) => (
@@ -860,14 +798,8 @@ const [query, setQuery] = useState('');
                     width: 140,
                     height: 180,
                     borderRadius: "16px",
-                    bgcolor: isDark
-                      ? "rgba(255, 255, 255, 0.05)"
-                      : "rgba(0, 0, 0, 0.04)",
-                    border: `1px solid ${
-                      isDark
-                        ? "rgba(255, 255, 255, 0.08)"
-                        : "rgba(0, 0, 0, 0.08)"
-                    }`,
+                    bgcolor: isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.04)",
+                    border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
@@ -891,9 +823,7 @@ const [query, setQuery] = useState('');
             sx={{
               position: "relative",
               zIndex: 20,
-              width: isSearchExpanded
-                ? { xs: "96%", sm: 540 }
-                : { xs: "90%", sm: 360 },
+              width: isSearchExpanded ? { xs: "96%", sm: 540 } : { xs: "90%", sm: 360 },
               height: isSearchExpanded ? 72 : 60,
               px: 1.5,
               py: 0.75,
@@ -921,19 +851,13 @@ const [query, setQuery] = useState('');
                 px: 1.5,
                 py: 0.8,
                 borderRadius: 9999,
-                bgcolor: isDark
-                  ? "rgba(255, 255, 255, 0.12)"
-                  : "rgba(0, 0, 0, 0.07)",
-                border: `1px solid ${
-                  isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.08)"
-                }`,
+                bgcolor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.07)",
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.08)"}`,
                 cursor: "pointer",
                 flexShrink: 0,
                 transition: "all 0.2s ease",
                 "&:hover": {
-                  bgcolor: isDark
-                    ? "rgba(255, 255, 255, 0.18)"
-                    : "rgba(0, 0, 0, 0.12)",
+                  bgcolor: isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(0, 0, 0, 0.12)",
                 },
               }}
             >
@@ -980,17 +904,9 @@ const [query, setQuery] = useState('');
             />
 
             {/* Right Action Icons */}
-            <Stack
-              direction="row"
-              spacing={0.5}
-              sx={{ alignItems: "center", flexShrink: 0 }}
-            >
+            <Stack direction="row" spacing={0.5} sx={{ alignItems: "center", flexShrink: 0 }}>
               {isSearchExpanded && searchQuery && (
-                <IconButton
-                  size="small"
-                  onClick={() => setSearchQuery("")}
-                  sx={{ color: "inherit", opacity: 0.8 }}
-                >
+                <IconButton size="small" onClick={() => setSearchQuery("")} sx={{ color: "inherit", opacity: 0.8 }}>
                   <X size={16} />
                 </IconButton>
               )}
@@ -1057,14 +973,10 @@ const [query, setQuery] = useState('');
                 width: { xs: "96%", sm: 540 },
                 p: 2,
                 borderRadius: "20px",
-                bgcolor: isDark
-                  ? "rgba(24, 24, 27, 0.85)"
-                  : "rgba(255, 255, 255, 0.88)",
+                bgcolor: isDark ? "rgba(24, 24, 27, 0.85)" : "rgba(255, 255, 255, 0.88)",
                 backdropFilter: "blur(24px) saturate(180%)",
                 WebkitBackdropFilter: "blur(24px) saturate(180%)",
-                border: `1px solid ${
-                  isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.08)"
-                }`,
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.08)"}`,
                 display: "flex",
                 flexDirection: "column",
                 gap: 1.5,
@@ -1084,18 +996,8 @@ const [query, setQuery] = useState('');
               >
                 Trending Searches
               </Typography>
-              <Stack
-                direction="row"
-                spacing={1}
-                sx={{ flexWrap: "wrap", gap: 1 }}
-              >
-                {[
-                  "Triple S Sneakers",
-                  "Track 2",
-                  "Hourglass Bag",
-                  "Speed Trainer",
-                  "Oversized Hoodie",
-                ].map((tag) => (
+              <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: 1 }}>
+                {["Triple S Sneakers", "Track 2", "Hourglass Bag", "Speed Trainer", "Oversized Hoodie"].map((tag) => (
                   <Chip
                     key={tag}
                     label={tag}
@@ -1106,13 +1008,9 @@ const [query, setQuery] = useState('');
                       fontWeight: 600,
                       fontSize: "0.75rem",
                       cursor: "pointer",
-                      bgcolor: isDark
-                        ? "rgba(255, 255, 255, 0.08)"
-                        : "rgba(0, 0, 0, 0.05)",
+                      bgcolor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.05)",
                       "&:hover": {
-                        bgcolor: isDark
-                          ? "rgba(255, 255, 255, 0.16)"
-                          : "rgba(0, 0, 0, 0.1)",
+                        bgcolor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(0, 0, 0, 0.1)",
                       },
                     }}
                   />
@@ -1154,19 +1052,14 @@ const [query, setQuery] = useState('');
             control={
               <Switch
                 checked={glass === "true"}
-                onChange={(e) =>
-                  setInstaGlass(e.target.checked ? "true" : "false")
-                }
+                onChange={(e) => setInstaGlass(e.target.checked ? "true" : "false")}
                 color="glass"
               />
             }
             label={
               <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                 Surface Mode:{" "}
-                <Box
-                  component="span"
-                  sx={{ color: glass ? "primary.main" : "text.secondary" }}
-                >
+                <Box component="span" sx={{ color: glass ? "primary.main" : "text.secondary" }}>
                   glass={glass ? "true" : "false"}
                 </Box>
               </Typography>
@@ -1179,36 +1072,18 @@ const [query, setQuery] = useState('');
           sx={{
             p: 4,
             borderRadius: "20px",
-            bgcolor: isDark
-              ? "rgba(255, 255, 255, 0.02)"
-              : "rgba(0, 0, 0, 0.02)",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
-            }`,
+            bgcolor: isDark ? "rgba(255, 255, 255, 0.02)" : "rgba(0, 0, 0, 0.02)",
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <BottomNavigation
-            value={navValue}
-            onChange={(_, val) => setNavValue(val)}
-            glass={glass}
-            placement="inline"
-          >
+          <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} glass={glass} placement="inline">
             <BottomNavigationAction label="Home" icon={<Home size={20} />} />
-            <BottomNavigationAction
-              label="Search"
-              icon={<Search size={20} />}
-            />
-            <BottomNavigationAction
-              label="Explore"
-              icon={<Compass size={20} />}
-            />
-            <BottomNavigationAction
-              label="Saved"
-              icon={<Bookmark size={20} />}
-            />
+            <BottomNavigationAction label="Search" icon={<Search size={20} />} />
+            <BottomNavigationAction label="Explore" icon={<Compass size={20} />} />
+            <BottomNavigationAction label="Saved" icon={<Bookmark size={20} />} />
             <BottomNavigationAction label="Profile" icon={<User size={20} />} />
           </BottomNavigation>
         </Paper>
@@ -1231,24 +1106,11 @@ const [query, setQuery] = useState('');
           </Typography>
 
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5 }}>
-            {[
-              "top-left",
-              "top-center",
-              "top-right",
-              "bottom-left",
-              "bottom-center",
-              "bottom-right",
-            ].map((pos) => (
+            {["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"].map((pos) => (
               <Button
                 key={pos}
-                variant={
-                  activePlacement === pos && floatingOpen
-                    ? "contained"
-                    : "outlined"
-                }
-                color={
-                  activePlacement === pos && floatingOpen ? "glass" : "primary"
-                }
+                variant={activePlacement === pos && floatingOpen ? "contained" : "outlined"}
+                color={activePlacement === pos && floatingOpen ? "glass" : "primary"}
                 size="small"
                 onClick={() => {
                   setActivePlacement(pos);
@@ -1260,12 +1122,7 @@ const [query, setQuery] = useState('');
             ))}
 
             {floatingOpen && (
-              <Button
-                variant="outlined"
-                color="error"
-                size="small"
-                onClick={() => setFloatingOpen(false)}
-              >
+              <Button variant="outlined" color="error" size="small" onClick={() => setFloatingOpen(false)}>
                 Dismiss Floating Dock
               </Button>
             )}
@@ -1280,22 +1137,10 @@ const [query, setQuery] = useState('');
               placement={activePlacement}
             >
               <BottomNavigationAction label="Home" icon={<Home size={20} />} />
-              <BottomNavigationAction
-                label="Search"
-                icon={<Search size={20} />}
-              />
-              <BottomNavigationAction
-                label="AI"
-                icon={<Sparkles size={20} />}
-              />
-              <BottomNavigationAction
-                label="Activity"
-                icon={<Bell size={20} />}
-              />
-              <BottomNavigationAction
-                label="Settings"
-                icon={<Sliders size={20} />}
-              />
+              <BottomNavigationAction label="Search" icon={<Search size={20} />} />
+              <BottomNavigationAction label="AI" icon={<Sparkles size={20} />} />
+              <BottomNavigationAction label="Activity" icon={<Bell size={20} />} />
+              <BottomNavigationAction label="Settings" icon={<Sliders size={20} />} />
             </BottomNavigation>
           )}
         </Box>
@@ -1324,12 +1169,8 @@ const [query, setQuery] = useState('');
           sx={{
             p: 4,
             borderRadius: "20px",
-            bgcolor: isDark
-              ? "rgba(255, 255, 255, 0.02)"
-              : "rgba(0, 0, 0, 0.02)",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
-            }`,
+            bgcolor: isDark ? "rgba(255, 255, 255, 0.02)" : "rgba(0, 0, 0, 0.02)",
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -1474,12 +1315,8 @@ const [query, setQuery] = useState('');
           sx={{
             p: 4,
             borderRadius: "20px",
-            bgcolor: isDark
-              ? "rgba(255, 255, 255, 0.02)"
-              : "rgba(0, 0, 0, 0.02)",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
-            }`,
+            bgcolor: isDark ? "rgba(255, 255, 255, 0.02)" : "rgba(0, 0, 0, 0.02)",
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -1507,25 +1344,11 @@ const [query, setQuery] = useState('');
             >
               Small Dock (size="small" - 48px height)
             </Typography>
-            <BottomNavigation
-              value={navValue}
-              onChange={(_, val) => setNavValue(val)}
-              size="small"
-              glass={"true"}
-            >
+            <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} size="small" glass={"true"}>
               <BottomNavigationAction label="Home" icon={<Home size={18} />} />
-              <BottomNavigationAction
-                label="Search"
-                icon={<Search size={18} />}
-              />
-              <BottomNavigationAction
-                label="Discover"
-                icon={<Compass size={18} />}
-              />
-              <BottomNavigationAction
-                label="Profile"
-                icon={<User size={18} />}
-              />
+              <BottomNavigationAction label="Search" icon={<Search size={18} />} />
+              <BottomNavigationAction label="Discover" icon={<Compass size={18} />} />
+              <BottomNavigationAction label="Profile" icon={<User size={18} />} />
             </BottomNavigation>
           </Box>
 
@@ -1550,25 +1373,11 @@ const [query, setQuery] = useState('');
             >
               Medium Dock (size="medium" - 64px height)
             </Typography>
-            <BottomNavigation
-              value={navValue}
-              onChange={(_, val) => setNavValue(val)}
-              size="medium"
-              glass={"true"}
-            >
+            <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} size="medium" glass={"true"}>
               <BottomNavigationAction label="Home" icon={<Home size={20} />} />
-              <BottomNavigationAction
-                label="Search"
-                icon={<Search size={20} />}
-              />
-              <BottomNavigationAction
-                label="Discover"
-                icon={<Compass size={20} />}
-              />
-              <BottomNavigationAction
-                label="Profile"
-                icon={<User size={20} />}
-              />
+              <BottomNavigationAction label="Search" icon={<Search size={20} />} />
+              <BottomNavigationAction label="Discover" icon={<Compass size={20} />} />
+              <BottomNavigationAction label="Profile" icon={<User size={20} />} />
             </BottomNavigation>
           </Box>
         </Paper>

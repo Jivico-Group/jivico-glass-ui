@@ -24,11 +24,7 @@ import "../../../src/theme/augmentations.d.ts";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { Gallery } from "../../../src/components/gallary/Gallery.js";
-import type {
-  GalleryColumns,
-  GalleryRadius,
-  GalleryImageFit,
-} from "../../../src/components/gallary/Gallery.types.js";
+import type { GalleryColumns, GalleryRadius, GalleryImageFit } from "../../../src/components/gallary/Gallery.types.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 // ─── Mock Data ────────────────────────────────────────────────────────────────
@@ -51,8 +47,7 @@ const PRODUCTS: Product[] = [
     category: "ORIGINALS",
     price: 899,
     originalPrice: 1299,
-    image:
-      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80",
     badge: "SALE",
     rating: 4.8,
   },
@@ -61,8 +56,7 @@ const PRODUCTS: Product[] = [
     name: "Graphic Wave Hoodie",
     category: "STUDIO",
     price: 1899,
-    image:
-      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
     badge: "NEW",
     rating: 4.6,
   },
@@ -71,8 +65,7 @@ const PRODUCTS: Product[] = [
     name: "Cargo Wide Leg",
     category: "ORIGINALS",
     price: 1499,
-    image:
-      "https://images.unsplash.com/photo-1588117305388-c2631a279f82?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1588117305388-c2631a279f82?auto=format&fit=crop&w=800&q=80",
     rating: 4.4,
   },
   {
@@ -80,8 +73,7 @@ const PRODUCTS: Product[] = [
     name: "Washed Denim Jacket",
     category: "FREESTYLE",
     price: 2499,
-    image:
-      "https://images.unsplash.com/photo-1555689502-c4b22d76c56f?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1555689502-c4b22d76c56f?auto=format&fit=crop&w=800&q=80",
     badge: "BESTSELLER",
     rating: 4.9,
   },
@@ -90,8 +82,7 @@ const PRODUCTS: Product[] = [
     name: "Streetwear Parka",
     category: "ORIGINALS",
     price: 3299,
-    image:
-      "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=800&q=80",
     rating: 4.7,
   },
   {
@@ -100,8 +91,7 @@ const PRODUCTS: Product[] = [
     category: "STUDIO",
     price: 599,
     originalPrice: 799,
-    image:
-      "https://images.unsplash.com/photo-1544441892-794166f1e3be?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1544441892-794166f1e3be?auto=format&fit=crop&w=800&q=80",
     badge: "SALE",
     rating: 4.5,
   },
@@ -110,8 +100,7 @@ const PRODUCTS: Product[] = [
     name: "Track Jacket",
     category: "FREESTYLE",
     price: 1699,
-    image:
-      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80",
     badge: "NEW",
     rating: 4.3,
   },
@@ -120,8 +109,7 @@ const PRODUCTS: Product[] = [
     name: "Linen Overshirt",
     category: "ORIGINALS",
     price: 1299,
-    image:
-      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80",
     rating: 4.6,
   },
 ];
@@ -245,9 +233,7 @@ export const GalleryPage: React.FC = () => {
                     </Typography>
                     <Slider
                       value={columns[bp] ?? 2}
-                      onChange={(_, v) =>
-                        setColumns((prev) => ({ ...prev, [bp]: v as number }))
-                      }
+                      onChange={(_, v) => setColumns((prev) => ({ ...prev, [bp]: v as number }))}
                       min={1}
                       max={6}
                       step={1}
@@ -259,20 +245,12 @@ export const GalleryPage: React.FC = () => {
               </Stack>
 
               {/* Row 2: radius + fit + ratio + gap */}
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={3}
-                sx={{ alignItems: "flex-start" }}
-              >
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={3} sx={{ alignItems: "flex-start" }}>
                 <FormControl component="fieldset">
                   <FormLabel component="legend" sx={labelSx}>
                     Radius
                   </FormLabel>
-                  <RadioGroup
-                    row
-                    value={radius}
-                    onChange={(e) => setRadius(e.target.value as GalleryRadius)}
-                  >
+                  <RadioGroup row value={radius} onChange={(e) => setRadius(e.target.value as GalleryRadius)}>
                     {(["square", "rounded", "soft"] as const).map((v) => (
                       <FormControlLabel
                         key={v}
@@ -286,10 +264,7 @@ export const GalleryPage: React.FC = () => {
 
                 <FormControl size="small" sx={{ minWidth: 140 }}>
                   <FormLabel sx={labelSx}>Aspect Ratio</FormLabel>
-                  <Select
-                    value={aspectRatio}
-                    onChange={(e) => setAspectRatio(e.target.value)}
-                  >
+                  <Select value={aspectRatio} onChange={(e) => setAspectRatio(e.target.value)}>
                     <MenuItem value="1 / 1">Square (1:1)</MenuItem>
                     <MenuItem value="4 / 5">Portrait (4:5)</MenuItem>
                     <MenuItem value="3 / 4">Tall (3:4)</MenuItem>
@@ -299,12 +274,7 @@ export const GalleryPage: React.FC = () => {
 
                 <FormControl size="small" sx={{ minWidth: 130 }}>
                   <FormLabel sx={labelSx}>Image Fit</FormLabel>
-                  <Select
-                    value={imageFit}
-                    onChange={(e) =>
-                      setImageFit(e.target.value as GalleryImageFit)
-                    }
-                  >
+                  <Select value={imageFit} onChange={(e) => setImageFit(e.target.value as GalleryImageFit)}>
                     <MenuItem value="cover">Cover</MenuItem>
                     <MenuItem value="contain">Contain</MenuItem>
                   </Select>
@@ -327,11 +297,7 @@ export const GalleryPage: React.FC = () => {
               <Stack direction="row" spacing={3}>
                 <FormControlLabel
                   control={
-                    <Switch
-                      size="small"
-                      checked={showOverlay}
-                      onChange={(e) => setShowOverlay(e.target.checked)}
-                    />
+                    <Switch size="small" checked={showOverlay} onChange={(e) => setShowOverlay(e.target.checked)} />
                   }
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
@@ -340,13 +306,7 @@ export const GalleryPage: React.FC = () => {
                   }
                 />
                 <FormControlLabel
-                  control={
-                    <Switch
-                      size="small"
-                      checked={showBlock}
-                      onChange={(e) => setShowBlock(e.target.checked)}
-                    />
-                  }
+                  control={<Switch size="small" checked={showBlock} onChange={(e) => setShowBlock(e.target.checked)} />}
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       Block
@@ -411,12 +371,7 @@ export const GalleryPage: React.FC = () => {
                             "&:hover": { bgcolor: "rgba(0,0,0,0.55)" },
                           }}
                         >
-                          <Heart
-                            size={14}
-                            fill={
-                              wishlist.has(item.id) ? "currentColor" : "none"
-                            }
-                          />
+                          <Heart size={14} fill={wishlist.has(item.id) ? "currentColor" : "none"} />
                         </IconButton>
                       </Tooltip>
                     </>
@@ -448,15 +403,8 @@ export const GalleryPage: React.FC = () => {
                       >
                         {item.name}
                       </Typography>
-                      <Stack
-                        direction="row"
-                        spacing={1}
-                        sx={{ mt: 0.5, alignItems: "center" }}
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{ fontWeight: 700, fontSize: "0.88rem" }}
-                        >
+                      <Stack direction="row" spacing={1} sx={{ mt: 0.5, alignItems: "center" }}>
+                        <Typography variant="body2" sx={{ fontWeight: 700, fontSize: "0.88rem" }}>
                           ₹{item.price.toLocaleString()}
                         </Typography>
                         {item.originalPrice && (
@@ -573,11 +521,7 @@ export const GalleryPage: React.FC = () => {
                   />
                 </Box>
               )}
-              <Stack
-                direction="row"
-                spacing={0.5}
-                sx={{ position: "absolute", bottom: 10, right: 10 }}
-              >
+              <Stack direction="row" spacing={0.5} sx={{ position: "absolute", bottom: 10, right: 10 }}>
                 <IconButton
                   size="small"
                   sx={{
@@ -630,14 +574,8 @@ export const GalleryPage: React.FC = () => {
               >
                 {item.name}
               </Typography>
-              <Stack
-                direction="row"
-                spacing={0.75}
-                sx={{ mt: 0.5, alignItems: "center" }}
-              >
-                <Typography sx={{ fontWeight: 700, fontSize: "0.88rem" }}>
-                  ₹{item.price.toLocaleString()}
-                </Typography>
+              <Stack direction="row" spacing={0.75} sx={{ mt: 0.5, alignItems: "center" }}>
+                <Typography sx={{ fontWeight: 700, fontSize: "0.88rem" }}>₹{item.price.toLocaleString()}</Typography>
                 {item.originalPrice && (
                   <Typography
                     variant="caption"
@@ -650,16 +588,9 @@ export const GalleryPage: React.FC = () => {
                   </Typography>
                 )}
               </Stack>
-              <Stack
-                direction="row"
-                spacing={0.25}
-                sx={{ mt: 0.5, alignItems: "center" }}
-              >
+              <Stack direction="row" spacing={0.25} sx={{ mt: 0.5, alignItems: "center" }}>
                 <Star size={11} fill="currentColor" color="#FFA726" />
-                <Typography
-                  variant="caption"
-                  sx={{ color: "text.secondary", fontSize: "0.7rem" }}
-                >
+                <Typography variant="caption" sx={{ color: "text.secondary", fontSize: "0.7rem" }}>
                   {item.rating}
                 </Typography>
               </Stack>
@@ -694,15 +625,11 @@ export const GalleryPage: React.FC = () => {
                 borderRadius: 3,
                 overflow: "hidden",
                 border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
-                bgcolor: isDark
-                  ? "rgba(255,255,255,0.03)"
-                  : "rgba(17,17,17,0.02)",
+                bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(17,17,17,0.02)",
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
                 "&:hover": {
                   transform: "translateY(-3px)",
-                  boxShadow: isDark
-                    ? "0 12px 32px rgba(0,0,0,0.4)"
-                    : "0 12px 32px rgba(0,0,0,0.1)",
+                  boxShadow: isDark ? "0 12px 32px rgba(0,0,0,0.4)" : "0 12px 32px rgba(0,0,0,0.1)",
                 },
               }}
             >
@@ -751,10 +678,7 @@ export const GalleryPage: React.FC = () => {
                   }}
                 >
                   <Box>
-                    <Typography
-                      variant="overline"
-                      sx={{ fontSize: "0.6rem", color: "text.secondary" }}
-                    >
+                    <Typography variant="overline" sx={{ fontSize: "0.6rem", color: "text.secondary" }}>
                       {item.category}
                     </Typography>
                     <Typography
@@ -767,11 +691,7 @@ export const GalleryPage: React.FC = () => {
                       {item.name}
                     </Typography>
                   </Box>
-                  <Stack
-                    direction="row"
-                    spacing={0.25}
-                    sx={{ alignItems: "center", mt: 1 }}
-                  >
+                  <Stack direction="row" spacing={0.25} sx={{ alignItems: "center", mt: 1 }}>
                     <Star size={11} fill="currentColor" color="#FFA726" />
                     <Typography variant="caption">{item.rating}</Typography>
                   </Stack>
@@ -785,14 +705,8 @@ export const GalleryPage: React.FC = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <Stack
-                    direction="row"
-                    spacing={0.75}
-                    sx={{ alignItems: "center" }}
-                  >
-                    <Typography sx={{ fontWeight: 700 }}>
-                      ₹{item.price.toLocaleString()}
-                    </Typography>
+                  <Stack direction="row" spacing={0.75} sx={{ alignItems: "center" }}>
+                    <Typography sx={{ fontWeight: 700 }}>₹{item.price.toLocaleString()}</Typography>
                     {item.originalPrice && (
                       <Typography
                         variant="caption"
@@ -894,10 +808,7 @@ export const GalleryPage: React.FC = () => {
             border: `1px solid ${isDark ? "rgba(255,255,255,0.10)" : "rgba(17,17,17,0.10)"}`,
           }}
         >
-          <Typography
-            variant="overline"
-            sx={{ display: "block", mb: 1.5, fontWeight: 700 }}
-          >
+          <Typography variant="overline" sx={{ display: "block", mb: 1.5, fontWeight: 700 }}>
             Rendering Layers — Architecture
           </Typography>
           <Stack spacing={1.5}>
@@ -935,11 +846,7 @@ export const GalleryPage: React.FC = () => {
                 >
                   {title}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ lineHeight: 1.65, fontSize: "0.8rem" }}
-                >
+                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.65, fontSize: "0.8rem" }}>
                   {desc}
                 </Typography>
               </Box>

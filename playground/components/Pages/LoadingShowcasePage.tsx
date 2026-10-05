@@ -82,9 +82,7 @@ export const LoadingShowcasePage: React.FC = () => {
   // Playground state
   const [selectedPreset, setSelectedPreset] = useState<string>("apparel");
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [title, setTitle] = useState(
-    "Preparing your exclusive drop experience...",
-  );
+  const [title, setTitle] = useState("Preparing your exclusive drop experience...");
   const [loadingLabel, setLoadingLabel] = useState("CURATING ARCHIVAL PIECES");
   const [showImage, setShowImage] = useState(true);
   const [showSignature, setShowSignature] = useState(true);
@@ -144,13 +142,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
       title="LoadingShowcase"
       description="An immersive, cosmic floating loading screen for application transitions, 3D builder initializations, and drop launches. Features dual orbital ring SVG animations, organic floating product physics, dynamic deceleration progress, and signature branding."
       category="Feedback & Status"
-      badges={[
-        "Loading Screen",
-        "Cosmic Orbits",
-        "Progress Animation",
-        "Edge-to-Edge",
-        "Next.js Ready",
-      ]}
+      badges={["Loading Screen", "Cosmic Orbits", "Progress Animation", "Edge-to-Edge", "Next.js Ready"]}
     >
       {/* ============================================================
           1. Interactive Playground
@@ -170,11 +162,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                 <Typography sx={labelSx} color="text.secondary">
                   Choose Scenario Preset,
                 </Typography>
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  sx={{ gap: 1, mt: 0.5, flexWrap: "wrap" }}
-                >
+                <Stack direction="row" spacing={1} sx={{ gap: 1, mt: 0.5, flexWrap: "wrap" }}>
                   {Object.entries(PRESETS).map(([key, p]) => (
                     <Chip
                       key={key}
@@ -194,24 +182,14 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                 <Typography sx={labelSx} color="text.secondary">
                   Loading State & Actions
                 </Typography>
-                <Stack
-                  direction="row"
-                  spacing={2}
-                  sx={{ alignItems: "center", flexWrap: "wrap" }}
-                >
+                <Stack direction="row" spacing={2} sx={{ alignItems: "center", flexWrap: "wrap" }}>
                   <FormControlLabel
                     control={
-                      <Switch
-                        size="small"
-                        checked={isLoading}
-                        onChange={(e) => setIsLoading(e.target.checked)}
-                      />
+                      <Switch size="small" checked={isLoading} onChange={(e) => setIsLoading(e.target.checked)} />
                     }
                     label={
                       <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                        {isLoading
-                          ? "Status: Loading (Active)"
-                          : "Status: Completed (100%)"}
+                        {isLoading ? "Status: Loading (Active)" : "Status: Completed (100%)"}
                       </Typography>
                     }
                   />
@@ -240,17 +218,9 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                 <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
                   <FormControlLabel
                     control={
-                      <Switch
-                        size="small"
-                        checked={showImage}
-                        onChange={(e) => setShowImage(e.target.checked)}
-                      />
+                      <Switch size="small" checked={showImage} onChange={(e) => setShowImage(e.target.checked)} />
                     }
-                    label={
-                      <Typography variant="body2">
-                        Product Visual & Cosmic Orbits
-                      </Typography>
-                    }
+                    label={<Typography variant="body2">Product Visual & Cosmic Orbits</Typography>}
                   />
                   <FormControlLabel
                     control={
@@ -260,9 +230,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                         onChange={(e) => setShowSignature(e.target.checked)}
                       />
                     }
-                    label={
-                      <Typography variant="body2">Signature Footer</Typography>
-                    }
+                    label={<Typography variant="body2">Signature Footer</Typography>}
                   />
                 </Stack>
               </Box>
@@ -293,15 +261,11 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
               width: "100%",
               height: { xs: 580, sm: 640, md: 720 },
               borderRadius: "24px",
-              bgcolor: isDark
-                ? "rgba(10,10,12,0.95)"
-                : "rgba(250,250,252,0.95)",
+              bgcolor: isDark ? "rgba(10,10,12,0.95)" : "rgba(250,250,252,0.95)",
               border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}`,
               position: "relative",
               overflow: "hidden",
-              boxShadow: isDark
-                ? "0 24px 70px rgba(0,0,0,0.5)"
-                : "0 24px 70px rgba(0,0,0,0.08)",
+              boxShadow: isDark ? "0 24px 70px rgba(0,0,0,0.5)" : "0 24px 70px rgba(0,0,0,0.08)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -348,11 +312,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
             >
               <LoadingShowcase
                 key={remountKey}
-                image={
-                  showImage && PRESETS[selectedPreset]?.image
-                    ? PRESETS[selectedPreset].image
-                    : undefined
-                }
+                image={showImage && PRESETS[selectedPreset]?.image ? PRESETS[selectedPreset].image : undefined}
                 loading={isLoading}
                 title={title}
                 loadingLabel={loadingLabel}
@@ -555,14 +515,8 @@ setLoading(false); // smoothly rushes to 100% and finishes
                 height: 540,
               }}
               loading={controlledLoading}
-              title={
-                controlledLoading
-                  ? "Fetching inventory data..."
-                  : "Ready to enter Studio."
-              }
-              loadingLabel={
-                controlledLoading ? "SYNCING REAL-TIME STOCK" : "LOAD COMPLETE"
-              }
+              title={controlledLoading ? "Fetching inventory data..." : "Ready to enter Studio."}
+              loadingLabel={controlledLoading ? "SYNCING REAL-TIME STOCK" : "LOAD COMPLETE"}
             />
           </Box>
         </Stack>
@@ -656,9 +610,7 @@ setLoading(false); // smoothly rushes to 100% and finishes
             <TableHead>
               <TableRow
                 sx={{
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.03)"
-                    : "rgba(0,0,0,0.02)",
+                  bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)",
                 }}
               >
                 <TableCell sx={{ fontWeight: 700 }}>Prop</TableCell>
@@ -722,11 +674,7 @@ setLoading(false); // smoothly rushes to 100% and finishes
                   >
                     {row.prop}
                   </TableCell>
-                  <TableCell
-                    sx={{ fontFamily: "monospace", fontSize: "0.8rem" }}
-                  >
-                    {row.type}
-                  </TableCell>
+                  <TableCell sx={{ fontFamily: "monospace", fontSize: "0.8rem" }}>{row.type}</TableCell>
                   <TableCell
                     sx={{
                       fontFamily: "monospace",
@@ -736,11 +684,7 @@ setLoading(false); // smoothly rushes to 100% and finishes
                   >
                     {row.default}
                   </TableCell>
-                  <TableCell
-                    sx={{ fontSize: "0.85rem", color: "text.secondary" }}
-                  >
-                    {row.desc}
-                  </TableCell>
+                  <TableCell sx={{ fontSize: "0.85rem", color: "text.secondary" }}>{row.desc}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

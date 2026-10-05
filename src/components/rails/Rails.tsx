@@ -1,19 +1,9 @@
 "use client";
 
 import * as React from "react";
-import {
-  Box,
-  IconButton,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
-import type {
-  RailProps,
-  RailRenderContext,
-  RailNavigationContext,
-} from "./Rail.types.js";
+import type { RailProps, RailRenderContext, RailNavigationContext } from "./Rail.types.js";
 
 const DEFAULT_COLUMNS = { xs: 2, sm: 3, md: 4, lg: 5, xl: 5 } as const;
 const DEFAULT_GAP = 2;
@@ -73,11 +63,7 @@ export function Rails<T>({
     return "xl";
   }, [isXs, isSm, isMd, isLg]);
 
-  const currentColumns = resolveResponsiveValue(
-    columns,
-    DEFAULT_COLUMNS,
-    breakpoint,
-  );
+  const currentColumns = resolveResponsiveValue(columns, DEFAULT_COLUMNS, breakpoint);
   const currentItemWidth = itemWidth?.[breakpoint];
   const viewportRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -86,16 +72,13 @@ export function Rails<T>({
   const [canScrollNext, setCanScrollNext] = React.useState(false);
   const [activePage, setActivePage] = React.useState(0);
 
-  const prefersReducedMotion = useMediaQuery(
-    "(prefers-reduced-motion: reduce)",
-  );
+  const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
 
   const getCssItemBasis = React.useCallback(
     (breakpointKey: keyof typeof DEFAULT_COLUMNS) => {
       const explicitWidth = itemWidth?.[breakpointKey];
       if (explicitWidth) return explicitWidth;
-      const columnCount =
-        columns?.[breakpointKey] ?? DEFAULT_COLUMNS[breakpointKey];
+      const columnCount = columns?.[breakpointKey] ?? DEFAULT_COLUMNS[breakpointKey];
       return `calc((100% - ${(columnCount - 1) * gap}px) / ${columnCount})`;
     },
     [columns, gap, itemWidth],
@@ -190,16 +173,12 @@ export function Rails<T>({
     const parent = firstItem.parentElement;
     const computedStyle = window.getComputedStyle(parent ?? firstItem);
 
-    const gapValue =
-      parseFloat(computedStyle.columnGap) ||
-      parseFloat(computedStyle.gap) ||
-      gap;
+    const gapValue = parseFloat(computedStyle.columnGap) || parseFloat(computedStyle.gap) || gap;
 
     const itemWidth = firstItem.getBoundingClientRect().width;
     const columnsCount = Math.max(1, currentColumns);
 
-    const pageWidth =
-      itemWidth * columnsCount + gapValue * Math.max(0, columnsCount - 1);
+    const pageWidth = itemWidth * columnsCount + gapValue * Math.max(0, columnsCount - 1);
 
     if (pageWidth <= 0) {
       setActivePage(0);
@@ -253,10 +232,7 @@ export function Rails<T>({
     const itemRect = firstItem.getBoundingClientRect();
     const parent = firstItem.parentElement;
     const computedStyle = window.getComputedStyle(parent ?? firstItem);
-    const gapValue =
-      parseFloat(computedStyle.columnGap) ||
-      parseFloat(computedStyle.gap) ||
-      gap;
+    const gapValue = parseFloat(computedStyle.columnGap) || parseFloat(computedStyle.gap) || gap;
 
     return itemRect.width + gapValue;
   }, [gap]);
@@ -317,12 +293,7 @@ export function Rails<T>({
   }, [canScrollNext, loop, scrollBy, scrollToStart]);
 
   React.useEffect(() => {
-    if (
-      !autoplay ||
-      prefersReducedMotion ||
-      (pauseOnHover && isHovered) ||
-      items.length <= currentColumns
-    ) {
+    if (!autoplay || prefersReducedMotion || (pauseOnHover && isHovered) || items.length <= currentColumns) {
       return;
     }
 
@@ -331,10 +302,7 @@ export function Rails<T>({
     const timer = window.setInterval(() => {
       const viewport = viewportRef.current;
       if (!viewport) return;
-      const maxScroll = Math.max(
-        0,
-        viewport.scrollWidth - viewport.clientWidth,
-      );
+      const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
       const isAtEnd = viewport.scrollLeft >= maxScroll - 2;
       if (isAtEnd) {
         if (loop) scrollToStart();
@@ -403,13 +371,7 @@ export function Rails<T>({
         />
       );
     },
-    [
-      ImageComponent,
-      currentColumns,
-      items,
-      renderImage,
-      transitionConfig.image,
-    ],
+    [ImageComponent, currentColumns, items, renderImage, transitionConfig.image],
   );
 
   const defaultRenderItem = React.useCallback(
@@ -418,14 +380,9 @@ export function Rails<T>({
       const title = getTitle?.(item, index);
       const href = getHref?.(item, index);
 
-      const linkLabel =
-        typeof title === "string" && title.trim().length > 0
-          ? `View ${title}`
-          : "View item";
+      const linkLabel = typeof title === "string" && title.trim().length > 0 ? `View ${title}` : "View item";
 
-      const handleItemNavigation = (
-        event: React.MouseEvent<HTMLAnchorElement>,
-      ) => {
+      const handleItemNavigation = (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
         event.stopPropagation();
         onNavigate?.(item, index, event);
@@ -455,8 +412,7 @@ export function Rails<T>({
               position: "absolute",
               inset: 0,
               pointerEvents: "none",
-              background:
-                "linear-gradient(to top, rgba(0,0,0,0.22), transparent 45%)",
+              background: "linear-gradient(to top, rgba(0,0,0,0.22), transparent 45%)",
               opacity: 0,
               ...transitionConfig.overlay,
             }}
@@ -522,11 +478,7 @@ export function Rails<T>({
             </Box>
           )}
 
-          {renderContent && (
-            <Box sx={{ pt: title ? 0.5 : 1.5 }}>
-              {renderContent({ item, index })}
-            </Box>
-          )}
+          {renderContent && <Box sx={{ pt: title ? 0.5 : 1.5 }}>{renderContent({ item, index })}</Box>}
         </Box>
       );
     },
@@ -547,9 +499,7 @@ export function Rails<T>({
   const renderNavigationButton = (direction: "previous" | "next") => {
     const isPrevious = direction === "previous";
 
-    const disabled = isPrevious
-      ? !canScrollPrevious && !loop
-      : !canScrollNext && !loop;
+    const disabled = isPrevious ? !canScrollPrevious && !loop : !canScrollNext && !loop;
 
     const handleAction = (event?: React.MouseEvent) => {
       event?.preventDefault();
@@ -590,28 +540,18 @@ export function Rails<T>({
           width: 44,
           height: 44,
           borderRadius: "50%",
-          color:
-            theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
-          bgcolor:
-            theme.palette.mode === "dark"
-              ? "rgba(255, 255, 255, 0.14)"
-              : "rgba(255, 255, 255, 0.65)",
+          color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
+          bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
           backdropFilter: "blur(12px)",
           border:
             theme.palette.mode === "dark"
               ? "1px solid rgba(255, 255, 255, 0.28)"
               : "1px solid rgba(255, 255, 255, 0.6)",
           boxShadow:
-            theme.palette.mode === "dark"
-              ? "0 4px 20px rgba(0, 0, 0, 0.25)"
-              : "0 4px 20px rgba(0, 0, 0, 0.08)",
-          transition:
-            "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
+            theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
+          transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
           "&:hover": {
-            bgcolor:
-              theme.palette.mode === "dark"
-                ? "rgba(255, 255, 255, 0.22)"
-                : "rgba(255, 255, 255, 0.85)",
+            bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
             transform: "translateY(-1px)",
           },
           "&.Mui-disabled": {
@@ -678,9 +618,7 @@ export function Rails<T>({
           {items.map((item, index) => {
             const key = getKey(item, index);
 
-            const content =
-              renderItem?.({ item, index }) ??
-              defaultRenderItem({ item, index });
+            const content = renderItem?.({ item, index }) ?? defaultRenderItem({ item, index });
 
             return (
               <Box
@@ -775,38 +713,24 @@ export function Rails<T>({
 
                   if (!viewport) return;
 
-                  const firstItem =
-                    viewport.querySelector<HTMLElement>("[data-rail-item]");
+                  const firstItem = viewport.querySelector<HTMLElement>("[data-rail-item]");
 
                   if (!firstItem) return;
 
                   const parent = firstItem.parentElement;
-                  const computedStyle = window.getComputedStyle(
-                    parent ?? firstItem,
-                  );
+                  const computedStyle = window.getComputedStyle(parent ?? firstItem);
 
-                  const gapValue =
-                    parseFloat(computedStyle.columnGap) ||
-                    parseFloat(computedStyle.gap) ||
-                    gap;
+                  const gapValue = parseFloat(computedStyle.columnGap) || parseFloat(computedStyle.gap) || gap;
 
                   const itemWidth = firstItem.getBoundingClientRect().width;
 
                   const columnsCount = Math.max(1, currentColumns);
 
-                  const pageWidth =
-                    itemWidth * columnsCount +
-                    gapValue * Math.max(0, columnsCount - 1);
+                  const pageWidth = itemWidth * columnsCount + gapValue * Math.max(0, columnsCount - 1);
 
-                  const maxScroll = Math.max(
-                    0,
-                    viewport.scrollWidth - viewport.clientWidth,
-                  );
+                  const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
 
-                  const target =
-                    index === pageCount - 1
-                      ? maxScroll
-                      : Math.min(pageWidth * index, maxScroll);
+                  const target = index === pageCount - 1 ? maxScroll : Math.min(pageWidth * index, maxScroll);
 
                   setActivePage(index);
 
@@ -836,9 +760,7 @@ export function Rails<T>({
                     width: active ? 22 : 6,
                     height: 6,
                     borderRadius: 999,
-                    backgroundColor: active
-                      ? "text.primary"
-                      : "action.disabled",
+                    backgroundColor: active ? "text.primary" : "action.disabled",
                     transition: "width 220ms ease",
                   },
                   "&:focus-visible": {

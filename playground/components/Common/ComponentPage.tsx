@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Breadcrumbs,
-  Link,
-  Chip,
-  Divider,
-} from "@mui/material";
+import { Box, Typography, Breadcrumbs, Link, Chip, Divider } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext";
 
 interface ComponentPageProps {
@@ -30,21 +23,12 @@ export const ComponentPage: React.FC<ComponentPageProps> = ({
   return (
     <Box>
       {/* Breadcrumb Trail */}
-      <Breadcrumbs
-        aria-label="breadcrumb"
-        sx={{ mb: 2, fontSize: "0.8rem", color: "text.secondary" }}
-      >
+      <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2, fontSize: "0.8rem", color: "text.secondary" }}>
         <Link underline="hover" color="inherit" href="#overview">
           Docs
         </Link>
-        <Typography sx={{ fontSize: "0.8rem", color: "text.secondary" }}>
-          {category}
-        </Typography>
-        <Typography
-          sx={{ fontSize: "0.8rem", color: "text.primary", fontWeight: 600 }}
-        >
-          {title}
-        </Typography>
+        <Typography sx={{ fontSize: "0.8rem", color: "text.secondary" }}>{category}</Typography>
+        <Typography sx={{ fontSize: "0.8rem", color: "text.primary", fontWeight: 600 }}>{title}</Typography>
       </Breadcrumbs>
 
       {/* Page Title & Subtitle */}
@@ -78,15 +62,9 @@ export const ComponentPage: React.FC<ComponentPageProps> = ({
                 height: 22,
                 fontSize: "0.68rem",
                 fontWeight: 600,
-                backgroundColor: isDark
-                  ? "rgba(255, 255, 255, 0.08)"
-                  : "rgba(17, 17, 17, 0.06)",
+                backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)",
                 color: isDark ? "#F6F5F2" : "#111111",
-                border: `1px solid ${
-                  isDark
-                    ? "rgba(255, 255, 255, 0.12)"
-                    : "rgba(17, 17, 17, 0.08)"
-                }`,
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)"}`,
               }}
             />
           ))}

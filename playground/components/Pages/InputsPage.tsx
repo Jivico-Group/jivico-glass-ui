@@ -15,15 +15,7 @@ import {
 } from "@mui/material";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import {
-  Search,
-  Mail,
-  Eye,
-  EyeOff,
-  DollarSign,
-  Check,
-  Sparkles,
-} from "lucide-react";
+import { Search, Mail, Eye, EyeOff, DollarSign, Check, Sparkles } from "lucide-react";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const InputsPage: React.FC = () => {
@@ -32,13 +24,8 @@ export const InputsPage: React.FC = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [selectValue, setSelectValue] = useState("charcoal");
-  const [autoSingle, setAutoSingle] = useState<string | null>(
-    "Apple Precision",
-  );
-  const [autoMulti, setAutoMulti] = useState<string[]>([
-    "Frosted Glass",
-    "Brand Kit",
-  ]);
+  const [autoSingle, setAutoSingle] = useState<string | null>("Apple Precision");
+  const [autoMulti, setAutoMulti] = useState<string[]>(["Frosted Glass", "Brand Kit"]);
 
   const [largeListValue, setLargeListValue] = useState("item-1");
 
@@ -75,14 +62,7 @@ export const InputsPage: React.FC = () => {
       title="Text Field, Select & Autocomplete"
       description="Input controls allow users to enter, select, and edit data. Intentionally calibrated to the Brand Kit palette: Charcoal & Cream focus rings, Stone Gray labels, color='glass' frosted inputs, and blur(24px) popover open layers."
       category="Inputs"
-      badges={[
-        "Inputs",
-        "color='glass'",
-        "Select",
-        "Autocomplete",
-        "Glass Popover",
-        "Brand Kit",
-      ]}
+      badges={["Inputs", "color='glass'", "Select", "Autocomplete", "Glass Popover", "Brand Kit"]}
     >
       {/* 1. Basic Text Fields & States */}
       <DemoBlock
@@ -95,28 +75,15 @@ export const InputsPage: React.FC = () => {
 <TextField label="Disabled" disabled defaultValue="Read-only system text" />`}
       >
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, width: "100%" }}>
-          <TextField
-            label="Default Input"
-            placeholder="e.g. John Doe"
-            sx={{ minWidth: 240 }}
-          />
-          <TextField
-            label="With Value"
-            defaultValue="Jivico Design System"
-            sx={{ minWidth: 240 }}
-          />
+          <TextField label="Default Input" placeholder="e.g. John Doe" sx={{ minWidth: 240 }} />
+          <TextField label="With Value" defaultValue="Jivico Design System" sx={{ minWidth: 240 }} />
           <TextField
             label="Helper Text"
             defaultValue="alex@jivico.studio"
             helperText="Corporate workspace email"
             sx={{ minWidth: 240 }}
           />
-          <TextField
-            label="Disabled State"
-            disabled
-            defaultValue="Read-only system token"
-            sx={{ minWidth: 240 }}
-          />
+          <TextField label="Disabled State" disabled defaultValue="Read-only system token" sx={{ minWidth: 240 }} />
         </Box>
       </DemoBlock>
 
@@ -150,9 +117,7 @@ export const InputsPage: React.FC = () => {
             background: isDark
               ? "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)"
               : "linear-gradient(135deg, #FAF9F6 0%, #F0EFEA 100%)",
-            border: `1px solid ${
-              isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)"
-            }`,
+            border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)"}`,
             "&::before": {
               content: '""',
               position: "absolute",
@@ -334,12 +299,7 @@ export const InputsPage: React.FC = () => {
 
           <FormControl sx={{ minWidth: 240 }} size="small">
             <InputLabel id="size-select-label">Component Size</InputLabel>
-            <Select
-              labelId="size-select-label"
-              id="size-select"
-              defaultValue="medium"
-              label="Component Size"
-            >
+            <Select labelId="size-select-label" id="size-select" defaultValue="medium" label="Component Size">
               <MenuItem value="small">Small (36px)</MenuItem>
               <MenuItem value="medium">Medium (48px)</MenuItem>
               <MenuItem value="large">Large (56px)</MenuItem>
@@ -348,9 +308,7 @@ export const InputsPage: React.FC = () => {
           </FormControl>
 
           <FormControl sx={{ minWidth: 280 }}>
-            <InputLabel id="large-select-label">
-              Large Options List (35 Items)
-            </InputLabel>
+            <InputLabel id="large-select-label">Large Options List (35 Items)</InputLabel>
             <Select
               labelId="large-select-label"
               id="large-select"
@@ -369,12 +327,7 @@ export const InputsPage: React.FC = () => {
 
           <FormControl sx={{ minWidth: 240 }} disabled>
             <InputLabel id="disabled-select-label">Disabled Select</InputLabel>
-            <Select
-              labelId="disabled-select-label"
-              id="disabled-select"
-              defaultValue="locked"
-              label="Disabled Select"
-            >
+            <Select labelId="disabled-select-label" id="disabled-select" defaultValue="locked" label="Disabled Select">
               <MenuItem value="locked">System Locked Option</MenuItem>
             </Select>
             <FormHelperText>Read-only configuration</FormHelperText>
@@ -411,27 +364,19 @@ export const InputsPage: React.FC = () => {
           }}
         >
           <Box sx={{ width: "100%", maxWidth: 420 }}>
-            <Typography
-              variant="caption"
-              sx={{ display: "block", fontWeight: 600, mb: 1 }}
-            >
+            <Typography variant="caption" sx={{ display: "block", fontWeight: 600, mb: 1 }}>
               Single Selection
             </Typography>
             <Autocomplete
               options={designOptions}
               value={autoSingle}
               onChange={(_, val) => setAutoSingle(val)}
-              renderInput={(params) => (
-                <TextField {...params} label="Design System Component" />
-              )}
+              renderInput={(params) => <TextField {...params} label="Design System Component" />}
             />
           </Box>
 
           <Box sx={{ width: "100%", maxWidth: 480 }}>
-            <Typography
-              variant="caption"
-              sx={{ display: "block", fontWeight: 600, mb: 1 }}
-            >
+            <Typography variant="caption" sx={{ display: "block", fontWeight: 600, mb: 1 }}>
               Multi-Select with Brand Kit Chips
             </Typography>
             <Autocomplete
@@ -440,11 +385,7 @@ export const InputsPage: React.FC = () => {
               value={autoMulti}
               onChange={(_, val) => setAutoMulti(val)}
               renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Active Feature Flags"
-                  placeholder="Select more..."
-                />
+                <TextField {...params} label="Active Feature Flags" placeholder="Select more..." />
               )}
             />
           </Box>
@@ -526,11 +467,7 @@ export const InputsPage: React.FC = () => {
               input: {
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      size="small"
-                      onClick={() => setShowPassword(!showPassword)}
-                      edge="end"
-                    >
+                    <IconButton size="small" onClick={() => setShowPassword(!showPassword)} edge="end">
                       {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </IconButton>
                   </InputAdornment>
@@ -560,24 +497,9 @@ export const InputsPage: React.FC = () => {
             width: "100%",
           }}
         >
-          <TextField
-            label="Small Size"
-            size="small"
-            placeholder="36px height"
-            sx={{ minWidth: 220 }}
-          />
-          <TextField
-            label="Medium Size (Default)"
-            size="medium"
-            placeholder="48px height"
-            sx={{ minWidth: 240 }}
-          />
-          <TextField
-            label="Large Size"
-            size={"large" as any}
-            placeholder="56px height"
-            sx={{ minWidth: 260 }}
-          />
+          <TextField label="Small Size" size="small" placeholder="36px height" sx={{ minWidth: 220 }} />
+          <TextField label="Medium Size (Default)" size="medium" placeholder="48px height" sx={{ minWidth: 240 }} />
+          <TextField label="Large Size" size={"large" as any} placeholder="56px height" sx={{ minWidth: 260 }} />
         </Box>
       </DemoBlock>
 

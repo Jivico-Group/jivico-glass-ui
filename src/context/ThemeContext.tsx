@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 export type ThemeMode = "light" | "dark" | "system";
 export type ResolvedThemeMode = "light" | "dark";
@@ -143,11 +137,9 @@ export function GlassModeProvider({
   const toggleGlassMode = () => {
     withViewTransition(() => {
       setModeState((previousMode) => {
-        const currentResolved =
-          previousMode === "system" ? systemMode : previousMode;
+        const currentResolved = previousMode === "system" ? systemMode : previousMode;
 
-        const nextMode: ThemeMode =
-          currentResolved === "light" ? "dark" : "light";
+        const nextMode: ThemeMode = currentResolved === "light" ? "dark" : "light";
 
         try {
           localStorage.setItem(storageKey, nextMode);
@@ -185,9 +177,5 @@ export function GlassModeProvider({
     [mode, resolvedMode],
   );
 
-  return (
-    <GlassModeContext.Provider value={value}>
-      {children}
-    </GlassModeContext.Provider>
-  );
+  return <GlassModeContext.Provider value={value}>{children}</GlassModeContext.Provider>;
 }

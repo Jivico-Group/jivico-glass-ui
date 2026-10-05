@@ -1,15 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette.js";
 
-type CardColor =
-  | "primary"
-  | "secondary"
-  | "accent"
-  | "info"
-  | "success"
-  | "warning"
-  | "error"
-  | "glass";
+type CardColor = "primary" | "secondary" | "accent" | "info" | "success" | "warning" | "error" | "glass";
 
 type CardRadius = "none" | "small" | "medium" | "large" | "full";
 
@@ -28,11 +20,7 @@ interface CardColors {
   hoverBorder: string;
 }
 
-const getCardColor = (
-  palette: JivicoPalette,
-  color: CardColor,
-  isDark: boolean,
-): CardColors => {
+const getCardColor = (palette: JivicoPalette, color: CardColor, isDark: boolean): CardColors => {
   const colors: Record<CardColor, CardColors> = {
     /*
      * -----------------------------------------
@@ -51,9 +39,7 @@ const getCardColor = (
 
       hoverBackground: isDark ? "#1C1C1C" : "#FAFAFA",
 
-      hoverBorder: isDark
-        ? "rgba(255, 255, 255, 0.16)"
-        : "rgba(17, 17, 17, 0.16)",
+      hoverBorder: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(17, 17, 17, 0.16)",
     },
 
     /*
@@ -70,9 +56,7 @@ const getCardColor = (
 
       hoverBackground: isDark ? "#262626" : "#F0EFEC",
 
-      hoverBorder: isDark
-        ? "rgba(255, 255, 255, 0.16)"
-        : "rgba(17, 17, 17, 0.14)",
+      hoverBorder: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(17, 17, 17, 0.14)",
     },
 
     /*
@@ -159,29 +143,20 @@ const getCardColor = (
      * It is not used by default.
      */
     glass: {
-      background: isDark
-        ? "rgba(255, 255, 255, 0.08)"
-        : "rgba(255, 255, 255, 0.72)",
+      background: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.72)",
 
       border: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(17, 17, 17, 0.10)",
 
-      hoverBackground: isDark
-        ? "rgba(255, 255, 255, 0.11)"
-        : "rgba(255, 255, 255, 0.86)",
+      hoverBackground: isDark ? "rgba(255, 255, 255, 0.11)" : "rgba(255, 255, 255, 0.86)",
 
-      hoverBorder: isDark
-        ? "rgba(255, 255, 255, 0.20)"
-        : "rgba(17, 17, 17, 0.14)",
+      hoverBorder: isDark ? "rgba(255, 255, 255, 0.20)" : "rgba(17, 17, 17, 0.14)",
     },
   };
 
   return colors[color];
 };
 
-export const getCardOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getCardOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiCard: {
     /*
      * -----------------------------------------
@@ -202,18 +177,13 @@ export const getCardOverrides = (
       root: ({ ownerState }) => {
         const state = ownerState as JivicoCardOwnerState;
 
-        const isGlass =
-          state.glass === "true" ||
-          state.glass === true ||
-          state.color === "glass";
+        const isGlass = state.glass === "true" || state.glass === true || state.color === "glass";
 
         const cardColor = isGlass ? "glass" : state.color || "primary";
 
         const radius = state.radius || "medium";
 
-        const hover =
-          state.hoverEffect === true ||
-          (state.hoverEffect as any) === "true";
+        const hover = state.hoverEffect === true || (state.hoverEffect as any) === "true";
 
         const variant = state.variant || "elevation";
 
@@ -364,9 +334,7 @@ export const getCardOverrides = (
 
             transform: "translateY(-2px)",
 
-            boxShadow: isDark
-              ? "0 8px 24px rgba(0, 0, 0, 0.28)"
-              : "0 8px 24px rgba(0, 0, 0, 0.08)",
+            boxShadow: isDark ? "0 8px 24px rgba(0, 0, 0, 0.28)" : "0 8px 24px rgba(0, 0, 0, 0.08)",
           };
 
           styles["&:active"] = {

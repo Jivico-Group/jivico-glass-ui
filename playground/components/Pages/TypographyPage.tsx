@@ -148,12 +148,8 @@ export const TypographyPage: React.FC = () => {
               sx={{
                 p: 2.5,
                 borderRadius: "16px",
-                bgcolor: isDark
-                  ? "rgba(255, 255, 255, 0.03)"
-                  : "rgba(17, 17, 17, 0.02)",
-                border: `1px solid ${
-                  isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"
-                }`,
+                bgcolor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(17, 17, 17, 0.02)",
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"}`,
                 display: "flex",
                 flexDirection: "column",
                 gap: 1.5,
@@ -202,9 +198,7 @@ export const TypographyPage: React.FC = () => {
                       fontFamily: "monospace",
                       fontSize: "0.7rem",
                       height: 20,
-                      bgcolor: isDark
-                        ? "rgba(255,255,255,0.06)"
-                        : "rgba(0,0,0,0.05)",
+                      bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)",
                     }}
                   />
                 </Box>
@@ -234,10 +228,7 @@ export const TypographyPage: React.FC = () => {
                 </Typography>
               </Box>
 
-              <Typography
-                variant="caption"
-                sx={{ color: "text.secondary", mt: "auto" }}
-              >
+              <Typography variant="caption" sx={{ color: "text.secondary", mt: "auto" }}>
                 {col.desc}
               </Typography>
             </Paper>
@@ -285,9 +276,7 @@ export const TypographyPage: React.FC = () => {
             <Typography variant="caption" sx={{ color: "text.secondary", mb: 0.5, display: "block" }}>
               GradientContextTitle Component
             </Typography>
-            <GradientContextTitle isDark={isDark}>
-              Optical Glassmorphism Architecture
-            </GradientContextTitle>
+            <GradientContextTitle isDark={isDark}>Optical Glassmorphism Architecture</GradientContextTitle>
           </Box>
 
           <Box>
@@ -488,7 +477,8 @@ export const TypographyPage: React.FC = () => {
               body1 · 1.0625rem (17px) · SF Pro Display / Space Grotesk 400
             </Typography>
             <Typography variant="body1" color="text.primary">
-              Crafted for high-density dashboards and modern web application interfaces. Features comfortable 1.55 line height, optical kerning, and smooth dark mode contrast transitions.
+              Crafted for high-density dashboards and modern web application interfaces. Features comfortable 1.55 line
+              height, optical kerning, and smooth dark mode contrast transitions.
             </Typography>
           </Box>
 
@@ -519,4 +509,3 @@ export const TypographyPage: React.FC = () => {
     </ComponentPage>
   );
 };
-

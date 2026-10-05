@@ -2,10 +2,7 @@ import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 import { COLORS } from "../../colors/index.js";
 
-export const getButtonOverrides = (
-  palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiButton: {
     defaultProps: {
       disableElevation: true,
@@ -16,13 +13,10 @@ export const getButtonOverrides = (
         const variant = ownerState.variant || "text";
 
         const colorKey = (
-          ownerState.color && ownerState.color !== "inherit"
-            ? ownerState.color
-            : "primary"
+          ownerState.color && ownerState.color !== "inherit" ? ownerState.color : "primary"
         ) as keyof typeof palette;
 
-        const activeColorGroup = (palette[colorKey] ||
-          palette.primary) as Record<string, string>;
+        const activeColorGroup = (palette[colorKey] || palette.primary) as Record<string, string>;
 
         const mainColor = activeColorGroup.main;
         const hoverColor = activeColorGroup.hover;
@@ -85,11 +79,7 @@ export const getButtonOverrides = (
 
               "&:focus-visible": {
                 outline: "none",
-                boxShadow: `0 0 0 3px ${glowColor}, ${
-                  isDark
-                    ? "0 6px 24px rgba(0,0,0,0.55)"
-                    : "0 6px 20px rgba(17,17,17,0.22)"
-                }`,
+                boxShadow: `0 0 0 3px ${glowColor}, ${isDark ? "0 6px 24px rgba(0,0,0,0.55)" : "0 6px 20px rgba(17,17,17,0.22)"}`,
               },
 
               "&.Mui-disabled": {
@@ -103,9 +93,7 @@ export const getButtonOverrides = (
           ...(variant === "outlined" &&
             isPrimary && {
               border: "none",
-              background: isDark
-                ? "rgba(255, 255, 255, 0.1)"
-                : COLORS.brand.cream,
+              background: isDark ? "rgba(255, 255, 255, 0.1)" : COLORS.brand.cream,
               color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
               backdropFilter: "blur(12px)",
               WebkitBackdropFilter: "blur(12px)",
@@ -129,9 +117,7 @@ export const getButtonOverrides = (
               },
 
               "&.Mui-disabled": {
-                background: isDark
-                  ? "rgba(255,255,255,0.05)"
-                  : "rgba(0,0,0,0.04)",
+                background: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
                 color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
                 boxShadow: "none",
                 backdropFilter: "none",
@@ -142,20 +128,14 @@ export const getButtonOverrides = (
 
           ...(variant === "contained" &&
             isSecondary && {
-              background: isDark
-                ? "rgba(255, 255, 255, 0.06)"
-                : "rgba(17, 17, 17, 0.04)",
+              background: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)",
               color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
-              boxShadow: isDark
-                ? "inset 0 0 0 1px rgba(255,255,255,0.05)"
-                : "inset 0 0 0 1px rgba(17,17,17,0.05)",
+              boxShadow: isDark ? "inset 0 0 0 1px rgba(255,255,255,0.05)" : "inset 0 0 0 1px rgba(17,17,17,0.05)",
               backdropFilter: "blur(12px)",
               WebkitBackdropFilter: "blur(12px)",
 
               "&:hover": {
-                background: isDark
-                  ? "rgba(255, 255, 255, 0.12)"
-                  : "rgba(17, 17, 17, 0.08)",
+                background: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)",
                 transform: "translateY(-1.5px)",
                 boxShadow: isDark
                   ? "0 4px 14px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.1)"
@@ -164,15 +144,11 @@ export const getButtonOverrides = (
 
               "&:focus-visible": {
                 outline: "none",
-                boxShadow: isDark
-                  ? "0 0 0 3px rgba(246,245,242,0.3)"
-                  : "0 0 0 3px rgba(17,17,17,0.2)",
+                boxShadow: isDark ? "0 0 0 3px rgba(246,245,242,0.3)" : "0 0 0 3px rgba(17,17,17,0.2)",
               },
 
               "&.Mui-disabled": {
-                background: isDark
-                  ? "rgba(255,255,255,0.03)"
-                  : "rgba(17,17,17,0.02)",
+                background: isDark ? "rgba(255,255,255,0.03)" : "rgba(17,17,17,0.02)",
                 color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
                 boxShadow: "none",
                 backdropFilter: "none",
@@ -186,16 +162,12 @@ export const getButtonOverrides = (
               border: "none",
               background: "transparent",
               color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
-              boxShadow: isDark
-                ? "inset 0 0 0 1.5px rgba(255,255,255,0.15)"
-                : "inset 0 0 0 1.5px rgba(17,17,17,0.15)",
+              boxShadow: isDark ? "inset 0 0 0 1.5px rgba(255,255,255,0.15)" : "inset 0 0 0 1.5px rgba(17,17,17,0.15)",
               backdropFilter: "blur(12px)",
               WebkitBackdropFilter: "blur(12px)",
 
               "&:hover": {
-                background: isDark
-                  ? "rgba(255, 255, 255, 0.04)"
-                  : "rgba(17, 17, 17, 0.03)",
+                background: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.03)",
                 transform: "translateY(-1.5px)",
                 boxShadow: isDark
                   ? "0 4px 14px rgba(0,0,0,0.3), inset 0 0 0 1.5px rgba(255,255,255,0.25)"
@@ -204,15 +176,11 @@ export const getButtonOverrides = (
 
               "&:focus-visible": {
                 outline: "none",
-                boxShadow: isDark
-                  ? "0 0 0 3px rgba(246,245,242,0.3)"
-                  : "0 0 0 3px rgba(17,17,17,0.2)",
+                boxShadow: isDark ? "0 0 0 3px rgba(246,245,242,0.3)" : "0 0 0 3px rgba(17,17,17,0.2)",
               },
 
               "&.Mui-disabled": {
-                boxShadow: isDark
-                  ? "inset 0 0 0 1px rgba(255,255,255,0.1)"
-                  : "inset 0 0 0 1px rgba(17,17,17,0.1)",
+                boxShadow: isDark ? "inset 0 0 0 1px rgba(255,255,255,0.1)" : "inset 0 0 0 1px rgba(17,17,17,0.1)",
                 color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
                 background: "transparent",
                 backdropFilter: "none",
@@ -223,25 +191,17 @@ export const getButtonOverrides = (
 
           ...(variant === "contained" &&
             isGlass && {
-              background: glassDark
-                ? "rgba(255, 255, 255, 0.12)"
-                : "rgba(255, 255, 255, 0.72)",
+              background: glassDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.72)",
               color: glassDark ? COLORS.brand.cream : COLORS.brand.charcoal,
               backdropFilter: "blur(18px)",
               WebkitBackdropFilter: "blur(18px)",
-              border: `1px solid ${
-                glassDark
-                  ? "rgba(255, 255, 255, 0.16)"
-                  : "rgba(255, 255, 255, 0.85)"
-              }`,
+              border: `1px solid ${glassDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.85)"}`,
               boxShadow: glassDark
                 ? "0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.22)"
                 : "0 6px 22px rgba(0, 0, 0, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9)",
 
               "&:hover": {
-                background: glassDark
-                  ? "rgba(255, 255, 255, 0.2)"
-                  : "rgba(255, 255, 255, 0.92)",
+                background: glassDark ? "rgba(255, 255, 255, 0.2)" : "rgba(255, 255, 255, 0.92)",
                 transform: "translateY(-2px)",
                 boxShadow: glassDark
                   ? "0 14px 40px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.35)"
@@ -249,9 +209,7 @@ export const getButtonOverrides = (
               },
 
               "&:active": {
-                background: glassDark
-                  ? "rgba(255, 255, 255, 0.09)"
-                  : "rgba(255, 255, 255, 0.78)",
+                background: glassDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.78)",
                 transform: "translateY(0) scale(0.98)",
               },
 
@@ -263,17 +221,9 @@ export const getButtonOverrides = (
               },
 
               "&.Mui-disabled": {
-                background: glassDark
-                  ? "rgba(255, 255, 255, 0.04)"
-                  : "rgba(255, 255, 255, 0.3)",
-                color: glassDark
-                  ? "rgba(255, 255, 255, 0.25)"
-                  : "rgba(0, 0, 0, 0.28)",
-                border: `1px solid ${
-                  glassDark
-                    ? "rgba(255, 255, 255, 0.06)"
-                    : "rgba(255, 255, 255, 0.4)"
-                }`,
+                background: glassDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.3)",
+                color: glassDark ? "rgba(255, 255, 255, 0.25)" : "rgba(0, 0, 0, 0.28)",
+                border: `1px solid ${glassDark ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.4)"}`,
                 boxShadow: "none",
                 backdropFilter: "none",
                 WebkitBackdropFilter: "none",
@@ -283,13 +233,9 @@ export const getButtonOverrides = (
 
           ...(variant === "outlined" &&
             isGlass && {
-              background: glassDark
-                ? "rgba(255, 255, 255, 0.04)"
-                : "rgba(255, 255, 255, 0.28)",
+              background: glassDark ? "rgba(255, 255, 255, 0.04)" : "rgba(255, 255, 255, 0.28)",
               color: glassDark ? COLORS.brand.cream : COLORS.brand.charcoal,
-              border: `1.5px solid ${
-                glassDark ? "rgba(255, 255, 255, 0.22)" : "rgba(17, 17, 17, 0.16)"
-              }`,
+              border: `1.5px solid ${glassDark ? "rgba(255, 255, 255, 0.22)" : "rgba(17, 17, 17, 0.16)"}`,
               backdropFilter: "blur(14px)",
               WebkitBackdropFilter: "blur(14px)",
               boxShadow: glassDark
@@ -297,12 +243,8 @@ export const getButtonOverrides = (
                 : "0 4px 14px rgba(0, 0, 0, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.6)",
 
               "&:hover": {
-                background: glassDark
-                  ? "rgba(255, 255, 255, 0.09)"
-                  : "rgba(255, 255, 255, 0.55)",
-                borderColor: glassDark
-                  ? "rgba(255, 255, 255, 0.35)"
-                  : "rgba(17, 17, 17, 0.3)",
+                background: glassDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.55)",
+                borderColor: glassDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.3)",
                 transform: "translateY(-1.5px)",
                 boxShadow: glassDark
                   ? "0 8px 24px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.12)"
@@ -310,26 +252,18 @@ export const getButtonOverrides = (
               },
 
               "&:active": {
-                background: glassDark
-                  ? "rgba(255, 255, 255, 0.06)"
-                  : "rgba(255, 255, 255, 0.4)",
+                background: glassDark ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.4)",
                 transform: "translateY(0) scale(0.98)",
               },
 
               "&:focus-visible": {
                 outline: "none",
-                boxShadow: glassDark
-                  ? "0 0 0 3px rgba(255, 255, 255, 0.3)"
-                  : "0 0 0 3px rgba(17, 17, 17, 0.2)",
+                boxShadow: glassDark ? "0 0 0 3px rgba(255, 255, 255, 0.3)" : "0 0 0 3px rgba(17, 17, 17, 0.2)",
               },
 
               "&.Mui-disabled": {
-                borderColor: glassDark
-                  ? "rgba(255, 255, 255, 0.08)"
-                  : "rgba(17, 17, 17, 0.08)",
-                color: glassDark
-                  ? "rgba(255, 255, 255, 0.25)"
-                  : "rgba(0, 0, 0, 0.25)",
+                borderColor: glassDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)",
+                color: glassDark ? "rgba(255, 255, 255, 0.25)" : "rgba(0, 0, 0, 0.25)",
                 background: "transparent",
                 boxShadow: "none",
                 backdropFilter: "none",
@@ -374,9 +308,7 @@ export const getButtonOverrides = (
               backgroundColor: "transparent",
 
               "&:hover": {
-                backgroundColor: isDark
-                  ? "rgba(255,255,255,0.06)"
-                  : "rgba(0,0,0,0.04)",
+                backgroundColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
                 borderColor: hoverColor,
                 boxShadow: `0 4px 14px ${glowColor}`,
                 transform: "translateY(-1.5px)",
@@ -384,9 +316,7 @@ export const getButtonOverrides = (
 
               "&:active": {
                 borderColor: activeColor,
-                backgroundColor: isDark
-                  ? "rgba(255,255,255,0.1)"
-                  : "rgba(0,0,0,0.08)",
+                backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)",
               },
 
               "&:focus-visible": {
@@ -413,40 +343,26 @@ export const getButtonOverrides = (
               transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
 
               "&:hover": {
-                background: glassDark
-                  ? "rgba(255, 255, 255, 0.1)"
-                  : "rgba(255, 255, 255, 0.55)",
+                background: glassDark ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.55)",
                 backdropFilter: "blur(12px)",
                 WebkitBackdropFilter: "blur(12px)",
-                border: `1px solid ${
-                  glassDark
-                    ? "rgba(255, 255, 255, 0.12)"
-                    : "rgba(255, 255, 255, 0.7)"
-                }`,
-                boxShadow: glassDark
-                  ? "0 4px 16px rgba(0, 0, 0, 0.25)"
-                  : "0 4px 14px rgba(0, 0, 0, 0.04)",
+                border: `1px solid ${glassDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.7)"}`,
+                boxShadow: glassDark ? "0 4px 16px rgba(0, 0, 0, 0.25)" : "0 4px 14px rgba(0, 0, 0, 0.04)",
                 transform: "translateY(-1px)",
               },
 
               "&:active": {
-                background: glassDark
-                  ? "rgba(255, 255, 255, 0.16)"
-                  : "rgba(255, 255, 255, 0.75)",
+                background: glassDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.75)",
                 transform: "translateY(0) scale(0.98)",
               },
 
               "&:focus-visible": {
                 outline: "none",
-                boxShadow: glassDark
-                  ? "0 0 0 3px rgba(255, 255, 255, 0.3)"
-                  : "0 0 0 3px rgba(17, 17, 17, 0.2)",
+                boxShadow: glassDark ? "0 0 0 3px rgba(255, 255, 255, 0.3)" : "0 0 0 3px rgba(17, 17, 17, 0.2)",
               },
 
               "&.Mui-disabled": {
-                color: glassDark
-                  ? "rgba(255, 255, 255, 0.25)"
-                  : "rgba(0, 0, 0, 0.25)",
+                color: glassDark ? "rgba(255, 255, 255, 0.25)" : "rgba(0, 0, 0, 0.25)",
                 background: "transparent",
                 border: "1px solid transparent",
                 transform: "none",
@@ -455,28 +371,19 @@ export const getButtonOverrides = (
 
           ...(variant === "text" &&
             !isGlass && {
-              color:
-                isPrimary || isSecondary
-                  ? isDark
-                    ? COLORS.brand.cream
-                    : COLORS.brand.charcoal
-                  : mainColor,
+              color: isPrimary || isSecondary ? (isDark ? COLORS.brand.cream : COLORS.brand.charcoal) : mainColor,
 
               padding: "8px 16px",
               minHeight: 40,
               backgroundColor: "transparent",
 
               "&:hover": {
-                backgroundColor: isDark
-                  ? "rgba(255,255,255,0.06)"
-                  : "rgba(0,0,0,0.04)",
+                backgroundColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
                 transform: "translateY(-1px)",
               },
 
               "&:active": {
-                backgroundColor: isDark
-                  ? "rgba(255,255,255,0.1)"
-                  : "rgba(0,0,0,0.08)",
+                backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)",
               },
 
               "&:focus-visible": {
@@ -486,11 +393,7 @@ export const getButtonOverrides = (
 
               "&.Mui-disabled": {
                 color:
-                  isPrimary || isSecondary
-                    ? isDark
-                      ? "rgba(255,255,255,0.3)"
-                      : "rgba(17,17,17,0.3)"
-                    : disabledColor,
+                  isPrimary || isSecondary ? (isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)") : disabledColor,
 
                 backgroundColor: "transparent",
                 boxShadow: "none",

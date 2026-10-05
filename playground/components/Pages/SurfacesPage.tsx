@@ -38,17 +38,13 @@ export const SurfacesPage: React.FC = () => {
           }}
         >
           <GlassPanel sx={{ p: 3.5, borderRadius: "18px" }}>
-            <Box
-              sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1.5 }}
-            >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1.5 }}>
               <Box
                 sx={{
                   width: 36,
                   height: 36,
                   borderRadius: "10px",
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.12)"
-                    : "rgba(17,17,17,0.08)",
+                  bgcolor: isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.08)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -56,16 +52,12 @@ export const SurfacesPage: React.FC = () => {
               >
                 <Sparkles size={18} />
               </Box>
-              <Typography
-                variant="h6"
-                sx={{ fontWeight: 700, fontSize: "1.05rem" }}
-              >
+              <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.05rem" }}>
                 Frosted Glass Card
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5 }}>
-              Dynamic blur with subtle inner specular highlight and responsive
-              lighting contrast.
+              Dynamic blur with subtle inner specular highlight and responsive lighting contrast.
             </Typography>
             <Button variant="contained" color="glass" size="small">
               Explore Action
@@ -73,17 +65,13 @@ export const SurfacesPage: React.FC = () => {
           </GlassPanel>
 
           <GlassPanel sx={{ p: 3.5, borderRadius: "18px" }}>
-            <Box
-              sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1.5 }}
-            >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1.5 }}>
               <Box
                 sx={{
                   width: 36,
                   height: 36,
                   borderRadius: "10px",
-                  bgcolor: isDark
-                    ? "rgba(255,255,255,0.12)"
-                    : "rgba(17,17,17,0.08)",
+                  bgcolor: isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.08)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -91,16 +79,12 @@ export const SurfacesPage: React.FC = () => {
               >
                 <Shield size={18} />
               </Box>
-              <Typography
-                variant="h6"
-                sx={{ fontWeight: 700, fontSize: "1.05rem" }}
-              >
+              <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.05rem" }}>
                 Elevated Security
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5 }}>
-              Zero color distortion across dark and light palettes, verified
-              across browser engines.
+              Zero color distortion across dark and light palettes, verified across browser engines.
             </Typography>
             <Button variant="outlined" color="primary" size="small">
               Learn More
@@ -124,12 +108,8 @@ export const SurfacesPage: React.FC = () => {
             p: 3,
             width: "100%",
             borderRadius: "16px",
-            border: `1px solid ${
-              isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"
-            }`,
-            backgroundColor: isDark
-              ? "rgba(255, 255, 255, 0.03)"
-              : "rgba(255, 255, 255, 0.65)",
+            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"}`,
+            backgroundColor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.65)",
             backdropFilter: "blur(12px)",
           }}
         >
@@ -137,8 +117,7 @@ export const SurfacesPage: React.FC = () => {
             Subtle Paper Surface
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Seamlessly fits into modern dashboard layouts without harsh opaque
-            backgrounds.
+            Seamlessly fits into modern dashboard layouts without harsh opaque backgrounds.
           </Typography>
         </Paper>
       </DemoBlock>

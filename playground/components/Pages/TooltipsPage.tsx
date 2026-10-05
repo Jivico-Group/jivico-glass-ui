@@ -1,14 +1,6 @@
 import React from "react";
 import { Box, Tooltip, Button, IconButton, Typography, Avatar } from "@mui/material";
-import {
-  Sparkles,
-  Info,
-  Zap,
-  Lock,
-  Share2,
-  Bookmark,
-  ShieldCheck,
-} from "lucide-react";
+import { Sparkles, Info, Zap, Lock, Share2, Bookmark, ShieldCheck } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
@@ -40,25 +32,13 @@ export const TooltipsPage: React.FC = () => {
 </Tooltip>`}
       >
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2.5, alignItems: "center" }}>
-          <Tooltip
-            title="Frosted glass surface with 20px backdrop blur and specular top glint"
-            glass={true}
-            arrow
-          >
-            <Button
-              variant="contained"
-              color="glass"
-              startIcon={<Sparkles size={16} />}
-            >
+          <Tooltip title="Frosted glass surface with 20px backdrop blur and specular top glint" glass={true} arrow>
+            <Button variant="contained" color="glass" startIcon={<Sparkles size={16} />}>
               Frosted Glass Tooltip (glass=true)
             </Button>
           </Tooltip>
 
-          <Tooltip
-            title="Standard surface tooltip using solid surface palette"
-            glass={false}
-            arrow
-          >
+          <Tooltip title="Standard surface tooltip using solid surface palette" glass={false} arrow>
             <Button variant="contained" color="primary" startIcon={<ShieldCheck size={16} />}>
               Standard Surface Tooltip (glass=false)
             </Button>
