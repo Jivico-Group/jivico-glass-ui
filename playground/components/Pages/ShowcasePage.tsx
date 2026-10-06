@@ -329,7 +329,7 @@ const handleNavigate = (item: ShowcaseItem) => {
                 Variant:
               </Typography>
 
-              {(["editorial", "minimal", "glass"] as ShowcaseVariant[]).map((v) => (
+              {(["editorial", "editorial-soft", "spotlight", "spotlight-soft", "cinematic", "cinematic-soft", "cinematic-deep", "minimal", "glass", "none"] as ShowcaseVariant[]).map((v) => (
                 <Button
                   key={v}
                   size="small"

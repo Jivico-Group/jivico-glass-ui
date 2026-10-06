@@ -10,7 +10,21 @@ export type ShowcaseNavigation = "vertical" | "dots" | "none";
 
 export type ShowcaseSize = "small" | "medium" | "large" | "hero";
 
-export type ShowcaseVariant = "editorial" | "minimal" | "glass" | "none";
+export type ShowcaseVariant =
+  | "editorial"
+  | "editorial-soft"
+  | "editorial-center"
+  | "editorial-center-soft"
+  | "editorial-full"
+  | "editorial-full-soft"
+  | "spotlight"
+  | "spotlight-soft"
+  | "cinematic"
+  | "cinematic-soft"
+  | "cinematic-deep"
+  | "minimal"
+  | "glass"
+  | "none";
 
 export type ShowcaseRadius = "square" | "rounded" | "soft";
 
