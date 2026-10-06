@@ -625,6 +625,45 @@ export const ButtonsPage: React.FC = () => {
               <Plus size={24} />
             </Fab>
 
+            <Fab color="secondary" size="small" aria-label="add">
+              <Plus size={16} />
+            </Fab>
+            <Fab color="secondary" size="medium" aria-label="add">
+              <Plus size={20} />
+            </Fab>
+            <Fab color="secondary" size="large" aria-label="add">
+              <Plus size={24} />
+            </Fab>
+
+            <Fab color="error" size="small" aria-label="add">
+              <Plus size={16} />
+            </Fab>
+            <Fab color="error" size="medium" aria-label="add">
+              <Plus size={20} />
+            </Fab>
+            <Fab color="error" size="large" aria-label="add">
+              <Plus size={24} />
+            </Fab>
+
+            <Fab color="warning" size="small" aria-label="add">
+              <Plus size={16} />
+            </Fab>
+            <Fab color="warning" size="medium" aria-label="add">
+              <Plus size={20} />
+            </Fab>
+            <Fab color="warning" size="large" aria-label="add">
+              <Plus size={24} />
+            </Fab>
+            <Fab color="success" size="small" aria-label="add">
+              <Plus size={16} />
+            </Fab>
+            <Fab color="success" size="medium" aria-label="add">
+              <Plus size={20} />
+            </Fab>
+            <Fab color="success" size="large" aria-label="add">
+              <Plus size={24} />
+            </Fab>
+
             {/* Custom Glass FAB */}
             <Fab
               sx={{
