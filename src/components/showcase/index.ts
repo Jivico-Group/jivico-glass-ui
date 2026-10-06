@@ -1,4 +1,5 @@
 export { Showcase } from "./Showcase.js";
+export { getVariantOverlay } from "./showcaseOverlay.js";
 
 export type {
   ShowcaseProps,
