@@ -31,6 +31,15 @@ const getRadius = (radius: ShowcaseProps["radius"]) => {
   }
 };
 
+const hasCustomFontSize = (sx: unknown): boolean => {
+  if (!sx) return false;
+  if (Array.isArray(sx)) return sx.some(hasCustomFontSize);
+  if (typeof sx === "object" && sx !== null) {
+    return "fontSize" in sx && (sx as Record<string, unknown>).fontSize !== undefined;
+  }
+  return false;
+};
+
 type SizeConfig = {
   minHeight: { xs: number; md: number; lg?: number };
   aspectRatio?: { xs?: string; md?: string; lg?: string };
@@ -611,7 +620,7 @@ export const Showcase = ({
                       component="div"
                       sx={[
                         {
-                          fontSize: currentSize.eyebrow,
+                          ...(!hasCustomFontSize(item.eyebrowSx) && { fontSize: currentSize.eyebrow }),
                           fontWeight: 550,
                           lineHeight: 1.2,
                           letterSpacing: "0.12em",
@@ -633,7 +642,7 @@ export const Showcase = ({
                       component="h2"
                       sx={[
                         {
-                          fontSize: currentSize.title,
+                          ...(!hasCustomFontSize(item.titleSx) && { fontSize: currentSize.title }),
                           lineHeight: 1.02,
                           fontWeight: 550,
                           letterSpacing: "-0.025em",
@@ -656,7 +665,7 @@ export const Showcase = ({
                         {
                           m: 0,
                           maxWidth: { xs: "100%", md: "560px" },
-                          fontSize: currentSize.description,
+                          ...(!hasCustomFontSize(item.descriptionSx) && { fontSize: currentSize.description }),
                           fontWeight: 400,
                           lineHeight: 1.5,
                           letterSpacing: "-0.005em",
@@ -768,7 +777,7 @@ export const Showcase = ({
                 <Typography
                   sx={[
                     {
-                      fontSize: "0.65rem",
+                      ...(!hasCustomFontSize(item.sideLabelSx) && { fontSize: "0.65rem" }),
                       fontWeight: 550,
                       lineHeight: 1.2,
                       letterSpacing: "0.15em",

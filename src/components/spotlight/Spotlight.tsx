@@ -38,6 +38,15 @@ const getRadius = (radius: SpotlightProps["radius"]) => {
   }
 };
 
+const hasCustomFontSize = (sx: unknown): boolean => {
+  if (!sx) return false;
+  if (Array.isArray(sx)) return sx.some(hasCustomFontSize);
+  if (typeof sx === "object" && sx !== null) {
+    return "fontSize" in sx && (sx as Record<string, unknown>).fontSize !== undefined;
+  }
+  return false;
+};
+
 type SizeConfig = {
   minHeight: { xs: number; md: number; lg?: number };
   aspectRatio?: { xs?: string; md?: string; lg?: string };
@@ -353,7 +362,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                 component="div"
                 sx={[
                   {
-                    fontSize: currentSize.eyebrow,
+                    ...(!hasCustomFontSize(item.eyebrowSx) && { fontSize: currentSize.eyebrow }),
                     fontWeight: 550,
                     lineHeight: 1.2,
                     letterSpacing: "0.12em",
@@ -374,7 +383,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                 component="h2"
                 sx={[
                   {
-                    fontSize: currentSize.title,
+                    ...(!hasCustomFontSize(item.titleSx) && { fontSize: currentSize.title }),
                     lineHeight: 1.02,
                     fontWeight: 550,
                     letterSpacing: "-0.025em",
@@ -396,7 +405,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                   {
                     m: 0,
                     maxWidth: { xs: "100%", md: "560px" },
-                    fontSize: currentSize.description,
+                    ...(!hasCustomFontSize(item.descriptionSx) && { fontSize: currentSize.description }),
                     fontWeight: 400,
                     letterSpacing: "-0.005em",
                     lineHeight: 1.5,
