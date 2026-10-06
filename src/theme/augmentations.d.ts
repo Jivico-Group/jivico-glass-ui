@@ -499,3 +499,21 @@ declare module "@mui/material/Menu" {
     size?: "small" | "medium";
   }
 }
+
+declare module "@mui/material/ToggleButton" {
+  interface ToggleButtonPropsColorOverrides {
+    accent: true;
+    glass: true;
+    "dark-glass": true;
+    "glass-surface": true;
+  }
+}
+
+declare module "@mui/material/ToggleButtonGroup" {
+  interface ToggleButtonGroupPropsColorOverrides {
+    accent: true;
+    glass: true;
+    "dark-glass": true;
+    "glass-surface": true;
+  }
+}

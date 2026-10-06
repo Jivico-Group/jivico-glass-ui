@@ -1,60 +1,155 @@
 import type { Components, Theme } from "@mui/material/styles";
 
+const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
+
+const TRANSITION = [`border-color 180ms ${EASE}`, `box-shadow 220ms ${EASE}`, `transform 180ms ${EASE}`].join(", ");
+
 export const getButtonGroupOverrides = (isDark: boolean): Components<Theme> => ({
   MuiButtonGroup: {
+    defaultProps: {
+      disableElevation: true,
+    },
+
     styleOverrides: {
       root: ({ ownerState }) => {
-        const isContained = ownerState.variant === "contained";
-        const isOutlined = ownerState.variant === "outlined";
+        const variant = ownerState.variant || "outlined";
+
         return {
           boxShadow: "none",
           borderRadius: 9999,
-          ...(isContained && {
-            overflow: "hidden",
-            "& .MuiButton-root": {
-              borderRadius: 0,
-              border: "none !important",
+
+          "& .MuiButtonGroup-grouped": {
+            position: "relative",
+            zIndex: 0,
+
+            /*
+             * Keep the exact Button dimensions and visual styling
+             * from MuiButton.
+             */
+            borderRadius: 0,
+
+            transition: TRANSITION,
+
+            "&:focus-visible": {
+              zIndex: 3,
             },
-            "& .MuiButton-root + .MuiButton-root": {
-              borderLeft: `1px solid ${isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)"} !important`,
+
+            "&:hover": {
+              zIndex: 2,
+            },
+
+            "&:active": {
+              zIndex: 2,
+            },
+
+            "&.Mui-disabled": {
+              zIndex: 0,
+            },
+          },
+
+          /*
+           * CONTAINED
+           */
+          ...(variant === "contained" && {
+            "& .MuiButtonGroup-grouped": {
+              boxShadow: "none",
+
+              "&:first-of-type": {
+                borderTopLeftRadius: 9999,
+                borderBottomLeftRadius: 9999,
+              },
+
+              "&:last-of-type": {
+                borderTopRightRadius: 9999,
+                borderBottomRightRadius: 9999,
+                borderRight: "none",
+              },
+
+              "&:not(:last-of-type)": {
+                borderRight: isDark ? "1px solid rgba(0,0,0,0.25)" : "1px solid rgba(255,255,255,0.35)",
+              },
+
+              "&:hover": {
+                zIndex: 2,
+              },
+
+              "&.Mui-selected": {
+                zIndex: 2,
+              },
             },
           }),
 
-          ...(isOutlined && {
-            overflow: "visible",
-            border: `1.5px solid ${isDark ? "rgba(255,255,255,0.25)" : "rgba(17,17,17,0.3)"}`,
-            "& .MuiButton-root": {
-              borderRadius: 0,
-              border: "none !important",
-              boxShadow: "none !important",
-              background: "transparent",
+          /*
+           * OUTLINED
+           */
+          ...(variant === "outlined" && {
+            "& .MuiButtonGroup-grouped": {
+              "&:first-of-type": {
+                borderTopLeftRadius: 9999,
+                borderBottomLeftRadius: 9999,
+              },
+
+              "&:last-of-type": {
+                borderTopRightRadius: 9999,
+                borderBottomRightRadius: 9999,
+              },
+
+              "&:not(:first-of-type)": {
+                marginLeft: -1,
+              },
 
               "&:hover": {
-                background: isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.05)",
-                boxShadow: "none !important",
+                zIndex: 2,
+              },
+
+              "&.Mui-selected": {
+                zIndex: 2,
+              },
+
+              "&.Mui-selected + .MuiButtonGroup-grouped": {
+                borderLeftColor: "transparent",
+              },
+            },
+          }),
+
+          /*
+           * TEXT
+           */
+          ...(variant === "text" && {
+            "& .MuiButtonGroup-grouped": {
+              borderRadius: 9999,
+
+              "&:not(:last-of-type)": {
+                marginRight: 2,
+              },
+
+              "&:hover": {
+                zIndex: 2,
+              },
+
+              "&.Mui-selected": {
+                zIndex: 2,
+              },
+            },
+          }),
+
+          /*
+           * REDUCED MOTION
+           */
+          "@media (prefers-reduced-motion: reduce)": {
+            "& .MuiButtonGroup-grouped": {
+              transition: "none",
+              transform: "none",
+
+              "&:hover": {
                 transform: "none",
               },
 
-              "&:focus-visible": {
-                outline: "none",
-                boxShadow: "none !important",
+              "&:active": {
+                transform: "none",
               },
             },
-
-            "& .MuiButton-root:first-of-type": {
-              borderTopLeftRadius: "9999px !important",
-              borderBottomLeftRadius: "9999px !important",
-            },
-
-            "& .MuiButton-root:last-of-type": {
-              borderTopRightRadius: "9999px !important",
-              borderBottomRightRadius: "9999px !important",
-            },
-
-            "& .MuiButton-root + .MuiButton-root": {
-              borderLeft: `1px solid ${isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.2)"} !important`,
-            },
-          }),
+          },
         };
       },
     },

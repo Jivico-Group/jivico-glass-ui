@@ -9,10 +9,12 @@ import { getInputLabelOverrides } from "./inputLabel";
 import { getFormHelperTextOverrides } from "./formHelperText";
 import { getSelectOverrides } from "./select";
 import { getAutocompleteOverrides } from "./autocomplete";
+import { getToggleButtonOverrides } from "./toggleButton";
 
 export const getInputOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   ...getButtonOverrides(palette, isDark),
   ...getButtonGroupOverrides(isDark),
+  ...getToggleButtonOverrides(palette, isDark),
   ...getFabOverrides(palette),
   ...getOutlinedInputOverrides(palette, isDark),
   ...getInputLabelOverrides(palette),

@@ -3,7 +3,13 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Box, Button, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import type { ShowcaseDimension, ShowcaseItem, ShowcaseProps, ShowcaseSize, ShowcaseVariant } from "./Showcase.types.js";
+import type {
+  ShowcaseDimension,
+  ShowcaseItem,
+  ShowcaseProps,
+  ShowcaseSize,
+  ShowcaseVariant,
+} from "./Showcase.types.js";
 import { getVariantOverlay as resolveVariantOverlay } from "./showcaseOverlay.js";
 
 const DEFAULT_INTERVAL = 5000;

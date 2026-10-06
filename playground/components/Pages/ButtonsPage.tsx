@@ -11,7 +11,6 @@ import {
   CircularProgress,
   Menu,
   MenuItem,
-  Card,
 } from "@mui/material";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
@@ -915,6 +914,274 @@ export const ButtonsPage: React.FC = () => {
           <Button variant="contained" color="glass" fullWidth size="large">
             Full Width Frosted Glass
           </Button>
+        </Box>
+      </DemoBlock>
+      {/* 11. Button Group */}
+      <DemoBlock
+        id="button-group"
+        title="Button Groups"
+        description="Group a series of buttons together on a single line. Inherits all advanced Glass and Monochrome styling from individual buttons while managing seamless joined borders."
+        code={`<ButtonGroup variant="contained" color="glass">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</ButtonGroup>`}
+      >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+            <ButtonGroup variant="contained" color="primary">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="contained" color="glass">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="contained" color="secondary">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="contained" color="error">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="contained" color="success">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="contained" color="warning">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="contained" color="accent">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Box>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+            <ButtonGroup variant="outlined" color="primary">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="outlined" color="glass">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="outlined" color="secondary">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="outlined" color="success">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="outlined" color="warning">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="outlined" color="error">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="outlined" color="accent">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Box>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+            <ButtonGroup variant="text" color="primary">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="text" color="secondary">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="text" color="success">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="text" color="warning">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="text" color="error">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup variant="text" color="accent">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Box>
+        </Box>
+      </DemoBlock>
+
+      {/* 12. Toggle Buttons */}
+      <DemoBlock
+        id="toggle-buttons"
+        title="Toggle Buttons"
+        description="Toggle buttons group related exclusive or multiple-choice options. Our implementation features native macOS-like segment spacing with dynamic brand color support."
+        code={`<ToggleButtonGroup value={alignment} exclusive onChange={...}>
+  <ToggleButton value="left"><AlignLeft size={16} /></ToggleButton>
+  <ToggleButton value="center"><AlignCenter size={16} /></ToggleButton>
+  <ToggleButton value="right"><AlignRight size={16} /></ToggleButton>
+</ToggleButtonGroup>`}
+      >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
+            <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
+              Primary
+            </Typography>
+            <ToggleButtonGroup
+              value={alignment}
+              exclusive
+              onChange={(_, v) => v !== null && setAlignment(v)}
+              color="primary"
+            >
+              <ToggleButton value="left">
+                <AlignLeft size={16} />
+              </ToggleButton>
+              <ToggleButton value="center">
+                <AlignCenter size={16} />
+              </ToggleButton>
+              <ToggleButton value="right">
+                <AlignRight size={16} />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
+
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
+            <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
+              Secondary
+            </Typography>
+            <ToggleButtonGroup
+              value={alignment}
+              exclusive
+              onChange={(_, v) => v !== null && setAlignment(v)}
+              color="secondary"
+            >
+              <ToggleButton value="left">
+                <AlignLeft size={16} />
+              </ToggleButton>
+              <ToggleButton value="center">
+                <AlignCenter size={16} />
+              </ToggleButton>
+              <ToggleButton value="right">
+                <AlignRight size={16} />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
+
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
+            <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
+              Accent
+            </Typography>
+            <ToggleButtonGroup
+              value={alignment}
+              exclusive
+              onChange={(_, v) => v !== null && setAlignment(v)}
+              color="warning"
+            >
+              <ToggleButton color="warning" value="left">
+                <AlignLeft size={16} />
+              </ToggleButton>
+              <ToggleButton value="center">
+                <AlignCenter size={16} />
+              </ToggleButton>
+              <ToggleButton value="right">
+                <AlignRight size={16} />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
+
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
+            <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
+              Info
+            </Typography>
+            <ToggleButtonGroup value={formats} onChange={(_, v) => setFormats(v)} color="info">
+              <ToggleButton value="bold">
+                <Bold size={16} />
+              </ToggleButton>
+              <ToggleButton value="italic">
+                <Italic size={16} />
+              </ToggleButton>
+              <ToggleButton value="underline">
+                <Underline size={16} />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
+
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
+            <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
+              Success
+            </Typography>
+            <ToggleButtonGroup value={formats} onChange={(_, v) => setFormats(v)} color="success">
+              <ToggleButton value="bold">
+                <Bold size={16} />
+              </ToggleButton>
+              <ToggleButton value="italic">
+                <Italic size={16} />
+              </ToggleButton>
+              <ToggleButton value="underline">
+                <Underline size={16} />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
+
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
+            <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
+              Warning
+            </Typography>
+            <ToggleButtonGroup value={formats} onChange={(_, v) => setFormats(v)} color="warning">
+              <ToggleButton value="bold">
+                <Bold size={16} />
+              </ToggleButton>
+              <ToggleButton value="italic">
+                <Italic size={16} />
+              </ToggleButton>
+              <ToggleButton value="underline">
+                <Underline size={16} />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
+
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
+            <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
+              Error
+            </Typography>
+            <ToggleButtonGroup value={formats} onChange={(_, v) => setFormats(v)} color="error">
+              <ToggleButton value="bold">
+                <Bold size={16} />
+              </ToggleButton>
+              <ToggleButton value="italic">
+                <Italic size={16} />
+              </ToggleButton>
+              <ToggleButton value="underline">
+                <Underline size={16} />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
         </Box>
       </DemoBlock>
     </ComponentPage>
