@@ -1,15 +1,15 @@
 import { createTheme, responsiveFontSizes, Theme } from "@mui/material/styles";
-import { buildPalette } from "./palette.js";
-import { typography } from "./typography.js";
-import { getInputOverrides } from "./overrides/inputs";
 import { getControlOverrides } from "./overrides/controls.js";
 import { getDataDisplayOverrides } from "./overrides/dataDisplay";
 import { getFeedbackOverrides } from "./overrides/feedback";
-import { getSurfaceOverrides } from "./overrides/surfaces";
+import { getInputOverrides } from "./overrides/inputs";
 import { getNavigationOverrides } from "./overrides/navigation";
+import { getSurfaceOverrides } from "./overrides/surfaces";
+import { buildPalette } from "./palette.js";
+import { typography } from "./typography.js";
 import "./augmentations.d.ts";
-import { getTableRootOverrides } from "./overrides/table/index.js";
 import { getMenuRootOverrides } from "./overrides/menu/index.js";
+import { getTableRootOverrides } from "./overrides/table/index.js";
 
 export const GOOGLE_SANS_FLEX_URL =
   "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";

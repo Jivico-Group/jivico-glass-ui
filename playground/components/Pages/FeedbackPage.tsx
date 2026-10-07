@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Alert, AlertTitle, Button } from "@mui/material";
+import { Alert, AlertTitle, Box, Button } from "@mui/material";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 

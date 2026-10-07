@@ -1,6 +1,5 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
-
 import type { TableColor } from "./table.js";
 
 export const getTableHeadOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {

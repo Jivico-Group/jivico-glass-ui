@@ -3,5 +3,22 @@
   "trailingComma": "all",
   "singleQuote": false,
   "tabWidth": 2,
-  "printWidth": 120
+  "printWidth": 120,
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^(react/(.*)$)|^(react$)",
+    "<THIRD_PARTY_MODULES>",
+    "^@mui/(.*)$",
+    "^jivico-(.*)$",
+    "^@/(.*)$",
+    "^[./]",
+    "<TYPES>",
+    "<TYPES>^[./]"
+  ],
+  "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
+  "importOrderTypeScriptVersion": "5.0.0"
 }

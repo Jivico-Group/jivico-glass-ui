@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography, styled } from "@mui/material";
+import { Box, IconButton, styled, Typography } from "@mui/material";
 
 export interface LiquidGlassCardRootProps {
   isDark?: boolean;

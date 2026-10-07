@@ -1,10 +1,10 @@
 import React from "react";
-import { Box, Typography, Card, CardContent, Divider, Button } from "@mui/material";
-import { ComponentPage } from "../Common/ComponentPage.js";
-import { DemoBlock } from "../Common/DemoBlock.js";
+import { ArrowRight, Layers, ShieldCheck, Sparkles } from "lucide-react";
+import { Box, Button, Card, CardContent, Divider, Typography } from "@mui/material";
 import { GradientText } from "../../../src/components/index.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
-import { ArrowRight, Sparkles, Layers, ShieldCheck } from "lucide-react";
+import { ComponentPage } from "../Common/ComponentPage.js";
+import { DemoBlock } from "../Common/DemoBlock.js";
 
 export const OverviewPage: React.FC = () => {
   const { mode } = useGlassMode();

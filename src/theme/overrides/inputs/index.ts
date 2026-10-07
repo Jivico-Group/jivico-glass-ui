@@ -1,15 +1,14 @@
-import type { Components, Theme } from "@mui/material/styles";
-import type { JivicoPalette } from "../../palette";
-
+import { getAutocompleteOverrides } from "./autocomplete";
 import { getButtonOverrides } from "./button";
 import { getButtonGroupOverrides } from "./buttonGroup";
 import { getFabOverrides } from "./fab";
-import { getOutlinedInputOverrides } from "./outlinedInput";
-import { getInputLabelOverrides } from "./inputLabel";
 import { getFormHelperTextOverrides } from "./formHelperText";
+import { getInputLabelOverrides } from "./inputLabel";
+import { getOutlinedInputOverrides } from "./outlinedInput";
 import { getSelectOverrides } from "./select";
-import { getAutocompleteOverrides } from "./autocomplete";
 import { getToggleButtonOverrides } from "./toggleButton";
+import type { Components, Theme } from "@mui/material/styles";
+import type { JivicoPalette } from "../../palette";
 
 export const getInputOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   ...getButtonOverrides(palette, isDark),

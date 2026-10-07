@@ -1,11 +1,10 @@
+import { getAvatarOverrides } from "./avatar";
+import { getBadgeOverrides } from "./badge";
+import { getChipOverrides } from "./chip";
+import { getDividerOverrides } from "./divider";
+import { getTypographyOverrides } from "./typography";
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette";
-
-import { getChipOverrides } from "./chip";
-import { getAvatarOverrides } from "./avatar";
-import { getDividerOverrides } from "./divider";
-import { getBadgeOverrides } from "./badge";
-import { getTypographyOverrides } from "./typography";
 
 export const getDataDisplayOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   ...getChipOverrides(palette, isDark),

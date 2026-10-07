@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Stepper, Step, StepLabel, Button, Typography } from "@mui/material";
+import { Box, Button, Step, StepLabel, Stepper, Typography } from "@mui/material";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 

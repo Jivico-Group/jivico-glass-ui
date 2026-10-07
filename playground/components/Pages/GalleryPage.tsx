@@ -1,31 +1,30 @@
 "use client";
 
 import React, { useState } from "react";
+import { Eye, Heart, ShoppingBag, Star } from "lucide-react";
 import {
   Box,
-  Typography,
-  Stack,
   Chip,
-  IconButton,
   FormControl,
-  FormLabel,
-  RadioGroup,
   FormControlLabel,
-  Radio,
-  Select,
+  FormLabel,
+  IconButton,
   MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
   Slider,
+  Stack,
   Switch,
   Tooltip,
+  Typography,
 } from "@mui/material";
-import { Heart, Eye, ShoppingBag, Star } from "lucide-react";
-
 import "../../../src/theme/augmentations.d.ts";
+import { Gallery } from "../../../src/components/gallary/Gallery.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { Gallery } from "../../../src/components/gallary/Gallery.js";
-import type { GalleryColumns, GalleryRadius, GalleryImageFit } from "../../../src/components/gallary/Gallery.types.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
+import type { GalleryColumns, GalleryImageFit, GalleryRadius } from "../../../src/components/gallary/Gallery.types.js";
 
 // ─── Mock Data ────────────────────────────────────────────────────────────────
 

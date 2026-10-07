@@ -1,9 +1,9 @@
 import React from "react";
-import { Box, Typography, Chip, Avatar } from "@mui/material";
+import { ChevronRight, Filter, Star, Tag } from "lucide-react";
+import { Avatar, Box, Chip, Typography } from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { Star, Tag, Filter, ChevronRight } from "lucide-react";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const ChipsPage: React.FC = () => {
   const { mode } = useGlassMode();

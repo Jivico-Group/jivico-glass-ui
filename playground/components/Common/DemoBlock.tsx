@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Box, Typography, IconButton, Tooltip, Collapse, Button } from "@mui/material";
-
-import { Code, Copy, Check } from "lucide-react";
+import { Check, Code, Copy } from "lucide-react";
+import { Box, Button, Collapse, IconButton, Tooltip, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext";
 
 interface DemoBlockProps {

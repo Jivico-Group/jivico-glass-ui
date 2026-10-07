@@ -1,36 +1,36 @@
 import React, { useState } from "react";
 import {
-  Box,
-  Typography,
-  Button,
-  Menu,
-  MenuItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Paper,
-  Stack,
-  Chip,
-} from "@mui/material";
-import {
-  Sparkles,
-  User,
-  Settings,
-  Shield,
-  CreditCard,
-  LogOut,
+  Check,
   ChevronRight,
   Copy,
-  Share2,
-  Trash2,
-  Check,
-  Zap,
-  Sliders,
+  CreditCard,
+  LogOut,
   MoreVertical,
+  Settings,
+  Share2,
+  Shield,
+  Sliders,
+  Sparkles,
+  Trash2,
+  User,
+  Zap,
 } from "lucide-react";
+import {
+  Box,
+  Button,
+  Chip,
+  Divider,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const MenusPage: React.FC = () => {
   const { mode } = useGlassMode();

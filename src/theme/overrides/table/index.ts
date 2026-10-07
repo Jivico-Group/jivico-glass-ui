@@ -1,13 +1,12 @@
-import type { Components, Theme } from "@mui/material/styles";
-import type { JivicoPalette } from "../../palette/index.js";
-
 import { getTableOverrides } from "./table.js";
-import { getTableHeadOverrides } from "./tableHead.js";
 import { getTableBodyOverrides } from "./tableBody.js";
-import { getTableRowOverrides } from "./tableRow.js";
 import { getTableCellOverrides } from "./tableCell.js";
 import { getTableContainerOverrides } from "./tableContainer.js";
 import { getTableFooterOverrides } from "./tableFooter.js";
+import { getTableHeadOverrides } from "./tableHead.js";
+import { getTableRowOverrides } from "./tableRow.js";
+import type { Components, Theme } from "@mui/material/styles";
+import type { JivicoPalette } from "../../palette/index.js";
 
 export const getTableRootOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   ...getTableOverrides(palette, isDark),

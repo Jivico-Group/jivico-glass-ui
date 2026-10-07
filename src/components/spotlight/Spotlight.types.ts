@@ -1,10 +1,11 @@
-import type { MouseEvent } from "react";
-
 import type { SxProps, Theme } from "@mui/material/styles";
+import type { MouseEvent } from "react";
 import type { AspectRatio, ResponsiveAspectRatio } from "../../types/aspectRatio.js";
 import type {
   ShowcaseAction,
   ShowcaseButtonColor,
+  ShowcaseButtonSize,
+  ShowcaseContentAlign,
   ShowcaseDimension,
   ShowcaseImageComponent,
   ShowcaseImageComponentProps,
@@ -13,8 +14,6 @@ import type {
   ShowcaseRadius,
   ShowcaseSize,
   ShowcaseVariant,
-  ShowcaseContentAlign,
-  ShowcaseButtonSize,
 } from "../showcase/Showcase.types.js";
 
 // ─── Re-exported Spotlight Types (Exact 1:1 match with Showcase) ─────────────

@@ -1,5 +1,5 @@
-import type { Components, Theme } from "@mui/material/styles";
 import { COLORS } from "../colors/index.js";
+import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../palette/index.js";
 
 /**

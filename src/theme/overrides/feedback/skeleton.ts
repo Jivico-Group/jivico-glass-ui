@@ -1,5 +1,6 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
+
 type SkeletonColor = "primary" | "secondary" | "accent" | "success" | "info" | "warning" | "error" | "glass";
 
 type SkeletonAppearance = "solid" | "tonal" | "glass" | "outlined";

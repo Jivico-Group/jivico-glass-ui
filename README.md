@@ -126,9 +126,9 @@ Applications therefore do not need to manually create or wrap a MUI theme.
 The root layout can remain a Server Component.
 
 ```tsx
-import type { Metadata } from "next";
 import { JivicoFontPreload } from "jivico-glass-ui";
 import Providers from "@/components/providers/Providers";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Jivico Platform",
@@ -215,7 +215,7 @@ For standard React applications such as **Jivico Orbit**, use the same provider.
 ```tsx
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { JivicoGlassProvider, JivicoFontPreload } from "jivico-glass-ui";
+import { JivicoFontPreload, JivicoGlassProvider } from "jivico-glass-ui";
 import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -610,11 +610,9 @@ import { JivicoFontPreload } from "jivico-glass-ui";
 ## Glass Card + Theme Control
 
 ```tsx
-import { GlassPanel, GradientText, ChipSoft, useGlassMode } from "jivico-glass-ui";
-
-import { Button, Typography, Box } from "@mui/material";
-
-import { Sun, Moon, Sparkles } from "lucide-react";
+import { Moon, Sparkles, Sun } from "lucide-react";
+import { Box, Button, Typography } from "@mui/material";
+import { ChipSoft, GlassPanel, GradientText, useGlassMode } from "jivico-glass-ui";
 
 export function AnalyticsWidget() {
   const { mode, resolvedMode, toggleGlassMode } = useGlassMode();

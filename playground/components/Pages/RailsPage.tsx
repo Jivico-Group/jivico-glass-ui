@@ -1,15 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-
-import { Box, Typography, Stack, Button, FormControlLabel, Switch, Rating } from "@mui/material";
-
+import { Box, Button, FormControlLabel, Rating, Stack, Switch, Typography } from "@mui/material";
+import { Highlight } from "../../../src/components/highlight/Highlight.js";
+import { Rails } from "../../../src/components/rails/Rails.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-
-import { Rails } from "../../../src/components/rails/Rails.js";
-import { Highlight } from "../../../src/components/highlight/Highlight.js";
-
 import type { RailColumns, RailNavigation, RailTransition } from "../../../src/components/rails/Rail.types.js";
 
 /* =========================================================

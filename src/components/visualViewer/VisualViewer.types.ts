@@ -1,5 +1,5 @@
-import type { ReactNode, Ref } from "react";
 import type { SxProps, Theme } from "@mui/material/styles";
+import type { ReactNode, Ref } from "react";
 import type { AspectRatio } from "../../types/aspectRatio.js";
 
 export type VisualViewerRadius = "square" | "rounded" | "soft";

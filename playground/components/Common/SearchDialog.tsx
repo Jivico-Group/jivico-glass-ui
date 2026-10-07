@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Search } from "lucide-react";
 import {
+  Box,
+  Chip,
   Dialog,
   DialogContent,
-  TextField,
   InputAdornment,
   List,
   ListItemButton,
   ListItemText,
+  TextField,
   Typography,
-  Box,
-  Chip,
 } from "@mui/material";
-import { Search } from "lucide-react";
-import { NAV_SECTIONS } from "../Layout/Sidebar.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
+import { NAV_SECTIONS } from "../Layout/Sidebar.js";
 
 interface SearchDialogProps {
   open: boolean;

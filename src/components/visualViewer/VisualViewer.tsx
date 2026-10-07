@@ -1,11 +1,8 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-
-import { Box, Dialog, IconButton, Tooltip, useMediaQuery, useTheme } from "@mui/material";
-
 import { ArrowLeft, ArrowRight, Maximize2, Minimize2, ZoomIn, ZoomOut } from "lucide-react";
-
+import { Box, Dialog, IconButton, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 import type { VisualViewerImageContext, VisualViewerItem, VisualViewerProps } from "./VisualViewer.types";
 
 const DEFAULT_THUMBNAIL_WIDTH = 112;

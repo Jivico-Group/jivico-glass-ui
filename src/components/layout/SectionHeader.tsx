@@ -1,13 +1,13 @@
 import React from "react";
-import { Box, Button } from "@mui/material";
 import { ArrowRight } from "lucide-react";
+import { Box, Button } from "@mui/material";
 import { useGlassMode } from "../../context/ThemeContext.js";
 import {
-  GlassSectionHeaderRow,
-  GlassTitleGroup,
   GlassIconGlow,
-  GlassSectionTitle,
+  GlassSectionHeaderRow,
   GlassSectionSubtitle,
+  GlassSectionTitle,
+  GlassTitleGroup,
 } from "./GlassSectionHeader.js";
 
 export interface SectionHeaderProps {

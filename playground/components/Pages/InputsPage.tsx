@@ -1,22 +1,22 @@
 import React, { useState } from "react";
+import { Check, DollarSign, Eye, EyeOff, Mail, Search, Sparkles } from "lucide-react";
 import {
-  Box,
-  Typography,
-  TextField,
   Autocomplete,
-  InputAdornment,
-  IconButton,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormHelperText,
+  Box,
   Chip,
+  FormControl,
+  FormHelperText,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
 } from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { Search, Mail, Eye, EyeOff, DollarSign, Check, Sparkles } from "lucide-react";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const InputsPage: React.FC = () => {
   const { mode } = useGlassMode();

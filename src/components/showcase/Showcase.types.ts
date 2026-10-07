@@ -1,7 +1,6 @@
-import type { CSSProperties, ComponentType, MouseEvent, ReactNode } from "react";
-
 import type { ButtonProps } from "@mui/material/Button";
 import type { SxProps, Theme } from "@mui/material/styles";
+import type { ComponentType, CSSProperties, MouseEvent, ReactNode } from "react";
 import type { AspectRatio, ResponsiveAspectRatio } from "../../types/aspectRatio.js";
 
 export type ShowcaseTransition = "cinematic" | "fade" | "slide";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, List, ListItemButton, ListItemText } from "@mui/material";
+import { Box, List, ListItemButton, ListItemText, Typography } from "@mui/material";
 
 export interface TocItem {
   id: string;

@@ -1,3 +1,5 @@
+import "./augmentations.d.ts";
+
 export * from "./colors/index.js";
 export * from "./palette/index.js";
 export * from "./typography.js";
@@ -8,4 +10,3 @@ export * from "./overrides/feedback";
 export * from "./overrides/inputs/index.js";
 export * from "./overrides/navigation/index.js";
 export * from "./overrides/surfaces/index.js";
-import "./augmentations.d.ts";

@@ -1,44 +1,44 @@
+import { useState } from "react";
 import {
-  Box,
-  BottomNavigation,
-  BottomNavigationAction,
-  Typography,
-  Switch,
-  FormControlLabel,
-  Paper,
-  Button,
-  Avatar,
-  Badge,
-  IconButton,
-  Stack,
-  Chip,
-  InputBase,
-} from "@mui/material";
-import {
-  Home,
-  Search,
-  Compass,
-  User,
-  Sparkles,
-  Bookmark,
+  Battery,
   Bell,
-  Sliders,
-  PlusSquare,
+  Bookmark,
+  Compass,
   Film,
   Heart,
+  Home,
+  Loader2,
   MessageCircle,
   MoreHorizontal,
-  Send,
-  Wifi,
-  Battery,
+  PlusSquare,
   Scan,
-  Loader2,
+  Search,
+  Send,
+  Sliders,
+  Sparkles,
+  User,
+  Wifi,
   X,
 } from "lucide-react";
+import {
+  Avatar,
+  Badge,
+  BottomNavigation,
+  BottomNavigationAction,
+  Box,
+  Button,
+  Chip,
+  FormControlLabel,
+  IconButton,
+  InputBase,
+  Paper,
+  Stack,
+  Switch,
+  Typography,
+} from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
-import { useState } from "react";
 
 export const BottomNavigationPage: React.FC = () => {
   const { mode } = useGlassMode();

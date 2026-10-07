@@ -1,6 +1,5 @@
-import type { ComponentType, CSSProperties, MouseEvent, ReactNode } from "react";
-
 import type { SxProps, Theme } from "@mui/material/styles";
+import type { ComponentType, CSSProperties, MouseEvent, ReactNode } from "react";
 import type { AspectRatio } from "../../types/aspectRatio.js";
 
 export type HighlightVariant = "overlay" | "center" | "minimal";

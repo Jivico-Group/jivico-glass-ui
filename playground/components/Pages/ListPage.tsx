@@ -1,43 +1,43 @@
 import React, { useState } from "react";
 import {
-  Box,
-  Typography,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  ListItemAvatar,
-  ListItemSecondaryAction,
-  ListSubheader,
-  Avatar,
-  IconButton,
-  Switch,
-  Chip,
-  Paper,
-  Stack,
-} from "@mui/material";
-import {
-  Home,
-  User,
-  Settings,
+  AlertCircle,
   Bell,
-  Shield,
+  CheckCircle2,
+  ChevronRight,
   CreditCard,
   HelpCircle,
-  Mail,
-  ChevronRight,
-  Sparkles,
-  CheckCircle2,
-  AlertCircle,
-  Star,
+  Home,
   Lock,
+  Mail,
+  Settings,
+  Shield,
   Smartphone,
+  Sparkles,
+  Star,
   Trash2,
+  User,
 } from "lucide-react";
+import {
+  Avatar,
+  Box,
+  Chip,
+  IconButton,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemIcon,
+  ListItemSecondaryAction,
+  ListItemText,
+  ListSubheader,
+  Paper,
+  Stack,
+  Switch,
+  Typography,
+} from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const ListPage: React.FC = () => {
   const { mode } = useGlassMode();

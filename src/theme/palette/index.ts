@@ -1,16 +1,16 @@
-import { buildBrandPalette } from "./brand.js";
-import { buildPrimaryPalette } from "./primary.js";
-import { buildSecondaryPalette } from "./secondary.js";
 import { buildAccentPalette } from "./accent.js";
-import { buildSemanticPalette } from "./semantic.js";
-import { buildBackgroundPalette } from "./background.js";
-import { buildTextPalette } from "./text.js";
-import { buildDividerPalette } from "./divider.js";
-import { buildGlassPalette } from "./glass.js";
 import { buildActionPalette } from "./action.js";
 import { buildAlertPalette } from "./alert.js";
-import { buildGradientsPalette } from "./gradients.js";
 import { buildAliasesPalette } from "./aliases.js";
+import { buildBackgroundPalette } from "./background.js";
+import { buildBrandPalette } from "./brand.js";
+import { buildDividerPalette } from "./divider.js";
+import { buildGlassPalette } from "./glass.js";
+import { buildGradientsPalette } from "./gradients.js";
+import { buildPrimaryPalette } from "./primary.js";
+import { buildSecondaryPalette } from "./secondary.js";
+import { buildSemanticPalette } from "./semantic.js";
+import { buildTextPalette } from "./text.js";
 
 export * from "./brand.js";
 export * from "./primary.js";

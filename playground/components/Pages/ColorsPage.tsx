@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Box, Typography, Card, CardActionArea, Tooltip, Tabs, Tab } from "@mui/material";
-import { Copy, Check, Sun, Moon } from "lucide-react";
+import { Check, Copy, Moon, Sun } from "lucide-react";
+import { Box, Card, CardActionArea, Tab, Tabs, Tooltip, Typography } from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
+import { COLORS } from "../../../src/theme/colors";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { COLORS } from "../../../src/theme/colors";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 interface ColorItemProps {
   name: string;

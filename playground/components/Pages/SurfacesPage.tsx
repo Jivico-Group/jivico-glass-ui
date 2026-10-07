@@ -1,10 +1,10 @@
 import React from "react";
-import { Box, Typography, Button, Paper } from "@mui/material";
+import { Shield, Sparkles, Zap } from "lucide-react";
+import { Box, Button, Paper, Typography } from "@mui/material";
+import { GlassPanel } from "../../../src/components/index.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { GlassPanel } from "../../../src/components/index.js";
-import { Sparkles, Shield, Zap } from "lucide-react";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const SurfacesPage: React.FC = () => {
   const { mode } = useGlassMode();

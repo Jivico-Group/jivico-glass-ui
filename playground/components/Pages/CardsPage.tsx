@@ -1,20 +1,20 @@
 import React from "react";
+import { ArrowRight, Bookmark, MoreVertical, Share2, Sparkles } from "lucide-react";
 import {
-  Box,
-  Typography,
-  Card,
-  CardHeader,
-  CardContent,
-  CardActions,
-  Button,
-  Chip,
   Avatar,
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Chip,
   IconButton,
+  Typography,
 } from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { Sparkles, ArrowRight, Bookmark, Share2, MoreVertical } from "lucide-react";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const CardsPage: React.FC = () => {
   const { mode } = useGlassMode();

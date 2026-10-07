@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Activity, CheckCircle2, Layers, RefreshCw, Sparkles, Zap } from "lucide-react";
 import {
+  Avatar,
   Box,
-  LinearProgress,
-  Skeleton,
-  Typography,
   Button,
   Card,
   CardContent,
-  Avatar,
-  Stack,
   Chip,
+  LinearProgress,
+  Skeleton,
+  Stack,
+  Typography,
 } from "@mui/material";
-import { Sparkles, RefreshCw, Layers, Activity, Zap, CheckCircle2 } from "lucide-react";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const ProgressPage: React.FC = () => {
   const { mode } = useGlassMode();

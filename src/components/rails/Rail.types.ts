@@ -1,6 +1,5 @@
-import type { ComponentType, CSSProperties, Key, MouseEvent, ReactNode } from "react";
-
 import type { SxProps, Theme } from "@mui/material/styles";
+import type { ComponentType, CSSProperties, Key, MouseEvent, ReactNode } from "react";
 import type { AspectRatio } from "../../types/aspectRatio.js";
 
 /**

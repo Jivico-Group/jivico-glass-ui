@@ -1,31 +1,30 @@
 "use client";
 
 import React, { useState } from "react";
+import { CheckCircle2, Orbit, Play, RotateCcw, Sparkles } from "lucide-react";
 import {
   Box,
-  Typography,
-  Stack,
   Button,
   Chip,
-  TextField,
-  Switch,
   FormControlLabel,
+  Paper,
+  Stack,
+  Switch,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
+  TextField,
+  Typography,
 } from "@mui/material";
-import { Play, CheckCircle2, RotateCcw, Sparkles, Orbit } from "lucide-react";
-
 import "../../../src/theme/augmentations.d.ts";
+import { LoadingShowcase } from "../../../src/components/loading/LoadingShowcase.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { LoadingShowcase } from "../../../src/components/loading/LoadingShowcase.js";
 import type { LoadingShowcaseImage } from "../../../src/components/loading/LoadingShowcase.types.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 interface LoadingPreset {
   label: string;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, List, ListItemButton, ListItemText, Chip, Drawer } from "@mui/material";
+import { Box, Chip, Drawer, List, ListItemButton, ListItemText, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext";
 
 export interface NavItem {

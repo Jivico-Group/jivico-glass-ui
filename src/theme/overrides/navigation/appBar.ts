@@ -1,6 +1,6 @@
+import { glassAppBarRecipe } from "../glassRecipe.js";
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette.js";
-import { glassAppBarRecipe } from "../glassRecipe.js";
 
 export const getAppBarOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiAppBar: {

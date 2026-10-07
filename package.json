@@ -44,6 +44,7 @@
   "devDependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "@mui/material": "^9.4.0",
     "@types/node": "^20.17.19",
     "@types/react": "^19.0.8",
@@ -52,7 +53,7 @@
     "framer-motion": "^12.4.7",
     "gh-pages": "^6.3.0",
     "lucide-react": "^1.16.0",
-    "prettier": "^3.5.3",
+    "prettier": "^3.9.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tsup": "^8.3.6",

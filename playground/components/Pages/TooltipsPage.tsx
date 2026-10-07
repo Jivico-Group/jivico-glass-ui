@@ -1,9 +1,9 @@
 import React from "react";
-import { Box, Tooltip, Button, IconButton, Typography, Avatar } from "@mui/material";
-import { Sparkles, Info, Zap, Lock, Share2, Bookmark, ShieldCheck } from "lucide-react";
+import { Bookmark, Info, Lock, Share2, ShieldCheck, Sparkles, Zap } from "lucide-react";
+import { Avatar, Box, Button, IconButton, Tooltip, Typography } from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const TooltipsPage: React.FC = () => {
   const { mode } = useGlassMode();

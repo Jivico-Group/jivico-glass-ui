@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Breadcrumbs, Link, Chip, Divider } from "@mui/material";
+import { Box, Breadcrumbs, Chip, Divider, Link, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext";
 
 interface ComponentPageProps {

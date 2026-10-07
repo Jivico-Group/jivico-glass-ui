@@ -1,4 +1,4 @@
-import { Box, Typography, IconButton, styled } from "@mui/material";
+import { Box, IconButton, styled, Typography } from "@mui/material";
 
 export const GlassSectionHeaderRow = styled(Box)(({ theme }) => ({
   display: "flex",

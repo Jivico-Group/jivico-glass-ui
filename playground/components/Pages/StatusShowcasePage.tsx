@@ -1,37 +1,36 @@
 "use client";
 
 import React, { useState } from "react";
+import { AlertTriangle, ArrowRight, RotateCw, Search, Send, ShieldAlert, ShoppingBag, Sparkles } from "lucide-react";
 import {
   Box,
-  Typography,
-  Stack,
   Button,
   Chip,
-  TextField,
-  RadioGroup,
   FormControlLabel,
-  Radio,
-  Switch,
   InputAdornment,
+  Paper,
+  Radio,
+  RadioGroup,
+  Stack,
+  Switch,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
+  TextField,
+  Typography,
 } from "@mui/material";
-import { Search, RotateCw, Sparkles, ShoppingBag, AlertTriangle, ArrowRight, ShieldAlert, Send } from "lucide-react";
-
 import "../../../src/theme/augmentations.d.ts";
+import { StatusShowcase } from "../../../src/components/statusShowcase/StatusShowcase.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { StatusShowcase } from "../../../src/components/statusShowcase/StatusShowcase.js";
 import type {
-  StatusShowcaseProps,
   StatusShowcaseImage,
+  StatusShowcaseProps,
 } from "../../../src/components/statusShowcase/StatusShowcase.types.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 // Preset configurations for the interactive playground
 interface PresetConfig {

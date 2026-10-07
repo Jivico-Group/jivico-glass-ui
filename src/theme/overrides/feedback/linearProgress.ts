@@ -1,5 +1,5 @@
-import type { Components, Theme } from "@mui/material/styles";
 import { linearProgressClasses } from "@mui/material/LinearProgress";
+import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
 type ProgressColor = "primary" | "secondary" | "accent" | "success" | "info" | "warning" | "error" | "glass";

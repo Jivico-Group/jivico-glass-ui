@@ -1,6 +1,6 @@
+import { COLORS } from "../../colors/index.js";
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
-import { COLORS } from "../../colors/index.js";
 
 type AlertColor = "primary" | "secondary" | "accent" | "glass";
 type AlertAppearance = "solid" | "tonal" | "glass" | "outlined";

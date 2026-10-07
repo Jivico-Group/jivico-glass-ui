@@ -1,15 +1,15 @@
+import { ACCENT_COLORS } from "./accent.js";
+import { ACTION_COLORS } from "./action.js";
+import { ALERT_RGB } from "./alerts.js";
+import { BACKGROUND_COLORS } from "./background.js";
 import { BRAND_COLORS } from "./brand.js";
+import { DIVIDER_COLORS } from "./divider.js";
+import { GLASS_COLORS } from "./glass.js";
+import { GRADIENT_COLORS } from "./gradients.js";
 import { PRIMARY_COLORS } from "./primary.js";
 import { SECONDARY_COLORS } from "./secondary.js";
-import { ACCENT_COLORS } from "./accent.js";
 import { SEMANTIC_COLORS } from "./semantic.js";
-import { BACKGROUND_COLORS } from "./background.js";
 import { TEXT_COLORS } from "./text.js";
-import { DIVIDER_COLORS } from "./divider.js";
-import { ACTION_COLORS } from "./action.js";
-import { GLASS_COLORS } from "./glass.js";
-import { ALERT_RGB } from "./alerts.js";
-import { GRADIENT_COLORS } from "./gradients.js";
 
 export * from "./brand.js";
 export * from "./primary.js";

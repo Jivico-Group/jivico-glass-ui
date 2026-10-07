@@ -1,6 +1,6 @@
+import { COLORS } from "../../colors/index.js";
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
-import { COLORS } from "../../colors/index.js";
 
 const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
 

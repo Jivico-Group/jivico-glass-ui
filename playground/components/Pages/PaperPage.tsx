@@ -1,9 +1,9 @@
 import React from "react";
-import { Box, Typography, Paper, Button, Divider, Chip } from "@mui/material";
+import { Box as BoxIcon, ExternalLink, Layers, Sparkles } from "lucide-react";
+import { Box, Button, Chip, Divider, Paper, Typography } from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { Sparkles, Layers, Box as BoxIcon, ExternalLink } from "lucide-react";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const PaperPage: React.FC = () => {
   const { mode } = useGlassMode();

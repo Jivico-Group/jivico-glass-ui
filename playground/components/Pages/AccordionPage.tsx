@@ -1,19 +1,19 @@
 import React, { useState } from "react";
+import { Bell, ChevronDown, CreditCard, HelpCircle, Lock, Shield, User } from "lucide-react";
 import {
-  Box,
-  Typography,
   Accordion,
-  AccordionSummary,
   AccordionDetails,
-  Chip,
+  AccordionSummary,
+  Box,
   Button,
-  Switch,
+  Chip,
   FormControlLabel,
+  Switch,
+  Typography,
 } from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { ChevronDown, Shield, CreditCard, Bell, Lock, User, HelpCircle } from "lucide-react";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const AccordionPage: React.FC = () => {
   const { mode } = useGlassMode();

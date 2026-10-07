@@ -1,7 +1,6 @@
 import React from "react";
-import { AppBar, Toolbar, Box, Typography, IconButton, Tooltip, Chip, Button } from "@mui/material";
-
 import { Menu as MenuIcon, Search } from "lucide-react";
+import { AppBar, Box, Button, Chip, IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext";
 
 interface HeaderProps {

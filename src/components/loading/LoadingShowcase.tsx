@@ -1,9 +1,8 @@
 "use client";
-import React, { useEffect, useId, useRef, useState } from "react";
 
+import React, { useEffect, useId, useRef, useState } from "react";
 import { Box, LinearProgress, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-
 import type { LoadingShowcaseImage, LoadingShowcaseProps } from "./LoadingShowcase.types.js";
 
 /* -------------------------------------------------------------------------- */

@@ -1,26 +1,26 @@
 import React, { useState } from "react";
+import { CheckCircle2, Layers, Lock, Moon, Palette, ShieldCheck, Sparkles, Sun, Zap } from "lucide-react";
 import {
+  Alert,
   Box,
-  Typography,
+  Button,
+  Card,
+  Chip,
+  Paper,
+  Stack,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
-  Button,
-  Chip,
-  Card,
-  Stack,
   TextField,
-  Alert,
+  Typography,
 } from "@mui/material";
-import { Moon, Sun, Layers, ShieldCheck, CheckCircle2, Lock, Palette, Sparkles, Zap } from "lucide-react";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
+import { GlassThemeScope } from "../../../src/providers/GlassThemeScope.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { GlassThemeScope } from "../../../src/providers/GlassThemeScope.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const ThemePage: React.FC = () => {
   const { resolvedMode, setGlassMode } = useGlassMode();

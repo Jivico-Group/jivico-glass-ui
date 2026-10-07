@@ -1,10 +1,10 @@
 import React from "react";
-import { Box, Typography, Grid, Paper, Chip, Stack } from "@mui/material";
-import { ComponentPage } from "../Common/ComponentPage.js";
-import { DemoBlock } from "../Common/DemoBlock.js";
-import { GradientText, GradientContextTitle } from "../../../src/components/index.js";
+import { Box, Chip, Grid, Paper, Stack, Typography } from "@mui/material";
+import { GradientContextTitle, GradientText } from "../../../src/components/index.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { COLORS } from "../../../src/theme/colors/index.js";
+import { ComponentPage } from "../Common/ComponentPage.js";
+import { DemoBlock } from "../Common/DemoBlock.js";
 
 export const TypographyPage: React.FC = () => {
   const { mode } = useGlassMode();

@@ -1,8 +1,8 @@
 import React from "react";
-import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import { GlassModeProvider, ThemeMode, useGlassMode } from "../context/ThemeContext.js";
 import JivicoGlassTheme from "../theme/theme.js";
-import { GlassModeProvider, useGlassMode, ThemeMode } from "../context/ThemeContext.js";
 
 function InternalMuiWrapper({
   children,

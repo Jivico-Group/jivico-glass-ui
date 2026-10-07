@@ -1,9 +1,9 @@
 import React from "react";
-import { Box, Avatar, AvatarGroup, Badge, Tooltip, Button, Typography, Chip, IconButton } from "@mui/material";
+import { Bell, Camera, Check, Mail, MessageSquare, Shield, Sparkles, User } from "lucide-react";
+import { Avatar, AvatarGroup, Badge, Box, Button, Chip, IconButton, Tooltip, Typography } from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { Mail, Bell, Sparkles, User, Shield, MessageSquare, Camera, Check } from "lucide-react";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const DataDisplayPage: React.FC = () => {
   const { mode } = useGlassMode();

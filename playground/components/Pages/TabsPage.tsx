@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Box, Typography, Tabs, Tab } from "@mui/material";
+import { Box, Tab, Tabs, Typography } from "@mui/material";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 export const TabsPage: React.FC = () => {
   const { mode } = useGlassMode();

@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, Button, styled } from "@mui/material";
 import { ArrowRight } from "lucide-react";
+import { Box, Button, styled } from "@mui/material";
 
 export const MobileViewAllButton = styled(Button, {
   shouldForwardProp: (p) => p !== "isDark",

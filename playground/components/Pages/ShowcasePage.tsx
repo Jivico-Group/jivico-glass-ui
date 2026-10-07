@@ -1,21 +1,20 @@
 import React, { useMemo, useState } from "react";
-import { Box, Typography, Stack, Button, FormControlLabel, Switch } from "@mui/material";
-
+import { Box, Button, FormControlLabel, Stack, Switch, Typography } from "@mui/material";
 import "../../../src/theme/augmentations.d.ts";
+import { Showcase } from "../../../src/components/showcase/Showcase.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { Showcase } from "../../../src/components/showcase/Showcase.js";
 import type {
-  ShowcaseItem,
-  ShowcaseVariant,
-  ShowcaseSize,
-  ShowcaseTransition,
-  ShowcaseNavigation,
-  ShowcaseRadius,
   ShowcaseButtonColor,
   ShowcaseImageComponentProps,
+  ShowcaseItem,
+  ShowcaseNavigation,
+  ShowcaseRadius,
+  ShowcaseSize,
+  ShowcaseTransition,
+  ShowcaseVariant,
 } from "../../../src/components/showcase/Showcase.types.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 /**
  * Mock image component

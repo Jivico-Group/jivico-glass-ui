@@ -18,7 +18,8 @@ Use it for:
 ## Import
 
 ```tsx
-import { Showcase, type ShowcaseItem } from "jivico-glass-ui";
+import { Showcase } from "jivico-glass-ui";
+import type { ShowcaseItem } from "jivico-glass-ui";
 ```
 
 ---
@@ -212,7 +213,8 @@ Showcase supports Next.js `next/image` through `ImageComponent` while delegating
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Showcase, type ShowcaseItem } from "jivico-glass-ui";
+import { Showcase } from "jivico-glass-ui";
+import type { ShowcaseItem } from "jivico-glass-ui";
 
 interface HeroShowcaseProps {
   items: ShowcaseItem[];

@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { Box, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
-import type { RailProps, RailRenderContext, RailNavigationContext } from "./Rail.types.js";
+import { Box, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
+import type { RailNavigationContext, RailProps, RailRenderContext } from "./Rail.types.js";
 
 const DEFAULT_COLUMNS = { xs: 2, sm: 3, md: 4, lg: 5, xl: 5 } as const;
 const DEFAULT_GAP = 2;

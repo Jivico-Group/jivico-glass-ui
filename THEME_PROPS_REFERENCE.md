@@ -284,8 +284,8 @@ const { mode, resolvedMode, setGlassMode, toggleGlassMode } = useGlassMode();
 #### `<BottomNavigation>` & `<BottomNavigationItem>`
 
 ```tsx
-import { BottomNavigation, BottomNavigationItem } from "jivico-glass-ui";
 import { Button, InputBase } from "@mui/material";
+import { BottomNavigation, BottomNavigationItem } from "jivico-glass-ui";
 
 <BottomNavigation glass={true} placement="top-center">
   <BottomNavigationItem component={Button} href="/originals">
@@ -346,7 +346,8 @@ import { Button, InputBase } from "@mui/material";
 ### `<Showcase>` (Cinematic Glass Hero Slider & Carousel)
 
 ```tsx
-import { Showcase, type ShowcaseItem } from "jivico-glass-ui";
+import { Showcase } from "jivico-glass-ui";
+import type { ShowcaseItem } from "jivico-glass-ui";
 
 const items: ShowcaseItem[] = [
   {

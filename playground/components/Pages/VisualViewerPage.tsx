@@ -3,31 +3,30 @@
 import React, { useState } from "react";
 import {
   Box,
-  Typography,
-  Stack,
   FormControl,
-  FormLabel,
-  RadioGroup,
   FormControlLabel,
-  Radio,
-  Switch,
-  Select,
+  FormLabel,
   MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
   Slider,
+  Stack,
+  Switch,
+  Typography,
 } from "@mui/material";
-
 import "../../../src/theme/augmentations.d.ts";
+import { VisualViewer } from "../../../src/components/visualViewer/VisualViewer.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { VisualViewer } from "../../../src/components/visualViewer/VisualViewer.js";
 import type {
   VisualViewerItem,
-  VisualViewerRadius,
   VisualViewerNavigation,
-  VisualViewerThumbnailPosition,
   VisualViewerObjectFit,
+  VisualViewerRadius,
+  VisualViewerThumbnailPosition,
 } from "../../../src/components/visualViewer/VisualViewer.types.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 // ─── Sample items ─────────────────────────────────────────────────────────────
 

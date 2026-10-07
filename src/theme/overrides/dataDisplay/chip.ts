@@ -1,6 +1,6 @@
+import React from "react";
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette.js";
-import React from "react";
 
 // Clean minimalist close cross icon matching the brand kit
 const CloseDeleteIcon = (props: React.SVGProps<SVGSVGElement>) =>

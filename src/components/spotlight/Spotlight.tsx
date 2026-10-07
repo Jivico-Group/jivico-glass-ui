@@ -1,11 +1,9 @@
 "use client";
 
 import React from "react";
-
-import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
-
 import { ArrowRight } from "lucide-react";
-
+import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { getVariantOverlay as resolveVariantOverlay } from "../showcase/showcaseOverlay.js";
 import type {
   SpotlightDimension,
   SpotlightItem,
@@ -13,7 +11,6 @@ import type {
   SpotlightSize,
   SpotlightVariant,
 } from "./Spotlight.types.js";
-import { getVariantOverlay as resolveVariantOverlay } from "../showcase/showcaseOverlay.js";
 
 const getResponsiveValue = (value: SpotlightDimension | undefined) => {
   if (value === undefined) return undefined;

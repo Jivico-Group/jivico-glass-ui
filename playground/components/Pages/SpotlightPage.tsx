@@ -3,30 +3,29 @@
 import React, { useMemo, useState } from "react";
 import {
   Box,
-  Typography,
-  Stack,
   FormControl,
-  FormLabel,
-  RadioGroup,
   FormControlLabel,
-  Radio,
-  Select,
+  FormLabel,
   MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
+  Stack,
   Switch,
+  Typography,
 } from "@mui/material";
-
 import "../../../src/theme/augmentations.d.ts";
+import { Spotlight } from "../../../src/components/spotlight/Spotlight.js";
+import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import { Spotlight } from "../../../src/components/spotlight/Spotlight.js";
 import type {
-  SpotlightItem,
-  SpotlightVariant,
-  SpotlightSize,
-  SpotlightRadius,
   SpotlightImageComponentProps,
+  SpotlightItem,
+  SpotlightRadius,
+  SpotlightSize,
+  SpotlightVariant,
 } from "../../../src/components/spotlight/Spotlight.types.js";
-import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 /**
  * Mock image renderer component for demonstration.

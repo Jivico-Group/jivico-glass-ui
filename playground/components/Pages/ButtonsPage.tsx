@@ -1,42 +1,42 @@
 import React, { useState } from "react";
 import {
-  Box,
-  Typography,
-  Button,
-  ButtonGroup,
-  IconButton,
-  Fab,
-  ToggleButton,
-  ToggleButtonGroup,
-  CircularProgress,
-  Menu,
-  MenuItem,
-} from "@mui/material";
-import { ComponentPage } from "../Common/ComponentPage.js";
-import { DemoBlock } from "../Common/DemoBlock.js";
-import {
-  ShoppingCart,
-  Star,
-  Plus,
-  Trash2,
-  Heart,
-  ArrowRight,
-  ArrowLeft,
-  Download,
-  Send,
-  Sparkles,
-  Settings,
-  ChevronDown,
-  AlignLeft,
   AlignCenter,
+  AlignLeft,
   AlignRight,
-  Grid as GridIcon,
-  List as ListIcon,
+  ArrowLeft,
+  ArrowRight,
   Bold,
+  ChevronDown,
+  Download,
+  Grid as GridIcon,
+  Heart,
   Italic,
+  List as ListIcon,
+  Plus,
+  Send,
+  Settings,
+  ShoppingCart,
+  Sparkles,
+  Star,
+  Trash2,
   Underline,
 } from "lucide-react";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  CircularProgress,
+  Fab,
+  IconButton,
+  Menu,
+  MenuItem,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+} from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
+import { ComponentPage } from "../Common/ComponentPage.js";
+import { DemoBlock } from "../Common/DemoBlock.js";
 
 export const ButtonsPage: React.FC = () => {
   const { mode } = useGlassMode();

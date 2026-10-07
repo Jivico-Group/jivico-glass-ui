@@ -1,12 +1,9 @@
 import React from "react";
-
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
-
+import Typography from "@mui/material/Typography";
 import type { Theme } from "@mui/material/styles";
-
 import type { HighlightDimension, HighlightImageProps, HighlightProps } from "./Highlight.types.js";
 
 const DEFAULT_IMAGE_SIZES = "(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw";
