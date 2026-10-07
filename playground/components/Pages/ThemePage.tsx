@@ -116,8 +116,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 );`}
       >
         <Alert severity="info" sx={{ borderRadius: "14px", mb: 2 }}>
-          <code>JivicoGlassProvider</code> accepts <code>defaultMode="system" | "light" | "dark"</code> and automatically persists theme
-          preference in local storage.
+          <code>JivicoGlassProvider</code> accepts <code>defaultMode="system" | "light" | "dark"</code> and
+          automatically persists theme preference in local storage.
         </Alert>
       </DemoBlock>
 
@@ -166,8 +166,8 @@ function SpecificPage() {
               </Typography>
             </Stack>
             <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.88rem" }}>
-              Because Jivico Glass UI is built directly on native Material-UI v9 theme overrides, all components are standard MUI elements.
-              No wrapper boilerplate required.
+              Because Jivico Glass UI is built directly on native Material-UI v9 theme overrides, all components are
+              standard MUI elements. No wrapper boilerplate required.
             </Typography>
           </Stack>
         </Paper>
@@ -247,7 +247,8 @@ import { Card, Button, Chip } from '@mui/material';
                       fontSize: "0.85rem",
                     }}
                   >
-                    All child MUI components (Buttons, Inputs, Text) inherit full dark mode color rules, borders, and typography.
+                    All child MUI components (Buttons, Inputs, Text) inherit full dark mode color rules, borders, and
+                    typography.
                   </Typography>
                   <TextField size="small" placeholder="Dark scoped text input..." fullWidth />
                   <Stack direction="row" spacing={1}>
@@ -396,7 +397,12 @@ import { Card, Button, Chip } from '@mui/material';
                       </Stack>
                     </TableCell>
                     <TableCell>
-                      <Chip label="Forced Dark Scope" color="accent" size="small" sx={{ height: 20, fontSize: "0.65rem" }} />
+                      <Chip
+                        label="Forced Dark Scope"
+                        color="accent"
+                        size="small"
+                        sx={{ height: 20, fontSize: "0.65rem" }}
+                      />
                     </TableCell>
                     <TableCell align="right" sx={{ fontWeight: 700 }}>
                       0.2ms
@@ -495,12 +501,16 @@ import { Card, Button, Chip } from '@mui/material';
                         Scope Target: {forcedMode.toUpperCase()}
                       </Typography>
                     </Stack>
-                    <Chip label={forcedMode.toUpperCase()} color={forcedMode === "dark" ? "accent" : "primary"} size="small" />
+                    <Chip
+                      label={forcedMode.toUpperCase()}
+                      color={forcedMode === "dark" ? "accent" : "primary"}
+                      size="small"
+                    />
                   </Stack>
 
                   <Typography variant="body2" sx={{ opacity: 0.85, fontSize: "0.88rem" }}>
-                    This container is dynamically scoped to <strong>{forcedMode.toUpperCase()} MODE</strong>. Toggling the global app header
-                    theme leaves this target intact!
+                    This container is dynamically scoped to <strong>{forcedMode.toUpperCase()} MODE</strong>. Toggling
+                    the global app header theme leaves this target intact!
                   </Typography>
 
                   <Stack direction="row" spacing={1.5} sx={{ pt: 1 }}>

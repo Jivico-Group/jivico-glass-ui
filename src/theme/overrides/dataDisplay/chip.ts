@@ -499,7 +499,14 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                       : isDark
                         ? "rgba(255, 255, 255, 0.07)"
                         : "rgba(17, 17, 17, 0.05)",
-              color: isGlass || isPrimary || isSecondary ? (isDark ? "#F6F5F2" : "#111111") : isSemantic ? cc.main : palette.text.primary,
+              color:
+                isGlass || isPrimary || isSecondary
+                  ? isDark
+                    ? "#F6F5F2"
+                    : "#111111"
+                  : isSemantic
+                    ? cc.main
+                    : palette.text.primary,
               border: `1px solid ${
                 isGlass
                   ? isDark

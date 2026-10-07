@@ -26,7 +26,12 @@ import { Gallery } from "jivico-glass-ui";
 Use `getImage` and let `Gallery` render the native HTML `<img>`.
 
 ```tsx
-<Gallery items={products} getKey={(item) => item.id} getImage={(item) => item.image} getImageAlt={(item) => item.name} />
+<Gallery
+  items={products}
+  getKey={(item) => item.id}
+  getImage={(item) => item.image}
+  getImageAlt={(item) => item.name}
+/>
 ```
 
 Default layout:

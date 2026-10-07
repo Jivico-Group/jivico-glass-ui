@@ -9,8 +9,11 @@ const DEFAULT_COLUMNS = { xs: 2, sm: 3, md: 4, lg: 5, xl: 5 } as const;
 const DEFAULT_GAP = 2;
 const DEFAULT_INTERVAL = 5000;
 
-const resolveResponsiveValue = <T,>(value: Record<string, T> | undefined, fallback: Record<string, T>, breakpoint: string): T =>
-  value?.[breakpoint] ?? fallback[breakpoint];
+const resolveResponsiveValue = <T,>(
+  value: Record<string, T> | undefined,
+  fallback: Record<string, T>,
+  breakpoint: string,
+): T => value?.[breakpoint] ?? fallback[breakpoint];
 
 export function Rails<T>({
   items,
@@ -92,7 +95,10 @@ export function Rails<T>({
     [getCssItemBasis],
   );
 
-  const pageCount = React.useMemo(() => Math.max(1, Math.ceil(items.length / Math.max(1, currentColumns))), [items.length, currentColumns]);
+  const pageCount = React.useMemo(
+    () => Math.max(1, Math.ceil(items.length / Math.max(1, currentColumns))),
+    [items.length, currentColumns],
+  );
 
   const transitionConfig = React.useMemo(() => {
     const easing = "cubic-bezier(0.22, 1, 0.36, 1)";
@@ -306,7 +312,18 @@ export function Rails<T>({
     }, safeInterval);
 
     return () => window.clearInterval(timer);
-  }, [autoplay, interval, pauseOnHover, isHovered, prefersReducedMotion, items.length, currentColumns, loop, scrollBy, scrollToStart]);
+  }, [
+    autoplay,
+    interval,
+    pauseOnHover,
+    isHovered,
+    prefersReducedMotion,
+    items.length,
+    currentColumns,
+    loop,
+    scrollBy,
+    scrollToStart,
+  ]);
 
   const renderDefaultImage = React.useCallback(
     ({ src, alt, index }: { src: string; alt: string; index: number }) => {
@@ -526,8 +543,12 @@ export function Rails<T>({
           color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
           bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
           backdropFilter: "blur(12px)",
-          border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
-          boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
+          border:
+            theme.palette.mode === "dark"
+              ? "1px solid rgba(255, 255, 255, 0.28)"
+              : "1px solid rgba(255, 255, 255, 0.6)",
+          boxShadow:
+            theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
           transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
           "&:hover": {
             bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",

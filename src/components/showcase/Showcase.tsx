@@ -3,7 +3,13 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Box, Button, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import type { ShowcaseDimension, ShowcaseItem, ShowcaseProps, ShowcaseSize, ShowcaseVariant } from "./Showcase.types.js";
+import type {
+  ShowcaseDimension,
+  ShowcaseItem,
+  ShowcaseProps,
+  ShowcaseSize,
+  ShowcaseVariant,
+} from "./Showcase.types.js";
 import { getVariantOverlay as resolveVariantOverlay } from "./showcaseOverlay.js";
 
 const DEFAULT_INTERVAL = 5000;
@@ -324,7 +330,9 @@ export const Showcase = ({
   if (!currentItem) return null;
   const radiusValue = getRadius(radius);
   const containerHeight = getResponsiveValue(height);
-  const containerMinHeight = getResponsiveValue(minHeight ?? (height === undefined ? currentSize.minHeight : undefined));
+  const containerMinHeight = getResponsiveValue(
+    minHeight ?? (height === undefined ? currentSize.minHeight : undefined),
+  );
   const containerMaxHeight = getResponsiveValue(maxHeight);
   const responsiveAspectRatio =
     height === undefined
@@ -555,7 +563,8 @@ export const Showcase = ({
                  */
                 justifyContent: item.contentAlign === "center" ? "center" : "flex-end",
 
-                alignItems: item.contentAlign === "center" ? "center" : item.contentAlign === "right" ? "flex-end" : "flex-start",
+                alignItems:
+                  item.contentAlign === "center" ? "center" : item.contentAlign === "right" ? "flex-end" : "flex-start",
 
                 p: currentSize.contentPadding,
                 pointerEvents: "none",
@@ -573,8 +582,14 @@ export const Showcase = ({
                       maxWidth: { xs: "92%", sm: "78%", md: "58%", lg: "50%" },
                       display: "flex",
                       flexDirection: "column",
-                      alignItems: item.contentAlign === "center" ? "center" : item.contentAlign === "right" ? "flex-end" : "flex-start",
-                      textAlign: item.contentAlign === "center" ? "center" : item.contentAlign === "right" ? "right" : "left",
+                      alignItems:
+                        item.contentAlign === "center"
+                          ? "center"
+                          : item.contentAlign === "right"
+                            ? "flex-end"
+                            : "flex-start",
+                      textAlign:
+                        item.contentAlign === "center" ? "center" : item.contentAlign === "right" ? "right" : "left",
                       gap: { xs: 0.9, md: 1.15 },
                     },
 

@@ -109,7 +109,13 @@ export const SteppersPage: React.FC = () => {
               Back
             </Button>
 
-            <Button variant="contained" color="accent" onClick={handleNext} size="small" disabled={activeStep === steps.length - 1}>
+            <Button
+              variant="contained"
+              color="accent"
+              onClick={handleNext}
+              size="small"
+              disabled={activeStep === steps.length - 1}
+            >
               {activeStep === steps.length - 1 ? "Finish" : "Next Step"}
             </Button>
           </Box>

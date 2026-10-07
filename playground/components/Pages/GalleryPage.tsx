@@ -252,7 +252,12 @@ export const GalleryPage: React.FC = () => {
                   </FormLabel>
                   <RadioGroup row value={radius} onChange={(e) => setRadius(e.target.value as GalleryRadius)}>
                     {(["square", "rounded", "soft"] as const).map((v) => (
-                      <FormControlLabel key={v} value={v} control={<Radio size="small" />} label={v.charAt(0).toUpperCase() + v.slice(1)} />
+                      <FormControlLabel
+                        key={v}
+                        value={v}
+                        control={<Radio size="small" />}
+                        label={v.charAt(0).toUpperCase() + v.slice(1)}
+                      />
                     ))}
                   </RadioGroup>
                 </FormControl>
@@ -277,14 +282,23 @@ export const GalleryPage: React.FC = () => {
 
                 <Box sx={{ minWidth: 140 }}>
                   <Typography sx={{ ...labelSx, mb: 1 }}>Gap: {gap}</Typography>
-                  <Slider value={gap} onChange={(_, v) => setGap(v as number)} min={0} max={6} step={0.5} size="small" />
+                  <Slider
+                    value={gap}
+                    onChange={(_, v) => setGap(v as number)}
+                    min={0}
+                    max={6}
+                    step={0.5}
+                    size="small"
+                  />
                 </Box>
               </Stack>
 
               {/* Row 3: layer toggles */}
               <Stack direction="row" spacing={3}>
                 <FormControlLabel
-                  control={<Switch size="small" checked={showOverlay} onChange={(e) => setShowOverlay(e.target.checked)} />}
+                  control={
+                    <Switch size="small" checked={showOverlay} onChange={(e) => setShowOverlay(e.target.checked)} />
+                  }
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       Overlay

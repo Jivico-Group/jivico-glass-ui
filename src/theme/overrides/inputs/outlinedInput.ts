@@ -11,11 +11,16 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
         const hoverColor = activeColorGroup.hover || activeColor;
         const glowColor = activeColorGroup.glow;
         const isGlass = (colorKey as string) === "glass";
-        const isSemantic = colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
+        const isSemantic =
+          colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
 
         return {
           borderRadius: 12,
-          backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.55)") : palette.glass.buttonBg,
+          backgroundColor: isGlass
+            ? isDark
+              ? "rgba(255, 255, 255, 0.05)"
+              : "rgba(255, 255, 255, 0.55)"
+            : palette.glass.buttonBg,
           backdropFilter: isGlass ? "blur(20px) saturate(190%)" : "blur(8px)",
           WebkitBackdropFilter: isGlass ? "blur(20px) saturate(190%)" : "blur(8px)",
           boxShadow: isGlass
@@ -53,7 +58,11 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
           },
 
           "&.Mui-focused": {
-            backgroundColor: isGlass ? (isDark ? "rgba(24, 26, 32, 0.65)" : "rgba(255, 255, 255, 0.90)") : palette.glass.inputFocusBg,
+            backgroundColor: isGlass
+              ? isDark
+                ? "rgba(24, 26, 32, 0.65)"
+                : "rgba(255, 255, 255, 0.90)"
+              : palette.glass.inputFocusBg,
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: isGlass ? (isDark ? "#F6F5F2" : "#111111") : activeColor,
               borderWidth: "1.5px",

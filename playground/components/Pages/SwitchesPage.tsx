@@ -262,7 +262,9 @@ export const SwitchesPage: React.FC = () => {
                   GLASS SWITCH
                 </Typography>
                 <FormControlLabel
-                  control={<Switch color="glass" checked={glassSwitch} onChange={(e) => setGlassSwitch(e.target.checked)} />}
+                  control={
+                    <Switch color="glass" checked={glassSwitch} onChange={(e) => setGlassSwitch(e.target.checked)} />
+                  }
                   label={glassSwitch ? "Liquid Active" : "Liquid Inactive"}
                   sx={{
                     "& .MuiFormControlLabel-label": {
@@ -294,7 +296,9 @@ export const SwitchesPage: React.FC = () => {
                   GLASS CHECKBOX
                 </Typography>
                 <FormControlLabel
-                  control={<Checkbox color="glass" checked={glassCheck} onChange={(e) => setGlassCheck(e.target.checked)} />}
+                  control={
+                    <Checkbox color="glass" checked={glassCheck} onChange={(e) => setGlassCheck(e.target.checked)} />
+                  }
                   label={glassCheck ? "Checked" : "Unchecked"}
                   sx={{
                     "& .MuiFormControlLabel-label": {
@@ -373,7 +377,12 @@ export const SwitchesPage: React.FC = () => {
                   <span>GLASS SLIDER</span>
                   <span>{glassSlider}%</span>
                 </Typography>
-                <Slider color="glass" value={glassSlider} onChange={(_, val) => setGlassSlider(val as number)} sx={{ pt: 1 }} />
+                <Slider
+                  color="glass"
+                  value={glassSlider}
+                  onChange={(_, val) => setGlassSlider(val as number)}
+                  sx={{ pt: 1 }}
+                />
               </Box>
             </Box>
           </Box>
@@ -937,10 +946,26 @@ export const SwitchesPage: React.FC = () => {
                 gap: 4,
               }}
             >
-              <FormControlLabel control={<Switch defaultChecked color="primary" />} label="Label End (Default)" labelPlacement="end" />
-              <FormControlLabel control={<Switch defaultChecked color="primary" />} label="Label Start" labelPlacement="start" />
-              <FormControlLabel control={<Switch defaultChecked color="primary" />} label="Label Top" labelPlacement="top" />
-              <FormControlLabel control={<Switch defaultChecked color="primary" />} label="Label Bottom" labelPlacement="bottom" />
+              <FormControlLabel
+                control={<Switch defaultChecked color="primary" />}
+                label="Label End (Default)"
+                labelPlacement="end"
+              />
+              <FormControlLabel
+                control={<Switch defaultChecked color="primary" />}
+                label="Label Start"
+                labelPlacement="start"
+              />
+              <FormControlLabel
+                control={<Switch defaultChecked color="primary" />}
+                label="Label Top"
+                labelPlacement="top"
+              />
+              <FormControlLabel
+                control={<Switch defaultChecked color="primary" />}
+                label="Label Bottom"
+                labelPlacement="bottom"
+              />
             </Box>
           </Box>
         </Box>
@@ -1105,7 +1130,12 @@ export const SwitchesPage: React.FC = () => {
               <Typography variant="caption" sx={{ color: "text.secondary", display: "block", mb: 2 }}>
                 Allows setting both minimum and maximum thresholds
               </Typography>
-              <Slider value={rangeVal} onChange={(_, val) => setRangeVal(val as number[])} valueLabelDisplay="auto" color="secondary" />
+              <Slider
+                value={rangeVal}
+                onChange={(_, val) => setRangeVal(val as number[])}
+                valueLabelDisplay="auto"
+                color="secondary"
+              />
             </Box>
           </Box>
         </Box>

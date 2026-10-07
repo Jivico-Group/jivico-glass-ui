@@ -69,7 +69,11 @@ export const ComponentPage: React.FC<ComponentPageProps> = ({
             />
           ))}
         </Box>
-        <Typography variant="body1" color="text.secondary" sx={{ fontSize: "1.05rem", lineHeight: 1.6, maxWidth: "800px" }}>
+        <Typography
+          variant="body1"
+          color="text.secondary"
+          sx={{ fontSize: "1.05rem", lineHeight: 1.6, maxWidth: "800px" }}
+        >
           {description}
         </Typography>
       </Box>

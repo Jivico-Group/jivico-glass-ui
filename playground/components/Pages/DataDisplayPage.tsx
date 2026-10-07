@@ -121,7 +121,12 @@ export const DataDisplayPage: React.FC = () => {
                   gap: 1,
                 }}
               >
-                <Badge badgeContent="PRO" color="glass" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
+                <Badge
+                  badgeContent="PRO"
+                  color="glass"
+                  overlap="circular"
+                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                >
                   <Avatar
                     variant="rounded"
                     sx={{
@@ -148,7 +153,12 @@ export const DataDisplayPage: React.FC = () => {
                   gap: 1,
                 }}
               >
-                <Badge variant="dot" color="success" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
+                <Badge
+                  variant="dot"
+                  color="success"
+                  overlap="circular"
+                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                >
                   <Avatar
                     alt="Sophia Chen"
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80"
@@ -567,19 +577,39 @@ export const DataDisplayPage: React.FC = () => {
             flexWrap: "wrap",
           }}
         >
-          <Badge variant="dot" color="success" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
+          <Badge
+            variant="dot"
+            color="success"
+            overlap="circular"
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          >
             <Avatar sx={{ width: 48, height: 48 }}>ON</Avatar>
           </Badge>
 
-          <Badge variant="dot" color="warning" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
+          <Badge
+            variant="dot"
+            color="warning"
+            overlap="circular"
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          >
             <Avatar sx={{ width: 48, height: 48 }}>AW</Avatar>
           </Badge>
 
-          <Badge variant="dot" color="error" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
+          <Badge
+            variant="dot"
+            color="error"
+            overlap="circular"
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          >
             <Avatar sx={{ width: 48, height: 48 }}>DN</Avatar>
           </Badge>
 
-          <Badge variant="dot" color="glass" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
+          <Badge
+            variant="dot"
+            color="glass"
+            overlap="circular"
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          >
             <Avatar sx={{ width: 48, height: 48 }}>GL</Avatar>
           </Badge>
         </Box>

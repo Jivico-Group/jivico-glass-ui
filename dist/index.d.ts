@@ -732,7 +732,8 @@ declare module "@mui/material/Tabs" {
     glass?: boolean | "true" | "false";
     size?: "small" | "medium";
     placement?: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right" | "inline";
-    textColorOverride?: "primary" | "secondary" | "inherit" | "accent" | "glass" | "info" | "success" | "warning" | "error";
+    textColorOverride?:
+      "primary" | "secondary" | "inherit" | "accent" | "glass" | "info" | "success" | "warning" | "error";
     indicatorColorOverride?: "primary" | "secondary" | "accent" | "glass" | "info" | "success" | "warning" | "error";
   }
 
@@ -1860,7 +1861,17 @@ declare const GlassSectionTitle: _emotion_styled.StyledComponent<
     _mui_material_OverridableComponent.CommonProps &
     Omit<
       react.DetailedHTMLProps<react.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
-      "className" | "style" | "classes" | "children" | "sx" | "color" | "variant" | "align" | "noWrap" | "gutterBottom" | "variantMapping"
+      | "className"
+      | "style"
+      | "classes"
+      | "children"
+      | "sx"
+      | "color"
+      | "variant"
+      | "align"
+      | "noWrap"
+      | "gutterBottom"
+      | "variantMapping"
     > &
     _mui_system.MUIStyledCommonProps<_mui_material.Theme>,
   {},
@@ -1871,7 +1882,17 @@ declare const GlassSectionSubtitle: _emotion_styled.StyledComponent<
     _mui_material_OverridableComponent.CommonProps &
     Omit<
       react.DetailedHTMLProps<react.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
-      "className" | "style" | "classes" | "children" | "sx" | "color" | "variant" | "align" | "noWrap" | "gutterBottom" | "variantMapping"
+      | "className"
+      | "style"
+      | "classes"
+      | "children"
+      | "sx"
+      | "color"
+      | "variant"
+      | "align"
+      | "noWrap"
+      | "gutterBottom"
+      | "variantMapping"
     > &
     _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
       isDark: boolean;
@@ -2001,7 +2022,17 @@ declare const HeroTitle: _emotion_styled.StyledComponent<
     _mui_material_OverridableComponent.CommonProps &
     Omit<
       react.DetailedHTMLProps<react.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
-      "className" | "style" | "classes" | "children" | "sx" | "color" | "variant" | "align" | "noWrap" | "gutterBottom" | "variantMapping"
+      | "className"
+      | "style"
+      | "classes"
+      | "children"
+      | "sx"
+      | "color"
+      | "variant"
+      | "align"
+      | "noWrap"
+      | "gutterBottom"
+      | "variantMapping"
     > &
     _mui_system.MUIStyledCommonProps<_mui_material.Theme>,
   {},
@@ -2012,7 +2043,17 @@ declare const HeroDescription: _emotion_styled.StyledComponent<
     _mui_material_OverridableComponent.CommonProps &
     Omit<
       react.DetailedHTMLProps<react.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
-      "className" | "style" | "classes" | "children" | "sx" | "color" | "variant" | "align" | "noWrap" | "gutterBottom" | "variantMapping"
+      | "className"
+      | "style"
+      | "classes"
+      | "children"
+      | "sx"
+      | "color"
+      | "variant"
+      | "align"
+      | "noWrap"
+      | "gutterBottom"
+      | "variantMapping"
     > &
     _mui_system.MUIStyledCommonProps<_mui_material.Theme>,
   {},
@@ -2044,7 +2085,17 @@ declare const StatValue: _emotion_styled.StyledComponent<
     _mui_material_OverridableComponent.CommonProps &
     Omit<
       react.DetailedHTMLProps<react.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
-      "className" | "style" | "classes" | "children" | "sx" | "color" | "variant" | "align" | "noWrap" | "gutterBottom" | "variantMapping"
+      | "className"
+      | "style"
+      | "classes"
+      | "children"
+      | "sx"
+      | "color"
+      | "variant"
+      | "align"
+      | "noWrap"
+      | "gutterBottom"
+      | "variantMapping"
     > &
     _mui_system.MUIStyledCommonProps<_mui_material.Theme>,
   {},
@@ -2055,7 +2106,17 @@ declare const StatLabel: _emotion_styled.StyledComponent<
     _mui_material_OverridableComponent.CommonProps &
     Omit<
       react.DetailedHTMLProps<react.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
-      "className" | "style" | "classes" | "children" | "sx" | "color" | "variant" | "align" | "noWrap" | "gutterBottom" | "variantMapping"
+      | "className"
+      | "style"
+      | "classes"
+      | "children"
+      | "sx"
+      | "color"
+      | "variant"
+      | "align"
+      | "noWrap"
+      | "gutterBottom"
+      | "variantMapping"
     > &
     _mui_system.MUIStyledCommonProps<_mui_material.Theme>,
   {},
@@ -2131,7 +2192,17 @@ declare const GradientContextTitle: _emotion_styled.StyledComponent<
     _mui_material_OverridableComponent.CommonProps &
     Omit<
       react.DetailedHTMLProps<react.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
-      "className" | "style" | "classes" | "children" | "sx" | "color" | "variant" | "align" | "noWrap" | "gutterBottom" | "variantMapping"
+      | "className"
+      | "style"
+      | "classes"
+      | "children"
+      | "sx"
+      | "color"
+      | "variant"
+      | "align"
+      | "noWrap"
+      | "gutterBottom"
+      | "variantMapping"
     > &
     _mui_system.MUIStyledCommonProps<_mui_material.Theme> & {
       isDark?: boolean;
@@ -2332,7 +2403,17 @@ declare const GlassProductTitle: _emotion_styled.StyledComponent<
     _mui_material_OverridableComponent.CommonProps &
     Omit<
       react.DetailedHTMLProps<react.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
-      "className" | "style" | "classes" | "children" | "sx" | "color" | "variant" | "align" | "noWrap" | "gutterBottom" | "variantMapping"
+      | "className"
+      | "style"
+      | "classes"
+      | "children"
+      | "sx"
+      | "color"
+      | "variant"
+      | "align"
+      | "noWrap"
+      | "gutterBottom"
+      | "variantMapping"
     > &
     _mui_system.MUIStyledCommonProps<_mui_material.Theme>,
   {},
@@ -3275,7 +3356,9 @@ declare const DynamicIsland: react__default.ForwardRefExoticComponent<
   Omit<DynamicIslandProps, "ref"> & react__default.RefAttributes<HTMLDivElement>
 >;
 
-declare const DynamicIslandAction: _mui_material.ExtendButtonBase<_mui_material.BottomNavigationActionTypeMap<{}, "button">>;
+declare const DynamicIslandAction: _mui_material.ExtendButtonBase<
+  _mui_material.BottomNavigationActionTypeMap<{}, "button">
+>;
 
 type VisualViewerRadius = "square" | "rounded" | "soft";
 type VisualViewerNavigation = "arrows" | "none";
@@ -3814,7 +3897,11 @@ interface GlassModeProviderProps {
   defaultMode?: ThemeMode;
   storageKey?: string;
 }
-declare function GlassModeProvider({ children, defaultMode, storageKey }: GlassModeProviderProps): react__default.JSX.Element;
+declare function GlassModeProvider({
+  children,
+  defaultMode,
+  storageKey,
+}: GlassModeProviderProps): react__default.JSX.Element;
 
 interface JivicoGlassProviderProps {
   children: react__default.ReactNode;

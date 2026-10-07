@@ -138,7 +138,14 @@ export const BottomNavigationPage: React.FC = () => {
             />
 
             <FormControlLabel
-              control={<Switch checked={instaFloating} onChange={(e) => setInstaFloating(e.target.checked)} color="glass" size="small" />}
+              control={
+                <Switch
+                  checked={instaFloating}
+                  onChange={(e) => setInstaFloating(e.target.checked)}
+                  color="glass"
+                  size="small"
+                />
+              }
               label={
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
                   Dock Mode:{" "}
@@ -150,7 +157,14 @@ export const BottomNavigationPage: React.FC = () => {
             />
 
             <FormControlLabel
-              control={<Switch checked={instaLabels} onChange={(e) => setInstaLabels(e.target.checked)} color="glass" size="small" />}
+              control={
+                <Switch
+                  checked={instaLabels}
+                  onChange={(e) => setInstaLabels(e.target.checked)}
+                  color="glass"
+                  size="small"
+                />
+              }
               label={
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
                   Labels:{" "}
@@ -162,7 +176,13 @@ export const BottomNavigationPage: React.FC = () => {
             />
           </Stack>
 
-          <Chip label="Interactive Demo" color="primary" size="small" variant="outlined" sx={{ fontWeight: 700, fontSize: "0.7rem" }} />
+          <Chip
+            label="Interactive Demo"
+            color="primary"
+            size="small"
+            variant="outlined"
+            sx={{ fontWeight: 700, fontSize: "0.7rem" }}
+          />
         </Box>
 
         {/* Mobile Viewport Wrapper */}
@@ -255,7 +275,9 @@ export const BottomNavigationPage: React.FC = () => {
                   fontWeight: 700,
                   fontSize: "1.6rem",
                   letterSpacing: -0.5,
-                  background: isDark ? "linear-gradient(45deg, #FFF 30%, #CCC 90%)" : "linear-gradient(45deg, #111 30%, #444 90%)",
+                  background: isDark
+                    ? "linear-gradient(45deg, #FFF 30%, #CCC 90%)"
+                    : "linear-gradient(45deg, #111 30%, #444 90%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                 }}
@@ -384,7 +406,10 @@ export const BottomNavigationPage: React.FC = () => {
                   }}
                 >
                   <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
-                    <Avatar src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100" sx={{ width: 34, height: 34 }} />
+                    <Avatar
+                      src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100"
+                      sx={{ width: 34, height: 34 }}
+                    />
                     <Box>
                       <Typography
                         variant="subtitle2"
@@ -669,7 +694,12 @@ const [query, setQuery] = useState('');
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
             <FormControlLabel
               control={
-                <Switch checked={isSearchExpanded} onChange={(e) => setIsSearchExpanded(e.target.checked)} color="glass" size="small" />
+                <Switch
+                  checked={isSearchExpanded}
+                  onChange={(e) => setIsSearchExpanded(e.target.checked)}
+                  color="glass"
+                  size="small"
+                />
               }
               label={
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
@@ -1020,7 +1050,11 @@ const [query, setQuery] = useState('');
         <Box sx={{ mb: 3 }}>
           <FormControlLabel
             control={
-              <Switch checked={glass === "true"} onChange={(e) => setInstaGlass(e.target.checked ? "true" : "false")} color="glass" />
+              <Switch
+                checked={glass === "true"}
+                onChange={(e) => setInstaGlass(e.target.checked ? "true" : "false")}
+                color="glass"
+              />
             }
             label={
               <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
@@ -1096,7 +1130,12 @@ const [query, setQuery] = useState('');
 
           {/* Floating Dock Instance */}
           {floatingOpen && (
-            <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} glass={"true"} placement={activePlacement}>
+            <BottomNavigation
+              value={navValue}
+              onChange={(_, val) => setNavValue(val)}
+              glass={"true"}
+              placement={activePlacement}
+            >
               <BottomNavigationAction label="Home" icon={<Home size={20} />} />
               <BottomNavigationAction label="Search" icon={<Search size={20} />} />
               <BottomNavigationAction label="AI" icon={<Sparkles size={20} />} />
@@ -1160,7 +1199,13 @@ const [query, setQuery] = useState('');
             >
               Frosted Glass Pill — Small (size="small", showLabels={false})
             </Typography>
-            <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} showLabels={false} size="small" glass={"true"}>
+            <BottomNavigation
+              value={navValue}
+              onChange={(_, val) => setNavValue(val)}
+              showLabels={false}
+              size="small"
+              glass={"true"}
+            >
               <BottomNavigationAction icon={<Home size={18} />} />
               <BottomNavigationAction icon={<Search size={18} />} />
               <BottomNavigationAction icon={<Sparkles size={18} />} />
@@ -1192,7 +1237,13 @@ const [query, setQuery] = useState('');
               Frosted Glass Pill — Medium (size="medium", showLabels={false})
             </Typography>
 
-            <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} showLabels={false} size="medium" glass={"true"}>
+            <BottomNavigation
+              value={navValue}
+              onChange={(_, val) => setNavValue(val)}
+              showLabels={false}
+              size="medium"
+              glass={"true"}
+            >
               <BottomNavigationAction icon={<Home size={22} />} />
               <BottomNavigationAction icon={<Search size={22} />} />
               <BottomNavigationAction icon={<Sparkles size={22} />} />
@@ -1223,7 +1274,13 @@ const [query, setQuery] = useState('');
             >
               Solid Surface Pill — Small (size="small", showLabels={false})
             </Typography>
-            <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} showLabels={false} size="small" glass={"false"}>
+            <BottomNavigation
+              value={navValue}
+              onChange={(_, val) => setNavValue(val)}
+              showLabels={false}
+              size="small"
+              glass={"false"}
+            >
               <BottomNavigationAction icon={<Home size={18} />} />
               <BottomNavigationAction icon={<Search size={18} />} />
               <BottomNavigationAction icon={<Sparkles size={18} />} />

@@ -77,7 +77,12 @@ export const InputsPage: React.FC = () => {
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, width: "100%" }}>
           <TextField label="Default Input" placeholder="e.g. John Doe" sx={{ minWidth: 240 }} />
           <TextField label="With Value" defaultValue="Jivico Design System" sx={{ minWidth: 240 }} />
-          <TextField label="Helper Text" defaultValue="alex@jivico.studio" helperText="Corporate workspace email" sx={{ minWidth: 240 }} />
+          <TextField
+            label="Helper Text"
+            defaultValue="alex@jivico.studio"
+            helperText="Corporate workspace email"
+            sx={{ minWidth: 240 }}
+          />
           <TextField label="Disabled State" disabled defaultValue="Read-only system token" sx={{ minWidth: 240 }} />
         </Box>
       </DemoBlock>
@@ -155,7 +160,12 @@ export const InputsPage: React.FC = () => {
               zIndex: 1,
             }}
           >
-            <TextField color="glass" label="Frosted Glass Input" placeholder="Type inside glass..." sx={{ minWidth: 240 }} />
+            <TextField
+              color="glass"
+              label="Frosted Glass Input"
+              placeholder="Type inside glass..."
+              sx={{ minWidth: 240 }}
+            />
             <TextField
               color="glass"
               label="AI Search"
@@ -374,7 +384,9 @@ export const InputsPage: React.FC = () => {
               options={designOptions}
               value={autoMulti}
               onChange={(_, val) => setAutoMulti(val)}
-              renderInput={(params) => <TextField {...params} label="Active Feature Flags" placeholder="Select more..." />}
+              renderInput={(params) => (
+                <TextField {...params} label="Active Feature Flags" placeholder="Select more..." />
+              )}
             />
           </Box>
         </Box>

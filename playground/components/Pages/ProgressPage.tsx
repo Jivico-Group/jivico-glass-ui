@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Box, LinearProgress, Skeleton, Typography, Button, Card, CardContent, Avatar, Stack, Chip } from "@mui/material";
+import {
+  Box,
+  LinearProgress,
+  Skeleton,
+  Typography,
+  Button,
+  Card,
+  CardContent,
+  Avatar,
+  Stack,
+  Chip,
+} from "@mui/material";
 import { Sparkles, RefreshCw, Layers, Activity, Zap, CheckCircle2 } from "lucide-react";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
@@ -207,7 +218,15 @@ export const ProgressPage: React.FC = () => {
               </Box>
             </Box>
 
-            <Skeleton variant="rectangular" width="100%" height={120} radius="large" appearance="glass" animation="wave" sx={{ mb: 2 }} />
+            <Skeleton
+              variant="rectangular"
+              width="100%"
+              height={120}
+              radius="large"
+              appearance="glass"
+              animation="wave"
+              sx={{ mb: 2 }}
+            />
 
             <Box sx={{ display: "flex", gap: 1 }}>
               <Skeleton variant="rounded" width={80} height={28} radius="pill" appearance="glass" animation="wave" />

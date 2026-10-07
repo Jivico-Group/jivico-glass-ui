@@ -65,7 +65,9 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
           "&.Mui-checked, &.MuiCheckbox-indeterminate": {
             color: resolved.active,
             ...(isGlass && {
-              filter: isDark ? "drop-shadow(0 2px 6px rgba(255, 255, 255, 0.25))" : "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18))",
+              filter: isDark
+                ? "drop-shadow(0 2px 6px rgba(255, 255, 255, 0.25))"
+                : "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18))",
             }),
           },
           "&.Mui-focusVisible": {
@@ -96,7 +98,9 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
           "&.Mui-checked": {
             color: resolved.active,
             ...(isGlass && {
-              filter: isDark ? "drop-shadow(0 2px 6px rgba(255, 255, 255, 0.25))" : "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18))",
+              filter: isDark
+                ? "drop-shadow(0 2px 6px rgba(255, 255, 255, 0.25))"
+                : "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18))",
             }),
           },
           "&.Mui-focusVisible": {
@@ -178,7 +182,8 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
             backgroundColor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(17, 17, 17, 0.14)",
             opacity: 1,
             border: isDark ? "1px solid rgba(255, 255, 255, 0.08)" : "1px solid rgba(0, 0, 0, 0.06)",
-            transition: "background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+            transition:
+              "background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
             backdropFilter: "blur(8px)",
             WebkitBackdropFilter: "blur(8px)",
           },

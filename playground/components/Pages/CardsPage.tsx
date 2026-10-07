@@ -1,5 +1,16 @@
 import React from "react";
-import { Box, Typography, Card, CardHeader, CardContent, CardActions, Button, Chip, Avatar, IconButton } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Card,
+  CardHeader,
+  CardContent,
+  CardActions,
+  Button,
+  Chip,
+  Avatar,
+  IconButton,
+} from "@mui/material";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { Sparkles, ArrowRight, Bookmark, Share2, MoreVertical } from "lucide-react";
@@ -137,7 +148,10 @@ export const CardsPage: React.FC = () => {
 
           <Card color="accent">
             <CardContent sx={{ p: 2.5 }}>
-              <Typography variant="caption" sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#FFFFFF" }}>
+              <Typography
+                variant="caption"
+                sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#FFFFFF" }}
+              >
                 ACCENT
               </Typography>
               <Typography variant="h6" sx={{ fontWeight: 700, mt: 0.5, mb: 1, fontSize: "1rem", color: "#FFFFFF" }}>
@@ -314,8 +328,8 @@ export const CardsPage: React.FC = () => {
             />
             <CardContent sx={{ py: 1 }}>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                Full-stack luxury studio suite with automated inventory sync, variant pricing matrices, and real-time glassmorphism
-                playground integrations.
+                Full-stack luxury studio suite with automated inventory sync, variant pricing matrices, and real-time
+                glassmorphism playground integrations.
               </Typography>
               <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
                 <Chip label="Production Ready" size="small" color="success" />

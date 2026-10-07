@@ -192,7 +192,15 @@ When complete control over the item UI is needed (e.g. rendering `<Highlight />`
 - `transition`: Hover animation applied to items (`"scale"`, `"lift"`, `"fade"`, `"none"`).
 
 ```tsx
-<Rails items={items} getKey={(item) => item.id} getImage={(item) => item.image} autoplay interval={4000} pauseOnHover transition="lift" />
+<Rails
+  items={items}
+  getKey={(item) => item.id}
+  getImage={(item) => item.image}
+  autoplay
+  interval={4000}
+  pauseOnHover
+  transition="lift"
+/>
 ```
 
 ---

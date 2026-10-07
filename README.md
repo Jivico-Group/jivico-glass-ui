@@ -638,7 +638,11 @@ export function AnalyticsWidget() {
       >
         <ChipSoft label="Live Insights" icon={<Sparkles size={14} />} />
 
-        <Button onClick={toggleGlassMode} startIcon={resolvedMode === "dark" ? <Sun size={16} /> : <Moon size={16} />} size="small">
+        <Button
+          onClick={toggleGlassMode}
+          startIcon={resolvedMode === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          size="small"
+        >
           {resolvedMode === "dark" ? "Light" : "Dark"}
         </Button>
       </Box>

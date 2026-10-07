@@ -49,7 +49,11 @@ export interface GlassModeProviderProps {
   storageKey?: string;
 }
 
-export function GlassModeProvider({ children, defaultMode = "light", storageKey = "jivico-theme-mode" }: GlassModeProviderProps) {
+export function GlassModeProvider({
+  children,
+  defaultMode = "light",
+  storageKey = "jivico-theme-mode",
+}: GlassModeProviderProps) {
   /**
    * User-selected appearance preference.
    */

@@ -163,7 +163,11 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
           >
             <Stack spacing={3}>
               {/* Row 1: Variant & Size */}
-              <Stack direction={{ xs: "column", md: "row" }} spacing={3} sx={{ alignItems: { xs: "stretch", md: "center" } }}>
+              <Stack
+                direction={{ xs: "column", md: "row" }}
+                spacing={3}
+                sx={{ alignItems: { xs: "stretch", md: "center" } }}
+              >
                 <FormControl component="fieldset">
                   <FormLabel
                     component="legend"
@@ -207,7 +211,11 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
               </Stack>
 
               {/* Row 2: Radius & Toggles */}
-              <Stack direction={{ xs: "column", sm: "row" }} spacing={3} sx={{ alignItems: { xs: "stretch", md: "center" } }}>
+              <Stack
+                direction={{ xs: "column", sm: "row" }}
+                spacing={3}
+                sx={{ alignItems: { xs: "stretch", md: "center" } }}
+              >
                 <FormControl size="small" sx={{ minWidth: 160 }}>
                   <FormLabel
                     sx={{
@@ -231,7 +239,9 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
               {/* Row 3: Content Toggles */}
               <Stack direction="row" spacing={3} sx={{ flexWrap: "wrap" }}>
                 <FormControlLabel
-                  control={<Switch size="small" checked={showEyebrow} onChange={(e) => setShowEyebrow(e.target.checked)} />}
+                  control={
+                    <Switch size="small" checked={showEyebrow} onChange={(e) => setShowEyebrow(e.target.checked)} />
+                  }
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       Eyebrow
@@ -240,7 +250,13 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
                 />
 
                 <FormControlLabel
-                  control={<Switch size="small" checked={showDescription} onChange={(e) => setShowDescription(e.target.checked)} />}
+                  control={
+                    <Switch
+                      size="small"
+                      checked={showDescription}
+                      onChange={(e) => setShowDescription(e.target.checked)}
+                    />
+                  }
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       Description
@@ -249,7 +265,9 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
                 />
 
                 <FormControlLabel
-                  control={<Switch size="small" checked={showAction} onChange={(e) => setShowAction(e.target.checked)} />}
+                  control={
+                    <Switch size="small" checked={showAction} onChange={(e) => setShowAction(e.target.checked)} />
+                  }
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       CTA Button
@@ -258,7 +276,9 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
                 />
 
                 <FormControlLabel
-                  control={<Switch size="small" checked={showSideLabel} onChange={(e) => setShowSideLabel(e.target.checked)} />}
+                  control={
+                    <Switch size="small" checked={showSideLabel} onChange={(e) => setShowSideLabel(e.target.checked)} />
+                  }
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       Side Label
@@ -267,7 +287,9 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
                 />
 
                 <FormControlLabel
-                  control={<Switch size="small" checked={enableHref} onChange={(e) => setEnableHref(e.target.checked)} />}
+                  control={
+                    <Switch size="small" checked={enableHref} onChange={(e) => setEnableHref(e.target.checked)} />
+                  }
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       Full Card Link (href)
@@ -522,8 +544,8 @@ export function SpotlightHero({ item }) {
 
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7 }}>
               Spotlight remains completely decoupled from framework routers. The component renders standard HTML5{" "}
-              <code>&lt;a href="..."&gt;</code> anchors, enabling browser status previews and search engine indexing, while{" "}
-              <code>onNavigate</code> triggers client-side router navigation.
+              <code>&lt;a href="..."&gt;</code> anchors, enabling browser status previews and search engine indexing,
+              while <code>onNavigate</code> triggers client-side router navigation.
             </Typography>
 
             <Stack spacing={1}>
@@ -534,7 +556,8 @@ export function SpotlightHero({ item }) {
                 <strong>2. Application Routing:</strong> Consuming app controls routing with <code>router.push()</code>.
               </Typography>
               <Typography variant="body2">
-                <strong>3. Injectable Media:</strong> Optionally pass Next.js <code>next/image</code> via <code>ImageComponent</code>.
+                <strong>3. Injectable Media:</strong> Optionally pass Next.js <code>next/image</code> via{" "}
+                <code>ImageComponent</code>.
               </Typography>
             </Stack>
           </Box>

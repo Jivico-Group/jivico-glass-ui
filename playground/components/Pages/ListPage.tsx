@@ -255,7 +255,11 @@ export const ListPage: React.FC = () => {
                   <ListItemIcon>
                     <Shield size={20} />
                   </ListItemIcon>
-                  <ListItemText primary="Security & Privacy" font-size="inherit" secondary="Two-factor authentication & password" />
+                  <ListItemText
+                    primary="Security & Privacy"
+                    font-size="inherit"
+                    secondary="Two-factor authentication & password"
+                  />
                 </ListItemButton>
               </List>
             </Paper>
@@ -289,13 +293,19 @@ export const ListPage: React.FC = () => {
                   <ListItemIcon>
                     <CreditCard size={22} />
                   </ListItemIcon>
-                  <ListItemText primary="Billing & Subscriptions" secondary="Manage payment methods and active invoices" />
+                  <ListItemText
+                    primary="Billing & Subscriptions"
+                    secondary="Manage payment methods and active invoices"
+                  />
                 </ListItemButton>
                 <ListItemButton selected={selectedSize === 5} onClick={() => setSelectedSize(5)}>
                   <ListItemIcon>
                     <HelpCircle size={22} />
                   </ListItemIcon>
-                  <ListItemText primary="Help & Customer Support" secondary="Access 24/7 priority live chat assistance" />
+                  <ListItemText
+                    primary="Help & Customer Support"
+                    secondary="Access 24/7 priority live chat assistance"
+                  />
                 </ListItemButton>
               </List>
             </Paper>
@@ -467,7 +477,12 @@ export const ListPage: React.FC = () => {
               </ListItemIcon>
               <ListItemText primary="Biometric Lock" secondary="Require Face ID on open" />
               <ListItemSecondaryAction>
-                <Switch checked={securityLock} onChange={(e) => setSecurityLock(e.target.checked)} color="glass" size="small" />
+                <Switch
+                  checked={securityLock}
+                  onChange={(e) => setSecurityLock(e.target.checked)}
+                  color="glass"
+                  size="small"
+                />
               </ListItemSecondaryAction>
             </ListItem>
           </List>

@@ -195,7 +195,12 @@ export const VisualViewerPage: React.FC = () => {
                     onChange={(e) => setThumbnailPosition(e.target.value as VisualViewerThumbnailPosition)}
                   >
                     {(["auto", "left", "bottom"] as const).map((v) => (
-                      <FormControlLabel key={v} value={v} control={<Radio size="small" />} label={v.charAt(0).toUpperCase() + v.slice(1)} />
+                      <FormControlLabel
+                        key={v}
+                        value={v}
+                        control={<Radio size="small" />}
+                        label={v.charAt(0).toUpperCase() + v.slice(1)}
+                      />
                     ))}
                   </RadioGroup>
                 </FormControl>
@@ -204,9 +209,18 @@ export const VisualViewerPage: React.FC = () => {
                   <FormLabel component="legend" sx={labelSx}>
                     Navigation
                   </FormLabel>
-                  <RadioGroup row value={navigation} onChange={(e) => setNavigation(e.target.value as VisualViewerNavigation)}>
+                  <RadioGroup
+                    row
+                    value={navigation}
+                    onChange={(e) => setNavigation(e.target.value as VisualViewerNavigation)}
+                  >
                     {(["arrows", "none"] as const).map((v) => (
-                      <FormControlLabel key={v} value={v} control={<Radio size="small" />} label={v.charAt(0).toUpperCase() + v.slice(1)} />
+                      <FormControlLabel
+                        key={v}
+                        value={v}
+                        control={<Radio size="small" />}
+                        label={v.charAt(0).toUpperCase() + v.slice(1)}
+                      />
                     ))}
                   </RadioGroup>
                 </FormControl>
@@ -217,7 +231,12 @@ export const VisualViewerPage: React.FC = () => {
                   </FormLabel>
                   <RadioGroup row value={radius} onChange={(e) => setRadius(e.target.value as VisualViewerRadius)}>
                     {(["square", "rounded", "soft"] as const).map((v) => (
-                      <FormControlLabel key={v} value={v} control={<Radio size="small" />} label={v.charAt(0).toUpperCase() + v.slice(1)} />
+                      <FormControlLabel
+                        key={v}
+                        value={v}
+                        control={<Radio size="small" />}
+                        label={v.charAt(0).toUpperCase() + v.slice(1)}
+                      />
                     ))}
                   </RadioGroup>
                 </FormControl>
@@ -235,7 +254,15 @@ export const VisualViewerPage: React.FC = () => {
 
                 <Box sx={{ minWidth: 180 }}>
                   <Typography sx={{ ...labelSx, mb: 1 }}>Max Visible Thumbnails: {maxVisible}</Typography>
-                  <Slider value={maxVisible} onChange={(_, v) => setMaxVisible(v as number)} min={1} max={8} step={1} marks size="small" />
+                  <Slider
+                    value={maxVisible}
+                    onChange={(_, v) => setMaxVisible(v as number)}
+                    min={1}
+                    max={8}
+                    step={1}
+                    marks
+                    size="small"
+                  />
                 </Box>
 
                 <Box sx={{ minWidth: 180 }}>

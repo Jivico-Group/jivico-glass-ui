@@ -2,7 +2,9 @@
 
 import React from "react";
 
-import MuiBottomNavigation, { type BottomNavigationProps as MuiBottomNavigationProps } from "@mui/material/BottomNavigation";
+import MuiBottomNavigation, {
+  type BottomNavigationProps as MuiBottomNavigationProps,
+} from "@mui/material/BottomNavigation";
 
 export type DynamicIslandProps = MuiBottomNavigationProps;
 

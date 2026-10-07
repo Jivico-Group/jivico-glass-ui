@@ -1,5 +1,17 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, Menu, MenuItem, ListItemIcon, ListItemText, Divider, Paper, Stack, Chip } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  Paper,
+  Stack,
+  Chip,
+} from "@mui/material";
 import {
   Sparkles,
   User,
@@ -187,17 +199,31 @@ export const MenusPage: React.FC = () => {
           // gap={2}
           sx={{ justifyContent: "center", flexWrap: "wrap", gap: 2 }}
         >
-          <Button variant="outlined" size="small" onClick={(e) => setSizeSmallAnchor(e.currentTarget)} startIcon={<Sliders size={16} />}>
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={(e) => setSizeSmallAnchor(e.currentTarget)}
+            startIcon={<Sliders size={16} />}
+          >
             Small Size Menu (34px)
           </Button>
 
-          <Button variant="outlined" onClick={(e) => setStandardAnchor(e.currentTarget)} startIcon={<MoreVertical size={18} />}>
+          <Button
+            variant="outlined"
+            onClick={(e) => setStandardAnchor(e.currentTarget)}
+            startIcon={<MoreVertical size={18} />}
+          >
             Medium Size Menu (42px)
           </Button>
         </Stack>
 
         {/* Small Menu Instance */}
-        <Menu anchorEl={sizeSmallAnchor} open={Boolean(sizeSmallAnchor)} onClose={() => setSizeSmallAnchor(null)} size="small">
+        <Menu
+          anchorEl={sizeSmallAnchor}
+          open={Boolean(sizeSmallAnchor)}
+          onClose={() => setSizeSmallAnchor(null)}
+          size="small"
+        >
           <MenuItem onClick={() => setSizeSmallAnchor(null)}>
             <ListItemIcon>
               <Copy size={18} />
@@ -220,7 +246,12 @@ export const MenusPage: React.FC = () => {
         </Menu>
 
         {/* Medium Menu Instance */}
-        <Menu anchorEl={standardAnchor} open={Boolean(standardAnchor)} onClose={() => setStandardAnchor(null)} size="medium">
+        <Menu
+          anchorEl={standardAnchor}
+          open={Boolean(standardAnchor)}
+          onClose={() => setStandardAnchor(null)}
+          size="medium"
+        >
           <MenuItem onClick={() => setStandardAnchor(null)}>
             <ListItemIcon>
               <Shield size={20} />
@@ -277,11 +308,21 @@ export const MenusPage: React.FC = () => {
             ))}
           </Stack>
 
-          <Button variant="contained" color={selectedColor} onClick={(e) => setColorAnchor(e.currentTarget)} startIcon={<Zap size={18} />}>
+          <Button
+            variant="contained"
+            color={selectedColor}
+            onClick={(e) => setColorAnchor(e.currentTarget)}
+            startIcon={<Zap size={18} />}
+          >
             Open {selectedColor} Menu
           </Button>
 
-          <Menu anchorEl={colorAnchor} open={Boolean(colorAnchor)} onClose={() => setColorAnchor(null)} color={selectedColor}>
+          <Menu
+            anchorEl={colorAnchor}
+            open={Boolean(colorAnchor)}
+            onClose={() => setColorAnchor(null)}
+            color={selectedColor}
+          >
             <MenuItem
               selected={selectedItemIndex === 0}
               onClick={() => {

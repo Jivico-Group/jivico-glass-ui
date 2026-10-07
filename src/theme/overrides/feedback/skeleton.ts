@@ -104,7 +104,9 @@ export const getSkeletonOverrides = (palette: JivicoPalette, isDark: boolean): C
            */
           if (appearance === "tonal") {
             backgroundColor =
-              color === "glass" ? palette.glass.skeletonBg : `color-mix(in srgb, ${selected.main} ${isDark ? "16%" : "9%"}, transparent)`;
+              color === "glass"
+                ? palette.glass.skeletonBg
+                : `color-mix(in srgb, ${selected.main} ${isDark ? "16%" : "9%"}, transparent)`;
           }
 
           /*
@@ -142,7 +144,11 @@ export const getSkeletonOverrides = (palette: JivicoPalette, isDark: boolean): C
             WebkitBackdropFilter: appearance === "glass" ? `saturate(180%) ${blurMap[glassIntensity]}` : undefined,
 
             boxShadow:
-              appearance === "glass" ? (isDark ? "inset 0 1px 0 rgba(255,255,255,0.07)" : "inset 0 1px 0 rgba(255,255,255,0.55)") : "none",
+              appearance === "glass"
+                ? isDark
+                  ? "inset 0 1px 0 rgba(255,255,255,0.07)"
+                  : "inset 0 1px 0 rgba(255,255,255,0.55)"
+                : "none",
 
             /*
              * Remove MUI's default background blending

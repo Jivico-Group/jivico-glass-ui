@@ -6,8 +6,10 @@ export const getFormHelperTextOverrides = (palette: JivicoPalette): Components<T
     styleOverrides: {
       root: ({ ownerState }) => {
         const colorKey = ownerState?.color as keyof typeof palette;
-        const isSemantic = colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
-        const semanticColor = isSemantic && palette[colorKey] ? (palette[colorKey] as Record<string, string>).main : palette.text.secondary;
+        const isSemantic =
+          colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
+        const semanticColor =
+          isSemantic && palette[colorKey] ? (palette[colorKey] as Record<string, string>).main : palette.text.secondary;
 
         return {
           fontSize: "0.78rem",

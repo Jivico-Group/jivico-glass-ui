@@ -98,7 +98,8 @@ export const AlertsPage: React.FC = () => {
 
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Alert severity="info" appearance="solid">
-              <strong>Solid Appearance</strong> — High contrast solid fill for critical callouts requiring maximum attention.
+              <strong>Solid Appearance</strong> — High contrast solid fill for critical callouts requiring maximum
+              attention.
             </Alert>
           </Box>
 

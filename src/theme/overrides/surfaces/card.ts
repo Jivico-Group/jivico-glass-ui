@@ -206,7 +206,11 @@ export const getCardOverrides = (palette: JivicoPalette, isDark: boolean): Compo
          * Semantic colors need tonal treatment.
          */
         const isSemantic =
-          cardColor === "accent" || cardColor === "info" || cardColor === "success" || cardColor === "warning" || cardColor === "error";
+          cardColor === "accent" ||
+          cardColor === "info" ||
+          cardColor === "success" ||
+          cardColor === "warning" ||
+          cardColor === "error";
 
         const styles: Record<string, any> = {
           position: "relative",
@@ -251,7 +255,12 @@ export const getCardOverrides = (palette: JivicoPalette, isDark: boolean): Compo
            * Card explicitly supports hover.
            */
           transition: hover
-            ? ["background-color 180ms ease", "border-color 180ms ease", "transform 180ms ease", "box-shadow 180ms ease"].join(", ")
+            ? [
+                "background-color 180ms ease",
+                "border-color 180ms ease",
+                "transform 180ms ease",
+                "box-shadow 180ms ease",
+              ].join(", ")
             : "none",
 
           /*
