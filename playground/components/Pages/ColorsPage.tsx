@@ -15,14 +15,7 @@ interface ColorItemProps {
   isTranslucent?: boolean;
 }
 
-const ColorSwatch: React.FC<ColorItemProps> = ({
-  name,
-  token,
-  value,
-  description,
-  textColor,
-  isTranslucent = false,
-}) => {
+const ColorSwatch: React.FC<ColorItemProps> = ({ name, token, value, description, textColor, isTranslucent = false }) => {
   const { mode } = useGlassMode();
   const isDark = mode === "dark";
   const [copied, setCopied] = useState(false);
@@ -35,11 +28,7 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
   };
 
   const isLightColor =
-    value === "#FFFFFF" ||
-    value === "#F6F5F2" ||
-    value === "#D9D9CF" ||
-    value.includes("255, 255, 255") ||
-    value.includes("246, 245, 242");
+    value === "#FFFFFF" || value === "#F6F5F2" || value === "#D9D9CF" || value.includes("255, 255, 255") || value.includes("246, 245, 242");
 
   const effectiveTextColor = textColor || (isLightColor ? "#111111" : "#FFFFFF");
 
@@ -96,11 +85,7 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
               fontWeight: 700,
               fontSize: "0.72rem",
               color: effectiveTextColor,
-              textShadow: isTranslucent
-                ? isDark
-                  ? "0 1px 2px rgba(0,0,0,0.8)"
-                  : "0 1px 2px rgba(255,255,255,0.8)"
-                : "none",
+              textShadow: isTranslucent ? (isDark ? "0 1px 2px rgba(0,0,0,0.8)" : "0 1px 2px rgba(255,255,255,0.8)") : "none",
             }}
           >
             {value}
@@ -279,8 +264,7 @@ const primaryGlow = theme.palette.primary.glow;`}
                 textTransform: "none",
                 fontWeight: 600,
                 mr: 1,
-                bgcolor:
-                  primaryMode === "light" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
+                bgcolor: primaryMode === "light" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
             <Tab
@@ -296,8 +280,7 @@ const primaryGlow = theme.palette.primary.glow;`}
                 fontSize: "0.8rem",
                 textTransform: "none",
                 fontWeight: 600,
-                bgcolor:
-                  primaryMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
+                bgcolor: primaryMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
           </Tabs>
@@ -536,12 +519,7 @@ const errorColor = theme.palette.error.main;`}
                 textTransform: "none",
                 fontWeight: 600,
                 mr: 1,
-                bgcolor:
-                  semanticMode === "light"
-                    ? isDark
-                      ? "rgba(255,255,255,0.15)"
-                      : "rgba(17,17,17,0.08)"
-                    : "transparent",
+                bgcolor: semanticMode === "light" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
             <Tab
@@ -557,8 +535,7 @@ const errorColor = theme.palette.error.main;`}
                 fontSize: "0.8rem",
                 textTransform: "none",
                 fontWeight: 600,
-                bgcolor:
-                  semanticMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
+                bgcolor: semanticMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
           </Tabs>
@@ -761,8 +738,7 @@ const glassBorder = theme.palette.glass.paperBorder;`}
                 textTransform: "none",
                 fontWeight: 600,
                 mr: 1,
-                bgcolor:
-                  glassMode === "light" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
+                bgcolor: glassMode === "light" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
             <Tab
@@ -778,8 +754,7 @@ const glassBorder = theme.palette.glass.paperBorder;`}
                 fontSize: "0.8rem",
                 textTransform: "none",
                 fontWeight: 600,
-                bgcolor:
-                  glassMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
+                bgcolor: glassMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
           </Tabs>

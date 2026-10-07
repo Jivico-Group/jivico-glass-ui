@@ -608,9 +608,7 @@ export const RailsPage: React.FC = () => {
               />
 
               <FormControlLabel
-                control={
-                  <Switch size="small" checked={autoplay} onChange={(event) => setAutoplay(event.target.checked)} />
-                }
+                control={<Switch size="small" checked={autoplay} onChange={(event) => setAutoplay(event.target.checked)} />}
                 label={
                   <Typography variant="caption" sx={{ fontWeight: 600 }}>
                     Autoplay
@@ -1312,9 +1310,8 @@ export function CollectionHighlight() {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Rails and Highlight do not import Next.js or depend on any routing framework. The application owns
-                routing through onNavigate, while framework-specific image rendering can be injected through
-                ImageComponent.
+                Rails and Highlight do not import Next.js or depend on any routing framework. The application owns routing through
+                onNavigate, while framework-specific image rendering can be injected through ImageComponent.
               </Typography>
 
               <Stack
@@ -1330,46 +1327,44 @@ export function CollectionHighlight() {
                   },
                 }}
               >
-                {["API JSON", "Next.js Page", "Rails / Highlight", "onNavigate", "ImageComponent"].map(
-                  (label, index) => (
-                    <React.Fragment key={label}>
-                      <Box
+                {["API JSON", "Next.js Page", "Rails / Highlight", "onNavigate", "ImageComponent"].map((label, index) => (
+                  <React.Fragment key={label}>
+                    <Box
+                      sx={{
+                        px: 1.5,
+                        py: 1,
+                        borderRadius: 2,
+                        bgcolor: "background.paper",
+                        border: 1,
+                        borderColor: "divider",
+                        textAlign: "center",
+                      }}
+                    >
+                      <Typography
+                        variant="caption"
                         sx={{
-                          px: 1.5,
-                          py: 1,
-                          borderRadius: 2,
-                          bgcolor: "background.paper",
-                          border: 1,
-                          borderColor: "divider",
-                          textAlign: "center",
+                          fontWeight: 700,
                         }}
                       >
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            fontWeight: 700,
-                          }}
-                        >
-                          {label}
-                        </Typography>
-                      </Box>
+                        {label}
+                      </Typography>
+                    </Box>
 
-                      {index < 4 && (
-                        <Typography
-                          sx={{
-                            display: {
-                              xs: "none",
-                              sm: "block",
-                            },
-                            color: "text.secondary",
-                          }}
-                        >
-                          →
-                        </Typography>
-                      )}
-                    </React.Fragment>
-                  ),
-                )}
+                    {index < 4 && (
+                      <Typography
+                        sx={{
+                          display: {
+                            xs: "none",
+                            sm: "block",
+                          },
+                          color: "text.secondary",
+                        }}
+                      >
+                        →
+                      </Typography>
+                    )}
+                  </React.Fragment>
+                ))}
               </Stack>
             </Stack>
           </Box>
@@ -1396,8 +1391,8 @@ export function CollectionHighlight() {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Your backend only needs to return serializable data such as IDs, titles, images, and slugs. No React
-                components, router objects, or Next.js objects are included.
+                Your backend only needs to return serializable data such as IDs, titles, images, and slugs. No React components, router
+                objects, or Next.js objects are included.
               </Typography>
 
               <Box
@@ -1444,8 +1439,8 @@ export function CollectionHighlight() {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Rails renders a real anchor with the resolved href, but prevents native navigation. The consuming
-                application receives the item through onNavigate and decides how routing should happen.
+                Rails renders a real anchor with the resolved href, but prevents native navigation. The consuming application receives the
+                item through onNavigate and decides how routing should happen.
               </Typography>
 
               <Box
@@ -1495,8 +1490,8 @@ onNavigate={(item) => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Highlight uses the same principle. Its full image becomes a semantic anchor when href is provided.
-                Native navigation is prevented and onNavigate controls the actual application route.
+                Highlight uses the same principle. Its full image becomes a semantic anchor when href is provided. Native navigation is
+                prevented and onNavigate controls the actual application route.
               </Typography>
 
               <Box
@@ -1545,8 +1540,8 @@ onNavigate={(item) => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                The href remains in the DOM as a real anchor destination. This provides semantic link information, while
-                onNavigate owns the actual client-side navigation.
+                The href remains in the DOM as a real anchor destination. This provides semantic link information, while onNavigate owns the
+                actual client-side navigation.
               </Typography>
 
               <Box
@@ -1594,8 +1589,8 @@ onNavigate={() => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                ImageComponent remains available independently from routing. This allows Rails and Highlight to use
-                next/image without coupling either component to Next.js.
+                ImageComponent remains available independently from routing. This allows Rails and Highlight to use next/image without
+                coupling either component to Next.js.
               </Typography>
 
               <Box
@@ -1645,8 +1640,8 @@ onNavigate={() => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Keep the API framework-independent. Keep Rails and Highlight framework-independent. Let the consuming
-                application own routing and optionally provide framework-specific image rendering.
+                Keep the API framework-independent. Keep Rails and Highlight framework-independent. Let the consuming application own
+                routing and optionally provide framework-specific image rendering.
               </Typography>
 
               <Typography

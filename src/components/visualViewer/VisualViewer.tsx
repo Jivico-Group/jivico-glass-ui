@@ -830,18 +830,11 @@ export const VisualViewer = ({
                     color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
                     bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
-                    border:
-                      theme.palette.mode === "dark"
-                        ? "1px solid rgba(255, 255, 255, 0.28)"
-                        : "1px solid rgba(255, 255, 255, 0.6)",
-                    boxShadow:
-                      theme.palette.mode === "dark"
-                        ? "0 4px 20px rgba(0, 0, 0, 0.25)"
-                        : "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
+                    boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
                     transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
-                      bgcolor:
-                        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
+                      bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
                       transform: "translateY(-50%) scale(1.04)",
                     },
                     "&.Mui-disabled": {
@@ -907,18 +900,11 @@ export const VisualViewer = ({
                     color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
                     bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
-                    border:
-                      theme.palette.mode === "dark"
-                        ? "1px solid rgba(255, 255, 255, 0.28)"
-                        : "1px solid rgba(255, 255, 255, 0.6)",
-                    boxShadow:
-                      theme.palette.mode === "dark"
-                        ? "0 4px 20px rgba(0, 0, 0, 0.25)"
-                        : "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
+                    boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
                     transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
-                      bgcolor:
-                        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
+                      bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
                       transform: "translateY(-50%) scale(1.04)",
                     },
                     "&.Mui-disabled": {
@@ -968,18 +954,11 @@ export const VisualViewer = ({
                     color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
                     bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
-                    border:
-                      theme.palette.mode === "dark"
-                        ? "1px solid rgba(255, 255, 255, 0.28)"
-                        : "1px solid rgba(255, 255, 255, 0.6)",
-                    boxShadow:
-                      theme.palette.mode === "dark"
-                        ? "0 4px 20px rgba(0, 0, 0, 0.25)"
-                        : "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
+                    boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
                     transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
-                      bgcolor:
-                        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
+                      bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
                       transform: "scale(1.04)",
                     },
                   }}
@@ -1005,18 +984,11 @@ export const VisualViewer = ({
                     color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
                     bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
-                    border:
-                      theme.palette.mode === "dark"
-                        ? "1px solid rgba(255, 255, 255, 0.28)"
-                        : "1px solid rgba(255, 255, 255, 0.6)",
-                    boxShadow:
-                      theme.palette.mode === "dark"
-                        ? "0 4px 20px rgba(0, 0, 0, 0.25)"
-                        : "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
+                    boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
                     transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
-                      bgcolor:
-                        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
+                      bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
                       transform: "scale(1.04)",
                     },
                   }}

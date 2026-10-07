@@ -115,8 +115,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
       },
 
       indicator: ({ ownerState }) => {
-        const color =
-          (ownerState as any).indicatorColorOverride || (ownerState.indicatorColor as string) || "secondary";
+        const color = (ownerState as any).indicatorColorOverride || (ownerState.indicatorColor as string) || "secondary";
 
         const colors = {
           primary: {

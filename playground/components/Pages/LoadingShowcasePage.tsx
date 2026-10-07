@@ -184,9 +184,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                 </Typography>
                 <Stack direction="row" spacing={2} sx={{ alignItems: "center", flexWrap: "wrap" }}>
                   <FormControlLabel
-                    control={
-                      <Switch size="small" checked={isLoading} onChange={(e) => setIsLoading(e.target.checked)} />
-                    }
+                    control={<Switch size="small" checked={isLoading} onChange={(e) => setIsLoading(e.target.checked)} />}
                     label={
                       <Typography variant="body2" sx={{ fontWeight: 600 }}>
                         {isLoading ? "Status: Loading (Active)" : "Status: Completed (100%)"}
@@ -217,19 +215,11 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                 </Typography>
                 <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
                   <FormControlLabel
-                    control={
-                      <Switch size="small" checked={showImage} onChange={(e) => setShowImage(e.target.checked)} />
-                    }
+                    control={<Switch size="small" checked={showImage} onChange={(e) => setShowImage(e.target.checked)} />}
                     label={<Typography variant="body2">Product Visual & Cosmic Orbits</Typography>}
                   />
                   <FormControlLabel
-                    control={
-                      <Switch
-                        size="small"
-                        checked={showSignature}
-                        onChange={(e) => setShowSignature(e.target.checked)}
-                      />
-                    }
+                    control={<Switch size="small" checked={showSignature} onChange={(e) => setShowSignature(e.target.checked)} />}
                     label={<Typography variant="body2">Signature Footer</Typography>}
                   />
                 </Stack>
@@ -237,13 +227,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
 
               {/* Text Inputs */}
               <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-                <TextField
-                  size="small"
-                  label="Title Message"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  sx={{ flex: 2 }}
-                />
+                <TextField size="small" label="Title Message" value={title} onChange={(e) => setTitle(e.target.value)} sx={{ flex: 2 }} />
                 <TextField
                   size="small"
                   label="Loading Label"
@@ -577,9 +561,7 @@ setLoading(false); // smoothly rushes to 100% and finishes
                   width: "100%",
                   height: "100%",
                   objectFit: "contain",
-                  filter: isDark
-                    ? "drop-shadow(0 20px 30px rgba(0,0,0,0.7))"
-                    : "drop-shadow(0 20px 30px rgba(0,0,0,0.15))",
+                  filter: isDark ? "drop-shadow(0 20px 30px rgba(0,0,0,0.7))" : "drop-shadow(0 20px 30px rgba(0,0,0,0.15))",
                 }}
               />
             )}

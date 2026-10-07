@@ -376,13 +376,7 @@ const handleNavigate = (item: ShowcaseItem) => {
               </Typography>
 
               {(["small", "medium", "large", "hero"] as ShowcaseSize[]).map((s) => (
-                <Button
-                  key={s}
-                  size="small"
-                  variant={size === s ? "contained" : "outlined"}
-                  color="primary"
-                  onClick={() => setSize(s)}
-                >
+                <Button key={s} size="small" variant={size === s ? "contained" : "outlined"} color="primary" onClick={() => setSize(s)}>
                   {s}
                 </Button>
               ))}
@@ -475,13 +469,7 @@ const handleNavigate = (item: ShowcaseItem) => {
               </Typography>
 
               {(["square", "rounded", "soft"] as ShowcaseRadius[]).map((r) => (
-                <Button
-                  key={r}
-                  size="small"
-                  variant={radius === r ? "contained" : "outlined"}
-                  color="primary"
-                  onClick={() => setRadius(r)}
-                >
+                <Button key={r} size="small" variant={radius === r ? "contained" : "outlined"} color="primary" onClick={() => setRadius(r)}>
                   {r}
                 </Button>
               ))}
@@ -558,9 +546,7 @@ const handleNavigate = (item: ShowcaseItem) => {
               />
 
               <FormControlLabel
-                control={
-                  <Switch size="small" checked={showProgress} onChange={(e) => setShowProgress(e.target.checked)} />
-                }
+                control={<Switch size="small" checked={showProgress} onChange={(e) => setShowProgress(e.target.checked)} />}
                 label={
                   <Typography
                     variant="caption"
@@ -812,8 +798,8 @@ export function ShowcaseClient({
                 lineHeight: 1.8,
               }}
             >
-              Showcase does not know about Next.js routing. Your API returns framework-agnostic data, while the Next.js
-              application provides the routing implementation and optional image renderer.
+              Showcase does not know about Next.js routing. Your API returns framework-agnostic data, while the Next.js application provides
+              the routing implementation and optional image renderer.
             </Typography>
 
             <Stack spacing={1}>
@@ -826,8 +812,7 @@ export function ShowcaseClient({
               </Typography>
 
               <Typography variant="body2">
-                <strong>3. onNavigate</strong> → Showcase prevents native navigation and gives the application the
-                navigation event.
+                <strong>3. onNavigate</strong> → Showcase prevents native navigation and gives the application the navigation event.
               </Typography>
 
               <Typography variant="body2">
@@ -871,8 +856,8 @@ export function ShowcaseClient({
                 lineHeight: 1.7,
               }}
             >
-              Your backend only needs to return serializable data. There is no <code>Link</code>, <code>Image</code>, or
-              other React component inside the response.
+              Your backend only needs to return serializable data. There is no <code>Link</code>, <code>Image</code>, or other React
+              component inside the response.
             </Typography>
 
             <Typography
@@ -955,8 +940,8 @@ export function ShowcaseClient({
                 lineHeight: 1.7,
               }}
             >
-              Showcase always renders the full media area as a semantic <code>&lt;a href="..."&gt;</code>. It prevents
-              the browser's default navigation and calls <code>onNavigate</code> instead.
+              Showcase always renders the full media area as a semantic <code>&lt;a href="..."&gt;</code>. It prevents the browser's default
+              navigation and calls <code>onNavigate</code> instead.
             </Typography>
 
             <Typography
@@ -1010,8 +995,7 @@ export function ShowcaseClient({
                 lineHeight: 1.7,
               }}
             >
-              The client adapter owns the actual Next.js navigation. This keeps routing concerns outside the reusable UI
-              component.
+              The client adapter owns the actual Next.js navigation. This keeps routing concerns outside the reusable UI component.
             </Typography>
 
             <Typography
@@ -1081,13 +1065,11 @@ const router = useRouter();
               </Typography>
 
               <Typography variant="body2">
-                <strong>Framework-safe:</strong> Next.js, React Router, Remix, or another application can provide its
-                own navigation logic.
+                <strong>Framework-safe:</strong> Next.js, React Router, Remix, or another application can provide its own navigation logic.
               </Typography>
 
               <Typography variant="body2">
-                <strong>Application-owned routing:</strong> The reusable component does not need to know which router
-                the application uses.
+                <strong>Application-owned routing:</strong> The reusable component does not need to know which router the application uses.
               </Typography>
             </Stack>
           </Box>
@@ -1183,8 +1165,8 @@ Next.js router
                 lineHeight: 1.7,
               }}
             >
-              The reusable component only needs the data and navigation callback. Next.js-specific routing stays at the
-              application boundary.
+              The reusable component only needs the data and navigation callback. Next.js-specific routing stays at the application
+              boundary.
             </Typography>
 
             <Typography
@@ -1220,8 +1202,8 @@ Next.js router
               lineHeight: 1.7,
             }}
           >
-            Keep API responses framework-agnostic. Let Showcase provide semantic links while the consuming application
-            owns actual navigation.
+            Keep API responses framework-agnostic. Let Showcase provide semantic links while the consuming application owns actual
+            navigation.
           </Typography>
         </Stack>
       </DemoBlock>

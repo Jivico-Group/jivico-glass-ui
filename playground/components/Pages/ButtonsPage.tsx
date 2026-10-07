@@ -1092,12 +1092,7 @@ export const ButtonsPage: React.FC = () => {
             <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
               Primary
             </Typography>
-            <ToggleButtonGroup
-              value={alignment}
-              exclusive
-              onChange={(_, v) => v !== null && setAlignment(v)}
-              color="primary"
-            >
+            <ToggleButtonGroup value={alignment} exclusive onChange={(_, v) => v !== null && setAlignment(v)} color="primary">
               <ToggleButton value="left">
                 <AlignLeft size={16} />
               </ToggleButton>
@@ -1114,12 +1109,7 @@ export const ButtonsPage: React.FC = () => {
             <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
               Secondary
             </Typography>
-            <ToggleButtonGroup
-              value={alignment}
-              exclusive
-              onChange={(_, v) => v !== null && setAlignment(v)}
-              color="secondary"
-            >
+            <ToggleButtonGroup value={alignment} exclusive onChange={(_, v) => v !== null && setAlignment(v)} color="secondary">
               <ToggleButton value="left">
                 <AlignLeft size={16} />
               </ToggleButton>
@@ -1136,12 +1126,7 @@ export const ButtonsPage: React.FC = () => {
             <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
               Accent
             </Typography>
-            <ToggleButtonGroup
-              value={alignment}
-              exclusive
-              onChange={(_, v) => v !== null && setAlignment(v)}
-              color="warning"
-            >
+            <ToggleButtonGroup value={alignment} exclusive onChange={(_, v) => v !== null && setAlignment(v)} color="warning">
               <ToggleButton color="warning" value="left">
                 <AlignLeft size={16} />
               </ToggleButton>

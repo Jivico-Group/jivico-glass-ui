@@ -114,13 +114,7 @@ export const DialogsPage: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <Button
-            variant="contained"
-            color="glass"
-            size="large"
-            onClick={() => setGlassModalOpen(true)}
-            startIcon={<Sparkles size={18} />}
-          >
+          <Button variant="contained" color="glass" size="large" onClick={() => setGlassModalOpen(true)} startIcon={<Sparkles size={18} />}>
             Open Frosted Glass Modal (glass=true)
           </Button>
 
@@ -156,8 +150,8 @@ export const DialogsPage: React.FC = () => {
           </Box>
           <DialogContent>
             <DialogContentText sx={{ pt: 1 }}>
-              This dialog renders with <strong>glass={"{true}"}</strong> featuring 32px backdrop blur, specular top
-              perimeter light reflection, and refined contrast typography.
+              This dialog renders with <strong>glass={"{true}"}</strong> featuring 32px backdrop blur, specular top perimeter light
+              reflection, and refined contrast typography.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
@@ -171,13 +165,7 @@ export const DialogsPage: React.FC = () => {
         </Dialog>
 
         {/* Standard Solid Surface Dialog (glass=false) */}
-        <Dialog
-          open={standardModalOpen}
-          glass={false}
-          onClose={() => setStandardModalOpen(false)}
-          maxWidth="xs"
-          fullWidth
-        >
+        <Dialog open={standardModalOpen} glass={false} onClose={() => setStandardModalOpen(false)} maxWidth="xs" fullWidth>
           <Box
             sx={{
               display: "flex",
@@ -194,8 +182,8 @@ export const DialogsPage: React.FC = () => {
           </Box>
           <DialogContent>
             <DialogContentText sx={{ pt: 1 }}>
-              This dialog renders with <strong>glass={"{false}"}</strong> using the clean 24px rounded surface palette
-              with 70px drop shadow.
+              This dialog renders with <strong>glass={"{false}"}</strong> using the clean 24px rounded surface palette with 70px drop
+              shadow.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
@@ -228,33 +216,15 @@ export const DialogsPage: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <Button
-            variant="contained"
-            color="glass"
-            size="large"
-            onClick={() => setConfirmOpen(true)}
-            startIcon={<Shield size={18} />}
-          >
+          <Button variant="contained" color="glass" size="large" onClick={() => setConfirmOpen(true)} startIcon={<Shield size={18} />}>
             Confirmation Dialog
           </Button>
 
-          <Button
-            variant="outlined"
-            color="primary"
-            size="large"
-            onClick={() => setFormOpen(true)}
-            startIcon={<Settings size={18} />}
-          >
+          <Button variant="outlined" color="primary" size="large" onClick={() => setFormOpen(true)} startIcon={<Settings size={18} />}>
             Form Settings Dialog
           </Button>
 
-          <Button
-            variant="outlined"
-            color="glass"
-            size="large"
-            onClick={() => setFullScreenOpen(true)}
-            startIcon={<Maximize2 size={18} />}
-          >
+          <Button variant="outlined" color="glass" size="large" onClick={() => setFullScreenOpen(true)} startIcon={<Maximize2 size={18} />}>
             Full-Screen Dialog
           </Button>
         </Box>
@@ -292,20 +262,14 @@ export const DialogsPage: React.FC = () => {
           </Box>
           <DialogContent>
             <DialogContentText sx={{ pt: 1 }}>
-              Revoking this session will instantly sign out the user from all active browsers and revoke hardware
-              security key tokens.
+              Revoking this session will instantly sign out the user from all active browsers and revoke hardware security key tokens.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button variant="outlined" color="glass" onClick={() => setConfirmOpen(false)}>
               Cancel
             </Button>
-            <Button
-              variant="contained"
-              color="error"
-              onClick={() => setConfirmOpen(false)}
-              startIcon={<Trash2 size={16} />}
-            >
+            <Button variant="contained" color="error" onClick={() => setConfirmOpen(false)} startIcon={<Trash2 size={16} />}>
               Revoke Access
             </Button>
           </DialogActions>
@@ -328,16 +292,9 @@ export const DialogsPage: React.FC = () => {
             </IconButton>
           </Box>
           <DialogContent>
-            <DialogContentText sx={{ mb: 2.5 }}>
-              Configure your liquid frosted workspace identity and security options.
-            </DialogContentText>
+            <DialogContentText sx={{ mb: 2.5 }}>Configure your liquid frosted workspace identity and security options.</DialogContentText>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
-              <TextField
-                label="Workspace Project Name"
-                fullWidth
-                value={projectName}
-                onChange={(e) => setProjectName(e.target.value)}
-              />
+              <TextField label="Workspace Project Name" fullWidth value={projectName} onChange={(e) => setProjectName(e.target.value)} />
               <FormControl fullWidth>
                 <InputLabel id="dialog-select-visibility">Visibility Tier</InputLabel>
                 <Select
@@ -360,9 +317,7 @@ export const DialogsPage: React.FC = () => {
                 }}
               >
                 <FormControlLabel
-                  control={
-                    <Switch color="glass" checked={twoFactor} onChange={(e) => setTwoFactor(e.target.checked)} />
-                  }
+                  control={<Switch color="glass" checked={twoFactor} onChange={(e) => setTwoFactor(e.target.checked)} />}
                   label={
                     <Box>
                       <Typography variant="body2" sx={{ fontWeight: 600 }}>
@@ -381,12 +336,7 @@ export const DialogsPage: React.FC = () => {
             <Button variant="outlined" color="glass" onClick={() => setFormOpen(false)}>
               Cancel
             </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => setFormOpen(false)}
-              startIcon={<CheckCircle2 size={16} />}
-            >
+            <Button variant="contained" color="primary" onClick={() => setFormOpen(false)} startIcon={<CheckCircle2 size={16} />}>
               Save Preferences
             </Button>
           </DialogActions>
@@ -433,8 +383,8 @@ export const DialogsPage: React.FC = () => {
               Immersive Liquid Experience
             </Typography>
             <Typography variant="body1" sx={{ color: "text.secondary", mb: 4, lineHeight: 1.7 }}>
-              Full-screen modals expand smoothly from the bottom with Apple spring physics, preserving background
-              context through translucent navigation headers.
+              Full-screen modals expand smoothly from the bottom with Apple spring physics, preserving background context through
+              translucent navigation headers.
             </Typography>
             <Box
               sx={{
@@ -678,11 +628,7 @@ export const DialogsPage: React.FC = () => {
                 <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   Glass Prop:
                 </Typography>
-                <Chip
-                  label={drawerGlass ? "glass={true}" : "glass={false}"}
-                  color={drawerGlass ? "primary" : "default"}
-                  size="small"
-                />
+                <Chip label={drawerGlass ? "glass={true}" : "glass={false}"} color={drawerGlass ? "primary" : "default"} size="small" />
               </Box>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Typography variant="body2" sx={{ color: "text.secondary" }}>

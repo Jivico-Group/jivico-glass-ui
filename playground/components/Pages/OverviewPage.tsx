@@ -101,8 +101,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           Welcome to <GradientText isDark={isDark}>Jivico Glass UI</GradientText>
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ maxWidth: "700px", lineHeight: 1.7, mb: 3 }}>
-          A comprehensive design system providing frosted glassmorphic overrides for MUI Buttons, Chips, Tabs, Inputs,
-          Switches, and Data Display components, tailored to modern luxury aesthetic standards.
+          A comprehensive design system providing frosted glassmorphic overrides for MUI Buttons, Chips, Tabs, Inputs, Switches, and Data
+          Display components, tailored to modern luxury aesthetic standards.
         </Typography>
 
         <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
@@ -154,9 +154,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  borderBottom: c.border
-                    ? `1px solid ${isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.1)"}`
-                    : "none",
+                  borderBottom: c.border ? `1px solid ${isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.1)"}` : "none",
                 }}
               >
                 <Typography
@@ -220,8 +218,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       >
         <Box sx={{ width: "100%", py: 1 }}>
           <Typography variant="body2" color="text.secondary">
-            The provider seamlessly integrates with MUI ThemeProvider, emotion cache, and supports system/light/dark
-            modes.
+            The provider seamlessly integrates with MUI ThemeProvider, emotion cache, and supports system/light/dark modes.
           </Typography>
         </Box>
       </DemoBlock>

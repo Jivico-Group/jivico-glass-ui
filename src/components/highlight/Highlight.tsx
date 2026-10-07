@@ -149,26 +149,12 @@ const HighlightImage = ({
         <picture>
           <source media="(max-width: 767px)" srcSet={mobileImage} />
 
-          <DefaultImage
-            src={image}
-            alt={alt}
-            imagePosition={imagePosition}
-            imageSizes={imageSizes}
-            imagePriority={imagePriority}
-          />
+          <DefaultImage src={image} alt={alt} imagePosition={imagePosition} imageSizes={imageSizes} imagePriority={imagePriority} />
         </picture>
       );
     }
 
-    return (
-      <DefaultImage
-        src={image}
-        alt={alt}
-        imagePosition={imagePosition}
-        imageSizes={imageSizes}
-        imagePriority={imagePriority}
-      />
-    );
+    return <DefaultImage src={image} alt={alt} imagePosition={imagePosition} imageSizes={imageSizes} imagePriority={imagePriority} />;
   }
 
   /*

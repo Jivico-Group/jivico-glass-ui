@@ -237,8 +237,7 @@ export const getAlertOverrides = (palette: JivicoPalette, isDark: boolean): Comp
                 transition: "background-color 180ms ease, transform 180ms ease",
 
                 "&:hover": {
-                  backgroundColor:
-                    appearance === "solid" ? "rgba(255,255,255,0.12)" : `rgba(${rgb}, ${isDark ? 0.12 : 0.08})`,
+                  backgroundColor: appearance === "solid" ? "rgba(255,255,255,0.12)" : `rgba(${rgb}, ${isDark ? 0.12 : 0.08})`,
                 },
 
                 "&:active": {

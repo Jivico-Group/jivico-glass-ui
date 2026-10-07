@@ -378,8 +378,7 @@ declare module "@mui/material/Tabs" {
     glass?: boolean | "true" | "false";
     size?: "small" | "medium";
     placement?: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right" | "inline";
-    textColorOverride?:
-      "primary" | "secondary" | "inherit" | "accent" | "glass" | "info" | "success" | "warning" | "error";
+    textColorOverride?: "primary" | "secondary" | "inherit" | "accent" | "glass" | "info" | "success" | "warning" | "error";
     indicatorColorOverride?: "primary" | "secondary" | "accent" | "glass" | "info" | "success" | "warning" | "error";
   }
 

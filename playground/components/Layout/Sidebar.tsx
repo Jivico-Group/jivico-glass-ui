@@ -152,8 +152,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeId, onSelect, mobileOpen
                             : isDark
                               ? "#F6F5F2"
                               : "#111111",
-                        color:
-                          item.badge === "GLASS" ? (isDark ? "#F6F5F2" : "#111111") : isDark ? "#111111" : "#FFFFFF",
+                        color: item.badge === "GLASS" ? (isDark ? "#F6F5F2" : "#111111") : isDark ? "#111111" : "#FFFFFF",
                         "& .MuiChip-label": {
                           px: 0.7,
                         },

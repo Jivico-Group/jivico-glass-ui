@@ -156,26 +156,14 @@ export const getTableOverrides = (palette: JivicoPalette, isDark: boolean): Comp
               transition: "background-color 160ms ease",
 
               "&:hover": {
-                backgroundColor: isGlass
-                  ? isDark
-                    ? "rgba(255, 255, 255, 0.055)"
-                    : "rgba(255, 255, 255, 0.46)"
-                  : hoverBackground,
+                backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.055)" : "rgba(255, 255, 255, 0.46)") : hoverBackground,
               },
 
               "&.Mui-selected": {
-                backgroundColor: isGlass
-                  ? isDark
-                    ? "rgba(255, 255, 255, 0.10)"
-                    : "rgba(255, 255, 255, 0.52)"
-                  : selectedBackground,
+                backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(255, 255, 255, 0.52)") : selectedBackground,
 
                 "&:hover": {
-                  backgroundColor: isGlass
-                    ? isDark
-                      ? "rgba(255, 255, 255, 0.14)"
-                      : "rgba(255, 255, 255, 0.62)"
-                    : color.selected,
+                  backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.62)") : color.selected,
                 },
               },
             },

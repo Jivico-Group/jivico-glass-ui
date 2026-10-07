@@ -8,8 +8,7 @@ export const getInputLabelOverrides = (palette: JivicoPalette): Components<Theme
         const colorKey = (ownerState.color ? ownerState.color : "primary") as keyof typeof palette;
         const activeColorGroup = (palette[colorKey] || palette.primary) as Record<string, string>;
         const activeColor = activeColorGroup.main;
-        const isSemantic =
-          colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
+        const isSemantic = colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
 
         let translate = "translate(18px, 13px) scale(1)"; // medium
         let shrinkTranslate = "translate(18px, -9px) scale(0.75)";

@@ -61,10 +61,7 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
         const requestedColor = ownerState.color ?? "primary";
         const colorKey = requestedColor === "inherit" ? "primary" : requestedColor;
 
-        const activeColorGroup = (palette[colorKey as keyof typeof palette] || palette.primary) as Record<
-          string,
-          string
-        >;
+        const activeColorGroup = (palette[colorKey as keyof typeof palette] || palette.primary) as Record<string, string>;
 
         const mainColor = activeColorGroup.main;
         const hoverColor = activeColorGroup.hover;
@@ -140,9 +137,7 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
                 backgroundColor: hoverColor,
                 transform: "translateY(-1px)",
 
-                boxShadow: isDark
-                  ? "0 12px 36px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.2)"
-                  : "0 12px 32px rgba(17,17,17,0.3)",
+                boxShadow: isDark ? "0 12px 36px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.2)" : "0 12px 32px rgba(17,17,17,0.3)",
               },
 
               "&:active": {
@@ -568,8 +563,7 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
               },
 
               "&.Mui-disabled": {
-                color:
-                  isPrimary || isSecondary ? (isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)") : disabledColor,
+                color: isPrimary || isSecondary ? (isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)") : disabledColor,
 
                 backgroundColor: "transparent",
 

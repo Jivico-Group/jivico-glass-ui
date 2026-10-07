@@ -477,8 +477,8 @@ export const TypographyPage: React.FC = () => {
               body1 · 1.0625rem (17px) · SF Pro Display / Space Grotesk 400
             </Typography>
             <Typography variant="body1" color="text.primary">
-              Crafted for high-density dashboards and modern web application interfaces. Features comfortable 1.55 line
-              height, optical kerning, and smooth dark mode contrast transitions.
+              Crafted for high-density dashboards and modern web application interfaces. Features comfortable 1.55 line height, optical
+              kerning, and smooth dark mode contrast transitions.
             </Typography>
           </Box>
 

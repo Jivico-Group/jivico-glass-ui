@@ -226,12 +226,7 @@ export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boole
              * Outlined border.
              */
 
-            border:
-              appearance === "outlined"
-                ? `1px solid ${selected.main}`
-                : appearance === "glass"
-                  ? `1px solid ${glassBorder}`
-                  : "none",
+            border: appearance === "outlined" ? `1px solid ${selected.main}` : appearance === "glass" ? `1px solid ${glassBorder}` : "none",
 
             /*
              * Glass blur.
@@ -394,8 +389,7 @@ export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boole
 
           const barColor = color === "glass" ? (isDark ? "#F5F5F5" : "#111111") : selected.main;
 
-          const glowColor =
-            color === "glass" ? (isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.20)") : `${selected.main}55`;
+          const glowColor = color === "glass" ? (isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.20)") : `${selected.main}55`;
 
           return {
             position: "relative",
@@ -447,8 +441,7 @@ export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boole
               right: 0,
               height: "1px",
               borderRadius: "inherit",
-              background:
-                appearance === "glass" ? (isDark ? "rgba(255,255,255,0.28)" : "rgba(255,255,255,0.70)") : "transparent",
+              background: appearance === "glass" ? (isDark ? "rgba(255,255,255,0.28)" : "rgba(255,255,255,0.70)") : "transparent",
               pointerEvents: "none",
             },
           };

@@ -56,8 +56,7 @@ export const PaperPage: React.FC = () => {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              Default elevation={0} removes harsh Material shadows and applies a sleek 1px perimeter line with 12px
-              corner radius.
+              Default elevation={0} removes harsh Material shadows and applies a sleek 1px perimeter line with 12px corner radius.
             </Typography>
             <Button size="small" variant="outlined" color="primary">
               Paper Action
@@ -156,8 +155,7 @@ export const PaperPage: React.FC = () => {
               Liquid Glass Paper Sheet
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              High-definition backdrop blur sheet designed for floating modal dialogs, drawer panels, and hero section
-              cards.
+              High-definition backdrop blur sheet designed for floating modal dialogs, drawer panels, and hero section cards.
             </Typography>
           </Paper>
         </Box>

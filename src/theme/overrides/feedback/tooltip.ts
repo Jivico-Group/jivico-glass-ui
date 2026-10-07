@@ -99,13 +99,7 @@ export const getTooltipOverrides = (_palette: JivicoPalette, isDark: boolean): C
 
       arrow: ({ ownerState }) => {
         const glass = ownerState.glass === "true" || ownerState.glass === true;
-        const arrowBackground = glass
-          ? isDark
-            ? "rgba(245, 245, 247, 0.82)"
-            : "rgba(17, 17, 17, 0.78)"
-          : isDark
-            ? "#F5F5F7"
-            : "#111111";
+        const arrowBackground = glass ? (isDark ? "rgba(245, 245, 247, 0.82)" : "rgba(17, 17, 17, 0.78)") : isDark ? "#F5F5F7" : "#111111";
 
         const arrowBorder = glass
           ? isDark

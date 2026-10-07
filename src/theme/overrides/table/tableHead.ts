@@ -36,11 +36,7 @@ export const getTableHeadOverrides = (palette: JivicoPalette, isDark: boolean): 
 
           return {
             "& .MuiTableRow-root": {
-              backgroundColor: isGlass
-                ? glassBackground
-                : isDark
-                  ? "rgba(255, 255, 255, 0.045)"
-                  : "rgba(17, 17, 17, 0.035)",
+              backgroundColor: isGlass ? glassBackground : isDark ? "rgba(255, 255, 255, 0.045)" : "rgba(17, 17, 17, 0.035)",
             },
 
             "& .MuiTableCell-root": {

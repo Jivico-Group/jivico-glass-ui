@@ -2,13 +2,7 @@ import React from "react";
 import { Box, Button } from "@mui/material";
 import { ArrowRight } from "lucide-react";
 import { useGlassMode } from "../../context/ThemeContext.js";
-import {
-  GlassSectionHeaderRow,
-  GlassTitleGroup,
-  GlassIconGlow,
-  GlassSectionTitle,
-  GlassSectionSubtitle,
-} from "./GlassSectionHeader.js";
+import { GlassSectionHeaderRow, GlassTitleGroup, GlassIconGlow, GlassSectionTitle, GlassSectionSubtitle } from "./GlassSectionHeader.js";
 
 export interface SectionHeaderProps {
   title: string;
@@ -23,14 +17,7 @@ export interface SectionHeaderProps {
   controls?: React.ReactNode;
 }
 
-export const SectionHeader: React.FC<SectionHeaderProps> = ({
-  title,
-  subtitle,
-  icon,
-  iconGradient = "pink",
-  desktopAction,
-  controls,
-}) => {
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, subtitle, icon, iconGradient = "pink", desktopAction, controls }) => {
   const { mode } = useGlassMode();
   const isDark = mode === "dark";
 

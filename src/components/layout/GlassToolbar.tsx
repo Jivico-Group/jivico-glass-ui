@@ -70,8 +70,7 @@ export interface GlassEdgeFadeProps {
 }
 
 export const GlassEdgeFade = styled(Box, {
-  shouldForwardProp: (p) =>
-    p !== "side" && p !== "direction" && p !== "isDark" && p !== "visible" && p !== "bottomOffset",
+  shouldForwardProp: (p) => p !== "side" && p !== "direction" && p !== "isDark" && p !== "visible" && p !== "bottomOffset",
 })<GlassEdgeFadeProps>(({ theme, side, direction, isDark, visible = true, bottomOffset = 0 }) => {
   const align = side ?? direction ?? "left";
   const bg =

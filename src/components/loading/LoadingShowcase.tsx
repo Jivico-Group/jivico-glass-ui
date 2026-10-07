@@ -625,15 +625,7 @@ export const LoadingShowcase: React.FC<LoadingShowcaseProps> = ({
                 </linearGradient>
               </defs>
 
-              <ellipse
-                cx="350"
-                cy="150"
-                rx="290"
-                ry="90"
-                fill="none"
-                stroke={`url(#${orbitOneGradient})`}
-                strokeWidth="2.5"
-              />
+              <ellipse cx="350" cy="150" rx="290" ry="90" fill="none" stroke={`url(#${orbitOneGradient})`} strokeWidth="2.5" />
             </OrbitOne>
             <OrbitTwo viewBox="0 0 700 300" aria-hidden="true">
               <defs>
@@ -650,15 +642,7 @@ export const LoadingShowcase: React.FC<LoadingShowcaseProps> = ({
                 </linearGradient>
               </defs>
 
-              <ellipse
-                cx="350"
-                cy="150"
-                rx="300"
-                ry="105"
-                fill="none"
-                stroke={`url(#${orbitTwoGradient})`}
-                strokeWidth="2"
-              />
+              <ellipse cx="350" cy="150" rx="300" ry="105" fill="none" stroke={`url(#${orbitTwoGradient})`} strokeWidth="2" />
             </OrbitTwo>
             <Product>
               {renderStatusImage({

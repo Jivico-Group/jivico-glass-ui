@@ -32,8 +32,7 @@ export type ShowcaseContentAlign = "left" | "center" | "right";
 
 export type ShowcaseButtonSize = "small" | "medium" | "large";
 
-export type ShowcaseButtonColor =
-  "primary" | "secondary" | "accent" | "success" | "warning" | "error" | "info" | "glass";
+export type ShowcaseButtonColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error" | "info" | "glass";
 
 export type ShowcaseDimension =
   | number

@@ -1,16 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Dialog,
-  DialogContent,
-  TextField,
-  InputAdornment,
-  List,
-  ListItemButton,
-  ListItemText,
-  Typography,
-  Box,
-  Chip,
-} from "@mui/material";
+import { Dialog, DialogContent, TextField, InputAdornment, List, ListItemButton, ListItemText, Typography, Box, Chip } from "@mui/material";
 import { Search } from "lucide-react";
 import { NAV_SECTIONS } from "../Layout/Sidebar.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";

@@ -16,9 +16,7 @@ export const HeaderAppBar = styled(AppBar, {
 
     backdropFilter: isScrolled ? "blur(20px) saturate(180%)" : "none",
     WebkitBackdropFilter: isScrolled ? "blur(20px) saturate(180%)" : "none",
-    borderBottom: isScrolled
-      ? `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)"}`
-      : "1px solid transparent",
+    borderBottom: isScrolled ? `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)"}` : "1px solid transparent",
     backgroundImage: !isScrolled
       ? isDark
         ? "linear-gradient(180deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0) 100%)"

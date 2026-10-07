@@ -12,13 +12,7 @@ interface DocLayoutProps {
   children: React.ReactNode;
 }
 
-export const DocLayout: React.FC<DocLayoutProps> = ({
-  activeRoute,
-  onRouteChange,
-  tocItems = [],
-  onOpenSearch,
-  children,
-}) => {
+export const DocLayout: React.FC<DocLayoutProps> = ({ activeRoute, onRouteChange, tocItems = [], onOpenSearch, children }) => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   return (

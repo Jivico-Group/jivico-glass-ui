@@ -27,10 +27,7 @@ import "../../../src/theme/augmentations.d.ts";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 import { StatusShowcase } from "../../../src/components/statusShowcase/StatusShowcase.js";
-import type {
-  StatusShowcaseProps,
-  StatusShowcaseImage,
-} from "../../../src/components/statusShowcase/StatusShowcase.types.js";
+import type { StatusShowcaseProps, StatusShowcaseImage } from "../../../src/components/statusShowcase/StatusShowcase.types.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 
 // Preset configurations for the interactive playground
@@ -83,8 +80,7 @@ const PRESETS: Record<string, PresetConfig> = {
     label: "500 Server Error",
     code: "500 INTERNAL ERROR",
     title: "Signal Disrupted",
-    description:
-      "Our edge runtime encountered an unexpected response while rendering this view. Our engineering team has been notified.",
+    description: "Our edge runtime encountered an unexpected response while rendering this view. Our engineering team has been notified.",
     image: {
       src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
       alt: "500 Error Signal",
@@ -99,8 +95,7 @@ const PRESETS: Record<string, PresetConfig> = {
     label: "Empty Bag",
     code: "ARCHIVE BAG (0)",
     title: "Your Bag is Currently Empty",
-    description:
-      "Explore our latest studio originals, oversized silhouettes, and limited drops to start curating your wardrobe.",
+    description: "Explore our latest studio originals, oversized silhouettes, and limited drops to start curating your wardrobe.",
     actionLabel: "Discover Originals",
     secondaryActionLabel: "Browse Bestsellers",
     surface: "standard",
@@ -110,8 +105,7 @@ const PRESETS: Record<string, PresetConfig> = {
     label: "Maintenance",
     code: "SYSTEM UPGRADE",
     title: "Multiverse Upgrading",
-    description:
-      "We are currently deploying protocol updates to the Jivico studio design engine. All services will resume at 04:00 UTC.",
+    description: "We are currently deploying protocol updates to the Jivico studio design engine. All services will resume at 04:00 UTC.",
     actionLabel: "Check Status",
     secondaryActionLabel: "Follow Updates",
     surface: "glass",
@@ -257,11 +251,7 @@ ${
                   <Typography sx={labelSx} color="text.secondary">
                     Size
                   </Typography>
-                  <RadioGroup
-                    row
-                    value={size}
-                    onChange={(e) => setSize(e.target.value as "small" | "medium" | "large")}
-                  >
+                  <RadioGroup row value={size} onChange={(e) => setSize(e.target.value as "small" | "medium" | "large")}>
                     <FormControlLabel value="small" control={<Radio size="small" />} label="Small" />
                     <FormControlLabel value="medium" control={<Radio size="small" />} label="Medium" />
                     <FormControlLabel value="large" control={<Radio size="small" />} label="Large" />
@@ -286,41 +276,25 @@ ${
                 </Typography>
                 <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
                   <FormControlLabel
-                    control={
-                      <Switch size="small" checked={showImage} onChange={(e) => setShowImage(e.target.checked)} />
-                    }
+                    control={<Switch size="small" checked={showImage} onChange={(e) => setShowImage(e.target.checked)} />}
                     label={<Typography variant="body2">Image</Typography>}
                   />
                   <FormControlLabel
-                    control={
-                      <Switch size="small" checked={showAction} onChange={(e) => setShowAction(e.target.checked)} />
-                    }
+                    control={<Switch size="small" checked={showAction} onChange={(e) => setShowAction(e.target.checked)} />}
                     label={<Typography variant="body2">Primary CTA</Typography>}
                   />
                   <FormControlLabel
                     control={
-                      <Switch
-                        size="small"
-                        checked={showSecondaryAction}
-                        onChange={(e) => setShowSecondaryAction(e.target.checked)}
-                      />
+                      <Switch size="small" checked={showSecondaryAction} onChange={(e) => setShowSecondaryAction(e.target.checked)} />
                     }
                     label={<Typography variant="body2">Secondary CTA</Typography>}
                   />
                   <FormControlLabel
-                    control={
-                      <Switch size="small" checked={showChildren} onChange={(e) => setShowChildren(e.target.checked)} />
-                    }
+                    control={<Switch size="small" checked={showChildren} onChange={(e) => setShowChildren(e.target.checked)} />}
                     label={<Typography variant="body2">Children Slot</Typography>}
                   />
                   <FormControlLabel
-                    control={
-                      <Switch
-                        size="small"
-                        checked={showSignature}
-                        onChange={(e) => setShowSignature(e.target.checked)}
-                      />
-                    }
+                    control={<Switch size="small" checked={showSignature} onChange={(e) => setShowSignature(e.target.checked)} />}
                     label={<Typography variant="body2">Signature Slot</Typography>}
                   />
                 </Stack>
@@ -328,20 +302,8 @@ ${
 
               {/* Text Fields */}
               <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-                <TextField
-                  size="small"
-                  label="Code / Eyebrow"
-                  value={code}
-                  onChange={(e) => setCode(e.target.value)}
-                  sx={{ flex: 1 }}
-                />
-                <TextField
-                  size="small"
-                  label="Title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  sx={{ flex: 2 }}
-                />
+                <TextField size="small" label="Code / Eyebrow" value={code} onChange={(e) => setCode(e.target.value)} sx={{ flex: 1 }} />
+                <TextField size="small" label="Title" value={title} onChange={(e) => setTitle(e.target.value)} sx={{ flex: 2 }} />
               </Stack>
               <TextField
                 size="small"
@@ -418,12 +380,8 @@ ${
               surface={surface}
               actionLabel={showAction ? PRESETS[selectedPreset]?.actionLabel || "Action" : undefined}
               onAction={() => alert(`Triggered primary action: ${PRESETS[selectedPreset]?.actionLabel}`)}
-              secondaryActionLabel={
-                showSecondaryAction ? PRESETS[selectedPreset]?.secondaryActionLabel || "Secondary Action" : undefined
-              }
-              onSecondaryAction={() =>
-                alert(`Triggered secondary action: ${PRESETS[selectedPreset]?.secondaryActionLabel}`)
-              }
+              secondaryActionLabel={showSecondaryAction ? PRESETS[selectedPreset]?.secondaryActionLabel || "Secondary Action" : undefined}
+              onSecondaryAction={() => alert(`Triggered secondary action: ${PRESETS[selectedPreset]?.secondaryActionLabel}`)}
               signature={
                 showSignature ? (
                   <Chip
@@ -582,11 +540,7 @@ ${
               />
             }
           >
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              spacing={1}
-              sx={{ maxWidth: 400, mx: "auto", width: "100%" }}
-            >
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={1} sx={{ maxWidth: 400, mx: "auto", width: "100%" }}>
               <TextField
                 size="small"
                 placeholder="Enter email for drop alert..."

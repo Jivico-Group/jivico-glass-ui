@@ -83,20 +83,8 @@ export const ChipsPage: React.FC = () => {
         <Chip label="Glass Outlined" variant="outlined" color="glass" onDelete={() => {}} />
         <Chip label="Glass Tonal" variant="tonal" color="glass" onDelete={() => {}} />
         <Chip label="Deletable" onDelete={() => {}} />
-        <Chip
-          icon={<Tag size={13} />}
-          label="Clickable"
-          clickable
-          deleteIcon={<ChevronRight size={13} />}
-          onDelete={() => {}}
-        />
-        <Chip
-          icon={<Filter size={13} />}
-          label="Filter"
-          clickable
-          deleteIcon={<ChevronRight size={13} />}
-          onDelete={() => {}}
-        />
+        <Chip icon={<Tag size={13} />} label="Clickable" clickable deleteIcon={<ChevronRight size={13} />} onDelete={() => {}} />
+        <Chip icon={<Filter size={13} />} label="Filter" clickable deleteIcon={<ChevronRight size={13} />} onDelete={() => {}} />
         <Chip
           avatar={
             <Avatar

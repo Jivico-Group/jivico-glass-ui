@@ -45,19 +45,11 @@ export const getTableRowOverrides = (palette: JivicoPalette, isDark: boolean): C
             },
 
             "&:hover": {
-              backgroundColor: isGlass
-                ? isDark
-                  ? "rgba(255, 255, 255, 0.055)"
-                  : "rgba(255, 255, 255, 0.46)"
-                : hoverBackground,
+              backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.055)" : "rgba(255, 255, 255, 0.46)") : hoverBackground,
             },
 
             "&.Mui-selected": {
-              backgroundColor: isGlass
-                ? isDark
-                  ? "rgba(255, 255, 255, 0.10)"
-                  : "rgba(255, 255, 255, 0.52)"
-                : selectedBackground,
+              backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(255, 255, 255, 0.52)") : selectedBackground,
 
               "&:hover": {
                 backgroundColor: isGlass
@@ -80,11 +72,7 @@ export const getTableRowOverrides = (palette: JivicoPalette, isDark: boolean): C
             },
 
             "&.MuiTableRow-hover:hover": {
-              backgroundColor: isGlass
-                ? isDark
-                  ? "rgba(255, 255, 255, 0.055)"
-                  : "rgba(255, 255, 255, 0.46)"
-                : hoverBackground,
+              backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.055)" : "rgba(255, 255, 255, 0.46)") : hoverBackground,
             },
 
             "& .MuiTableCell-root:first-of-type": {

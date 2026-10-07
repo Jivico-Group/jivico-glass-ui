@@ -6,13 +6,7 @@ import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material"
 
 import { ArrowRight } from "lucide-react";
 
-import type {
-  SpotlightDimension,
-  SpotlightItem,
-  SpotlightProps,
-  SpotlightSize,
-  SpotlightVariant,
-} from "./Spotlight.types.js";
+import type { SpotlightDimension, SpotlightItem, SpotlightProps, SpotlightSize, SpotlightVariant } from "./Spotlight.types.js";
 import { getVariantOverlay as resolveVariantOverlay } from "../showcase/showcaseOverlay.js";
 
 const getResponsiveValue = (value: SpotlightDimension | undefined) => {
@@ -151,9 +145,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
   const currentSize = sizeConfig[size] ?? sizeConfig.medium;
   const radiusValue = getRadius(radius);
   const containerHeight = getResponsiveValue(height);
-  const containerMinHeight = getResponsiveValue(
-    minHeight ?? (height === undefined ? currentSize.minHeight : undefined),
-  );
+  const containerMinHeight = getResponsiveValue(minHeight ?? (height === undefined ? currentSize.minHeight : undefined));
   const containerMaxHeight = getResponsiveValue(maxHeight);
   const responsiveAspectRatio =
     height === undefined

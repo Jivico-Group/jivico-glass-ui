@@ -22,8 +22,7 @@ type ColorGroup = {
 };
 
 const getColorGroup = (palette: JivicoPalette, color: unknown): ColorGroup => {
-  const colorKey =
-    typeof color === "string" && color !== "standard" && color !== "inherit" && color in palette ? color : "primary";
+  const colorKey = typeof color === "string" && color !== "standard" && color !== "inherit" && color in palette ? color : "primary";
 
   return (palette[colorKey as keyof JivicoPalette] as ColorGroup) || (palette.primary as ColorGroup);
 };
@@ -85,11 +84,7 @@ export const getToggleButtonOverrides = (palette: JivicoPalette, isDark: boolean
             },
 
             "&.Mui-selected": {
-              backgroundColor: isGlass
-                ? isDarkGlass
-                  ? "rgba(255,255,255,0.14)"
-                  : "rgba(255,255,255,0.72)"
-                : mainColor,
+              backgroundColor: isGlass ? (isDarkGlass ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.72)") : mainColor,
 
               color: isGlass ? (isDarkGlass ? COLORS.brand.cream : COLORS.brand.charcoal) : contrastText,
 
@@ -102,11 +97,7 @@ export const getToggleButtonOverrides = (palette: JivicoPalette, isDark: boolean
               zIndex: 1,
 
               "&:hover": {
-                backgroundColor: isGlass
-                  ? isDarkGlass
-                    ? "rgba(255,255,255,0.2)"
-                    : "rgba(255,255,255,0.9)"
-                  : hoverColor,
+                backgroundColor: isGlass ? (isDarkGlass ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.9)") : hoverColor,
 
                 color: isGlass ? (isDarkGlass ? COLORS.brand.cream : COLORS.brand.charcoal) : contrastText,
 
@@ -114,11 +105,7 @@ export const getToggleButtonOverrides = (palette: JivicoPalette, isDark: boolean
               },
 
               "&:active": {
-                backgroundColor: isGlass
-                  ? isDarkGlass
-                    ? "rgba(255,255,255,0.1)"
-                    : "rgba(255,255,255,0.78)"
-                  : activeColor,
+                backgroundColor: isGlass ? (isDarkGlass ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.78)") : activeColor,
 
                 transform: "translateY(0) scale(0.985)",
               },
