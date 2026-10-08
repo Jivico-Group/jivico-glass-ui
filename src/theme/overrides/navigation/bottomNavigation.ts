@@ -20,6 +20,9 @@ export const getBottomNavigationOverrides = (
         const placement = ownerState.placement || "inline";
         const size = ownerState.size || "medium";
 
+        /**
+         * Surfaces
+         */
         const normalBackground = isDark ? "#18181B" : "#FFFFFF";
         const normalColor = isDark ? "#F5F5F7" : "#111111";
 
@@ -29,6 +32,20 @@ export const getBottomNavigationOverrides = (
 
         const glassColor = isDark ? "#F5F5F7" : "#111111";
 
+        /**
+         * Subtle Borders
+         */
+        const borderColor = glass
+          ? isDark
+            ? "rgba(255, 255, 255, 0.12)"
+            : "rgba(0, 0, 0, 0.06)"
+          : isDark
+            ? "rgba(255, 255, 255, 0.08)"
+            : "rgba(0, 0, 0, 0.06)";
+
+        /**
+         * Sizes
+         */
         const heightMap: Record<string, number> = {
           small: 48,
           medium: 64,
@@ -39,6 +56,9 @@ export const getBottomNavigationOverrides = (
           medium: "6px 10px",
         };
 
+        /**
+         * Placement
+         */
         const placementStyles: Record<string, object> = {
           "top-left": {
             position: "fixed",
@@ -87,33 +107,41 @@ export const getBottomNavigationOverrides = (
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "space-around",
+
           height: heightMap[String(size)] ?? 64,
           padding: paddingMap[String(size)] ?? "6px 10px",
+
           borderRadius: 9999,
           boxSizing: "border-box",
 
           backgroundColor: glass ? glassBackground : normalBackground,
           color: glass ? glassColor : normalColor,
 
-          // No visible border or heavy shadow.
-          border: "none",
+          // A fine edge defines the floating glass pill.
+          border: `1px solid ${borderColor}`,
+
+          // No heavy outer or inset shadows.
           boxShadow: "none",
 
           ...(placementStyles[String(placement)] ??
             placementStyles.inline),
 
+          /**
+           * Minimal Glass Treatment
+           */
           ...(glass && {
             backdropFilter: "blur(24px) saturate(160%)",
             WebkitBackdropFilter: "blur(24px) saturate(160%)",
 
             backgroundImage: isDark
-              ? "linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.01) 65%)"
-              : "linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.02) 70%)",
+              ? "linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.015) 65%, rgba(0,0,0,0.08) 100%)"
+              : "linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.02) 70%)",
 
-            isolation: "isolate",
+            position: "relative",
             overflow: "hidden",
+            isolation: "isolate",
 
-            // A very subtle glass reflection, not a border.
+            // Faint reflection along the top edge.
             "&::before": {
               content: '""',
               position: "absolute",
@@ -121,10 +149,10 @@ export const getBottomNavigationOverrides = (
               left: "12%",
               right: "12%",
               height: "1px",
+              pointerEvents: "none",
               background: isDark
                 ? "rgba(255,255,255,0.16)"
                 : "rgba(255,255,255,0.65)",
-              pointerEvents: "none",
             },
 
             "&::after": {
@@ -140,10 +168,12 @@ export const getBottomNavigationOverrides = (
     styleOverrides: {
       root: ({ ownerState }) => {
         const isSmall = (ownerState as any).size === "small";
+
+        // MUI passes showLabel (singular) to BottomNavigationAction ownerState.
         const showLabelProp =
           ownerState.showLabel ?? (ownerState as any).showLabels;
-        const showLabels = showLabelProp !== false;
 
+        const showLabels = showLabelProp !== false;
         const actionSize = isSmall ? 28 : 46;
 
         return {
@@ -151,42 +181,56 @@ export const getBottomNavigationOverrides = (
           zIndex: 1,
           flexShrink: 0,
           boxSizing: "border-box",
+
           height: actionSize,
-          minWidth: !showLabels ? actionSize : isSmall ? 36 : 52,
-          maxWidth: !showLabels ? actionSize : isSmall ? 100 : 140,
+          minWidth: !showLabels
+            ? actionSize
+            : isSmall
+              ? 36
+              : 52,
+          maxWidth: !showLabels
+            ? actionSize
+            : isSmall
+              ? 100
+              : 140,
           width: !showLabels ? actionSize : "auto",
           aspectRatio: !showLabels ? "1 / 1" : "unset",
+
           padding: showLabels
             ? isSmall
               ? "3px 8px"
               : "6px 12px"
             : 0,
+
           borderRadius: !showLabels ? "50%" : 9999,
+
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
 
           color: isDark
-            ? "rgba(245,245,247,0.65)"
-            : "rgba(17,17,17,0.65)",
+            ? "rgba(245, 245, 247, 0.65)"
+            : "rgba(17, 17, 17, 0.65)",
 
-          transition: "color 180ms ease, background-color 180ms ease",
+          transition:
+            "color 180ms ease, background-color 180ms ease",
 
           "&:hover": {
             color: isDark ? "#F5F5F7" : "#111111",
             backgroundColor: isDark
-              ? "rgba(255,255,255,0.05)"
-              : "rgba(17,17,17,0.035)",
+              ? "rgba(255, 255, 255, 0.05)"
+              : "rgba(17, 17, 17, 0.035)",
           },
 
           "&.Mui-selected": {
             color: isDark ? "#F5F5F7" : "#111111",
             fontWeight: 700,
-            backgroundColor: isDark
-              ? "rgba(255,255,255,0.09)"
-              : "rgba(17,17,17,0.055)",
 
-            // Selected state stays flat and understated.
+            // Subtle selected state, without a shadow.
+            backgroundColor: isDark
+              ? "rgba(255, 255, 255, 0.09)"
+              : "rgba(17, 17, 17, 0.055)",
+
             boxShadow: "none",
 
             "& .MuiSvgIcon-root, & svg": {
