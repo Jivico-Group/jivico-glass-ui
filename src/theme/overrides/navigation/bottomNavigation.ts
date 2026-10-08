@@ -21,7 +21,7 @@ export const getBottomNavigationOverrides = (_palette: JivicoPalette, isDark: bo
         const normalBackground = isDark ? "#18181B" : "#FFFFFF";
         const normalColor = isDark ? "#F5F5F7" : "#111111";
 
-        const glassBackground = isDark ? "rgba(24, 24, 27, 0.72)" : "rgba(255, 255, 255, 0.60)";
+        const glassBackground = isDark ? "rgba(18, 20, 26, 0.52)" : "rgba(255, 255, 255, 0.48)";
         const glassColor = isDark ? "#F5F5F7" : "#111111";
 
         /**
@@ -30,7 +30,7 @@ export const getBottomNavigationOverrides = (_palette: JivicoPalette, isDark: bo
         const borderColor = glass
           ? isDark
             ? "rgba(255, 255, 255, 0.16)"
-            : "rgba(255, 255, 255, 0.85)"
+            : "rgba(255, 255, 255, 0.75)"
           : isDark
             ? "rgba(255, 255, 255, 0.08)"
             : "rgba(0, 0, 0, 0.08)";
@@ -38,7 +38,13 @@ export const getBottomNavigationOverrides = (_palette: JivicoPalette, isDark: bo
         /**
          * Shadow
          */
-        const shadow = isDark ? "0 16px 48px rgba(0, 0, 0, 0.5)" : "0 12px 36px rgba(0, 0, 0, 0.1)";
+        const shadow = glass
+          ? isDark
+            ? "0 24px 60px rgba(0, 0, 0, 0.75), 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4)"
+            : "0 22px 50px -4px rgba(15, 23, 42, 0.18), 0 8px 20px -2px rgba(15, 23, 42, 0.08), inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.06)"
+          : isDark
+            ? "0 16px 48px rgba(0, 0, 0, 0.5)"
+            : "0 12px 36px rgba(0, 0, 0, 0.1)";
 
         /**
          * Sizes
@@ -120,19 +126,17 @@ export const getBottomNavigationOverrides = (_palette: JivicoPalette, isDark: bo
            * Glass Treatment
            */
           ...(glass && {
-            backdropFilter: "blur(32px) saturate(180%)",
-            WebkitBackdropFilter: "blur(32px) saturate(180%)",
+            backdropFilter: "blur(28px) saturate(220%) contrast(102%)",
+            WebkitBackdropFilter: "blur(28px) saturate(220%) contrast(102%)",
+            backgroundImage: isDark
+              ? "linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(0, 0, 0, 0.3) 100%)"
+              : "linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.20) 45%, rgba(240, 245, 252, 0.35) 100%)",
+            position: "relative",
+            overflow: "hidden",
+            isolation: "isolate",
 
             "&::before": {
-              content: '""',
-              position: "absolute",
-              inset: 0,
-              borderRadius: "inherit",
-              pointerEvents: "none",
-              background: isDark
-                ? "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 45%, transparent 100%)"
-                : "linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.15) 45%, transparent 100%)",
-              zIndex: 0,
+              display: "none",
             },
 
             "&::after": {
@@ -144,8 +148,8 @@ export const getBottomNavigationOverrides = (_palette: JivicoPalette, isDark: bo
               height: 1,
               pointerEvents: "none",
               background: isDark
-                ? "linear-gradient(90deg, transparent, rgba(255,255,255,0.2) 30%, rgba(255,255,255,0.2) 70%, transparent)"
-                : "linear-gradient(90deg, transparent, rgba(255,255,255,0.8) 30%, rgba(255,255,255,0.8) 70%, transparent)",
+                ? "linear-gradient(90deg, transparent, rgba(255,255,255,0.4) 20%, rgba(255,255,255,0.4) 80%, transparent)"
+                : "linear-gradient(90deg, transparent, rgba(255,255,255,1) 20%, rgba(255,255,255,1) 80%, transparent)",
               zIndex: 2,
             },
           }),
