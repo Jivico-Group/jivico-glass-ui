@@ -265,24 +265,23 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
 
           ...(variant === "outlined" &&
             isSecondary && {
-              border: "none",
+              border: `1.5px solid ${isDark ? "rgba(255,255,255,0.18)" : "rgba(17,17,17,0.18)"}`,
               background: "transparent",
 
               color: isDark ? COLORS.brand.cream : COLORS.brand.charcoal,
 
-              boxShadow: isDark ? "inset 0 0 0 1.5px rgba(255,255,255,0.15)" : "inset 0 0 0 1.5px rgba(17,17,17,0.15)",
+              boxShadow: "none",
 
               backdropFilter: "blur(12px)",
               WebkitBackdropFilter: "blur(12px)",
 
               "&:hover": {
                 background: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)",
+                borderColor: isDark ? "rgba(255,255,255,0.32)" : "rgba(17,17,17,0.35)",
 
                 transform: "translateY(-1px)",
 
-                boxShadow: isDark
-                  ? "0 4px 14px rgba(0,0,0,0.3), inset 0 0 0 1.5px rgba(255,255,255,0.25)"
-                  : "0 4px 14px rgba(0,0,0,0.04), inset 0 0 0 1.5px rgba(17,17,17,0.25)",
+                boxShadow: isDark ? "0 4px 14px rgba(0,0,0,0.3)" : "0 4px 14px rgba(0,0,0,0.04)",
               },
 
               "&:active": {
@@ -294,7 +293,8 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
               },
 
               "&.Mui-disabled": {
-                boxShadow: isDark ? "inset 0 0 0 1px rgba(255,255,255,0.1)" : "inset 0 0 0 1px rgba(17,17,17,0.1)",
+                border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
+                boxShadow: "none",
 
                 color: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)",
 
