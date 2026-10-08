@@ -39,14 +39,14 @@ declare const buildSecondaryPalette: (isDark: boolean) => {
 };
 
 declare const buildAccentPalette: (isDark: boolean) => {
-    main: string;
-    light: string;
-    dark: string;
-    hover: string;
-    active: string;
-    disabled: string;
-    glow: string;
-    contrastText: string;
+    main: "#937447" | "#D4B77A";
+    light: "#D4B77A";
+    dark: "#937447";
+    hover: "#806238" | "#E0C78F";
+    active: "#6F542F" | "#C5A665";
+    disabled: "#D9C9AD" | "#5A4B35";
+    glow: "rgba(147, 116, 71, 0.18)" | "rgba(212, 183, 122, 0.20)";
+    contrastText: "#FFFFFF" | "#111111";
 };
 
 declare const buildSemanticPalette: (isDark: boolean) => {
@@ -332,14 +332,14 @@ declare const buildPalette: (mode: "light" | "dark") => {
         contrastText: string;
     };
     accent: {
-        main: string;
-        light: string;
-        dark: string;
-        hover: string;
-        active: string;
-        disabled: string;
-        glow: string;
-        contrastText: string;
+        main: "#937447" | "#D4B77A";
+        light: "#D4B77A";
+        dark: "#937447";
+        hover: "#806238" | "#E0C78F";
+        active: "#6F542F" | "#C5A665";
+        disabled: "#D9C9AD" | "#5A4B35";
+        glow: "rgba(147, 116, 71, 0.18)" | "rgba(212, 183, 122, 0.20)";
+        contrastText: "#FFFFFF" | "#111111";
     };
     secondary: {
         main: string;
@@ -910,18 +910,18 @@ declare const SECONDARY_COLORS: {
 };
 
 declare const ACCENT_COLORS: {
-    light: string;
-    dark: string;
-    hoverLight: string;
-    hoverDark: string;
-    activeLight: string;
-    activeDark: string;
-    disabledLight: string;
-    disabledDark: string;
-    glowLight: string;
-    glowDark: string;
-    textLight: string;
-    textDark: string;
+    readonly light: "#937447";
+    readonly dark: "#D4B77A";
+    readonly hoverLight: "#806238";
+    readonly hoverDark: "#E0C78F";
+    readonly activeLight: "#6F542F";
+    readonly activeDark: "#C5A665";
+    readonly disabledLight: "#D9C9AD";
+    readonly disabledDark: "#5A4B35";
+    readonly glowLight: "rgba(147, 116, 71, 0.18)";
+    readonly glowDark: "rgba(212, 183, 122, 0.20)";
+    readonly textLight: "#FFFFFF";
+    readonly textDark: "#111111";
 };
 
 declare const SEMANTIC_COLORS: {
@@ -1326,18 +1326,18 @@ declare const COLORS: {
         textDark: string;
     };
     accent: {
-        light: string;
-        dark: string;
-        hoverLight: string;
-        hoverDark: string;
-        activeLight: string;
-        activeDark: string;
-        disabledLight: string;
-        disabledDark: string;
-        glowLight: string;
-        glowDark: string;
-        textLight: string;
-        textDark: string;
+        readonly light: "#937447";
+        readonly dark: "#D4B77A";
+        readonly hoverLight: "#806238";
+        readonly hoverDark: "#E0C78F";
+        readonly activeLight: "#6F542F";
+        readonly activeDark: "#C5A665";
+        readonly disabledLight: "#D9C9AD";
+        readonly disabledDark: "#5A4B35";
+        readonly glowLight: "rgba(147, 116, 71, 0.18)";
+        readonly glowDark: "rgba(212, 183, 122, 0.20)";
+        readonly textLight: "#FFFFFF";
+        readonly textDark: "#111111";
     };
 };
 
