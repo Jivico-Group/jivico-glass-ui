@@ -363,6 +363,7 @@ type JivicoPalette = ReturnType<typeof buildPalette>;
 declare module "@mui/material/styles" {
   interface Palette {
     accent: JivicoPalette["accent"];
+    brand: JivicoPalette["brand"];
     glass: JivicoPalette["glass"];
 
     "glass-surface"?: {
@@ -384,6 +385,7 @@ declare module "@mui/material/styles" {
 
   interface PaletteOptions {
     accent?: JivicoPalette["accent"];
+    brand?: JivicoPalette["brand"];
     glass?: JivicoPalette["glass"];
 
     "glass-surface"?: {
