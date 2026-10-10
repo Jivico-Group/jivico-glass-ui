@@ -5,7 +5,7 @@ export type MenuColor = "primary" | "secondary" | "accent" | "success" | "warnin
 
 export type MenuSurface = "standard" | "glass";
 
-export type MenuSize = "small" | "medium";
+export type MenuSize = "compact" | "small" | "medium";
 
 export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
   const text = isDark ? "#F6F5F2" : "#111111";
@@ -41,8 +41,19 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
       iconSize: number;
       iconGap: number;
       radius: number;
+      minWidth: number;
     }
   > = {
+    compact: {
+      listPadding: "3px",
+      itemMinHeight: 20,
+      itemPadding: "4px 8px",
+      itemFontSize: "0.75rem",
+      iconSize: 15,
+      iconGap: 6,
+      radius: 6,
+      minWidth: 150,
+    },
     small: {
       listPadding: "4px",
       itemMinHeight: 24,
@@ -51,6 +62,7 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
       iconSize: 18,
       iconGap: 8,
       radius: 8,
+      minWidth: 180,
     },
     medium: {
       listPadding: "6px",
@@ -60,6 +72,7 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
       iconSize: 20,
       iconGap: 10,
       radius: 10,
+      minWidth: 180,
     },
   };
 
@@ -128,7 +141,7 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
           };
 
           return {
-            minWidth: 180,
+            minWidth: size.minWidth,
             color: text,
 
             ...(isGlass ? glassStyles : standardStyles),
@@ -227,7 +240,12 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
 
             "& .MuiMenuItem-root .MuiListItemText-secondary": {
               color: secondaryText,
-              fontSize: size.itemFontSize === "0.8125rem" ? "0.72rem" : "0.75rem",
+              fontSize:
+                size.itemFontSize === "0.75rem"
+                  ? "0.6875rem"
+                  : size.itemFontSize === "0.8125rem"
+                    ? "0.72rem"
+                    : "0.75rem",
               lineHeight: 1.35,
             },
 
@@ -237,7 +255,7 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
             },
 
             "& .MuiDivider-root": {
-              margin: "4px 0",
+              margin: size.itemFontSize === "0.75rem" ? "2px 0" : "4px 0",
               borderColor: isGlass ? glassBorder : divider,
             },
           };

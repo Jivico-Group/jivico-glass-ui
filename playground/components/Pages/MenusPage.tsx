@@ -39,6 +39,7 @@ export const MenusPage: React.FC = () => {
   // Menu anchor states
   const [glassAnchor, setGlassAnchor] = useState<null | HTMLElement>(null);
   const [standardAnchor, setStandardAnchor] = useState<null | HTMLElement>(null);
+  const [sizeCompactAnchor, setSizeCompactAnchor] = useState<null | HTMLElement>(null);
   const [sizeSmallAnchor, setSizeSmallAnchor] = useState<null | HTMLElement>(null);
   const [colorAnchor, setColorAnchor] = useState<null | HTMLElement>(null);
 
@@ -50,7 +51,7 @@ export const MenusPage: React.FC = () => {
       title="Menu & Dropdown"
       description="Frosted glass dropdown menus (surface='glass') with 24px optical backdrop blur, specular border highlights, scale-adjusted sizes, and semantic color accents."
       category="Navigation"
-      badges={["surface='glass'", "size='small | medium'", "color palette", "Dropdowns & Contextual"]}
+      badges={["surface='glass'", "size='compact | small | medium'", "color palette", "Dropdowns & Contextual"]}
     >
       {/* 1. Frosted Glass Spotlight */}
       <DemoBlock
@@ -178,12 +179,17 @@ export const MenusPage: React.FC = () => {
         </Box>
       </DemoBlock>
 
-      {/* 2. Menu Sizes (Small vs Medium) */}
+      {/* 2. Menu Sizes (Compact vs Small vs Medium) */}
       <DemoBlock
         id="menu-sizes"
-        title="Menu Sizes (size='small' | 'medium')"
-        description="Choose between compact 34px height items (`size='small'`) or standard 42px height items (`size='medium'`)."
-        code={`// Small Menu (size="small" — 34px min-height)
+        title="Menu Sizes (size='compact' | 'small' | 'medium')"
+        description="Choose between ultra-compact 24-28px height items (`size='compact'`), compact 34px height items (`size='small'`), or standard 42px height items (`size='medium'`)."
+        code={`// Compact Menu (size="compact" — 24-28px height)
+<Menu size="compact">
+  <MenuItem><ListItemText primary="Compact item" /></MenuItem>
+</Menu>
+
+// Small Menu (size="small" — 34px min-height)
 <Menu size="small">
   <MenuItem><ListItemText primary="Small item" /></MenuItem>
 </Menu>
@@ -202,6 +208,15 @@ export const MenusPage: React.FC = () => {
           <Button
             variant="outlined"
             size="small"
+            onClick={(e) => setSizeCompactAnchor(e.currentTarget)}
+            startIcon={<Sliders size={14} />}
+          >
+            Compact Size Menu (24px)
+          </Button>
+
+          <Button
+            variant="outlined"
+            size="small"
             onClick={(e) => setSizeSmallAnchor(e.currentTarget)}
             startIcon={<Sliders size={16} />}
           >
@@ -216,6 +231,34 @@ export const MenusPage: React.FC = () => {
             Medium Size Menu (42px)
           </Button>
         </Stack>
+
+        {/* Compact Menu Instance */}
+        <Menu
+          anchorEl={sizeCompactAnchor}
+          open={Boolean(sizeCompactAnchor)}
+          onClose={() => setSizeCompactAnchor(null)}
+          size="compact"
+        >
+          <MenuItem onClick={() => setSizeCompactAnchor(null)}>
+            <ListItemIcon>
+              <Copy size={15} />
+            </ListItemIcon>
+            <ListItemText primary="Copy link" />
+          </MenuItem>
+          <MenuItem onClick={() => setSizeCompactAnchor(null)}>
+            <ListItemIcon>
+              <Share2 size={15} />
+            </ListItemIcon>
+            <ListItemText primary="Share profile" />
+          </MenuItem>
+          <Divider />
+          <MenuItem onClick={() => setSizeCompactAnchor(null)}>
+            <ListItemIcon>
+              <Trash2 size={15} />
+            </ListItemIcon>
+            <ListItemText primary="Delete" />
+          </MenuItem>
+        </Menu>
 
         {/* Small Menu Instance */}
         <Menu

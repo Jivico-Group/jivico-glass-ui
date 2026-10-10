@@ -321,6 +321,18 @@ import { BottomNavigation, BottomNavigationItem } from "jivico-glass-ui";
 - **List Sizes**: `small` | `medium` | `large`
 - **ListItemButton Colors**: `primary` | `secondary` | `accent` | `success` | `warning` | `error`
 
+#### `<Menu>` & `<MenuItem>`
+
+```tsx
+<Menu surface="glass" size="compact" color="accent">
+  <MenuItem><ListItemText primary="Action" /></MenuItem>
+</Menu>
+```
+
+- **`size`**: `"compact"` (20px/24px item height, 150px min-width) | `"small"` (24px/34px item height, 180px min-width) | `"medium"` (32px/42px item height, 180px min-width)
+- **`surface`**: `"standard"` | `"glass"`
+- **`color`**: `"primary"` | `"secondary"` | `"accent"` | `"success"` | `"warning"` | `"error"`
+
 #### `<AppBar>` & `<Toolbar>`
 
 - Translucent frosted header surface automatically styled with theme background blur and subtle bottom glass border.

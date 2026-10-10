@@ -27,6 +27,14 @@ export const getMenuItemOverrides = (palette: JivicoPalette, isDark: boolean): C
       gap: number;
     }
   > = {
+    compact: {
+      minHeight: 28,
+      padding: "4px 8px",
+      fontSize: "0.75rem",
+      radius: 6,
+      iconSize: 15,
+      gap: 6,
+    },
     small: {
       minHeight: 34,
       padding: "6px 10px",

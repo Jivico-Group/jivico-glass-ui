@@ -857,14 +857,28 @@ declare module "@mui/material/Menu" {
     color?: "primary" | "secondary" | "accent" | "success" | "warning" | "error";
     surface?: "standard" | "glass";
     variant?: "standard" | "glass";
-    size?: "small" | "medium";
+    size?: "compact" | "small" | "medium";
   }
 
   interface MenuProps {
     color?: "primary" | "secondary" | "accent" | "success" | "warning" | "error";
     surface?: "standard" | "glass";
     variant?: "standard" | "glass";
-    size?: "small" | "medium";
+    size?: "compact" | "small" | "medium";
+  }
+}
+
+declare module "@mui/material/MenuItem" {
+  interface MenuItemOwnProps {
+    color?: "primary" | "secondary" | "accent" | "success" | "warning" | "error";
+    surface?: "standard" | "glass";
+    size?: "compact" | "small" | "medium";
+  }
+
+  interface MenuItemProps {
+    color?: "primary" | "secondary" | "accent" | "success" | "warning" | "error";
+    surface?: "standard" | "glass";
+    size?: "compact" | "small" | "medium";
   }
 }
 
