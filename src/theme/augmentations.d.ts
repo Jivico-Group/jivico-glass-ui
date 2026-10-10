@@ -367,6 +367,18 @@ declare module "@mui/material/Skeleton" {
  * ============================================================
  */
 
+declare module "@mui/material/AppBar" {
+  interface AppBarOwnProps {
+    surface?: "standard" | "glass";
+    glass?: boolean | "true" | "false";
+  }
+
+  interface AppBarProps {
+    surface?: "standard" | "glass";
+    glass?: boolean | "true" | "false";
+  }
+}
+
 declare module "@mui/material/BottomNavigation" {
   interface BottomNavigationOwnProps {
     glass?: boolean | "true" | "false";

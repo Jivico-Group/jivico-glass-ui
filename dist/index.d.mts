@@ -721,6 +721,18 @@ declare module "@mui/material/Skeleton" {
  * ============================================================
  */
 
+declare module "@mui/material/AppBar" {
+  interface AppBarOwnProps {
+    surface?: "standard" | "glass";
+    glass?: boolean | "true" | "false";
+  }
+
+  interface AppBarProps {
+    surface?: "standard" | "glass";
+    glass?: boolean | "true" | "false";
+  }
+}
+
 declare module "@mui/material/BottomNavigation" {
   interface BottomNavigationOwnProps {
     glass?: boolean | "true" | "false";
@@ -1704,7 +1716,7 @@ declare const SectionHeader: react__default.FC<SectionHeaderProps>;
 interface HeaderAppBarProps {
     isScrolled: boolean;
 }
-declare const HeaderAppBar: _emotion_styled.StyledComponent<_mui_material.AppBarOwnProps & Omit<_mui_material.PaperOwnProps, "color" | "position" | "classes" | "square" | "elevation"> & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLElement>, HTMLElement>, "color" | "position" | "classes" | "className" | "style" | "children" | "sx" | "square" | "variant" | "elevation" | "enableColorOnDark"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & HeaderAppBarProps, {}, {}>;
+declare const HeaderAppBar: _emotion_styled.StyledComponent<_mui_material.AppBarOwnProps & Omit<_mui_material.PaperOwnProps, "color" | "position" | "classes" | "square" | "elevation"> & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLElement>, HTMLElement>, "glass" | "color" | "position" | "classes" | "className" | "style" | "children" | "sx" | "square" | "variant" | "elevation" | "surface" | "enableColorOnDark"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme> & HeaderAppBarProps, {}, {}>;
 
 declare const HeroSection: _emotion_styled.StyledComponent<_mui_system.BoxOwnProps<_mui_material.Theme> & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, keyof _mui_system.BoxOwnProps<_mui_material.Theme>> & _mui_system.MUIStyledCommonProps<_mui_material.Theme>, {}, {}>;
 declare const HeroTitle: _emotion_styled.StyledComponent<_mui_material.TypographyOwnProps & _mui_material_OverridableComponent.CommonProps & Omit<react.DetailedHTMLProps<react.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, "color" | "classes" | "className" | "style" | "children" | "sx" | "variant" | "noWrap" | "gutterBottom" | "align" | "variantMapping"> & _mui_system.MUIStyledCommonProps<_mui_material.Theme>, {}, {}>;
