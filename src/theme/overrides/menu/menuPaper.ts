@@ -35,6 +35,18 @@ export const getMenuPaperOverrides = (palette: JivicoPalette, isDark: boolean): 
             boxShadow: glassShadow,
           },
 
+          "&[data-jivico-menu-variant='standard'], &[data-jivico-surface='standard']": {
+            backgroundColor: `${standardBackground} !important`,
+            backgroundImage: "none !important",
+            backdropFilter: "none !important",
+            WebkitBackdropFilter: "none !important",
+            border: `1px solid ${divider} !important`,
+            borderRadius: "14px !important",
+            boxShadow: isDark
+              ? "0 14px 36px rgba(0, 0, 0, 0.40) !important"
+              : "0 14px 36px rgba(17, 17, 17, 0.12) !important",
+          },
+
           "& .MuiMenu-list": {
             color: text,
           },

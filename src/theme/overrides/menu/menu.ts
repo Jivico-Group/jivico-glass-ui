@@ -109,10 +109,15 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                   backgroundImage: "none",
                 }
               : {
-                  backgroundColor: standardBackground,
-                  border: `1px solid ${divider}`,
-                  borderRadius: size.radius + 4,
-                  backgroundImage: "none",
+                  backgroundColor: `${standardBackground} !important`,
+                  border: `1px solid ${divider} !important`,
+                  borderRadius: `${size.radius + 4}px !important`,
+                  backgroundImage: "none !important",
+                  backdropFilter: "none !important",
+                  WebkitBackdropFilter: "none !important",
+                  boxShadow: isDark
+                    ? "0 14px 36px rgba(0, 0, 0, 0.40) !important"
+                    : "0 14px 36px rgba(17, 17, 17, 0.12) !important",
                 }),
 
             "& .MuiMenu-list": {
