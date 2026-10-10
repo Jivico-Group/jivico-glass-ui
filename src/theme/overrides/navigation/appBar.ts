@@ -43,21 +43,16 @@ export const getAppBarOverrides = (palette: JivicoPalette, isDark: boolean): Com
           };
         },
 
-        colorTransparent: ({ ownerState }) => {
-          if (ownerState.surface === "standard" || ownerState.glass === false || ownerState.glass === "false") {
-            return {
-              backgroundColor: "transparent",
-              backgroundImage: "none",
-              backdropFilter: "none",
-              WebkitBackdropFilter: "none",
-              boxShadow: "none",
-              borderBottom: "none",
-            };
-          }
-
-          return {
-            ...glassAppBarRecipe(isDark),
-          };
+        colorTransparent: {
+          backgroundColor: "transparent !important",
+          backgroundImage: "none !important",
+          backdropFilter: "none !important",
+          WebkitBackdropFilter: "none !important",
+          boxShadow: "none !important",
+          borderTop: "none !important",
+          borderLeft: "none !important",
+          borderRight: "none !important",
+          borderBottom: "none !important",
         },
 
         colorDefault: ({ ownerState }) => {
