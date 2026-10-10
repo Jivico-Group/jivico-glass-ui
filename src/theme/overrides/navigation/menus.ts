@@ -6,7 +6,9 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
   MuiPopover: {
     styleOverrides: {
       paper: {
-        ...liquidGlassPopupRecipe(isDark),
+        "&:not(.MuiMenu-paper)": {
+          ...liquidGlassPopupRecipe(isDark),
+        },
       },
     },
   },
@@ -14,7 +16,6 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
   MuiMenu: {
     styleOverrides: {
       paper: {
-        ...liquidGlassPopupRecipe(isDark),
         maxHeight: "400px",
         overflowY: "auto",
       },

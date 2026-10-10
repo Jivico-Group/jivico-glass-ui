@@ -65,6 +65,12 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
 
   return {
     MuiMenu: {
+      defaultProps: {
+        surface: "standard",
+        color: "primary",
+        size: "medium",
+      } as any,
+
       styleOverrides: {
         root: {
           "& .MuiMenu-paper": {
@@ -83,42 +89,57 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
         },
 
         paper: ({ ownerState }) => {
-          const state = ownerState as {
+          const state = (ownerState || {}) as {
             color?: MenuColor;
             size?: MenuSize;
             surface?: MenuSurface;
           };
 
-          const color = colorMap[state.color ?? "primary"];
-          const surface = state.surface ?? (state as any).variant ?? "standard";
-          const size = sizeMap[state.size ?? "medium"];
+          const color = colorMap[state.color ?? "primary"] || colorMap.primary;
+          const surface: MenuSurface =
+            state.surface ??
+            (state as any)["data-jivico-surface"] ??
+            ((state as any).variant === "glass" ? "glass" : undefined) ??
+            ((state as any)["data-jivico-menu-variant"] as MenuSurface | undefined) ??
+            "standard";
+          const size = sizeMap[state.size ?? "medium"] || sizeMap.medium;
           const isGlass = surface === "glass";
+
+          const standardStyles = {
+            backgroundColor: `${standardBackground} !important`,
+            border: `1px solid ${divider} !important`,
+            borderRadius: `${size.radius + 4}px !important`,
+            backgroundImage: "none !important",
+            backdropFilter: "none !important",
+            WebkitBackdropFilter: "none !important",
+            boxShadow: isDark
+              ? "0 14px 36px rgba(0, 0, 0, 0.40) !important"
+              : "0 14px 36px rgba(17, 17, 17, 0.12) !important",
+          };
+
+          const glassStyles = {
+            backgroundColor: `${glassBackground} !important`,
+            border: `1px solid ${glassBorder} !important`,
+            borderRadius: `${size.radius + 4}px !important`,
+            backdropFilter: "blur(24px) saturate(180%) !important",
+            WebkitBackdropFilter: "blur(24px) saturate(180%) !important",
+            boxShadow: `${glassShadow} !important`,
+            backgroundImage: "none !important",
+          };
 
           return {
             minWidth: 180,
             color: text,
 
-            ...(isGlass
-              ? {
-                  backgroundColor: glassBackground,
-                  border: `1px solid ${glassBorder}`,
-                  borderRadius: size.radius + 4,
-                  backdropFilter: "blur(24px) saturate(180%)",
-                  WebkitBackdropFilter: "blur(24px) saturate(180%)",
-                  boxShadow: glassShadow,
-                  backgroundImage: "none",
-                }
-              : {
-                  backgroundColor: `${standardBackground} !important`,
-                  border: `1px solid ${divider} !important`,
-                  borderRadius: `${size.radius + 4}px !important`,
-                  backgroundImage: "none !important",
-                  backdropFilter: "none !important",
-                  WebkitBackdropFilter: "none !important",
-                  boxShadow: isDark
-                    ? "0 14px 36px rgba(0, 0, 0, 0.40) !important"
-                    : "0 14px 36px rgba(17, 17, 17, 0.12) !important",
-                }),
+            ...(isGlass ? glassStyles : standardStyles),
+
+            "&[data-jivico-menu-variant='glass'], &[data-jivico-surface='glass']": glassStyles,
+
+            "&[data-jivico-menu-variant='standard'], &[data-jivico-surface='standard']": standardStyles,
+
+            "&.MuiPopover-paper": {
+              ...(isGlass ? glassStyles : standardStyles),
+            },
 
             "& .MuiMenu-list": {
               padding: size.listPadding,

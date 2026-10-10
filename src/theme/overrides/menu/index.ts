@@ -6,10 +6,9 @@ import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
 export const getMenuRootOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
-  ...getMenuOverrides(palette, isDark),
   ...getMenuItemOverrides(palette, isDark),
   ...getMenuListOverrides(palette, isDark),
-  ...getMenuPaperOverrides(palette, isDark),
+  ...getMenuOverrides(palette, isDark),
 });
 
 export type { MenuColor, MenuSurface, MenuSize } from "./menu.js";
