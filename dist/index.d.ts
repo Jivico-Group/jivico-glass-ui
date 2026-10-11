@@ -2623,6 +2623,10 @@ interface VisualViewerImageContext {
     active: boolean;
     isThumbnail: boolean;
     isFullscreen: boolean;
+    /** Whether the image is currently zoomed */
+    isZoomed?: boolean;
+    /** Alias for isZoomed */
+    zoomed?: boolean;
 }
 interface VisualViewerNavigationContext {
     disabled: boolean;
