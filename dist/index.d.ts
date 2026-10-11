@@ -2641,6 +2641,12 @@ interface VisualViewerProps {
     defaultActiveIndex?: number;
     /** Called whenever active item changes. */
     onActiveIndexChange?: (index: number, item: VisualViewerItem) => void;
+    /** Controlled fullscreen open state. */
+    isFullscreen?: boolean;
+    /** Initial fullscreen state. */
+    defaultFullscreen?: boolean;
+    /** Called whenever fullscreen open state changes. */
+    onFullscreenChange?: (isFullscreen: boolean) => void;
     /**
      * Custom image renderer.
      * Useful for Next.js Image.
@@ -2689,6 +2695,11 @@ interface VisualViewerProps {
     thumbnailGap?: number;
     /** Gap between thumbnail rail and image. */
     mediaGap?: number;
+    /**
+     * Position of the viewer control buttons (fullscreen, zoom).
+     * Default: "top-right"
+     */
+    controlsPosition?: "top-right" | "bottom-left" | "bottom-right";
     /** Show fullscreen button. */
     showFullscreenButton?: boolean;
     /** Show zoom button. */
@@ -2721,7 +2732,7 @@ interface VisualViewerProps {
     "aria-label"?: string;
 }
 
-declare const VisualViewer: ({ items, activeIndex: controlledActiveIndex, defaultActiveIndex, onActiveIndexChange, renderImage, renderThumbnail, height, minHeight, maxHeight, aspectRatio, thumbnailPosition, navigation, swipe, mouseDrag, keyboard, fullscreen, zoom, objectFit, loop, radius, thumbnailWidth, thumbnailSize, thumbnailGap, mediaGap, showFullscreenButton, showZoomButton, showRemainingCount, maxVisibleThumbnails, renderPreviousButton, renderNextButton, renderFullscreenButton, renderZoomButton, rootRef, sx, className, "aria-label": ariaLabel, }: VisualViewerProps) => react__default.JSX.Element | null;
+declare const VisualViewer: ({ items, activeIndex: controlledActiveIndex, defaultActiveIndex, onActiveIndexChange, isFullscreen: controlledFullscreen, defaultFullscreen, onFullscreenChange, renderImage, renderThumbnail, height, minHeight, maxHeight, aspectRatio, thumbnailPosition, navigation, swipe, mouseDrag, keyboard, fullscreen, zoom, objectFit, loop, radius, thumbnailWidth, thumbnailSize, thumbnailGap, mediaGap, controlsPosition, showFullscreenButton, showZoomButton, showRemainingCount, maxVisibleThumbnails, renderPreviousButton, renderNextButton, renderFullscreenButton, renderZoomButton, rootRef, sx, className, "aria-label": ariaLabel, }: VisualViewerProps) => react__default.JSX.Element | null;
 
 type GalleryColumns = {
     xs?: number;

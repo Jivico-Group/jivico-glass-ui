@@ -48,6 +48,10 @@ export const VisualViewer = ({
   defaultActiveIndex = 0,
   onActiveIndexChange,
 
+  isFullscreen: controlledFullscreen,
+  defaultFullscreen = false,
+  onFullscreenChange,
+
   renderImage,
   renderThumbnail,
 
@@ -78,6 +82,8 @@ export const VisualViewer = ({
 
   thumbnailGap = DEFAULT_THUMBNAIL_GAP,
   mediaGap = DEFAULT_MEDIA_GAP,
+
+  controlsPosition = "top-right",
 
   showFullscreenButton = true,
   showZoomButton = true,
@@ -119,7 +125,19 @@ export const VisualViewer = ({
 
   const [isZoomed, setIsZoomed] = useState(false);
 
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [internalFullscreen, setInternalFullscreen] = useState(defaultFullscreen);
+  const isFullscreen = controlledFullscreen !== undefined ? controlledFullscreen : internalFullscreen;
+
+  const setFullscreenState = useCallback(
+    (nextState: boolean | ((prev: boolean) => boolean)) => {
+      const resolved = typeof nextState === "function" ? nextState(isFullscreen) : nextState;
+      if (controlledFullscreen === undefined) {
+        setInternalFullscreen(resolved);
+      }
+      onFullscreenChange?.(resolved);
+    },
+    [controlledFullscreen, isFullscreen, onFullscreenChange],
+  );
 
   const rootElementRef = useRef<HTMLDivElement | null>(null);
 
@@ -242,13 +260,13 @@ export const VisualViewer = ({
    */
 
   const exitFullscreen = useCallback(() => {
-    setIsFullscreen(false);
-  }, []);
+    setFullscreenState(false);
+  }, [setFullscreenState]);
 
   const toggleFullscreen = useCallback(() => {
     if (!fullscreen) return;
-    setIsFullscreen((prev) => !prev);
-  }, [fullscreen]);
+    setFullscreenState((prev) => !prev);
+  }, [fullscreen, setFullscreenState]);
 
   /*
    * =========================================================
@@ -954,12 +972,26 @@ export const VisualViewer = ({
           <Box
             sx={{
               position: "absolute",
-              right: {
-                xs: 12,
-                md: 18,
-              },
-              top: resolvedThumbnailPosition === "bottom" ? { xs: 12, md: 16 } : { xs: 12, md: "auto" },
-              bottom: resolvedThumbnailPosition === "bottom" ? "auto" : { xs: "auto", md: 18 },
+              ...(controlsPosition === "bottom-left"
+                ? {
+                    left: { xs: 12, md: 18 },
+                    bottom: { xs: 12, md: 18 },
+                    top: "auto",
+                    right: "auto",
+                  }
+                : controlsPosition === "bottom-right"
+                ? {
+                    right: { xs: 12, md: 18 },
+                    bottom: { xs: 12, md: 18 },
+                    top: "auto",
+                    left: "auto",
+                  }
+                : {
+                    right: { xs: 12, md: 18 },
+                    top: resolvedThumbnailPosition === "bottom" ? { xs: 12, md: 16 } : { xs: 12, md: "auto" },
+                    bottom: resolvedThumbnailPosition === "bottom" ? "auto" : { xs: "auto", md: 18 },
+                    left: "auto",
+                  }),
               zIndex: 10,
               display: "flex",
               alignItems: "center",

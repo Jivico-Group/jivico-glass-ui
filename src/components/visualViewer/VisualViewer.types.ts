@@ -60,6 +60,12 @@ export interface VisualViewerProps {
   defaultActiveIndex?: number;
   /** Called whenever active item changes. */
   onActiveIndexChange?: (index: number, item: VisualViewerItem) => void;
+  /** Controlled fullscreen open state. */
+  isFullscreen?: boolean;
+  /** Initial fullscreen state. */
+  defaultFullscreen?: boolean;
+  /** Called whenever fullscreen open state changes. */
+  onFullscreenChange?: (isFullscreen: boolean) => void;
   /**
    * Custom image renderer.
    * Useful for Next.js Image.
@@ -108,6 +114,11 @@ export interface VisualViewerProps {
   thumbnailGap?: number;
   /** Gap between thumbnail rail and image. */
   mediaGap?: number;
+  /**
+   * Position of the viewer control buttons (fullscreen, zoom).
+   * Default: "top-right"
+   */
+  controlsPosition?: "top-right" | "bottom-left" | "bottom-right";
   /** Show fullscreen button. */
   showFullscreenButton?: boolean;
   /** Show zoom button. */
