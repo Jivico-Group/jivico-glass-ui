@@ -1,14 +1,24 @@
 import { SxProps } from "@mui/material";
 
 export type ExpanseItem = {
-  id: string;
-  title: string; // ORIGINALS, PETS, SKYLINE etc
-  tagline?: string; // Crafted Without Compromise
+  // Primary backend business section fields
+  name: string;
+  value?: string;
+  path?: string;
+  isActive?: boolean;
   description?: string;
-  badgeText?: string; // JIVICO ORIGINALS
+  tagline?: string;
+  badgeText?: string;
   coverImage: string;
   mobileCoverImage?: string;
-  href: string;
+  displayOrder?: number;
+  isNavVisible?: boolean;
+  isFeaturedOnHome?: boolean;
+
+  // Optional legacy/generic aliases
+  id?: string;
+  title?: string;
+  href?: string;
   isFeatured?: boolean;
 };
 

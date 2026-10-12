@@ -3015,14 +3015,21 @@ interface LoadingShowcaseProps {
 declare const LoadingShowcase: react__default.FC<LoadingShowcaseProps>;
 
 type ExpanseItem = {
-    id: string;
-    title: string;
-    tagline?: string;
+    name: string;
+    value?: string;
+    path?: string;
+    isActive?: boolean;
     description?: string;
+    tagline?: string;
     badgeText?: string;
     coverImage: string;
     mobileCoverImage?: string;
-    href: string;
+    displayOrder?: number;
+    isNavVisible?: boolean;
+    isFeaturedOnHome?: boolean;
+    id?: string;
+    title?: string;
+    href?: string;
     isFeatured?: boolean;
 };
 type ExpanseLayout = "single" | "dual" | "feature-two" | "quad" | "feature-four";
