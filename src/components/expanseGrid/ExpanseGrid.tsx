@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { ArrowRight } from "lucide-react";
-import { Box, Typography, useMediaQuery } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import type { ExpanseGridProps, ExpanseItem, ExpanseLayout } from "./ExpanseGrid.types";
 
 const getRadius = (r: ExpanseGridProps["radius"]) => {
@@ -78,8 +78,6 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
           display: "block",
           "& img": { transition: "transform 1.2s cubic-bezier(0.16,1,0.3,1)", willChange: "transform" },
           "&:hover img": { transform: "scale(1.05)" },
-          // Fixed parent hover targeting the child CTA class
-          "&:hover .cta-button": { bgcolor: "#fff", color: "#111", borderColor: "#fff" },
         }}
       >
         <Box sx={{ position: "absolute", inset: 0, zIndex: 1 }}>
@@ -156,31 +154,9 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
               {item.description}
             </Typography>
           )}
-
-          <Box
-            className="cta-button"
-            sx={{
-              mt: 3,
-              alignSelf: "flex-start",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 1.25,
-              px: 2.5,
-              py: 1,
-              borderRadius: 999,
-              border: "1px solid rgba(255,255,255,0.25)",
-              bgcolor: "transparent",
-              backdropFilter: "blur(4px)",
-              fontFamily: '"Space Grotesk", sans-serif',
-              fontSize: "0.75rem",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              transition: "all 300ms cubic-bezier(0.16,1,0.3,1)",
-            }}
-          >
-            Explore {displayName} <ArrowRight size={14} />
-          </Box>
+          <Button size="large" variant="outlined" color="glass" endIcon={<ArrowRight />}>
+            Explore {displayName}
+          </Button>
         </Box>
       </Box>
     );
