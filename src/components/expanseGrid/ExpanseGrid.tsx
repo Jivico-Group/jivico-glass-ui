@@ -50,21 +50,40 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
           cursor: "pointer",
           textDecoration: "none",
           display: "block",
-          "&:hover img": { transform: "scale(1.05)" },
+          "& img": {
+            transition: "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1), filter 800ms ease",
+            willChange: "transform",
+          },
+          "&:hover img": {
+            transform: "scale(1.06)",
+          },
         }}
       >
         <Box sx={{ position: "absolute", inset: 0, zIndex: 1 }}>
           {ImageComponent ? (
-            <ImageComponent src={item.coverImage} alt={item.title} fill style={{ objectFit: "cover" }} />
+            <ImageComponent
+              src={item.coverImage}
+              alt={item.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              style={{ objectFit: "cover" }}
+            />
           ) : (
             <Box
               component="img"
               src={isMobile && item.mobileCoverImage ? item.mobileCoverImage : item.coverImage}
               alt={item.title}
-              sx={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 700ms cubic-bezier(0.22,1,0.36,1)" }}
+              sx={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           )}
-          <Box sx={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.05) 20%, rgba(0,0,0,0.72) 100%)" }} />
+          <Box
+            sx={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(180deg, rgba(0,0,0,0.05) 20%, rgba(0,0,0,0.72) 100%)",
+              transition: "opacity 600ms ease",
+            }}
+          />
         </Box>
 
         <Box
