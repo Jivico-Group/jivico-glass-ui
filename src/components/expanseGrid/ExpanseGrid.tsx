@@ -50,13 +50,8 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
           cursor: "pointer",
           textDecoration: "none",
           display: "block",
-          "& img": {
-            transition: "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1), filter 800ms ease",
-            willChange: "transform",
-          },
-          "&:hover img": {
-            transform: "scale(1.06)",
-          },
+          "& img": { transition: "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1), filter 800ms ease", willChange: "transform" },
+          "&:hover img": { transform: "scale(1.06)" },
         }}
       >
         <Box sx={{ position: "absolute", inset: 0, zIndex: 1 }}>
@@ -99,9 +94,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
           }}
         >
           {item.badgeText && (
-            <Typography
-              sx={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#B08D57", mb: 0.75 }}
-            >
+            <Typography sx={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#FFF", mb: 0.75 }}>
               {item.badgeText}
             </Typography>
           )}
