@@ -3029,13 +3029,14 @@ type ExpanseLayout = "single" | "dual" | "feature-two" | "quad" | "feature-four"
 interface ExpanseGridProps {
     items: ExpanseItem[];
     ImageComponent?: any;
-    radius?: "square" | "soft" | "rounded";
+    radius?: "square" | "soft" | "rounded" | "corner";
     gap?: number;
     onNavigate?: (item: ExpanseItem) => void;
     className?: string;
+    sx?: SxProps$1;
 }
 
-declare const ExpanseGrid: ({ items, ImageComponent, radius, gap, onNavigate, className }: ExpanseGridProps) => react__default.JSX.Element | null;
+declare const ExpanseGrid: ({ items, ImageComponent, radius, gap, onNavigate, className, sx }: ExpanseGridProps) => react.JSX.Element | null;
 
 type ResponsiveBreakpoint = "xs" | "sm" | "md" | "lg" | "xl";
 interface ResponsiveState {

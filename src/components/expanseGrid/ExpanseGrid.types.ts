@@ -1,3 +1,5 @@
+import { SxProps } from "@mui/material";
+
 export type ExpanseItem = {
   id: string;
   title: string; // ORIGINALS, PETS, SKYLINE etc
@@ -19,4 +21,5 @@ export interface ExpanseGridProps {
   gap?: number;
   onNavigate?: (item: ExpanseItem) => void;
   className?: string;
+  sx?: SxProps;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { ArrowRight } from "lucide-react";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import type { ExpanseGridProps, ExpanseLayout } from "./ExpanseGrid.types";
@@ -12,7 +12,7 @@ const getRadius = (r: ExpanseGridProps["radius"]) => {
   return 16;
 };
 
-export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2, onNavigate, className }: ExpanseGridProps) => {
+export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2, onNavigate, className, sx }: ExpanseGridProps) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const safeItems = useMemo(() => items.filter(Boolean).slice(0, 5), [items]);
@@ -113,7 +113,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
   };
 
   return (
-    <Box className={className} sx={{ width: "100%", maxWidth: 1280, mx: "auto" }}>
+    <Box className={className} sx={{ width: "100%", mx: "auto", ...sx }}>
       {/* 1 ITEM */}
       {layout === "single" && <Card item={featured} featured />}
       {/* 2 ITEMS */}
