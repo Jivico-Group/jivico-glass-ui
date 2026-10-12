@@ -22,16 +22,7 @@ function GithubIcon({ size = 18 }: { size?: number }) {
 
 function SunIcon() {
   return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="5" />
       <line x1="12" y1="1" x2="12" y2="3" />
       <line x1="12" y1="21" x2="12" y2="23" />
@@ -47,16 +38,7 @@ function SunIcon() {
 
 function MoonIcon() {
   return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
     </svg>
   );
@@ -67,44 +49,21 @@ export const Header: React.FC<HeaderProps> = ({ onToggleMobileSidebar, onOpenSea
   const isDark = mode === "dark";
 
   return (
-    <AppBar
-      position="sticky"
-      sx={{
-        zIndex: (theme) => theme.zIndex.drawer + 1,
-      }}
-    >
+    <AppBar position="sticky" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Toolbar sx={{ minHeight: "60px !important", px: { xs: 2, md: 3 } }}>
         {/* Mobile menu hamburger */}
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="open drawer"
-          onClick={onToggleMobileSidebar}
-          sx={{ mr: 1.5, display: { md: "none" } }}
-        >
+        <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={onToggleMobileSidebar} sx={{ mr: 1.5, display: { md: "none" } }}>
           <MenuIcon size={20} />
         </IconButton>
 
         {/* Brand Logo & Title */}
-        <Box
-          component="a"
-          href="#overview"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1.2,
-            textDecoration: "none",
-            color: "inherit",
-          }}
-        >
+        <Box component="a" href="#overview" sx={{ display: "flex", alignItems: "center", gap: 1.2, textDecoration: "none", color: "inherit" }}>
           <Box
             sx={{
               width: 32,
               height: 32,
               borderRadius: "10px",
-              background: isDark
-                ? "linear-gradient(135deg, #FFFFFF 0%, #A0A0A0 100%)"
-                : "linear-gradient(135deg, #111111 0%, #444444 100%)",
+              background: isDark ? "linear-gradient(135deg, #FFFFFF 0%, #A0A0A0 100%)" : "linear-gradient(135deg, #111111 0%, #444444 100%)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -117,15 +76,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleMobileSidebar, onOpenSea
           >
             J
           </Box>
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: 700,
-              fontSize: "1.05rem",
-              letterSpacing: "-0.01em",
-              display: { xs: "none", sm: "block" },
-            }}
-          >
+          <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.05rem", letterSpacing: "-0.01em", display: { xs: "none", sm: "block" } }}>
             Jivico Glass UI
           </Typography>
           <Chip
@@ -206,9 +157,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleMobileSidebar, onOpenSea
               mr: 1,
               borderRadius: "9px",
               border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.1)"}`,
-              "&:hover": {
-                backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)",
-              },
+              "&:hover": { backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)" },
             }}
           >
             <GithubIcon size={18} />
@@ -226,9 +175,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleMobileSidebar, onOpenSea
               height: 36,
               borderRadius: "9px",
               border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.1)"}`,
-              "&:hover": {
-                backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)",
-              },
+              "&:hover": { backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)" },
             }}
           >
             <Box

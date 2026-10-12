@@ -26,12 +26,7 @@ import { Gallery } from "jivico-glass-ui";
 Use `getImage` and let `Gallery` render the native HTML `<img>`.
 
 ```tsx
-<Gallery
-  items={products}
-  getKey={(item) => item.id}
-  getImage={(item) => item.image}
-  getImageAlt={(item) => item.name}
-/>
+<Gallery items={products} getKey={(item) => item.id} getImage={(item) => item.image} getImageAlt={(item) => item.name} />
 ```
 
 Default layout:
@@ -61,17 +56,7 @@ lg: 4
 # 2. Responsive Columns
 
 ```tsx
-<Gallery
-  items={products}
-  columns={{
-    xs: 2,
-    sm: 2,
-    md: 3,
-    lg: 4,
-    xl: 4,
-  }}
-  getImage={(item) => item.image}
-/>
+<Gallery items={products} columns={{ xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }} getImage={(item) => item.image} />
 ```
 
 For example:
@@ -146,9 +131,7 @@ import Image from "next/image";
         (max-width: 1200px) 33vw,
         25vw
       "
-      style={{
-        objectFit: "cover",
-      }}
+      style={{ objectFit: "cover" }}
     />
   )}
   renderBlock={({ item }) => <ProductInfo product={item} />}
@@ -170,14 +153,7 @@ For example, wishlist:
   items={products}
   getImage={(item) => item.image}
   renderOverlay={({ item }) => (
-    <IconButton
-      sx={{
-        position: "absolute",
-        top: 12,
-        right: 12,
-      }}
-      onClick={() => addToWishlist(item)}
-    >
+    <IconButton sx={{ position: "absolute", top: 12, right: 12 }} onClick={() => addToWishlist(item)}>
       <Heart size={18} />
     </IconButton>
   )}
@@ -217,32 +193,12 @@ This gives you a complete ready-made product-card structure while still letting 
 ```tsx
 <Gallery
   items={products}
-  columns={{
-    xs: 2,
-    md: 3,
-    lg: 4,
-  }}
+  columns={{ xs: 2, md: 3, lg: 4 }}
   imageAspectRatio="4 / 5"
   radius="soft"
-  renderImage={({ item }) => (
-    <Image
-      src={item.image}
-      alt={item.name}
-      fill
-      sizes="(max-width: 768px) 50vw, 25vw"
-      style={{
-        objectFit: "cover",
-      }}
-    />
-  )}
+  renderImage={({ item }) => <Image src={item.image} alt={item.name} fill sizes="(max-width: 768px) 50vw, 25vw" style={{ objectFit: "cover" }} />}
   renderOverlay={({ item }) => (
-    <IconButton
-      sx={{
-        position: "absolute",
-        top: 12,
-        right: 12,
-      }}
-    >
+    <IconButton sx={{ position: "absolute", top: 12, right: 12 }}>
       <Heart size={18} />
     </IconButton>
   )}
@@ -265,14 +221,7 @@ This gives you a complete ready-made product-card structure while still letting 
 When you don't want Gallery's image/block structure at all, use `renderItem`.
 
 ```tsx
-<Gallery
-  items={products}
-  columns={{
-    xs: 2,
-    md: 4,
-  }}
-  renderItem={({ item, index }) => <ProductCard product={item} index={index} />}
-/>
+<Gallery items={products} columns={{ xs: 2, md: 4 }} renderItem={({ item, index }) => <ProductCard product={item} index={index} />} />
 ```
 
 When `renderItem` is supplied, it becomes the **complete item renderer**.
@@ -473,10 +422,7 @@ Gallery uses:
 ### Next.js
 
 ```tsx
-<Gallery
-  items={products}
-  renderImage={({ item }) => <Image src={item.image} alt={item.name} fill sizes="(max-width: 768px) 50vw, 25vw" />}
-/>
+<Gallery items={products} renderImage={({ item }) => <Image src={item.image} alt={item.name} fill sizes="(max-width: 768px) 50vw, 25vw" />} />
 ```
 
 So the UI library stays framework-agnostic.
@@ -491,12 +437,7 @@ For your current Jivico Originals catalog, I'd use:
 <Gallery
   items={products}
   getKey={(item) => item.id}
-  columns={{
-    xs: 2,
-    sm: 2,
-    md: 3,
-    lg: 4,
-  }}
+  columns={{ xs: 2, sm: 2, md: 3, lg: 4 }}
   gap={2}
   imageAspectRatio="4 / 5"
   radius="soft"
@@ -510,9 +451,7 @@ For your current Jivico Originals catalog, I'd use:
         (max-width: 1200px) 33vw,
         25vw
       "
-      style={{
-        objectFit: "cover",
-      }}
+      style={{ objectFit: "cover" }}
     />
   )}
   renderOverlay={({ item }) => <WishlistButton product={item} />}

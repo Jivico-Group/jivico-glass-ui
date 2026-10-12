@@ -10,59 +10,26 @@ type SkeletonRadius = "square" | "small" | "medium" | "large" | "rounded" | "pil
 type GlassIntensity = "subtle" | "medium" | "strong" | "ultra";
 
 export const getSkeletonOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
-  const radiusMap: Record<SkeletonRadius, number> = {
-    square: 0,
-    small: 6,
-    medium: 10,
-    large: 14,
-    rounded: 20,
-    pill: 9999,
-  };
+  const radiusMap: Record<SkeletonRadius, number> = { square: 0, small: 6, medium: 10, large: 14, rounded: 20, pill: 9999 };
 
-  const blurMap: Record<GlassIntensity, string> = {
-    subtle: "blur(8px)",
-    medium: "blur(14px)",
-    strong: "blur(20px)",
-    ultra: "blur(28px)",
-  };
+  const blurMap: Record<GlassIntensity, string> = { subtle: "blur(8px)", medium: "blur(14px)", strong: "blur(20px)", ultra: "blur(28px)" };
 
-  const colors: Record<
-    SkeletonColor,
-    {
-      main: string;
-    }
-  > = {
-    primary: {
-      main: palette.primary.main,
-    },
+  const colors: Record<SkeletonColor, { main: string }> = {
+    primary: { main: palette.primary.main },
 
-    secondary: {
-      main: palette.secondary.main,
-    },
+    secondary: { main: palette.secondary.main },
 
-    accent: {
-      main: palette.accent.main,
-    },
+    accent: { main: palette.accent.main },
 
-    success: {
-      main: palette.success.main,
-    },
+    success: { main: palette.success.main },
 
-    info: {
-      main: palette.info.main,
-    },
+    info: { main: palette.info.main },
 
-    warning: {
-      main: palette.warning.main,
-    },
+    warning: { main: palette.warning.main },
 
-    error: {
-      main: palette.error.main,
-    },
+    error: { main: palette.error.main },
 
-    glass: {
-      main: palette.glass.main,
-    },
+    glass: { main: palette.glass.main },
   };
 
   return {
@@ -73,9 +40,7 @@ export const getSkeletonOverrides = (palette: JivicoPalette, isDark: boolean): C
        * Custom Jivico props receive their defaults
        * inside styleOverrides.
        */
-      defaultProps: {
-        animation: "wave",
-      },
+      defaultProps: { animation: "wave" },
 
       styleOverrides: {
         root: ({ ownerState }) => {
@@ -105,9 +70,7 @@ export const getSkeletonOverrides = (palette: JivicoPalette, isDark: boolean): C
            */
           if (appearance === "tonal") {
             backgroundColor =
-              color === "glass"
-                ? palette.glass.skeletonBg
-                : `color-mix(in srgb, ${selected.main} ${isDark ? "16%" : "9%"}, transparent)`;
+              color === "glass" ? palette.glass.skeletonBg : `color-mix(in srgb, ${selected.main} ${isDark ? "16%" : "9%"}, transparent)`;
           }
 
           /*
@@ -144,12 +107,7 @@ export const getSkeletonOverrides = (palette: JivicoPalette, isDark: boolean): C
 
             WebkitBackdropFilter: appearance === "glass" ? `saturate(180%) ${blurMap[glassIntensity]}` : undefined,
 
-            boxShadow:
-              appearance === "glass"
-                ? isDark
-                  ? "inset 0 1px 0 rgba(255,255,255,0.07)"
-                  : "inset 0 1px 0 rgba(255,255,255,0.55)"
-                : "none",
+            boxShadow: appearance === "glass" ? (isDark ? "inset 0 1px 0 rgba(255,255,255,0.07)" : "inset 0 1px 0 rgba(255,255,255,0.55)") : "none",
 
             /*
              * Remove MUI's default background blending
@@ -212,20 +170,14 @@ export const getSkeletonOverrides = (palette: JivicoPalette, isDark: boolean): C
              * radius system while retaining MUI's
              * natural height behavior.
              */
-            "&.MuiSkeleton-text": {
-              borderRadius: radiusMap[radius],
-            },
+            "&.MuiSkeleton-text": { borderRadius: radiusMap[radius] },
 
             /*
              * Rounded / rectangular skeletons.
              */
-            "&.MuiSkeleton-rounded": {
-              borderRadius: radiusMap[radius],
-            },
+            "&.MuiSkeleton-rounded": { borderRadius: radiusMap[radius] },
 
-            "&.MuiSkeleton-rectangular": {
-              borderRadius: radiusMap[radius],
-            },
+            "&.MuiSkeleton-rectangular": { borderRadius: radiusMap[radius] },
           };
         },
       },

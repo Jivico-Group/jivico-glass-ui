@@ -13,28 +13,15 @@ export const getMenuListOverrides = (palette: JivicoPalette, isDark: boolean): C
           color: text,
           outline: "none",
 
-          "&:focus": {
-            outline: "none",
-          },
+          "&:focus": { outline: "none" },
 
-          "& .MuiDivider-root": {
-            borderColor: divider,
-          },
+          "& .MuiDivider-root": { borderColor: divider },
 
-          "& .MuiMenuItem-root + .MuiDivider-root": {
-            marginTop: 4,
-          },
+          "& .MuiMenuItem-root + .MuiDivider-root": { marginTop: 4 },
 
-          "& .MuiDivider-root + .MuiMenuItem-root": {
-            marginTop: 4,
-          },
+          "& .MuiDivider-root + .MuiMenuItem-root": { marginTop: 4 },
 
-          "& .MuiMenuItem-root": {
-            "&:focus-visible": {
-              outline: `2px solid ${palette.primary.main}`,
-              outlineOffset: -2,
-            },
-          },
+          "& .MuiMenuItem-root": { "&:focus-visible": { outline: `2px solid ${palette.primary.main}`, outlineOffset: -2 } },
         },
       },
     },

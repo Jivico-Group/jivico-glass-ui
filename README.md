@@ -79,11 +79,7 @@ npm install github:Jivico-Group/jivico-glass-ui
 Or in `package.json`:
 
 ```json
-{
-  "dependencies": {
-    "jivico-glass-ui": "github:Jivico-Group/jivico-glass-ui"
-  }
-}
+{ "dependencies": { "jivico-glass-ui": "github:Jivico-Group/jivico-glass-ui" } }
 ```
 
 ## Option 2 — Local Workspace
@@ -130,10 +126,7 @@ import { JivicoFontPreload } from "jivico-glass-ui";
 import Providers from "@/components/providers/Providers";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Jivico Platform",
-  description: "Jivico Ecosystem Application",
-};
+export const metadata: Metadata = { title: "Jivico Platform", description: "Jivico Ecosystem Application" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -618,29 +611,11 @@ export function AnalyticsWidget() {
   const { mode, resolvedMode, toggleGlassMode } = useGlassMode();
 
   return (
-    <GlassPanel
-      elevation={2}
-      sx={{
-        p: 4,
-        borderRadius: "24px",
-        maxWidth: 480,
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          mb: 2,
-        }}
-      >
+    <GlassPanel elevation={2} sx={{ p: 4, borderRadius: "24px", maxWidth: 480 }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
         <ChipSoft label="Live Insights" icon={<Sparkles size={14} />} />
 
-        <Button
-          onClick={toggleGlassMode}
-          startIcon={resolvedMode === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-          size="small"
-        >
+        <Button onClick={toggleGlassMode} startIcon={resolvedMode === "dark" ? <Sun size={16} /> : <Moon size={16} />} size="small">
           {resolvedMode === "dark" ? "Light" : "Dark"}
         </Button>
       </Box>

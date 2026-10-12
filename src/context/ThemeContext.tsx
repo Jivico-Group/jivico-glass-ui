@@ -49,11 +49,7 @@ export interface GlassModeProviderProps {
   storageKey?: string;
 }
 
-export function GlassModeProvider({
-  children,
-  defaultMode = "light",
-  storageKey = "jivico-theme-mode",
-}: GlassModeProviderProps) {
+export function GlassModeProvider({ children, defaultMode = "light", storageKey = "jivico-theme-mode" }: GlassModeProviderProps) {
   /**
    * User-selected appearance preference.
    */
@@ -115,11 +111,7 @@ export function GlassModeProvider({
    * Helper to perform smooth View Transitions if supported by browser
    */
   const withViewTransition = (callback: () => void) => {
-    if (
-      typeof document !== "undefined" &&
-      "startViewTransition" in document &&
-      typeof (document as any).startViewTransition === "function"
-    ) {
+    if (typeof document !== "undefined" && "startViewTransition" in document && typeof (document as any).startViewTransition === "function") {
       (document as any).startViewTransition(() => {
         callback();
       });
@@ -167,15 +159,7 @@ export function GlassModeProvider({
     });
   };
 
-  const value = useMemo<GlassModeContextType>(
-    () => ({
-      mode,
-      resolvedMode,
-      toggleGlassMode,
-      setGlassMode,
-    }),
-    [mode, resolvedMode],
-  );
+  const value = useMemo<GlassModeContextType>(() => ({ mode, resolvedMode, toggleGlassMode, setGlassMode }), [mode, resolvedMode]);
 
   return <GlassModeContext.Provider value={value}>{children}</GlassModeContext.Provider>;
 }

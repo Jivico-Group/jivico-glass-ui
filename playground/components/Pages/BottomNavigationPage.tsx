@@ -125,12 +125,7 @@ export const BottomNavigationPage: React.FC = () => {
               label={
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
                   Frosted Glass:{" "}
-                  <Box
-                    component="span"
-                    sx={{
-                      color: instaGlass ? "primary.main" : "text.secondary",
-                    }}
-                  >
+                  <Box component="span" sx={{ color: instaGlass ? "primary.main" : "text.secondary" }}>
                     {instaGlass ? "ON (glass)" : "OFF (solid)"}
                   </Box>
                 </Typography>
@@ -138,14 +133,7 @@ export const BottomNavigationPage: React.FC = () => {
             />
 
             <FormControlLabel
-              control={
-                <Switch
-                  checked={instaFloating}
-                  onChange={(e) => setInstaFloating(e.target.checked)}
-                  color="glass"
-                  size="small"
-                />
-              }
+              control={<Switch checked={instaFloating} onChange={(e) => setInstaFloating(e.target.checked)} color="glass" size="small" />}
               label={
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
                   Dock Mode:{" "}
@@ -157,14 +145,7 @@ export const BottomNavigationPage: React.FC = () => {
             />
 
             <FormControlLabel
-              control={
-                <Switch
-                  checked={instaLabels}
-                  onChange={(e) => setInstaLabels(e.target.checked)}
-                  color="glass"
-                  size="small"
-                />
-              }
+              control={<Switch checked={instaLabels} onChange={(e) => setInstaLabels(e.target.checked)} color="glass" size="small" />}
               label={
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
                   Labels:{" "}
@@ -176,13 +157,7 @@ export const BottomNavigationPage: React.FC = () => {
             />
           </Stack>
 
-          <Chip
-            label="Interactive Demo"
-            color="primary"
-            size="small"
-            variant="outlined"
-            sx={{ fontWeight: 700, fontSize: "0.7rem" }}
-          />
+          <Chip label="Interactive Demo" color="primary" size="small" variant="outlined" sx={{ fontWeight: 700, fontSize: "0.7rem" }} />
         </Box>
 
         {/* Mobile Viewport Wrapper */}
@@ -240,14 +215,7 @@ export const BottomNavigationPage: React.FC = () => {
                   gap: 1,
                 }}
               >
-                <Box
-                  sx={{
-                    width: 8,
-                    height: 8,
-                    borderRadius: "50%",
-                    bgcolor: "#10B981",
-                  }}
-                />
+                <Box sx={{ width: 8, height: 8, borderRadius: "50%", bgcolor: "#10B981" }} />
               </Box>
 
               <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
@@ -275,9 +243,7 @@ export const BottomNavigationPage: React.FC = () => {
                   fontWeight: 700,
                   fontSize: "1.6rem",
                   letterSpacing: -0.5,
-                  background: isDark
-                    ? "linear-gradient(45deg, #FFF 30%, #CCC 90%)"
-                    : "linear-gradient(45deg, #111 30%, #444 90%)",
+                  background: isDark ? "linear-gradient(45deg, #FFF 30%, #CCC 90%)" : "linear-gradient(45deg, #111 30%, #444 90%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                 }}
@@ -300,14 +266,7 @@ export const BottomNavigationPage: React.FC = () => {
             </Box>
 
             {/* Scrollable Feed Content */}
-            <Box
-              sx={{
-                height: "calc(100% - 110px)",
-                overflowY: "auto",
-                pb: 12,
-                "::-webkit-scrollbar": { display: "none" },
-              }}
-            >
+            <Box sx={{ height: "calc(100% - 110px)", overflowY: "auto", pb: 12, "::-webkit-scrollbar": { display: "none" } }}>
               {/* Stories Tray */}
               <Box
                 sx={{
@@ -321,42 +280,13 @@ export const BottomNavigationPage: React.FC = () => {
                 }}
               >
                 {[
-                  {
-                    name: "Your story",
-                    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100",
-                    active: false,
-                  },
-                  {
-                    name: "@jivico.official",
-                    img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100",
-                    active: true,
-                  },
-                  {
-                    name: "alex_design",
-                    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100",
-                    active: true,
-                  },
-                  {
-                    name: "glass_ui",
-                    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100",
-                    active: true,
-                  },
-                  {
-                    name: "jivico",
-                    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
-                    active: true,
-                  },
+                  { name: "Your story", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100", active: false },
+                  { name: "@jivico.official", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100", active: true },
+                  { name: "alex_design", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100", active: true },
+                  { name: "glass_ui", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100", active: true },
+                  { name: "jivico", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100", active: true },
                 ].map((story, i) => (
-                  <Box
-                    key={i}
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      gap: 0.5,
-                      flexShrink: 0,
-                    }}
-                  >
+                  <Box key={i} sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 0.5, flexShrink: 0 }}>
                     <Box
                       sx={{
                         p: "2px",
@@ -366,14 +296,7 @@ export const BottomNavigationPage: React.FC = () => {
                           : "transparent",
                       }}
                     >
-                      <Avatar
-                        src={story.img}
-                        sx={{
-                          width: 56,
-                          height: 56,
-                          border: `2px solid ${isDark ? "#000" : "#FFF"}`,
-                        }}
-                      />
+                      <Avatar src={story.img} sx={{ width: 56, height: 56, border: `2px solid ${isDark ? "#000" : "#FFF"}` }} />
                     </Box>
                     <Typography
                       variant="caption"
@@ -396,29 +319,11 @@ export const BottomNavigationPage: React.FC = () => {
               {/* Feed Post Card */}
               <Box sx={{ mt: 1 }}>
                 {/* Post Header */}
-                <Box
-                  sx={{
-                    px: 2,
-                    py: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
+                <Box sx={{ px: 2, py: 1, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
-                    <Avatar
-                      src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100"
-                      sx={{ width: 34, height: 34 }}
-                    />
+                    <Avatar src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100" sx={{ width: 34, height: 34 }} />
                     <Box>
-                      <Typography
-                        variant="subtitle2"
-                        sx={{
-                          fontWeight: 700,
-                          fontSize: "0.82rem",
-                          lineHeight: 1.1,
-                        }}
-                      >
+                      <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: "0.82rem", lineHeight: 1.1 }}>
                         @jivico.official
                       </Typography>
                       <Typography variant="caption" sx={{ fontSize: "0.68rem", opacity: 0.6 }}>
@@ -485,16 +390,7 @@ export const BottomNavigationPage: React.FC = () => {
                 </Box>
 
                 {/* Post Action Buttons */}
-                <Box
-                  sx={{
-                    px: 2,
-                    pt: 1.5,
-                    pb: 0.5,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
+                <Box sx={{ px: 2, pt: 1.5, pb: 0.5, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <Stack direction="row" spacing={1.5}>
                     <IconButton
                       size="small"
@@ -530,15 +426,7 @@ export const BottomNavigationPage: React.FC = () => {
                     </Box>
                     Experience the future of mobile navigation with Jivico Glass UI floating action docks! 🚀✨
                   </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color: "text.secondary",
-                      opacity: 0.7,
-                      mt: 0.5,
-                      display: "block",
-                    }}
-                  >
+                  <Typography variant="caption" sx={{ color: "text.secondary", opacity: 0.7, mt: 0.5, display: "block" }}>
                     View all 142 comments • 2 HOURS AGO
                   </Typography>
                 </Box>
@@ -575,12 +463,7 @@ export const BottomNavigationPage: React.FC = () => {
                           ? "0 20px 48px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.12)"
                           : "0 16px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08)",
                       }
-                    : {
-                        borderRadius: 0,
-                        borderLeft: "none",
-                        borderRight: "none",
-                        borderBottom: "none",
-                      }),
+                    : { borderRadius: 0, borderLeft: "none", borderRight: "none", borderBottom: "none" }),
                 }}
               >
                 <BottomNavigationAction label="Feed" icon={<Home size={22} />} />
@@ -693,23 +576,11 @@ const [query, setQuery] = useState('');
         >
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
             <FormControlLabel
-              control={
-                <Switch
-                  checked={isSearchExpanded}
-                  onChange={(e) => setIsSearchExpanded(e.target.checked)}
-                  color="glass"
-                  size="small"
-                />
-              }
+              control={<Switch checked={isSearchExpanded} onChange={(e) => setIsSearchExpanded(e.target.checked)} color="glass" size="small" />}
               label={
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
                   Expand Width:{" "}
-                  <Box
-                    component="span"
-                    sx={{
-                      color: isSearchExpanded ? "primary.main" : "text.secondary",
-                    }}
-                  >
+                  <Box component="span" sx={{ color: isSearchExpanded ? "primary.main" : "text.secondary" }}>
                     {isSearchExpanded ? "Expanded (560px)" : "Collapsed (360px)"}
                   </Box>
                 </Typography>
@@ -856,9 +727,7 @@ const [query, setQuery] = useState('');
                 cursor: "pointer",
                 flexShrink: 0,
                 transition: "all 0.2s ease",
-                "&:hover": {
-                  bgcolor: isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(0, 0, 0, 0.12)",
-                },
+                "&:hover": { bgcolor: isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(0, 0, 0, 0.12)" },
               }}
             >
               <Avatar
@@ -874,14 +743,7 @@ const [query, setQuery] = useState('');
               >
                 B
               </Avatar>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: "0.85rem",
-                  letterSpacing: -0.2,
-                }}
-              >
+              <Typography variant="body2" sx={{ fontWeight: 700, fontSize: "0.85rem", letterSpacing: -0.2 }}>
                 Balenciaga
               </Typography>
             </Box>
@@ -892,15 +754,7 @@ const [query, setQuery] = useState('');
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setIsSearchExpanded(true)}
-              sx={{
-                flex: 1,
-                fontSize: "0.875rem",
-                color: "inherit",
-                "& input": {
-                  px: 1,
-                  py: 0.5,
-                },
-              }}
+              sx={{ flex: 1, fontSize: "0.875rem", color: "inherit", "& input": { px: 1, py: 0.5 } }}
             />
 
             {/* Right Action Icons */}
@@ -913,31 +767,16 @@ const [query, setQuery] = useState('');
 
               <IconButton
                 size="small"
-                sx={{
-                  color: "inherit",
-                  opacity: 0.85,
-                  transition: "transform 0.2s ease",
-                  "&:hover": { transform: "scale(1.1)" },
-                }}
+                sx={{ color: "inherit", opacity: 0.85, transition: "transform 0.2s ease", "&:hover": { transform: "scale(1.1)" } }}
               >
                 <Scan size={18} />
               </IconButton>
 
               <IconButton
                 size="small"
-                sx={{
-                  color: "inherit",
-                  opacity: 0.85,
-                  transition: "transform 0.2s ease",
-                  "&:hover": { transform: "scale(1.1)" },
-                }}
+                sx={{ color: "inherit", opacity: 0.85, transition: "transform 0.2s ease", "&:hover": { transform: "scale(1.1)" } }}
               >
-                <Loader2
-                  size={18}
-                  style={{
-                    animation: "spin 4s linear infinite",
-                  }}
-                />
+                <Loader2 size={18} style={{ animation: "spin 4s linear infinite" }} />
               </IconButton>
 
               {isSearchExpanded && (
@@ -948,15 +787,7 @@ const [query, setQuery] = useState('');
                     setIsSearchExpanded(false);
                     setSearchQuery("");
                   }}
-                  sx={{
-                    ml: 0.5,
-                    px: 1.5,
-                    borderRadius: 9999,
-                    fontSize: "0.75rem",
-                    fontWeight: 700,
-                    textTransform: "none",
-                    color: "primary.main",
-                  }}
+                  sx={{ ml: 0.5, px: 1.5, borderRadius: 9999, fontSize: "0.75rem", fontWeight: 700, textTransform: "none", color: "primary.main" }}
                 >
                   Cancel
                 </Button>
@@ -986,13 +817,7 @@ const [query, setQuery] = useState('');
             >
               <Typography
                 variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: 0.8,
-                  color: "text.secondary",
-                  fontSize: "0.68rem",
-                }}
+                sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.8, color: "text.secondary", fontSize: "0.68rem" }}
               >
                 Trending Searches
               </Typography>
@@ -1009,9 +834,7 @@ const [query, setQuery] = useState('');
                       fontSize: "0.75rem",
                       cursor: "pointer",
                       bgcolor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.05)",
-                      "&:hover": {
-                        bgcolor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(0, 0, 0, 0.1)",
-                      },
+                      "&:hover": { bgcolor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(0, 0, 0, 0.1)" },
                     }}
                   />
                 ))}
@@ -1049,13 +872,7 @@ const [query, setQuery] = useState('');
       >
         <Box sx={{ mb: 3 }}>
           <FormControlLabel
-            control={
-              <Switch
-                checked={glass === "true"}
-                onChange={(e) => setInstaGlass(e.target.checked ? "true" : "false")}
-                color="glass"
-              />
-            }
+            control={<Switch checked={glass === "true"} onChange={(e) => setInstaGlass(e.target.checked ? "true" : "false")} color="glass" />}
             label={
               <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                 Surface Mode:{" "}
@@ -1130,12 +947,7 @@ const [query, setQuery] = useState('');
 
           {/* Floating Dock Instance */}
           {floatingOpen && (
-            <BottomNavigation
-              value={navValue}
-              onChange={(_, val) => setNavValue(val)}
-              glass={"true"}
-              placement={activePlacement}
-            >
+            <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} glass={"true"} placement={activePlacement}>
               <BottomNavigationAction label="Home" icon={<Home size={20} />} />
               <BottomNavigationAction label="Search" icon={<Search size={20} />} />
               <BottomNavigationAction label="AI" icon={<Sparkles size={20} />} />
@@ -1178,34 +990,11 @@ const [query, setQuery] = useState('');
           }}
         >
           {/* Glass Icon-Only Small */}
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1.5,
-            }}
-          >
-            <Typography
-              variant="caption"
-              sx={{
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                opacity: 0.6,
-                textAlign: "center",
-              }}
-            >
+          <Box sx={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5 }}>
+            <Typography variant="caption" sx={{ fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, opacity: 0.6, textAlign: "center" }}>
               Frosted Glass Pill — Small (size="small", showLabels={false})
             </Typography>
-            <BottomNavigation
-              value={navValue}
-              onChange={(_, val) => setNavValue(val)}
-              showLabels={false}
-              size="small"
-              glass={"true"}
-            >
+            <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} showLabels={false} size="small" glass={"true"}>
               <BottomNavigationAction icon={<Home size={18} />} />
               <BottomNavigationAction icon={<Search size={18} />} />
               <BottomNavigationAction icon={<Sparkles size={18} />} />
@@ -1215,35 +1004,12 @@ const [query, setQuery] = useState('');
           </Box>
 
           {/* Glass Icon-Only Medium */}
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1.5,
-            }}
-          >
-            <Typography
-              variant="caption"
-              sx={{
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                opacity: 0.6,
-                textAlign: "center",
-              }}
-            >
+          <Box sx={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5 }}>
+            <Typography variant="caption" sx={{ fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, opacity: 0.6, textAlign: "center" }}>
               Frosted Glass Pill — Medium (size="medium", showLabels={false})
             </Typography>
 
-            <BottomNavigation
-              value={navValue}
-              onChange={(_, val) => setNavValue(val)}
-              showLabels={false}
-              size="medium"
-              glass={"true"}
-            >
+            <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} showLabels={false} size="medium" glass={"true"}>
               <BottomNavigationAction icon={<Home size={22} />} />
               <BottomNavigationAction icon={<Search size={22} />} />
               <BottomNavigationAction icon={<Sparkles size={22} />} />
@@ -1253,34 +1019,11 @@ const [query, setQuery] = useState('');
           </Box>
 
           {/* Normal Solid Icon-Only Small */}
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1.5,
-            }}
-          >
-            <Typography
-              variant="caption"
-              sx={{
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                opacity: 0.6,
-                textAlign: "center",
-              }}
-            >
+          <Box sx={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5 }}>
+            <Typography variant="caption" sx={{ fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, opacity: 0.6, textAlign: "center" }}>
               Solid Surface Pill — Small (size="small", showLabels={false})
             </Typography>
-            <BottomNavigation
-              value={navValue}
-              onChange={(_, val) => setNavValue(val)}
-              showLabels={false}
-              size="small"
-              glass={"false"}
-            >
+            <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} showLabels={false} size="small" glass={"false"}>
               <BottomNavigationAction icon={<Home size={18} />} />
               <BottomNavigationAction icon={<Search size={18} />} />
               <BottomNavigationAction icon={<Sparkles size={18} />} />
@@ -1324,24 +1067,8 @@ const [query, setQuery] = useState('');
           }}
         >
           {/* Small Dock */}
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1.5,
-            }}
-          >
-            <Typography
-              variant="caption"
-              sx={{
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                opacity: 0.6,
-              }}
-            >
+          <Box sx={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5 }}>
+            <Typography variant="caption" sx={{ fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, opacity: 0.6 }}>
               Small Dock (size="small" - 48px height)
             </Typography>
             <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} size="small" glass={"true"}>
@@ -1353,24 +1080,8 @@ const [query, setQuery] = useState('');
           </Box>
 
           {/* Medium Dock */}
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1.5,
-            }}
-          >
-            <Typography
-              variant="caption"
-              sx={{
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                opacity: 0.6,
-              }}
-            >
+          <Box sx={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5 }}>
+            <Typography variant="caption" sx={{ fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, opacity: 0.6 }}>
               Medium Dock (size="medium" - 64px height)
             </Typography>
             <BottomNavigation value={navValue} onChange={(_, val) => setNavValue(val)} size="medium" glass={"true"}>

@@ -103,39 +103,11 @@ export const DataDisplayPage: React.FC = () => {
               />
             </Box>
 
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-around",
-                flexWrap: "wrap",
-                gap: 4,
-              }}
-            >
+            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap", gap: 4 }}>
               {/* Glass Squircle Avatar with Pro Badge */}
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 1,
-                }}
-              >
-                <Badge
-                  badgeContent="PRO"
-                  color="glass"
-                  overlap="circular"
-                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                >
-                  <Avatar
-                    variant="rounded"
-                    sx={{
-                      width: 64,
-                      height: 64,
-                      fontSize: "1.3rem",
-                      fontWeight: 800,
-                    }}
-                  >
+              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+                <Badge badgeContent="PRO" color="glass" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
+                  <Avatar variant="rounded" sx={{ width: 64, height: 64, fontSize: "1.3rem", fontWeight: 800 }}>
                     JV
                   </Avatar>
                 </Badge>
@@ -145,20 +117,8 @@ export const DataDisplayPage: React.FC = () => {
               </Box>
 
               {/* Photo Avatar with Online Aura Dot */}
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 1,
-                }}
-              >
-                <Badge
-                  variant="dot"
-                  color="success"
-                  overlap="circular"
-                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                >
+              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+                <Badge variant="dot" color="success" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
                   <Avatar
                     alt="Sophia Chen"
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80"
@@ -171,22 +131,9 @@ export const DataDisplayPage: React.FC = () => {
               </Box>
 
               {/* Pure Frosted Glass Circular Avatar with Notification Count */}
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 1,
-                }}
-              >
+              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
                 <Badge badgeContent={8} color="primary" overlap="circular">
-                  <Avatar
-                    sx={{
-                      width: 64,
-                      height: 64,
-                      bgcolor: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.75)",
-                    }}
-                  >
+                  <Avatar sx={{ width: 64, height: 64, bgcolor: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.75)" }}>
                     <User size={28} />
                   </Avatar>
                 </Badge>
@@ -196,27 +143,11 @@ export const DataDisplayPage: React.FC = () => {
               </Box>
 
               {/* Overlapping Glass AvatarGroup */}
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 1,
-                }}
-              >
+              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
                 <AvatarGroup max={4} sx={{ "& .MuiAvatar-root": { width: 46, height: 46 } }}>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
-                  />
-                  <Avatar
-                    alt="Travis Howard"
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80"
-                  />
-                  <Avatar
-                    alt="Cindy Baker"
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80"
-                  />
+                  <Avatar alt="Remy Sharp" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" />
+                  <Avatar alt="Travis Howard" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" />
+                  <Avatar alt="Cindy Baker" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" />
                   <Avatar>+6</Avatar>
                 </AvatarGroup>
                 <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
@@ -242,15 +173,7 @@ export const DataDisplayPage: React.FC = () => {
 // Square Variant
 <Avatar variant="square">SQ</Avatar>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            gap: 4,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 4, width: "100%" }}>
           {/* Circular */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Avatar sx={{ width: 48, height: 48 }}>CL</Avatar>
@@ -309,44 +232,16 @@ export const DataDisplayPage: React.FC = () => {
 <Avatar sx={{ width: 56, height: 56, fontSize: '1.2rem' }}>LG</Avatar>
 <Avatar sx={{ width: 72, height: 72, fontSize: '1.5rem' }}>XL</Avatar>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 3,
-            flexWrap: "wrap",
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", alignItems: "center", gap: 3, flexWrap: "wrap", width: "100%" }}>
           <Box sx={{ textAlign: "center" }}>
-            <Avatar
-              sx={{
-                width: 28,
-                height: 28,
-                fontSize: "0.75rem",
-                mx: "auto",
-                mb: 1,
-              }}
-            >
-              XS
-            </Avatar>
+            <Avatar sx={{ width: 28, height: 28, fontSize: "0.75rem", mx: "auto", mb: 1 }}>XS</Avatar>
             <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
               28px
             </Typography>
           </Box>
 
           <Box sx={{ textAlign: "center" }}>
-            <Avatar
-              sx={{
-                width: 36,
-                height: 36,
-                fontSize: "0.85rem",
-                mx: "auto",
-                mb: 1,
-              }}
-            >
-              SM
-            </Avatar>
+            <Avatar sx={{ width: 36, height: 36, fontSize: "0.85rem", mx: "auto", mb: 1 }}>SM</Avatar>
             <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
               36px
             </Typography>
@@ -360,34 +255,14 @@ export const DataDisplayPage: React.FC = () => {
           </Box>
 
           <Box sx={{ textAlign: "center" }}>
-            <Avatar
-              sx={{
-                width: 56,
-                height: 56,
-                fontSize: "1.2rem",
-                mx: "auto",
-                mb: 1,
-              }}
-            >
-              LG
-            </Avatar>
+            <Avatar sx={{ width: 56, height: 56, fontSize: "1.2rem", mx: "auto", mb: 1 }}>LG</Avatar>
             <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
               56px
             </Typography>
           </Box>
 
           <Box sx={{ textAlign: "center" }}>
-            <Avatar
-              sx={{
-                width: 72,
-                height: 72,
-                fontSize: "1.5rem",
-                mx: "auto",
-                mb: 1,
-              }}
-            >
-              XL
-            </Avatar>
+            <Avatar sx={{ width: 72, height: 72, fontSize: "1.5rem", mx: "auto", mb: 1 }}>XL</Avatar>
             <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
               72px
             </Typography>
@@ -410,24 +285,9 @@ export const DataDisplayPage: React.FC = () => {
   <Bell size={22} />
 </Badge>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 5,
-            flexWrap: "wrap",
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap", width: "100%" }}>
           {/* Glass Badge */}
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1,
-            }}
-          >
+          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
             <Badge badgeContent="GLASS" color="glass">
               <Box
                 sx={{
@@ -446,14 +306,7 @@ export const DataDisplayPage: React.FC = () => {
           </Box>
 
           {/* Primary Badge */}
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1,
-            }}
-          >
+          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
             <Badge badgeContent={12} color="primary">
               <Box
                 sx={{
@@ -472,14 +325,7 @@ export const DataDisplayPage: React.FC = () => {
           </Box>
 
           {/* Error Badge */}
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1,
-            }}
-          >
+          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
             <Badge badgeContent={99} color="error">
               <Box
                 sx={{
@@ -498,14 +344,7 @@ export const DataDisplayPage: React.FC = () => {
           </Box>
 
           {/* Success Badge */}
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1,
-            }}
-          >
+          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
             <Badge badgeContent="OK" color="success">
               <Box
                 sx={{
@@ -524,14 +363,7 @@ export const DataDisplayPage: React.FC = () => {
           </Box>
 
           {/* Max Overflow Badge */}
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1,
-            }}
-          >
+          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
             <Badge badgeContent={120} max={99} color="primary">
               <Box
                 sx={{
@@ -569,47 +401,20 @@ export const DataDisplayPage: React.FC = () => {
   <Avatar>GL</Avatar>
 </Badge>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 4,
-            flexWrap: "wrap",
-          }}
-        >
-          <Badge
-            variant="dot"
-            color="success"
-            overlap="circular"
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          >
+        <Box sx={{ display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>
+          <Badge variant="dot" color="success" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
             <Avatar sx={{ width: 48, height: 48 }}>ON</Avatar>
           </Badge>
 
-          <Badge
-            variant="dot"
-            color="warning"
-            overlap="circular"
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          >
+          <Badge variant="dot" color="warning" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
             <Avatar sx={{ width: 48, height: 48 }}>AW</Avatar>
           </Badge>
 
-          <Badge
-            variant="dot"
-            color="error"
-            overlap="circular"
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          >
+          <Badge variant="dot" color="error" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
             <Avatar sx={{ width: 48, height: 48 }}>DN</Avatar>
           </Badge>
 
-          <Badge
-            variant="dot"
-            color="glass"
-            overlap="circular"
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          >
+          <Badge variant="dot" color="glass" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
             <Avatar sx={{ width: 48, height: 48 }}>GL</Avatar>
           </Badge>
         </Box>

@@ -33,10 +33,7 @@ import { Spotlight } from "jivico-glass-ui";
   image="/images/new-drop.jpg"
   title="NEW DROP"
   description="Fresh pieces, made to stand out."
-  action={{
-    label: "SHOP NOW",
-    href: "/collections/new-drop",
-  }}
+  action={{ label: "SHOP NOW", href: "/collections/new-drop" }}
 />
 ```
 
@@ -186,14 +183,7 @@ interface SpotlightAction {
 ```
 
 ```tsx
-<Spotlight
-  image="/images/drop.jpg"
-  title="NEW DROP"
-  action={{
-    label: "SHOP NOW",
-    href: "/collections/new-drop",
-  }}
-/>
+<Spotlight image="/images/drop.jpg" title="NEW DROP" action={{ label: "SHOP NOW", href: "/collections/new-drop" }} />
 ```
 
 ---
@@ -241,10 +231,7 @@ Content is positioned over the image with a subtle cinematic gradient overlay.
   eyebrow="JIVICO ORIGINALS"
   title="SAME SOUL. NEW ESSENTIALS."
   description="A new generation of everyday pieces."
-  action={{
-    label: "EXPLORE ORIGINALS",
-    href: "/originals",
-  }}
+  action={{ label: "EXPLORE ORIGINALS", href: "/originals" }}
   variant="overlay"
 />
 ```
@@ -268,10 +255,7 @@ Image and content are displayed side-by-side in a balanced grid layout. On mobil
   eyebrow="JIVICO FREESTYLE"
   title="MAKE IT YOURS."
   description="Turn your image into something uniquely yours."
-  action={{
-    label: "START CUSTOMIZING",
-    href: "/freestyle",
-  }}
+  action={{ label: "START CUSTOMIZING", href: "/freestyle" }}
   variant="split"
 />
 ```
@@ -294,10 +278,7 @@ Clean vertical stacked flow with image on top and typography below.
   eyebrow="ORIGINALS"
   title="ESSENTIALS, REDEFINED."
   description="Built for everyday expression."
-  action={{
-    label: "EXPLORE",
-    href: "/originals",
-  }}
+  action={{ label: "EXPLORE", href: "/originals" }}
   variant="minimal"
 />
 ```
@@ -334,14 +315,7 @@ Controls explicit container height.
 Responsive height:
 
 ```tsx
-<Spotlight
-  image="/images/offer.jpg"
-  height={{
-    xs: 200,
-    md: 360,
-    lg: 480,
-  }}
-/>
+<Spotlight image="/images/offer.jpg" height={{ xs: 200, md: 360, lg: 480 }} />
 ```
 
 ---
@@ -391,10 +365,7 @@ export function SpotlightHero({ data }) {
       eyebrow={data.eyebrow}
       title={data.title}
       description={data.description}
-      action={{
-        label: data.actionLabel,
-        href: data.href,
-      }}
+      action={{ label: data.actionLabel, href: data.href }}
       href={data.href}
       onNavigate={() => {
         router.push(data.href);

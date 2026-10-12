@@ -23,11 +23,7 @@ const resolveControlColors = (colorName: string, isDark: boolean, palette: Jivic
     };
   }
   if (colorName === "accent") {
-    return {
-      active: palette.accent.main,
-      glow: palette.accent.glow,
-      track: palette.accent.main,
-    };
+    return { active: palette.accent.main, glow: palette.accent.glow, track: palette.accent.main };
   }
   if (colorName === "default") {
     return {
@@ -59,23 +55,13 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
           color: isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.3)",
           padding: 8,
           transition: "color 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
-          "&:hover": {
-            backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)",
-          },
+          "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)" },
           "&.Mui-checked, &.MuiCheckbox-indeterminate": {
             color: resolved.active,
-            ...(isGlass && {
-              filter: isDark
-                ? "drop-shadow(0 2px 6px rgba(255, 255, 255, 0.25))"
-                : "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18))",
-            }),
+            ...(isGlass && { filter: isDark ? "drop-shadow(0 2px 6px rgba(255, 255, 255, 0.25))" : "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18))" }),
           },
-          "&.Mui-focusVisible": {
-            boxShadow: `0 0 0 3px ${resolved.glow}`,
-          },
-          "&.Mui-disabled": {
-            color: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)",
-          },
+          "&.Mui-focusVisible": { boxShadow: `0 0 0 3px ${resolved.glow}` },
+          "&.Mui-disabled": { color: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)" },
         };
       },
     },
@@ -92,23 +78,13 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
           color: isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.3)",
           padding: 8,
           transition: "color 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
-          "&:hover": {
-            backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)",
-          },
+          "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)" },
           "&.Mui-checked": {
             color: resolved.active,
-            ...(isGlass && {
-              filter: isDark
-                ? "drop-shadow(0 2px 6px rgba(255, 255, 255, 0.25))"
-                : "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18))",
-            }),
+            ...(isGlass && { filter: isDark ? "drop-shadow(0 2px 6px rgba(255, 255, 255, 0.25))" : "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18))" }),
           },
-          "&.Mui-focusVisible": {
-            boxShadow: `0 0 0 3px ${resolved.glow}`,
-          },
-          "&.Mui-disabled": {
-            color: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)",
-          },
+          "&.Mui-focusVisible": { boxShadow: `0 0 0 3px ${resolved.glow}` },
+          "&.Mui-disabled": { color: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)" },
         };
       },
     },
@@ -145,27 +121,12 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
                 backgroundColor: resolved.track,
                 opacity: 1,
                 border: isGlass ? `1px solid ${isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(0, 0, 0, 0.2)"}` : 0,
-                ...(isGlass && {
-                  backdropFilter: "blur(12px)",
-                  WebkitBackdropFilter: "blur(12px)",
-                }),
+                ...(isGlass && { backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }),
               },
-              "&.Mui-disabled": {
-                color: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)",
-                "& + .MuiSwitch-track": {
-                  opacity: 0.3,
-                },
-              },
+              "&.Mui-disabled": { color: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)", "& + .MuiSwitch-track": { opacity: 0.3 } },
             },
-            "&.Mui-disabled": {
-              color: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)",
-              "& + .MuiSwitch-track": {
-                opacity: 0.3,
-              },
-            },
-            "&:hover": {
-              backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)",
-            },
+            "&.Mui-disabled": { color: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)", "& + .MuiSwitch-track": { opacity: 0.3 } },
+            "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)" },
           },
           "& .MuiSwitch-thumb": {
             width: 18,
@@ -173,17 +134,14 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
             borderRadius: 9,
             boxShadow: isDark ? "0 2px 6px rgba(0, 0, 0, 0.6)" : "0 2px 4px rgba(0, 0, 0, 0.2)",
             transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
-            ...(isGlass && {
-              border: isDark ? "1px solid rgba(255, 255, 255, 0.4)" : "1px solid rgba(255, 255, 255, 0.8)",
-            }),
+            ...(isGlass && { border: isDark ? "1px solid rgba(255, 255, 255, 0.4)" : "1px solid rgba(255, 255, 255, 0.8)" }),
           },
           "& .MuiSwitch-track": {
             borderRadius: 24 / 2,
             backgroundColor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(17, 17, 17, 0.14)",
             opacity: 1,
             border: isDark ? "1px solid rgba(255, 255, 255, 0.08)" : "1px solid rgba(0, 0, 0, 0.06)",
-            transition:
-              "background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+            transition: "background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
             backdropFilter: "blur(8px)",
             WebkitBackdropFilter: "blur(8px)",
           },
@@ -193,20 +151,9 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
         width: 34,
         height: 18,
         padding: 0,
-        "& .MuiSwitch-switchBase": {
-          padding: 2,
-          "&.Mui-checked": {
-            transform: "translateX(16px)",
-          },
-        },
-        "& .MuiSwitch-thumb": {
-          width: 14,
-          height: 14,
-          borderRadius: 7,
-        },
-        "& .MuiSwitch-track": {
-          borderRadius: 18 / 2,
-        },
+        "& .MuiSwitch-switchBase": { padding: 2, "&.Mui-checked": { transform: "translateX(16px)" } },
+        "& .MuiSwitch-thumb": { width: 14, height: 14, borderRadius: 7 },
+        "& .MuiSwitch-track": { borderRadius: 18 / 2 },
       },
     },
   },
@@ -229,22 +176,11 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
             border: `2px solid ${resolved.active}`,
             boxShadow: isDark ? "0 2px 6px rgba(0, 0, 0, 0.5)" : "0 2px 6px rgba(0, 0, 0, 0.15)",
             transition: "box-shadow 0.15s ease",
-            "&:hover, &.Mui-focusVisible": {
-              boxShadow: `0px 0px 0px 6px ${resolved.glow}`,
-            },
-            "&.Mui-active": {
-              boxShadow: `0px 0px 0px 9px ${resolved.glow}`,
-            },
-            "&::before": {
-              display: "none",
-            },
+            "&:hover, &.Mui-focusVisible": { boxShadow: `0px 0px 0px 6px ${resolved.glow}` },
+            "&.Mui-active": { boxShadow: `0px 0px 0px 9px ${resolved.glow}` },
+            "&::before": { display: "none" },
           },
-          "& .MuiSlider-track": {
-            border: "none",
-            height: 6,
-            borderRadius: 3,
-            backgroundColor: resolved.track,
-          },
+          "& .MuiSlider-track": { border: "none", height: 6, borderRadius: 3, backgroundColor: resolved.track },
           "& .MuiSlider-rail": {
             opacity: 1,
             backgroundColor: isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.12)",
@@ -270,11 +206,7 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
         marginRight: 0,
         gap: "10px",
         userSelect: "none",
-        "& .MuiFormControlLabel-label": {
-          fontSize: "0.875rem",
-          fontWeight: 500,
-          color: palette.text.primary,
-        },
+        "& .MuiFormControlLabel-label": { fontSize: "0.875rem", fontWeight: 500, color: palette.text.primary },
       },
     },
   },
@@ -290,9 +222,7 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
         "&.Mui-selected": {
           backgroundColor: palette.secondary.main,
           color: palette.secondary.contrastText,
-          "&:hover": {
-            backgroundColor: palette.secondary.hover,
-          },
+          "&:hover": { backgroundColor: palette.secondary.hover },
         },
       },
     },

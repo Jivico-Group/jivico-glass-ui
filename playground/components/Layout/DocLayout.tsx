@@ -12,13 +12,7 @@ interface DocLayoutProps {
   children: React.ReactNode;
 }
 
-export const DocLayout: React.FC<DocLayoutProps> = ({
-  activeRoute,
-  onRouteChange,
-  tocItems = [],
-  onOpenSearch,
-  children,
-}) => {
+export const DocLayout: React.FC<DocLayoutProps> = ({ activeRoute, onRouteChange, tocItems = [], onOpenSearch, children }) => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   return (
@@ -29,12 +23,7 @@ export const DocLayout: React.FC<DocLayoutProps> = ({
       {/* Main Body Shell */}
       <Box sx={{ display: "flex", flex: 1 }}>
         {/* Left Sidebar */}
-        <Sidebar
-          activeId={activeRoute}
-          onSelect={onRouteChange}
-          mobileOpen={mobileSidebarOpen}
-          onCloseMobile={() => setMobileSidebarOpen(false)}
-        />
+        <Sidebar activeId={activeRoute} onSelect={onRouteChange} mobileOpen={mobileSidebarOpen} onCloseMobile={() => setMobileSidebarOpen(false)} />
 
         {/* Center Main Content Area */}
         <Box

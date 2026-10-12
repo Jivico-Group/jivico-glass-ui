@@ -52,10 +52,4 @@ export type AspectRt = AspectRatio;
 /**
  * Responsive aspect ratio configuration across standard breakpoints.
  */
-export type ResponsiveAspectRatio = {
-  xs?: AspectRatio;
-  sm?: AspectRatio;
-  md?: AspectRatio;
-  lg?: AspectRatio;
-  xl?: AspectRatio;
-};
+export type ResponsiveAspectRatio = { xs?: AspectRatio; sm?: AspectRatio; md?: AspectRatio; lg?: AspectRatio; xl?: AspectRatio };

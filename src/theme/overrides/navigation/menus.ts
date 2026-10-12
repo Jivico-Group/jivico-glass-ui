@@ -3,27 +3,13 @@ import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette.js";
 
 export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
-  MuiPopover: {
-    styleOverrides: {
-      paper: {
-        "&:not(.MuiMenu-paper)": {
-          ...liquidGlassPopupRecipe(isDark),
-        },
-      },
-    },
-  },
+  MuiPopover: { styleOverrides: { paper: { "&:not(.MuiMenu-paper)": { ...liquidGlassPopupRecipe(isDark) } } } },
 
   MuiMenu: {
     styleOverrides: {
-      paper: {
-        maxHeight: "400px",
-        overflowY: "auto",
-      },
+      paper: { maxHeight: "400px", overflowY: "auto" },
 
-      list: {
-        backgroundColor: "transparent !important",
-        backgroundImage: "none !important",
-      },
+      list: { backgroundColor: "transparent !important", backgroundImage: "none !important" },
     },
   },
 
@@ -38,24 +24,16 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
         transition: "all 0.15s ease",
         gap: "8px",
 
-        "&.MuiMenuItem-dense": {
-          minHeight: "24px",
-          padding: "3px 8px",
-          fontSize: "0.775rem",
-        },
+        "&.MuiMenuItem-dense": { minHeight: "24px", padding: "3px 8px", fontSize: "0.775rem" },
 
-        "&:hover": {
-          backgroundColor: palette.glass.menuItemHover,
-        },
+        "&:hover": { backgroundColor: palette.glass.menuItemHover },
 
         "&.Mui-selected": {
           backgroundColor: palette.action.selected,
           color: palette.primary.main,
           fontWeight: 600,
 
-          "&:hover": {
-            backgroundColor: palette.glass.menuItemHover,
-          },
+          "&:hover": { backgroundColor: palette.glass.menuItemHover },
         },
       },
     },

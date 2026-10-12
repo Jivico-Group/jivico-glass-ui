@@ -33,9 +33,10 @@ interface BlobConfig {
  * Legacy variants (pink, purple, amber) are aliased to brand colours
  * so existing consumers don't break.
  */
-export const AmbientBlob = styled(Box, {
-  shouldForwardProp: (p) => p !== "variant" && p !== "isDark",
-})<{ variant: BlobVariant; isDark: boolean }>(({ isDark, variant }) => {
+export const AmbientBlob = styled(Box, { shouldForwardProp: (p) => p !== "variant" && p !== "isDark" })<{ variant: BlobVariant; isDark: boolean }>(({
+  isDark,
+  variant,
+}) => {
   const configs: Record<BlobVariant, BlobConfig> = {
     // Charcoal/Cream (brand primary)
     primary: {
@@ -131,16 +132,11 @@ export const AmbientBlob = styled(Box, {
     height: config.height,
     background: `radial-gradient(circle, ${config.color} 0%, transparent 70%)`,
     animation: `${floatAmbient} ${config.duration} ease-in-out infinite alternate`,
-    "@media (max-width: 600px)": {
-      filter: "blur(40px)",
-      WebkitFilter: "blur(40px)",
-    },
+    "@media (max-width: 600px)": { filter: "blur(40px)", WebkitFilter: "blur(40px)" },
   };
 });
 
-export const DecorativeBlob = styled(Box, {
-  shouldForwardProp: (p) => p !== "isDark",
-})<{ isDark: boolean }>(({ isDark }) => ({
+export const DecorativeBlob = styled(Box, { shouldForwardProp: (p) => p !== "isDark" })<{ isDark: boolean }>(({ isDark }) => ({
   position: "absolute",
   top: "-30%",
   right: "-10%",

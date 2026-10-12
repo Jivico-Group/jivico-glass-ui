@@ -15,19 +15,7 @@ import {
   User,
   Zap,
 } from "lucide-react";
-import {
-  Box,
-  Button,
-  Chip,
-  Divider,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Chip, Divider, ListItemIcon, ListItemText, Menu, MenuItem, Paper, Stack, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
@@ -205,40 +193,21 @@ export const MenusPage: React.FC = () => {
           // gap={2}
           sx={{ justifyContent: "center", flexWrap: "wrap", gap: 2 }}
         >
-          <Button
-            variant="outlined"
-            size="small"
-            onClick={(e) => setSizeCompactAnchor(e.currentTarget)}
-            startIcon={<Sliders size={14} />}
-          >
+          <Button variant="outlined" size="small" onClick={(e) => setSizeCompactAnchor(e.currentTarget)} startIcon={<Sliders size={14} />}>
             Compact Size Menu (24px)
           </Button>
 
-          <Button
-            variant="outlined"
-            size="small"
-            onClick={(e) => setSizeSmallAnchor(e.currentTarget)}
-            startIcon={<Sliders size={16} />}
-          >
+          <Button variant="outlined" size="small" onClick={(e) => setSizeSmallAnchor(e.currentTarget)} startIcon={<Sliders size={16} />}>
             Small Size Menu (34px)
           </Button>
 
-          <Button
-            variant="outlined"
-            onClick={(e) => setStandardAnchor(e.currentTarget)}
-            startIcon={<MoreVertical size={18} />}
-          >
+          <Button variant="outlined" onClick={(e) => setStandardAnchor(e.currentTarget)} startIcon={<MoreVertical size={18} />}>
             Medium Size Menu (42px)
           </Button>
         </Stack>
 
         {/* Compact Menu Instance */}
-        <Menu
-          anchorEl={sizeCompactAnchor}
-          open={Boolean(sizeCompactAnchor)}
-          onClose={() => setSizeCompactAnchor(null)}
-          size="compact"
-        >
+        <Menu anchorEl={sizeCompactAnchor} open={Boolean(sizeCompactAnchor)} onClose={() => setSizeCompactAnchor(null)} size="compact">
           <MenuItem onClick={() => setSizeCompactAnchor(null)}>
             <ListItemIcon>
               <Copy size={15} />
@@ -261,12 +230,7 @@ export const MenusPage: React.FC = () => {
         </Menu>
 
         {/* Small Menu Instance */}
-        <Menu
-          anchorEl={sizeSmallAnchor}
-          open={Boolean(sizeSmallAnchor)}
-          onClose={() => setSizeSmallAnchor(null)}
-          size="small"
-        >
+        <Menu anchorEl={sizeSmallAnchor} open={Boolean(sizeSmallAnchor)} onClose={() => setSizeSmallAnchor(null)} size="small">
           <MenuItem onClick={() => setSizeSmallAnchor(null)}>
             <ListItemIcon>
               <Copy size={18} />
@@ -289,12 +253,7 @@ export const MenusPage: React.FC = () => {
         </Menu>
 
         {/* Medium Menu Instance */}
-        <Menu
-          anchorEl={standardAnchor}
-          open={Boolean(standardAnchor)}
-          onClose={() => setStandardAnchor(null)}
-          size="medium"
-        >
+        <Menu anchorEl={standardAnchor} open={Boolean(standardAnchor)} onClose={() => setStandardAnchor(null)} size="medium">
           <MenuItem onClick={() => setStandardAnchor(null)}>
             <ListItemIcon>
               <Shield size={20} />
@@ -320,25 +279,8 @@ export const MenusPage: React.FC = () => {
   <MenuItem selected><ListItemText primary="Active Accent Item" /></MenuItem>
 </Menu>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "100%",
-            gap: 3,
-          }}
-        >
-          <Stack
-            sx={{
-              flexDirection: "row",
-              spacing: 1,
-              flexWrap: "wrap",
-              gap: 1,
-              justifyContent: "space-between",
-              width: "100%",
-            }}
-          >
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", gap: 3 }}>
+          <Stack sx={{ flexDirection: "row", spacing: 1, flexWrap: "wrap", gap: 1, justifyContent: "space-between", width: "100%" }}>
             {["primary", "accent", "success", "warning", "error"].map((color) => (
               <Chip
                 key={color}
@@ -351,21 +293,11 @@ export const MenusPage: React.FC = () => {
             ))}
           </Stack>
 
-          <Button
-            variant="contained"
-            color={selectedColor}
-            onClick={(e) => setColorAnchor(e.currentTarget)}
-            startIcon={<Zap size={18} />}
-          >
+          <Button variant="contained" color={selectedColor} onClick={(e) => setColorAnchor(e.currentTarget)} startIcon={<Zap size={18} />}>
             Open {selectedColor} Menu
           </Button>
 
-          <Menu
-            anchorEl={colorAnchor}
-            open={Boolean(colorAnchor)}
-            onClose={() => setColorAnchor(null)}
-            color={selectedColor}
-          >
+          <Menu anchorEl={colorAnchor} open={Boolean(colorAnchor)} onClose={() => setColorAnchor(null)} color={selectedColor}>
             <MenuItem
               selected={selectedItemIndex === 0}
               onClick={() => {

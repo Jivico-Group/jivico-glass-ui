@@ -16,52 +16,17 @@ export const getMenuItemOverrides = (palette: JivicoPalette, isDark: boolean): C
     error: palette.error.main,
   };
 
-  const sizeMap: Record<
-    MenuSize,
-    {
-      minHeight: number;
-      padding: string;
-      fontSize: string;
-      radius: number;
-      iconSize: number;
-      gap: number;
-    }
-  > = {
-    compact: {
-      minHeight: 28,
-      padding: "4px 8px",
-      fontSize: "0.75rem",
-      radius: 6,
-      iconSize: 15,
-      gap: 6,
-    },
-    small: {
-      minHeight: 34,
-      padding: "6px 10px",
-      fontSize: "0.8125rem",
-      radius: 8,
-      iconSize: 18,
-      gap: 8,
-    },
-    medium: {
-      minHeight: 42,
-      padding: "9px 12px",
-      fontSize: "0.875rem",
-      radius: 10,
-      iconSize: 20,
-      gap: 10,
-    },
+  const sizeMap: Record<MenuSize, { minHeight: number; padding: string; fontSize: string; radius: number; iconSize: number; gap: number }> = {
+    compact: { minHeight: 28, padding: "4px 8px", fontSize: "0.75rem", radius: 6, iconSize: 15, gap: 6 },
+    small: { minHeight: 34, padding: "6px 10px", fontSize: "0.8125rem", radius: 8, iconSize: 18, gap: 8 },
+    medium: { minHeight: 42, padding: "9px 12px", fontSize: "0.875rem", radius: 10, iconSize: 20, gap: 10 },
   };
 
   return {
     MuiMenuItem: {
       styleOverrides: {
         root: ({ ownerState }) => {
-          const state = ownerState as {
-            color?: MenuColor;
-            surface?: MenuSurface;
-            size?: MenuSize;
-          };
+          const state = ownerState as { color?: MenuColor; surface?: MenuSurface; size?: MenuSize };
 
           const color = colorMap[state.color ?? "primary"];
           const size = sizeMap[state.size ?? "medium"];
@@ -72,28 +37,15 @@ export const getMenuItemOverrides = (palette: JivicoPalette, isDark: boolean): C
 
             transition: "background-color 160ms ease, color 160ms ease",
 
-            "&:hover": {
-              backgroundColor: isDark ? "rgba(255, 255, 255, 0.07)" : "rgba(17, 17, 17, 0.045)",
-            },
+            "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.07)" : "rgba(17, 17, 17, 0.045)" },
 
-            "&.Mui-focusVisible": {
-              outline: `2px solid ${color}`,
-              outlineOffset: -2,
-            },
+            "&.Mui-focusVisible": { outline: `2px solid ${color}`, outlineOffset: -2 },
 
-            "&.Mui-selected": {
-              backgroundColor: isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.065)",
-              color: text,
-            },
+            "&.Mui-selected": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.065)", color: text },
 
-            "&.Mui-selected:hover": {
-              backgroundColor: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(17, 17, 17, 0.085)",
-            },
+            "&.Mui-selected:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(17, 17, 17, 0.085)" },
 
-            "&.Mui-disabled": {
-              color: secondaryText,
-              opacity: 0.55,
-            },
+            "&.Mui-disabled": { color: secondaryText, opacity: 0.55 },
           };
         },
       },

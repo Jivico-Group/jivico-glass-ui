@@ -116,8 +116,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 );`}
       >
         <Alert severity="info" sx={{ borderRadius: "14px", mb: 2 }}>
-          <code>JivicoGlassProvider</code> accepts <code>defaultMode="system" | "light" | "dark"</code> and
-          automatically persists theme preference in local storage.
+          <code>JivicoGlassProvider</code> accepts <code>defaultMode="system" | "light" | "dark"</code> and automatically persists theme preference in
+          local storage.
         </Alert>
       </DemoBlock>
 
@@ -166,8 +166,8 @@ function SpecificPage() {
               </Typography>
             </Stack>
             <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.88rem" }}>
-              Because Jivico Glass UI is built directly on native Material-UI v9 theme overrides, all components are
-              standard MUI elements. No wrapper boilerplate required.
+              Because Jivico Glass UI is built directly on native Material-UI v9 theme overrides, all components are standard MUI elements. No wrapper
+              boilerplate required.
             </Typography>
           </Stack>
         </Paper>
@@ -200,14 +200,7 @@ import { Card, Button, Chip } from '@mui/material';
           <Box sx={{ flex: 1 }}>
             <Typography
               variant="caption"
-              sx={{
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "#A855F7",
-                mb: 1,
-                display: "block",
-              }}
+              sx={{ fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#A855F7", mb: 1, display: "block" }}
             >
               1. Scoped Dark Mode (&lt;GlassThemeScope mode="dark"&gt;)
             </Typography>
@@ -225,13 +218,7 @@ import { Card, Button, Chip } from '@mui/material';
                 }}
               >
                 <Stack spacing={2}>
-                  <Stack
-                    direction="row"
-                    sx={{
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
+                  <Stack direction="row" sx={{ alignItems: "center", justifyContent: "space-between" }}>
                     <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                       <Lock size={18} color="#C084FC" />
                       <Typography variant="subtitle2" sx={{ fontWeight: 700, color: "#FFFFFF" }}>
@@ -240,15 +227,8 @@ import { Card, Button, Chip } from '@mui/material';
                     </Stack>
                     <Chip label="Forced Dark" size="small" color="accent" />
                   </Stack>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "rgba(255, 255, 255, 0.7)",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    All child MUI components (Buttons, Inputs, Text) inherit full dark mode color rules, borders, and
-                    typography.
+                  <Typography variant="body2" sx={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "0.85rem" }}>
+                    All child MUI components (Buttons, Inputs, Text) inherit full dark mode color rules, borders, and typography.
                   </Typography>
                   <TextField size="small" placeholder="Dark scoped text input..." fullWidth />
                   <Stack direction="row" spacing={1}>
@@ -268,14 +248,7 @@ import { Card, Button, Chip } from '@mui/material';
           <Box sx={{ flex: 1 }}>
             <Typography
               variant="caption"
-              sx={{
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "#6366F1",
-                mb: 1,
-                display: "block",
-              }}
+              sx={{ fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6366F1", mb: 1, display: "block" }}
             >
               2. Scoped Light Mode (&lt;GlassThemeScope mode="light"&gt;)
             </Typography>
@@ -292,13 +265,7 @@ import { Card, Button, Chip } from '@mui/material';
                 }}
               >
                 <Stack spacing={2}>
-                  <Stack
-                    direction="row"
-                    sx={{
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
+                  <Stack direction="row" sx={{ alignItems: "center", justifyContent: "space-between" }}>
                     <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                       <Sun size={18} color="#4F46E5" />
                       <Typography variant="subtitle2" sx={{ fontWeight: 700, color: "#111111" }}>
@@ -397,12 +364,7 @@ import { Card, Button, Chip } from '@mui/material';
                       </Stack>
                     </TableCell>
                     <TableCell>
-                      <Chip
-                        label="Forced Dark Scope"
-                        color="accent"
-                        size="small"
-                        sx={{ height: 20, fontSize: "0.65rem" }}
-                      />
+                      <Chip label="Forced Dark Scope" color="accent" size="small" sx={{ height: 20, fontSize: "0.65rem" }} />
                     </TableCell>
                     <TableCell align="right" sx={{ fontWeight: 700 }}>
                       0.2ms
@@ -442,14 +404,7 @@ import { Card, Button, Chip } from '@mui/material';
   </Paper>
 </GlassThemeScope>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 3,
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
             <Typography variant="body2" sx={{ fontWeight: 700 }}>
               Select Scope Target Mode:
@@ -488,29 +443,19 @@ import { Card, Button, Chip } from '@mui/material';
                 }}
               >
                 <Stack spacing={2}>
-                  <Stack
-                    direction="row"
-                    sx={{
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
+                  <Stack direction="row" sx={{ alignItems: "center", justifyContent: "space-between" }}>
                     <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                       <Layers size={20} color={forcedMode === "dark" ? "#A855F7" : "#6366F1"} />
                       <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.05rem" }}>
                         Scope Target: {forcedMode.toUpperCase()}
                       </Typography>
                     </Stack>
-                    <Chip
-                      label={forcedMode.toUpperCase()}
-                      color={forcedMode === "dark" ? "accent" : "primary"}
-                      size="small"
-                    />
+                    <Chip label={forcedMode.toUpperCase()} color={forcedMode === "dark" ? "accent" : "primary"} size="small" />
                   </Stack>
 
                   <Typography variant="body2" sx={{ opacity: 0.85, fontSize: "0.88rem" }}>
-                    This container is dynamically scoped to <strong>{forcedMode.toUpperCase()} MODE</strong>. Toggling
-                    the global app header theme leaves this target intact!
+                    This container is dynamically scoped to <strong>{forcedMode.toUpperCase()} MODE</strong>. Toggling the global app header theme
+                    leaves this target intact!
                   </Typography>
 
                   <Stack direction="row" spacing={1.5} sx={{ pt: 1 }}>

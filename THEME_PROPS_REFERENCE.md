@@ -325,7 +325,9 @@ import { BottomNavigation, BottomNavigationItem } from "jivico-glass-ui";
 
 ```tsx
 <Menu surface="glass" size="compact" color="accent">
-  <MenuItem><ListItemText primary="Action" /></MenuItem>
+  <MenuItem>
+    <ListItemText primary="Action" />
+  </MenuItem>
 </Menu>
 ```
 
@@ -372,10 +374,7 @@ const items: ShowcaseItem[] = [
     eyebrow: "STUDIO EXCLUSIVE",
     title: "Originals by Studio",
     description: "Limited-edition luxury glassmorphic collections.",
-    action: {
-      label: "Discover Originals",
-      href: "/originals",
-    },
+    action: { label: "Discover Originals", href: "/originals" },
     sideLabel: "FALL / WINTER 2026",
   },
 ];

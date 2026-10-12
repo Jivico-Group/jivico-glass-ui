@@ -9,21 +9,9 @@ type GlassIntensity = "subtle" | "medium" | "strong" | "ultra";
 type AlertSeverity = "success" | "info" | "warning" | "error";
 
 export const getAlertOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
-  const radiusMap: Record<AlertRadius, number> = {
-    square: 0,
-    small: 8,
-    medium: 12,
-    large: 18,
-    rounded: 24,
-    pill: 9999,
-  };
+  const radiusMap: Record<AlertRadius, number> = { square: 0, small: 8, medium: 12, large: 18, rounded: 24, pill: 9999 };
 
-  const blurMap: Record<GlassIntensity, string> = {
-    subtle: "blur(8px)",
-    medium: "blur(14px)",
-    strong: "blur(20px)",
-    ultra: "blur(28px)",
-  };
+  const blurMap: Record<GlassIntensity, string> = { subtle: "blur(8px)", medium: "blur(14px)", strong: "blur(20px)", ultra: "blur(28px)" };
 
   /*
    * Resolve semantic severity colors from the Jivico palette.
@@ -201,10 +189,7 @@ export const getAlertOverrides = (palette: JivicoPalette, isDark: boolean): Comp
             /*
              * Keep all content above the glass layer.
              */
-            "& > *": {
-              position: "relative",
-              zIndex: 1,
-            },
+            "& > *": { position: "relative", zIndex: 1 },
 
             /*
              * Alert icon.
@@ -220,9 +205,7 @@ export const getAlertOverrides = (palette: JivicoPalette, isDark: boolean): Comp
             /*
              * Alert message.
              */
-            "& .MuiAlert-message": {
-              padding: "2px 0",
-            },
+            "& .MuiAlert-message": { padding: "2px 0" },
 
             /*
              * Close button.
@@ -236,14 +219,9 @@ export const getAlertOverrides = (palette: JivicoPalette, isDark: boolean): Comp
 
                 transition: "background-color 180ms ease, transform 180ms ease",
 
-                "&:hover": {
-                  backgroundColor:
-                    appearance === "solid" ? "rgba(255,255,255,0.12)" : `rgba(${rgb}, ${isDark ? 0.12 : 0.08})`,
-                },
+                "&:hover": { backgroundColor: appearance === "solid" ? "rgba(255,255,255,0.12)" : `rgba(${rgb}, ${isDark ? 0.12 : 0.08})` },
 
-                "&:active": {
-                  transform: "scale(0.94)",
-                },
+                "&:active": { transform: "scale(0.94)" },
               },
             },
 

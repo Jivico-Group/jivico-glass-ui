@@ -18,13 +18,7 @@ export const OverviewPage: React.FC = () => {
       textDark: "#FFFFFF",
       border: false,
     },
-    {
-      name: "Cream",
-      hex: "#F6F5F2",
-      role: "Primary high-contrast element in Dark Mode; base light surface.",
-      textDark: "#111111",
-      border: true,
-    },
+    { name: "Cream", hex: "#F6F5F2", role: "Primary high-contrast element in Dark Mode; base light surface.", textDark: "#111111", border: true },
     {
       name: "Sand",
       hex: "#D9D9CF",
@@ -78,31 +72,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           backdropFilter: "blur(20px)",
         }}
       >
-        <Typography
-          variant="overline"
-          sx={{
-            display: "block",
-            letterSpacing: "0.1em",
-            fontWeight: 700,
-            color: "text.secondary",
-            mb: 1,
-          }}
-        >
+        <Typography variant="overline" sx={{ display: "block", letterSpacing: "0.1em", fontWeight: 700, color: "text.secondary", mb: 1 }}>
           BOLD IDEAS. TIMELESS STYLE.
         </Typography>
-        <Typography
-          variant="h4"
-          sx={{
-            fontWeight: 800,
-            fontSize: { xs: "1.6rem", md: "2.2rem" },
-            mb: 2,
-          }}
-        >
+        <Typography variant="h4" sx={{ fontWeight: 800, fontSize: { xs: "1.6rem", md: "2.2rem" }, mb: 2 }}>
           Welcome to <GradientText isDark={isDark}>Jivico Glass UI</GradientText>
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ maxWidth: "700px", lineHeight: 1.7, mb: 3 }}>
-          A comprehensive design system providing frosted glassmorphic overrides for MUI Buttons, Chips, Tabs, Inputs,
-          Switches, and Data Display components, tailored to modern luxury aesthetic standards.
+          A comprehensive design system providing frosted glassmorphic overrides for MUI Buttons, Chips, Tabs, Inputs, Switches, and Data Display
+          components, tailored to modern luxury aesthetic standards.
         </Typography>
 
         <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
@@ -124,17 +102,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           Our monochrome aesthetic is built around 4 carefully calibrated shades: Charcoal, Cream, Sand, and Stone.
         </Typography>
 
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "1fr 1fr",
-              md: "repeat(4, 1fr)",
-            },
-            gap: 2.5,
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" }, gap: 2.5 }}>
           {brandColors.map((c) => (
             <Card
               key={c.name}
@@ -154,19 +122,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  borderBottom: c.border
-                    ? `1px solid ${isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.1)"}`
-                    : "none",
+                  borderBottom: c.border ? `1px solid ${isDark ? "rgba(255,255,255,0.12)" : "rgba(17,17,17,0.1)"}` : "none",
                 }}
               >
-                <Typography
-                  variant="subtitle2"
-                  sx={{
-                    fontWeight: 700,
-                    color: c.textDark,
-                    letterSpacing: "0.04em",
-                  }}
-                >
+                <Typography variant="subtitle2" sx={{ fontWeight: 700, color: c.textDark, letterSpacing: "0.04em" }}>
                   {c.hex}
                 </Typography>
               </Box>
@@ -220,8 +179,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       >
         <Box sx={{ width: "100%", py: 1 }}>
           <Typography variant="body2" color="text.secondary">
-            The provider seamlessly integrates with MUI ThemeProvider, emotion cache, and supports system/light/dark
-            modes.
+            The provider seamlessly integrates with MUI ThemeProvider, emotion cache, and supports system/light/dark modes.
           </Typography>
         </Box>
       </DemoBlock>

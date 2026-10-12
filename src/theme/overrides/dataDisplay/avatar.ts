@@ -23,9 +23,7 @@ export const getAvatarOverrides = (_palette: JivicoPalette, isDark: boolean): Co
             : "0 4px 16px rgba(17, 17, 17, 0.06), inset 0 1px 1.5px rgba(255, 255, 255, 0.95)",
           transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
 
-          ...(isRounded && {
-            borderRadius: "28%",
-          }),
+          ...(isRounded && { borderRadius: "28%" }),
 
           ...(isGlass && {
             backgroundColor: isDark ? "rgba(255, 255, 255, 0.08) !important" : "rgba(255, 255, 255, 0.45) !important",
@@ -34,9 +32,7 @@ export const getAvatarOverrides = (_palette: JivicoPalette, isDark: boolean): Co
             border: `1.5px solid ${isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.95)"} !important`,
           }),
 
-          "& .MuiAvatar-img": {
-            borderRadius: "inherit",
-          },
+          "& .MuiAvatar-img": { borderRadius: "inherit" },
         };
       },
     },
@@ -52,9 +48,7 @@ export const getAvatarOverrides = (_palette: JivicoPalette, isDark: boolean): Co
           boxShadow: isDark ? "0 2px 8px rgba(0, 0, 0, 0.4)" : "0 2px 8px rgba(0, 0, 0, 0.06)",
           marginLeft: -8,
 
-          "&:first-of-type": {
-            marginLeft: 0,
-          },
+          "&:first-of-type": { marginLeft: 0 },
         },
 
         "& .MuiAvatar-root:last-child": {

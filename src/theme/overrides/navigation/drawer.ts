@@ -84,10 +84,7 @@ export const getDrawerOverrides = (isDark: boolean): Components<Theme> => ({
             },
           }),
 
-          "& > *": {
-            position: "relative",
-            zIndex: 1,
-          },
+          "& > *": { position: "relative", zIndex: 1 },
 
           ...(ownerState.anchor === "bottom" && {
             borderBottom: "none",

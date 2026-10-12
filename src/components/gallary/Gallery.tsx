@@ -4,30 +4,14 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { GalleryProps } from "./Gallery.types";
 
-const radiusMap = {
-  square: 0,
-  rounded: 0.75,
-  soft: 1,
-} as const;
+const radiusMap = { square: 0, rounded: 0.75, soft: 1 } as const;
 
 function renderNativeImage<T>(src: string | undefined, alt: string | undefined, imageFit: GalleryProps<T>["imageFit"]) {
   if (!src) {
     return null;
   }
 
-  return (
-    <Box
-      component="img"
-      src={src}
-      alt={alt ?? ""}
-      sx={{
-        display: "block",
-        width: "100%",
-        height: "100%",
-        objectFit: imageFit ?? "cover",
-      }}
-    />
-  );
+  return <Box component="img" src={src} alt={alt ?? ""} sx={{ display: "block", width: "100%", height: "100%", objectFit: imageFit ?? "cover" }} />;
 }
 
 export function Gallery<T>({
@@ -43,12 +27,7 @@ export function Gallery<T>({
   getHref,
   getLinkLabel,
   onNavigate,
-  columns = {
-    xs: 2,
-    sm: 2,
-    md: 3,
-    lg: 4,
-  },
+  columns = { xs: 2, sm: 2, md: 3, lg: 4 },
   gap = 2,
   rowGap,
   columnGap,
@@ -105,39 +84,18 @@ export function Gallery<T>({
           }
         };
 
-        const renderContext = {
-          item,
-          index,
-          href,
-          onNavigate: isInteractive ? handleItemNavigation : undefined,
-        };
+        const renderContext = { item, index, href, onNavigate: isInteractive ? handleItemNavigation : undefined };
 
         if (renderItem) {
           return (
-            <Box
-              key={key}
-              sx={{
-                minWidth: 0,
-                width: "100%",
-                ...itemSx,
-              }}
-            >
+            <Box key={key} sx={{ minWidth: 0, width: "100%", ...itemSx }}>
               {renderItem(renderContext)}
             </Box>
           );
         }
 
         return (
-          <Box
-            key={key}
-            sx={{
-              minWidth: 0,
-              width: "100%",
-              overflow: "hidden",
-              borderRadius: radiusMap[radius],
-              ...itemSx,
-            }}
-          >
+          <Box key={key} sx={{ minWidth: 0, width: "100%", overflow: "hidden", borderRadius: radiusMap[radius], ...itemSx }}>
             <Box
               sx={{
                 position: "relative",
@@ -150,14 +108,7 @@ export function Gallery<T>({
               }}
             >
               {renderImage
-                ? renderImage({
-                    item,
-                    index,
-                    src,
-                    alt,
-                    href,
-                    onNavigate: isInteractive ? handleItemNavigation : undefined,
-                  })
+                ? renderImage({ item, index, src, alt, href, onNavigate: isInteractive ? handleItemNavigation : undefined })
                 : renderNativeImage(src, alt, imageFit)}
 
               {href && (
@@ -191,53 +142,20 @@ export function Gallery<T>({
                       handleItemNavigation(e as any);
                     }
                   }}
-                  sx={{
-                    position: "absolute",
-                    inset: 0,
-                    zIndex: 1,
-                    display: "block",
-                    width: "100%",
-                    height: "100%",
-                    cursor: "pointer",
-                  }}
+                  sx={{ position: "absolute", inset: 0, zIndex: 1, display: "block", width: "100%", height: "100%", cursor: "pointer" }}
                 />
               )}
 
               {renderOverlay && (
-                <Box
-                  sx={{
-                    position: "absolute",
-                    inset: 0,
-                    pointerEvents: "none",
-                    zIndex: 2,
-                  }}
-                >
-                  {renderOverlay({
-                    item,
-                    index,
-                    src,
-                    alt,
-                    href,
-                    onNavigate: isInteractive ? handleItemNavigation : undefined,
-                  })}
+                <Box sx={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 2 }}>
+                  {renderOverlay({ item, index, src, alt, href, onNavigate: isInteractive ? handleItemNavigation : undefined })}
                 </Box>
               )}
             </Box>
 
             {(renderBlock || renderContent) && (
-              <Box
-                sx={{
-                  width: "100%",
-                  minWidth: 0,
-                  ...blockSx,
-                }}
-              >
-                {(renderBlock ?? renderContent)!({
-                  item,
-                  index,
-                  href,
-                  onNavigate: isInteractive ? handleItemNavigation : undefined,
-                })}
+              <Box sx={{ width: "100%", minWidth: 0, ...blockSx }}>
+                {(renderBlock ?? renderContent)!({ item, index, href, onNavigate: isInteractive ? handleItemNavigation : undefined })}
               </Box>
             )}
           </Box>

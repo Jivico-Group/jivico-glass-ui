@@ -1,20 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Box,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  MenuItem,
-  Radio,
-  RadioGroup,
-  Select,
-  Slider,
-  Stack,
-  Switch,
-  Typography,
-} from "@mui/material";
+import { Box, FormControl, FormControlLabel, FormLabel, MenuItem, Radio, RadioGroup, Select, Slider, Stack, Switch, Typography } from "@mui/material";
 import "../../../src/theme/augmentations.d.ts";
 import { VisualViewer } from "../../../src/components/visualViewer/VisualViewer.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
@@ -137,13 +124,7 @@ export const VisualViewerPage: React.FC = () => {
     border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
   };
 
-  const labelSx = {
-    fontSize: "0.72rem",
-    fontWeight: 700,
-    textTransform: "uppercase" as const,
-    letterSpacing: "0.08em",
-    mb: 0.5,
-  };
+  const labelSx = { fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.08em", mb: 0.5 };
 
   return (
     <ComponentPage
@@ -188,18 +169,9 @@ export const VisualViewerPage: React.FC = () => {
                   <FormLabel component="legend" sx={labelSx}>
                     Thumbnail Position
                   </FormLabel>
-                  <RadioGroup
-                    row
-                    value={thumbnailPosition}
-                    onChange={(e) => setThumbnailPosition(e.target.value as VisualViewerThumbnailPosition)}
-                  >
+                  <RadioGroup row value={thumbnailPosition} onChange={(e) => setThumbnailPosition(e.target.value as VisualViewerThumbnailPosition)}>
                     {(["auto", "left", "bottom"] as const).map((v) => (
-                      <FormControlLabel
-                        key={v}
-                        value={v}
-                        control={<Radio size="small" />}
-                        label={v.charAt(0).toUpperCase() + v.slice(1)}
-                      />
+                      <FormControlLabel key={v} value={v} control={<Radio size="small" />} label={v.charAt(0).toUpperCase() + v.slice(1)} />
                     ))}
                   </RadioGroup>
                 </FormControl>
@@ -208,18 +180,9 @@ export const VisualViewerPage: React.FC = () => {
                   <FormLabel component="legend" sx={labelSx}>
                     Navigation
                   </FormLabel>
-                  <RadioGroup
-                    row
-                    value={navigation}
-                    onChange={(e) => setNavigation(e.target.value as VisualViewerNavigation)}
-                  >
+                  <RadioGroup row value={navigation} onChange={(e) => setNavigation(e.target.value as VisualViewerNavigation)}>
                     {(["arrows", "none"] as const).map((v) => (
-                      <FormControlLabel
-                        key={v}
-                        value={v}
-                        control={<Radio size="small" />}
-                        label={v.charAt(0).toUpperCase() + v.slice(1)}
-                      />
+                      <FormControlLabel key={v} value={v} control={<Radio size="small" />} label={v.charAt(0).toUpperCase() + v.slice(1)} />
                     ))}
                   </RadioGroup>
                 </FormControl>
@@ -230,12 +193,7 @@ export const VisualViewerPage: React.FC = () => {
                   </FormLabel>
                   <RadioGroup row value={radius} onChange={(e) => setRadius(e.target.value as VisualViewerRadius)}>
                     {(["square", "rounded", "soft"] as const).map((v) => (
-                      <FormControlLabel
-                        key={v}
-                        value={v}
-                        control={<Radio size="small" />}
-                        label={v.charAt(0).toUpperCase() + v.slice(1)}
-                      />
+                      <FormControlLabel key={v} value={v} control={<Radio size="small" />} label={v.charAt(0).toUpperCase() + v.slice(1)} />
                     ))}
                   </RadioGroup>
                 </FormControl>
@@ -253,27 +211,12 @@ export const VisualViewerPage: React.FC = () => {
 
                 <Box sx={{ minWidth: 180 }}>
                   <Typography sx={{ ...labelSx, mb: 1 }}>Max Visible Thumbnails: {maxVisible}</Typography>
-                  <Slider
-                    value={maxVisible}
-                    onChange={(_, v) => setMaxVisible(v as number)}
-                    min={1}
-                    max={8}
-                    step={1}
-                    marks
-                    size="small"
-                  />
+                  <Slider value={maxVisible} onChange={(_, v) => setMaxVisible(v as number)} min={1} max={8} step={1} marks size="small" />
                 </Box>
 
                 <Box sx={{ minWidth: 180 }}>
                   <Typography sx={{ ...labelSx, mb: 1 }}>Thumbnail Size: {thumbnailSize}px</Typography>
-                  <Slider
-                    value={thumbnailSize}
-                    onChange={(_, v) => setThumbnailSize(v as number)}
-                    min={48}
-                    max={140}
-                    step={8}
-                    size="small"
-                  />
+                  <Slider value={thumbnailSize} onChange={(_, v) => setThumbnailSize(v as number)} min={48} max={140} step={8} size="small" />
                 </Box>
               </Stack>
 
@@ -284,11 +227,7 @@ export const VisualViewerPage: React.FC = () => {
                   { label: "Zoom", value: zoom, set: setZoom },
                   { label: "Fullscreen", value: fullscreen, set: setFullscreen },
                   { label: "Swipe", value: swipe, set: setSwipe },
-                  {
-                    label: "+N Count",
-                    value: showRemainingCount,
-                    set: setShowRemainingCount,
-                  },
+                  { label: "+N Count", value: showRemainingCount, set: setShowRemainingCount },
                 ].map(({ label, value, set }) => (
                   <FormControlLabel
                     key={label}
@@ -435,17 +374,7 @@ export const VisualViewerPage: React.FC = () => {
                   "&:hover": { transform: "scale(1.05)" },
                 }}
               >
-                <Box
-                  component="img"
-                  src={item.src}
-                  alt={item.alt}
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
-                />
+                <Box component="img" src={item.src} alt={item.alt} sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               </Box>
             ))}
           </Stack>

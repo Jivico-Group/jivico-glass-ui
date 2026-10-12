@@ -54,26 +54,14 @@ export const typography = {
    * Subtitle 1
    * ------------------------------------------------------------------------
    */
-  subtitle1: {
-    fontSize: "1rem",
-    fontWeight: 450,
-    letterSpacing: "-0.006em",
-    lineHeight: 1.4,
-    fontFamily: TEXT_FONT,
-  },
+  subtitle1: { fontSize: "1rem", fontWeight: 450, letterSpacing: "-0.006em", lineHeight: 1.4, fontFamily: TEXT_FONT },
 
   /**
    * ------------------------------------------------------------------------
    * Subtitle 2
    * ------------------------------------------------------------------------
    */
-  subtitle2: {
-    fontSize: "0.875rem",
-    fontWeight: 500,
-    letterSpacing: "-0.004em",
-    lineHeight: 1.4,
-    fontFamily: TEXT_FONT,
-  },
+  subtitle2: { fontSize: "0.875rem", fontWeight: 500, letterSpacing: "-0.004em", lineHeight: 1.4, fontFamily: TEXT_FONT },
   /**
    * ------------------------------------------------------------------------
    * H1
@@ -86,13 +74,7 @@ export const typography = {
    * - Your Cart
    * - Jivico Studio
    */
-  h1: {
-    fontSize: "3.75rem",
-    fontWeight: 550,
-    letterSpacing: "-0.04em",
-    lineHeight: 1.0,
-    fontFamily: DISPLAY_FONT,
-  },
+  h1: { fontSize: "3.75rem", fontWeight: 550, letterSpacing: "-0.04em", lineHeight: 1.0, fontFamily: DISPLAY_FONT },
 
   /**
    * ------------------------------------------------------------------------
@@ -101,13 +83,7 @@ export const typography = {
    *
    * Major section headings.
    */
-  h2: {
-    fontSize: "2.85rem",
-    fontWeight: 550,
-    letterSpacing: "-0.03em",
-    lineHeight: 1.08,
-    fontFamily: DISPLAY_FONT,
-  },
+  h2: { fontSize: "2.85rem", fontWeight: 550, letterSpacing: "-0.03em", lineHeight: 1.08, fontFamily: DISPLAY_FONT },
 
   /**
    * ------------------------------------------------------------------------
@@ -116,13 +92,7 @@ export const typography = {
    *
    * Section headings.
    */
-  h3: {
-    fontSize: "2.1rem",
-    fontWeight: 550,
-    letterSpacing: "-0.025em",
-    lineHeight: 1.15,
-    fontFamily: DISPLAY_FONT,
-  },
+  h3: { fontSize: "2.1rem", fontWeight: 550, letterSpacing: "-0.025em", lineHeight: 1.15, fontFamily: DISPLAY_FONT },
 
   /**
    * ------------------------------------------------------------------------
@@ -131,13 +101,7 @@ export const typography = {
    *
    * Product titles and medium section headings.
    */
-  h4: {
-    fontSize: "1.5rem",
-    fontWeight: 450,
-    letterSpacing: "-0.018em",
-    lineHeight: 1.2,
-    fontFamily: DISPLAY_FONT,
-  },
+  h4: { fontSize: "1.5rem", fontWeight: 450, letterSpacing: "-0.018em", lineHeight: 1.2, fontFamily: DISPLAY_FONT },
 
   /**
    * ------------------------------------------------------------------------
@@ -146,13 +110,7 @@ export const typography = {
    *
    * Card titles and smaller editorial headings.
    */
-  h5: {
-    fontSize: "1.25rem",
-    fontWeight: 450,
-    letterSpacing: "-0.012em",
-    lineHeight: 1.25,
-    fontFamily: DISPLAY_FONT,
-  },
+  h5: { fontSize: "1.25rem", fontWeight: 450, letterSpacing: "-0.012em", lineHeight: 1.25, fontFamily: DISPLAY_FONT },
 
   /**
    * ------------------------------------------------------------------------
@@ -161,13 +119,7 @@ export const typography = {
    *
    * Small headings.
    */
-  h6: {
-    fontSize: "1rem",
-    fontWeight: 450,
-    letterSpacing: "-0.006em",
-    lineHeight: 1.3,
-    fontFamily: DISPLAY_FONT,
-  },
+  h6: { fontSize: "1rem", fontWeight: 450, letterSpacing: "-0.006em", lineHeight: 1.3, fontFamily: DISPLAY_FONT },
 
   /**
    * ------------------------------------------------------------------------
@@ -181,13 +133,7 @@ export const typography = {
    * - Marketing copy
    * - Important supporting text
    */
-  body1: {
-    fontSize: "1.0625rem",
-    lineHeight: 1.55,
-    letterSpacing: "-0.008em",
-    fontWeight: 400,
-    fontFamily: TEXT_FONT,
-  },
+  body1: { fontSize: "1.0625rem", lineHeight: 1.55, letterSpacing: "-0.008em", fontWeight: 400, fontFamily: TEXT_FONT },
 
   /**
    * ------------------------------------------------------------------------
@@ -202,13 +148,7 @@ export const typography = {
    * - Cart information
    * - Checkout descriptions
    */
-  body2: {
-    fontSize: "0.875rem",
-    lineHeight: 1.5,
-    letterSpacing: "-0.004em",
-    fontWeight: 400,
-    fontFamily: TEXT_FONT,
-  },
+  body2: { fontSize: "0.875rem", lineHeight: 1.5, letterSpacing: "-0.004em", fontWeight: 400, fontFamily: TEXT_FONT },
 
   /**
    * ------------------------------------------------------------------------
@@ -252,13 +192,7 @@ export const typography = {
    *
    * Small auxiliary, copyright, and timestamp text.
    */
-  caption: {
-    fontSize: "0.75rem",
-    fontWeight: 400,
-    letterSpacing: "0.01em",
-    lineHeight: 1.4,
-    fontFamily: TEXT_FONT,
-  },
+  caption: { fontSize: "0.75rem", fontWeight: 400, letterSpacing: "0.01em", lineHeight: 1.4, fontFamily: TEXT_FONT },
 
   overline: {
     fontSize: "0.7rem",

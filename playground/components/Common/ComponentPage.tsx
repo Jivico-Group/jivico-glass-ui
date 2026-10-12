@@ -33,24 +33,8 @@ export const ComponentPage: React.FC<ComponentPageProps> = ({
 
       {/* Page Title & Subtitle */}
       <Box sx={{ mb: 4 }}>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1.5,
-            flexWrap: "wrap",
-            mb: 1,
-          }}
-        >
-          <Typography
-            variant="h3"
-            component="h1"
-            sx={{
-              fontWeight: 800,
-              fontSize: { xs: "1.9rem", sm: "2.5rem" },
-              letterSpacing: "-0.02em",
-            }}
-          >
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flexWrap: "wrap", mb: 1 }}>
+          <Typography variant="h3" component="h1" sx={{ fontWeight: 800, fontSize: { xs: "1.9rem", sm: "2.5rem" }, letterSpacing: "-0.02em" }}>
             {title}
           </Typography>
           {badges.map((b) => (
@@ -69,11 +53,7 @@ export const ComponentPage: React.FC<ComponentPageProps> = ({
             />
           ))}
         </Box>
-        <Typography
-          variant="body1"
-          color="text.secondary"
-          sx={{ fontSize: "1.05rem", lineHeight: 1.6, maxWidth: "800px" }}
-        >
+        <Typography variant="body1" color="text.secondary" sx={{ fontSize: "1.05rem", lineHeight: 1.6, maxWidth: "800px" }}>
           {description}
         </Typography>
       </Box>

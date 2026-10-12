@@ -51,9 +51,7 @@ const GLASS = {
 
 export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiButton: {
-    defaultProps: {
-      disableElevation: true,
-    },
+    defaultProps: { disableElevation: true },
 
     styleOverrides: {
       root: ({ ownerState }) => {
@@ -61,10 +59,7 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
         const requestedColor = ownerState.color ?? "primary";
         const colorKey = requestedColor === "inherit" ? "primary" : requestedColor;
 
-        const activeColorGroup = (palette[colorKey as keyof typeof palette] || palette.primary) as Record<
-          string,
-          string
-        >;
+        const activeColorGroup = (palette[colorKey as keyof typeof palette] || palette.primary) as Record<string, string>;
 
         const mainColor = activeColorGroup.main;
         const hoverColor = activeColorGroup.hover;
@@ -109,19 +104,11 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
 
           transition: TRANSITION,
 
-          "&:active": {
-            transform: "translateY(0) scale(0.985)",
-          },
+          "&:active": { transform: "translateY(0) scale(0.985)" },
 
-          "&:focus-visible": {
-            outline: "none",
-          },
+          "&:focus-visible": { outline: "none" },
 
-          "&.Mui-disabled": {
-            cursor: "default",
-            pointerEvents: "none",
-            transform: "none",
-          },
+          "&.Mui-disabled": { cursor: "default", pointerEvents: "none", transform: "none" },
 
           // ------------------------------------------------------------
           // CONTAINED — PRIMARY
@@ -140,27 +127,16 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
                 backgroundColor: hoverColor,
                 transform: "translateY(-1px)",
 
-                boxShadow: isDark
-                  ? "0 12px 36px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.2)"
-                  : "0 12px 32px rgba(17,17,17,0.3)",
+                boxShadow: isDark ? "0 12px 36px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.2)" : "0 12px 32px rgba(17,17,17,0.3)",
               },
 
-              "&:active": {
-                backgroundColor: activeColor,
-                transform: "translateY(0) scale(0.985)",
-              },
+              "&:active": { backgroundColor: activeColor, transform: "translateY(0) scale(0.985)" },
 
               "&:focus-visible": {
-                boxShadow: isDark
-                  ? `0 0 0 3px ${glowColor}, 0 6px 24px rgba(0,0,0,0.55)`
-                  : `0 0 0 3px ${glowColor}, 0 6px 20px rgba(17,17,17,0.22)`,
+                boxShadow: isDark ? `0 0 0 3px ${glowColor}, 0 6px 24px rgba(0,0,0,0.55)` : `0 0 0 3px ${glowColor}, 0 6px 20px rgba(17,17,17,0.22)`,
               },
 
-              "&.Mui-disabled": {
-                backgroundColor: disabledColor,
-                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
-                boxShadow: "none",
-              },
+              "&.Mui-disabled": { backgroundColor: disabledColor, color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)", boxShadow: "none" },
             }),
 
           // ------------------------------------------------------------
@@ -192,9 +168,7 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
                   : "0 12px 32px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(17,17,17,0.15)",
               },
 
-              "&:active": {
-                transform: "translateY(0) scale(0.985)",
-              },
+              "&:active": { transform: "translateY(0) scale(0.985)" },
 
               "&:focus-visible": {
                 boxShadow: isDark
@@ -239,13 +213,9 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
                   : "0 4px 14px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(17,17,17,0.1)",
               },
 
-              "&:active": {
-                transform: "translateY(0) scale(0.985)",
-              },
+              "&:active": { transform: "translateY(0) scale(0.985)" },
 
-              "&:focus-visible": {
-                boxShadow: isDark ? "0 0 0 3px rgba(246,245,242,0.3)" : "0 0 0 3px rgba(17,17,17,0.2)",
-              },
+              "&:focus-visible": { boxShadow: isDark ? "0 0 0 3px rgba(246,245,242,0.3)" : "0 0 0 3px rgba(17,17,17,0.2)" },
 
               "&.Mui-disabled": {
                 background: isDark ? "rgba(255,255,255,0.03)" : "rgba(17,17,17,0.02)",
@@ -284,13 +254,9 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
                 boxShadow: isDark ? "0 4px 14px rgba(0,0,0,0.3)" : "0 4px 14px rgba(0,0,0,0.04)",
               },
 
-              "&:active": {
-                transform: "translateY(0) scale(0.985)",
-              },
+              "&:active": { transform: "translateY(0) scale(0.985)" },
 
-              "&:focus-visible": {
-                boxShadow: isDark ? "0 0 0 3px rgba(246,245,242,0.3)" : "0 0 0 3px rgba(17,17,17,0.2)",
-              },
+              "&:focus-visible": { boxShadow: isDark ? "0 0 0 3px rgba(246,245,242,0.3)" : "0 0 0 3px rgba(17,17,17,0.2)" },
 
               "&.Mui-disabled": {
                 border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
@@ -322,16 +288,9 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
 
               boxShadow: glass.containedShadow,
 
-              "&:hover": {
-                background: glass.containedHover,
-                transform: "translateY(-1px)",
-                boxShadow: glass.containedHoverShadow,
-              },
+              "&:hover": { background: glass.containedHover, transform: "translateY(-1px)", boxShadow: glass.containedHoverShadow },
 
-              "&:active": {
-                background: glass.containedActive,
-                transform: "translateY(0) scale(0.985)",
-              },
+              "&:active": { background: glass.containedActive, transform: "translateY(0) scale(0.985)" },
 
               "&:focus-visible": {
                 boxShadow: glassDark
@@ -380,14 +339,9 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
                 boxShadow: glass.outlinedHoverShadow,
               },
 
-              "&:active": {
-                background: glass.outlinedActive,
-                transform: "translateY(0) scale(0.985)",
-              },
+              "&:active": { background: glass.outlinedActive, transform: "translateY(0) scale(0.985)" },
 
-              "&:focus-visible": {
-                boxShadow: glassDark ? "0 0 0 3px rgba(255,255,255,0.3)" : "0 0 0 3px rgba(17,17,17,0.2)",
-              },
+              "&:focus-visible": { boxShadow: glassDark ? "0 0 0 3px rgba(255,255,255,0.3)" : "0 0 0 3px rgba(17,17,17,0.2)" },
 
               "&.Mui-disabled": {
                 borderColor: glassDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)",
@@ -424,14 +378,9 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
                 transform: "translateY(-1px)",
               },
 
-              "&:active": {
-                backgroundColor: activeColor,
-                transform: "translateY(0) scale(0.985)",
-              },
+              "&:active": { backgroundColor: activeColor, transform: "translateY(0) scale(0.985)" },
 
-              "&:focus-visible": {
-                boxShadow: `0 0 0 3px ${glowColor}`,
-              },
+              "&:focus-visible": { boxShadow: `0 0 0 3px ${glowColor}` },
 
               "&.Mui-disabled": {
                 backgroundColor: disabledColor,
@@ -472,9 +421,7 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
                 transform: "translateY(0) scale(0.985)",
               },
 
-              "&:focus-visible": {
-                boxShadow: `0 0 0 3px ${glowColor}`,
-              },
+              "&:focus-visible": { boxShadow: `0 0 0 3px ${glowColor}` },
 
               "&.Mui-disabled": {
                 borderColor: disabledColor,
@@ -524,9 +471,7 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
                 transform: "translateY(0) scale(0.985)",
               },
 
-              "&:focus-visible": {
-                boxShadow: glassDark ? "0 0 0 3px rgba(255,255,255,0.3)" : "0 0 0 3px rgba(17,17,17,0.2)",
-              },
+              "&:focus-visible": { boxShadow: glassDark ? "0 0 0 3px rgba(255,255,255,0.3)" : "0 0 0 3px rgba(17,17,17,0.2)" },
 
               "&.Mui-disabled": {
                 color: glassDark ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.25)",
@@ -563,13 +508,10 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
                 transform: "translateY(0) scale(0.985)",
               },
 
-              "&:focus-visible": {
-                boxShadow: `0 0 0 3px ${glowColor}`,
-              },
+              "&:focus-visible": { boxShadow: `0 0 0 3px ${glowColor}` },
 
               "&.Mui-disabled": {
-                color:
-                  isPrimary || isSecondary ? (isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)") : disabledColor,
+                color: isPrimary || isSecondary ? (isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)") : disabledColor,
 
                 backgroundColor: "transparent",
 
@@ -584,13 +526,9 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
           "@media (prefers-reduced-motion: reduce)": {
             transition: "none",
 
-            "&:hover": {
-              transform: "none",
-            },
+            "&:hover": { transform: "none" },
 
-            "&:active": {
-              transform: "none",
-            },
+            "&:active": { transform: "none" },
           },
         };
       },
@@ -599,23 +537,11 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
       // SIZES — ORIGINAL JIVICO SIZING
       // --------------------------------------------------------------
 
-      sizeSmall: {
-        minHeight: 30,
-        padding: "5px 14px",
-        fontSize: "0.78rem",
-      },
+      sizeSmall: { minHeight: 30, padding: "5px 14px", fontSize: "0.78rem" },
 
-      sizeMedium: {
-        minHeight: 36,
-        padding: "7px 18px",
-        fontSize: "0.85rem",
-      },
+      sizeMedium: { minHeight: 36, padding: "7px 18px", fontSize: "0.85rem" },
 
-      sizeLarge: {
-        minHeight: 44,
-        padding: "11px 26px",
-        fontSize: "0.9375rem",
-      },
+      sizeLarge: { minHeight: 44, padding: "11px 26px", fontSize: "0.9375rem" },
     },
   },
 });

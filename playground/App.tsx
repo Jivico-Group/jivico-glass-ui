@@ -327,12 +327,7 @@ export default function App() {
 
   return (
     <Box sx={{ minHeight: "100vh", bgcolor: "background.default", color: "text.primary" }}>
-      <DocLayout
-        activeRoute={currentRoute}
-        onRouteChange={handleRouteChange}
-        tocItems={currentToc}
-        onOpenSearch={() => setSearchOpen(true)}
-      >
+      <DocLayout activeRoute={currentRoute} onRouteChange={handleRouteChange} tocItems={currentToc} onOpenSearch={() => setSearchOpen(true)}>
         {renderPage()}
       </DocLayout>
 

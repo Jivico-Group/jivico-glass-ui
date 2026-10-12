@@ -63,17 +63,7 @@ export function useResponsive(): ResponsiveState {
     breakpoint = "sm";
   }
 
-  return {
-    breakpoint,
-    isMobile,
-    isTablet,
-    isDesktop,
-    isXs,
-    isSm,
-    isMd,
-    isLg,
-    isXl,
-  };
+  return { breakpoint, isMobile, isTablet, isDesktop, isXs, isSm, isMd, isLg, isXl };
 }
 
 export default useResponsive;

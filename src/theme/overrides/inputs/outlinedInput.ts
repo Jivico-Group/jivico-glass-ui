@@ -11,16 +11,11 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
         const hoverColor = activeColorGroup.hover || activeColor;
         const glowColor = activeColorGroup.glow;
         const isGlass = (colorKey as string) === "glass";
-        const isSemantic =
-          colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
+        const isSemantic = colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
 
         return {
           borderRadius: 12,
-          backgroundColor: isGlass
-            ? isDark
-              ? "rgba(255, 255, 255, 0.05)"
-              : "rgba(255, 255, 255, 0.55)"
-            : palette.glass.buttonBg,
+          backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.55)") : palette.glass.buttonBg,
           backdropFilter: isGlass ? "blur(20px) saturate(190%)" : "blur(8px)",
           WebkitBackdropFilter: isGlass ? "blur(20px) saturate(190%)" : "blur(8px)",
           boxShadow: isGlass
@@ -31,21 +26,11 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
           transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
 
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: isGlass
-              ? isDark
-                ? "rgba(255, 255, 255, 0.20)"
-                : "rgba(17, 17, 17, 0.16)"
-              : isSemantic
-                ? activeColor
-                : palette.divider,
+            borderColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.20)" : "rgba(17, 17, 17, 0.16)") : isSemantic ? activeColor : palette.divider,
             transition: "border-color 0.2s ease, box-shadow 0.2s ease",
           },
 
-          "&:hover": {
-            ...(isGlass && {
-              backgroundColor: isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.70)",
-            }),
-          },
+          "&:hover": { ...(isGlass && { backgroundColor: isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.70)" }) },
 
           "&:hover .MuiOutlinedInput-notchedOutline": {
             borderColor: isGlass
@@ -58,22 +43,11 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
           },
 
           "&.Mui-focused": {
-            backgroundColor: isGlass
-              ? isDark
-                ? "rgba(24, 26, 32, 0.65)"
-                : "rgba(255, 255, 255, 0.90)"
-              : palette.glass.inputFocusBg,
-            "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: isGlass ? (isDark ? "#F6F5F2" : "#111111") : activeColor,
-              borderWidth: "1.5px",
-            },
+            backgroundColor: isGlass ? (isDark ? "rgba(24, 26, 32, 0.65)" : "rgba(255, 255, 255, 0.90)") : palette.glass.inputFocusBg,
+            "& .MuiOutlinedInput-notchedOutline": { borderColor: isGlass ? (isDark ? "#F6F5F2" : "#111111") : activeColor, borderWidth: "1.5px" },
           },
 
-          "&.Mui-error": {
-            "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: palette.error.main,
-            },
-          },
+          "&.Mui-error": { "& .MuiOutlinedInput-notchedOutline": { borderColor: palette.error.main } },
         };
       },
 
@@ -81,14 +55,10 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
         fontSize: "0.9375rem",
         color: palette.text.primary,
 
-        "@media (max-width: 599.95px)": {
-          fontSize: "16px",
-        },
+        "@media (max-width: 599.95px)": { fontSize: "16px" },
       },
 
-      multiline: {
-        padding: "13px 18px",
-      },
+      multiline: { padding: "13px 18px" },
     },
 
     variants: [
@@ -97,30 +67,22 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
         style: {
           fontSize: "0.85rem",
 
-          "@media (max-width: 599.95px)": {
-            fontSize: "16px",
-          },
+          "@media (max-width: 599.95px)": { fontSize: "16px" },
 
-          "&:not(.MuiInputBase-multiline)": {
-            minHeight: 36,
-          },
+          "&:not(.MuiInputBase-multiline)": { minHeight: 36 },
 
           "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
             padding: "6px 14px",
             fontSize: "0.85rem",
 
-            "@media (max-width: 599.95px)": {
-              fontSize: "16px",
-            },
+            "@media (max-width: 599.95px)": { fontSize: "16px" },
           },
 
           "&.MuiInputBase-multiline": {
             padding: "6px 14px",
             alignItems: "flex-start",
 
-            "& .MuiInputBase-input": {
-              fontSize: "16px",
-            },
+            "& .MuiInputBase-input": { fontSize: "16px" },
           },
         },
       },
@@ -130,26 +92,20 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
         style: {
           fontSize: "0.9375rem",
 
-          "&:not(.MuiInputBase-multiline)": {
-            minHeight: 48,
-          },
+          "&:not(.MuiInputBase-multiline)": { minHeight: 48 },
 
           "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
             padding: "12px 18px",
             fontSize: "0.9375rem",
 
-            "@media (max-width: 599.95px)": {
-              fontSize: "16px",
-            },
+            "@media (max-width: 599.95px)": { fontSize: "16px" },
           },
 
           "&.MuiInputBase-multiline": {
             padding: "12px 18px",
             alignItems: "flex-start",
 
-            "& .MuiInputBase-input": {
-              fontSize: "16px",
-            },
+            "& .MuiInputBase-input": { fontSize: "16px" },
           },
         },
       },
@@ -159,19 +115,11 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
         style: {
           fontSize: "1.1rem",
 
-          "&:not(.MuiInputBase-multiline)": {
-            minHeight: 56,
-          },
+          "&:not(.MuiInputBase-multiline)": { minHeight: 56 },
 
-          "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
-            padding: "16px 20px",
-            fontSize: "1.1rem",
-          },
+          "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": { padding: "16px 20px", fontSize: "1.1rem" },
 
-          "&.MuiInputBase-multiline": {
-            padding: "16px 20px",
-            alignItems: "flex-start",
-          },
+          "&.MuiInputBase-multiline": { padding: "16px 20px", alignItems: "flex-start" },
         },
       },
     ],

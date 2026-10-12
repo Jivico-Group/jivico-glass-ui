@@ -12,9 +12,7 @@ export const getPaginationOverrides = (palette: JivicoPalette): Components<Theme
           backgroundColor: palette.secondary.main,
           color: palette.secondary.contrastText,
 
-          "&:hover": {
-            backgroundColor: palette.secondary.hover,
-          },
+          "&:hover": { backgroundColor: palette.secondary.hover },
         },
       },
     },

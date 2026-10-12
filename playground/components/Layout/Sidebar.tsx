@@ -89,31 +89,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeId, onSelect, mobileOpen
   const isDark = mode === "dark";
 
   const content = (
-    <Box
-      sx={{
-        width: 250,
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        overflowY: "auto",
-        py: 2,
-        px: 1.5,
-      }}
-    >
+    <Box sx={{ width: 250, height: "100%", display: "flex", flexDirection: "column", overflowY: "auto", py: 2, px: 1.5 }}>
       <List size="small" sx={{ p: 0 }}>
         {NAV_SECTIONS.map((section) => (
           <Box key={section.title} sx={{ mb: 2 }}>
             <Typography
               variant="overline"
-              sx={{
-                px: 1.5,
-                mb: 0.5,
-                display: "block",
-                fontWeight: 700,
-                letterSpacing: "0.06em",
-                color: "text.secondary",
-                fontSize: "0.7rem",
-              }}
+              sx={{ px: 1.5, mb: 0.5, display: "block", fontWeight: 700, letterSpacing: "0.06em", color: "text.secondary", fontSize: "0.7rem" }}
             >
               {section.title}
             </Typography>
@@ -130,9 +112,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeId, onSelect, mobileOpen
                     onSelect(item.id);
                     onCloseMobile?.();
                   }}
-                  sx={{
-                    mb: 0.4,
-                  }}
+                  sx={{ mb: 0.4 }}
                 >
                   <ListItemText primary={item.label} />
 
@@ -145,18 +125,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeId, onSelect, mobileOpen
                         fontSize: "0.62rem",
                         fontWeight: 700,
                         backgroundColor:
-                          item.badge === "GLASS"
-                            ? isDark
-                              ? "rgba(255,255,255,0.15)"
-                              : "rgba(0,0,0,0.08)"
-                            : isDark
-                              ? "#F6F5F2"
-                              : "#111111",
-                        color:
-                          item.badge === "GLASS" ? (isDark ? "#F6F5F2" : "#111111") : isDark ? "#111111" : "#FFFFFF",
-                        "& .MuiChip-label": {
-                          px: 0.7,
-                        },
+                          item.badge === "GLASS" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.08)") : isDark ? "#F6F5F2" : "#111111",
+                        color: item.badge === "GLASS" ? (isDark ? "#F6F5F2" : "#111111") : isDark ? "#111111" : "#FFFFFF",
+                        "& .MuiChip-label": { px: 0.7 },
                       }}
                     />
                   )}
@@ -172,14 +143,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeId, onSelect, mobileOpen
   return (
     <>
       {/* Desktop Persistent Sidebar */}
-      <Box
-        component="nav"
-        sx={{
-          width: { md: 250 },
-          flexShrink: { md: 0 },
-          display: { xs: "none", md: "block" },
-        }}
-      >
+      <Box component="nav" sx={{ width: { md: 250 }, flexShrink: { md: 0 }, display: { xs: "none", md: "block" } }}>
         <Box
           sx={{
             width: 250,

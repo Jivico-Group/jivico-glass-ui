@@ -38,14 +38,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ items, activeI
     >
       <Typography
         variant="overline"
-        sx={{
-          display: "block",
-          fontWeight: 700,
-          letterSpacing: "0.06em",
-          color: "text.secondary",
-          fontSize: "0.72rem",
-          mb: 1,
-        }}
+        sx={{ display: "block", fontWeight: 700, letterSpacing: "0.06em", color: "text.secondary", fontSize: "0.72rem", mb: 1 }}
       >
         Contents
       </Typography>
@@ -63,22 +56,12 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ items, activeI
                 borderLeft: (theme) => `2px solid ${isActive ? theme.palette.text.primary : "transparent"}`,
                 color: isActive ? "text.primary" : "text.secondary",
                 fontWeight: isActive ? 600 : 400,
-                "&:hover": {
-                  backgroundColor: "transparent",
-                  color: "text.primary",
-                },
+                "&:hover": { backgroundColor: "transparent", color: "text.primary" },
               }}
             >
               <ListItemText
                 primary={
-                  <Typography
-                    noWrap
-                    sx={{
-                      fontSize: "0.78rem",
-                      fontWeight: isActive ? 600 : 400,
-                      color: "inherit",
-                    }}
-                  >
+                  <Typography noWrap sx={{ fontSize: "0.78rem", fontWeight: isActive ? 600 : 400, color: "inherit" }}>
                     {item.title}
                   </Typography>
                 }

@@ -6,9 +6,7 @@ const TRANSITION = [`border-color 180ms ${EASE}`, `box-shadow 220ms ${EASE}`, `t
 
 export const getButtonGroupOverrides = (isDark: boolean): Components<Theme> => ({
   MuiButtonGroup: {
-    defaultProps: {
-      disableElevation: true,
-    },
+    defaultProps: { disableElevation: true },
 
     styleOverrides: {
       root: ({ ownerState }) => {
@@ -30,21 +28,13 @@ export const getButtonGroupOverrides = (isDark: boolean): Components<Theme> => (
 
             transition: TRANSITION,
 
-            "&:focus-visible": {
-              zIndex: 3,
-            },
+            "&:focus-visible": { zIndex: 3 },
 
-            "&:hover": {
-              zIndex: 2,
-            },
+            "&:hover": { zIndex: 2 },
 
-            "&:active": {
-              zIndex: 2,
-            },
+            "&:active": { zIndex: 2 },
 
-            "&.Mui-disabled": {
-              zIndex: 0,
-            },
+            "&.Mui-disabled": { zIndex: 0 },
           },
 
           /*
@@ -54,28 +44,15 @@ export const getButtonGroupOverrides = (isDark: boolean): Components<Theme> => (
             "& .MuiButtonGroup-grouped": {
               boxShadow: "none",
 
-              "&:first-of-type": {
-                borderTopLeftRadius: 9999,
-                borderBottomLeftRadius: 9999,
-              },
+              "&:first-of-type": { borderTopLeftRadius: 9999, borderBottomLeftRadius: 9999 },
 
-              "&:last-of-type": {
-                borderTopRightRadius: 9999,
-                borderBottomRightRadius: 9999,
-                borderRight: "none",
-              },
+              "&:last-of-type": { borderTopRightRadius: 9999, borderBottomRightRadius: 9999, borderRight: "none" },
 
-              "&:not(:last-of-type)": {
-                borderRight: isDark ? "1px solid rgba(0,0,0,0.25)" : "1px solid rgba(255,255,255,0.35)",
-              },
+              "&:not(:last-of-type)": { borderRight: isDark ? "1px solid rgba(0,0,0,0.25)" : "1px solid rgba(255,255,255,0.35)" },
 
-              "&:hover": {
-                zIndex: 2,
-              },
+              "&:hover": { zIndex: 2 },
 
-              "&.Mui-selected": {
-                zIndex: 2,
-              },
+              "&.Mui-selected": { zIndex: 2 },
             },
           }),
 
@@ -84,31 +61,17 @@ export const getButtonGroupOverrides = (isDark: boolean): Components<Theme> => (
            */
           ...(variant === "outlined" && {
             "& .MuiButtonGroup-grouped": {
-              "&:first-of-type": {
-                borderTopLeftRadius: 9999,
-                borderBottomLeftRadius: 9999,
-              },
+              "&:first-of-type": { borderTopLeftRadius: 9999, borderBottomLeftRadius: 9999 },
 
-              "&:last-of-type": {
-                borderTopRightRadius: 9999,
-                borderBottomRightRadius: 9999,
-              },
+              "&:last-of-type": { borderTopRightRadius: 9999, borderBottomRightRadius: 9999 },
 
-              "&:not(:first-of-type)": {
-                marginLeft: -1,
-              },
+              "&:not(:first-of-type)": { marginLeft: -1 },
 
-              "&:hover": {
-                zIndex: 2,
-              },
+              "&:hover": { zIndex: 2 },
 
-              "&.Mui-selected": {
-                zIndex: 2,
-              },
+              "&.Mui-selected": { zIndex: 2 },
 
-              "&.Mui-selected + .MuiButtonGroup-grouped": {
-                borderLeftColor: "transparent",
-              },
+              "&.Mui-selected + .MuiButtonGroup-grouped": { borderLeftColor: "transparent" },
             },
           }),
 
@@ -119,17 +82,11 @@ export const getButtonGroupOverrides = (isDark: boolean): Components<Theme> => (
             "& .MuiButtonGroup-grouped": {
               borderRadius: 9999,
 
-              "&:not(:last-of-type)": {
-                marginRight: 2,
-              },
+              "&:not(:last-of-type)": { marginRight: 2 },
 
-              "&:hover": {
-                zIndex: 2,
-              },
+              "&:hover": { zIndex: 2 },
 
-              "&.Mui-selected": {
-                zIndex: 2,
-              },
+              "&.Mui-selected": { zIndex: 2 },
             },
           }),
 
@@ -141,13 +98,9 @@ export const getButtonGroupOverrides = (isDark: boolean): Components<Theme> => (
               transition: "none",
               transform: "none",
 
-              "&:hover": {
-                transform: "none",
-              },
+              "&:hover": { transform: "none" },
 
-              "&:active": {
-                transform: "none",
-              },
+              "&:active": { transform: "none" },
             },
           },
         };

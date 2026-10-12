@@ -22,13 +22,7 @@ const getRadius = (radius: number | string | undefined, theme: Theme) => {
   return radius;
 };
 
-const HighlightActionButton = ({
-  action,
-  onNavigate,
-}: {
-  action?: HighlightProps["action"];
-  onNavigate?: HighlightProps["onNavigate"];
-}) => {
+const HighlightActionButton = ({ action, onNavigate }: { action?: HighlightProps["action"]; onNavigate?: HighlightProps["onNavigate"] }) => {
   if (!action) {
     return null;
   }
@@ -46,16 +40,7 @@ const HighlightActionButton = ({
           action.onClick?.(event as any);
           onNavigate?.(event);
         }}
-        sx={{
-          width: "fit-content",
-          minWidth: 0,
-          px: 2,
-          py: 1,
-          borderRadius: 999,
-          fontWeight: 600,
-          whiteSpace: "nowrap",
-          pointerEvents: "auto",
-        }}
+        sx={{ width: "fit-content", minWidth: 0, px: 2, py: 1, borderRadius: 999, fontWeight: 600, whiteSpace: "nowrap", pointerEvents: "auto" }}
       >
         {action.label}
       </Button>
@@ -70,16 +55,7 @@ const HighlightActionButton = ({
         action.onClick?.(event as any);
         onNavigate?.(event as any);
       }}
-      sx={{
-        width: "fit-content",
-        minWidth: 0,
-        px: 2,
-        py: 1,
-        borderRadius: 999,
-        fontWeight: 600,
-        whiteSpace: "nowrap",
-        pointerEvents: "auto",
-      }}
+      sx={{ width: "fit-content", minWidth: 0, px: 2, py: 1, borderRadius: 999, fontWeight: 600, whiteSpace: "nowrap", pointerEvents: "auto" }}
     >
       {action.label}
     </Button>
@@ -146,26 +122,12 @@ const HighlightImage = ({
         <picture>
           <source media="(max-width: 767px)" srcSet={mobileImage} />
 
-          <DefaultImage
-            src={image}
-            alt={alt}
-            imagePosition={imagePosition}
-            imageSizes={imageSizes}
-            imagePriority={imagePriority}
-          />
+          <DefaultImage src={image} alt={alt} imagePosition={imagePosition} imageSizes={imageSizes} imagePriority={imagePriority} />
         </picture>
       );
     }
 
-    return (
-      <DefaultImage
-        src={image}
-        alt={alt}
-        imagePosition={imagePosition}
-        imageSizes={imageSizes}
-        imagePriority={imagePriority}
-      />
-    );
+    return <DefaultImage src={image} alt={alt} imagePosition={imagePosition} imageSizes={imageSizes} imagePriority={imagePriority} />;
   }
 
   /*
@@ -210,16 +172,7 @@ const HighlightMediaLink = ({ href, label, onNavigate }: HighlightMediaLinkProps
         event.preventDefault();
         onNavigate?.(event);
       }}
-      sx={{
-        position: "absolute",
-        inset: 0,
-        zIndex: 2,
-        display: "block",
-        width: "100%",
-        height: "100%",
-        textDecoration: "none",
-        cursor: "pointer",
-      }}
+      sx={{ position: "absolute", inset: 0, zIndex: 2, display: "block", width: "100%", height: "100%", textDecoration: "none", cursor: "pointer" }}
     />
   );
 };
@@ -256,26 +209,11 @@ export const Highlight = ({
   const resolvedRadius = getRadius(radius, theme);
 
   const sizeStyles = {
-    small: {
-      minHeight: 220,
-      padding: 2,
-      titleVariant: "h6" as const,
-      descriptionVariant: "body2" as const,
-    },
+    small: { minHeight: 220, padding: 2, titleVariant: "h6" as const, descriptionVariant: "body2" as const },
 
-    medium: {
-      minHeight: 300,
-      padding: 3,
-      titleVariant: "h5" as const,
-      descriptionVariant: "body2" as const,
-    },
+    medium: { minHeight: 300, padding: 3, titleVariant: "h5" as const, descriptionVariant: "body2" as const },
 
-    large: {
-      minHeight: 400,
-      padding: 4,
-      titleVariant: "h4" as const,
-      descriptionVariant: "body1" as const,
-    },
+    large: { minHeight: 400, padding: 4, titleVariant: "h4" as const, descriptionVariant: "body1" as const },
   }[size];
 
   const resolvedHeight = getDimension(height);
@@ -289,43 +227,19 @@ export const Highlight = ({
   const content = (
     <>
       {eyebrow && (
-        <Typography
-          variant="overline"
-          sx={{
-            display: "block",
-            mb: 0.5,
-            fontWeight: 600,
-            letterSpacing: "0.12em",
-          }}
-        >
+        <Typography variant="overline" sx={{ display: "block", mb: 0.5, fontWeight: 600, letterSpacing: "0.12em" }}>
           {eyebrow}
         </Typography>
       )}
 
       {title && (
-        <Typography
-          component="h3"
-          variant={sizeStyles.titleVariant}
-          sx={{
-            fontWeight: 500,
-            lineHeight: 1.05,
-            letterSpacing: "-0.025em",
-          }}
-        >
+        <Typography component="h3" variant={sizeStyles.titleVariant} sx={{ fontWeight: 500, lineHeight: 1.05, letterSpacing: "-0.025em" }}>
           {title}
         </Typography>
       )}
 
       {description && (
-        <Typography
-          variant={sizeStyles.descriptionVariant}
-          sx={{
-            mt: 1,
-            maxWidth: 420,
-            lineHeight: 1.5,
-            opacity: 0.9,
-          }}
-        >
+        <Typography variant={sizeStyles.descriptionVariant} sx={{ mt: 1, maxWidth: 420, lineHeight: 1.5, opacity: 0.9 }}>
           {description}
         </Typography>
       )}
@@ -355,9 +269,7 @@ export const Highlight = ({
             overflow: "hidden",
             borderRadius: resolvedRadius,
 
-            "&:hover img": {
-              transform: "scale(1.03)",
-            },
+            "&:hover img": { transform: "scale(1.03)" },
           },
 
           ...(Array.isArray(sx) ? sx : [sx]),
@@ -387,32 +299,15 @@ export const Highlight = ({
           {mediaLink}
         </Box>
 
-        {(eyebrow || title || description || action || children) && (
-          <Box
-            sx={{
-              pt: 2,
-              px: 0.5,
-            }}
-          >
-            {content}
-          </Box>
-        )}
+        {(eyebrow || title || description || action || children) && <Box sx={{ pt: 2, px: 0.5 }}>{content}</Box>}
       </Box>
     );
   }
 
   const contentPosition =
     variant === "center"
-      ? {
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center" as const,
-        }
-      : {
-          alignItems: "flex-start",
-          justifyContent: "flex-end",
-          textAlign: "left" as const,
-        };
+      ? { alignItems: "center", justifyContent: "center", textAlign: "center" as const }
+      : { alignItems: "flex-start", justifyContent: "flex-end", textAlign: "left" as const };
 
   /*
    * OVERLAY / CENTER
@@ -436,21 +331,13 @@ export const Highlight = ({
           color: "#fff",
           backgroundColor: theme.palette.grey[900],
 
-          "&:hover img": {
-            transform: "scale(1.035)",
-          },
+          "&:hover img": { transform: "scale(1.035)" },
         },
 
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <Box
-        sx={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 0,
-        }}
-      >
+      <Box sx={{ position: "absolute", inset: 0, zIndex: 0 }}>
         <HighlightImage
           image={image}
           mobileImage={mobileImage}

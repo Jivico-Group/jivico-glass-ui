@@ -1,19 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import {
-  Box,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  MenuItem,
-  Radio,
-  RadioGroup,
-  Select,
-  Stack,
-  Switch,
-  Typography,
-} from "@mui/material";
+import { Box, FormControl, FormControlLabel, FormLabel, MenuItem, Radio, RadioGroup, Select, Stack, Switch, Typography } from "@mui/material";
 import "../../../src/theme/augmentations.d.ts";
 import { Spotlight } from "../../../src/components/spotlight/Spotlight.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
@@ -38,31 +26,19 @@ const MockImage = ({ src, alt, fill, sizes, priority, style, className }: Spotli
     sizes={sizes}
     loading={priority ? "eager" : "lazy"}
     className={className}
-    style={{
-      display: "block",
-      width: fill ? "100%" : undefined,
-      height: fill ? "100%" : undefined,
-      objectFit: fill ? "cover" : undefined,
-      ...style,
-    }}
+    style={{ display: "block", width: fill ? "100%" : undefined, height: fill ? "100%" : undefined, objectFit: fill ? "cover" : undefined, ...style }}
   />
 );
 
 const sampleSpotlightItem: SpotlightItem = {
   id: "spotlight-hero-1",
-  media: {
-    src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80",
-    alt: "Originals Collection 2026",
-  },
+  media: { src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80", alt: "Originals Collection 2026" },
   href: "#originals",
   linkLabel: "Explore Originals",
   eyebrow: "STUDIO EXCLUSIVE",
   title: "Originals Collection 2026",
   description: "Limited-edition luxury glassmorphic pieces crafted with real-time physics and liquid depth.",
-  action: {
-    label: "Discover Originals",
-    href: "#originals",
-  },
+  action: { label: "Discover Originals", href: "#originals" },
   sideLabel: "FALL / WINTER 2026",
 };
 
@@ -83,23 +59,13 @@ export const SpotlightPage: React.FC = () => {
   const activeItem: SpotlightItem = useMemo(
     () => ({
       id: "interactive-spotlight",
-      media: {
-        src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80",
-        alt: "Originals Collection",
-      },
+      media: { src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80", alt: "Originals Collection" },
       href: enableHref ? "#originals" : undefined,
       linkLabel: enableHref ? "View Originals Collection" : undefined,
       eyebrow: showEyebrow ? "STUDIO EXCLUSIVE" : undefined,
       title: "Originals Collection 2026",
-      description: showDescription
-        ? "Limited-edition luxury glassmorphic items crafted with real-time physics and liquid depth."
-        : undefined,
-      action: showAction
-        ? {
-            label: "Explore Originals",
-            href: "#originals",
-          }
-        : undefined,
+      description: showDescription ? "Limited-edition luxury glassmorphic items crafted with real-time physics and liquid depth." : undefined,
+      action: showAction ? { label: "Explore Originals", href: "#originals" } : undefined,
       sideLabel: showSideLabel ? "LIMITED RELEASE" : undefined,
     }),
     [enableHref, showEyebrow, showDescription, showAction, showSideLabel],
@@ -162,21 +128,11 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
           >
             <Stack spacing={3}>
               {/* Row 1: Variant & Size */}
-              <Stack
-                direction={{ xs: "column", md: "row" }}
-                spacing={3}
-                sx={{ alignItems: { xs: "stretch", md: "center" } }}
-              >
+              <Stack direction={{ xs: "column", md: "row" }} spacing={3} sx={{ alignItems: { xs: "stretch", md: "center" } }}>
                 <FormControl component="fieldset">
                   <FormLabel
                     component="legend"
-                    sx={{
-                      fontSize: "0.75rem",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.08em",
-                      mb: 0.5,
-                    }}
+                    sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}
                   >
                     Variant
                   </FormLabel>
@@ -190,13 +146,7 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
                 <FormControl component="fieldset">
                   <FormLabel
                     component="legend"
-                    sx={{
-                      fontSize: "0.75rem",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.08em",
-                      mb: 0.5,
-                    }}
+                    sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}
                   >
                     Size
                   </FormLabel>
@@ -210,21 +160,9 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
               </Stack>
 
               {/* Row 2: Radius & Toggles */}
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={3}
-                sx={{ alignItems: { xs: "stretch", md: "center" } }}
-              >
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={3} sx={{ alignItems: { xs: "stretch", md: "center" } }}>
                 <FormControl size="small" sx={{ minWidth: 160 }}>
-                  <FormLabel
-                    sx={{
-                      fontSize: "0.75rem",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.08em",
-                      mb: 0.5,
-                    }}
-                  >
+                  <FormLabel sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>
                     Corner Radius
                   </FormLabel>
                   <Select value={radius} onChange={(e) => setRadius(e.target.value as SpotlightRadius)}>
@@ -238,9 +176,7 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
               {/* Row 3: Content Toggles */}
               <Stack direction="row" spacing={3} sx={{ flexWrap: "wrap" }}>
                 <FormControlLabel
-                  control={
-                    <Switch size="small" checked={showEyebrow} onChange={(e) => setShowEyebrow(e.target.checked)} />
-                  }
+                  control={<Switch size="small" checked={showEyebrow} onChange={(e) => setShowEyebrow(e.target.checked)} />}
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       Eyebrow
@@ -249,13 +185,7 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
                 />
 
                 <FormControlLabel
-                  control={
-                    <Switch
-                      size="small"
-                      checked={showDescription}
-                      onChange={(e) => setShowDescription(e.target.checked)}
-                    />
-                  }
+                  control={<Switch size="small" checked={showDescription} onChange={(e) => setShowDescription(e.target.checked)} />}
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       Description
@@ -264,9 +194,7 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
                 />
 
                 <FormControlLabel
-                  control={
-                    <Switch size="small" checked={showAction} onChange={(e) => setShowAction(e.target.checked)} />
-                  }
+                  control={<Switch size="small" checked={showAction} onChange={(e) => setShowAction(e.target.checked)} />}
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       CTA Button
@@ -275,9 +203,7 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
                 />
 
                 <FormControlLabel
-                  control={
-                    <Switch size="small" checked={showSideLabel} onChange={(e) => setShowSideLabel(e.target.checked)} />
-                  }
+                  control={<Switch size="small" checked={showSideLabel} onChange={(e) => setShowSideLabel(e.target.checked)} />}
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       Side Label
@@ -286,9 +212,7 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
                 />
 
                 <FormControlLabel
-                  control={
-                    <Switch size="small" checked={enableHref} onChange={(e) => setEnableHref(e.target.checked)} />
-                  }
+                  control={<Switch size="small" checked={enableHref} onChange={(e) => setEnableHref(e.target.checked)} />}
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       Full Card Link (href)
@@ -301,14 +225,7 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
 
           {/* Render Active Spotlight */}
           <Box sx={{ width: "100%", overflow: "hidden" }}>
-            <Spotlight
-              item={activeItem}
-              variant={variant}
-              size={size}
-              radius={radius}
-              ImageComponent={MockImage}
-              onNavigate={mockNavigation}
-            />
+            <Spotlight item={activeItem} variant={variant} size={size} radius={radius} ImageComponent={MockImage} onNavigate={mockNavigation} />
           </Box>
         </Stack>
       </DemoBlock>
@@ -358,10 +275,7 @@ const item = {
               eyebrow: "DESIGN STUDIO",
               title: "Create Your Freestyle",
               description: "Upload custom artwork and print 1-of-1 heavyweight apparel with studio finish.",
-              action: {
-                label: "Start Customizer",
-                href: "#customizer",
-              },
+              action: { label: "Start Customizer", href: "#customizer" },
               href: "#customizer",
               sideLabel: "STUDIO 2026",
             }}
@@ -420,11 +334,7 @@ const item = {
               eyebrow: "MATERIAL UI V9",
               title: "Liquid Glass System",
               description: "Real-time backdrop blur filters with ambient dynamic lighting for modern React interfaces.",
-              action: {
-                label: "View Architecture",
-                href: "#architecture",
-                color: "glass",
-              },
+              action: { label: "View Architecture", href: "#architecture", color: "glass" },
               href: "#architecture",
               sideLabel: "V0.1.1 RELEASE",
             }}
@@ -481,10 +391,7 @@ const item = {
               eyebrow: "HARDWARE ENGINE",
               title: "Next-Gen Engine",
               description: "Zero layout shift, 60 FPS GPU-accelerated transitions.",
-              action: {
-                label: "Benchmark Test",
-                href: "#benchmarks",
-              },
+              action: { label: "Benchmark Test", href: "#benchmarks" },
               href: "#benchmarks",
             }}
             variant="minimal"
@@ -542,9 +449,9 @@ export function SpotlightHero({ item }) {
             </Typography>
 
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7 }}>
-              Spotlight remains completely decoupled from framework routers. The component renders standard HTML5{" "}
-              <code>&lt;a href="..."&gt;</code> anchors, enabling browser status previews and search engine indexing,
-              while <code>onNavigate</code> triggers client-side router navigation.
+              Spotlight remains completely decoupled from framework routers. The component renders standard HTML5 <code>&lt;a href="..."&gt;</code>{" "}
+              anchors, enabling browser status previews and search engine indexing, while <code>onNavigate</code> triggers client-side router
+              navigation.
             </Typography>
 
             <Stack spacing={1}>
@@ -555,8 +462,7 @@ export function SpotlightHero({ item }) {
                 <strong>2. Application Routing:</strong> Consuming app controls routing with <code>router.push()</code>.
               </Typography>
               <Typography variant="body2">
-                <strong>3. Injectable Media:</strong> Optionally pass Next.js <code>next/image</code> via{" "}
-                <code>ImageComponent</code>.
+                <strong>3. Injectable Media:</strong> Optionally pass Next.js <code>next/image</code> via <code>ImageComponent</code>.
               </Typography>
             </Stack>
           </Box>

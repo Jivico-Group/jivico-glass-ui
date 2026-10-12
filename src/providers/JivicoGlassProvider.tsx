@@ -4,13 +4,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { GlassModeProvider, ThemeMode, useGlassMode } from "../context/ThemeContext.js";
 import JivicoGlassTheme from "../theme/theme.js";
 
-function InternalMuiWrapper({
-  children,
-  enableCssBaseline = true,
-}: {
-  children: React.ReactNode;
-  enableCssBaseline?: boolean;
-}) {
+function InternalMuiWrapper({ children, enableCssBaseline = true }: { children: React.ReactNode; enableCssBaseline?: boolean }) {
   const { resolvedMode } = useGlassMode();
 
   const theme = React.useMemo(() => JivicoGlassTheme(resolvedMode), [resolvedMode]);

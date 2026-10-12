@@ -21,27 +21,8 @@ const CloseDeleteIcon = (props: React.SVGProps<SVGSVGElement>) =>
   );
 
 export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => {
-  const chipColor = (
-    colorKey: string,
-  ): {
-    main: string;
-    hover: string;
-    active: string;
-    disabled: string;
-    glow: string;
-    text: string;
-  } => {
-    const semanticColors: Record<
-      string,
-      {
-        main: string;
-        hover: string;
-        active: string;
-        disabled: string;
-        glow: string;
-        text: string;
-      }
-    > = {
+  const chipColor = (colorKey: string): { main: string; hover: string; active: string; disabled: string; glow: string; text: string } => {
+    const semanticColors: Record<string, { main: string; hover: string; active: string; disabled: string; glow: string; text: string }> = {
       info: {
         main: "#4285F4",
         hover: isDark ? "#5A95F5" : "#3367D6",
@@ -103,9 +84,7 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
   };
   return {
     MuiChip: {
-      defaultProps: {
-        deleteIcon: React.createElement(CloseDeleteIcon),
-      },
+      defaultProps: { deleteIcon: React.createElement(CloseDeleteIcon) },
       variants: [
         {
           props: { size: "large" },
@@ -119,23 +98,9 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
               borderWidth: "2px",
               marginRight: "7px",
             },
-            "& .MuiChip-avatar": {
-              width: 24,
-              height: 24,
-              marginLeft: "-3px",
-              marginRight: "6px",
-              fontSize: "0.7rem",
-            },
-            "& .MuiChip-icon": {
-              fontSize: "18px",
-              marginLeft: "-2px",
-              marginRight: "6px",
-            },
-            "& .MuiChip-deleteIcon": {
-              fontSize: "17px",
-              marginLeft: "6px",
-              marginRight: "-1px",
-            },
+            "& .MuiChip-avatar": { width: 24, height: 24, marginLeft: "-3px", marginRight: "6px", fontSize: "0.7rem" },
+            "& .MuiChip-icon": { fontSize: "18px", marginLeft: "-2px", marginRight: "6px" },
+            "& .MuiChip-deleteIcon": { fontSize: "17px", marginLeft: "6px", marginRight: "-1px" },
           },
         },
       ],
@@ -165,12 +130,7 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
             transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
             userSelect: "none",
 
-            "& .MuiChip-label": {
-              color: "inherit",
-              display: "inline-flex",
-              alignItems: "center",
-              padding: 0,
-            },
+            "& .MuiChip-label": { color: "inherit", display: "inline-flex", alignItems: "center", padding: 0 },
 
             // ── Brand Kit Signature Circle Indicator Before Label ────────
             // Displayed on all chips unless a custom icon or avatar is provided
@@ -196,31 +156,14 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
               transition: "opacity 0.15s ease, transform 0.15s ease",
               color: "inherit",
               cursor: "pointer",
-              "&:hover": {
-                opacity: 1,
-                transform: "scale(1.15)",
-                color: "inherit",
-              },
+              "&:hover": { opacity: 1, transform: "scale(1.15)", color: "inherit" },
             },
 
             // Avatar inside chip
-            "& .MuiChip-avatar": {
-              width: 20,
-              height: 20,
-              marginLeft: "-3px",
-              marginRight: "6px",
-              fontSize: "0.65rem",
-              fontWeight: 700,
-            },
+            "& .MuiChip-avatar": { width: 20, height: 20, marginLeft: "-3px", marginRight: "6px", fontSize: "0.65rem", fontWeight: 700 },
 
             // Icon inside chip
-            "& .MuiChip-icon": {
-              fontSize: "16px",
-              marginLeft: "-2px",
-              marginRight: "6px",
-              color: "inherit",
-              opacity: 0.85,
-            },
+            "& .MuiChip-icon": { fontSize: "16px", marginLeft: "-2px", marginRight: "6px", color: "inherit", opacity: 0.85 },
 
             // ══════════════════════════════════════════════════════════════
             // FILLED VARIANT
@@ -241,10 +184,7 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                   transform: "translateY(-1px)",
                   boxShadow: isDark ? "0 6px 16px rgba(0,0,0,0.4)" : "0 6px 14px rgba(0,0,0,0.12)",
                 },
-                "&.MuiChip-clickable:active": {
-                  backgroundColor: isDark ? "#D9D8D4" : "#1A1A1A",
-                  transform: "translateY(0) scale(0.98)",
-                },
+                "&.MuiChip-clickable:active": { backgroundColor: isDark ? "#D9D8D4" : "#1A1A1A", transform: "translateY(0) scale(0.98)" },
                 "&.Mui-disabled": {
                   backgroundColor: isDark ? "rgba(255,255,255,0.12)" : "#EBEBEB",
                   color: isDark ? "rgba(255,255,255,0.3)" : "#A0A0A0",
@@ -263,10 +203,7 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                 WebkitBackdropFilter: "blur(12px)",
                 boxShadow: isDark ? "0 2px 8px rgba(0,0,0,0.25)" : "0 2px 6px rgba(0,0,0,0.04)",
 
-                "&.MuiChip-clickable:hover": {
-                  backgroundColor: isDark ? "rgba(255,255,255,0.16)" : "#EDECE8",
-                  transform: "translateY(-1px)",
-                },
+                "&.MuiChip-clickable:hover": { backgroundColor: isDark ? "rgba(255,255,255,0.16)" : "#EDECE8", transform: "translateY(-1px)" },
                 "&.MuiChip-clickable:active": {
                   backgroundColor: isDark ? "rgba(255,255,255,0.22)" : "#D9D9CF",
                   transform: "translateY(0) scale(0.98)",
@@ -326,10 +263,7 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                   transform: "translateY(-1px)",
                   boxShadow: isDark ? `0 6px 16px rgba(0,0,0,0.4)` : `0 6px 14px ${cc.glow}`,
                 },
-                "&.MuiChip-clickable:active": {
-                  backgroundColor: cc.active,
-                  transform: "translateY(0) scale(0.98)",
-                },
+                "&.MuiChip-clickable:active": { backgroundColor: cc.active, transform: "translateY(0) scale(0.98)" },
                 "&.Mui-disabled": {
                   backgroundColor: cc.disabled,
                   color: isDark ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.5)",
@@ -450,11 +384,7 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                   transform: "translateY(-1px)",
                   boxShadow: isDark ? "0 4px 12px rgba(0,0,0,0.25)" : "0 4px 10px rgba(0,0,0,0.07)",
                 },
-                "&.Mui-disabled": {
-                  borderColor: cc.disabled,
-                  color: cc.disabled,
-                  opacity: 1,
-                },
+                "&.Mui-disabled": { borderColor: cc.disabled, color: cc.disabled, opacity: 1 },
               }),
 
             // ── Default Outlined ─────────────────────────────────────────
@@ -499,14 +429,7 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                       : isDark
                         ? "rgba(255, 255, 255, 0.07)"
                         : "rgba(17, 17, 17, 0.05)",
-              color:
-                isGlass || isPrimary || isSecondary
-                  ? isDark
-                    ? "#F6F5F2"
-                    : "#111111"
-                  : isSemantic
-                    ? cc.main
-                    : palette.text.primary,
+              color: isGlass || isPrimary || isSecondary ? (isDark ? "#F6F5F2" : "#111111") : isSemantic ? cc.main : palette.text.primary,
               border: `1px solid ${
                 isGlass
                   ? isDark
@@ -520,10 +443,7 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                       ? `rgba(${color === "info" ? "66,133,244" : color === "warning" ? "230,119,0" : color === "error" ? "234,67,53" : "52,168,83"}, 0.15)`
                       : "rgba(17,17,17,0.08)"
               }`,
-              ...(isGlass && {
-                backdropFilter: "blur(10px)",
-                WebkitBackdropFilter: "blur(10px)",
-              }),
+              ...(isGlass && { backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }),
               boxShadow: "none",
 
               "&.MuiChip-clickable:hover": {
@@ -548,12 +468,8 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                           : "rgba(17, 17, 17, 0.08)",
                 transform: "translateY(-1px)",
               },
-              "&.MuiChip-clickable:active": {
-                transform: "translateY(0) scale(0.98)",
-              },
-              "&.Mui-disabled": {
-                opacity: 0.45,
-              },
+              "&.MuiChip-clickable:active": { transform: "translateY(0) scale(0.98)" },
+              "&.Mui-disabled": { opacity: 0.45 },
             }),
 
             // ── Size: Large (Brand Kit: 32px) ───────────────────────────
@@ -567,23 +483,9 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                 borderWidth: "2px",
                 marginRight: "7px",
               },
-              "& .MuiChip-avatar": {
-                width: 24,
-                height: 24,
-                marginLeft: "-3px",
-                marginRight: "6px",
-                fontSize: "0.7rem",
-              },
-              "& .MuiChip-icon": {
-                fontSize: "18px",
-                marginLeft: "-2px",
-                marginRight: "6px",
-              },
-              "& .MuiChip-deleteIcon": {
-                fontSize: "17px",
-                marginLeft: "6px",
-                marginRight: "-1px",
-              },
+              "& .MuiChip-avatar": { width: 24, height: 24, marginLeft: "-3px", marginRight: "6px", fontSize: "0.7rem" },
+              "& .MuiChip-icon": { fontSize: "18px", marginLeft: "-2px", marginRight: "6px" },
+              "& .MuiChip-deleteIcon": { fontSize: "17px", marginLeft: "6px", marginRight: "-1px" },
             }),
           };
         },
@@ -599,23 +501,9 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
             borderWidth: "1.5px",
             marginRight: "5px",
           },
-          "& .MuiChip-avatar": {
-            width: 16,
-            height: 16,
-            marginLeft: "-3px",
-            marginRight: "4px",
-            fontSize: "0.55rem",
-          },
-          "& .MuiChip-icon": {
-            fontSize: "14px",
-            marginLeft: "-1px",
-            marginRight: "4px",
-          },
-          "& .MuiChip-deleteIcon": {
-            fontSize: "14px",
-            marginLeft: "4px",
-            marginRight: "-1px",
-          },
+          "& .MuiChip-avatar": { width: 16, height: 16, marginLeft: "-3px", marginRight: "4px", fontSize: "0.55rem" },
+          "& .MuiChip-icon": { fontSize: "14px", marginLeft: "-1px", marginRight: "4px" },
+          "& .MuiChip-deleteIcon": { fontSize: "14px", marginLeft: "4px", marginRight: "-1px" },
         },
 
         sizeMedium: {

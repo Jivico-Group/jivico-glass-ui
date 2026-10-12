@@ -27,10 +27,7 @@ import { StatusShowcase } from "../../../src/components/statusShowcase/StatusSho
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import type {
-  StatusShowcaseImage,
-  StatusShowcaseProps,
-} from "../../../src/components/statusShowcase/StatusShowcase.types.js";
+import type { StatusShowcaseImage, StatusShowcaseProps } from "../../../src/components/statusShowcase/StatusShowcase.types.js";
 
 // Preset configurations for the interactive playground
 interface PresetConfig {
@@ -50,8 +47,7 @@ const PRESETS: Record<string, PresetConfig> = {
     label: "404 Not Found",
     code: "404 ERROR",
     title: "Lost in the Multiverse",
-    description:
-      "The page or archival drop you are searching for does not exist, has been archived, or was moved to another universe coordinate.",
+    description: "The page or archival drop you are searching for does not exist, has been archived, or was moved to another universe coordinate.",
     image: {
       src: "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=600&q=80",
       alt: "404 Not Found Art",
@@ -68,11 +64,7 @@ const PRESETS: Record<string, PresetConfig> = {
     title: "Heavyweight Winter Capsule",
     description:
       "Crafted from custom 480 GSM luxury fleece and Japanese selvedge denim. Priority allocation opens in 48 hours for verified studio members.",
-    image: {
-      src: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
-      alt: "Drop Preview",
-      width: 260,
-    },
+    image: { src: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80", alt: "Drop Preview", width: 260 },
     actionLabel: "Join Early Access",
     secondaryActionLabel: "View Lookbook",
     surface: "glass",
@@ -82,8 +74,7 @@ const PRESETS: Record<string, PresetConfig> = {
     label: "500 Server Error",
     code: "500 INTERNAL ERROR",
     title: "Signal Disrupted",
-    description:
-      "Our edge runtime encountered an unexpected response while rendering this view. Our engineering team has been notified.",
+    description: "Our edge runtime encountered an unexpected response while rendering this view. Our engineering team has been notified.",
     image: {
       src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
       alt: "500 Error Signal",
@@ -98,8 +89,7 @@ const PRESETS: Record<string, PresetConfig> = {
     label: "Empty Bag",
     code: "ARCHIVE BAG (0)",
     title: "Your Bag is Currently Empty",
-    description:
-      "Explore our latest studio originals, oversized silhouettes, and limited drops to start curating your wardrobe.",
+    description: "Explore our latest studio originals, oversized silhouettes, and limited drops to start curating your wardrobe.",
     actionLabel: "Discover Originals",
     secondaryActionLabel: "Browse Bestsellers",
     surface: "standard",
@@ -109,8 +99,7 @@ const PRESETS: Record<string, PresetConfig> = {
     label: "Maintenance",
     code: "SYSTEM UPGRADE",
     title: "Multiverse Upgrading",
-    description:
-      "We are currently deploying protocol updates to the Jivico studio design engine. All services will resume at 04:00 UTC.",
+    description: "We are currently deploying protocol updates to the Jivico studio design engine. All services will resume at 04:00 UTC.",
     actionLabel: "Check Status",
     secondaryActionLabel: "Follow Updates",
     surface: "glass",
@@ -160,13 +149,7 @@ export const StatusShowcasePage: React.FC = () => {
     border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
   };
 
-  const labelSx = {
-    fontSize: "0.72rem",
-    fontWeight: 700,
-    textTransform: "uppercase" as const,
-    letterSpacing: "0.08em",
-    mb: 0.5,
-  };
+  const labelSx = { fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.08em", mb: 0.5 };
 
   // Generate dynamic code string for the interactive demo block
   const generatedCode = `<StatusShowcase
@@ -256,11 +239,7 @@ ${
                   <Typography sx={labelSx} color="text.secondary">
                     Size
                   </Typography>
-                  <RadioGroup
-                    row
-                    value={size}
-                    onChange={(e) => setSize(e.target.value as "small" | "medium" | "large")}
-                  >
+                  <RadioGroup row value={size} onChange={(e) => setSize(e.target.value as "small" | "medium" | "large")}>
                     <FormControlLabel value="small" control={<Radio size="small" />} label="Small" />
                     <FormControlLabel value="medium" control={<Radio size="small" />} label="Medium" />
                     <FormControlLabel value="large" control={<Radio size="small" />} label="Large" />
@@ -285,41 +264,23 @@ ${
                 </Typography>
                 <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
                   <FormControlLabel
-                    control={
-                      <Switch size="small" checked={showImage} onChange={(e) => setShowImage(e.target.checked)} />
-                    }
+                    control={<Switch size="small" checked={showImage} onChange={(e) => setShowImage(e.target.checked)} />}
                     label={<Typography variant="body2">Image</Typography>}
                   />
                   <FormControlLabel
-                    control={
-                      <Switch size="small" checked={showAction} onChange={(e) => setShowAction(e.target.checked)} />
-                    }
+                    control={<Switch size="small" checked={showAction} onChange={(e) => setShowAction(e.target.checked)} />}
                     label={<Typography variant="body2">Primary CTA</Typography>}
                   />
                   <FormControlLabel
-                    control={
-                      <Switch
-                        size="small"
-                        checked={showSecondaryAction}
-                        onChange={(e) => setShowSecondaryAction(e.target.checked)}
-                      />
-                    }
+                    control={<Switch size="small" checked={showSecondaryAction} onChange={(e) => setShowSecondaryAction(e.target.checked)} />}
                     label={<Typography variant="body2">Secondary CTA</Typography>}
                   />
                   <FormControlLabel
-                    control={
-                      <Switch size="small" checked={showChildren} onChange={(e) => setShowChildren(e.target.checked)} />
-                    }
+                    control={<Switch size="small" checked={showChildren} onChange={(e) => setShowChildren(e.target.checked)} />}
                     label={<Typography variant="body2">Children Slot</Typography>}
                   />
                   <FormControlLabel
-                    control={
-                      <Switch
-                        size="small"
-                        checked={showSignature}
-                        onChange={(e) => setShowSignature(e.target.checked)}
-                      />
-                    }
+                    control={<Switch size="small" checked={showSignature} onChange={(e) => setShowSignature(e.target.checked)} />}
                     label={<Typography variant="body2">Signature Slot</Typography>}
                   />
                 </Stack>
@@ -327,20 +288,8 @@ ${
 
               {/* Text Fields */}
               <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-                <TextField
-                  size="small"
-                  label="Code / Eyebrow"
-                  value={code}
-                  onChange={(e) => setCode(e.target.value)}
-                  sx={{ flex: 1 }}
-                />
-                <TextField
-                  size="small"
-                  label="Title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  sx={{ flex: 2 }}
-                />
+                <TextField size="small" label="Code / Eyebrow" value={code} onChange={(e) => setCode(e.target.value)} sx={{ flex: 1 }} />
+                <TextField size="small" label="Title" value={title} onChange={(e) => setTitle(e.target.value)} sx={{ flex: 2 }} />
               </Stack>
               <TextField
                 size="small"
@@ -402,14 +351,7 @@ ${
             />
 
             <StatusShowcase
-              image={
-                showImage && PRESETS[selectedPreset]?.image
-                  ? {
-                      ...PRESETS[selectedPreset].image!,
-                      alt: title,
-                    }
-                  : undefined
-              }
+              image={showImage && PRESETS[selectedPreset]?.image ? { ...PRESETS[selectedPreset].image!, alt: title } : undefined}
               code={code}
               title={title}
               description={description}
@@ -417,24 +359,15 @@ ${
               surface={surface}
               actionLabel={showAction ? PRESETS[selectedPreset]?.actionLabel || "Action" : undefined}
               onAction={() => alert(`Triggered primary action: ${PRESETS[selectedPreset]?.actionLabel}`)}
-              secondaryActionLabel={
-                showSecondaryAction ? PRESETS[selectedPreset]?.secondaryActionLabel || "Secondary Action" : undefined
-              }
-              onSecondaryAction={() =>
-                alert(`Triggered secondary action: ${PRESETS[selectedPreset]?.secondaryActionLabel}`)
-              }
+              secondaryActionLabel={showSecondaryAction ? PRESETS[selectedPreset]?.secondaryActionLabel || "Secondary Action" : undefined}
+              onSecondaryAction={() => alert(`Triggered secondary action: ${PRESETS[selectedPreset]?.secondaryActionLabel}`)}
               signature={
                 showSignature ? (
                   <Chip
                     label="JIVICO MULTIVERSE PROTOCOL"
                     size="small"
                     variant="outlined"
-                    sx={{
-                      fontSize: "0.68rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.1em",
-                      borderColor: "divider",
-                    }}
+                    sx={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.1em", borderColor: "divider" }}
                   />
                 ) : undefined
               }
@@ -457,10 +390,7 @@ ${
                       },
                     }}
                     sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: "9999px",
-                        bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.8)",
-                      },
+                      "& .MuiOutlinedInput-root": { borderRadius: "9999px", bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.8)" },
                     }}
                   />
                 </Box>
@@ -573,19 +503,11 @@ ${
                 size="small"
                 color="primary"
                 variant="outlined"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: "0.7rem",
-                  letterSpacing: "0.08em",
-                }}
+                sx={{ fontWeight: 700, fontSize: "0.7rem", letterSpacing: "0.08em" }}
               />
             }
           >
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              spacing={1}
-              sx={{ maxWidth: 400, mx: "auto", width: "100%" }}
-            >
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={1} sx={{ maxWidth: 400, mx: "auto", width: "100%" }}>
               <TextField
                 size="small"
                 placeholder="Enter email for drop alert..."
@@ -599,21 +521,9 @@ ${
                     ),
                   },
                 }}
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    borderRadius: "9999px",
-                  },
-                }}
+                sx={{ "& .MuiOutlinedInput-root": { borderRadius: "9999px" } }}
               />
-              <Button
-                variant="contained"
-                sx={{
-                  borderRadius: "9999px",
-                  px: 3,
-                  whiteSpace: "nowrap",
-                }}
-                onClick={() => alert("Registered!")}
-              >
+              <Button variant="contained" sx={{ borderRadius: "9999px", px: 3, whiteSpace: "nowrap" }} onClick={() => alert("Registered!")}>
                 Notify Me
               </Button>
             </Stack>
@@ -650,23 +560,9 @@ ${
         >
           <StatusShowcase
             code={
-              <Stack
-                direction="row"
-                spacing={0.75}
-                sx={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+              <Stack direction="row" spacing={0.75} sx={{ alignItems: "center", justifyContent: "center" }}>
                 <AlertTriangle size={14} color="#EF4444" />
-                <Typography
-                  component="span"
-                  sx={{
-                    color: "#EF4444",
-                    fontWeight: 700,
-                    fontSize: "0.72rem",
-                  }}
-                >
+                <Typography component="span" sx={{ color: "#EF4444", fontWeight: 700, fontSize: "0.72rem" }}>
                   500 SYSTEM ERROR
                 </Typography>
               </Stack>
@@ -720,14 +616,7 @@ ${
         >
           <StatusShowcase
             code={
-              <Stack
-                direction="row"
-                spacing={0.75}
-                sx={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+              <Stack direction="row" spacing={0.75} sx={{ alignItems: "center", justifyContent: "center" }}>
                 <ShoppingBag size={14} />
                 <Typography component="span" sx={{ fontWeight: 700, fontSize: "0.72rem" }}>
                   ARCHIVE BAG · 0 ITEMS
@@ -780,15 +669,7 @@ ${
               border: `1px solid ${isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)"}`,
             }}
           >
-            <Typography
-              variant="caption"
-              sx={{
-                ...labelSx,
-                color: "text.secondary",
-                display: "block",
-                mb: 2,
-              }}
-            >
+            <Typography variant="caption" sx={{ ...labelSx, color: "text.secondary", display: "block", mb: 2 }}>
               Surface: "standard"
             </Typography>
             <StatusShowcase
@@ -813,15 +694,7 @@ ${
               overflow: "hidden",
             }}
           >
-            <Typography
-              variant="caption"
-              sx={{
-                ...labelSx,
-                color: "text.secondary",
-                display: "block",
-                mb: 2,
-              }}
-            >
+            <Typography variant="caption" sx={{ ...labelSx, color: "text.secondary", display: "block", mb: 2 }}>
               Surface: "glass"
             </Typography>
             <StatusShowcase
@@ -858,15 +731,7 @@ ${
                 border: `1px solid ${isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)"}`,
               }}
             >
-              <Typography
-                variant="caption"
-                sx={{
-                  ...labelSx,
-                  color: "primary.main",
-                  display: "block",
-                  mb: 2,
-                }}
-              >
+              <Typography variant="caption" sx={{ ...labelSx, color: "primary.main", display: "block", mb: 2 }}>
                 Size: "{s}"
               </Typography>
               <StatusShowcase
@@ -886,27 +751,11 @@ ${
       {/* ============================================================
           8. Props Reference
       ============================================================ */}
-      <DemoBlock
-        id="props-reference"
-        title="7. Props Reference"
-        description="Complete type definitions and documentation for StatusShowcaseProps."
-      >
-        <TableContainer
-          component={Paper}
-          variant="outlined"
-          sx={{
-            borderRadius: "16px",
-            bgcolor: "transparent",
-            borderColor: "divider",
-          }}
-        >
+      <DemoBlock id="props-reference" title="7. Props Reference" description="Complete type definitions and documentation for StatusShowcaseProps.">
+        <TableContainer component={Paper} variant="outlined" sx={{ borderRadius: "16px", bgcolor: "transparent", borderColor: "divider" }}>
           <Table size="small">
             <TableHead>
-              <TableRow
-                sx={{
-                  bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)",
-                }}
-              >
+              <TableRow sx={{ bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)" }}>
                 <TableCell sx={{ fontWeight: 700 }}>Prop</TableCell>
                 <TableCell sx={{ fontWeight: 700 }}>Type</TableCell>
                 <TableCell sx={{ fontWeight: 700 }}>Default</TableCell>
@@ -915,24 +764,9 @@ ${
             </TableHead>
             <TableBody>
               {[
-                {
-                  prop: "title",
-                  type: "ReactNode",
-                  default: "Required",
-                  desc: "Main primary heading of the status showcase.",
-                },
-                {
-                  prop: "code",
-                  type: "ReactNode",
-                  default: "undefined",
-                  desc: "Status code or eyebrow text (e.g., '404', '500', 'COMING SOON').",
-                },
-                {
-                  prop: "description",
-                  type: "ReactNode",
-                  default: "undefined",
-                  desc: "Supporting message explaining the status or next steps.",
-                },
+                { prop: "title", type: "ReactNode", default: "Required", desc: "Main primary heading of the status showcase." },
+                { prop: "code", type: "ReactNode", default: "undefined", desc: "Status code or eyebrow text (e.g., '404', '500', 'COMING SOON')." },
+                { prop: "description", type: "ReactNode", default: "undefined", desc: "Supporting message explaining the status or next steps." },
                 {
                   prop: "image",
                   type: "StatusShowcaseImage",
@@ -945,24 +779,14 @@ ${
                   default: "undefined",
                   desc: "Custom image renderer for Next.js Image or custom picture tags.",
                 },
-                {
-                  prop: "actionLabel",
-                  type: "ReactNode",
-                  default: "undefined",
-                  desc: "Label for the primary CTA contained button.",
-                },
+                { prop: "actionLabel", type: "ReactNode", default: "undefined", desc: "Label for the primary CTA contained button." },
                 {
                   prop: "onAction",
                   type: "MouseEventHandler<HTMLButtonElement>",
                   default: "undefined",
                   desc: "Click handler for the primary CTA button.",
                 },
-                {
-                  prop: "secondaryActionLabel",
-                  type: "ReactNode",
-                  default: "undefined",
-                  desc: "Label for the secondary CTA outlined button.",
-                },
+                { prop: "secondaryActionLabel", type: "ReactNode", default: "undefined", desc: "Label for the secondary CTA outlined button." },
                 {
                   prop: "onSecondaryAction",
                   type: "MouseEventHandler<HTMLButtonElement>",
@@ -993,33 +817,12 @@ ${
                   default: "'standard'",
                   desc: "Controls whether the container uses a flat transparent surface or frosted glass.",
                 },
-                {
-                  prop: "sx",
-                  type: "Record<string, unknown>",
-                  default: "undefined",
-                  desc: "Custom MUI sx style overrides.",
-                },
+                { prop: "sx", type: "Record<string, unknown>", default: "undefined", desc: "Custom MUI sx style overrides." },
               ].map((row) => (
                 <TableRow key={row.prop}>
-                  <TableCell
-                    sx={{
-                      fontFamily: "monospace",
-                      fontWeight: 700,
-                      color: "primary.main",
-                    }}
-                  >
-                    {row.prop}
-                  </TableCell>
+                  <TableCell sx={{ fontFamily: "monospace", fontWeight: 700, color: "primary.main" }}>{row.prop}</TableCell>
                   <TableCell sx={{ fontFamily: "monospace", fontSize: "0.8rem" }}>{row.type}</TableCell>
-                  <TableCell
-                    sx={{
-                      fontFamily: "monospace",
-                      fontSize: "0.8rem",
-                      color: "text.secondary",
-                    }}
-                  >
-                    {row.default}
-                  </TableCell>
+                  <TableCell sx={{ fontFamily: "monospace", fontSize: "0.8rem", color: "text.secondary" }}>{row.default}</TableCell>
                   <TableCell sx={{ fontSize: "0.85rem", color: "text.secondary" }}>{row.desc}</TableCell>
                 </TableRow>
               ))}

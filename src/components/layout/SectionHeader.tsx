@@ -2,47 +2,24 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Box, Button } from "@mui/material";
 import { useGlassMode } from "../../context/ThemeContext.js";
-import {
-  GlassIconGlow,
-  GlassSectionHeaderRow,
-  GlassSectionSubtitle,
-  GlassSectionTitle,
-  GlassTitleGroup,
-} from "./GlassSectionHeader.js";
+import { GlassIconGlow, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassTitleGroup } from "./GlassSectionHeader.js";
 
 export interface SectionHeaderProps {
   title: string;
   subtitle?: string;
   icon?: React.ReactNode;
   iconGradient?: "pink" | "cyan" | "amber" | "emerald" | "purple";
-  desktopAction?: {
-    label: string;
-    href?: string;
-    onClick?: () => void;
-  };
+  desktopAction?: { label: string; href?: string; onClick?: () => void };
   controls?: React.ReactNode;
 }
 
-export const SectionHeader: React.FC<SectionHeaderProps> = ({
-  title,
-  subtitle,
-  icon,
-  iconGradient = "pink",
-  desktopAction,
-  controls,
-}) => {
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, subtitle, icon, iconGradient = "pink", desktopAction, controls }) => {
   const { mode } = useGlassMode();
   const isDark = mode === "dark";
 
   return (
     <GlassSectionHeaderRow
-      sx={{
-        flexDirection: "row !important",
-        alignItems: "center",
-        justifyContent: "space-between",
-        flexWrap: "nowrap",
-        gap: { xs: 1.5, sm: 2 },
-      }}
+      sx={{ flexDirection: "row !important", alignItems: "center", justifyContent: "space-between", flexWrap: "nowrap", gap: { xs: 1.5, sm: 2 } }}
     >
       <GlassTitleGroup sx={{ flex: 1, minWidth: 0 }}>
         {icon && (
@@ -53,12 +30,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         <Box sx={{ minWidth: 0 }}>
           <GlassSectionTitle
             variant="h3"
-            sx={{
-              fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.75rem" },
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
+            sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.75rem" }, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
           >
             {title}
           </GlassSectionTitle>
@@ -79,15 +51,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         </Box>
       </GlassTitleGroup>
 
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: { xs: 1, sm: 2 },
-          flexShrink: 0,
-          width: "auto",
-        }}
-      >
+      <Box sx={{ display: "flex", alignItems: "center", gap: { xs: 1, sm: 2 }, flexShrink: 0, width: "auto" }}>
         {controls}
 
         {desktopAction && (

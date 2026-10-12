@@ -30,32 +30,20 @@ import type { ShowcaseItem } from "jivico-glass-ui";
 const items: ShowcaseItem[] = [
   {
     id: "originals",
-    media: {
-      src: "/images/originals.jpg",
-      alt: "Originals Collection",
-    },
+    media: { src: "/images/originals.jpg", alt: "Originals Collection" },
     eyebrow: "STUDIO EXCLUSIVE",
     title: "Originals by Studio",
     description: "Limited-edition luxury glassmorphic collections.",
-    action: {
-      label: "Discover Originals",
-      href: "/collections/originals",
-    },
+    action: { label: "Discover Originals", href: "/collections/originals" },
     href: "/collections/originals",
   },
   {
     id: "freestyle",
-    media: {
-      src: "/images/freestyle.jpg",
-      alt: "Freestyle Designer",
-    },
+    media: { src: "/images/freestyle.jpg", alt: "Freestyle Designer" },
     eyebrow: "DESIGN STUDIO",
     title: "Create Your Freestyle",
     description: "Custom heavyweight 1-of-1 pieces.",
-    action: {
-      label: "Explore Freestyle",
-      href: "/freestyle",
-    },
+    action: { label: "Explore Freestyle", href: "/freestyle" },
     href: "/freestyle",
   },
 ];
@@ -103,24 +91,14 @@ Each slide item remains a plain API data object:
 ```ts
 interface ShowcaseItem {
   id: string;
-  media: {
-    src: string;
-    alt: string;
-    mobileSrc?: string;
-  };
+  media: { src: string; alt: string; mobileSrc?: string };
   title: string;
   eyebrow?: string;
   description?: string;
   sideLabel?: string;
   href?: string;
   linkLabel?: string;
-  action?: {
-    label: string;
-    href?: string;
-    onClick?: () => void;
-    color?: ShowcaseButtonColor;
-    variant?: "contained" | "outlined" | "text";
-  };
+  action?: { label: string; href?: string; onClick?: () => void; color?: ShowcaseButtonColor; variant?: "contained" | "outlined" | "text" };
   content?: ReactNode;
 }
 ```

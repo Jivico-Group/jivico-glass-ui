@@ -366,19 +366,9 @@ declare module "@mui/material/styles" {
     brand: JivicoPalette["brand"];
     glass: JivicoPalette["glass"];
 
-    "glass-surface"?: {
-      main: string;
-      light: string;
-      dark: string;
-      contrastText: string;
-    };
+    "glass-surface"?: { main: string; light: string; dark: string; contrastText: string };
 
-    glassSurface?: {
-      main: string;
-      light: string;
-      dark: string;
-      contrastText: string;
-    };
+    glassSurface?: { main: string; light: string; dark: string; contrastText: string };
 
     gradients?: JivicoPalette["gradients"];
   }
@@ -388,19 +378,9 @@ declare module "@mui/material/styles" {
     brand?: JivicoPalette["brand"];
     glass?: JivicoPalette["glass"];
 
-    "glass-surface"?: {
-      main: string;
-      light: string;
-      dark: string;
-      contrastText: string;
-    };
+    "glass-surface"?: { main: string; light: string; dark: string; contrastText: string };
 
-    glassSurface?: {
-      main: string;
-      light: string;
-      dark: string;
-      contrastText: string;
-    };
+    glassSurface?: { main: string; light: string; dark: string; contrastText: string };
 
     gradients?: JivicoPalette["gradients"];
   }
@@ -746,8 +726,7 @@ declare module "@mui/material/Tabs" {
     glass?: boolean | "true" | "false";
     size?: "small" | "medium";
     placement?: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right" | "inline";
-    textColorOverride?:
-      "primary" | "secondary" | "inherit" | "accent" | "glass" | "info" | "success" | "warning" | "error";
+    textColorOverride?: "primary" | "secondary" | "inherit" | "accent" | "glass" | "info" | "success" | "warning" | "error";
     indicatorColorOverride?: "primary" | "secondary" | "accent" | "glass" | "info" | "success" | "warning" | "error";
   }
 
@@ -3078,7 +3057,7 @@ interface GlassModeProviderProps {
     defaultMode?: ThemeMode;
     storageKey?: string;
 }
-declare function GlassModeProvider({ children, defaultMode, storageKey, }: GlassModeProviderProps): react__default.JSX.Element;
+declare function GlassModeProvider({ children, defaultMode, storageKey }: GlassModeProviderProps): react__default.JSX.Element;
 
 interface JivicoGlassProviderProps {
     children: react__default.ReactNode;

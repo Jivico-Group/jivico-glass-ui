@@ -12,18 +12,10 @@ const TRANSITION = [
   `transform 180ms ${EASE}`,
 ].join(", ");
 
-type ColorGroup = {
-  main: string;
-  hover?: string;
-  active?: string;
-  disabled?: string;
-  contrastText?: string;
-  glow?: string;
-};
+type ColorGroup = { main: string; hover?: string; active?: string; disabled?: string; contrastText?: string; glow?: string };
 
 const getColorGroup = (palette: JivicoPalette, color: unknown): ColorGroup => {
-  const colorKey =
-    typeof color === "string" && color !== "standard" && color !== "inherit" && color in palette ? color : "primary";
+  const colorKey = typeof color === "string" && color !== "standard" && color !== "inherit" && color in palette ? color : "primary";
 
   return (palette[colorKey as keyof JivicoPalette] as ColorGroup) || (palette.primary as ColorGroup);
 };
@@ -59,18 +51,11 @@ export const getToggleButtonOverrides = (palette: JivicoPalette, isDark: boolean
             transition: TRANSITION,
             color: isDark ? "rgba(255,255,255,0.65)" : "rgba(17,17,17,0.65)",
 
-            "&:not(:first-of-type)": {
-              border: "none",
-              borderRadius: "6px !important",
-            },
+            "&:not(:first-of-type)": { border: "none", borderRadius: "6px !important" },
 
-            "&:first-of-type": {
-              borderRadius: "6px !important",
-            },
+            "&:first-of-type": { borderRadius: "6px !important" },
 
-            "&:last-of-type": {
-              borderRadius: "6px !important",
-            },
+            "&:last-of-type": { borderRadius: "6px !important" },
 
             "&:hover": {
               backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)",
@@ -79,17 +64,10 @@ export const getToggleButtonOverrides = (palette: JivicoPalette, isDark: boolean
               zIndex: 1,
             },
 
-            "&:active": {
-              backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.08)",
-              transform: "translateY(0) scale(0.985)",
-            },
+            "&:active": { backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.08)", transform: "translateY(0) scale(0.985)" },
 
             "&.Mui-selected": {
-              backgroundColor: isGlass
-                ? isDarkGlass
-                  ? "rgba(255,255,255,0.14)"
-                  : "rgba(255,255,255,0.72)"
-                : mainColor,
+              backgroundColor: isGlass ? (isDarkGlass ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.72)") : mainColor,
 
               color: isGlass ? (isDarkGlass ? COLORS.brand.cream : COLORS.brand.charcoal) : contrastText,
 
@@ -102,11 +80,7 @@ export const getToggleButtonOverrides = (palette: JivicoPalette, isDark: boolean
               zIndex: 1,
 
               "&:hover": {
-                backgroundColor: isGlass
-                  ? isDarkGlass
-                    ? "rgba(255,255,255,0.2)"
-                    : "rgba(255,255,255,0.9)"
-                  : hoverColor,
+                backgroundColor: isGlass ? (isDarkGlass ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.9)") : hoverColor,
 
                 color: isGlass ? (isDarkGlass ? COLORS.brand.cream : COLORS.brand.charcoal) : contrastText,
 
@@ -114,26 +88,15 @@ export const getToggleButtonOverrides = (palette: JivicoPalette, isDark: boolean
               },
 
               "&:active": {
-                backgroundColor: isGlass
-                  ? isDarkGlass
-                    ? "rgba(255,255,255,0.1)"
-                    : "rgba(255,255,255,0.78)"
-                  : activeColor,
+                backgroundColor: isGlass ? (isDarkGlass ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.78)") : activeColor,
 
                 transform: "translateY(0) scale(0.985)",
               },
 
-              "&:focus-visible": {
-                outline: "none",
-                boxShadow: `0 0 0 3px ${glowColor}`,
-              },
+              "&:focus-visible": { outline: "none", boxShadow: `0 0 0 3px ${glowColor}` },
             },
 
-            "&:focus-visible": {
-              outline: "none",
-              boxShadow: `0 0 0 3px ${glowColor}`,
-              zIndex: 2,
-            },
+            "&:focus-visible": { outline: "none", boxShadow: `0 0 0 3px ${glowColor}`, zIndex: 2 },
 
             "&.Mui-disabled": {
               color: isDark ? "rgba(255,255,255,0.25)" : "rgba(17,17,17,0.3)",
@@ -163,21 +126,13 @@ export const getToggleButtonOverrides = (palette: JivicoPalette, isDark: boolean
             "& .MuiToggleButtonGroup-grouped": {
               transition: "none",
 
-              "&:hover": {
-                transform: "none",
-              },
+              "&:hover": { transform: "none" },
 
-              "&:active": {
-                transform: "none",
-              },
+              "&:active": { transform: "none" },
 
-              "&.Mui-selected:hover": {
-                transform: "none",
-              },
+              "&.Mui-selected:hover": { transform: "none" },
 
-              "&.Mui-selected:active": {
-                transform: "none",
-              },
+              "&.Mui-selected:active": { transform: "none" },
             },
           },
         };

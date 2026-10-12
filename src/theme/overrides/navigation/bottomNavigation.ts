@@ -1,16 +1,9 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export const getBottomNavigationOverrides = (
-  _palette: JivicoPalette,
-  isDark: boolean,
-): Components<Theme> => ({
+export const getBottomNavigationOverrides = (_palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiBottomNavigation: {
-    defaultProps: {
-      glass: "true",
-      size: "medium",
-      placement: "inline",
-    },
+    defaultProps: { glass: "true", size: "medium", placement: "inline" },
 
     styleOverrides: {
       root: ({ ownerState }) => {
@@ -24,9 +17,7 @@ export const getBottomNavigationOverrides = (
         const normalBackground = isDark ? "#18181B" : "#FFFFFF";
         const normalColor = isDark ? "#F5F5F7" : "#111111";
 
-        const glassBackground = isDark
-          ? "rgba(18, 20, 26, 0.52)"
-          : "rgba(255, 255, 255, 0.48)";
+        const glassBackground = isDark ? "rgba(18, 20, 26, 0.52)" : "rgba(255, 255, 255, 0.48)";
 
         const glassColor = isDark ? "#F5F5F7" : "#111111";
 
@@ -58,67 +49,27 @@ export const getBottomNavigationOverrides = (
         /**
          * Sizes
          */
-        const heightMap = {
-          small: 48,
-          medium: 64,
-        };
+        const heightMap = { small: 48, medium: 64 };
 
-        const paddingMap = {
-          small: "5px 8px",
-          medium: "6px 10px",
-        };
+        const paddingMap = { small: "5px 8px", medium: "6px 10px" };
 
         /**
          * Placement Map
          */
         const placementStyles: Record<string, any> = {
-          "top-left": {
-            position: "fixed",
-            top: 20,
-            left: 24,
-            zIndex: 1100,
-          },
+          "top-left": { position: "fixed", top: 20, left: 24, zIndex: 1100 },
 
-          "top-center": {
-            position: "fixed",
-            top: 20,
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 1100,
-          },
+          "top-center": { position: "fixed", top: 20, left: "50%", transform: "translateX(-50%)", zIndex: 1100 },
 
-          "top-right": {
-            position: "fixed",
-            top: 20,
-            right: 24,
-            zIndex: 1100,
-          },
+          "top-right": { position: "fixed", top: 20, right: 24, zIndex: 1100 },
 
-          "bottom-left": {
-            position: "fixed",
-            bottom: 24,
-            left: 24,
-            zIndex: 1100,
-          },
+          "bottom-left": { position: "fixed", bottom: 24, left: 24, zIndex: 1100 },
 
-          "bottom-center": {
-            position: "fixed",
-            bottom: 24,
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 1100,
-          },
+          "bottom-center": { position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)", zIndex: 1100 },
 
-          "bottom-right": {
-            position: "fixed",
-            bottom: 24,
-            right: 24,
-            zIndex: 1100,
-          },
+          "bottom-right": { position: "fixed", bottom: 24, right: 24, zIndex: 1100 },
 
-          inline: {
-            position: "relative",
-          },
+          inline: { position: "relative" },
         };
 
         return {
@@ -152,9 +103,7 @@ export const getBottomNavigationOverrides = (
             overflow: "hidden",
             isolation: "isolate",
 
-            "&::before": {
-              display: "none",
-            },
+            "&::before": { display: "none" },
 
             "&::after": {
               content: '""',
@@ -183,8 +132,7 @@ export const getBottomNavigationOverrides = (
         const isSmall = (ownerState as any).size === "small";
 
         // MUI passes showLabel (singular) to BottomNavigationAction ownerState
-        const showLabelProp =
-          ownerState.showLabel ?? (ownerState as any).showLabels;
+        const showLabelProp = ownerState.showLabel ?? (ownerState as any).showLabels;
 
         const showLabels = showLabelProp !== false;
 
@@ -198,26 +146,14 @@ export const getBottomNavigationOverrides = (
 
           height: actionSize,
 
-          minWidth: !showLabels
-            ? actionSize
-            : isSmall
-              ? 36
-              : 52,
+          minWidth: !showLabels ? actionSize : isSmall ? 36 : 52,
 
-          maxWidth: !showLabels
-            ? actionSize
-            : isSmall
-              ? 100
-              : 140,
+          maxWidth: !showLabels ? actionSize : isSmall ? 100 : 140,
 
           width: !showLabels ? actionSize : "auto",
           aspectRatio: !showLabels ? "1 / 1" : "unset",
 
-          padding: showLabels
-            ? isSmall
-              ? "3px 8px"
-              : "6px 12px"
-            : 0,
+          padding: showLabels ? (isSmall ? "3px 8px" : "6px 12px") : 0,
 
           borderRadius: !showLabels ? "50%" : 9999,
 
@@ -225,27 +161,21 @@ export const getBottomNavigationOverrides = (
           alignItems: "center",
           justifyContent: "center",
 
-          color: isDark
-            ? "rgba(245, 245, 247, 0.6)"
-            : "rgba(17, 17, 17, 0.6)",
+          color: isDark ? "rgba(245, 245, 247, 0.6)" : "rgba(17, 17, 17, 0.6)",
 
           transition: "all 0.22s cubic-bezier(0.16, 1, 0.3, 1)",
 
           "&:hover": {
             color: isDark ? "#F5F5F7" : "#111111",
 
-            backgroundColor: isDark
-              ? "rgba(255, 255, 255, 0.06)"
-              : "rgba(17, 17, 17, 0.04)",
+            backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)",
           },
 
           "&.Mui-selected": {
             color: isDark ? "#F5F5F7" : "#111111",
             fontWeight: 700,
 
-            backgroundColor: isDark
-              ? "rgba(255, 255, 255, 0.15)"
-              : "rgba(17, 17, 17, 0.08)",
+            backgroundColor: isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.08)",
 
             boxShadow: isDark
               ? isSmall
@@ -255,17 +185,13 @@ export const getBottomNavigationOverrides = (
                 ? "inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 2px 6px rgba(0, 0, 0, 0.05)"
                 : "inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 4px 12px rgba(0, 0, 0, 0.05)",
 
-            "& .MuiSvgIcon-root, & svg": {
-              transform: isSmall ? "scale(1.05)" : "scale(1.1)",
-            },
+            "& .MuiSvgIcon-root, & svg": { transform: isSmall ? "scale(1.05)" : "scale(1.1)" },
           },
 
           "& .MuiBottomNavigationAction-label": {
             display: !showLabels ? "none !important" : "block",
 
-            fontSize: isSmall
-              ? "0.6875rem"
-              : "0.75rem",
+            fontSize: isSmall ? "0.6875rem" : "0.75rem",
 
             fontWeight: 600,
             lineHeight: 1.2,

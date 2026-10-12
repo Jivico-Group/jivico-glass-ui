@@ -3,87 +3,40 @@ import type { JivicoPalette } from "../../palette/index.js";
 
 export const getStepperOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiStepper: {
-    defaultProps: {
-      color: "primary",
-    },
-
-    styleOverrides: {
-      root: {
-        "--jivico-stepper-color": palette.primary.main,
-        "--jivico-stepper-contrast": palette.primary.contrastText,
-      },
-    },
-
+    defaultProps: { color: "primary" },
+    styleOverrides: { root: { "--jivico-stepper-color": palette.primary.main, "--jivico-stepper-contrast": palette.primary.contrastText } },
     variants: [
       {
         props: { color: "primary" },
-        style: {
-          "--jivico-stepper-color": palette.primary.main,
-          "--jivico-stepper-contrast": palette.primary.contrastText,
-        },
+        style: { "--jivico-stepper-color": palette.primary.main, "--jivico-stepper-contrast": palette.primary.contrastText },
       },
       {
         props: { color: "secondary" },
-        style: {
-          "--jivico-stepper-color": palette.secondary.main,
-          "--jivico-stepper-contrast": palette.secondary.contrastText,
-        },
+        style: { "--jivico-stepper-color": palette.secondary.main, "--jivico-stepper-contrast": palette.secondary.contrastText },
       },
       {
         props: { color: "accent" },
-        style: {
-          "--jivico-stepper-color": palette.accent.main,
-          "--jivico-stepper-contrast": palette.accent.contrastText,
-        },
+        style: { "--jivico-stepper-color": palette.accent.main, "--jivico-stepper-contrast": palette.accent.contrastText },
       },
-      {
-        props: { color: "info" },
-        style: {
-          "--jivico-stepper-color": palette.info.main,
-          "--jivico-stepper-contrast": palette.info.contrastText,
-        },
-      },
+      { props: { color: "info" }, style: { "--jivico-stepper-color": palette.info.main, "--jivico-stepper-contrast": palette.info.contrastText } },
       {
         props: { color: "success" },
-        style: {
-          "--jivico-stepper-color": palette.success.main,
-          "--jivico-stepper-contrast": palette.success.contrastText,
-        },
+        style: { "--jivico-stepper-color": palette.success.main, "--jivico-stepper-contrast": palette.success.contrastText },
       },
       {
         props: { color: "warning" },
-        style: {
-          "--jivico-stepper-color": palette.warning.main,
-          "--jivico-stepper-contrast": palette.warning.contrastText,
-        },
+        style: { "--jivico-stepper-color": palette.warning.main, "--jivico-stepper-contrast": palette.warning.contrastText },
       },
-      {
-        props: { color: "error" },
-        style: {
-          "--jivico-stepper-color": palette.error.main,
-          "--jivico-stepper-contrast": palette.error.contrastText,
-        },
-      },
+      { props: { color: "error" }, style: { "--jivico-stepper-color": palette.error.main, "--jivico-stepper-contrast": palette.error.contrastText } },
     ],
   },
 
   MuiStepConnector: {
     styleOverrides: {
-      line: {
-        borderColor: isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(17, 17, 17, 0.22)",
-
-        borderTopWidth: 2,
-        borderRadius: 1,
-      },
-
+      line: { borderColor: isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(17, 17, 17, 0.22)", borderTopWidth: 2, borderRadius: 1 },
       root: {
-        "&.Mui-active .MuiStepConnector-line": {
-          borderColor: `var(--jivico-stepper-color, ${palette.primary.main})`,
-        },
-
-        "&.Mui-completed .MuiStepConnector-line": {
-          borderColor: `var(--jivico-stepper-color, ${palette.primary.main})`,
-        },
+        "&.Mui-active .MuiStepConnector-line": { borderColor: `var(--jivico-stepper-color, ${palette.primary.main})` },
+        "&.Mui-completed .MuiStepConnector-line": { borderColor: `var(--jivico-stepper-color, ${palette.primary.main})` },
       },
     },
   },
@@ -93,27 +46,15 @@ export const getStepperOverrides = (palette: JivicoPalette, isDark: boolean): Co
       root: {
         color: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(17, 17, 17, 0.38)",
         transition: "color 0.2s ease, filter 0.2s ease, transform 0.2s ease",
-
-        "& .MuiStepIcon-text": {
-          fill: `${palette.background.paper} !important`,
-        },
-
+        "& .MuiStepIcon-text": { fill: `${palette.background.paper} !important` },
         "&.Mui-active": {
           color: `var(--jivico-stepper-color, ${palette.primary.main})`,
           filter: `drop-shadow(0 0 6px color-mix(in srgb, var(--jivico-stepper-color, ${palette.primary.main}) 25%, transparent))`,
-
-          "& .MuiStepIcon-text": {
-            fill: `var(--jivico-stepper-contrast, ${palette.primary.contrastText}) !important`,
-            fontWeight: 700,
-          },
+          "& .MuiStepIcon-text": { fill: `var(--jivico-stepper-contrast, ${palette.primary.contrastText}) !important`, fontWeight: 700 },
         },
-
         "&.Mui-completed": {
           color: `var(--jivico-stepper-color, ${palette.primary.main})`,
-
-          "& .MuiStepIcon-text": {
-            fill: `var(--jivico-stepper-contrast, ${palette.primary.contrastText}) !important`,
-          },
+          "& .MuiStepIcon-text": { fill: `var(--jivico-stepper-contrast, ${palette.primary.contrastText}) !important` },
         },
       },
     },
@@ -123,18 +64,9 @@ export const getStepperOverrides = (palette: JivicoPalette, isDark: boolean): Co
       label: {
         fontSize: "0.875rem",
         fontWeight: 500,
-
         color: palette.text.secondary,
-
-        "&.Mui-active": {
-          color: `var(--jivico-stepper-color, ${palette.primary.main})`,
-          fontWeight: 700,
-        },
-
-        "&.Mui-completed": {
-          color: `var(--jivico-stepper-color, ${palette.primary.main})`,
-          fontWeight: 600,
-        },
+        "&.Mui-active": { color: `var(--jivico-stepper-color, ${palette.primary.main})`, fontWeight: 700 },
+        "&.Mui-completed": { color: `var(--jivico-stepper-color, ${palette.primary.main})`, fontWeight: 600 },
       },
     },
   },

@@ -22,15 +22,7 @@ export const getTableOverrides = (palette: JivicoPalette, isDark: boolean): Comp
 
   const glassShadow = isDark ? "0 14px 40px rgba(0, 0, 0, 0.24)" : "0 14px 40px rgba(17, 17, 17, 0.07)";
 
-  const colorMap: Record<
-    TableColor,
-    {
-      main: string;
-      header: string;
-      hover: string;
-      selected: string;
-    }
-  > = {
+  const colorMap: Record<TableColor, { main: string; header: string; hover: string; selected: string }> = {
     primary: {
       main: palette.primary.main,
       header: isDark ? "rgba(255, 255, 255, 0.055)" : "rgba(17, 17, 17, 0.045)",
@@ -74,39 +66,17 @@ export const getTableOverrides = (palette: JivicoPalette, isDark: boolean): Comp
     },
   };
 
-  const sizeMap: Record<
-    "small" | "medium",
-    {
-      cellPadding: string;
-      headerPadding: string;
-      fontSize: string;
-      headerFontSize: string;
-    }
-  > = {
-    small: {
-      cellPadding: "7px 10px",
-      headerPadding: "8px 10px",
-      fontSize: "0.8125rem",
-      headerFontSize: "0.72rem",
-    },
+  const sizeMap: Record<"small" | "medium", { cellPadding: string; headerPadding: string; fontSize: string; headerFontSize: string }> = {
+    small: { cellPadding: "7px 10px", headerPadding: "8px 10px", fontSize: "0.8125rem", headerFontSize: "0.72rem" },
 
-    medium: {
-      cellPadding: "11px 14px",
-      headerPadding: "12px 14px",
-      fontSize: "0.875rem",
-      headerFontSize: "0.75rem",
-    },
+    medium: { cellPadding: "11px 14px", headerPadding: "12px 14px", fontSize: "0.875rem", headerFontSize: "0.75rem" },
   };
 
   return {
     MuiTable: {
       styleOverrides: {
         root: ({ ownerState }) => {
-          const state = ownerState as {
-            color?: TableColor;
-            variant?: TableVariant;
-            size?: "small" | "medium";
-          };
+          const state = ownerState as { color?: TableColor; variant?: TableVariant; size?: "small" | "medium" };
 
           const color = colorMap[state.color ?? "primary"];
           const size = sizeMap[state.size ?? "medium"];
@@ -130,16 +100,9 @@ export const getTableOverrides = (palette: JivicoPalette, isDark: boolean): Comp
                   WebkitBackdropFilter: "blur(20px) saturate(180%)",
                   boxShadow: glassShadow,
                 }
-              : {
-                  backgroundColor: "transparent",
-                }),
+              : { backgroundColor: "transparent" }),
 
-            "& .MuiTableCell-root": {
-              padding: size.cellPadding,
-              fontSize: size.fontSize,
-              color: normalText,
-              borderBottom: `1px solid ${divider}`,
-            },
+            "& .MuiTableCell-root": { padding: size.cellPadding, fontSize: size.fontSize, color: normalText, borderBottom: `1px solid ${divider}` },
 
             "& .MuiTableHead-root .MuiTableCell-root": {
               padding: size.headerPadding,
@@ -155,28 +118,12 @@ export const getTableOverrides = (palette: JivicoPalette, isDark: boolean): Comp
             "& .MuiTableBody-root .MuiTableRow-root": {
               transition: "background-color 160ms ease",
 
-              "&:hover": {
-                backgroundColor: isGlass
-                  ? isDark
-                    ? "rgba(255, 255, 255, 0.055)"
-                    : "rgba(255, 255, 255, 0.46)"
-                  : hoverBackground,
-              },
+              "&:hover": { backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.055)" : "rgba(255, 255, 255, 0.46)") : hoverBackground },
 
               "&.Mui-selected": {
-                backgroundColor: isGlass
-                  ? isDark
-                    ? "rgba(255, 255, 255, 0.10)"
-                    : "rgba(255, 255, 255, 0.52)"
-                  : selectedBackground,
+                backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(255, 255, 255, 0.52)") : selectedBackground,
 
-                "&:hover": {
-                  backgroundColor: isGlass
-                    ? isDark
-                      ? "rgba(255, 255, 255, 0.14)"
-                      : "rgba(255, 255, 255, 0.62)"
-                    : color.selected,
-                },
+                "&:hover": { backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.62)") : color.selected },
               },
             },
 
@@ -188,31 +135,17 @@ export const getTableOverrides = (palette: JivicoPalette, isDark: boolean): Comp
               },
             },
 
-            "& .MuiTableCell-head": {
-              borderBottom: `1px solid ${isGlass ? glassBorder : divider}`,
-            },
+            "& .MuiTableCell-head": { borderBottom: `1px solid ${isGlass ? glassBorder : divider}` },
 
-            "& .MuiTableCell-footer": {
-              borderBottom: 0,
-              borderTop: `1px solid ${isGlass ? glassBorder : divider}`,
-            },
+            "& .MuiTableCell-footer": { borderBottom: 0, borderTop: `1px solid ${isGlass ? glassBorder : divider}` },
 
-            "& .MuiTableCell-alignRight": {
-              fontVariantNumeric: "tabular-nums",
-            },
+            "& .MuiTableCell-alignRight": { fontVariantNumeric: "tabular-nums" },
 
-            "& .MuiTableCell-alignCenter": {
-              verticalAlign: "middle",
-            },
+            "& .MuiTableCell-alignCenter": { verticalAlign: "middle" },
 
-            "& .MuiTableRow-root:last-child .MuiTableCell-body": {
-              borderBottom: 0,
-            },
+            "& .MuiTableRow-root:last-child .MuiTableCell-body": { borderBottom: 0 },
 
-            "& .MuiTableRow-root:focus-visible": {
-              outline: `2px solid ${color.main}`,
-              outlineOffset: -2,
-            },
+            "& .MuiTableRow-root:focus-visible": { outline: `2px solid ${color.main}`, outlineOffset: -2 },
           };
         },
       },

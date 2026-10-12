@@ -113,13 +113,7 @@ export const TabsPage: React.FC = () => {
   <Tab label="Orders" />
 </Tabs>`}
       >
-        <Tabs
-          value={primaryTab}
-          onChange={(e, value) => setPrimaryTab(value)}
-          indicatorColor="primary"
-          textColor="primary"
-          aria-label="primary tabs"
-        >
+        <Tabs value={primaryTab} onChange={(e, value) => setPrimaryTab(value)} indicatorColor="primary" textColor="primary" aria-label="primary tabs">
           <Tab label="Overview" />
           <Tab label="Products" />
           <Tab label="Orders" />
@@ -381,52 +375,18 @@ export const TabsPage: React.FC = () => {
           alignItems: "center",
         }}
       >
-        <Typography
-          variant="caption"
-          color="text.secondary"
-          sx={{
-            fontWeight: 700,
-            letterSpacing: "0.06em",
-          }}
-        >
+        <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 700, letterSpacing: "0.06em" }}>
           BRAND KIT PALETTE:
         </Typography>
 
         {[
-          {
-            name: "Sand",
-            hex: "#D9D9CF",
-            border: true,
-          },
-          {
-            name: "Cream",
-            hex: "#F6F5F2",
-            border: true,
-          },
-          {
-            name: "Charcoal",
-            hex: "#111111",
-            border: false,
-          },
-          {
-            name: "Stone",
-            hex: "#686868",
-            border: false,
-          },
-          {
-            name: "Champagne",
-            hex: "#B08D57",
-            border: false,
-          },
+          { name: "Sand", hex: "#D9D9CF", border: true },
+          { name: "Cream", hex: "#F6F5F2", border: true },
+          { name: "Charcoal", hex: "#111111", border: false },
+          { name: "Stone", hex: "#686868", border: false },
+          { name: "Champagne", hex: "#B08D57", border: false },
         ].map((c) => (
-          <Box
-            key={c.name}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-            }}
-          >
+          <Box key={c.name} sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <Box
               sx={{
                 width: 14,
@@ -437,12 +397,7 @@ export const TabsPage: React.FC = () => {
               }}
             />
 
-            <Typography
-              variant="caption"
-              sx={{
-                fontWeight: 600,
-              }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 600 }}>
               {c.name}
             </Typography>
 

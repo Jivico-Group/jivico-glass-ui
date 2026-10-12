@@ -42,18 +42,12 @@ export const getMenuPaperOverrides = (palette: JivicoPalette, isDark: boolean): 
             WebkitBackdropFilter: "none !important",
             border: `1px solid ${divider} !important`,
             borderRadius: "14px !important",
-            boxShadow: isDark
-              ? "0 14px 36px rgba(0, 0, 0, 0.40) !important"
-              : "0 14px 36px rgba(17, 17, 17, 0.12) !important",
+            boxShadow: isDark ? "0 14px 36px rgba(0, 0, 0, 0.40) !important" : "0 14px 36px rgba(17, 17, 17, 0.12) !important",
           },
 
-          "& .MuiMenu-list": {
-            color: text,
-          },
+          "& .MuiMenu-list": { color: text },
 
-          "& .MuiDivider-root": {
-            borderColor: glassBorder,
-          },
+          "& .MuiDivider-root": { borderColor: glassBorder },
         },
       },
     },

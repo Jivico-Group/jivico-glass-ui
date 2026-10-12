@@ -40,13 +40,7 @@ export const TypographyPage: React.FC = () => {
       desc: "Sophisticated editorial stone gray",
       sample: "Refined Stone Gray Typography",
     },
-    {
-      name: "Brand Sand",
-      prop: "brand.sand",
-      hex: COLORS.brand.sand,
-      desc: "Warm tactile sand token",
-      sample: "Warm Sand Accent Text",
-    },
+    { name: "Brand Sand", prop: "brand.sand", hex: COLORS.brand.sand, desc: "Warm tactile sand token", sample: "Warm Sand Accent Text" },
     {
       name: "Brand Cream",
       prop: "brand.cream",
@@ -130,17 +124,7 @@ export const TypographyPage: React.FC = () => {
 <Typography color="error.main">Error Red</Typography>
 <Typography color="info.main">Info Blue</Typography>`}
       >
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "repeat(2, 1fr)",
-              md: "repeat(3, 1fr)",
-            },
-            gap: 2,
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" }, gap: 2 }}>
           {textColors.map((col) => (
             <Paper
               key={col.name}
@@ -156,31 +140,11 @@ export const TypographyPage: React.FC = () => {
                 height: "100%",
               }}
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography
-                  variant="caption"
-                  sx={{
-                    fontWeight: 700,
-                    fontFamily: "monospace",
-                    letterSpacing: "0.05em",
-                    color: "text.secondary",
-                  }}
-                >
+              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <Typography variant="caption" sx={{ fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.05em", color: "text.secondary" }}>
                   {col.prop}
                 </Typography>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 1,
-                  }}
-                >
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                   <Box
                     sx={{
                       width: 16,
@@ -194,12 +158,7 @@ export const TypographyPage: React.FC = () => {
                   <Chip
                     label={col.hex}
                     size="small"
-                    sx={{
-                      fontFamily: "monospace",
-                      fontSize: "0.7rem",
-                      height: 20,
-                      bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)",
-                    }}
+                    sx={{ fontFamily: "monospace", fontSize: "0.7rem", height: 20, bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)" }}
                   />
                 </Box>
               </Box>
@@ -217,13 +176,7 @@ export const TypographyPage: React.FC = () => {
                   display: "inline-block",
                 }}
               >
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 700,
-                    color: col.hex,
-                  }}
-                >
+                <Typography variant="h6" sx={{ fontWeight: 700, color: col.hex }}>
                   {col.sample}
                 </Typography>
               </Box>
@@ -283,17 +236,7 @@ export const TypographyPage: React.FC = () => {
             <Typography variant="caption" sx={{ color: "text.secondary", mb: 1, display: "block" }}>
               Custom Palette Gradient Sweeps
             </Typography>
-            <Box
-              sx={{
-                display: "grid",
-                gridTemplateColumns: {
-                  xs: "1fr",
-                  sm: "repeat(2, 1fr)",
-                  md: "repeat(4, 1fr)",
-                },
-                gap: 2,
-              }}
-            >
+            <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }, gap: 2 }}>
               <Paper
                 sx={{
                   p: 2,
@@ -410,14 +353,7 @@ export const TypographyPage: React.FC = () => {
 <Typography variant="body2">body2. Compact Body Text</Typography>
 <Typography variant="overline">overline. Section Label</Typography>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
           <Box>
             <Typography variant="overline" color="text.secondary" sx={{ display: "block", mb: 0.5 }}>
               h1 · 3.75rem (60px) · Montserrat 700
@@ -477,8 +413,8 @@ export const TypographyPage: React.FC = () => {
               body1 · 1.0625rem (17px) · SF Pro Display / Space Grotesk 400
             </Typography>
             <Typography variant="body1" color="text.primary">
-              Crafted for high-density dashboards and modern web application interfaces. Features comfortable 1.55 line
-              height, optical kerning, and smooth dark mode contrast transitions.
+              Crafted for high-density dashboards and modern web application interfaces. Features comfortable 1.55 line height, optical kerning, and
+              smooth dark mode contrast transitions.
             </Typography>
           </Box>
 

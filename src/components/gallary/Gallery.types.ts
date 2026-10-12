@@ -2,13 +2,7 @@ import type { SxProps, Theme } from "@mui/material/styles";
 import type { ReactNode } from "react";
 import type { AspectRatio } from "../../types/aspectRatio.js";
 
-export type GalleryColumns = {
-  xs?: number;
-  sm?: number;
-  md?: number;
-  lg?: number;
-  xl?: number;
-};
+export type GalleryColumns = { xs?: number; sm?: number; md?: number; lg?: number; xl?: number };
 
 export type GalleryJustify = "start" | "center" | "end" | "stretch";
 

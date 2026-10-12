@@ -4,24 +4,12 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { getVariantOverlay as resolveVariantOverlay } from "../showcase/showcaseOverlay.js";
-import type {
-  SpotlightDimension,
-  SpotlightItem,
-  SpotlightProps,
-  SpotlightSize,
-  SpotlightVariant,
-} from "./Spotlight.types.js";
+import type { SpotlightDimension, SpotlightItem, SpotlightProps, SpotlightSize, SpotlightVariant } from "./Spotlight.types.js";
 
 const getResponsiveValue = (value: SpotlightDimension | undefined) => {
   if (value === undefined) return undefined;
   if (typeof value === "number" || typeof value === "string") return value;
-  return {
-    xs: value.xs,
-    sm: value.sm,
-    md: value.md,
-    lg: value.lg,
-    xl: value.xl,
-  };
+  return { xs: value.xs, sm: value.sm, md: value.md, lg: value.lg, xl: value.xl };
 };
 
 const getRadius = (radius: SpotlightProps["radius"]) => {
@@ -111,16 +99,7 @@ const MediaLink = ({ href, label, target, rel, onClick }: MediaLinkProps) => {
       rel={rel}
       aria-label={label}
       onClick={onClick}
-      sx={{
-        position: "absolute",
-        inset: 0,
-        zIndex: 2,
-        display: "block",
-        width: "100%",
-        height: "100%",
-        textDecoration: "none",
-        cursor: "pointer",
-      }}
+      sx={{ position: "absolute", inset: 0, zIndex: 2, display: "block", width: "100%", height: "100%", textDecoration: "none", cursor: "pointer" }}
     />
   );
 };
@@ -148,22 +127,14 @@ export const Spotlight: React.FC<SpotlightProps> = ({
   const currentSize = sizeConfig[size] ?? sizeConfig.medium;
   const radiusValue = getRadius(radius);
   const containerHeight = getResponsiveValue(height);
-  const containerMinHeight = getResponsiveValue(
-    minHeight ?? (height === undefined ? currentSize.minHeight : undefined),
-  );
+  const containerMinHeight = getResponsiveValue(minHeight ?? (height === undefined ? currentSize.minHeight : undefined));
   const containerMaxHeight = getResponsiveValue(maxHeight);
   const responsiveAspectRatio =
     height === undefined
       ? aspectRatio !== undefined
         ? typeof aspectRatio === "string"
           ? aspectRatio
-          : {
-              xs: aspectRatio.xs,
-              sm: aspectRatio.sm,
-              md: aspectRatio.md,
-              lg: aspectRatio.lg,
-              xl: aspectRatio.xl,
-            }
+          : { xs: aspectRatio.xs, sm: aspectRatio.sm, md: aspectRatio.md, lg: aspectRatio.lg, xl: aspectRatio.xl }
         : currentSize.aspectRatio
       : undefined;
 
@@ -188,12 +159,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
           priority={isPriority}
           loading={isPriority ? "eager" : "lazy"}
           fetchPriority={isPriority ? "high" : "auto"}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            display: "block",
-          }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
       );
     }
@@ -206,14 +172,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
           alt={spotlightItem.media.alt}
           loading={isPriority ? "eager" : "lazy"}
           fetchPriority={isPriority ? "high" : "auto"}
-          sx={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            display: "block",
-          }}
+          sx={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
       );
     }
@@ -225,14 +184,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
         alt={spotlightItem.media.alt}
         loading={isPriority ? "eager" : "lazy"}
         fetchPriority={isPriority ? "high" : "auto"}
-        sx={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          display: "block",
-        }}
+        sx={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
       />
     );
   };
@@ -260,27 +212,12 @@ export const Spotlight: React.FC<SpotlightProps> = ({
     >
       {/* ── Media ───────────────────────────────────────────────────────────── */}
 
-      <Box
-        sx={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 1,
-          width: "100%",
-          height: "100%",
-        }}
-      >
+      <Box sx={{ position: "absolute", inset: 0, zIndex: 1, width: "100%", height: "100%" }}>
         {renderImage(item)}
 
         {/* Overlay */}
 
-        <Box
-          sx={{
-            position: "absolute",
-            inset: 0,
-            zIndex: 1,
-            ...getVariantOverlay(item.variant),
-          }}
-        />
+        <Box sx={{ position: "absolute", inset: 0, zIndex: 1, ...getVariantOverlay(item.variant) }} />
       </Box>
 
       {/* ── Full image link ─────────────────────────────────────────────────── */}
@@ -320,12 +257,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
           <Box
             sx={[
               {
-                maxWidth: {
-                  xs: "92%",
-                  sm: "78%",
-                  md: contentAlign === "center" ? "70%" : "58%",
-                  lg: contentAlign === "center" ? "60%" : "50%",
-                },
+                maxWidth: { xs: "92%", sm: "78%", md: contentAlign === "center" ? "70%" : "58%", lg: contentAlign === "center" ? "60%" : "50%" },
                 display: "flex",
                 flexDirection: "column",
                 alignItems: contentAlignItems,
@@ -401,12 +333,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
             {/* CTA Button */}
 
             {item.action && (item.action.label || item.action.href || item.action.onClick) && (
-              <Box
-                sx={{
-                  pointerEvents: "auto",
-                  mt: { xs: 0.5, md: 1 },
-                }}
-              >
+              <Box sx={{ pointerEvents: "auto", mt: { xs: 0.5, md: 1 } }}>
                 {item.action.href ? (
                   <Button
                     href={item.action.href}
@@ -430,9 +357,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                         letterSpacing: "-0.01em",
                         textTransform: "none",
                         lineHeight: 1.2,
-                        "& .MuiButton-endIcon": {
-                          ml: 0.75,
-                        },
+                        "& .MuiButton-endIcon": { ml: 0.75 },
                       },
                       ...(Array.isArray(item.action.sx) ? item.action.sx : [item.action.sx]),
                     ]}
@@ -458,9 +383,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                         letterSpacing: "-0.01em",
                         textTransform: "none",
                         lineHeight: 1.2,
-                        "& .MuiButton-endIcon": {
-                          ml: 0.75,
-                        },
+                        "& .MuiButton-endIcon": { ml: 0.75 },
                       },
                       ...(Array.isArray(item.action.sx) ? item.action.sx : [item.action.sx]),
                     ]}

@@ -5,13 +5,7 @@ import type { AspectRatio } from "../../types/aspectRatio.js";
 /**
  * Number of visible items at each breakpoint.
  */
-export type RailColumns = {
-  xs?: number;
-  sm?: number;
-  md?: number;
-  lg?: number;
-  xl?: number;
-};
+export type RailColumns = { xs?: number; sm?: number; md?: number; lg?: number; xl?: number };
 
 /**
  * Explicit item width at each breakpoint.
@@ -19,13 +13,7 @@ export type RailColumns = {
  * When provided, itemWidth takes precedence
  * over columns.
  */
-export type RailItemWidth = {
-  xs?: string | number;
-  sm?: string | number;
-  md?: string | number;
-  lg?: string | number;
-  xl?: string | number;
-};
+export type RailItemWidth = { xs?: string | number; sm?: string | number; md?: string | number; lg?: string | number; xl?: string | number };
 
 /**
  * Cursor applied to the rail root.

@@ -41,15 +41,7 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
   // COLOR MAP
   // ==========================================================
 
-  const colorMap: Record<
-    ListColor,
-    {
-      main: string;
-      soft: string;
-      hover: string;
-      active: string;
-    }
-  > = {
+  const colorMap: Record<ListColor, { main: string; soft: string; hover: string; active: string }> = {
     primary: {
       main: palette.primary.main,
 
@@ -117,15 +109,7 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
 
   const sizeMap: Record<
     ListSize,
-    {
-      minHeight: number;
-      padding: string;
-      radius: number;
-      iconMinWidth: number;
-      iconSize: number;
-      primaryFontSize: string;
-      secondaryFontSize: string;
-    }
+    { minHeight: number; padding: string; radius: number; iconMinWidth: number; iconSize: number; primaryFontSize: string; secondaryFontSize: string }
   > = {
     small: {
       minHeight: 36,
@@ -166,11 +150,7 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
     MuiList: {
       styleOverrides: {
         root: ({ ownerState }) => {
-          const state = ownerState as {
-            color?: ListColor;
-            variant?: ListVariant;
-            size?: ListSize;
-          };
+          const state = ownerState as { color?: ListColor; variant?: ListVariant; size?: ListSize };
 
           const color = colorMap[state.color ?? "primary"];
           const size = sizeMap[state.size ?? "medium"];
@@ -199,16 +179,9 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                   boxShadow: glassShadow,
 
                   // Glass list automatically styles its children.
-                  "& .MuiListItemButton-root": {
-                    "&:hover": {
-                      backgroundColor: glassHover,
-                    },
-                  },
+                  "& .MuiListItemButton-root": { "&:hover": { backgroundColor: glassHover } },
                 }
-              : {
-                  backgroundColor: "transparent",
-                  border: "1px solid transparent",
-                }),
+              : { backgroundColor: "transparent", border: "1px solid transparent" }),
 
             // --------------------------------------------------
             // Size is inherited by child buttons when the List
@@ -223,18 +196,12 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
               "& .MuiListItemIcon-root": {
                 minWidth: size.iconMinWidth,
 
-                "& svg": {
-                  fontSize: size.iconSize,
-                },
+                "& svg": { fontSize: size.iconSize },
               },
 
-              "& .MuiListItemText-primary": {
-                fontSize: size.primaryFontSize,
-              },
+              "& .MuiListItemText-primary": { fontSize: size.primaryFontSize },
 
-              "& .MuiListItemText-secondary": {
-                fontSize: size.secondaryFontSize,
-              },
+              "& .MuiListItemText-secondary": { fontSize: size.secondaryFontSize },
             },
 
             // --------------------------------------------------
@@ -246,9 +213,7 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                   "& .MuiListItemButton-root.Mui-selected": {
                     backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.52)",
 
-                    "&:hover": {
-                      backgroundColor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.64)",
-                    },
+                    "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.64)" },
                   },
                 }
               : {}),
@@ -267,9 +232,7 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
           paddingTop: 2,
           paddingBottom: 2,
 
-          "&.MuiListItem-divider": {
-            borderBottom: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"}`,
-          },
+          "&.MuiListItem-divider": { borderBottom: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"}` },
         },
       },
     },
@@ -281,10 +244,7 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
     MuiListItemButton: {
       styleOverrides: {
         root: ({ ownerState }) => {
-          const state = ownerState as {
-            color?: ListColor;
-            size?: ListSize;
-          };
+          const state = ownerState as { color?: ListColor; size?: ListSize };
 
           const color = colorMap[state.color ?? "primary"];
           const size = sizeMap[state.size ?? "medium"];
@@ -302,26 +262,19 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
             // Hover
             // ------------------------------------------------
 
-            "&:hover": {
-              backgroundColor: color.hover,
-            },
+            "&:hover": { backgroundColor: color.hover },
 
             // ------------------------------------------------
             // Active / pressed
             // ------------------------------------------------
 
-            "&:active": {
-              backgroundColor: color.active,
-            },
+            "&:active": { backgroundColor: color.active },
 
             // ------------------------------------------------
             // Focus
             // ------------------------------------------------
 
-            "&:focus-visible": {
-              outline: `2px solid ${color.main}`,
-              outlineOffset: -2,
-            },
+            "&:focus-visible": { outline: `2px solid ${color.main}`, outlineOffset: -2 },
 
             // ------------------------------------------------
             // Selected
@@ -330,27 +283,18 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
             "&.Mui-selected": {
               backgroundColor: color.soft,
 
-              "&:hover": {
-                backgroundColor: color.active,
-              },
+              "&:hover": { backgroundColor: color.active },
 
-              "& .MuiListItemIcon-root": {
-                color: color.main,
-              },
+              "& .MuiListItemIcon-root": { color: color.main },
 
-              "& .MuiListItemText-primary": {
-                color: normalText,
-                fontWeight: 650,
-              },
+              "& .MuiListItemText-primary": { color: normalText, fontWeight: 650 },
             },
 
             // ------------------------------------------------
             // Disabled
             // ------------------------------------------------
 
-            "&.Mui-disabled": {
-              opacity: 0.45,
-            },
+            "&.Mui-disabled": { opacity: 0.45 },
 
             // ------------------------------------------------
             // Icon
@@ -359,22 +303,16 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
             "& .MuiListItemIcon-root": {
               minWidth: size.iconMinWidth,
 
-              "& svg": {
-                fontSize: size.iconSize,
-              },
+              "& svg": { fontSize: size.iconSize },
             },
 
             // ------------------------------------------------
             // Text
             // ------------------------------------------------
 
-            "& .MuiListItemText-primary": {
-              fontSize: size.primaryFontSize,
-            },
+            "& .MuiListItemText-primary": { fontSize: size.primaryFontSize },
 
-            "& .MuiListItemText-secondary": {
-              fontSize: size.secondaryFontSize,
-            },
+            "& .MuiListItemText-secondary": { fontSize: size.secondaryFontSize },
           };
         },
       },
@@ -392,9 +330,7 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
 
           transition: "color 160ms ease",
 
-          "& svg": {
-            fontSize: 20,
-          },
+          "& svg": { fontSize: 20 },
         },
       },
     },
@@ -405,24 +341,11 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
 
     MuiListItemText: {
       styleOverrides: {
-        root: {
-          marginTop: 2,
-          marginBottom: 2,
-        },
+        root: { marginTop: 2, marginBottom: 2 },
 
-        primary: {
-          color: normalText,
-          fontSize: "0.925rem",
-          fontWeight: 500,
-          lineHeight: 1.4,
-        },
+        primary: { color: normalText, fontSize: "0.925rem", fontWeight: 500, lineHeight: 1.4 },
 
-        secondary: {
-          color: secondaryText,
-          fontSize: "0.8125rem",
-          lineHeight: 1.4,
-          marginTop: 2,
-        },
+        secondary: { color: secondaryText, fontSize: "0.8125rem", lineHeight: 1.4, marginTop: 2 },
       },
     },
 
@@ -433,9 +356,7 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
     MuiListItemAvatar: {
       styleOverrides: {
         root: ({ ownerState }) => {
-          const state = ownerState as {
-            size?: ListSize;
-          };
+          const state = ownerState as { size?: ListSize };
 
           const size = sizeMap[state.size ?? "medium"];
 
@@ -476,10 +397,7 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
               color: normalText,
             },
 
-            "&:focus-visible": {
-              outline: `2px solid ${palette.primary.main}`,
-              outlineOffset: 2,
-            },
+            "&:focus-visible": { outline: `2px solid ${palette.primary.main}`, outlineOffset: 2 },
           },
         },
       },

@@ -4,9 +4,7 @@ export interface HeaderAppBarProps {
   isScrolled: boolean;
 }
 
-export const HeaderAppBar = styled(AppBar, {
-  shouldForwardProp: (prop) => prop !== "isScrolled",
-})<HeaderAppBarProps>(({ theme, isScrolled }) => {
+export const HeaderAppBar = styled(AppBar, { shouldForwardProp: (prop) => prop !== "isScrolled" })<HeaderAppBarProps>(({ theme, isScrolled }) => {
   const isDark = theme.palette.mode === "dark";
   return {
     position: "sticky",
@@ -16,9 +14,7 @@ export const HeaderAppBar = styled(AppBar, {
 
     backdropFilter: isScrolled ? "blur(20px) saturate(180%)" : "none",
     WebkitBackdropFilter: isScrolled ? "blur(20px) saturate(180%)" : "none",
-    borderBottom: isScrolled
-      ? `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)"}`
-      : "1px solid transparent",
+    borderBottom: isScrolled ? `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)"}` : "1px solid transparent",
     backgroundImage: !isScrolled
       ? isDark
         ? "linear-gradient(180deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0) 100%)"
@@ -27,8 +23,6 @@ export const HeaderAppBar = styled(AppBar, {
     zIndex: 1100,
     transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
 
-    [theme.breakpoints.down("md")]: {
-      position: "relative",
-    },
+    [theme.breakpoints.down("md")]: { position: "relative" },
   };
 });

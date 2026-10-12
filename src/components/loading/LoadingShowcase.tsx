@@ -59,53 +59,31 @@ const getNextProgress = (current: number) => {
 /* -------------------------------------------------------------------------- */
 
 const floatProduct = {
-  "0%": {
-    transform: "translate3d(0, 0, 0) rotate(0deg) scale(1)",
-  },
+  "0%": { transform: "translate3d(0, 0, 0) rotate(0deg) scale(1)" },
 
-  "25%": {
-    transform: "translate3d(0, -8px, 0) rotate(-0.5deg) scale(1.006)",
-  },
+  "25%": { transform: "translate3d(0, -8px, 0) rotate(-0.5deg) scale(1.006)" },
 
-  "50%": {
-    transform: "translate3d(0, -15px, 0) rotate(0deg) scale(1.012)",
-  },
+  "50%": { transform: "translate3d(0, -15px, 0) rotate(0deg) scale(1.012)" },
 
-  "75%": {
-    transform: "translate3d(0, -7px, 0) rotate(0.5deg) scale(1.006)",
-  },
+  "75%": { transform: "translate3d(0, -7px, 0) rotate(0.5deg) scale(1.006)" },
 
-  "100%": {
-    transform: "translate3d(0, 0, 0) rotate(0deg) scale(1)",
-  },
+  "100%": { transform: "translate3d(0, 0, 0) rotate(0deg) scale(1)" },
 };
 
 const floatOrbitOne = {
-  "0%": {
-    transform: "translate(-50%, -50%) rotate(-16deg) scale(1)",
-  },
+  "0%": { transform: "translate(-50%, -50%) rotate(-16deg) scale(1)" },
 
-  "50%": {
-    transform: "translate(-50%, -50%) rotate(-12deg) scale(1.025)",
-  },
+  "50%": { transform: "translate(-50%, -50%) rotate(-12deg) scale(1.025)" },
 
-  "100%": {
-    transform: "translate(-50%, -50%) rotate(-16deg) scale(1)",
-  },
+  "100%": { transform: "translate(-50%, -50%) rotate(-16deg) scale(1)" },
 };
 
 const floatOrbitTwo = {
-  "0%": {
-    transform: "translate(-50%, -50%) rotate(18deg) scale(1)",
-  },
+  "0%": { transform: "translate(-50%, -50%) rotate(18deg) scale(1)" },
 
-  "50%": {
-    transform: "translate(-50%, -50%) rotate(23deg) scale(1.035)",
-  },
+  "50%": { transform: "translate(-50%, -50%) rotate(23deg) scale(1.035)" },
 
-  "100%": {
-    transform: "translate(-50%, -50%) rotate(18deg) scale(1)",
-  },
+  "100%": { transform: "translate(-50%, -50%) rotate(18deg) scale(1)" },
 };
 
 /* -------------------------------------------------------------------------- */
@@ -133,17 +111,10 @@ const Root = styled(Box)(({ theme }) => ({
 
   padding: theme.spacing(4, 3),
 
-  [theme.breakpoints.down("sm")]: {
-    minHeight: "100svh",
-    padding: theme.spacing(3, 2),
-  },
+  [theme.breakpoints.down("sm")]: { minHeight: "100svh", padding: theme.spacing(3, 2) },
 
   "@media (prefers-reduced-motion: reduce)": {
-    "& *": {
-      animationDuration: "0.01ms !important",
-      animationIterationCount: "1 !important",
-      transitionDuration: "0.01ms !important",
-    },
+    "& *": { animationDuration: "0.01ms !important", animationIterationCount: "1 !important", transitionDuration: "0.01ms !important" },
   },
 }));
 
@@ -167,9 +138,7 @@ const Content = styled(Box)(({ theme }) => ({
 
   margin: "0 auto",
 
-  [theme.breakpoints.down("sm")]: {
-    maxWidth: 420,
-  },
+  [theme.breakpoints.down("sm")]: { maxWidth: 420 },
 }));
 
 /* -------------------------------------------------------------------------- */
@@ -191,9 +160,7 @@ const Visual = styled(Box)(({ theme }) => ({
 
   color: theme.palette.text.primary,
 
-  [theme.breakpoints.down("md")]: {
-    width: "min(460px, 70vw)",
-  },
+  [theme.breakpoints.down("md")]: { width: "min(460px, 70vw)" },
 
   [theme.breakpoints.down("sm")]: {
     width: "min(350px, 82vw)",
@@ -417,10 +384,7 @@ const Signature = styled(Box)(({ theme }) => ({
 
   color: theme.palette.text.primary,
 
-  [theme.breakpoints.down("md")]: {
-    right: theme.spacing(4),
-    bottom: theme.spacing(4),
-  },
+  [theme.breakpoints.down("md")]: { right: theme.spacing(4), bottom: theme.spacing(4) },
 
   [theme.breakpoints.down("sm")]: {
     position: "relative",
@@ -451,9 +415,7 @@ const DefaultSignatureScript = styled("span")(({ theme }) => ({
 
   color: theme.palette.text.primary,
 
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "1.4rem",
-  },
+  [theme.breakpoints.down("sm")]: { fontSize: "1.4rem" },
 }));
 
 const DefaultSignatureCaption = styled("span")(({ theme }) => ({
@@ -624,15 +586,7 @@ export const LoadingShowcase: React.FC<LoadingShowcaseProps> = ({
                 </linearGradient>
               </defs>
 
-              <ellipse
-                cx="350"
-                cy="150"
-                rx="290"
-                ry="90"
-                fill="none"
-                stroke={`url(#${orbitOneGradient})`}
-                strokeWidth="2.5"
-              />
+              <ellipse cx="350" cy="150" rx="290" ry="90" fill="none" stroke={`url(#${orbitOneGradient})`} strokeWidth="2.5" />
             </OrbitOne>
             <OrbitTwo viewBox="0 0 700 300" aria-hidden="true">
               <defs>
@@ -649,23 +603,9 @@ export const LoadingShowcase: React.FC<LoadingShowcaseProps> = ({
                 </linearGradient>
               </defs>
 
-              <ellipse
-                cx="350"
-                cy="150"
-                rx="300"
-                ry="105"
-                fill="none"
-                stroke={`url(#${orbitTwoGradient})`}
-                strokeWidth="2"
-              />
+              <ellipse cx="350" cy="150" rx="300" ry="105" fill="none" stroke={`url(#${orbitTwoGradient})`} strokeWidth="2" />
             </OrbitTwo>
-            <Product>
-              {renderStatusImage({
-                ...image,
-                width: image.width ?? 540,
-                height: image.height ?? 540,
-              })}
-            </Product>
+            <Product>{renderStatusImage({ ...image, width: image.width ?? 540, height: image.height ?? 540 })}</Product>
           </Visual>
         )}
         <Title>{title}</Title>

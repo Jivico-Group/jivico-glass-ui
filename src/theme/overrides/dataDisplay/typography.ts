@@ -11,9 +11,7 @@ export const getTypographyOverrides = (isDark: boolean): Components<Theme> => ({
         const gradientDark = "linear-gradient(135deg, #F6F5F2 0%, #D9D9CF 100%)";
 
         if (colorKey === "glass-surface") {
-          return {
-            color: isDark ? "#FFFFFF !important" : "#000000 !important",
-          };
+          return { color: isDark ? "#FFFFFF !important" : "#000000 !important" };
         }
 
         if (colorKey === "glass") {

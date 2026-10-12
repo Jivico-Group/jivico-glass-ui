@@ -50,9 +50,7 @@ function buildTheme(mode: "light" | "dark"): Theme {
       glassSurface: palette.glassSurface as any,
     },
     typography,
-    shape: {
-      borderRadius: 20,
-    },
+    shape: { borderRadius: 20 },
     components: {
       MuiCssBaseline: {
         styleOverrides: {
@@ -65,32 +63,20 @@ function buildTheme(mode: "light" | "dark"): Theme {
           },
           // Firefox scrollbars
           "@supports not (-webkit-touch-callout: none)": {
-            "*": {
-              scrollbarWidth: "thin",
-              scrollbarColor: isDark ? "rgba(255, 255, 255, 0.2) transparent" : "rgba(0, 0, 0, 0.2) transparent",
-            },
+            "*": { scrollbarWidth: "thin", scrollbarColor: isDark ? "rgba(255, 255, 255, 0.2) transparent" : "rgba(0, 0, 0, 0.2) transparent" },
           },
           // Chromium browsers (Chrome, Edge, Brave, Opera) - Preserves native macOS overlay scrollbars in Safari
           "@supports (selector(::-webkit-scrollbar)) and (not (-webkit-hyphens: none))": {
-            "::-webkit-scrollbar": {
-              width: "6px",
-              height: "6px",
-            },
-            "::-webkit-scrollbar-track": {
-              background: "transparent",
-            },
+            "::-webkit-scrollbar": { width: "6px", height: "6px" },
+            "::-webkit-scrollbar-track": { background: "transparent" },
             "::-webkit-scrollbar-thumb": {
               backgroundColor: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)",
               borderRadius: "9999px",
               border: "1px solid transparent",
               backgroundClip: "padding-box",
             },
-            "::-webkit-scrollbar-thumb:hover": {
-              backgroundColor: isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(0, 0, 0, 0.35)",
-            },
-            "::-webkit-scrollbar-corner": {
-              background: "transparent",
-            },
+            "::-webkit-scrollbar-thumb:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(0, 0, 0, 0.35)" },
+            "::-webkit-scrollbar-corner": { background: "transparent" },
           },
         },
       },

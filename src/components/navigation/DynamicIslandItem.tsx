@@ -33,15 +33,7 @@ export interface BottomNavigationItemProps {
  */
 export const DynamicIslandItem = forwardRef<any, BottomNavigationItemProps>(
   ({ showLabel, selected, value, onChange, component: Component = Box, children, sx, ...props }, ref) => (
-    <Component
-      ref={ref}
-      sx={{
-        position: "relative",
-        zIndex: 1,
-        ...sx,
-      }}
-      {...props}
-    >
+    <Component ref={ref} sx={{ position: "relative", zIndex: 1, ...sx }} {...props}>
       {children}
     </Component>
   ),

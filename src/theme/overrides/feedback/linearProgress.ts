@@ -19,14 +19,7 @@ export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boole
    * -----------------------------------------
    */
 
-  const radiusMap: Record<ProgressRadius, number> = {
-    square: 0,
-    small: 4,
-    medium: 8,
-    large: 12,
-    rounded: 18,
-    pill: 9999,
-  };
+  const radiusMap: Record<ProgressRadius, number> = { square: 0, small: 4, medium: 8, large: 12, rounded: 18, pill: 9999 };
 
   /*
    * -----------------------------------------
@@ -34,12 +27,7 @@ export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boole
    * -----------------------------------------
    */
 
-  const heightMap: Record<ProgressSize, number> = {
-    thin: 3,
-    small: 4,
-    medium: 6,
-    large: 8,
-  };
+  const heightMap: Record<ProgressSize, number> = { thin: 3, small: 4, medium: 6, large: 8 };
 
   /*
    * -----------------------------------------
@@ -47,12 +35,7 @@ export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boole
    * -----------------------------------------
    */
 
-  const blurMap: Record<GlassIntensity, string> = {
-    subtle: "blur(8px)",
-    medium: "blur(14px)",
-    strong: "blur(20px)",
-    ultra: "blur(28px)",
-  };
+  const blurMap: Record<GlassIntensity, string> = { subtle: "blur(8px)", medium: "blur(14px)", strong: "blur(20px)", ultra: "blur(28px)" };
 
   /*
    * -----------------------------------------
@@ -60,52 +43,22 @@ export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boole
    * -----------------------------------------
    */
 
-  const colors: Record<
-    ProgressColor,
-    {
-      main: string;
-      contrastText: string;
-    }
-  > = {
-    primary: {
-      main: palette.primary.main,
-      contrastText: palette.primary.contrastText,
-    },
+  const colors: Record<ProgressColor, { main: string; contrastText: string }> = {
+    primary: { main: palette.primary.main, contrastText: palette.primary.contrastText },
 
-    secondary: {
-      main: palette.secondary.main,
-      contrastText: palette.secondary.contrastText,
-    },
+    secondary: { main: palette.secondary.main, contrastText: palette.secondary.contrastText },
 
-    accent: {
-      main: palette.accent.main,
-      contrastText: palette.accent.contrastText,
-    },
+    accent: { main: palette.accent.main, contrastText: palette.accent.contrastText },
 
-    success: {
-      main: palette.success.main,
-      contrastText: palette.success.contrastText,
-    },
+    success: { main: palette.success.main, contrastText: palette.success.contrastText },
 
-    info: {
-      main: palette.info.main,
-      contrastText: palette.info.contrastText,
-    },
+    info: { main: palette.info.main, contrastText: palette.info.contrastText },
 
-    warning: {
-      main: palette.warning.main,
-      contrastText: palette.warning.contrastText,
-    },
+    warning: { main: palette.warning.main, contrastText: palette.warning.contrastText },
 
-    error: {
-      main: palette.error.main,
-      contrastText: palette.error.contrastText,
-    },
+    error: { main: palette.error.main, contrastText: palette.error.contrastText },
 
-    glass: {
-      main: palette.glass.main,
-      contrastText: palette.glass.contrastText,
-    },
+    glass: { main: palette.glass.main, contrastText: palette.glass.contrastText },
   };
 
   /*
@@ -134,9 +87,7 @@ export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boole
 
   return {
     MuiLinearProgress: {
-      defaultProps: {
-        color: "glass",
-      },
+      defaultProps: { color: "glass" },
 
       styleOverrides: {
         /*
@@ -226,12 +177,7 @@ export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boole
              * Outlined border.
              */
 
-            border:
-              appearance === "outlined"
-                ? `1px solid ${selected.main}`
-                : appearance === "glass"
-                  ? `1px solid ${glassBorder}`
-                  : "none",
+            border: appearance === "outlined" ? `1px solid ${selected.main}` : appearance === "glass" ? `1px solid ${glassBorder}` : "none",
 
             /*
              * Glass blur.
@@ -394,8 +340,7 @@ export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boole
 
           const barColor = color === "glass" ? (isDark ? "#F5F5F5" : "#111111") : selected.main;
 
-          const glowColor =
-            color === "glass" ? (isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.20)") : `${selected.main}55`;
+          const glowColor = color === "glass" ? (isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.20)") : `${selected.main}55`;
 
           return {
             position: "relative",
@@ -447,8 +392,7 @@ export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boole
               right: 0,
               height: "1px",
               borderRadius: "inherit",
-              background:
-                appearance === "glass" ? (isDark ? "rgba(255,255,255,0.28)" : "rgba(255,255,255,0.70)") : "transparent",
+              background: appearance === "glass" ? (isDark ? "rgba(255,255,255,0.28)" : "rgba(255,255,255,0.70)") : "transparent",
               pointerEvents: "none",
             },
           };

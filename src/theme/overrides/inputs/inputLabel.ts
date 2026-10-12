@@ -8,8 +8,7 @@ export const getInputLabelOverrides = (palette: JivicoPalette): Components<Theme
         const colorKey = (ownerState.color ? ownerState.color : "primary") as keyof typeof palette;
         const activeColorGroup = (palette[colorKey] || palette.primary) as Record<string, string>;
         const activeColor = activeColorGroup.main;
-        const isSemantic =
-          colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
+        const isSemantic = colorKey === "success" || colorKey === "warning" || colorKey === "error" || colorKey === "info";
 
         let translate = "translate(18px, 13px) scale(1)"; // medium
         let shrinkTranslate = "translate(18px, -9px) scale(0.75)";
@@ -25,15 +24,11 @@ export const getInputLabelOverrides = (palette: JivicoPalette): Components<Theme
         return {
           fontSize: "0.9375rem",
           color: isSemantic ? activeColor : palette.text.secondary,
-          "&.Mui-focused": {
-            color: activeColor,
-          },
+          "&.Mui-focused": { color: activeColor },
           // Use explicit class targeting and !important to beat MUI's default specificity
           "&.MuiInputLabel-outlined": {
             transform: `${translate} !important`,
-            "&.MuiInputLabel-shrink": {
-              transform: `${shrinkTranslate} !important`,
-            },
+            "&.MuiInputLabel-shrink": { transform: `${shrinkTranslate} !important` },
           },
           ...(ownerState.variant === "outlined" && {
             // Also ensure that the legend width accommodates the horizontal padding changes

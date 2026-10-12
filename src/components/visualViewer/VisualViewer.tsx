@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Maximize2, Minimize2, ZoomIn, ZoomOut } from "lucide-react";
 import { Box, Dialog, IconButton, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 import type { VisualViewerImageContext, VisualViewerItem, VisualViewerProps } from "./VisualViewer.types";
@@ -24,148 +24,90 @@ const getRadius = (radius: VisualViewerProps["radius"]) => {
 };
 
 const getResponsiveValue = (value: VisualViewerProps["height"]) => {
-  if (value === undefined) {
-    return undefined;
-  }
-
-  if (typeof value === "number" || typeof value === "string") {
-    return value;
-  }
-
-  return {
-    xs: value.xs,
-    sm: value.sm,
-    md: value.md,
-    lg: value.lg,
-    xl: value.xl,
-  };
+  if (value === undefined) return undefined;
+  if (typeof value === "number" || typeof value === "string") return value;
+  return { xs: value.xs, sm: value.sm, md: value.md, lg: value.lg, xl: value.xl };
 };
 
 export const VisualViewer = ({
   items,
-
   activeIndex: controlledActiveIndex,
   defaultActiveIndex = 0,
   onActiveIndexChange,
-
   isFullscreen: controlledFullscreen,
   defaultFullscreen = false,
   onFullscreenChange,
-
   renderImage,
   renderThumbnail,
-
   height,
   minHeight,
   maxHeight,
   aspectRatio,
-
   thumbnailPosition = "auto",
-
   navigation = "arrows",
-
   swipe = true,
   mouseDrag = true,
   keyboard = true,
-
   fullscreen = true,
   zoom = true,
-
   objectFit = "contain",
-
   loop = true,
-
   radius = "square",
-
   thumbnailWidth = DEFAULT_THUMBNAIL_WIDTH,
   thumbnailSize = DEFAULT_THUMBNAIL_SIZE,
-
   thumbnailGap = DEFAULT_THUMBNAIL_GAP,
   mediaGap = DEFAULT_MEDIA_GAP,
-
   controlsPosition = "top-right",
-
   showFullscreenButton = true,
   showZoomButton = true,
-
   showRemainingCount = true,
-
   maxVisibleThumbnails = DEFAULT_MAX_VISIBLE_THUMBNAILS,
-
   renderPreviousButton,
   renderNextButton,
-
   renderFullscreenButton,
   renderZoomButton,
-
   rootRef,
-
   sx,
   className,
-
   "aria-label": ariaLabel = "Visual viewer",
 }: VisualViewerProps) => {
   const theme = useTheme();
-
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
   const safeItems = useMemo(() => items.filter(Boolean), [items]);
-
   const itemCount = safeItems.length;
-
   const isControlled = controlledActiveIndex !== undefined;
-
   const [internalActiveIndex, setInternalActiveIndex] = useState(defaultActiveIndex);
-
   const activeIndex = isControlled ? controlledActiveIndex : internalActiveIndex;
-
   const currentIndex = itemCount === 0 ? 0 : Math.min(Math.max(activeIndex, 0), itemCount - 1);
-
   const currentItem = safeItems[currentIndex];
-
   const [isZoomed, setIsZoomed] = useState(false);
-
   const [internalFullscreen, setInternalFullscreen] = useState(defaultFullscreen);
   const isFullscreen = controlledFullscreen !== undefined ? controlledFullscreen : internalFullscreen;
 
   const setFullscreenState = useCallback(
     (nextState: boolean | ((prev: boolean) => boolean)) => {
       const resolved = typeof nextState === "function" ? nextState(isFullscreen) : nextState;
-      if (controlledFullscreen === undefined) {
-        setInternalFullscreen(resolved);
-      }
+      if (controlledFullscreen === undefined) setInternalFullscreen(resolved);
       onFullscreenChange?.(resolved);
     },
     [controlledFullscreen, isFullscreen, onFullscreenChange],
   );
 
   const rootElementRef = useRef<HTMLDivElement | null>(null);
-
   const thumbnailContainerRef = useRef<HTMLDivElement | null>(null);
-
   const mediaContainerRef = useRef<HTMLDivElement | null>(null);
-
   const touchStartX = useRef<number | null>(null);
-
   const touchStartY = useRef<number | null>(null);
-
   const isDraggingRef = useRef(false);
-
   const dragStartX = useRef<number | null>(null);
-
   const dragStartY = useRef<number | null>(null);
-
   const dragMovedRef = useRef(false);
 
   const setRootRef = useCallback(
     (element: HTMLDivElement | null) => {
       rootElementRef.current = element;
-
-      if (typeof rootRef === "function") {
-        rootRef(element);
-      } else if (rootRef) {
-        (rootRef as React.MutableRefObject<HTMLDivElement | null>).current = element;
-      }
+      if (typeof rootRef === "function") rootRef(element);
+      else if (rootRef) (rootRef as React.MutableRefObject<HTMLDivElement | null>).current = element;
     },
     [rootRef],
   );
@@ -178,52 +120,26 @@ export const VisualViewer = ({
 
   const updateIndex = useCallback(
     (nextIndex: number) => {
-      if (!itemCount) {
-        return;
-      }
-
+      if (!itemCount) return;
       let normalizedIndex = nextIndex;
-
-      if (loop) {
-        normalizedIndex = (nextIndex + itemCount) % itemCount;
-      } else {
-        normalizedIndex = Math.max(0, Math.min(nextIndex, itemCount - 1));
-      }
-
-      if (!isControlled) {
-        setInternalActiveIndex(normalizedIndex);
-      }
-
+      if (loop) normalizedIndex = (nextIndex + itemCount) % itemCount;
+      else normalizedIndex = Math.max(0, Math.min(nextIndex, itemCount - 1));
+      if (!isControlled) setInternalActiveIndex(normalizedIndex);
       const item = safeItems[normalizedIndex];
-
-      if (item) {
-        onActiveIndexChange?.(normalizedIndex, item);
-      }
+      if (item) onActiveIndexChange?.(normalizedIndex, item);
     },
     [itemCount, loop, isControlled, onActiveIndexChange, safeItems],
   );
 
   const goNext = useCallback(() => {
-    if (!itemCount) {
-      return;
-    }
-
-    if (!loop && currentIndex >= itemCount - 1) {
-      return;
-    }
-
+    if (!itemCount) return;
+    if (!loop && currentIndex >= itemCount - 1) return;
     updateIndex(currentIndex + 1);
   }, [currentIndex, itemCount, loop, updateIndex]);
 
   const goPrevious = useCallback(() => {
-    if (!itemCount) {
-      return;
-    }
-
-    if (!loop && currentIndex <= 0) {
-      return;
-    }
-
+    if (!itemCount) return;
+    if (!loop && currentIndex <= 0) return;
     updateIndex(currentIndex - 1);
   }, [currentIndex, itemCount, loop, updateIndex]);
 
@@ -235,18 +151,9 @@ export const VisualViewer = ({
 
   const scrollThumbnailIntoView = useCallback((index: number) => {
     const container = thumbnailContainerRef.current;
-
-    if (!container) {
-      return;
-    }
-
+    if (!container) return;
     const thumbnail = container.querySelector<HTMLElement>(`[data-visual-viewer-thumbnail="${index}"]`);
-
-    thumbnail?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "nearest",
-    });
+    thumbnail?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
   }, []);
 
   useEffect(() => {
@@ -275,10 +182,7 @@ export const VisualViewer = ({
    */
 
   const toggleZoom = useCallback(() => {
-    if (!zoom) {
-      return;
-    }
-
+    if (!zoom) return;
     setIsZoomed((previous) => !previous);
   }, [zoom]);
 
@@ -293,40 +197,26 @@ export const VisualViewer = ({
    */
 
   useEffect(() => {
-    if (!keyboard) {
-      return;
-    }
-
+    if (!keyboard) return;
     const handleKeyDown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
-
-      if (target?.tagName === "INPUT" || target?.tagName === "TEXTAREA" || target?.isContentEditable) {
-        return;
-      }
-
+      if (target?.tagName === "INPUT" || target?.tagName === "TEXTAREA" || target?.isContentEditable) return;
       switch (event.key) {
         case "ArrowRight":
           event.preventDefault();
           goNext();
           break;
-
         case "ArrowLeft":
           event.preventDefault();
           goPrevious();
           break;
-
         case "Escape":
           if (isFullscreen) {
             event.preventDefault();
             exitFullscreen();
           }
-
-          if (isZoomed) {
-            setIsZoomed(false);
-          }
-
+          if (isZoomed) setIsZoomed(false);
           break;
-
         case "+":
         case "=":
           if (zoom) {
@@ -341,14 +231,12 @@ export const VisualViewer = ({
             setIsZoomed(false);
           }
           break;
-
         default:
           break;
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
-
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -361,40 +249,22 @@ export const VisualViewer = ({
    */
 
   const handleTouchStart = (event: React.TouchEvent) => {
-    if (!swipe) {
-      return;
-    }
-
+    if (!swipe) return;
     const touch = event.touches[0];
-
     touchStartX.current = touch.clientX;
-
     touchStartY.current = touch.clientY;
   };
 
   const handleTouchEnd = (event: React.TouchEvent) => {
-    if (!swipe || touchStartX.current === null || touchStartY.current === null) {
-      return;
-    }
-
+    if (!swipe || touchStartX.current === null || touchStartY.current === null) return;
     const touch = event.changedTouches[0];
-
     const deltaX = touch.clientX - touchStartX.current;
-
     const deltaY = touch.clientY - touchStartY.current;
-
     touchStartX.current = null;
     touchStartY.current = null;
-
-    if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY)) {
-      return;
-    }
-
-    if (deltaX < 0) {
-      goNext();
-    } else {
-      goPrevious();
-    }
+    if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+    if (deltaX < 0) goNext();
+    else goPrevious();
   };
 
   /*
@@ -404,74 +274,38 @@ export const VisualViewer = ({
    */
 
   const handleMouseDown = (event: React.MouseEvent) => {
-    if (!mouseDrag) {
-      return;
-    }
-
-    if (event.button !== 0) {
-      return;
-    }
-
+    if (!mouseDrag) return;
+    if (event.button !== 0) return;
     dragStartX.current = event.clientX;
-
     dragStartY.current = event.clientY;
-
     dragMovedRef.current = false;
-
     isDraggingRef.current = true;
   };
 
   const handleMouseMove = (event: React.MouseEvent) => {
-    if (!mouseDrag || !isDraggingRef.current || dragStartX.current === null || dragStartY.current === null) {
-      return;
-    }
-
+    if (!mouseDrag || !isDraggingRef.current || dragStartX.current === null || dragStartY.current === null) return;
     const deltaX = event.clientX - dragStartX.current;
-
     const deltaY = event.clientY - dragStartY.current;
-
-    if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) {
-      dragMovedRef.current = true;
-    }
+    if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) dragMovedRef.current = true;
   };
 
   const handleMouseUp = (event: React.MouseEvent) => {
-    if (!mouseDrag || !isDraggingRef.current) {
-      return;
-    }
-
+    if (!mouseDrag || !isDraggingRef.current) return;
     isDraggingRef.current = false;
-
     const startX = dragStartX.current;
-
     const startY = dragStartY.current;
-
     dragStartX.current = null;
     dragStartY.current = null;
-
-    if (startX === null || startY === null) {
-      return;
-    }
-
+    if (startX === null || startY === null) return;
     const deltaX = event.clientX - startX;
-
     const deltaY = event.clientY - startY;
-
-    if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY)) {
-      return;
-    }
-
-    if (deltaX < 0) {
-      goNext();
-    } else {
-      goPrevious();
-    }
+    if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+    if (deltaX < 0) goNext();
+    else goPrevious();
   };
 
   const handleMouseLeave = (event: React.MouseEvent) => {
-    if (isDraggingRef.current) {
-      handleMouseUp(event);
-    }
+    if (isDraggingRef.current) handleMouseUp(event);
   };
 
   /*
@@ -481,22 +315,13 @@ export const VisualViewer = ({
    */
 
   const responsiveHeight = getResponsiveValue(height);
-
   const responsiveMinHeight = getResponsiveValue(minHeight);
-
   const responsiveMaxHeight = getResponsiveValue(maxHeight);
-
   const responsiveAspectRatio =
     typeof aspectRatio === "string"
       ? aspectRatio
       : aspectRatio
-        ? {
-            xs: aspectRatio.xs,
-            sm: aspectRatio.sm,
-            md: aspectRatio.md,
-            lg: aspectRatio.lg,
-            xl: aspectRatio.xl,
-          }
+        ? { xs: aspectRatio.xs, sm: aspectRatio.sm, md: aspectRatio.md, lg: aspectRatio.lg, xl: aspectRatio.xl }
         : undefined;
 
   /*
@@ -570,33 +395,15 @@ export const VisualViewer = ({
 
   const renderDefaultThumbnail = (item: VisualViewerItem, index: number) => {
     const active = index === currentIndex;
-
-    const context: VisualViewerImageContext = {
-      item,
-      index,
-      active,
-      isThumbnail: true,
-      isFullscreen,
-    };
-
-    if (renderThumbnail) {
-      return renderThumbnail(context);
-    }
-
+    const context: VisualViewerImageContext = { item, index, active, isThumbnail: true, isFullscreen };
+    if (renderThumbnail) return renderThumbnail(context);
     return (
       <Box
         component="img"
         src={item.thumbnailSrc ?? item.src}
         alt={item.alt ?? `Thumbnail ${index + 1}`}
         draggable={false}
-        sx={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          display: "block",
-          userSelect: "none",
-          WebkitUserSelect: "none",
-        }}
+        sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block", userSelect: "none", WebkitUserSelect: "none" }}
       />
     );
   };
@@ -607,10 +414,7 @@ export const VisualViewer = ({
    * =========================================================
    */
 
-  if (!currentItem) {
-    return null;
-  }
-
+  if (!currentItem) return null;
   const radiusValue = getRadius(radius);
 
   /*
@@ -620,7 +424,6 @@ export const VisualViewer = ({
    */
 
   const visibleThumbnailCount = Math.min(maxVisibleThumbnails, itemCount);
-
   const hasRemainingImages = itemCount > visibleThumbnailCount;
 
   /*
@@ -630,7 +433,7 @@ export const VisualViewer = ({
    */
 
   return (
-    <>
+    <Fragment>
       <Box
         ref={setRootRef}
         className={className}
@@ -654,15 +457,12 @@ export const VisualViewer = ({
           overflow: "hidden",
           isolation: "isolate",
           borderRadius: radiusValue,
-          bgcolor: "background.paper",
+          bgcolor: theme.palette.mode === "dark" ? "#303030" : "transparent",
           userSelect: "none",
           WebkitUserSelect: "none",
           touchAction: swipe ? "pan-y" : "auto",
 
-          "&:focus-visible": {
-            outline: `2px solid ${theme.palette.primary.main}`,
-            outlineOffset: 3,
-          },
+          "&:focus-visible": { outline: `2px solid ${theme.palette.primary.main}`, outlineOffset: 3 },
 
           ...sx,
         }}
@@ -672,15 +472,7 @@ export const VisualViewer = ({
       ===================================================== */}
 
         {resolvedThumbnailPosition === "left" && (
-          <Box
-            sx={{
-              flexShrink: 0,
-              width: thumbnailWidth,
-              height: "100%",
-              mr: mediaGap,
-              overflow: "hidden",
-            }}
-          >
+          <Box sx={{ flexShrink: 0, width: thumbnailWidth, height: "100%", mr: mediaGap, overflow: "hidden" }}>
             <Box
               ref={thumbnailContainerRef}
               sx={{
@@ -693,9 +485,7 @@ export const VisualViewer = ({
                 overflowX: "hidden",
                 scrollbarWidth: "none",
 
-                "&::-webkit-scrollbar": {
-                  display: "none",
-                },
+                "&::-webkit-scrollbar": { display: "none" },
               }}
             >
               {safeItems.slice(0, visibleThumbnailCount).map((item, index) => {
@@ -729,19 +519,11 @@ export const VisualViewer = ({
                       opacity: active ? 1 : 0.68,
                       transition: "opacity 220ms ease, transform 220ms ease",
 
-                      "&:hover": {
-                        opacity: 1,
-                        transform: "scale(0.97)",
-                      },
+                      "&:hover": { opacity: 1, transform: "scale(0.97)" },
 
-                      "&:focus-visible": {
-                        outline: `2px solid ${theme.palette.primary.main}`,
-                        outlineOffset: 2,
-                      },
+                      "&:focus-visible": { outline: `2px solid ${theme.palette.primary.main}`, outlineOffset: 2 },
 
-                      ...(active && {
-                        boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
-                      }),
+                      ...(active && { boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}` }),
                     }}
                   >
                     {renderDefaultThumbnail(item, index)}
@@ -785,7 +567,7 @@ export const VisualViewer = ({
             height: "100%",
             overflow: "hidden",
             borderRadius: resolvedThumbnailPosition === "bottom" ? radiusValue : radiusValue,
-            bgcolor: "background.default",
+            bgcolor: theme.palette.mode === "dark" ? "#303030" : "transparent",
             cursor: isZoomed ? "zoom-out" : zoom ? "zoom-in" : "default",
           }}
           onClick={() => {
@@ -798,18 +580,7 @@ export const VisualViewer = ({
 
           {/* Custom overlay */}
 
-          {currentItem.overlay && (
-            <Box
-              sx={{
-                position: "absolute",
-                inset: 0,
-                zIndex: 2,
-                pointerEvents: "none",
-              }}
-            >
-              {currentItem.overlay}
-            </Box>
-          )}
+          {currentItem.overlay && <Box sx={{ position: "absolute", inset: 0, zIndex: 2, pointerEvents: "none" }}>{currentItem.overlay}</Box>}
 
           {/* ===================================================
             PREVIOUS
@@ -818,22 +589,8 @@ export const VisualViewer = ({
           {navigation === "arrows" && itemCount > 1 && (
             <>
               {renderPreviousButton ? (
-                <Box
-                  sx={{
-                    position: "absolute",
-                    left: {
-                      xs: 10,
-                      md: 18,
-                    },
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    zIndex: 5,
-                  }}
-                >
-                  {renderPreviousButton({
-                    disabled: !loop && currentIndex === 0,
-                    onClick: goPrevious,
-                  })}
+                <Box sx={{ position: "absolute", left: { xs: 10, md: 18 }, top: "50%", transform: "translateY(-50%)", zIndex: 5 }}>
+                  {renderPreviousButton({ disabled: !loop && currentIndex === 0, onClick: goPrevious })}
                 </Box>
               ) : (
                 <IconButton
@@ -845,41 +602,23 @@ export const VisualViewer = ({
                   disabled={!loop && currentIndex === 0}
                   sx={{
                     position: "absolute",
-                    left: {
-                      xs: 10,
-                      md: 18,
-                    },
+                    left: { xs: 10, md: 18 },
                     top: "50%",
                     transform: "translateY(-50%)",
                     zIndex: 8,
-                    width: {
-                      xs: 38,
-                      md: 44,
-                    },
-                    height: {
-                      xs: 38,
-                      md: 44,
-                    },
+                    width: { xs: 38, md: 44 },
+                    height: { xs: 38, md: 44 },
                     color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
                     bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
-                    border:
-                      theme.palette.mode === "dark"
-                        ? "1px solid rgba(255, 255, 255, 0.28)"
-                        : "1px solid rgba(255, 255, 255, 0.6)",
-                    boxShadow:
-                      theme.palette.mode === "dark"
-                        ? "0 4px 20px rgba(0, 0, 0, 0.25)"
-                        : "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
+                    boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
                     transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
-                      bgcolor:
-                        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
+                      bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
                       transform: "translateY(-50%) scale(1.04)",
                     },
-                    "&.Mui-disabled": {
-                      opacity: 0.35,
-                    },
+                    "&.Mui-disabled": { opacity: 0.35 },
                   }}
                 >
                   <ArrowLeft size={18} />
@@ -895,22 +634,8 @@ export const VisualViewer = ({
           {navigation === "arrows" && itemCount > 1 && (
             <>
               {renderNextButton ? (
-                <Box
-                  sx={{
-                    position: "absolute",
-                    right: {
-                      xs: 10,
-                      md: 18,
-                    },
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    zIndex: 8,
-                  }}
-                >
-                  {renderNextButton({
-                    disabled: !loop && currentIndex === itemCount - 1,
-                    onClick: goNext,
-                  })}
+                <Box sx={{ position: "absolute", right: { xs: 10, md: 18 }, top: "50%", transform: "translateY(-50%)", zIndex: 8 }}>
+                  {renderNextButton({ disabled: !loop && currentIndex === itemCount - 1, onClick: goNext })}
                 </Box>
               ) : (
                 <IconButton
@@ -922,41 +647,23 @@ export const VisualViewer = ({
                   disabled={!loop && currentIndex === itemCount - 1}
                   sx={{
                     position: "absolute",
-                    right: {
-                      xs: 10,
-                      md: 18,
-                    },
+                    right: { xs: 10, md: 18 },
                     top: "50%",
                     transform: "translateY(-50%)",
                     zIndex: 8,
-                    width: {
-                      xs: 38,
-                      md: 44,
-                    },
-                    height: {
-                      xs: 38,
-                      md: 44,
-                    },
+                    width: { xs: 38, md: 44 },
+                    height: { xs: 38, md: 44 },
                     color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
                     bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
-                    border:
-                      theme.palette.mode === "dark"
-                        ? "1px solid rgba(255, 255, 255, 0.28)"
-                        : "1px solid rgba(255, 255, 255, 0.6)",
-                    boxShadow:
-                      theme.palette.mode === "dark"
-                        ? "0 4px 20px rgba(0, 0, 0, 0.25)"
-                        : "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
+                    boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
                     transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
-                      bgcolor:
-                        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
+                      bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
                       transform: "translateY(-50%) scale(1.04)",
                     },
-                    "&.Mui-disabled": {
-                      opacity: 0.35,
-                    },
+                    "&.Mui-disabled": { opacity: 0.35 },
                   }}
                 >
                   <ArrowRight size={18} />
@@ -973,25 +680,15 @@ export const VisualViewer = ({
             sx={{
               position: "absolute",
               ...(controlsPosition === "bottom-left"
-                ? {
-                    left: { xs: 12, md: 18 },
-                    bottom: { xs: 12, md: 18 },
-                    top: "auto",
-                    right: "auto",
-                  }
+                ? { left: { xs: 12, md: 18 }, bottom: { xs: 12, md: 18 }, top: "auto", right: "auto" }
                 : controlsPosition === "bottom-right"
-                ? {
-                    right: { xs: 12, md: 18 },
-                    bottom: { xs: 12, md: 18 },
-                    top: "auto",
-                    left: "auto",
-                  }
-                : {
-                    right: { xs: 12, md: 18 },
-                    top: resolvedThumbnailPosition === "bottom" ? { xs: 12, md: 16 } : { xs: 12, md: "auto" },
-                    bottom: resolvedThumbnailPosition === "bottom" ? "auto" : { xs: "auto", md: 18 },
-                    left: "auto",
-                  }),
+                  ? { right: { xs: 12, md: 18 }, bottom: { xs: 12, md: 18 }, top: "auto", left: "auto" }
+                  : {
+                      right: { xs: 12, md: 18 },
+                      top: resolvedThumbnailPosition === "bottom" ? { xs: 12, md: 16 } : { xs: 12, md: "auto" },
+                      bottom: resolvedThumbnailPosition === "bottom" ? "auto" : { xs: "auto", md: 18 },
+                      left: "auto",
+                    }),
               zIndex: 10,
               display: "flex",
               alignItems: "center",
@@ -1015,18 +712,11 @@ export const VisualViewer = ({
                     color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
                     bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
-                    border:
-                      theme.palette.mode === "dark"
-                        ? "1px solid rgba(255, 255, 255, 0.28)"
-                        : "1px solid rgba(255, 255, 255, 0.6)",
-                    boxShadow:
-                      theme.palette.mode === "dark"
-                        ? "0 4px 20px rgba(0, 0, 0, 0.25)"
-                        : "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
+                    boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
                     transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
-                      bgcolor:
-                        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
+                      bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
                       transform: "scale(1.04)",
                     },
                   }}
@@ -1052,18 +742,11 @@ export const VisualViewer = ({
                     color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
                     bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
                     backdropFilter: "blur(12px)",
-                    border:
-                      theme.palette.mode === "dark"
-                        ? "1px solid rgba(255, 255, 255, 0.28)"
-                        : "1px solid rgba(255, 255, 255, 0.6)",
-                    boxShadow:
-                      theme.palette.mode === "dark"
-                        ? "0 4px 20px rgba(0, 0, 0, 0.25)"
-                        : "0 4px 20px rgba(0, 0, 0, 0.08)",
+                    border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
+                    boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
                     transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
                     "&:hover": {
-                      bgcolor:
-                        theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
+                      bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
                       transform: "scale(1.04)",
                     },
                   }}
@@ -1086,14 +769,8 @@ export const VisualViewer = ({
               right: 0,
               bottom: 0,
               zIndex: 7,
-              px: {
-                xs: 1.5,
-                sm: 2,
-              },
-              pb: {
-                xs: 1.5,
-                sm: 2,
-              },
+              px: { xs: 1.5, sm: 2 },
+              pb: { xs: 1.5, sm: 2 },
               pt: 5,
               background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.48) 100%)",
               pointerEvents: "none",
@@ -1110,9 +787,7 @@ export const VisualViewer = ({
                 scrollbarWidth: "none",
                 pointerEvents: "auto",
 
-                "&::-webkit-scrollbar": {
-                  display: "none",
-                },
+                "&::-webkit-scrollbar": { display: "none" },
               }}
             >
               {safeItems.slice(0, visibleThumbnailCount).map((item, index) => {
@@ -1146,19 +821,11 @@ export const VisualViewer = ({
                       opacity: active ? 1 : 0.7,
                       transition: "opacity 220ms ease, transform 220ms ease",
 
-                      "&:hover": {
-                        opacity: 1,
-                        transform: "scale(0.97)",
-                      },
+                      "&:hover": { opacity: 1, transform: "scale(0.97)" },
 
-                      "&:focus-visible": {
-                        outline: `2px solid ${theme.palette.primary.main}`,
-                        outlineOffset: 2,
-                      },
+                      "&:focus-visible": { outline: `2px solid ${theme.palette.primary.main}`, outlineOffset: 2 },
 
-                      ...(active && {
-                        boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
-                      }),
+                      ...(active && { boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}` }),
                     }}
                   >
                     {renderDefaultThumbnail(item, index)}
@@ -1197,25 +864,10 @@ export const VisualViewer = ({
         onClose={exitFullscreen}
         fullScreen
         // fullScreen
-        sx={{
-          "& .MuiDialog-paper": {
-            bgcolor: "#000",
-            display: "flex",
-            flexDirection: "column",
-            overflow: "hidden",
-            borderRadius: 0,
-          },
-        }}
+        sx={{ "& .MuiDialog-paper": { bgcolor: "#000", display: "flex", flexDirection: "column", overflow: "hidden", borderRadius: 0 } }}
       >
         {/* Close button */}
-        <Box
-          sx={{
-            position: "absolute",
-            top: 12,
-            right: 12,
-            zIndex: 10,
-          }}
-        >
+        <Box sx={{ position: "absolute", top: 12, right: 12, zIndex: 10 }}>
           <Tooltip title="Close (Esc)">
             <IconButton
               aria-label="Close fullscreen"
@@ -1256,12 +908,7 @@ export const VisualViewer = ({
 
         {/* Main image area */}
         <Box
-          sx={{
-            flex: 1,
-            position: "relative",
-            overflow: "hidden",
-            cursor: isZoomed ? "zoom-out" : "default",
-          }}
+          sx={{ flex: 1, position: "relative", overflow: "hidden", cursor: isZoomed ? "zoom-out" : "default" }}
           onClick={() => isZoomed && setIsZoomed(false)}
         >
           {currentItem &&
@@ -1280,13 +927,7 @@ export const VisualViewer = ({
                   userSelect: "none",
                 }}
               >
-                {renderImage({
-                  item: currentItem,
-                  index: currentIndex,
-                  active: true,
-                  isThumbnail: false,
-                  isFullscreen: true,
-                })}
+                {renderImage({ item: currentItem, index: currentIndex, active: true, isThumbnail: false, isFullscreen: true })}
               </Box>
             ) : (
               <Box
@@ -1430,9 +1071,7 @@ export const VisualViewer = ({
                   transition: "border-color 0.2s ease, transform 0.2s ease",
                   transform: index === currentIndex ? "scale(1.06)" : "scale(1)",
                   bgcolor: "transparent",
-                  "&:hover": {
-                    borderColor: "rgba(255,255,255,0.6)",
-                  },
+                  "&:hover": { borderColor: "rgba(255,255,255,0.6)" },
                 }}
               >
                 <Box
@@ -1440,20 +1079,14 @@ export const VisualViewer = ({
                   src={item.thumbnailSrc ?? item.src}
                   alt={item.alt ?? ""}
                   draggable={false}
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                    pointerEvents: "none",
-                  }}
+                  sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none" }}
                 />
               </Box>
             ))}
           </Box>
         )}
       </Dialog>
-    </>
+    </Fragment>
   );
 };
 

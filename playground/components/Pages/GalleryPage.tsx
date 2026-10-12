@@ -114,36 +114,12 @@ const PRODUCTS: Product[] = [
 ];
 
 const ARCHITECTURE: { id: string; src: string; label: string }[] = [
-  {
-    id: "a1",
-    src: "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80",
-    label: "Glass Facade",
-  },
-  {
-    id: "a2",
-    src: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80",
-    label: "Interior",
-  },
-  {
-    id: "a3",
-    src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
-    label: "Living Room",
-  },
-  {
-    id: "a4",
-    src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
-    label: "Kitchen",
-  },
-  {
-    id: "a5",
-    src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80",
-    label: "Dining",
-  },
-  {
-    id: "a6",
-    src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80",
-    label: "Bedroom",
-  },
+  { id: "a1", src: "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80", label: "Glass Facade" },
+  { id: "a2", src: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80", label: "Interior" },
+  { id: "a3", src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80", label: "Living Room" },
+  { id: "a4", src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80", label: "Kitchen" },
+  { id: "a5", src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80", label: "Dining" },
+  { id: "a6", src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80", label: "Bedroom" },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -153,12 +129,7 @@ export const GalleryPage: React.FC = () => {
   const isDark = resolvedMode === "dark";
 
   // Playground state
-  const [columns, setColumns] = useState<GalleryColumns>({
-    xs: 2,
-    sm: 2,
-    md: 3,
-    lg: 4,
-  });
+  const [columns, setColumns] = useState<GalleryColumns>({ xs: 2, sm: 2, md: 3, lg: 4 });
   const [gap, setGap] = useState(2);
   const [radius, setRadius] = useState<GalleryRadius>("soft");
   const [imageFit, setImageFit] = useState<GalleryImageFit>("cover");
@@ -176,19 +147,9 @@ export const GalleryPage: React.FC = () => {
     border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
   };
 
-  const labelSx = {
-    fontSize: "0.72rem",
-    fontWeight: 700,
-    textTransform: "uppercase" as const,
-    letterSpacing: "0.08em",
-    mb: 0.5,
-  };
+  const labelSx = { fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.08em", mb: 0.5 };
 
-  const badgeColor: Record<string, string> = {
-    SALE: "#E53935",
-    NEW: "#43A047",
-    BESTSELLER: "#FB8C00",
-  };
+  const badgeColor: Record<string, string> = { SALE: "#E53935", NEW: "#43A047", BESTSELLER: "#FB8C00" };
 
   return (
     <ComponentPage
@@ -251,12 +212,7 @@ export const GalleryPage: React.FC = () => {
                   </FormLabel>
                   <RadioGroup row value={radius} onChange={(e) => setRadius(e.target.value as GalleryRadius)}>
                     {(["square", "rounded", "soft"] as const).map((v) => (
-                      <FormControlLabel
-                        key={v}
-                        value={v}
-                        control={<Radio size="small" />}
-                        label={v.charAt(0).toUpperCase() + v.slice(1)}
-                      />
+                      <FormControlLabel key={v} value={v} control={<Radio size="small" />} label={v.charAt(0).toUpperCase() + v.slice(1)} />
                     ))}
                   </RadioGroup>
                 </FormControl>
@@ -281,23 +237,14 @@ export const GalleryPage: React.FC = () => {
 
                 <Box sx={{ minWidth: 140 }}>
                   <Typography sx={{ ...labelSx, mb: 1 }}>Gap: {gap}</Typography>
-                  <Slider
-                    value={gap}
-                    onChange={(_, v) => setGap(v as number)}
-                    min={0}
-                    max={6}
-                    step={0.5}
-                    size="small"
-                  />
+                  <Slider value={gap} onChange={(_, v) => setGap(v as number)} min={0} max={6} step={0.5} size="small" />
                 </Box>
               </Stack>
 
               {/* Row 3: layer toggles */}
               <Stack direction="row" spacing={3}>
                 <FormControlLabel
-                  control={
-                    <Switch size="small" checked={showOverlay} onChange={(e) => setShowOverlay(e.target.checked)} />
-                  }
+                  control={<Switch size="small" checked={showOverlay} onChange={(e) => setShowOverlay(e.target.checked)} />}
                   label={
                     <Typography variant="caption" sx={{ fontWeight: 600 }}>
                       Overlay
@@ -381,25 +328,10 @@ export const GalleryPage: React.FC = () => {
               showBlock
                 ? ({ item }) => (
                     <Box sx={{ pt: 1, pb: 0.5, px: 0.25 }}>
-                      <Typography
-                        variant="overline"
-                        sx={{
-                          fontSize: "0.6rem",
-                          color: "text.secondary",
-                          lineHeight: 1,
-                        }}
-                      >
+                      <Typography variant="overline" sx={{ fontSize: "0.6rem", color: "text.secondary", lineHeight: 1 }}>
                         {item.category}
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          fontWeight: 600,
-                          fontSize: "0.82rem",
-                          lineHeight: 1.3,
-                          mt: 0.25,
-                        }}
-                      >
+                      <Typography variant="body2" sx={{ fontWeight: 600, fontSize: "0.82rem", lineHeight: 1.3, mt: 0.25 }}>
                         {item.name}
                       </Typography>
                       <Stack direction="row" spacing={1} sx={{ mt: 0.5, alignItems: "center" }}>
@@ -407,13 +339,7 @@ export const GalleryPage: React.FC = () => {
                           ₹{item.price.toLocaleString()}
                         </Typography>
                         {item.originalPrice && (
-                          <Typography
-                            variant="caption"
-                            sx={{
-                              textDecoration: "line-through",
-                              color: "text.secondary",
-                            }}
-                          >
+                          <Typography variant="caption" sx={{ textDecoration: "line-through", color: "text.secondary" }}>
                             ₹{item.originalPrice.toLocaleString()}
                           </Typography>
                         )}
@@ -552,37 +478,16 @@ export const GalleryPage: React.FC = () => {
           )}
           renderBlock={({ item }) => (
             <Box sx={{ pt: 1, pb: 0.5 }}>
-              <Typography
-                variant="overline"
-                sx={{
-                  fontSize: "0.6rem",
-                  color: "text.secondary",
-                  lineHeight: 1,
-                }}
-              >
+              <Typography variant="overline" sx={{ fontSize: "0.6rem", color: "text.secondary", lineHeight: 1 }}>
                 {item.category}
               </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: "0.82rem",
-                  mt: 0.25,
-                  lineHeight: 1.3,
-                }}
-              >
+              <Typography variant="body2" sx={{ fontWeight: 700, fontSize: "0.82rem", mt: 0.25, lineHeight: 1.3 }}>
                 {item.name}
               </Typography>
               <Stack direction="row" spacing={0.75} sx={{ mt: 0.5, alignItems: "center" }}>
                 <Typography sx={{ fontWeight: 700, fontSize: "0.88rem" }}>₹{item.price.toLocaleString()}</Typography>
                 {item.originalPrice && (
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      textDecoration: "line-through",
-                      color: "text.secondary",
-                    }}
-                  >
+                  <Typography variant="caption" sx={{ textDecoration: "line-through", color: "text.secondary" }}>
                     ₹{item.originalPrice.toLocaleString()}
                   </Typography>
                 )}
@@ -626,30 +531,11 @@ export const GalleryPage: React.FC = () => {
                 border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
                 bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(17,17,17,0.02)",
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                "&:hover": {
-                  transform: "translateY(-3px)",
-                  boxShadow: isDark ? "0 12px 32px rgba(0,0,0,0.4)" : "0 12px 32px rgba(0,0,0,0.1)",
-                },
+                "&:hover": { transform: "translateY(-3px)", boxShadow: isDark ? "0 12px 32px rgba(0,0,0,0.4)" : "0 12px 32px rgba(0,0,0,0.1)" },
               }}
             >
-              <Box
-                sx={{
-                  position: "relative",
-                  aspectRatio: "3 / 2",
-                  overflow: "hidden",
-                }}
-              >
-                <Box
-                  component="img"
-                  src={item.image}
-                  alt={item.name}
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
-                />
+              <Box sx={{ position: "relative", aspectRatio: "3 / 2", overflow: "hidden" }}>
+                <Box component="img" src={item.image} alt={item.name} sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                 {item.badge && (
                   <Chip
                     label={item.badge}
@@ -669,62 +555,30 @@ export const GalleryPage: React.FC = () => {
                 )}
               </Box>
               <Box sx={{ p: 1.5 }}>
-                <Stack
-                  direction="row"
-                  sx={{
-                    justifyContent: "space-between",
-                    alignItems: "flex-start",
-                  }}
-                >
+                <Stack direction="row" sx={{ justifyContent: "space-between", alignItems: "flex-start" }}>
                   <Box>
                     <Typography variant="overline" sx={{ fontSize: "0.6rem", color: "text.secondary" }}>
                       {item.category}
                     </Typography>
-                    <Typography
-                      sx={{
-                        fontWeight: 700,
-                        fontSize: "0.9rem",
-                        lineHeight: 1.3,
-                      }}
-                    >
-                      {item.name}
-                    </Typography>
+                    <Typography sx={{ fontWeight: 700, fontSize: "0.9rem", lineHeight: 1.3 }}>{item.name}</Typography>
                   </Box>
                   <Stack direction="row" spacing={0.25} sx={{ alignItems: "center", mt: 1 }}>
                     <Star size={11} fill="currentColor" color="#FFA726" />
                     <Typography variant="caption">{item.rating}</Typography>
                   </Stack>
                 </Stack>
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  sx={{
-                    mt: 1,
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
+                <Stack direction="row" spacing={1} sx={{ mt: 1, alignItems: "center", justifyContent: "space-between" }}>
                   <Stack direction="row" spacing={0.75} sx={{ alignItems: "center" }}>
                     <Typography sx={{ fontWeight: 700 }}>₹{item.price.toLocaleString()}</Typography>
                     {item.originalPrice && (
-                      <Typography
-                        variant="caption"
-                        sx={{
-                          textDecoration: "line-through",
-                          color: "text.secondary",
-                        }}
-                      >
+                      <Typography variant="caption" sx={{ textDecoration: "line-through", color: "text.secondary" }}>
                         ₹{item.originalPrice.toLocaleString()}
                       </Typography>
                     )}
                   </Stack>
                   <IconButton
                     size="small"
-                    sx={{
-                      width: 32,
-                      height: 32,
-                      border: `1px solid ${isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.15)"}`,
-                    }}
+                    sx={{ width: 32, height: 32, border: `1px solid ${isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.15)"}` }}
                   >
                     <ShoppingBag size={14} />
                   </IconButton>
@@ -812,10 +666,7 @@ export const GalleryPage: React.FC = () => {
           </Typography>
           <Stack spacing={1.5}>
             {[
-              {
-                title: "getImage / getImageAlt",
-                desc: "Fastest setup — Gallery renders a native <img>. No renderImage needed.",
-              },
+              { title: "getImage / getImageAlt", desc: "Fastest setup — Gallery renders a native <img>. No renderImage needed." },
               {
                 title: "renderImage({ item, index, src, alt })",
                 desc: "Inject next/image with fill + sizes. Gallery wraps it in the correct aspect-ratio container.",
@@ -824,25 +675,14 @@ export const GalleryPage: React.FC = () => {
                 title: "renderOverlay({ item, index, src, alt })",
                 desc: "Renders over the image with position: absolute inset 0. Use for badges, wishlist, quick-add.",
               },
-              {
-                title: "renderBlock({ item, index })",
-                desc: "Renders below the image in normal document flow. Use for name, price, ratings, CTA.",
-              },
+              { title: "renderBlock({ item, index })", desc: "Renders below the image in normal document flow. Use for name, price, ratings, CTA." },
               {
                 title: "renderItem({ item, index })",
                 desc: "Full override — bypasses image/overlay/block. Use when you need a completely custom card layout.",
               },
             ].map(({ title, desc }) => (
               <Box key={title}>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    fontWeight: 700,
-                    fontFamily: "monospace",
-                    fontSize: "0.78rem",
-                    mb: 0.25,
-                  }}
-                >
+                <Typography variant="body2" sx={{ fontWeight: 700, fontFamily: "monospace", fontSize: "0.78rem", mb: 0.25 }}>
                   {title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.65, fontSize: "0.8rem" }}>

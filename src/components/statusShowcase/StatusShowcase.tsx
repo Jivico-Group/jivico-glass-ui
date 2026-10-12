@@ -7,176 +7,76 @@ import type { StatusShowcaseImage, StatusShowcaseProps } from "./StatusShowcase.
 const SIZE_CONFIG = {
   small: {
     maxWidth: 1180,
-    minHeight: {
-      xs: 620,
-      sm: 640,
-      md: 660,
-    },
+    minHeight: { xs: 620, sm: 640, md: 660 },
 
-    contentMaxWidth: {
-      xs: 520,
-      md: 470,
-    },
+    contentMaxWidth: { xs: 520, md: 470 },
 
-    visualMaxWidth: {
-      xs: 360,
-      sm: 460,
-      md: 560,
-      lg: 620,
-    },
+    visualMaxWidth: { xs: 360, sm: 460, md: 560, lg: 620 },
 
-    code: {
-      xs: "0.66rem",
-      sm: "0.7rem",
-    },
+    code: { xs: "0.66rem", sm: "0.7rem" },
 
-    title: {
-      xs: "2.35rem",
-      sm: "2.9rem",
-      md: "3.35rem",
-      lg: "3.6rem",
-    },
+    title: { xs: "2.35rem", sm: "2.9rem", md: "3.35rem", lg: "3.6rem" },
 
-    description: {
-      xs: "0.875rem",
-      sm: "0.9375rem",
-    },
+    description: { xs: "0.875rem", sm: "0.9375rem" },
 
-    titleBottom: {
-      xs: 6,
-      sm: 8,
-    },
+    titleBottom: { xs: 6, sm: 8 },
 
-    actionTop: {
-      xs: 3,
-      sm: 3.5,
-    },
+    actionTop: { xs: 3, sm: 3.5 },
 
     buttonHeight: 44,
     buttonMinWidth: 145,
 
-    signatureTop: {
-      xs: 4,
-      sm: 5,
-    },
+    signatureTop: { xs: 4, sm: 5 },
   },
 
   medium: {
     maxWidth: 1320,
 
-    minHeight: {
-      xs: 650,
-      sm: 690,
-      md: 710,
-    },
+    minHeight: { xs: 650, sm: 690, md: 710 },
 
-    contentMaxWidth: {
-      xs: 540,
-      md: 520,
-    },
+    contentMaxWidth: { xs: 540, md: 520 },
 
-    visualMaxWidth: {
-      xs: 400,
-      sm: 520,
-      md: 650,
-      lg: 720,
-    },
+    visualMaxWidth: { xs: 400, sm: 520, md: 650, lg: 720 },
 
-    code: {
-      xs: "0.68rem",
-      sm: "0.74rem",
-    },
+    code: { xs: "0.68rem", sm: "0.74rem" },
 
-    title: {
-      xs: "2.55rem",
-      sm: "3.2rem",
-      md: "3.8rem",
-      lg: "4.15rem",
-    },
+    title: { xs: "2.55rem", sm: "3.2rem", md: "3.8rem", lg: "4.15rem" },
 
-    description: {
-      xs: "0.925rem",
-      sm: "1rem",
-      md: "1.025rem",
-    },
+    description: { xs: "0.925rem", sm: "1rem", md: "1.025rem" },
 
-    titleBottom: {
-      xs: 6,
-      sm: 8,
-    },
+    titleBottom: { xs: 6, sm: 8 },
 
-    actionTop: {
-      xs: 3,
-      sm: 3.5,
-    },
+    actionTop: { xs: 3, sm: 3.5 },
 
     buttonHeight: 46,
     buttonMinWidth: 150,
 
-    signatureTop: {
-      xs: 4.5,
-      sm: 5.5,
-    },
+    signatureTop: { xs: 4.5, sm: 5.5 },
   },
 
   large: {
     maxWidth: 1440,
 
-    minHeight: {
-      xs: 680,
-      sm: 720,
-      md: 740,
-      lg: 760,
-    },
+    minHeight: { xs: 680, sm: 720, md: 740, lg: 760 },
 
-    contentMaxWidth: {
-      xs: 520,
-      md: 560,
-    },
+    contentMaxWidth: { xs: 520, md: 560 },
 
-    visualMaxWidth: {
-      xs: 420,
-      sm: 540,
-      md: 700,
-      lg: 800,
-    },
+    visualMaxWidth: { xs: 420, sm: 540, md: 700, lg: 800 },
 
-    code: {
-      xs: "0.7rem",
-      sm: "0.76rem",
-    },
+    code: { xs: "0.7rem", sm: "0.76rem" },
 
-    title: {
-      xs: "2.8rem",
-      sm: "3.5rem",
-      md: "4.1rem",
-      lg: "4.5rem",
-    },
+    title: { xs: "2.8rem", sm: "3.5rem", md: "4.1rem", lg: "4.5rem" },
 
-    description: {
-      xs: "0.92rem",
-      sm: "1rem",
-      md: "1.05rem",
-    },
+    description: { xs: "0.92rem", sm: "1rem", md: "1.05rem" },
 
-    titleBottom: {
-      xs: 6,
-      sm: 8,
-      md: 8,
-    },
+    titleBottom: { xs: 6, sm: 8, md: 8 },
 
-    actionTop: {
-      xs: 3,
-      sm: 3.5,
-    },
+    actionTop: { xs: 3, sm: 3.5 },
 
     buttonHeight: 48,
     buttonMinWidth: 160,
 
-    signatureTop: {
-      xs: 4.5,
-      sm: 5.5,
-    },
+    signatureTop: { xs: 4.5, sm: 5.5 },
   },
 } as const;
 
@@ -211,13 +111,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
         alt={imageProps.alt ?? ""}
         width={imageProps.width}
         height={imageProps.height}
-        sx={{
-          display: "block",
-          width: "100%",
-          height: "auto",
-          maxWidth: "100%",
-          objectFit: "contain",
-        }}
+        sx={{ display: "block", width: "100%", height: "auto", maxWidth: "100%", objectFit: "contain" }}
       />
     );
   };
@@ -229,28 +123,15 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
         width: "100%",
         boxSizing: "border-box",
 
-        px: {
-          xs: 2,
-          sm: 3,
-          md: 4,
-          lg: 5,
-        },
+        px: { xs: 2, sm: 3, md: 4, lg: 5 },
 
-        py: {
-          xs: 3,
-          sm: 4,
-          md: 5,
-          lg: 6,
-        },
+        py: { xs: 3, sm: 4, md: 5, lg: 6 },
 
         ...(isGlass && {
           position: "relative",
           overflow: "hidden",
 
-          borderRadius: {
-            xs: 3,
-            sm: 4,
-          },
+          borderRadius: { xs: 3, sm: 4 },
 
           backgroundColor: "background.paper",
 
@@ -261,10 +142,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
 
           WebkitBackdropFilter: "blur(24px) saturate(180%)",
 
-          boxShadow: {
-            xs: "0 12px 40px rgba(0, 0, 0, 0.06)",
-            md: "0 20px 60px rgba(0, 0, 0, 0.08)",
-          },
+          boxShadow: { xs: "0 12px 40px rgba(0, 0, 0, 0.06)", md: "0 20px 60px rgba(0, 0, 0, 0.08)" },
 
           "&::before": {
             content: '""',
@@ -295,24 +173,13 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
 
           display: "grid",
 
-          gridTemplateColumns: {
-            xs: "1fr",
-            md: "minmax(0, 0.92fr) minmax(0, 1.08fr)",
-          },
+          gridTemplateColumns: { xs: "1fr", md: "minmax(0, 0.92fr) minmax(0, 1.08fr)" },
 
           alignItems: "center",
 
-          columnGap: {
-            xs: 0,
-            md: 5,
-            lg: 8,
-          },
+          columnGap: { xs: 0, md: 5, lg: 8 },
 
-          rowGap: {
-            xs: 4,
-            sm: 5,
-            md: 0,
-          },
+          rowGap: { xs: 4, sm: 5, md: 0 },
         }}
       >
         {/* ================================================== */}
@@ -324,10 +191,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
             width: "100%",
             maxWidth: config.contentMaxWidth,
 
-            justifySelf: {
-              xs: "center",
-              md: "start",
-            },
+            justifySelf: { xs: "center", md: "start" },
 
             alignSelf: "center",
 
@@ -342,10 +206,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
             <Typography
               component="div"
               sx={{
-                mb: {
-                  xs: 1.5,
-                  sm: 1.75,
-                },
+                mb: { xs: 1.5, sm: 1.75 },
 
                 color: "text.secondary",
 
@@ -379,12 +240,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
 
               letterSpacing: "-0.055em",
 
-              lineHeight: {
-                xs: 1.02,
-                sm: 1,
-                md: 0.99,
-                lg: 0.98,
-              },
+              lineHeight: { xs: 1.02, sm: 1, md: 0.99, lg: 0.98 },
 
               textWrap: "balance",
 
@@ -421,39 +277,18 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
 
           {/* CUSTOM CONTENT */}
 
-          {children && (
-            <Box
-              sx={{
-                width: "100%",
-                mt: 3,
-              }}
-            >
-              {children}
-            </Box>
-          )}
+          {children && <Box sx={{ width: "100%", mt: 3 }}>{children}</Box>}
 
           {/* ACTIONS */}
 
           {(actionLabel || secondaryActionLabel) && (
             <Stack
-              direction={{
-                xs: "column",
-                sm: "row",
-              }}
-              spacing={{
-                xs: 1.25,
-                sm: 1.5,
-              }}
+              direction={{ xs: "column", sm: "row" }}
+              spacing={{ xs: 1.25, sm: 1.5 }}
               sx={{
-                width: {
-                  xs: "100%",
-                  sm: "auto",
-                },
+                width: { xs: "100%", sm: "auto" },
 
-                alignItems: {
-                  xs: "stretch",
-                  sm: "center",
-                },
+                alignItems: { xs: "stretch", sm: "center" },
 
                 justifyContent: "flex-start",
 
@@ -465,10 +300,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
                   variant="contained"
                   onClick={onAction}
                   sx={{
-                    width: {
-                      xs: "100%",
-                      sm: "auto",
-                    },
+                    width: { xs: "100%", sm: "auto" },
 
                     minWidth: config.buttonMinWidth,
 
@@ -488,10 +320,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
                   variant="outlined"
                   onClick={onSecondaryAction}
                   sx={{
-                    width: {
-                      xs: "100%",
-                      sm: "auto",
-                    },
+                    width: { xs: "100%", sm: "auto" },
 
                     minWidth: config.buttonMinWidth,
 
@@ -540,10 +369,7 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
 
               maxWidth: config.visualMaxWidth,
 
-              justifySelf: {
-                xs: "center",
-                md: "end",
-              },
+              justifySelf: { xs: "center", md: "end" },
 
               alignSelf: "center",
 
@@ -553,16 +379,9 @@ export const StatusShowcase: React.FC<StatusShowcaseProps> = ({
 
               justifyContent: "center",
 
-              order: {
-                xs: -1,
-                md: 0,
-              },
+              order: { xs: -1, md: 0 },
 
-              px: {
-                xs: 2,
-                sm: 3,
-                md: 0,
-              },
+              px: { xs: 2, sm: 3, md: 0 },
 
               "& img": {
                 display: "block",

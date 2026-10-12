@@ -22,11 +22,7 @@ export const getTableCellOverrides = (palette: JivicoPalette, isDark: boolean): 
     MuiTableCell: {
       styleOverrides: {
         root: ({ ownerState }) => {
-          const state = ownerState as {
-            color?: TableColor;
-            variant?: "standard" | "glass";
-            size?: "small" | "medium";
-          };
+          const state = ownerState as { color?: TableColor; variant?: "standard" | "glass"; size?: "small" | "medium" };
 
           const color = colorMap[state.color ?? "primary"];
           const variant = state.variant ?? "standard";
@@ -56,9 +52,7 @@ export const getTableCellOverrides = (palette: JivicoPalette, isDark: boolean): 
               color: text,
             },
 
-            "&.MuiTableCell-body": {
-              fontWeight: 400,
-            },
+            "&.MuiTableCell-body": { fontWeight: 400 },
 
             "&.MuiTableCell-footer": {
               fontWeight: 500,
@@ -67,44 +61,23 @@ export const getTableCellOverrides = (palette: JivicoPalette, isDark: boolean): 
               borderTop: `1px solid ${isGlass ? (isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.08)") : divider}`,
             },
 
-            "&.MuiTableCell-alignLeft": {
-              textAlign: "left",
-            },
+            "&.MuiTableCell-alignLeft": { textAlign: "left" },
 
-            "&.MuiTableCell-alignCenter": {
-              textAlign: "center",
-            },
+            "&.MuiTableCell-alignCenter": { textAlign: "center" },
 
-            "&.MuiTableCell-alignRight": {
-              textAlign: "right",
-              fontVariantNumeric: "tabular-nums",
-            },
+            "&.MuiTableCell-alignRight": { textAlign: "right", fontVariantNumeric: "tabular-nums" },
 
-            "&.MuiTableCell-paddingNone": {
-              padding: 0,
-            },
+            "&.MuiTableCell-paddingNone": { padding: 0 },
 
-            "&.MuiTableCell-paddingCheckbox": {
-              width: 48,
-              paddingLeft: 8,
-              paddingRight: 8,
-            },
+            "&.MuiTableCell-paddingCheckbox": { width: 48, paddingLeft: 8, paddingRight: 8 },
 
-            "&:first-of-type": {
-              paddingLeft: size === "small" ? 12 : 16,
-            },
+            "&:first-of-type": { paddingLeft: size === "small" ? 12 : 16 },
 
-            "&:last-of-type": {
-              paddingRight: size === "small" ? 12 : 16,
-            },
+            "&:last-of-type": { paddingRight: size === "small" ? 12 : 16 },
 
-            "& .MuiTypography-root": {
-              color: "inherit",
-            },
+            "& .MuiTypography-root": { color: "inherit" },
 
-            "& .MuiTypography-colorTextSecondary": {
-              color: secondaryText,
-            },
+            "& .MuiTypography-colorTextSecondary": { color: secondaryText },
 
             "& .MuiLink-root": {
               color,
@@ -112,62 +85,37 @@ export const getTableCellOverrides = (palette: JivicoPalette, isDark: boolean): 
               textDecoration: "none",
               transition: "color 160ms ease",
 
-              "&:hover": {
-                textDecoration: "underline",
-              },
+              "&:hover": { textDecoration: "underline" },
 
-              "&:focus-visible": {
-                outline: `2px solid ${color}`,
-                outlineOffset: 2,
-                borderRadius: 4,
-              },
+              "&:focus-visible": { outline: `2px solid ${color}`, outlineOffset: 2, borderRadius: 4 },
             },
 
             "& .MuiIconButton-root": {
               color: secondaryText,
 
-              "&:hover": {
-                color,
-                backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.05)",
-              },
+              "&:hover": { color, backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.05)" },
 
-              "&.Mui-focusVisible": {
-                outline: `2px solid ${color}`,
-                outlineOffset: 2,
-              },
+              "&.Mui-focusVisible": { outline: `2px solid ${color}`, outlineOffset: 2 },
             },
 
             "& .MuiCheckbox-root": {
               color: secondaryText,
 
-              "&.Mui-checked": {
-                color,
-              },
+              "&.Mui-checked": { color },
 
-              "&:hover": {
-                backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.05)",
-              },
+              "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.05)" },
 
-              "&.Mui-focusVisible": {
-                outline: `2px solid ${color}`,
-                outlineOffset: 2,
-              },
+              "&.Mui-focusVisible": { outline: `2px solid ${color}`, outlineOffset: 2 },
             },
 
             "& .MuiTableSortLabel-root": {
               color: secondaryText,
 
-              "&:hover": {
-                color: text,
-              },
+              "&:hover": { color: text },
 
-              "&.Mui-active": {
-                color,
-              },
+              "&.Mui-active": { color },
 
-              "& .MuiTableSortLabel-icon": {
-                color,
-              },
+              "& .MuiTableSortLabel-icon": { color },
             },
           };
         },

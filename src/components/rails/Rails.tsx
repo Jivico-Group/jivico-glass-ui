@@ -9,11 +9,8 @@ const DEFAULT_COLUMNS = { xs: 2, sm: 3, md: 4, lg: 5, xl: 5 } as const;
 const DEFAULT_GAP = 2;
 const DEFAULT_INTERVAL = 5000;
 
-const resolveResponsiveValue = <T,>(
-  value: Record<string, T> | undefined,
-  fallback: Record<string, T>,
-  breakpoint: string,
-): T => value?.[breakpoint] ?? fallback[breakpoint];
+const resolveResponsiveValue = <T,>(value: Record<string, T> | undefined, fallback: Record<string, T>, breakpoint: string): T =>
+  value?.[breakpoint] ?? fallback[breakpoint];
 
 export function Rails<T>({
   items,
@@ -95,10 +92,7 @@ export function Rails<T>({
     [getCssItemBasis],
   );
 
-  const pageCount = React.useMemo(
-    () => Math.max(1, Math.ceil(items.length / Math.max(1, currentColumns))),
-    [items.length, currentColumns],
-  );
+  const pageCount = React.useMemo(() => Math.max(1, Math.ceil(items.length / Math.max(1, currentColumns))), [items.length, currentColumns]);
 
   const transitionConfig = React.useMemo(() => {
     const easing = "cubic-bezier(0.22, 1, 0.36, 1)";
@@ -116,9 +110,7 @@ export function Rails<T>({
 
       case "scale":
         return {
-          item: {
-            transition: `transform 500ms ${easing}, box-shadow 300ms ease`,
-          },
+          item: { transition: `transform 500ms ${easing}, box-shadow 300ms ease` },
           image: { transition: `transform 500ms ${easing}` },
           overlay: { transition: "opacity 250ms ease" },
           hoverItem: {},
@@ -127,28 +119,16 @@ export function Rails<T>({
         };
       case "lift":
         return {
-          item: {
-            transition: `transform 500ms ${easing}, box-shadow 300ms ease`,
-          },
+          item: { transition: `transform 500ms ${easing}, box-shadow 300ms ease` },
           image: { transition: `transform 500ms ${easing}` },
           overlay: { transition: "opacity 250ms ease" },
-          hoverItem: {
-            transform: "translateY(-4px)",
-            boxShadow: theme.shadows[6],
-          },
+          hoverItem: { transform: "translateY(-4px)", boxShadow: theme.shadows[6] },
           hoverImage: { transform: "scale(1.035)" },
           hoverOverlay: { opacity: 1 },
         };
       case "none":
       default:
-        return {
-          item: {},
-          image: {},
-          overlay: {},
-          hoverItem: {},
-          hoverImage: {},
-          hoverOverlay: {},
-        };
+        return { item: {}, image: {}, overlay: {}, hoverItem: {}, hoverImage: {}, hoverOverlay: {} };
     }
   }, [theme.shadows, transition]);
 
@@ -212,9 +192,7 @@ export function Rails<T>({
       resizeObserver.observe(content);
     }
 
-    viewport.addEventListener("scroll", updateScrollState, {
-      passive: true,
-    });
+    viewport.addEventListener("scroll", updateScrollState, { passive: true });
 
     return () => {
       resizeObserver.disconnect();
@@ -245,10 +223,7 @@ export function Rails<T>({
       const distance = getStepDistance() * Math.max(1, step);
       const amount = direction === "next" ? distance : -distance;
 
-      viewport.scrollBy({
-        left: amount,
-        behavior: prefersReducedMotion ? "auto" : "smooth",
-      });
+      viewport.scrollBy({ left: amount, behavior: prefersReducedMotion ? "auto" : "smooth" });
     },
     [getStepDistance, step, prefersReducedMotion],
   );
@@ -257,10 +232,7 @@ export function Rails<T>({
     const viewport = viewportRef.current;
     if (!viewport) return;
 
-    viewport.scrollTo({
-      left: 0,
-      behavior: prefersReducedMotion ? "auto" : "smooth",
-    });
+    viewport.scrollTo({ left: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
   }, [prefersReducedMotion]);
 
   const scrollToEnd = React.useCallback(() => {
@@ -269,10 +241,7 @@ export function Rails<T>({
 
     const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
 
-    viewport.scrollTo({
-      left: maxScroll,
-      behavior: prefersReducedMotion ? "auto" : "smooth",
-    });
+    viewport.scrollTo({ left: maxScroll, behavior: prefersReducedMotion ? "auto" : "smooth" });
   }, [prefersReducedMotion]);
 
   const handlePrevious = React.useCallback(() => {
@@ -312,18 +281,7 @@ export function Rails<T>({
     }, safeInterval);
 
     return () => window.clearInterval(timer);
-  }, [
-    autoplay,
-    interval,
-    pauseOnHover,
-    isHovered,
-    prefersReducedMotion,
-    items.length,
-    currentColumns,
-    loop,
-    scrollBy,
-    scrollToStart,
-  ]);
+  }, [autoplay, interval, pauseOnHover, isHovered, prefersReducedMotion, items.length, currentColumns, loop, scrollBy, scrollToStart]);
 
   const renderDefaultImage = React.useCallback(
     ({ src, alt, index }: { src: string; alt: string; index: number }) => {
@@ -399,11 +357,7 @@ export function Rails<T>({
             backgroundColor: theme.palette.action.hover,
           }}
         >
-          {renderDefaultImage({
-            src: image,
-            alt: typeof title === "string" ? title : "",
-            index,
-          })}
+          {renderDefaultImage({ src: image, alt: typeof title === "string" ? title : "", index })}
 
           <Box
             className="Rail-image-overlay"
@@ -421,13 +375,7 @@ export function Rails<T>({
       );
 
       return (
-        <Box
-          sx={{
-            position: "relative",
-            width: "100%",
-            minWidth: 0,
-          }}
-        >
+        <Box sx={{ position: "relative", width: "100%", minWidth: 0 }}>
           {href && (
             <Box
               component="a"
@@ -450,15 +398,7 @@ export function Rails<T>({
           {imageContent}
 
           {title && (
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: 1.5,
-                pt: 1.5,
-              }}
-            >
+            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 1.5, pt: 1.5 }}>
               <Typography
                 variant="body2"
                 sx={{
@@ -514,10 +454,7 @@ export function Rails<T>({
       }
     };
 
-    const context: RailNavigationContext = {
-      onClick: handleAction,
-      disabled,
-    };
+    const context: RailNavigationContext = { onClick: handleAction, disabled };
 
     if (isPrevious && renderPreviousButton) {
       return renderPreviousButton(context);
@@ -543,22 +480,14 @@ export function Rails<T>({
           color: theme.palette.mode === "dark" ? "#fff" : theme.palette.text.primary,
           bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.65)",
           backdropFilter: "blur(12px)",
-          border:
-            theme.palette.mode === "dark"
-              ? "1px solid rgba(255, 255, 255, 0.28)"
-              : "1px solid rgba(255, 255, 255, 0.6)",
-          boxShadow:
-            theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
+          border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
+          boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
           transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
           "&:hover": {
             bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
             transform: "translateY(-1px)",
           },
-          "&.Mui-disabled": {
-            opacity: 0.35,
-            pointerEvents: "auto",
-            cursor: "not-allowed",
-          },
+          "&.Mui-disabled": { opacity: 0.35, pointerEvents: "auto", cursor: "not-allowed" },
         }}
       >
         {isPrevious ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
@@ -579,13 +508,7 @@ export function Rails<T>({
       onMouseLeave={() => {
         if (pauseOnHover) setIsHovered(false);
       }}
-      sx={{
-        position: "relative",
-        cursor,
-        width: "100%",
-        minWidth: 0,
-        ...sx,
-      }}
+      sx={{ position: "relative", cursor, width: "100%", minWidth: 0, ...sx }}
     >
       <Box
         ref={viewportRef}
@@ -599,22 +522,10 @@ export function Rails<T>({
           scrollSnapType: snap ? "x mandatory" : "none",
           scrollbarWidth: "none",
           touchAction: swipe ? "pan-x" : "auto",
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
+          "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "nowrap",
-            gap,
-            justifyContent,
-            width: "100%",
-            minWidth: "100%",
-            pb: 0.5,
-          }}
-        >
+        <Box sx={{ display: "flex", flexWrap: "nowrap", gap, justifyContent, width: "100%", minWidth: "100%", pb: 0.5 }}>
           {items.map((item, index) => {
             const key = getKey(item, index);
 
@@ -633,15 +544,9 @@ export function Rails<T>({
                   scrollSnapAlign: snap ? "start" : "none",
                   scrollSnapStop: snap ? "normal" : "unset",
                   ...transitionConfig.item,
-                  "&:hover": {
-                    ...transitionConfig.hoverItem,
-                  },
-                  "&:hover img": {
-                    ...transitionConfig.hoverImage,
-                  },
-                  "&:hover .Rail-image-overlay": {
-                    ...transitionConfig.hoverOverlay,
-                  },
+                  "&:hover": { ...transitionConfig.hoverItem },
+                  "&:hover img": { ...transitionConfig.hoverImage },
+                  "&:hover .Rail-image-overlay": { ...transitionConfig.hoverOverlay },
                   ...itemSx,
                 }}
               >
@@ -654,50 +559,18 @@ export function Rails<T>({
 
       {(navigation === "arrows" || navigation === "both") && (
         <>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: 12,
-              zIndex: 10,
-              transform: "translateY(-50%)",
-              display: {
-                xs: "none",
-                sm: "block",
-              },
-            }}
-          >
+          <Box sx={{ position: "absolute", top: "50%", left: 12, zIndex: 10, transform: "translateY(-50%)", display: { xs: "none", sm: "block" } }}>
             {renderNavigationButton("previous")}
           </Box>
 
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              right: 12,
-              zIndex: 10,
-              transform: "translateY(-50%)",
-              display: {
-                xs: "none",
-                sm: "block",
-              },
-            }}
-          >
+          <Box sx={{ position: "absolute", top: "50%", right: 12, zIndex: 10, transform: "translateY(-50%)", display: { xs: "none", sm: "block" } }}>
             {renderNavigationButton("next")}
           </Box>
         </>
       )}
 
       {(navigation === "dots" || navigation === "both") && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 0.25,
-            mt: 2,
-          }}
-        >
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 0.25, mt: 2 }}>
           {Array.from({ length: pageCount }).map((_, index) => {
             const active = activePage === index;
 
@@ -734,10 +607,7 @@ export function Rails<T>({
 
                   setActivePage(index);
 
-                  viewport.scrollTo({
-                    left: target,
-                    behavior: prefersReducedMotion ? "auto" : "smooth",
-                  });
+                  viewport.scrollTo({ left: target, behavior: prefersReducedMotion ? "auto" : "smooth" });
                 }}
                 sx={{
                   width: 24,
@@ -763,11 +633,7 @@ export function Rails<T>({
                     backgroundColor: active ? "text.primary" : "action.disabled",
                     transition: "width 220ms ease",
                   },
-                  "&:focus-visible": {
-                    outline: "2px solid",
-                    outlineColor: "primary.main",
-                    outlineOffset: 1,
-                  },
+                  "&:focus-visible": { outline: "2px solid", outlineColor: "primary.main", outlineOffset: 1 },
                 }}
               />
             );

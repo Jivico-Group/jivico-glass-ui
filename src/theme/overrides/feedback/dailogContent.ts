@@ -16,9 +16,7 @@ export const getDialogContentOverrides = (palette: JivicoPalette, isDark?: boole
 
         color: palette.text.primary,
 
-        "& + .MuiDialogContent-root": {
-          paddingTop: 8,
-        },
+        "& + .MuiDialogContent-root": { paddingTop: 8 },
         "& .MuiIconButton-root": {
           width: 36,
           height: 36,
@@ -40,9 +38,7 @@ export const getDialogContentOverrides = (palette: JivicoPalette, isDark?: boole
             transform: "scale(1.04)",
           },
 
-          "&:active": {
-            transform: "scale(.96)",
-          },
+          "&:active": { transform: "scale(.96)" },
         },
       },
     },
@@ -58,22 +54,13 @@ export const getDialogContentOverrides = (palette: JivicoPalette, isDark?: boole
         fontSize: "0.9375rem",
         lineHeight: 1.6,
 
-        "&:first-of-type": {
-          paddingTop: 16,
-        },
+        "&:first-of-type": { paddingTop: 16 },
 
-        "&::-webkit-scrollbar": {
-          width: 6,
-        },
+        "&::-webkit-scrollbar": { width: 6 },
 
-        "&::-webkit-scrollbar-thumb": {
-          backgroundColor: isDark ? "rgba(255,255,255,.16)" : "rgba(17,17,17,.14)",
-          borderRadius: 999,
-        },
+        "&::-webkit-scrollbar-thumb": { backgroundColor: isDark ? "rgba(255,255,255,.16)" : "rgba(17,17,17,.14)", borderRadius: 999 },
 
-        "&::-webkit-scrollbar-track": {
-          background: "transparent",
-        },
+        "&::-webkit-scrollbar-track": { background: "transparent" },
       },
     },
   },
@@ -87,9 +74,7 @@ export const getDialogContentOverrides = (palette: JivicoPalette, isDark?: boole
 
         borderTop: `1px solid ${isDark ? "rgba(255,255,255,.07)" : "rgba(17,17,17,.07)"}`,
 
-        "& > :not(style) ~ :not(style)": {
-          marginLeft: 0,
-        },
+        "& > :not(style) ~ :not(style)": { marginLeft: 0 },
       },
     },
   },

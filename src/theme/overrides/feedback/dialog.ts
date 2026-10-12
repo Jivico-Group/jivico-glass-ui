@@ -3,34 +3,18 @@ import type { JivicoPalette } from "../../palette/index.js";
 
 export type DialogRadius = "square" | "small" | "medium" | "large" | "rounded" | "pill";
 
-const radiusMap: Record<DialogRadius, number> = {
-  square: 0,
-  small: 8,
-  medium: 12,
-  large: 16,
-  rounded: 20,
-  pill: 24,
-};
+const radiusMap: Record<DialogRadius, number> = { square: 0, small: 8, medium: 12, large: 16, rounded: 20, pill: 24 };
 
 export const getDialogOverrides = (_palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiDialog: {
-    defaultProps: {
-      disableScrollLock: false,
-      radius: "small",
-    },
+    defaultProps: { disableScrollLock: false, radius: "small" },
 
     styleOverrides: {
       root: {
         /**
          * Dialog positioning
          */
-        "& .MuiDialog-container": {
-          padding: {
-            xs: 1.5,
-            sm: 2,
-            md: 3,
-          },
-        },
+        "& .MuiDialog-container": { padding: { xs: 1.5, sm: 2, md: 3 } },
       },
 
       /**
@@ -172,28 +156,21 @@ export const getDialogOverrides = (_palette: JivicoPalette, isDark: boolean): Co
            * Keep Dialog content above glass effects.
            * ---------------------------------------------
            */
-          "& > *": {
-            position: "relative",
-            zIndex: 1,
-          },
+          "& > *": { position: "relative", zIndex: 1 },
 
           /**
            * ---------------------------------------------
            * Dialog title
            * ---------------------------------------------
            */
-          "& .MuiDialogTitle-root": {
-            color: "inherit",
-          },
+          "& .MuiDialogTitle-root": { color: "inherit" },
 
           /**
            * ---------------------------------------------
            * Dialog content
            * ---------------------------------------------
            */
-          "& .MuiDialogContent-root": {
-            color: "inherit",
-          },
+          "& .MuiDialogContent-root": { color: "inherit" },
 
           /**
            * ---------------------------------------------
@@ -201,13 +178,7 @@ export const getDialogOverrides = (_palette: JivicoPalette, isDark: boolean): Co
            * ---------------------------------------------
            */
           "& .MuiDialogContentText-root": {
-            color: glass
-              ? isDark
-                ? "rgba(245,245,247,0.72)"
-                : "rgba(17,17,17,0.68)"
-              : isDark
-                ? "rgba(245,245,247,0.70)"
-                : "rgba(17,17,17,0.68)",
+            color: glass ? (isDark ? "rgba(245,245,247,0.72)" : "rgba(17,17,17,0.68)") : isDark ? "rgba(245,245,247,0.70)" : "rgba(17,17,17,0.68)",
           },
 
           /**
@@ -215,10 +186,7 @@ export const getDialogOverrides = (_palette: JivicoPalette, isDark: boolean): Co
            * Dialog actions
            * ---------------------------------------------
            */
-          "& .MuiDialogActions-root": {
-            position: "relative",
-            zIndex: 1,
-          },
+          "& .MuiDialogActions-root": { position: "relative", zIndex: 1 },
         };
       },
     },

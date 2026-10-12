@@ -27,15 +27,7 @@ export const DemoBlock: React.FC<DemoBlockProps> = ({ id, title, description, co
   return (
     <Box id={id} sx={{ mb: 5, scrollMarginTop: "90px" }}>
       {title && (
-        <Typography
-          variant="h6"
-          sx={{
-            fontWeight: 700,
-            fontSize: "1.15rem",
-            letterSpacing: "-0.01em",
-            mb: 0.5,
-          }}
-        >
+        <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.15rem", letterSpacing: "-0.01em", mb: 0.5 }}>
           {title}
         </Typography>
       )}
@@ -55,9 +47,7 @@ export const DemoBlock: React.FC<DemoBlockProps> = ({ id, title, description, co
           WebkitBackdropFilter: "blur(12px)",
           overflow: "hidden",
           transition: "border-color 0.2s ease, box-shadow 0.2s ease",
-          "&:hover": {
-            borderColor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(17, 17, 17, 0.15)",
-          },
+          "&:hover": { borderColor: isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(17, 17, 17, 0.15)" },
         }}
       >
         {/* Live Component Preview Area */}
@@ -99,24 +89,14 @@ export const DemoBlock: React.FC<DemoBlockProps> = ({ id, title, description, co
                 color: "text.secondary",
                 fontWeight: 500,
                 mr: 1,
-                "&:hover": {
-                  color: "text.primary",
-                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.04)",
-                },
+                "&:hover": { color: "text.primary", backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.04)" },
               }}
             >
               {showCode ? "Hide code" : "Show code"}
             </Button>
 
             <Tooltip title={copied ? "Copied!" : "Copy code"}>
-              <IconButton
-                size="small"
-                onClick={handleCopy}
-                sx={{
-                  color: copied ? "success.main" : "text.secondary",
-                  p: 0.6,
-                }}
-              >
+              <IconButton size="small" onClick={handleCopy} sx={{ color: copied ? "success.main" : "text.secondary", p: 0.6 }}>
                 {copied ? <Check size={14} /> : <Copy size={14} />}
               </IconButton>
             </Tooltip>

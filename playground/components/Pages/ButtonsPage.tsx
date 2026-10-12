@@ -71,14 +71,7 @@ export const ButtonsPage: React.FC = () => {
 <Button variant="text" color="primary">Text Button</Button>
 <Button variant="contained" color="primary" disabled>Disabled</Button>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 2,
-            alignItems: "center",
-          }}
-        >
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
           <Button variant="contained" color="primary">
             Primary Contained
           </Button>
@@ -114,37 +107,16 @@ export const ButtonsPage: React.FC = () => {
 <Button variant="contained" color="glass">Glass</Button>
 <Button variant="contained" color="success">Success</Button>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 3,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "100%" }}>
           {/* Contained Row */}
           <Box>
             <Typography
               variant="caption"
-              sx={{
-                display: "block",
-                fontWeight: 700,
-                color: "text.secondary",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-                mb: 1.5,
-              }}
+              sx={{ display: "block", fontWeight: 700, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.06em", mb: 1.5 }}
             >
               Contained Variant (All Colors)
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 1.5,
-                alignItems: "center",
-              }}
-            >
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, alignItems: "center" }}>
               <Button variant="contained" color="primary">
                 Primary
               </Button>
@@ -176,25 +148,11 @@ export const ButtonsPage: React.FC = () => {
           <Box>
             <Typography
               variant="caption"
-              sx={{
-                display: "block",
-                fontWeight: 700,
-                color: "text.secondary",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-                mb: 1.5,
-              }}
+              sx={{ display: "block", fontWeight: 700, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.06em", mb: 1.5 }}
             >
               Outlined Variant (All Colors)
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 1.5,
-                alignItems: "center",
-              }}
-            >
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, alignItems: "center" }}>
               <Button variant="outlined" color="primary">
                 Primary
               </Button>
@@ -226,25 +184,11 @@ export const ButtonsPage: React.FC = () => {
           <Box>
             <Typography
               variant="caption"
-              sx={{
-                display: "block",
-                fontWeight: 700,
-                color: "text.secondary",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-                mb: 1.5,
-              }}
+              sx={{ display: "block", fontWeight: 700, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.06em", mb: 1.5 }}
             >
               Text Variant (All Colors)
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 1.5,
-                alignItems: "center",
-              }}
-            >
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, alignItems: "center" }}>
               <Button variant="text" color="primary">
                 Primary
               </Button>
@@ -289,14 +233,7 @@ export const ButtonsPage: React.FC = () => {
   Disabled Glass
 </Button>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 2,
-            alignItems: "center",
-          }}
-        >
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
           <Button variant="contained" color="glass">
             Contained Glass
           </Button>
@@ -331,23 +268,9 @@ export const ButtonsPage: React.FC = () => {
 <Button variant="contained" color="glass" size="medium">Medium Glass</Button>
 <Button variant="contained" color="glass" size="large">Large Glass</Button>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2.5,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5, width: "100%" }}>
           {/* Primary Sizes */}
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <Button variant="contained" color="primary" size="small">
               Small (30px)
             </Button>
@@ -360,14 +283,7 @@ export const ButtonsPage: React.FC = () => {
           </Box>
 
           {/* Glass Sizes */}
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <Button variant="contained" color="glass" size="small">
               Small Glass
             </Button>
@@ -380,14 +296,7 @@ export const ButtonsPage: React.FC = () => {
           </Box>
 
           {/* Accent Sizes */}
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <Button variant="contained" color="accent" size="small">
               Small Accent
             </Button>
@@ -400,14 +309,7 @@ export const ButtonsPage: React.FC = () => {
           </Box>
 
           {/* Outlined Sizes */}
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <Button variant="outlined" color="primary" size="small">
               Small Outlined
             </Button>
@@ -436,14 +338,7 @@ export const ButtonsPage: React.FC = () => {
   Continue
 </Button>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 2,
-            alignItems: "center",
-          }}
-        >
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
           <Button variant="contained" color="primary" startIcon={<Plus size={16} />}>
             Add Item
           </Button>
@@ -482,29 +377,13 @@ export const ButtonsPage: React.FC = () => {
 <IconButton size="small"><Settings size={16} /></IconButton>
 <IconButton size="large"><Star size={22} /></IconButton>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
           {/* Default / Floating Glass */}
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <IconButton
               sx={{
                 backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)",
-                "&:hover": {
-                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.1)",
-                },
+                "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.1)" },
               }}
             >
               <Plus size={18} />
@@ -515,10 +394,7 @@ export const ButtonsPage: React.FC = () => {
                 backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.8)",
                 backdropFilter: "blur(12px)",
                 border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.1)"}`,
-                "&:hover": {
-                  transform: "translateY(-1px)",
-                  boxShadow: isDark ? "0 4px 16px rgba(0,0,0,0.4)" : "0 4px 14px rgba(0,0,0,0.06)",
-                },
+                "&:hover": { transform: "translateY(-1px)", boxShadow: isDark ? "0 4px 16px rgba(0,0,0,0.4)" : "0 4px 14px rgba(0,0,0,0.06)" },
               }}
             >
               <Heart size={18} />
@@ -534,38 +410,19 @@ export const ButtonsPage: React.FC = () => {
               <Star size={18} />
             </IconButton>
 
-            <IconButton
-              sx={{
-                color: "error.main",
-                "&:hover": {
-                  backgroundColor: isDark ? "rgba(234, 67, 53, 0.15)" : "rgba(234, 67, 53, 0.08)",
-                },
-              }}
-            >
+            <IconButton sx={{ color: "error.main", "&:hover": { backgroundColor: isDark ? "rgba(234, 67, 53, 0.15)" : "rgba(234, 67, 53, 0.08)" } }}>
               <Trash2 size={18} />
             </IconButton>
 
             <IconButton
-              sx={{
-                color: "primary.main",
-                "&:hover": {
-                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.06)",
-                },
-              }}
+              sx={{ color: "primary.main", "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.06)" } }}
             >
               <Settings size={18} />
             </IconButton>
           </Box>
 
           {/* Sizes */}
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary", mr: 1 }}>
               Sizes:
             </Typography>
@@ -598,23 +455,9 @@ export const ButtonsPage: React.FC = () => {
   AI Generate
 </Fab>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2.5,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5, width: "100%" }}>
           {/* Circular FABs */}
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <Fab color="primary" size="small" aria-label="add">
               <Plus size={16} />
             </Fab>
@@ -671,9 +514,7 @@ export const ButtonsPage: React.FC = () => {
                 color: "text.primary",
                 backdropFilter: "blur(16px)",
                 border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.9)"}`,
-                "&:hover": {
-                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.2)" : "#FFFFFF",
-                },
+                "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.2)" : "#FFFFFF" },
               }}
               aria-label="favorite"
             >
@@ -686,14 +527,7 @@ export const ButtonsPage: React.FC = () => {
           </Box>
 
           {/* Extended FABs */}
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <Fab variant="extended" color="primary">
               <Plus size={18} style={{ marginRight: 8 }} />
               Create Document
@@ -705,9 +539,7 @@ export const ButtonsPage: React.FC = () => {
                 color: "text.primary",
                 backdropFilter: "blur(16px)",
                 border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.9)"}`,
-                "&:hover": {
-                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.2)" : "#FFFFFF",
-                },
+                "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.2)" : "#FFFFFF" },
               }}
             >
               <Sparkles size={18} style={{ marginRight: 8 }} />
@@ -738,23 +570,9 @@ export const ButtonsPage: React.FC = () => {
   <Button>Monthly</Button>
 </ButtonGroup>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2.5,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5, width: "100%" }}>
           {/* Horizontal Button Groups */}
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <ButtonGroup variant="contained" color="primary">
               <Button>Left</Button>
               <Button>Center</Button>
@@ -775,14 +593,7 @@ export const ButtonsPage: React.FC = () => {
           </Box>
 
           {/* Split Button with Menu */}
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <ButtonGroup variant="contained" color="primary">
               <Button onClick={() => alert(`Executed: ${selectedOption}`)}>{selectedOption}</Button>
               <Button size="small" onClick={(e) => setSplitAnchor(e.currentTarget)} sx={{ px: 1 }}>
@@ -841,14 +652,7 @@ export const ButtonsPage: React.FC = () => {
   <ToggleButton value="right"><AlignRight size={16} /></ToggleButton>
 </ToggleButtonGroup>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 3,
-            alignItems: "center",
-          }}
-        >
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, alignItems: "center" }}>
           {/* Alignment Toggle (Exclusive) */}
           <Box>
             <Typography variant="caption" sx={{ display: "block", fontWeight: 600, mb: 1 }}>
@@ -917,22 +721,8 @@ export const ButtonsPage: React.FC = () => {
   Processing...
 </Button>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            width: "100%",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <Button variant="contained" color="primary" startIcon={<CircularProgress size={16} color="inherit" />}>
               Submitting Order...
             </Button>
@@ -1092,12 +882,7 @@ export const ButtonsPage: React.FC = () => {
             <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
               Primary
             </Typography>
-            <ToggleButtonGroup
-              value={alignment}
-              exclusive
-              onChange={(_, v) => v !== null && setAlignment(v)}
-              color="primary"
-            >
+            <ToggleButtonGroup value={alignment} exclusive onChange={(_, v) => v !== null && setAlignment(v)} color="primary">
               <ToggleButton value="left">
                 <AlignLeft size={16} />
               </ToggleButton>
@@ -1114,12 +899,7 @@ export const ButtonsPage: React.FC = () => {
             <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
               Secondary
             </Typography>
-            <ToggleButtonGroup
-              value={alignment}
-              exclusive
-              onChange={(_, v) => v !== null && setAlignment(v)}
-              color="secondary"
-            >
+            <ToggleButtonGroup value={alignment} exclusive onChange={(_, v) => v !== null && setAlignment(v)} color="secondary">
               <ToggleButton value="left">
                 <AlignLeft size={16} />
               </ToggleButton>
@@ -1136,12 +916,7 @@ export const ButtonsPage: React.FC = () => {
             <Typography variant="body2" sx={{ width: 100, color: "text.secondary" }}>
               Accent
             </Typography>
-            <ToggleButtonGroup
-              value={alignment}
-              exclusive
-              onChange={(_, v) => v !== null && setAlignment(v)}
-              color="warning"
-            >
+            <ToggleButtonGroup value={alignment} exclusive onChange={(_, v) => v !== null && setAlignment(v)} color="warning">
               <ToggleButton color="warning" value="left">
                 <AlignLeft size={16} />
               </ToggleButton>

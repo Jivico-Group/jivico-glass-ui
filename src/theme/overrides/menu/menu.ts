@@ -78,11 +78,7 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
 
   return {
     MuiMenu: {
-      defaultProps: {
-        surface: "standard",
-        color: "primary",
-        size: "medium",
-      } as any,
+      defaultProps: { surface: "standard", color: "primary", size: "medium" } as any,
 
       styleOverrides: {
         root: {
@@ -96,17 +92,11 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
             overflow: "hidden",
           },
 
-          "& .MuiMenu-list": {
-            color: text,
-          },
+          "& .MuiMenu-list": { color: text },
         },
 
         paper: ({ ownerState }) => {
-          const state = (ownerState || {}) as {
-            color?: MenuColor;
-            size?: MenuSize;
-            surface?: MenuSurface;
-          };
+          const state = (ownerState || {}) as { color?: MenuColor; size?: MenuSize; surface?: MenuSurface };
 
           const color = colorMap[state.color ?? "primary"] || colorMap.primary;
           const surface: MenuSurface =
@@ -125,9 +115,7 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
             backgroundImage: "none !important",
             backdropFilter: "none !important",
             WebkitBackdropFilter: "none !important",
-            boxShadow: isDark
-              ? "0 14px 36px rgba(0, 0, 0, 0.40) !important"
-              : "0 14px 36px rgba(17, 17, 17, 0.12) !important",
+            boxShadow: isDark ? "0 14px 36px rgba(0, 0, 0, 0.40) !important" : "0 14px 36px rgba(17, 17, 17, 0.12) !important",
           };
 
           const glassStyles = {
@@ -150,15 +138,9 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
 
             "&[data-jivico-menu-variant='standard'], &[data-jivico-surface='standard']": standardStyles,
 
-            "&.MuiPopover-paper": {
-              ...(isGlass ? glassStyles : standardStyles),
-            },
+            "&.MuiPopover-paper": { ...(isGlass ? glassStyles : standardStyles) },
 
-            "& .MuiMenu-list": {
-              padding: size.listPadding,
-              color: text,
-              outline: "none",
-            },
+            "& .MuiMenu-list": { padding: size.listPadding, color: text, outline: "none" },
 
             "& .MuiMenuItem-root": {
               minHeight: size.itemMinHeight,
@@ -202,62 +184,29 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
                   : "rgba(17, 17, 17, 0.085)",
             },
 
-            "& .MuiMenuItem-root.Mui-focusVisible": {
-              outline: `2px solid ${color}`,
-              outlineOffset: -2,
-            },
+            "& .MuiMenuItem-root.Mui-focusVisible": { outline: `2px solid ${color}`, outlineOffset: -2 },
 
-            "& .MuiMenuItem-root.Mui-disabled": {
-              color: secondaryText,
-              opacity: 0.55,
-            },
+            "& .MuiMenuItem-root.Mui-disabled": { color: secondaryText, opacity: 0.55 },
 
-            "& .MuiMenuItem-root .MuiListItemIcon-root": {
-              minWidth: size.iconSize,
-              width: size.iconSize,
-              color: secondaryText,
-              marginRight: 0,
-            },
+            "& .MuiMenuItem-root .MuiListItemIcon-root": { minWidth: size.iconSize, width: size.iconSize, color: secondaryText, marginRight: 0 },
 
-            "& .MuiMenuItem-root:hover .MuiListItemIcon-root": {
-              color,
-            },
+            "& .MuiMenuItem-root:hover .MuiListItemIcon-root": { color },
 
-            "& .MuiMenuItem-root.Mui-selected .MuiListItemIcon-root": {
-              color,
-            },
+            "& .MuiMenuItem-root.Mui-selected .MuiListItemIcon-root": { color },
 
-            "& .MuiMenuItem-root .MuiListItemText-root": {
-              marginTop: 0,
-              marginBottom: 0,
-            },
+            "& .MuiMenuItem-root .MuiListItemText-root": { marginTop: 0, marginBottom: 0 },
 
-            "& .MuiMenuItem-root .MuiListItemText-primary": {
-              color: "inherit",
-              fontSize: "inherit",
-              lineHeight: "inherit",
-            },
+            "& .MuiMenuItem-root .MuiListItemText-primary": { color: "inherit", fontSize: "inherit", lineHeight: "inherit" },
 
             "& .MuiMenuItem-root .MuiListItemText-secondary": {
               color: secondaryText,
-              fontSize:
-                size.itemFontSize === "0.75rem"
-                  ? "0.6875rem"
-                  : size.itemFontSize === "0.8125rem"
-                    ? "0.72rem"
-                    : "0.75rem",
+              fontSize: size.itemFontSize === "0.75rem" ? "0.6875rem" : size.itemFontSize === "0.8125rem" ? "0.72rem" : "0.75rem",
               lineHeight: 1.35,
             },
 
-            "& .MuiMenuItem-root .MuiSvgIcon-root": {
-              fontSize: size.iconSize,
-              flexShrink: 0,
-            },
+            "& .MuiMenuItem-root .MuiSvgIcon-root": { fontSize: size.iconSize, flexShrink: 0 },
 
-            "& .MuiDivider-root": {
-              margin: size.itemFontSize === "0.75rem" ? "2px 0" : "4px 0",
-              borderColor: isGlass ? glassBorder : divider,
-            },
+            "& .MuiDivider-root": { margin: size.itemFontSize === "0.75rem" ? "2px 0" : "4px 0", borderColor: isGlass ? glassBorder : divider },
           };
         },
       },

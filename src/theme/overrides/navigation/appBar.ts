@@ -16,8 +16,7 @@ export const getAppBarOverrides = (palette: JivicoPalette, isDark: boolean): Com
 
       styleOverrides: {
         root: ({ ownerState }) => {
-          const isExplicitStandard =
-            ownerState.surface === "standard" || ownerState.glass === false || ownerState.glass === "false";
+          const isExplicitStandard = ownerState.surface === "standard" || ownerState.glass === false || ownerState.glass === "false";
 
           if (isExplicitStandard) {
             return {
@@ -67,23 +66,15 @@ export const getAppBarOverrides = (palette: JivicoPalette, isDark: boolean): Com
             };
           }
 
-          return {
-            ...glassAppBarRecipe(isDark),
-          };
+          return { ...glassAppBarRecipe(isDark) };
         },
 
         colorInherit: ({ ownerState }) => {
           if (ownerState.surface === "standard" || ownerState.glass === false || ownerState.glass === "false") {
-            return {
-              backgroundColor: "inherit",
-              backdropFilter: "none",
-              WebkitBackdropFilter: "none",
-            };
+            return { backgroundColor: "inherit", backdropFilter: "none", WebkitBackdropFilter: "none" };
           }
 
-          return {
-            ...glassAppBarRecipe(isDark),
-          };
+          return { ...glassAppBarRecipe(isDark) };
         },
       },
     },

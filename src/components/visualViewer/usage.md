@@ -39,21 +39,9 @@ The simplest version:
 ```tsx
 <VisualViewer
   items={[
-    {
-      id: "1",
-      src: "/images/product-1.jpg",
-      alt: "Product front view",
-    },
-    {
-      id: "2",
-      src: "/images/product-2.jpg",
-      alt: "Product back view",
-    },
-    {
-      id: "3",
-      src: "/images/product-3.jpg",
-      alt: "Product detail",
-    },
+    { id: "1", src: "/images/product-1.jpg", alt: "Product front view" },
+    { id: "2", src: "/images/product-2.jpg", alt: "Product back view" },
+    { id: "3", src: "/images/product-3.jpg", alt: "Product detail" },
   ]}
 />
 ```
@@ -103,16 +91,7 @@ import { VisualViewer } from "jivico-glass-ui";
 <VisualViewer
   items={images}
   renderImage={({ item, index }) => (
-    <Image
-      src={item.src}
-      alt={item.alt ?? ""}
-      fill
-      sizes="(max-width: 768px) 100vw, 70vw"
-      priority={index === 0}
-      style={{
-        objectFit: "contain",
-      }}
-    />
+    <Image src={item.src} alt={item.alt ?? ""} fill sizes="(max-width: 768px) 100vw, 70vw" priority={index === 0} style={{ objectFit: "contain" }} />
   )}
 />;
 ```
@@ -129,28 +108,9 @@ You can separately control the thumbnail renderer.
 <VisualViewer
   items={images}
   renderImage={({ item, index }) => (
-    <Image
-      src={item.src}
-      alt={item.alt ?? ""}
-      fill
-      sizes="(max-width: 768px) 100vw, 70vw"
-      priority={index === 0}
-      style={{
-        objectFit: "contain",
-      }}
-    />
+    <Image src={item.src} alt={item.alt ?? ""} fill sizes="(max-width: 768px) 100vw, 70vw" priority={index === 0} style={{ objectFit: "contain" }} />
   )}
-  renderThumbnail={({ item }) => (
-    <Image
-      src={item.thumbnailSrc ?? item.src}
-      alt={item.alt ?? ""}
-      fill
-      sizes="112px"
-      style={{
-        objectFit: "cover",
-      }}
-    />
-  )}
+  renderThumbnail={({ item }) => <Image src={item.thumbnailSrc ?? item.src} alt={item.alt ?? ""} fill sizes="112px" style={{ objectFit: "cover" }} />}
 />
 ```
 
@@ -178,21 +138,9 @@ For example:
 
 ```tsx
 const images = [
-  {
-    id: "front",
-    src: product.coverImage,
-    alt: `${product.name} front`,
-  },
-  {
-    id: "back",
-    src: product.images[1],
-    alt: `${product.name} back`,
-  },
-  {
-    id: "detail",
-    src: product.images[2],
-    alt: `${product.name} detail`,
-  },
+  { id: "front", src: product.coverImage, alt: `${product.name} front` },
+  { id: "back", src: product.images[1], alt: `${product.name} back` },
+  { id: "detail", src: product.images[2], alt: `${product.name} detail` },
 ];
 ```
 
@@ -212,18 +160,8 @@ You can provide a separate thumbnail source:
 
 ```tsx
 const images = [
-  {
-    id: "1",
-    src: "/products/front-large.jpg",
-    thumbnailSrc: "/products/front-thumb.jpg",
-    alt: "Front",
-  },
-  {
-    id: "2",
-    src: "/products/back-large.jpg",
-    thumbnailSrc: "/products/back-thumb.jpg",
-    alt: "Back",
-  },
+  { id: "1", src: "/products/front-large.jpg", thumbnailSrc: "/products/front-thumb.jpg", alt: "Front" },
+  { id: "2", src: "/products/back-large.jpg", thumbnailSrc: "/products/back-thumb.jpg", alt: "Back" },
 ];
 ```
 
@@ -534,13 +472,7 @@ The component supports:
 # 19. Custom Container Styling
 
 ```tsx
-<VisualViewer
-  items={images}
-  containerSx={{
-    maxWidth: 900,
-    mx: "auto",
-  }}
-/>
+<VisualViewer items={images} containerSx={{ maxWidth: 900, mx: "auto" }} />
 ```
 
 This lets the application control placement without modifying the component.
@@ -558,16 +490,8 @@ import Image from "next/image";
 import { VisualViewer } from "jivico-glass-ui";
 
 const images = [
-  {
-    id: "front",
-    src: product.coverImage,
-    alt: `${product.name} front view`,
-  },
-  ...product.images.map((src, index) => ({
-    id: `image-${index}`,
-    src,
-    alt: `${product.name} view ${index + 2}`,
-  })),
+  { id: "front", src: product.coverImage, alt: `${product.name} front view` },
+  ...product.images.map((src, index) => ({ id: `image-${index}`, src, alt: `${product.name} view ${index + 2}` })),
 ];
 
 export function ProductVisuals() {
@@ -590,21 +514,11 @@ export function ProductVisuals() {
             55vw
           "
           priority={index === 0}
-          style={{
-            objectFit: "contain",
-          }}
+          style={{ objectFit: "contain" }}
         />
       )}
       renderThumbnail={({ item }) => (
-        <Image
-          src={item.thumbnailSrc ?? item.src}
-          alt={item.alt ?? ""}
-          fill
-          sizes="112px"
-          style={{
-            objectFit: "cover",
-          }}
-        />
+        <Image src={item.thumbnailSrc ?? item.src} alt={item.alt ?? ""} fill sizes="112px" style={{ objectFit: "cover" }} />
       )}
     />
   );

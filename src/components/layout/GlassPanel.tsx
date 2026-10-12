@@ -4,9 +4,7 @@ export interface GlassPanelProps extends BoxProps {
   isDark?: boolean;
 }
 
-export const GlassPanel = styled(Box, {
-  shouldForwardProp: (p) => p !== "isDark",
-})<GlassPanelProps>(({ theme, isDark: explicitDark }) => {
+export const GlassPanel = styled(Box, { shouldForwardProp: (p) => p !== "isDark" })<GlassPanelProps>(({ theme, isDark: explicitDark }) => {
   const isDark = explicitDark ?? theme.palette.mode === "dark";
   return {
     backgroundColor: isDark ? "rgba(28, 31, 38, 0.65)" : "rgba(255, 255, 255, 0.24)",

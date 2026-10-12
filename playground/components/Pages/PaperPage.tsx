@@ -28,14 +28,7 @@ export const PaperPage: React.FC = () => {
   <Typography variant="body2">Flat surface container with subtle border.</Typography>
 </Paper>`}
       >
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-            gap: 3,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: 3, width: "100%" }}>
           <Paper elevation={0} sx={{ p: 3 }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1.5 }}>
               <Box
@@ -56,8 +49,7 @@ export const PaperPage: React.FC = () => {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              Default elevation={0} removes harsh Material shadows and applies a sleek 1px perimeter line with 12px
-              corner radius.
+              Default elevation={0} removes harsh Material shadows and applies a sleek 1px perimeter line with 12px corner radius.
             </Typography>
             <Button size="small" variant="outlined" color="primary">
               Paper Action
@@ -139,14 +131,7 @@ export const PaperPage: React.FC = () => {
                 : "0 6px 24px rgba(0, 0, 0, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9)",
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                mb: 2,
-              }}
-            >
+            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2 }}>
               <Chip label="FROSTED GLASS CANVAS" size="small" color="accent" />
               <Button size="small" variant="text" color="primary" endIcon={<ExternalLink size={14} />}>
                 Details
@@ -156,8 +141,7 @@ export const PaperPage: React.FC = () => {
               Liquid Glass Paper Sheet
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              High-definition backdrop blur sheet designed for floating modal dialogs, drawer panels, and hero section
-              cards.
+              High-definition backdrop blur sheet designed for floating modal dialogs, drawer panels, and hero section cards.
             </Typography>
           </Paper>
         </Box>
@@ -182,29 +166,12 @@ export const PaperPage: React.FC = () => {
             border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
           }}
         >
-          <Box
-            sx={{
-              p: 4,
-              minHeight: 120,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <Box sx={{ p: 4, minHeight: 120, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <Typography variant="body2" color="text.secondary">
               Canvas Content Area
             </Typography>
           </Box>
-          <Paper
-            variant="elevation"
-            sx={{
-              px: 3,
-              py: 2,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
+          <Paper variant="elevation" sx={{ px: 3, py: 2, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <Typography variant="body2" sx={{ fontWeight: 600 }}>
               © 2026 Jivico Design System
             </Typography>

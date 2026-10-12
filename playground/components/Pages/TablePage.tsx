@@ -1,15 +1,5 @@
 import React, { useState } from "react";
-import {
-  AlertTriangle,
-  ArrowUpDown,
-  CheckCircle2,
-  Clock,
-  Download,
-  ExternalLink,
-  Filter,
-  MoreHorizontal,
-  XCircle,
-} from "lucide-react";
+import { AlertTriangle, ArrowUpDown, CheckCircle2, Clock, Download, ExternalLink, Filter, MoreHorizontal, XCircle } from "lucide-react";
 import {
   Avatar,
   Box,
@@ -44,11 +34,7 @@ interface TransactionData {
 const mockTransactions: TransactionData[] = [
   {
     id: "TX-9021",
-    user: {
-      name: "Sophia Martinez",
-      email: "sophia@jivico.design",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100",
-    },
+    user: { name: "Sophia Martinez", email: "sophia@jivico.design", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" },
     amount: "$2,450.00",
     date: "Sep 22, 2026",
     status: "Completed",
@@ -56,11 +42,7 @@ const mockTransactions: TransactionData[] = [
   },
   {
     id: "TX-9022",
-    user: {
-      name: "Marcus Vance",
-      email: "marcus@jivico.dev",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100",
-    },
+    user: { name: "Marcus Vance", email: "marcus@jivico.dev", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" },
     amount: "$890.50",
     date: "Sep 21, 2026",
     status: "Pending",
@@ -68,11 +50,7 @@ const mockTransactions: TransactionData[] = [
   },
   {
     id: "TX-9023",
-    user: {
-      name: "Elena Rostova",
-      email: "elena@jivico.ai",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100",
-    },
+    user: { name: "Elena Rostova", email: "elena@jivico.ai", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" },
     amount: "$5,120.00",
     date: "Sep 20, 2026",
     status: "Completed",
@@ -80,11 +58,7 @@ const mockTransactions: TransactionData[] = [
   },
   {
     id: "TX-9024",
-    user: {
-      name: "Liam O'Connor",
-      email: "liam@jivico.io",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
-    },
+    user: { name: "Liam O'Connor", email: "liam@jivico.io", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100" },
     amount: "$120.00",
     date: "Sep 19, 2026",
     status: "Failed",
@@ -132,23 +106,11 @@ export const TablePage: React.FC = () => {
         );
       case "Pending":
         return (
-          <Chip
-            icon={<Clock size={13} />}
-            label="Pending"
-            color="warning"
-            size="small"
-            sx={{ fontWeight: 600, fontSize: "0.7rem", height: 22 }}
-          />
+          <Chip icon={<Clock size={13} />} label="Pending" color="warning" size="small" sx={{ fontWeight: 600, fontSize: "0.7rem", height: 22 }} />
         );
       case "Failed":
         return (
-          <Chip
-            icon={<XCircle size={13} />}
-            label="Failed"
-            color="error"
-            size="small"
-            sx={{ fontWeight: 600, fontSize: "0.7rem", height: 22 }}
-          />
+          <Chip icon={<XCircle size={13} />} label="Failed" color="error" size="small" sx={{ fontWeight: 600, fontSize: "0.7rem", height: 22 }} />
         );
       default:
         return null;
@@ -261,14 +223,7 @@ export const TablePage: React.FC = () => {
                         <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
                           <Avatar src={row.user.avatar} sx={{ width: 34, height: 34 }} />
                           <Box>
-                            <Typography
-                              variant="subtitle2"
-                              sx={{
-                                fontWeight: 700,
-                                fontSize: "0.85rem",
-                                lineHeight: 1.1,
-                              }}
-                            >
+                            <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: "0.85rem", lineHeight: 1.1 }}>
                               {row.user.name}
                             </Typography>
                             <Typography variant="caption" sx={{ fontSize: "0.7rem", opacity: 0.65 }}>
@@ -285,14 +240,7 @@ export const TablePage: React.FC = () => {
                       </TableCell>
 
                       <TableCell align="right">
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            fontWeight: 700,
-                            fontVariantNumeric: "tabular-nums",
-                            fontSize: "0.85rem",
-                          }}
-                        >
+                        <Typography variant="body2" sx={{ fontWeight: 700, fontVariantNumeric: "tabular-nums", fontSize: "0.85rem" }}>
                           {row.amount}
                         </Typography>
                       </TableCell>
@@ -349,14 +297,7 @@ export const TablePage: React.FC = () => {
           <Box>
             <Typography
               variant="caption"
-              sx={{
-                fontWeight: 700,
-                letterSpacing: 1,
-                textTransform: "uppercase",
-                opacity: 0.6,
-                mb: 1.5,
-                display: "block",
-              }}
+              sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1.5, display: "block" }}
             >
               Compact Table (size="small")
             </Typography>
@@ -364,10 +305,7 @@ export const TablePage: React.FC = () => {
             <TableContainer
               component={Paper}
               elevation={0}
-              sx={{
-                borderRadius: "14px",
-                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
-              }}
+              sx={{ borderRadius: "14px", border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}` }}
             >
               <Table size="small">
                 <TableHead>
@@ -398,14 +336,7 @@ export const TablePage: React.FC = () => {
           <Box>
             <Typography
               variant="caption"
-              sx={{
-                fontWeight: 700,
-                letterSpacing: 1,
-                textTransform: "uppercase",
-                opacity: 0.6,
-                mb: 1.5,
-                display: "block",
-              }}
+              sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1.5, display: "block" }}
             >
               Medium Table (size="medium" — Default)
             </Typography>
@@ -413,10 +344,7 @@ export const TablePage: React.FC = () => {
             <TableContainer
               component={Paper}
               elevation={0}
-              sx={{
-                borderRadius: "16px",
-                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
-              }}
+              sx={{ borderRadius: "16px", border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}` }}
             >
               <Table size="medium">
                 <TableHead>
@@ -472,10 +400,7 @@ export const TablePage: React.FC = () => {
         <TableContainer
           component={Paper}
           elevation={0}
-          sx={{
-            borderRadius: "16px",
-            border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
-          }}
+          sx={{ borderRadius: "16px", border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}` }}
         >
           <Table color={activeColor}>
             <TableHead>

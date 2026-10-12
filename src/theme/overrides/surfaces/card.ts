@@ -163,10 +163,7 @@ export const getCardOverrides = (palette: JivicoPalette, isDark: boolean): Compo
      * DEFAULT PROPS
      * -----------------------------------------
      */
-    defaultProps: {
-      color: "primary",
-      radius: "medium",
-    },
+    defaultProps: { color: "primary", radius: "medium" },
 
     /*
      * -----------------------------------------
@@ -194,23 +191,13 @@ export const getCardOverrides = (palette: JivicoPalette, isDark: boolean): Compo
          * RADIUS
          * -----------------------------------------
          */
-        const radiusMap: Record<CardRadius, number> = {
-          none: 0,
-          small: 6,
-          medium: 10,
-          large: 16,
-          full: 9999,
-        };
+        const radiusMap: Record<CardRadius, number> = { none: 0, small: 6, medium: 10, large: 16, full: 9999 };
 
         /*
          * Semantic colors need tonal treatment.
          */
         const isSemantic =
-          cardColor === "accent" ||
-          cardColor === "info" ||
-          cardColor === "success" ||
-          cardColor === "warning" ||
-          cardColor === "error";
+          cardColor === "accent" || cardColor === "info" || cardColor === "success" || cardColor === "warning" || cardColor === "error";
 
         const styles: Record<string, any> = {
           position: "relative",
@@ -255,12 +242,7 @@ export const getCardOverrides = (palette: JivicoPalette, isDark: boolean): Compo
            * Card explicitly supports hover.
            */
           transition: hover
-            ? [
-                "background-color 180ms ease",
-                "border-color 180ms ease",
-                "transform 180ms ease",
-                "box-shadow 180ms ease",
-              ].join(", ")
+            ? ["background-color 180ms ease", "border-color 180ms ease", "transform 180ms ease", "box-shadow 180ms ease"].join(", ")
             : "none",
 
           /*
@@ -271,33 +253,19 @@ export const getCardOverrides = (palette: JivicoPalette, isDark: boolean): Compo
            * Card extends Paper internally.
            * Explicitly remove its elevation.
            */
-          "&.MuiPaper-elevation": {
-            boxShadow: "none",
-          },
+          "&.MuiPaper-elevation": { boxShadow: "none" },
 
-          "&.MuiPaper-elevation0": {
-            boxShadow: "none",
-          },
+          "&.MuiPaper-elevation0": { boxShadow: "none" },
 
-          "&.MuiPaper-elevation1": {
-            boxShadow: "none",
-          },
+          "&.MuiPaper-elevation1": { boxShadow: "none" },
 
-          "&.MuiPaper-elevation2": {
-            boxShadow: "none",
-          },
+          "&.MuiPaper-elevation2": { boxShadow: "none" },
 
-          "&.MuiPaper-elevation3": {
-            boxShadow: "none",
-          },
+          "&.MuiPaper-elevation3": { boxShadow: "none" },
 
-          "&.MuiPaper-elevation4": {
-            boxShadow: "none",
-          },
+          "&.MuiPaper-elevation4": { boxShadow: "none" },
 
-          "&.MuiPaper-elevation5": {
-            boxShadow: "none",
-          },
+          "&.MuiPaper-elevation5": { boxShadow: "none" },
 
           /*
            * -----------------------------------------
@@ -306,9 +274,7 @@ export const getCardOverrides = (palette: JivicoPalette, isDark: boolean): Compo
            *
            * <Card square />
            */
-          "&.MuiPaper-square": {
-            borderRadius: 0,
-          },
+          "&.MuiPaper-square": { borderRadius: 0 },
         };
 
         /*
@@ -337,9 +303,7 @@ export const getCardOverrides = (palette: JivicoPalette, isDark: boolean): Compo
             boxShadow: isDark ? "0 8px 24px rgba(0, 0, 0, 0.28)" : "0 8px 24px rgba(0, 0, 0, 0.08)",
           };
 
-          styles["&:active"] = {
-            transform: "translateY(-1px)",
-          };
+          styles["&:active"] = { transform: "translateY(-1px)" };
         }
 
         /*
@@ -394,13 +358,9 @@ export const getCardOverrides = (palette: JivicoPalette, isDark: boolean): Compo
      */
     variants: [
       {
-        props: {
-          variant: "tonal",
-        },
+        props: { variant: "tonal" },
 
-        style: {
-          boxShadow: "none",
-        },
+        style: { boxShadow: "none" },
       },
     ],
   },

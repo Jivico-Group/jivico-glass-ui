@@ -6,10 +6,7 @@ export const HeroSection = styled(Box)({
   zIndex: 1,
   paddingTop: 48,
   paddingBottom: 128,
-  "@media (max-width:899.95px)": {
-    paddingTop: 32,
-    paddingBottom: 80,
-  },
+  "@media (max-width:899.95px)": { paddingTop: 32, paddingBottom: 80 },
 });
 
 export const HeroTitle = styled(Typography)(({ theme }) => ({
@@ -18,9 +15,7 @@ export const HeroTitle = styled(Typography)(({ theme }) => ({
   letterSpacing: "-0.03em",
   fontSize: "4.2rem",
   lineHeight: 1.08,
-  [theme.breakpoints.down("md")]: {
-    fontSize: "1.8rem",
-  },
+  [theme.breakpoints.down("md")]: { fontSize: "1.8rem" },
 }));
 
 export const HeroDescription = styled(Typography)(({ theme }) => ({
@@ -37,10 +32,7 @@ export const HeroActions = styled(Box)(({ theme }) => ({
   alignItems: "center",
   gap: theme.spacing(2),
   flexWrap: "wrap",
-  [theme.breakpoints.down("sm")]: {
-    gap: theme.spacing(0),
-    justifyContent: "space-between",
-  },
+  [theme.breakpoints.down("sm")]: { gap: theme.spacing(0), justifyContent: "space-between" },
 }));
 
 export const HeroStatsPanel = styled(GlassPanel)(({ theme }) => ({
@@ -52,47 +44,22 @@ export const HeroStatsPanel = styled(GlassPanel)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-around",
   textAlign: "center",
-  [theme.breakpoints.down("sm")]: {
-    bottom: 14,
-    left: 14,
-    right: 14,
-    padding: "14px 16px",
-    borderRadius: 20,
-  },
+  [theme.breakpoints.down("sm")]: { bottom: 14, left: 14, right: 14, padding: "14px 16px", borderRadius: 20 },
 }));
 
-export const StatValue = styled(Typography)({
-  fontWeight: 800,
-});
+export const StatValue = styled(Typography)({ fontWeight: 800 });
 
-export const StatLabel = styled(Typography)({
-  opacity: 0.6,
-});
+export const StatLabel = styled(Typography)({ opacity: 0.6 });
 
-export const HeroImageFrame = styled(Box, {
-  shouldForwardProp: (p) => p !== "isDark",
-})<{ isDark: boolean }>(({ theme, isDark }) => ({
+export const HeroImageFrame = styled(Box, { shouldForwardProp: (p) => p !== "isDark" })<{ isDark: boolean }>(({ theme, isDark }) => ({
   position: "relative",
   width: "100%",
   aspectRatio: "4/3",
   borderRadius: "32px",
   overflow: "hidden",
   boxShadow: isDark ? "0 24px 80px rgba(0,0,0,0.5)" : "0 24px 80px rgba(0,0,0,0.08)",
-  [theme.breakpoints.down("md")]: {
-    aspectRatio: "4/5",
-    minHeight: 450,
-    borderRadius: "26px",
-  },
-  [theme.breakpoints.down("sm")]: {
-    aspectRatio: "3/4",
-    minHeight: 480,
-    borderRadius: "22px",
-  },
+  [theme.breakpoints.down("md")]: { aspectRatio: "4/5", minHeight: 450, borderRadius: "26px" },
+  [theme.breakpoints.down("sm")]: { aspectRatio: "3/4", minHeight: 480, borderRadius: "22px" },
 }));
 
-export const CoverImage = styled("img")({
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-  display: "block",
-});
+export const CoverImage = styled("img")({ width: "100%", height: "100%", objectFit: "cover", display: "block" });

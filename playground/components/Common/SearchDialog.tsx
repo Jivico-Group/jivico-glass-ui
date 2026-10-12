@@ -1,17 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Search } from "lucide-react";
-import {
-  Box,
-  Chip,
-  Dialog,
-  DialogContent,
-  InputAdornment,
-  List,
-  ListItemButton,
-  ListItemText,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Chip, Dialog, DialogContent, InputAdornment, List, ListItemButton, ListItemText, TextField, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { NAV_SECTIONS } from "../Layout/Sidebar.js";
 
@@ -28,20 +17,10 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({ open, onClose, onSel
 
   // Flat list of searchable components
   const allItems = React.useMemo(() => {
-    const list: {
-      id: string;
-      label: string;
-      category: string;
-      badge?: string;
-    }[] = [];
+    const list: { id: string; label: string; category: string; badge?: string }[] = [];
     NAV_SECTIONS.forEach((sec) => {
       sec.items.forEach((item) => {
-        list.push({
-          id: item.id,
-          label: item.label,
-          category: sec.title,
-          badge: item.badge,
-        });
+        list.push({ id: item.id, label: item.label, category: sec.title, badge: item.badge });
       });
     });
     return list;
@@ -105,11 +84,7 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({ open, onClose, onSel
                   <Search size={18} opacity={0.6} />
                 </InputAdornment>
               ),
-              sx: {
-                borderRadius: "10px",
-                fontSize: "0.95rem",
-                backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.02)",
-              },
+              sx: { borderRadius: "10px", fontSize: "0.95rem", backgroundColor: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(17, 17, 17, 0.02)" },
             },
           }}
         />
@@ -133,31 +108,13 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({ open, onClose, onSel
                   py: 1,
                   px: 1.5,
                   mb: 0.5,
-                  "&:hover": {
-                    backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.05)",
-                  },
+                  "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.05)" },
                 }}
               >
                 <ListItemText
-                  primary={
-                    <Typography
-                      sx={{
-                        fontSize: "0.88rem",
-                        fontWeight: 600,
-                        color: "inherit",
-                      }}
-                    >
-                      {item.label}
-                    </Typography>
-                  }
+                  primary={<Typography sx={{ fontSize: "0.88rem", fontWeight: 600, color: "inherit" }}>{item.label}</Typography>}
                   secondary={
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        fontSize: "0.72rem",
-                        color: "text.secondary",
-                      }}
-                    >
+                    <Typography variant="caption" sx={{ fontSize: "0.72rem", color: "text.secondary" }}>
                       {item.category}
                     </Typography>
                   }

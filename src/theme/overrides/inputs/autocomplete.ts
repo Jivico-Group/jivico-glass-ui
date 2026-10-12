@@ -4,34 +4,16 @@ import type { JivicoPalette } from "../../palette";
 
 export const getAutocompleteOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiAutocomplete: {
-    defaultProps: {
-      slotProps: {
-        paper: {
-          elevation: 0,
-        },
-      },
-    },
+    defaultProps: { slotProps: { paper: { elevation: 0 } } },
 
     styleOverrides: {
-      popper: {
-        zIndex: 1400,
-      },
+      popper: { zIndex: 1400 },
 
-      paper: {
-        ...liquidGlassPopupRecipe(isDark),
-      },
+      paper: { ...liquidGlassPopupRecipe(isDark) },
 
-      input: {
-        "@media (max-width: 599.95px)": {
-          fontSize: "16px",
-        },
-      },
+      input: { "@media (max-width: 599.95px)": { fontSize: "16px" } },
 
-      listbox: {
-        backgroundColor: "transparent !important",
-        backgroundImage: "none !important",
-        padding: "4px !important",
-      },
+      listbox: { backgroundColor: "transparent !important", backgroundImage: "none !important", padding: "4px !important" },
 
       option: {
         borderRadius: 10,
@@ -41,53 +23,33 @@ export const getAutocompleteOverrides = (palette: JivicoPalette, isDark: boolean
         color: palette.text.primary,
         transition: "all 0.15s ease",
 
-        '&[data-focus="true"]': {
-          backgroundColor: `${palette.glass.menuItemHover} !important`,
-        },
+        '&[data-focus="true"]': { backgroundColor: `${palette.glass.menuItemHover} !important` },
 
         '&[aria-selected="true"]': {
           backgroundColor: `${palette.action.selected} !important`,
           color: `${palette.primary.main} !important`,
           fontWeight: 600,
 
-          '&[data-focus="true"]': {
-            backgroundColor: `${palette.action.selected} !important`,
-          },
+          '&[data-focus="true"]': { backgroundColor: `${palette.action.selected} !important` },
         },
       },
 
-      noOptions: {
-        color: palette.text.secondary,
-        fontSize: "0.875rem",
-        padding: "12px 16px",
-        backgroundColor: "transparent !important",
-      },
+      noOptions: { color: palette.text.secondary, fontSize: "0.875rem", padding: "12px 16px", backgroundColor: "transparent !important" },
 
-      loading: {
-        color: palette.text.secondary,
-        fontSize: "0.875rem",
-        padding: "12px 16px",
-        backgroundColor: "transparent !important",
-      },
+      loading: { color: palette.text.secondary, fontSize: "0.875rem", padding: "12px 16px", backgroundColor: "transparent !important" },
 
-      tag: {
-        margin: "3px",
-      },
+      tag: { margin: "3px" },
 
       clearIndicator: {
         color: palette.text.secondary,
 
-        "&:hover": {
-          color: palette.text.primary,
-        },
+        "&:hover": { color: palette.text.primary },
       },
 
       popupIndicator: {
         color: palette.text.secondary,
 
-        "&:hover": {
-          color: palette.text.primary,
-        },
+        "&:hover": { color: palette.text.primary },
       },
     },
   },

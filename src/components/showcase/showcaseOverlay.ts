@@ -8,19 +8,13 @@ import type { ShowcaseVariant } from "./Showcase.types.js";
 export const getVariantOverlay = (variant: ShowcaseVariant = "editorial"): CSSProperties => {
   switch (variant) {
     case "none":
-      return {
-        display: "none",
-      };
+      return { display: "none" };
 
     case "minimal":
-      return {
-        background: "linear-gradient(90deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.14) 44%, rgba(0,0,0,0.02) 72%)",
-      };
+      return { background: "linear-gradient(90deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.14) 44%, rgba(0,0,0,0.02) 72%)" };
 
     case "glass":
-      return {
-        background: "linear-gradient(90deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.20) 46%, rgba(0,0,0,0.03) 75%)",
-      };
+      return { background: "linear-gradient(90deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.20) 46%, rgba(0,0,0,0.03) 75%)" };
 
     case "editorial-soft":
       return {

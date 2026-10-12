@@ -1,17 +1,6 @@
 import React from "react";
 import { ArrowRight, Bookmark, MoreVertical, Share2, Sparkles } from "lucide-react";
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Chip,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { Avatar, Box, Button, Card, CardActions, CardContent, CardHeader, Chip, IconButton, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
@@ -49,14 +38,7 @@ export const CardsPage: React.FC = () => {
   <Typography variant="body2">Soft tinted background surface.</Typography>
 </Card>`}
       >
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
-            gap: 3,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" }, gap: 3, width: "100%" }}>
           <Card variant="elevation">
             <CardContent sx={{ p: 3 }}>
               <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
@@ -104,20 +86,10 @@ export const CardsPage: React.FC = () => {
 <Card color="accent">Accent Card</Card>
 <Card color="glass">Frosted Glass Card</Card>`}
       >
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr 1fr" },
-            gap: 2.5,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr 1fr" }, gap: 2.5, width: "100%" }}>
           <Card color="primary">
             <CardContent sx={{ p: 2.5 }}>
-              <Typography
-                variant="caption"
-                sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "text.secondary" }}
-              >
+              <Typography variant="caption" sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "text.secondary" }}>
                 PRIMARY
               </Typography>
               <Typography variant="h6" sx={{ fontWeight: 700, mt: 0.5, mb: 1, fontSize: "1rem" }}>
@@ -131,10 +103,7 @@ export const CardsPage: React.FC = () => {
 
           <Card color="secondary">
             <CardContent sx={{ p: 2.5 }}>
-              <Typography
-                variant="caption"
-                sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "text.secondary" }}
-              >
+              <Typography variant="caption" sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "text.secondary" }}>
                 SECONDARY
               </Typography>
               <Typography variant="h6" sx={{ fontWeight: 700, mt: 0.5, mb: 1, fontSize: "1rem" }}>
@@ -148,10 +117,7 @@ export const CardsPage: React.FC = () => {
 
           <Card color="accent">
             <CardContent sx={{ p: 2.5 }}>
-              <Typography
-                variant="caption"
-                sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#FFFFFF" }}
-              >
+              <Typography variant="caption" sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#FFFFFF" }}>
                 ACCENT
               </Typography>
               <Typography variant="h6" sx={{ fontWeight: 700, mt: 0.5, mb: 1, fontSize: "1rem", color: "#FFFFFF" }}>
@@ -165,10 +131,7 @@ export const CardsPage: React.FC = () => {
 
           <Card color="glass">
             <CardContent sx={{ p: 2.5 }}>
-              <Typography
-                variant="caption"
-                sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "text.secondary" }}
-              >
+              <Typography variant="caption" sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "text.secondary" }}>
                 FROSTED GLASS
               </Typography>
               <Typography variant="h6" sx={{ fontWeight: 700, mt: 0.5, mb: 1, fontSize: "1rem" }}>
@@ -194,14 +157,7 @@ export const CardsPage: React.FC = () => {
 <Card radius="medium">Medium Radius (10px default)</Card>
 <Card radius="large">Large Radius (16px)</Card>`}
       >
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "repeat(4, 1fr)" },
-            gap: 2,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(4, 1fr)" }, gap: 2, width: "100%" }}>
           {(["none", "small", "medium", "large"] as const).map((r) => (
             <Card key={r} radius={r} color="secondary">
               <CardContent sx={{ p: 2.5, textAlign: "center" }}>
@@ -228,14 +184,7 @@ export const CardsPage: React.FC = () => {
   <Typography variant="h6">Hover Lift Card</Typography>
 </Card>`}
       >
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-            gap: 3,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: 3, width: "100%" }}>
           <Card hoverEffect={true} color="primary">
             <CardContent sx={{ p: 3 }}>
               <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 1.5 }}>
@@ -304,13 +253,7 @@ export const CardsPage: React.FC = () => {
           <Card hoverEffect={true} radius="large">
             <CardHeader
               avatar={
-                <Avatar
-                  sx={{
-                    bgcolor: isDark ? "rgba(255,255,255,0.15)" : "#111111",
-                    color: isDark ? "#111111" : "#FFFFFF",
-                    fontWeight: 700,
-                  }}
-                >
+                <Avatar sx={{ bgcolor: isDark ? "rgba(255,255,255,0.15)" : "#111111", color: isDark ? "#111111" : "#FFFFFF", fontWeight: 700 }}>
                   JS
                 </Avatar>
               }
@@ -328,8 +271,8 @@ export const CardsPage: React.FC = () => {
             />
             <CardContent sx={{ py: 1 }}>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                Full-stack luxury studio suite with automated inventory sync, variant pricing matrices, and real-time
-                glassmorphism playground integrations.
+                Full-stack luxury studio suite with automated inventory sync, variant pricing matrices, and real-time glassmorphism playground
+                integrations.
               </Typography>
               <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
                 <Chip label="Production Ready" size="small" color="success" />
@@ -338,11 +281,7 @@ export const CardsPage: React.FC = () => {
               </Box>
             </CardContent>
             <CardActions
-              sx={{
-                p: 2.5,
-                justifyContent: "space-between",
-                borderTop: `1px solid ${isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.06)"}`,
-              }}
+              sx={{ p: 2.5, justifyContent: "space-between", borderTop: `1px solid ${isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.06)"}` }}
             >
               <Button size="small" variant="outlined" color="primary">
                 Documentation

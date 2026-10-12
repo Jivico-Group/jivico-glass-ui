@@ -2,19 +2,13 @@ import type { Components, Theme } from "@mui/material/styles";
 
 export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
   MuiTabs: {
-    defaultProps: {
-      textColor: "secondary",
-      indicatorColor: "secondary",
-      size: "medium",
-    },
+    defaultProps: { textColor: "secondary", indicatorColor: "secondary", size: "medium" },
 
     styleOverrides: {
       root: ({ ownerState }) => {
         const isSmall = (ownerState as any).size === "small";
         const isScrollable = ownerState.variant === "scrollable";
-
         const textColor = (ownerState as any).textColorOverride || (ownerState.textColor as string) || "secondary";
-
         const selectedTextColors: Record<string, string> = {
           primary: "#111111",
           secondary: "#111111",
@@ -32,61 +26,32 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
         return {
           minHeight: isSmall ? 32 : 44,
           height: isSmall ? 32 : "auto",
-
           backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "#ECEAE5",
-
           borderRadius: 9999,
-
           padding: isSmall ? "3px" : "4px",
-
           border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(17, 17, 17, 0.04)"}`,
-
           display: ownerState.variant === "fullWidth" ? "flex" : "inline-flex",
-
           width: ownerState.variant === "fullWidth" ? "100%" : "fit-content",
-
           maxWidth: "100%",
-
           boxShadow: isDark ? "inset 0 1px 3px rgba(0,0,0,0.35)" : "inset 0 1px 2px rgba(0,0,0,0.04)",
-
           backdropFilter: "blur(14px)",
           WebkitBackdropFilter: "blur(14px)",
-
           boxSizing: "border-box",
           position: "relative",
           isolation: "isolate",
-
           overflow: isScrollable ? "hidden" : "visible",
-
-          "& .MuiTab-root.Mui-selected": {
-            color: selectedText,
-          },
-
+          "& .MuiTab-root.Mui-selected": { color: selectedText },
           "& .MuiTabs-scroller": {
             position: "relative",
             borderRadius: 9999,
-
             overflow: isScrollable ? "auto !important" : "visible !important",
-
             height: "100%",
             scrollbarWidth: "none",
-
-            "&::-webkit-scrollbar": {
-              display: "none",
-            },
+            "&::-webkit-scrollbar": { display: "none" },
           },
-
-          "& .MuiTabs-flexContainer": {
-            position: "relative",
-            zIndex: 2,
-            gap: 0,
-            height: "100%",
-            alignItems: "center",
-          },
-
+          "& .MuiTabs-flexContainer": { position: "relative", zIndex: 2, gap: 0, height: "100%", alignItems: "center" },
           "& .MuiTabs-scrollButtons": {
             color: isDark ? "rgba(255, 255, 255, 0.7)" : "rgba(17, 17, 17, 0.7)",
-
             borderRadius: 9999,
 
             width: isSmall ? 24 : 32,
@@ -97,26 +62,15 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
             alignSelf: "center",
             zIndex: 3,
 
-            "&.Mui-disabled": {
-              opacity: 0.3,
-            },
+            "&.Mui-disabled": { opacity: 0.3 },
           },
 
-          ...(isSmall && {
-            "& .MuiTab-root": {
-              minHeight: 26,
-              height: 26,
-              fontSize: "0.78rem",
-              padding: "4px 14px",
-              minWidth: 64,
-            },
-          }),
+          ...(isSmall && { "& .MuiTab-root": { minHeight: 26, height: 26, fontSize: "0.78rem", padding: "4px 14px", minWidth: 64 } }),
         };
       },
 
       indicator: ({ ownerState }) => {
-        const color =
-          (ownerState as any).indicatorColorOverride || (ownerState.indicatorColor as string) || "secondary";
+        const color = (ownerState as any).indicatorColorOverride || (ownerState.indicatorColor as string) || "secondary";
 
         const colors = {
           primary: {
@@ -193,13 +147,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
           bottom: 0,
           borderRadius: 9999,
 
-          backgroundColor: isGlass
-            ? isDark
-              ? "rgba(255, 255, 255, 0.16)"
-              : "rgba(255, 255, 255, 0.75)"
-            : isDark
-              ? selected.dark
-              : selected.light,
+          backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.75)") : isDark ? selected.dark : selected.light,
 
           border: isGlass
             ? `1px solid ${isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.9)"}`
@@ -213,10 +161,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
               ? selected.darkShadow
               : selected.lightShadow,
 
-          ...(isGlass && {
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-          }),
+          ...(isGlass && { backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }),
 
           zIndex: 1,
 
@@ -227,10 +172,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
   },
 
   MuiTab: {
-    defaultProps: {
-      disableRipple: true,
-      size: "medium",
-    },
+    defaultProps: { disableRipple: true, size: "medium" },
 
     styleOverrides: {
       root: ({ ownerState }) => {
@@ -264,22 +206,15 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
 
           userSelect: "none",
 
-          "&:hover": {
-            color: isDark ? "#F6F5F2" : "#111111",
-            backgroundColor: "transparent",
-          },
+          "&:hover": { color: isDark ? "#F6F5F2" : "#111111", backgroundColor: "transparent" },
 
-          "&:active": {
-            transform: "scale(0.98)",
-          },
+          "&:active": { transform: "scale(0.98)" },
 
           "&.Mui-selected": {
             fontWeight: 600,
             backgroundColor: "transparent",
 
-            "&:hover": {
-              backgroundColor: "transparent",
-            },
+            "&:hover": { backgroundColor: "transparent" },
           },
 
           "&.Mui-disabled": {

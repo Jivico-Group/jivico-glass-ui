@@ -20,55 +20,36 @@ export const getPaperOverrides = (palette: JivicoPalette, isDark: boolean): Comp
          * Floating surfaces keep the dedicated
          * Jivico glass treatment.
          */
-        "&.MuiPopover-paper:not(.MuiMenu-paper), &.MuiAutocomplete-paper, &.MuiMenu-paper[data-jivico-surface='glass'], &.MuiMenu-paper[data-jivico-menu-variant='glass']": {
-          ...liquidGlassPopupRecipe(isDark),
-        },
+        "&.MuiPopover-paper:not(.MuiMenu-paper), &.MuiAutocomplete-paper, &.MuiMenu-paper[data-jivico-surface='glass'], &.MuiMenu-paper[data-jivico-menu-variant='glass']":
+          { ...liquidGlassPopupRecipe(isDark) },
 
         /*
          * Remove MUI elevation from Paper.
          */
-        "&.MuiPaper-elevation": {
-          boxShadow: "none",
-        },
+        "&.MuiPaper-elevation": { boxShadow: "none" },
 
-        "&.MuiPaper-elevation0": {
-          boxShadow: "none",
-        },
+        "&.MuiPaper-elevation0": { boxShadow: "none" },
 
-        "&.MuiPaper-elevation1": {
-          boxShadow: "none",
-        },
+        "&.MuiPaper-elevation1": { boxShadow: "none" },
 
-        "&.MuiPaper-elevation2": {
-          boxShadow: "none",
-        },
+        "&.MuiPaper-elevation2": { boxShadow: "none" },
 
-        "&.MuiPaper-elevation3": {
-          boxShadow: "none",
-        },
+        "&.MuiPaper-elevation3": { boxShadow: "none" },
 
-        "&.MuiPaper-elevation4": {
-          boxShadow: "none",
-        },
+        "&.MuiPaper-elevation4": { boxShadow: "none" },
 
-        "&.MuiPaper-elevation5": {
-          boxShadow: "none",
-        },
+        "&.MuiPaper-elevation5": { boxShadow: "none" },
 
         /*
          * Native MUI square prop.
          */
-        "&.MuiPaper-square": {
-          borderRadius: 0,
-        },
+        "&.MuiPaper-square": { borderRadius: 0 },
       },
     },
 
     variants: [
       {
-        props: {
-          variant: "glassFooter" as any,
-        },
+        props: { variant: "glassFooter" as any },
 
         style: {
           backgroundColor: palette.glass.appBarBg,

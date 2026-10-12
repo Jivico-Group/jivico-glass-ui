@@ -83,30 +83,12 @@ export const ChipsPage: React.FC = () => {
         <Chip label="Glass Outlined" variant="outlined" color="glass" onDelete={() => {}} />
         <Chip label="Glass Tonal" variant="tonal" color="glass" onDelete={() => {}} />
         <Chip label="Deletable" onDelete={() => {}} />
-        <Chip
-          icon={<Tag size={13} />}
-          label="Clickable"
-          clickable
-          deleteIcon={<ChevronRight size={13} />}
-          onDelete={() => {}}
-        />
-        <Chip
-          icon={<Filter size={13} />}
-          label="Filter"
-          clickable
-          deleteIcon={<ChevronRight size={13} />}
-          onDelete={() => {}}
-        />
+        <Chip icon={<Tag size={13} />} label="Clickable" clickable deleteIcon={<ChevronRight size={13} />} onDelete={() => {}} />
+        <Chip icon={<Filter size={13} />} label="Filter" clickable deleteIcon={<ChevronRight size={13} />} onDelete={() => {}} />
         <Chip
           avatar={
             <Avatar
-              sx={{
-                width: 20,
-                height: 20,
-                fontSize: "0.65rem",
-                bgcolor: isDark ? "#F6F5F2" : "#111111",
-                color: isDark ? "#111111" : "#FFFFFF",
-              }}
+              sx={{ width: 20, height: 20, fontSize: "0.65rem", bgcolor: isDark ? "#F6F5F2" : "#111111", color: isDark ? "#111111" : "#FFFFFF" }}
             >
               JD
             </Avatar>
@@ -126,46 +108,18 @@ export const ChipsPage: React.FC = () => {
 <Chip label="Medium" size="medium" color="primary" onDelete={() => {}} />
 <Chip label="Large" size="large" color="primary" onDelete={() => {}} />`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            width: "100%",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <Chip label="Small (24px)" size="small" color="primary" onDelete={() => {}} />
             <Chip label="Medium (28px)" size="medium" color="primary" onDelete={() => {}} />
             <Chip label="Large (32px)" size="large" color="primary" onDelete={() => {}} />
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <Chip label="Small Outlined" size="small" variant="outlined" color="primary" onDelete={() => {}} />
             <Chip label="Medium Outlined" size="medium" variant="outlined" color="primary" onDelete={() => {}} />
             <Chip label="Large Outlined" size="large" variant="outlined" color="primary" onDelete={() => {}} />
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
             <Chip label="Small Glass" size="small" color="glass" onDelete={() => {}} />
             <Chip label="Medium Glass" size="medium" color="glass" onDelete={() => {}} />
             <Chip label="Large Glass" size="large" color="glass" onDelete={() => {}} />
@@ -187,14 +141,7 @@ export const ChipsPage: React.FC = () => {
 <Chip label="Error" color="error" onDelete={() => {}} />
 <Chip label="Success" color="success" onDelete={() => {}} />`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
           <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
             Filled Default
           </Typography>

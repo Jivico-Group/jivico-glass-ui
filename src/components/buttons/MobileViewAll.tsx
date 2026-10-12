@@ -2,9 +2,10 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Box, Button, styled } from "@mui/material";
 
-export const MobileViewAllButton = styled(Button, {
-  shouldForwardProp: (p) => p !== "isDark",
-})<{ isDark?: boolean }>(({ theme, isDark: explicitDark }) => {
+export const MobileViewAllButton = styled(Button, { shouldForwardProp: (p) => p !== "isDark" })<{ isDark?: boolean }>(({
+  theme,
+  isDark: explicitDark,
+}) => {
   const isDark = explicitDark ?? theme.palette.mode === "dark";
   return {
     width: "100%",

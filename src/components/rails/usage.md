@@ -127,17 +127,7 @@ interface Product {
 Controls how many items fill the rail width at each breakpoint.
 
 ```tsx
-<Rails
-  items={categories}
-  getKey={(item) => item.id}
-  getImage={(item) => item.image}
-  columns={{
-    xs: 1.5,
-    sm: 2.5,
-    md: 4,
-    lg: 5,
-  }}
-/>
+<Rails items={categories} getKey={(item) => item.id} getImage={(item) => item.image} columns={{ xs: 1.5, sm: 2.5, md: 4, lg: 5 }} />
 ```
 
 ## Explicit Item Width (`itemWidth`)
@@ -145,15 +135,7 @@ Controls how many items fill the rail width at each breakpoint.
 Useful for editorial "peek" rails where the next card is partially visible off-screen.
 
 ```tsx
-<Rails
-  items={highlights}
-  getKey={(item) => item.id}
-  getImage={(item) => item.image}
-  itemWidth={{
-    xs: "240px",
-    md: "320px",
-  }}
-/>
+<Rails items={highlights} getKey={(item) => item.id} getImage={(item) => item.image} itemWidth={{ xs: "240px", md: "320px" }} />
 ```
 
 ---
@@ -192,15 +174,7 @@ When complete control over the item UI is needed (e.g. rendering `<Highlight />`
 - `transition`: Hover animation applied to items (`"scale"`, `"lift"`, `"fade"`, `"none"`).
 
 ```tsx
-<Rails
-  items={items}
-  getKey={(item) => item.id}
-  getImage={(item) => item.image}
-  autoplay
-  interval={4000}
-  pauseOnHover
-  transition="lift"
-/>
+<Rails items={items} getKey={(item) => item.id} getImage={(item) => item.image} autoplay interval={4000} pauseOnHover transition="lift" />
 ```
 
 ---

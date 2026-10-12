@@ -29,14 +29,7 @@ export const SurfacesPage: React.FC = () => {
   <Typography variant="body2">Backdrop filter with specular edge reflection.</Typography>
 </GlassPanel>`}
       >
-        <Box
-          sx={{
-            width: "100%",
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-            gap: 3,
-          }}
-        >
+        <Box sx={{ width: "100%", display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: 3 }}>
           <GlassPanel sx={{ p: 3.5, borderRadius: "18px" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1.5 }}>
               <Box

@@ -241,12 +241,7 @@ export const RailsPage: React.FC = () => {
    * ---------------------------------------------------------
    */
 
-  const responsiveColumns: RailColumns = {
-    xs: columnsXs,
-    sm: 3,
-    md: columnsMd,
-    lg: columnsMd + 1,
-  };
+  const responsiveColumns: RailColumns = { xs: columnsXs, sm: 3, md: columnsMd, lg: columnsMd + 1 };
 
   return (
     <ComponentPage
@@ -296,13 +291,7 @@ export const RailsPage: React.FC = () => {
   )}
 />`}
       >
-        <Stack
-          spacing={3}
-          sx={{
-            width: "100%",
-            alignItems: "stretch",
-          }}
-        >
+        <Stack spacing={3} sx={{ width: "100%", alignItems: "stretch" }}>
           <Box
             sx={{
               p: 2.5,
@@ -317,22 +306,8 @@ export const RailsPage: React.FC = () => {
           >
             {/* Navigation */}
 
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 110,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 110 }}>
                 Navigation:
               </Typography>
 
@@ -351,22 +326,8 @@ export const RailsPage: React.FC = () => {
 
             {/* Mobile columns */}
 
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 110,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 110 }}>
                 Mobile Columns:
               </Typography>
 
@@ -385,22 +346,8 @@ export const RailsPage: React.FC = () => {
 
             {/* Desktop columns */}
 
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 110,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 110 }}>
                 Desktop Columns:
               </Typography>
 
@@ -419,33 +366,13 @@ export const RailsPage: React.FC = () => {
 
             {/* Gap */}
 
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 110,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 110 }}>
                 Gap:
               </Typography>
 
               {[2, 4, 8, 12, 16, 20, 24, 32].map((value) => (
-                <Button
-                  key={value}
-                  size="small"
-                  variant={gap === value ? "contained" : "outlined"}
-                  color="accent"
-                  onClick={() => setGap(value)}
-                >
+                <Button key={value} size="small" variant={gap === value ? "contained" : "outlined"} color="accent" onClick={() => setGap(value)}>
                   {value}px
                 </Button>
               ))}
@@ -453,22 +380,8 @@ export const RailsPage: React.FC = () => {
 
             {/* Aspect ratio */}
 
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 110,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 110 }}>
                 Aspect Ratio:
               </Typography>
 
@@ -487,38 +400,15 @@ export const RailsPage: React.FC = () => {
 
             {/* Radius */}
 
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 110,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 110 }}>
                 Radius:
               </Typography>
 
               {[
-                {
-                  label: "Square",
-                  value: 0,
-                },
-                {
-                  label: "Rounded",
-                  value: 1,
-                },
-                {
-                  label: "Soft",
-                  value: 3,
-                },
+                { label: "Square", value: 0 },
+                { label: "Rounded", value: 1 },
+                { label: "Soft", value: 3 },
               ].map((option) => (
                 <Button
                   key={option.label}
@@ -534,22 +424,8 @@ export const RailsPage: React.FC = () => {
 
             {/* Transition */}
 
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 110,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 110 }}>
                 Transition:
               </Typography>
 
@@ -568,14 +444,7 @@ export const RailsPage: React.FC = () => {
 
             {/* Boolean controls */}
 
-            <Stack
-              direction="row"
-              spacing={3}
-              sx={{
-                flexWrap: "wrap",
-                pt: 1,
-              }}
-            >
+            <Stack direction="row" spacing={3} sx={{ flexWrap: "wrap", pt: 1 }}>
               <FormControlLabel
                 control={<Switch size="small" checked={swipe} onChange={(event) => setSwipe(event.target.checked)} />}
                 label={
@@ -604,9 +473,7 @@ export const RailsPage: React.FC = () => {
               />
 
               <FormControlLabel
-                control={
-                  <Switch size="small" checked={autoplay} onChange={(event) => setAutoplay(event.target.checked)} />
-                }
+                control={<Switch size="small" checked={autoplay} onChange={(event) => setAutoplay(event.target.checked)} />}
                 label={
                   <Typography variant="caption" sx={{ fontWeight: 600 }}>
                     Autoplay
@@ -618,23 +485,8 @@ export const RailsPage: React.FC = () => {
             {/* Autoplay interval */}
 
             {autoplay && (
-              <Stack
-                direction="row"
-                spacing={1}
-                sx={{
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  gap: 1,
-                  pt: 0.5,
-                }}
-              >
-                <Typography
-                  variant="caption"
-                  sx={{
-                    fontWeight: 700,
-                    minWidth: 110,
-                  }}
-                >
+              <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1, pt: 0.5 }}>
+                <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 110 }}>
                   Autoplay Interval:
                 </Typography>
 
@@ -746,12 +598,7 @@ export const RailsPage: React.FC = () => {
                 radius={3}
               />
             )}
-            columns={{
-              xs: 1.5,
-              sm: 2.5,
-              md: 4,
-              lg: 4,
-            }}
+            columns={{ xs: 1.5, sm: 2.5, md: 4, lg: 4 }}
             gap={1}
             navigation="arrows"
             swipe
@@ -783,12 +630,7 @@ export const RailsPage: React.FC = () => {
   radius={3}
 />`}
       >
-        <Box
-          sx={{
-            width: "100%",
-            maxWidth: 1000,
-          }}
-        >
+        <Box sx={{ width: "100%", maxWidth: 1000 }}>
           <Highlight
             image={HIGHLIGHTS[0].image}
             eyebrow={HIGHLIGHTS[0].eyebrow}
@@ -844,12 +686,7 @@ export const RailsPage: React.FC = () => {
   />
 </Stack>`}
       >
-        <Stack
-          spacing={4}
-          sx={{
-            width: "100%",
-          }}
-        >
+        <Stack spacing={4} sx={{ width: "100%" }}>
           <Highlight
             image={HIGHLIGHTS[0].image}
             eyebrow={HIGHLIGHTS[0].eyebrow}
@@ -975,38 +812,15 @@ export const RailsPage: React.FC = () => {
             getKey={(item) => item.id}
             getImage={(item) => item.image}
             getTitle={(item) => item.name}
-            columns={{
-              xs: 2,
-              sm: 3,
-              md: 4,
-              lg: 5,
-            }}
+            columns={{ xs: 2, sm: 3, md: 4, lg: 5 }}
             gap={20}
             navigation="arrows"
             imageAspectRatio="4 / 5"
             radius={3}
             renderContent={({ item }) => (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 0.5,
-                  mt: 0.5,
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      fontWeight: 700,
-                    }}
-                  >
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5, mt: 0.5 }}>
+                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <Typography variant="body2" sx={{ fontWeight: 700 }}>
                     ₹{item.price}
                   </Typography>
 
@@ -1060,12 +874,7 @@ export const RailsPage: React.FC = () => {
             getKey={(item) => item.id}
             getImage={(item) => item.image}
             getTitle={(item) => item.name}
-            itemWidth={{
-              xs: "78%",
-              sm: "45%",
-              md: "30%",
-              lg: "22%",
-            }}
+            itemWidth={{ xs: "78%", sm: "45%", md: "30%", lg: "22%" }}
             gap={24}
             navigation="none"
             imageAspectRatio="16 / 9"
@@ -1135,23 +944,10 @@ export const RailsPage: React.FC = () => {
                   component="img"
                   src={item.image}
                   alt={item.name}
-                  sx={{
-                    display: "block",
-                    width: "100%",
-                    aspectRatio: "4 / 5",
-                    objectFit: "cover",
-                    borderRadius: 3,
-                  }}
+                  sx={{ display: "block", width: "100%", aspectRatio: "4 / 5", objectFit: "cover", borderRadius: 3 }}
                 />
 
-                <Typography
-                  sx={{
-                    mt: 1.5,
-                    fontWeight: 600,
-                  }}
-                >
-                  {item.name}
-                </Typography>
+                <Typography sx={{ mt: 1.5, fontWeight: 600 }}>{item.name}</Typography>
 
                 <Typography variant="caption" color="text.secondary">
                   {item.count} items
@@ -1197,17 +993,7 @@ export const RailsPage: React.FC = () => {
             getImage={(item) => item.image}
             getTitle={(item) => item.name}
             renderImage={({ item, src }) => (
-              <Box
-                component="img"
-                src={src}
-                alt={item.name}
-                sx={{
-                  display: "block",
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-              />
+              <Box component="img" src={src} alt={item.name} sx={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
             )}
           />
         </Box>
@@ -1288,125 +1074,51 @@ export function CollectionHighlight() {
         <Stack spacing={3} sx={{ width: "100%" }}>
           {/* Architecture overview */}
 
-          <Box
-            sx={{
-              p: 3,
-              borderRadius: 3,
-              border: 1,
-              borderColor: "divider",
-              bgcolor: "action.hover",
-            }}
-          >
+          <Box sx={{ p: 3, borderRadius: 3, border: 1, borderColor: "divider", bgcolor: "action.hover" }}>
             <Stack spacing={2}>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  fontWeight: 700,
-                }}
-              >
+              <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
                 Framework-agnostic architecture
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Rails and Highlight do not import Next.js or depend on any routing framework. The application owns
-                routing through onNavigate, while framework-specific image rendering can be injected through
-                ImageComponent.
+                Rails and Highlight do not import Next.js or depend on any routing framework. The application owns routing through onNavigate, while
+                framework-specific image rendering can be injected through ImageComponent.
               </Typography>
 
-              <Stack
-                direction={{
-                  xs: "column",
-                  sm: "row",
-                }}
-                spacing={1}
-                sx={{
-                  alignItems: {
-                    xs: "stretch",
-                    sm: "center",
-                  },
-                }}
-              >
-                {["API JSON", "Next.js Page", "Rails / Highlight", "onNavigate", "ImageComponent"].map(
-                  (label, index) => (
-                    <React.Fragment key={label}>
-                      <Box
-                        sx={{
-                          px: 1.5,
-                          py: 1,
-                          borderRadius: 2,
-                          bgcolor: "background.paper",
-                          border: 1,
-                          borderColor: "divider",
-                          textAlign: "center",
-                        }}
-                      >
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            fontWeight: 700,
-                          }}
-                        >
-                          {label}
-                        </Typography>
-                      </Box>
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={1} sx={{ alignItems: { xs: "stretch", sm: "center" } }}>
+                {["API JSON", "Next.js Page", "Rails / Highlight", "onNavigate", "ImageComponent"].map((label, index) => (
+                  <React.Fragment key={label}>
+                    <Box
+                      sx={{ px: 1.5, py: 1, borderRadius: 2, bgcolor: "background.paper", border: 1, borderColor: "divider", textAlign: "center" }}
+                    >
+                      <Typography variant="caption" sx={{ fontWeight: 700 }}>
+                        {label}
+                      </Typography>
+                    </Box>
 
-                      {index < 4 && (
-                        <Typography
-                          sx={{
-                            display: {
-                              xs: "none",
-                              sm: "block",
-                            },
-                            color: "text.secondary",
-                          }}
-                        >
-                          →
-                        </Typography>
-                      )}
-                    </React.Fragment>
-                  ),
-                )}
+                    {index < 4 && <Typography sx={{ display: { xs: "none", sm: "block" }, color: "text.secondary" }}>→</Typography>}
+                  </React.Fragment>
+                ))}
               </Stack>
             </Stack>
           </Box>
 
           {/* API data */}
 
-          <Box
-            sx={{
-              p: 3,
-              borderRadius: 3,
-              border: 1,
-              borderColor: "divider",
-              bgcolor: "background.paper",
-            }}
-          >
+          <Box sx={{ p: 3, borderRadius: 3, border: 1, borderColor: "divider", bgcolor: "background.paper" }}>
             <Stack spacing={1.5}>
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  fontWeight: 700,
-                }}
-              >
+              <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
                 1. API returns plain JSON
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Your backend only needs to return serializable data such as IDs, titles, images, and slugs. No React
-                components, router objects, or Next.js objects are included.
+                Your backend only needs to return serializable data such as IDs, titles, images, and slugs. No React components, router objects, or
+                Next.js objects are included.
               </Typography>
 
               <Box
                 component="pre"
-                sx={{
-                  m: 0,
-                  p: 2,
-                  overflow: "auto",
-                  borderRadius: 2,
-                  bgcolor: "action.hover",
-                  fontFamily: "monospace",
-                  fontSize: 12,
-                }}
+                sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}
               >
                 {`{
   "id": "tshirts",
@@ -1420,41 +1132,20 @@ export function CollectionHighlight() {
 
           {/* Rails navigation */}
 
-          <Box
-            sx={{
-              p: 3,
-              borderRadius: 3,
-              border: 1,
-              borderColor: "divider",
-              bgcolor: "background.paper",
-            }}
-          >
+          <Box sx={{ p: 3, borderRadius: 3, border: 1, borderColor: "divider", bgcolor: "background.paper" }}>
             <Stack spacing={1.5}>
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  fontWeight: 700,
-                }}
-              >
+              <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
                 2. Rails navigation
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Rails renders a real anchor with the resolved href, but prevents native navigation. The consuming
-                application receives the item through onNavigate and decides how routing should happen.
+                Rails renders a real anchor with the resolved href, but prevents native navigation. The consuming application receives the item
+                through onNavigate and decides how routing should happen.
               </Typography>
 
               <Box
                 component="pre"
-                sx={{
-                  m: 0,
-                  p: 2,
-                  overflow: "auto",
-                  borderRadius: 2,
-                  bgcolor: "action.hover",
-                  fontFamily: "monospace",
-                  fontSize: 12,
-                }}
+                sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}
               >
                 {`getHref={(item) =>
   \\\`/collections/\\\${item.slug}\\\`
@@ -1471,41 +1162,20 @@ onNavigate={(item) => {
 
           {/* Highlight navigation */}
 
-          <Box
-            sx={{
-              p: 3,
-              borderRadius: 3,
-              border: 1,
-              borderColor: "divider",
-              bgcolor: "background.paper",
-            }}
-          >
+          <Box sx={{ p: 3, borderRadius: 3, border: 1, borderColor: "divider", bgcolor: "background.paper" }}>
             <Stack spacing={1.5}>
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  fontWeight: 700,
-                }}
-              >
+              <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
                 3. Highlight full-image navigation
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Highlight uses the same principle. Its full image becomes a semantic anchor when href is provided.
-                Native navigation is prevented and onNavigate controls the actual application route.
+                Highlight uses the same principle. Its full image becomes a semantic anchor when href is provided. Native navigation is prevented and
+                onNavigate controls the actual application route.
               </Typography>
 
               <Box
                 component="pre"
-                sx={{
-                  m: 0,
-                  p: 2,
-                  overflow: "auto",
-                  borderRadius: 2,
-                  bgcolor: "action.hover",
-                  fontFamily: "monospace",
-                  fontSize: 12,
-                }}
+                sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}
               >
                 {`<Highlight
   image={item.image}
@@ -1521,41 +1191,20 @@ onNavigate={(item) => {
 
           {/* Full image navigation */}
 
-          <Box
-            sx={{
-              p: 3,
-              borderRadius: 3,
-              border: 1,
-              borderColor: "divider",
-              bgcolor: "background.paper",
-            }}
-          >
+          <Box sx={{ p: 3, borderRadius: 3, border: 1, borderColor: "divider", bgcolor: "background.paper" }}>
             <Stack spacing={1.5}>
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  fontWeight: 700,
-                }}
-              >
+              <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
                 4. Full image remains clickable
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                The href remains in the DOM as a real anchor destination. This provides semantic link information, while
-                onNavigate owns the actual client-side navigation.
+                The href remains in the DOM as a real anchor destination. This provides semantic link information, while onNavigate owns the actual
+                client-side navigation.
               </Typography>
 
               <Box
                 component="pre"
-                sx={{
-                  m: 0,
-                  p: 2,
-                  overflow: "auto",
-                  borderRadius: 2,
-                  bgcolor: "action.hover",
-                  fontFamily: "monospace",
-                  fontSize: 12,
-                }}
+                sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}
               >
                 {`href="/collections/originals"
 
@@ -1570,41 +1219,20 @@ onNavigate={() => {
 
           {/* Image integration */}
 
-          <Box
-            sx={{
-              p: 3,
-              borderRadius: 3,
-              border: 1,
-              borderColor: "divider",
-              bgcolor: "background.paper",
-            }}
-          >
+          <Box sx={{ p: 3, borderRadius: 3, border: 1, borderColor: "divider", bgcolor: "background.paper" }}>
             <Stack spacing={1.5}>
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  fontWeight: 700,
-                }}
-              >
+              <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
                 5. Next.js Image integration
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                ImageComponent remains available independently from routing. This allows Rails and Highlight to use
-                next/image without coupling either component to Next.js.
+                ImageComponent remains available independently from routing. This allows Rails and Highlight to use next/image without coupling either
+                component to Next.js.
               </Typography>
 
               <Box
                 component="pre"
-                sx={{
-                  m: 0,
-                  p: 2,
-                  overflow: "auto",
-                  borderRadius: 2,
-                  bgcolor: "action.hover",
-                  fontFamily: "monospace",
-                  fontSize: 12,
-                }}
+                sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}
               >
                 {`import Image from "next/image";
 
@@ -1621,36 +1249,18 @@ onNavigate={() => {
 
           {/* Architecture rule */}
 
-          <Box
-            sx={{
-              p: 3,
-              borderRadius: 3,
-              border: 1,
-              borderColor: "divider",
-              bgcolor: "action.hover",
-            }}
-          >
+          <Box sx={{ p: 3, borderRadius: 3, border: 1, borderColor: "divider", bgcolor: "action.hover" }}>
             <Stack spacing={1}>
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  fontWeight: 700,
-                }}
-              >
+              <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
                 Recommended architecture
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Keep the API framework-independent. Keep Rails and Highlight framework-independent. Let the consuming
-                application own routing and optionally provide framework-specific image rendering.
+                Keep the API framework-independent. Keep Rails and Highlight framework-independent. Let the consuming application own routing and
+                optionally provide framework-specific image rendering.
               </Typography>
 
-              <Typography
-                variant="body2"
-                sx={{
-                  fontWeight: 700,
-                }}
-              >
+              <Typography variant="body2" sx={{ fontWeight: 700 }}>
                 API → JSON → Next.js → Rails / Highlight → onNavigate / ImageComponent
               </Typography>
             </Stack>

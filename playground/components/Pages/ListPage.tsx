@@ -116,15 +116,7 @@ export const ListPage: React.FC = () => {
             }}
           />
 
-          <List
-            variant="glass"
-            sx={{
-              position: "relative",
-              zIndex: 2,
-              maxWidth: 420,
-              width: "100%",
-            }}
-          >
+          <List variant="glass" sx={{ position: "relative", zIndex: 2, maxWidth: 420, width: "100%" }}>
             <ListItemButton selected={selectedGlass === 0} onClick={() => setSelectedGlass(0)}>
               <ListItemIcon>
                 <Home size={20} />
@@ -185,25 +177,11 @@ export const ListPage: React.FC = () => {
           <Box>
             <Typography
               variant="caption"
-              sx={{
-                fontWeight: 700,
-                letterSpacing: 1,
-                textTransform: "uppercase",
-                opacity: 0.6,
-                mb: 1,
-                display: "block",
-              }}
+              sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1, display: "block" }}
             >
               Small Scale (size="small" — 36px min-height)
             </Typography>
-            <Paper
-              elevation={0}
-              sx={{
-                p: 1,
-                borderRadius: "14px",
-                border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}`,
-              }}
-            >
+            <Paper elevation={0} sx={{ p: 1, borderRadius: "14px", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}` }}>
               <List size="small">
                 <ListItemButton selected={selectedSize === 0} onClick={() => setSelectedSize(0)}>
                   <ListItemIcon>
@@ -225,25 +203,11 @@ export const ListPage: React.FC = () => {
           <Box>
             <Typography
               variant="caption"
-              sx={{
-                fontWeight: 700,
-                letterSpacing: 1,
-                textTransform: "uppercase",
-                opacity: 0.6,
-                mb: 1,
-                display: "block",
-              }}
+              sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1, display: "block" }}
             >
               Medium Scale (size="medium" — 44px min-height - Default)
             </Typography>
-            <Paper
-              elevation={0}
-              sx={{
-                p: 1.5,
-                borderRadius: "16px",
-                border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}`,
-              }}
-            >
+            <Paper elevation={0} sx={{ p: 1.5, borderRadius: "16px", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}` }}>
               <List size="medium">
                 <ListItemButton selected={selectedSize === 2} onClick={() => setSelectedSize(2)}>
                   <ListItemIcon>
@@ -255,11 +219,7 @@ export const ListPage: React.FC = () => {
                   <ListItemIcon>
                     <Shield size={20} />
                   </ListItemIcon>
-                  <ListItemText
-                    primary="Security & Privacy"
-                    font-size="inherit"
-                    secondary="Two-factor authentication & password"
-                  />
+                  <ListItemText primary="Security & Privacy" font-size="inherit" secondary="Two-factor authentication & password" />
                 </ListItemButton>
               </List>
             </Paper>
@@ -269,43 +229,23 @@ export const ListPage: React.FC = () => {
           <Box>
             <Typography
               variant="caption"
-              sx={{
-                fontWeight: 700,
-                letterSpacing: 1,
-                textTransform: "uppercase",
-                opacity: 0.6,
-                mb: 1,
-                display: "block",
-              }}
+              sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1, display: "block" }}
             >
               Large Scale (size="large" — 52px min-height)
             </Typography>
-            <Paper
-              elevation={0}
-              sx={{
-                p: 1.5,
-                borderRadius: "18px",
-                border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}`,
-              }}
-            >
+            <Paper elevation={0} sx={{ p: 1.5, borderRadius: "18px", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}` }}>
               <List size="large">
                 <ListItemButton selected={selectedSize === 4} onClick={() => setSelectedSize(4)}>
                   <ListItemIcon>
                     <CreditCard size={22} />
                   </ListItemIcon>
-                  <ListItemText
-                    primary="Billing & Subscriptions"
-                    secondary="Manage payment methods and active invoices"
-                  />
+                  <ListItemText primary="Billing & Subscriptions" secondary="Manage payment methods and active invoices" />
                 </ListItemButton>
                 <ListItemButton selected={selectedSize === 5} onClick={() => setSelectedSize(5)}>
                   <ListItemIcon>
                     <HelpCircle size={22} />
                   </ListItemIcon>
-                  <ListItemText
-                    primary="Help & Customer Support"
-                    secondary="Access 24/7 priority live chat assistance"
-                  />
+                  <ListItemText primary="Help & Customer Support" secondary="Access 24/7 priority live chat assistance" />
                 </ListItemButton>
               </List>
             </Paper>
@@ -427,15 +367,7 @@ export const ListPage: React.FC = () => {
             }}
           />
 
-          <List
-            variant="glass"
-            sx={{
-              position: "relative",
-              zIndex: 2,
-              maxWidth: 500,
-              width: "100%",
-            }}
-          >
+          <List variant="glass" sx={{ position: "relative", zIndex: 2, maxWidth: 500, width: "100%" }}>
             <ListSubheader disableSticky>Account Members</ListSubheader>
 
             <ListItem>
@@ -462,12 +394,7 @@ export const ListPage: React.FC = () => {
               </ListItemIcon>
               <ListItemText primary="Push Notifications" secondary="Receive instant sound alerts" />
               <ListItemSecondaryAction>
-                <Switch
-                  checked={notificationsEnabled}
-                  onChange={(e) => setNotificationsEnabled(e.target.checked)}
-                  color="glass"
-                  size="small"
-                />
+                <Switch checked={notificationsEnabled} onChange={(e) => setNotificationsEnabled(e.target.checked)} color="glass" size="small" />
               </ListItemSecondaryAction>
             </ListItem>
 
@@ -477,12 +404,7 @@ export const ListPage: React.FC = () => {
               </ListItemIcon>
               <ListItemText primary="Biometric Lock" secondary="Require Face ID on open" />
               <ListItemSecondaryAction>
-                <Switch
-                  checked={securityLock}
-                  onChange={(e) => setSecurityLock(e.target.checked)}
-                  color="glass"
-                  size="small"
-                />
+                <Switch checked={securityLock} onChange={(e) => setSecurityLock(e.target.checked)} color="glass" size="small" />
               </ListItemSecondaryAction>
             </ListItem>
           </List>

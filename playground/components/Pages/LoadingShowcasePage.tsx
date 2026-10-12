@@ -67,11 +67,7 @@ const PRESETS: Record<string, LoadingPreset> = {
       height: 540,
     },
   },
-  minimal: {
-    label: "Minimal (No Image)",
-    title: "Connecting to Jivico Studio...",
-    loadingLabel: "ESTABLISHING SECURE SESSION",
-  },
+  minimal: { label: "Minimal (No Image)", title: "Connecting to Jivico Studio...", loadingLabel: "ESTABLISHING SECURE SESSION" },
 };
 
 export const LoadingShowcasePage: React.FC = () => {
@@ -114,13 +110,7 @@ export const LoadingShowcasePage: React.FC = () => {
     border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
   };
 
-  const labelSx = {
-    fontSize: "0.72rem",
-    fontWeight: 700,
-    textTransform: "uppercase" as const,
-    letterSpacing: "0.08em",
-    mb: 0.5,
-  };
+  const labelSx = { fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.08em", mb: 0.5 };
 
   const generatedCode = `<LoadingShowcase
 ${
@@ -183,9 +173,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                 </Typography>
                 <Stack direction="row" spacing={2} sx={{ alignItems: "center", flexWrap: "wrap" }}>
                   <FormControlLabel
-                    control={
-                      <Switch size="small" checked={isLoading} onChange={(e) => setIsLoading(e.target.checked)} />
-                    }
+                    control={<Switch size="small" checked={isLoading} onChange={(e) => setIsLoading(e.target.checked)} />}
                     label={
                       <Typography variant="body2" sx={{ fontWeight: 600 }}>
                         {isLoading ? "Status: Loading (Active)" : "Status: Completed (100%)"}
@@ -198,11 +186,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                     size="small"
                     startIcon={<RotateCcw size={14} />}
                     onClick={handleRestart}
-                    sx={{
-                      borderRadius: "9999px",
-                      textTransform: "none",
-                      fontWeight: 600,
-                    }}
+                    sx={{ borderRadius: "9999px", textTransform: "none", fontWeight: 600 }}
                   >
                     Restart from 0%
                   </Button>
@@ -216,19 +200,11 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                 </Typography>
                 <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
                   <FormControlLabel
-                    control={
-                      <Switch size="small" checked={showImage} onChange={(e) => setShowImage(e.target.checked)} />
-                    }
+                    control={<Switch size="small" checked={showImage} onChange={(e) => setShowImage(e.target.checked)} />}
                     label={<Typography variant="body2">Product Visual & Cosmic Orbits</Typography>}
                   />
                   <FormControlLabel
-                    control={
-                      <Switch
-                        size="small"
-                        checked={showSignature}
-                        onChange={(e) => setShowSignature(e.target.checked)}
-                      />
-                    }
+                    control={<Switch size="small" checked={showSignature} onChange={(e) => setShowSignature(e.target.checked)} />}
                     label={<Typography variant="body2">Signature Footer</Typography>}
                   />
                 </Stack>
@@ -236,13 +212,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
 
               {/* Text Inputs */}
               <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-                <TextField
-                  size="small"
-                  label="Title Message"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  sx={{ flex: 2 }}
-                />
+                <TextField size="small" label="Title Message" value={title} onChange={(e) => setTitle(e.target.value)} sx={{ flex: 2 }} />
                 <TextField
                   size="small"
                   label="Loading Label"
@@ -302,13 +272,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
               }}
             />
 
-            <Box
-              sx={{
-                width: "100%",
-                height: "100%",
-                "& > div": { minHeight: "100% !important" },
-              }}
-            >
+            <Box sx={{ width: "100%", height: "100%", "& > div": { minHeight: "100% !important" } }}>
               <LoadingShowcase
                 key={remountKey}
                 image={showImage && PRESETS[selectedPreset]?.image ? PRESETS[selectedPreset].image : undefined}
@@ -421,11 +385,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                 label="WEBGL 2.0 PROTOCOL"
                 size="small"
                 variant="outlined"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: "0.68rem",
-                  letterSpacing: "0.08em",
-                }}
+                sx={{ fontWeight: 700, fontSize: "0.68rem", letterSpacing: "0.08em" }}
               />
             }
           />
@@ -457,11 +417,7 @@ setLoading(false); // smoothly rushes to 100% and finishes
               size="small"
               startIcon={<Play size={14} />}
               onClick={() => setControlledLoading(true)}
-              sx={{
-                borderRadius: "9999px",
-                textTransform: "none",
-                fontWeight: 600,
-              }}
+              sx={{ borderRadius: "9999px", textTransform: "none", fontWeight: 600 }}
             >
               Set loading=true
             </Button>
@@ -471,11 +427,7 @@ setLoading(false); // smoothly rushes to 100% and finishes
               size="small"
               startIcon={<CheckCircle2 size={14} />}
               onClick={() => setControlledLoading(false)}
-              sx={{
-                borderRadius: "9999px",
-                textTransform: "none",
-                fontWeight: 600,
-              }}
+              sx={{ borderRadius: "9999px", textTransform: "none", fontWeight: 600 }}
             >
               Set loading=false (Complete)
             </Button>
@@ -576,9 +528,7 @@ setLoading(false); // smoothly rushes to 100% and finishes
                   width: "100%",
                   height: "100%",
                   objectFit: "contain",
-                  filter: isDark
-                    ? "drop-shadow(0 20px 30px rgba(0,0,0,0.7))"
-                    : "drop-shadow(0 20px 30px rgba(0,0,0,0.15))",
+                  filter: isDark ? "drop-shadow(0 20px 30px rgba(0,0,0,0.7))" : "drop-shadow(0 20px 30px rgba(0,0,0,0.15))",
                 }}
               />
             )}
@@ -596,22 +546,10 @@ setLoading(false); // smoothly rushes to 100% and finishes
         title="5. Props Reference"
         description="Comprehensive type definitions and documentation for LoadingShowcaseProps."
       >
-        <TableContainer
-          component={Paper}
-          variant="outlined"
-          sx={{
-            borderRadius: "16px",
-            bgcolor: "transparent",
-            borderColor: "divider",
-          }}
-        >
+        <TableContainer component={Paper} variant="outlined" sx={{ borderRadius: "16px", bgcolor: "transparent", borderColor: "divider" }}>
           <Table size="small">
             <TableHead>
-              <TableRow
-                sx={{
-                  bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)",
-                }}
-              >
+              <TableRow sx={{ bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)" }}>
                 <TableCell sx={{ fontWeight: 700 }}>Prop</TableCell>
                 <TableCell sx={{ fontWeight: 700 }}>Type</TableCell>
                 <TableCell sx={{ fontWeight: 700 }}>Default</TableCell>
@@ -656,33 +594,12 @@ setLoading(false); // smoothly rushes to 100% and finishes
                   default: "Jivico Studio cursive + caption",
                   desc: "Custom footer signature branding. Pass null to hide.",
                 },
-                {
-                  prop: "className",
-                  type: "string",
-                  default: "undefined",
-                  desc: "Optional class name for custom CSS overrides.",
-                },
+                { prop: "className", type: "string", default: "undefined", desc: "Optional class name for custom CSS overrides." },
               ].map((row) => (
                 <TableRow key={row.prop}>
-                  <TableCell
-                    sx={{
-                      fontFamily: "monospace",
-                      fontWeight: 700,
-                      color: "primary.main",
-                    }}
-                  >
-                    {row.prop}
-                  </TableCell>
+                  <TableCell sx={{ fontFamily: "monospace", fontWeight: 700, color: "primary.main" }}>{row.prop}</TableCell>
                   <TableCell sx={{ fontFamily: "monospace", fontSize: "0.8rem" }}>{row.type}</TableCell>
-                  <TableCell
-                    sx={{
-                      fontFamily: "monospace",
-                      fontSize: "0.8rem",
-                      color: "text.secondary",
-                    }}
-                  >
-                    {row.default}
-                  </TableCell>
+                  <TableCell sx={{ fontFamily: "monospace", fontSize: "0.8rem", color: "text.secondary" }}>{row.default}</TableCell>
                   <TableCell sx={{ fontSize: "0.85rem", color: "text.secondary" }}>{row.desc}</TableCell>
                 </TableRow>
               ))}

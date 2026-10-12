@@ -4,26 +4,14 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Box, Button, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { getVariantOverlay as resolveVariantOverlay } from "./showcaseOverlay.js";
-import type {
-  ShowcaseDimension,
-  ShowcaseItem,
-  ShowcaseProps,
-  ShowcaseSize,
-  ShowcaseVariant,
-} from "./Showcase.types.js";
+import type { ShowcaseDimension, ShowcaseItem, ShowcaseProps, ShowcaseSize, ShowcaseVariant } from "./Showcase.types.js";
 
 const DEFAULT_INTERVAL = 5000;
 
 const getResponsiveValue = (value: ShowcaseDimension | undefined) => {
   if (value === undefined) return undefined;
   if (typeof value === "number" || typeof value === "string") return value;
-  return {
-    xs: value.xs,
-    sm: value.sm,
-    md: value.md,
-    lg: value.lg,
-    xl: value.xl,
-  };
+  return { xs: value.xs, sm: value.sm, md: value.md, lg: value.lg, xl: value.xl };
 };
 
 const getRadius = (radius: ShowcaseProps["radius"]) => {
@@ -124,16 +112,7 @@ const MediaLink = ({ href, label, target, rel, onClick }: MediaLinkProps) => {
       rel={rel}
       aria-label={label}
       onClick={onClick}
-      sx={{
-        position: "absolute",
-        inset: 0,
-        zIndex: 2,
-        display: "block",
-        width: "100%",
-        height: "100%",
-        textDecoration: "none",
-        cursor: "pointer",
-      }}
+      sx={{ position: "absolute", inset: 0, zIndex: 2, display: "block", width: "100%", height: "100%", textDecoration: "none", cursor: "pointer" }}
     />
   );
 };
@@ -330,22 +309,14 @@ export const Showcase = ({
   if (!currentItem) return null;
   const radiusValue = getRadius(radius);
   const containerHeight = getResponsiveValue(height);
-  const containerMinHeight = getResponsiveValue(
-    minHeight ?? (height === undefined ? currentSize.minHeight : undefined),
-  );
+  const containerMinHeight = getResponsiveValue(minHeight ?? (height === undefined ? currentSize.minHeight : undefined));
   const containerMaxHeight = getResponsiveValue(maxHeight);
   const responsiveAspectRatio =
     height === undefined
       ? aspectRatio !== undefined
         ? typeof aspectRatio === "string"
           ? aspectRatio
-          : {
-              xs: aspectRatio.xs,
-              sm: aspectRatio.sm,
-              md: aspectRatio.md,
-              lg: aspectRatio.lg,
-              xl: aspectRatio.xl,
-            }
+          : { xs: aspectRatio.xs, sm: aspectRatio.sm, md: aspectRatio.md, lg: aspectRatio.lg, xl: aspectRatio.xl }
         : currentSize.aspectRatio
       : undefined;
 
@@ -354,11 +325,7 @@ export const Showcase = ({
   const getTransition = (index: number) => {
     const isActive = index === currentIndex;
     if (transition === "fade") {
-      return {
-        opacity: isActive ? 1 : 0,
-        transform: "none",
-        transition: "opacity 700ms ease",
-      };
+      return { opacity: isActive ? 1 : 0, transform: "none", transition: "opacity 700ms ease" };
     }
     if (transition === "slide") {
       return {
@@ -395,12 +362,7 @@ export const Showcase = ({
           priority={isPriority}
           loading={isPriority ? "eager" : "lazy"}
           fetchPriority={isPriority ? "high" : "auto"}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            display: "block",
-          }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
       );
     }
@@ -413,14 +375,7 @@ export const Showcase = ({
           alt={item.media.alt}
           loading={isPriority ? "eager" : "lazy"}
           fetchPriority={isPriority ? "high" : "auto"}
-          sx={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            display: "block",
-          }}
+          sx={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
       );
     }
@@ -432,14 +387,7 @@ export const Showcase = ({
         alt={item.media.alt}
         loading={isPriority ? "eager" : "lazy"}
         fetchPriority={isPriority ? "high" : "auto"}
-        sx={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          display: "block",
-        }}
+        sx={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
       />
     );
   };
@@ -471,9 +419,7 @@ export const Showcase = ({
         WebkitUserSelect: "none",
         cursor: swipe ? "grab" : "default",
 
-        "&:active": {
-          cursor: swipe ? "grabbing" : "default",
-        },
+        "&:active": { cursor: swipe ? "grabbing" : "default" },
 
         height: containerHeight,
         minHeight: containerMinHeight,
@@ -506,25 +452,10 @@ export const Showcase = ({
           >
             {/* Media */}
 
-            <Box
-              sx={{
-                position: "absolute",
-                inset: 0,
-                zIndex: 1,
-                width: "100%",
-                height: "100%",
-              }}
-            >
+            <Box sx={{ position: "absolute", inset: 0, zIndex: 1, width: "100%", height: "100%" }}>
               {renderImage(item, active, index)}
 
-              <Box
-                sx={{
-                  position: "absolute",
-                  inset: 0,
-                  zIndex: 1,
-                  ...getVariantOverlay(item.variant),
-                }}
-              />
+              <Box sx={{ position: "absolute", inset: 0, zIndex: 1, ...getVariantOverlay(item.variant) }} />
             </Box>
 
             {/* Full Image Link */}
@@ -563,8 +494,7 @@ export const Showcase = ({
                  */
                 justifyContent: item.contentAlign === "center" ? "center" : "flex-end",
 
-                alignItems:
-                  item.contentAlign === "center" ? "center" : item.contentAlign === "right" ? "flex-end" : "flex-start",
+                alignItems: item.contentAlign === "center" ? "center" : item.contentAlign === "right" ? "flex-end" : "flex-start",
 
                 p: currentSize.contentPadding,
                 pointerEvents: "none",
@@ -582,14 +512,8 @@ export const Showcase = ({
                       maxWidth: { xs: "92%", sm: "78%", md: "58%", lg: "50%" },
                       display: "flex",
                       flexDirection: "column",
-                      alignItems:
-                        item.contentAlign === "center"
-                          ? "center"
-                          : item.contentAlign === "right"
-                            ? "flex-end"
-                            : "flex-start",
-                      textAlign:
-                        item.contentAlign === "center" ? "center" : item.contentAlign === "right" ? "right" : "left",
+                      alignItems: item.contentAlign === "center" ? "center" : item.contentAlign === "right" ? "flex-end" : "flex-start",
+                      textAlign: item.contentAlign === "center" ? "center" : item.contentAlign === "right" ? "right" : "left",
                       gap: { xs: 0.9, md: 1.15 },
                     },
 
@@ -665,12 +589,7 @@ export const Showcase = ({
                   {/* CTA */}
 
                   {item.action && (item.action.label || item.action.href || item.action.onClick) && (
-                    <Box
-                      sx={{
-                        pointerEvents: "auto",
-                        mt: { xs: 0.5, md: 1 },
-                      }}
-                    >
+                    <Box sx={{ pointerEvents: "auto", mt: { xs: 0.5, md: 1 } }}>
                       {item.action.href ? (
                         <Button
                           href={item.action.href}
@@ -889,13 +808,8 @@ export const Showcase = ({
                   background: "transparent",
                   cursor: "pointer",
                   transition: "transform 300ms cubic-bezier(0.22, 1, 0.36, 1)",
-                  "&:focus-visible": {
-                    outline: `2px solid ${theme.palette.primary.main}`,
-                    outlineOffset: 3,
-                  },
-                  "&:hover": {
-                    transform: navigation === "vertical" ? "scale(1.08)" : "none",
-                  },
+                  "&:focus-visible": { outline: `2px solid ${theme.palette.primary.main}`, outlineOffset: 3 },
+                  "&:hover": { transform: navigation === "vertical" ? "scale(1.08)" : "none" },
                 }}
               >
                 {navigation === "vertical" ? (
@@ -956,15 +870,9 @@ export const Showcase = ({
                     animation: `showcaseProgress ${interval}ms linear forwards`,
                     animationPlayState: pauseOnHover && isHovered ? "paused" : "running",
                   }
-                : {
-                    width: `${((currentIndex + 1) / itemCount) * 100}%`,
-                    transition: "width 400ms ease",
-                  }),
+                : { width: `${((currentIndex + 1) / itemCount) * 100}%`, transition: "width 400ms ease" }),
 
-              "@keyframes showcaseProgress": {
-                "0%": { width: "0%" },
-                "100%": { width: "100%" },
-              },
+              "@keyframes showcaseProgress": { "0%": { width: "0%" }, "100%": { width: "100%" } },
             }}
           />
         </Box>

@@ -10,46 +10,14 @@ export const SteppersPage: React.FC = () => {
 
   const steps = ["Select Campaign", "Create an ad group", "Create an ad"];
 
-  const stepperColors: {
-    color: StepperColor;
-    label: string;
-    description: string;
-  }[] = [
-    {
-      color: "primary",
-      label: "Primary",
-      description: "Monochrome brand workflow",
-    },
-    {
-      color: "secondary",
-      label: "Secondary",
-      description: "Subtle neutral workflow",
-    },
-    {
-      color: "accent",
-      label: "Accent",
-      description: "Jivico champagne / premium workflow",
-    },
-    {
-      color: "info",
-      label: "Info",
-      description: "Informational workflow",
-    },
-    {
-      color: "success",
-      label: "Success",
-      description: "Positive / completed workflow",
-    },
-    {
-      color: "warning",
-      label: "Warning",
-      description: "Attention / caution workflow",
-    },
-    {
-      color: "error",
-      label: "Error",
-      description: "Error / corrective workflow",
-    },
+  const stepperColors: { color: StepperColor; label: string; description: string }[] = [
+    { color: "primary", label: "Primary", description: "Monochrome brand workflow" },
+    { color: "secondary", label: "Secondary", description: "Subtle neutral workflow" },
+    { color: "accent", label: "Accent", description: "Jivico champagne / premium workflow" },
+    { color: "info", label: "Info", description: "Informational workflow" },
+    { color: "success", label: "Success", description: "Positive / completed workflow" },
+    { color: "warning", label: "Warning", description: "Attention / caution workflow" },
+    { color: "error", label: "Error", description: "Error / corrective workflow" },
   ];
 
   const handleNext = () => {
@@ -98,24 +66,12 @@ export const SteppersPage: React.FC = () => {
               </Step>
             ))}
           </Stepper>
-          <Box
-            sx={{
-              display: "flex",
-              gap: 2,
-              justifyContent: "flex-end",
-            }}
-          >
+          <Box sx={{ display: "flex", gap: 2, justifyContent: "flex-end" }}>
             <Button disabled={activeStep === 0} onClick={handleBack} variant="outlined" color="glass" size="small">
               Back
             </Button>
 
-            <Button
-              variant="contained"
-              color="accent"
-              onClick={handleNext}
-              size="small"
-              disabled={activeStep === steps.length - 1}
-            >
+            <Button variant="contained" color="accent" onClick={handleNext} size="small" disabled={activeStep === steps.length - 1}>
               {activeStep === steps.length - 1 ? "Finish" : "Next Step"}
             </Button>
           </Box>
@@ -138,25 +94,11 @@ export const SteppersPage: React.FC = () => {
 <Stepper activeStep={1} color="warning" />
 <Stepper activeStep={1} color="error" />`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 5,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 5, width: "100%" }}>
           {stepperColors.map(({ color, label, description }) => (
             <Box key={color}>
               <Box sx={{ mb: 1.5 }}>
-                <Typography
-                  variant="subtitle2"
-                  sx={{
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.06em",
-                  }}
-                >
+                <Typography variant="subtitle2" sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em" }}>
                   {label}
                 </Typography>
 
@@ -224,12 +166,7 @@ export const SteppersPage: React.FC = () => {
   ))}
 </Stepper>`}
       >
-        <Box
-          sx={{
-            width: "100%",
-            maxWidth: 520,
-          }}
-        >
+        <Box sx={{ width: "100%", maxWidth: 520 }}>
           <Stepper activeStep={1} orientation="vertical" color="accent">
             {steps.map((label) => (
               <Step key={label}>
@@ -265,15 +202,7 @@ export const SteppersPage: React.FC = () => {
 </Stepper>`}
       >
         <Box sx={{ width: "100%" }}>
-          <Stepper
-            activeStep={1}
-            color="accent"
-            sx={{
-              "& .MuiStepLabel-label": {
-                fontSize: "0.75rem",
-              },
-            }}
-          >
+          <Stepper activeStep={1} color="accent" sx={{ "& .MuiStepLabel-label": { fontSize: "0.75rem" } }}>
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>

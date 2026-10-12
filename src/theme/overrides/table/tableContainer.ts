@@ -26,15 +26,9 @@ export const getTableContainerOverrides = (palette: JivicoPalette, isDark: boole
           scrollbarWidth: "thin",
           scrollbarColor: `${scrollbarThumb} ${scrollbarTrack}`,
 
-          "&::-webkit-scrollbar": {
-            width: 8,
-            height: 8,
-          },
+          "&::-webkit-scrollbar": { width: 8, height: 8 },
 
-          "&::-webkit-scrollbar-track": {
-            background: scrollbarTrack,
-            borderRadius: 999,
-          },
+          "&::-webkit-scrollbar-track": { background: scrollbarTrack, borderRadius: 999 },
 
           "&::-webkit-scrollbar-thumb": {
             backgroundColor: scrollbarThumb,
@@ -43,33 +37,17 @@ export const getTableContainerOverrides = (palette: JivicoPalette, isDark: boole
             backgroundClip: "padding-box",
             transition: "background-color 160ms ease",
 
-            "&:hover": {
-              backgroundColor: scrollbarThumbHover,
-            },
+            "&:hover": { backgroundColor: scrollbarThumbHover },
           },
 
-          "&::-webkit-scrollbar-corner": {
-            background: "transparent",
-          },
+          "&::-webkit-scrollbar-corner": { background: "transparent" },
 
-          "&.MuiTableContainer-root": {
-            "& .MuiTable-root": {
-              minWidth: "100%",
-            },
-          },
+          "&.MuiTableContainer-root": { "& .MuiTable-root": { minWidth: "100%" } },
 
           "&[data-sticky-header='true']": {
-            "& .MuiTableHead-root": {
-              position: "sticky",
-              top: 0,
-              zIndex: 2,
-            },
+            "& .MuiTableHead-root": { position: "sticky", top: 0, zIndex: 2 },
 
-            "& .MuiTableHead-root .MuiTableCell-root": {
-              position: "sticky",
-              top: 0,
-              zIndex: 2,
-            },
+            "& .MuiTableHead-root .MuiTableCell-root": { position: "sticky", top: 0, zIndex: 2 },
           },
 
           "&[data-glass='true']": {
@@ -81,14 +59,10 @@ export const getTableContainerOverrides = (palette: JivicoPalette, isDark: boole
             boxShadow: glassShadow,
             overflow: "auto",
 
-            "& .MuiTable-root": {
-              backgroundColor: "transparent",
-            },
+            "& .MuiTable-root": { backgroundColor: "transparent" },
           },
 
-          "&[data-glass='true'] .MuiTableHead-root": {
-            backgroundColor: "transparent",
-          },
+          "&[data-glass='true'] .MuiTableHead-root": { backgroundColor: "transparent" },
 
           "&[data-glass='true'] .MuiTableHead-root .MuiTableCell-root": {
             backdropFilter: "blur(20px) saturate(180%)",

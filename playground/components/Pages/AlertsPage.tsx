@@ -36,14 +36,7 @@ export const AlertsPage: React.FC = () => {
   Unable to sync changes to remote cluster.
 </Alert>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
           <Alert severity="info">
             <AlertTitle>System Information</AlertTitle>
             New design system update (v2.4.0) with frosted glass token system is ready.
@@ -76,14 +69,7 @@ export const AlertsPage: React.FC = () => {
 <Alert severity="info" appearance="solid">Solid Palette Fill</Alert>
 <Alert severity="info" appearance="outlined">Outlined Perimeter</Alert>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Alert severity="info" appearance="glass">
               <strong>Glass Appearance</strong> — Frosted glass background with optical blur and specular border.
@@ -98,8 +84,7 @@ export const AlertsPage: React.FC = () => {
 
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Alert severity="info" appearance="solid">
-              <strong>Solid Appearance</strong> — High contrast solid fill for critical callouts requiring maximum
-              attention.
+              <strong>Solid Appearance</strong> — High contrast solid fill for critical callouts requiring maximum attention.
             </Alert>
           </Box>
 
@@ -121,14 +106,7 @@ export const AlertsPage: React.FC = () => {
 <Alert color="accent" appearance="glass">Accent Electric Indigo Alert</Alert>
 <Alert color="glass" appearance="glass">Neutral Glass Alert</Alert>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
           <Alert color="primary" appearance="glass">
             <AlertTitle>Primary Monochrome Alert</AlertTitle>
             Custom alert styled with the core primary brand color.
@@ -168,14 +146,7 @@ export const AlertsPage: React.FC = () => {
   Sync successfully updated 142 items.
 </Alert>`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
           <Alert
             severity="success"
             radius="pill"

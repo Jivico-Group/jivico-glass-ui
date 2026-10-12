@@ -77,12 +77,7 @@ export const InputsPage: React.FC = () => {
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, width: "100%" }}>
           <TextField label="Default Input" placeholder="e.g. John Doe" sx={{ minWidth: 240 }} />
           <TextField label="With Value" defaultValue="Jivico Design System" sx={{ minWidth: 240 }} />
-          <TextField
-            label="Helper Text"
-            defaultValue="alex@jivico.studio"
-            helperText="Corporate workspace email"
-            sx={{ minWidth: 240 }}
-          />
+          <TextField label="Helper Text" defaultValue="alex@jivico.studio" helperText="Corporate workspace email" sx={{ minWidth: 240 }} />
           <TextField label="Disabled State" disabled defaultValue="Read-only system token" sx={{ minWidth: 240 }} />
         </Box>
       </DemoBlock>
@@ -150,22 +145,8 @@ export const InputsPage: React.FC = () => {
             },
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 3,
-              width: "100%",
-              position: "relative",
-              zIndex: 1,
-            }}
-          >
-            <TextField
-              color="glass"
-              label="Frosted Glass Input"
-              placeholder="Type inside glass..."
-              sx={{ minWidth: 240 }}
-            />
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, width: "100%", position: "relative", zIndex: 1 }}>
+            <TextField color="glass" label="Frosted Glass Input" placeholder="Type inside glass..." sx={{ minWidth: 240 }} />
             <TextField
               color="glass"
               label="AI Search"
@@ -255,12 +236,7 @@ export const InputsPage: React.FC = () => {
                 ),
               },
             }}
-            sx={{
-              minWidth: 260,
-              "& .MuiFormHelperText-root": {
-                color: "success.main",
-              },
-            }}
+            sx={{ minWidth: 260, "& .MuiFormHelperText-root": { color: "success.main" } }}
           />
         </Box>
       </DemoBlock>
@@ -355,14 +331,7 @@ export const InputsPage: React.FC = () => {
   renderInput={(params) => <TextField {...params} label="Active Tokens" />}
 />`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 3,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "100%" }}>
           <Box sx={{ width: "100%", maxWidth: 420 }}>
             <Typography variant="caption" sx={{ display: "block", fontWeight: 600, mb: 1 }}>
               Single Selection
@@ -384,9 +353,7 @@ export const InputsPage: React.FC = () => {
               options={designOptions}
               value={autoMulti}
               onChange={(_, val) => setAutoMulti(val)}
-              renderInput={(params) => (
-                <TextField {...params} label="Active Feature Flags" placeholder="Select more..." />
-              )}
+              renderInput={(params) => <TextField {...params} label="Active Feature Flags" placeholder="Select more..." />}
             />
           </Box>
         </Box>
@@ -488,15 +455,7 @@ export const InputsPage: React.FC = () => {
 <TextField label="Medium (48px)" size="medium" />
 <TextField label="Large (56px)" size="large" />`}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 3,
-            alignItems: "center",
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, alignItems: "center", width: "100%" }}>
           <TextField label="Small Size" size="small" placeholder="36px height" sx={{ minWidth: 220 }} />
           <TextField label="Medium Size (Default)" size="medium" placeholder="48px height" sx={{ minWidth: 240 }} />
           <TextField label="Large Size" size={"large" as any} placeholder="56px height" sx={{ minWidth: 260 }} />

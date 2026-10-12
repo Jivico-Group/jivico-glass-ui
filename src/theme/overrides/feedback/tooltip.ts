@@ -3,12 +3,7 @@ import type { JivicoPalette } from "../../palette/index.js";
 
 export const getTooltipOverrides = (_palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
   MuiTooltip: {
-    defaultProps: {
-      arrow: true,
-      placement: "top",
-      enterDelay: 100,
-      leaveDelay: 50,
-    },
+    defaultProps: { arrow: true, placement: "top", enterDelay: 100, leaveDelay: 50 },
 
     styleOverrides: {
       tooltip: ({ ownerState }) => {
@@ -90,22 +85,13 @@ export const getTooltipOverrides = (_palette: JivicoPalette, isDark: boolean): C
             },
           }),
 
-          "& > *": {
-            position: "relative",
-            zIndex: 1,
-          },
+          "& > *": { position: "relative", zIndex: 1 },
         };
       },
 
       arrow: ({ ownerState }) => {
         const glass = ownerState.glass === "true" || ownerState.glass === true;
-        const arrowBackground = glass
-          ? isDark
-            ? "rgba(245, 245, 247, 0.82)"
-            : "rgba(17, 17, 17, 0.78)"
-          : isDark
-            ? "#F5F5F7"
-            : "#111111";
+        const arrowBackground = glass ? (isDark ? "rgba(245, 245, 247, 0.82)" : "rgba(17, 17, 17, 0.78)") : isDark ? "#F5F5F7" : "#111111";
 
         const arrowBorder = glass
           ? isDark
@@ -115,28 +101,14 @@ export const getTooltipOverrides = (_palette: JivicoPalette, isDark: boolean): C
             ? "rgba(0, 0, 0, 0.12)"
             : "rgba(255, 255, 255, 0.12)";
 
-        return {
-          color: arrowBackground,
-          "&::before": {
-            backgroundColor: arrowBackground,
-            border: `1px solid ${arrowBorder}`,
-          },
-        };
+        return { color: arrowBackground, "&::before": { backgroundColor: arrowBackground, border: `1px solid ${arrowBorder}` } };
       },
 
       popper: {
-        "&[data-popper-placement*='top'] .MuiTooltip-tooltip": {
-          transformOrigin: "bottom center",
-        },
-        "&[data-popper-placement*='bottom'] .MuiTooltip-tooltip": {
-          transformOrigin: "top center",
-        },
-        "&[data-popper-placement*='left'] .MuiTooltip-tooltip": {
-          transformOrigin: "right center",
-        },
-        "&[data-popper-placement*='right'] .MuiTooltip-tooltip": {
-          transformOrigin: "left center",
-        },
+        "&[data-popper-placement*='top'] .MuiTooltip-tooltip": { transformOrigin: "bottom center" },
+        "&[data-popper-placement*='bottom'] .MuiTooltip-tooltip": { transformOrigin: "top center" },
+        "&[data-popper-placement*='left'] .MuiTooltip-tooltip": { transformOrigin: "right center" },
+        "&[data-popper-placement*='right'] .MuiTooltip-tooltip": { transformOrigin: "left center" },
       },
     },
   },

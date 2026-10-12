@@ -15,14 +15,7 @@ interface ColorItemProps {
   isTranslucent?: boolean;
 }
 
-const ColorSwatch: React.FC<ColorItemProps> = ({
-  name,
-  token,
-  value,
-  description,
-  textColor,
-  isTranslucent = false,
-}) => {
+const ColorSwatch: React.FC<ColorItemProps> = ({ name, token, value, description, textColor, isTranslucent = false }) => {
   const { mode } = useGlassMode();
   const isDark = mode === "dark";
   const [copied, setCopied] = useState(false);
@@ -35,11 +28,7 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
   };
 
   const isLightColor =
-    value === "#FFFFFF" ||
-    value === "#F6F5F2" ||
-    value === "#D9D9CF" ||
-    value.includes("255, 255, 255") ||
-    value.includes("246, 245, 242");
+    value === "#FFFFFF" || value === "#F6F5F2" || value === "#D9D9CF" || value.includes("255, 255, 255") || value.includes("246, 245, 242");
 
   const effectiveTextColor = textColor || (isLightColor ? "#111111" : "#FFFFFF");
 
@@ -52,10 +41,7 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
         border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.08)"}`,
         backgroundColor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(17, 17, 17, 0.015)",
         transition: "transform 0.15s ease, box-shadow 0.15s ease",
-        "&:hover": {
-          transform: "translateY(-2px)",
-          boxShadow: isDark ? "0 8px 24px rgba(0, 0, 0, 0.4)" : "0 8px 20px rgba(0, 0, 0, 0.06)",
-        },
+        "&:hover": { transform: "translateY(-2px)", boxShadow: isDark ? "0 8px 24px rgba(0, 0, 0, 0.4)" : "0 8px 20px rgba(0, 0, 0, 0.06)" },
       }}
     >
       <CardActionArea onClick={handleCopy}>
@@ -79,12 +65,7 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
                 linear-gradient(-45deg, transparent 75%, rgba(120, 120, 120, 0.2) 75%)`,
               backgroundSize: "16px 16px",
               backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
-              "&::before": {
-                content: '""',
-                position: "absolute",
-                inset: 0,
-                background: value,
-              },
+              "&::before": { content: '""', position: "absolute", inset: 0, background: value },
             }),
           }}
         >
@@ -96,11 +77,7 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
               fontWeight: 700,
               fontSize: "0.72rem",
               color: effectiveTextColor,
-              textShadow: isTranslucent
-                ? isDark
-                  ? "0 1px 2px rgba(0,0,0,0.8)"
-                  : "0 1px 2px rgba(255,255,255,0.8)"
-                : "none",
+              textShadow: isTranslucent ? (isDark ? "0 1px 2px rgba(0,0,0,0.8)" : "0 1px 2px rgba(255,255,255,0.8)") : "none",
             }}
           >
             {value}
@@ -124,39 +101,14 @@ const ColorSwatch: React.FC<ColorItemProps> = ({
 
         {/* Token Meta */}
         <Box sx={{ p: 1.75 }}>
-          <Typography
-            variant="subtitle2"
-            sx={{
-              fontWeight: 700,
-              fontSize: "0.86rem",
-              color: "text.primary",
-              mb: 0.5,
-            }}
-          >
+          <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: "0.86rem", color: "text.primary", mb: 0.5 }}>
             {name}
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              fontFamily: "monospace",
-              fontSize: "0.72rem",
-              color: "text.secondary",
-              wordBreak: "break-all",
-            }}
-          >
+          <Typography variant="body2" sx={{ fontFamily: "monospace", fontSize: "0.72rem", color: "text.secondary", wordBreak: "break-all" }}>
             {token}
           </Typography>
           {description && (
-            <Typography
-              variant="caption"
-              sx={{
-                display: "block",
-                mt: 0.5,
-                fontSize: "0.7rem",
-                color: "text.secondary",
-                lineHeight: 1.3,
-              }}
-            >
+            <Typography variant="caption" sx={{ display: "block", mt: 0.5, fontSize: "0.7rem", color: "text.secondary", lineHeight: 1.3 }}>
               {description}
             </Typography>
           )}
@@ -190,18 +142,7 @@ export const ColorsPage: React.FC = () => {
 // Core brand palette
 const { charcoal, stone, sand, cream } = COLORS.brand;`}
       >
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "repeat(2, 1fr)",
-              md: "repeat(3, 1fr)",
-            },
-            gap: 2,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" }, gap: 2, width: "100%" }}>
           <ColorSwatch
             name="Charcoal"
             token="COLORS.brand.charcoal"
@@ -257,14 +198,7 @@ const primaryGlow = theme.palette.primary.glow;`}
           <Typography variant="body2" sx={{ fontWeight: 600, mr: 1 }}>
             View Tokens For:
           </Typography>
-          <Tabs
-            value={primaryMode}
-            onChange={(_, val) => setPrimaryMode(val)}
-            sx={{
-              minHeight: 32,
-              "& .MuiTabs-indicator": { display: "none" },
-            }}
-          >
+          <Tabs value={primaryMode} onChange={(_, val) => setPrimaryMode(val)} sx={{ minHeight: 32, "& .MuiTabs-indicator": { display: "none" } }}>
             <Tab
               label="Light Mode"
               value="light"
@@ -279,8 +213,7 @@ const primaryGlow = theme.palette.primary.glow;`}
                 textTransform: "none",
                 fontWeight: 600,
                 mr: 1,
-                bgcolor:
-                  primaryMode === "light" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
+                bgcolor: primaryMode === "light" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
             <Tab
@@ -296,8 +229,7 @@ const primaryGlow = theme.palette.primary.glow;`}
                 fontSize: "0.8rem",
                 textTransform: "none",
                 fontWeight: 600,
-                bgcolor:
-                  primaryMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
+                bgcolor: primaryMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
           </Tabs>
@@ -305,14 +237,7 @@ const primaryGlow = theme.palette.primary.glow;`}
 
         <Typography
           variant="subtitle2"
-          sx={{
-            fontWeight: 700,
-            mb: 1.5,
-            color: "text.secondary",
-            textTransform: "uppercase",
-            letterSpacing: "0.05em",
-            fontSize: "0.75rem",
-          }}
+          sx={{ fontWeight: 700, mb: 1.5, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.05em", fontSize: "0.75rem" }}
         >
           Primary Spectrum ({primaryMode.toUpperCase()} MODE)
         </Typography>
@@ -320,22 +245,13 @@ const primaryGlow = theme.palette.primary.glow;`}
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: {
-              xs: "repeat(2, 1fr)",
-              sm: "repeat(3, 1fr)",
-              md: "repeat(6, 1fr)",
-            },
+            gridTemplateColumns: { xs: "repeat(2, 1fr)", sm: "repeat(3, 1fr)", md: "repeat(6, 1fr)" },
             gap: 2,
             mb: 3,
             width: "100%",
           }}
         >
-          <ColorSwatch
-            name="Main"
-            token={`COLORS.primary.${primaryMode}`}
-            value={COLORS.primary[primaryMode]}
-            description="Default button fill"
-          />
+          <ColorSwatch name="Main" token={`COLORS.primary.${primaryMode}`} value={COLORS.primary[primaryMode]} description="Default button fill" />
           <ColorSwatch
             name="Hover"
             token={`COLORS.primary.hover${primaryMode === "light" ? "Light" : "Dark"}`}
@@ -371,14 +287,7 @@ const primaryGlow = theme.palette.primary.glow;`}
 
         <Typography
           variant="subtitle2"
-          sx={{
-            fontWeight: 700,
-            mb: 1.5,
-            color: "text.secondary",
-            textTransform: "uppercase",
-            letterSpacing: "0.05em",
-            fontSize: "0.75rem",
-          }}
+          sx={{ fontWeight: 700, mb: 1.5, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.05em", fontSize: "0.75rem" }}
         >
           Secondary Spectrum ({primaryMode.toUpperCase()} MODE)
         </Typography>
@@ -386,11 +295,7 @@ const primaryGlow = theme.palette.primary.glow;`}
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: {
-              xs: "repeat(2, 1fr)",
-              sm: "repeat(3, 1fr)",
-              md: "repeat(6, 1fr)",
-            },
+            gridTemplateColumns: { xs: "repeat(2, 1fr)", sm: "repeat(3, 1fr)", md: "repeat(6, 1fr)" },
             gap: 2,
             mb: 3,
             width: "100%",
@@ -437,29 +342,13 @@ const primaryGlow = theme.palette.primary.glow;`}
 
         <Typography
           variant="subtitle2"
-          sx={{
-            fontWeight: 700,
-            mb: 1.5,
-            color: "text.secondary",
-            textTransform: "uppercase",
-            letterSpacing: "0.05em",
-            fontSize: "0.75rem",
-          }}
+          sx={{ fontWeight: 700, mb: 1.5, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.05em", fontSize: "0.75rem" }}
         >
           Accent Gold Spectrum ({primaryMode.toUpperCase()} MODE)
         </Typography>
 
         <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "repeat(2, 1fr)",
-              sm: "repeat(3, 1fr)",
-              md: "repeat(6, 1fr)",
-            },
-            gap: 2,
-            width: "100%",
-          }}
+          sx={{ display: "grid", gridTemplateColumns: { xs: "repeat(2, 1fr)", sm: "repeat(3, 1fr)", md: "repeat(6, 1fr)" }, gap: 2, width: "100%" }}
         >
           <ColorSwatch
             name="Main"
@@ -514,14 +403,7 @@ const errorColor = theme.palette.error.main;`}
           <Typography variant="body2" sx={{ fontWeight: 600, mr: 1 }}>
             View Mode:
           </Typography>
-          <Tabs
-            value={semanticMode}
-            onChange={(_, val) => setSemanticMode(val)}
-            sx={{
-              minHeight: 32,
-              "& .MuiTabs-indicator": { display: "none" },
-            }}
-          >
+          <Tabs value={semanticMode} onChange={(_, val) => setSemanticMode(val)} sx={{ minHeight: 32, "& .MuiTabs-indicator": { display: "none" } }}>
             <Tab
               label="Light Mode"
               value="light"
@@ -536,12 +418,7 @@ const errorColor = theme.palette.error.main;`}
                 textTransform: "none",
                 fontWeight: 600,
                 mr: 1,
-                bgcolor:
-                  semanticMode === "light"
-                    ? isDark
-                      ? "rgba(255,255,255,0.15)"
-                      : "rgba(17,17,17,0.08)"
-                    : "transparent",
+                bgcolor: semanticMode === "light" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
             <Tab
@@ -557,25 +434,13 @@ const errorColor = theme.palette.error.main;`}
                 fontSize: "0.8rem",
                 textTransform: "none",
                 fontWeight: 600,
-                bgcolor:
-                  semanticMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
+                bgcolor: semanticMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
           </Tabs>
         </Box>
 
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "repeat(2, 1fr)",
-              md: "repeat(4, 1fr)",
-            },
-            gap: 2.5,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }, gap: 2.5, width: "100%" }}>
           {/* Success */}
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1, color: "success.main" }}>
@@ -647,12 +512,7 @@ const errorColor = theme.palette.error.main;`}
             <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1, color: "info.main" }}>
               INFO
             </Typography>
-            <ColorSwatch
-              name="Main"
-              token={`COLORS.info.${semanticMode}`}
-              value={COLORS.info[semanticMode]}
-              description="System hints, docs links"
-            />
+            <ColorSwatch name="Main" token={`COLORS.info.${semanticMode}`} value={COLORS.info[semanticMode]} description="System hints, docs links" />
             <Box sx={{ mt: 1.5 }}>
               <ColorSwatch
                 name="Glow"
@@ -675,18 +535,7 @@ const errorColor = theme.palette.error.main;`}
 const bgDefault = theme.palette.background.default;
 const textPrimary = theme.palette.text.primary;`}
       >
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "repeat(2, 1fr)",
-              md: "repeat(3, 1fr)",
-            },
-            gap: 2,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" }, gap: 2, width: "100%" }}>
           <ColorSwatch
             name="Background (Default Light)"
             token="COLORS.background.light"
@@ -739,14 +588,7 @@ const glassBorder = theme.palette.glass.paperBorder;`}
           <Typography variant="body2" sx={{ fontWeight: 600, mr: 1 }}>
             View Tokens For:
           </Typography>
-          <Tabs
-            value={glassMode}
-            onChange={(_, val) => setGlassMode(val)}
-            sx={{
-              minHeight: 32,
-              "& .MuiTabs-indicator": { display: "none" },
-            }}
-          >
+          <Tabs value={glassMode} onChange={(_, val) => setGlassMode(val)} sx={{ minHeight: 32, "& .MuiTabs-indicator": { display: "none" } }}>
             <Tab
               label="Light Mode Glass"
               value="light"
@@ -761,8 +603,7 @@ const glassBorder = theme.palette.glass.paperBorder;`}
                 textTransform: "none",
                 fontWeight: 600,
                 mr: 1,
-                bgcolor:
-                  glassMode === "light" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
+                bgcolor: glassMode === "light" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
             <Tab
@@ -778,25 +619,13 @@ const glassBorder = theme.palette.glass.paperBorder;`}
                 fontSize: "0.8rem",
                 textTransform: "none",
                 fontWeight: 600,
-                bgcolor:
-                  glassMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
+                bgcolor: glassMode === "dark" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.08)") : "transparent",
               }}
             />
           </Tabs>
         </Box>
 
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "repeat(2, 1fr)",
-              md: "repeat(4, 1fr)",
-            },
-            gap: 2,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }, gap: 2, width: "100%" }}>
           <ColorSwatch
             name="Glass Main"
             token={`COLORS.glass.main${glassMode === "light" ? "Light" : "Dark"}`}
@@ -867,17 +696,7 @@ const glassBorder = theme.palette.glass.paperBorder;`}
   Apple Precision & Google 
 </GradientText>`}
       >
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "repeat(2, 1fr)",
-            },
-            gap: 2,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)" }, gap: 2, width: "100%" }}>
           <ColorSwatch
             name="Primary Monochrome Sweep"
             token="COLORS.gradients.primary"

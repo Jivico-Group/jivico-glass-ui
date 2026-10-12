@@ -38,13 +38,7 @@ const MockImage = ({ src, alt, fill, sizes, priority, style, className }: Showca
     sizes={sizes}
     loading={priority ? "eager" : "lazy"}
     className={className}
-    style={{
-      display: "block",
-      width: fill ? "100%" : undefined,
-      height: fill ? "100%" : undefined,
-      objectFit: fill ? "cover" : undefined,
-      ...style,
-    }}
+    style={{ display: "block", width: fill ? "100%" : undefined, height: fill ? "100%" : undefined, objectFit: fill ? "cover" : undefined, ...style }}
   />
 );
 
@@ -52,10 +46,7 @@ const MockImage = ({ src, alt, fill, sizes, priority, style, className }: Showca
 const heroShowcaseItems: ShowcaseItem[] = [
   {
     id: "originals",
-    media: {
-      src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80",
-      alt: "Originals Collection",
-    },
+    media: { src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80", alt: "Originals Collection" },
 
     // API-safe navigation data.
     // No React component is stored here.
@@ -65,18 +56,12 @@ const heroShowcaseItems: ShowcaseItem[] = [
     eyebrow: "STUDIO EXCLUSIVE",
     title: "Originals by Studio",
     description: "Limited-edition luxury glassmorphic collections. Crafted with physics, designed for perfection.",
-    action: {
-      label: "Discover Originals",
-      href: "#originals",
-    },
+    action: { label: "Discover Originals", href: "#originals" },
     sideLabel: "FALL / WINTER 2026",
   },
   {
     id: "freestyle",
-    media: {
-      src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1600&q=80",
-      alt: "Freestyle Designer",
-    },
+    media: { src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1600&q=80", alt: "Freestyle Designer" },
 
     href: "#freestyle",
     linkLabel: "Explore Freestyle",
@@ -84,18 +69,12 @@ const heroShowcaseItems: ShowcaseItem[] = [
     eyebrow: "DESIGN STUDIO",
     title: "Create Your Freestyle",
     description: "Upload your artwork, pick your canvas, and print 1-of-1 pieces on 280 GSM heavyweight cotton.",
-    action: {
-      label: "Explore Freestyle",
-      href: "#freestyle",
-    },
+    action: { label: "Explore Freestyle", href: "#freestyle" },
     sideLabel: "CUSTOM BUILDER",
   },
   {
     id: "liquid-glass",
-    media: {
-      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
-      alt: "Liquid Glass Architecture",
-    },
+    media: { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80", alt: "Liquid Glass Architecture" },
 
     href: "#setup",
     linkLabel: "View Documentation",
@@ -103,10 +82,7 @@ const heroShowcaseItems: ShowcaseItem[] = [
     eyebrow: "MATERIAL UI V9",
     title: "Liquid Glass System",
     description: "Real-time backdrop blur filters with ambient dynamic lighting for modern React interfaces.",
-    action: {
-      label: "View Documentation",
-      href: "#setup",
-    },
+    action: { label: "View Documentation", href: "#setup" },
     sideLabel: "V0.1.1 RELEASE",
   },
 ];
@@ -115,26 +91,17 @@ const heroShowcaseItems: ShowcaseItem[] = [
 const imageOnlyItems: ShowcaseItem[] = [
   {
     id: "img-1",
-    media: {
-      src: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80",
-      alt: "Abstract Geometry 1",
-    },
+    media: { src: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80", alt: "Abstract Geometry 1" },
     title: "",
   },
   {
     id: "img-2",
-    media: {
-      src: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1200&q=80",
-      alt: "Abstract Geometry 2",
-    },
+    media: { src: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1200&q=80", alt: "Abstract Geometry 2" },
     title: "",
   },
   {
     id: "img-3",
-    media: {
-      src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-      alt: "Abstract Beach Vista",
-    },
+    media: { src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80", alt: "Abstract Beach Vista" },
     title: "",
   },
 ];
@@ -143,19 +110,13 @@ const imageOnlyItems: ShowcaseItem[] = [
 const titleDescItems: ShowcaseItem[] = [
   {
     id: "td-1",
-    media: {
-      src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
-      alt: "Microchip Hardware",
-    },
+    media: { src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80", alt: "Microchip Hardware" },
     title: "Next-Gen Performance",
     description: "Zero layout shift, 60 FPS transitions, and native browser hardware acceleration.",
   },
   {
     id: "td-2",
-    media: {
-      src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
-      alt: "Global Data Network",
-    },
+    media: { src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80", alt: "Global Data Network" },
     title: "Global Distribution",
     description: "Seamlessly distributed assets optimized for ultra-fast CDN response times.",
   },
@@ -192,15 +153,7 @@ export const ShowcasePage: React.FC = () => {
   // Notice that we are NOT injecting a Link component
   // into the items. The data remains plain.
   const activeItems = useMemo(() => {
-    return heroShowcaseItems.map((item) => ({
-      ...item,
-      action: item.action
-        ? {
-            ...item.action,
-            color: actionColor,
-          }
-        : undefined,
-    }));
+    return heroShowcaseItems.map((item) => ({ ...item, action: item.action ? { ...item.action, color: actionColor } : undefined }));
   }, [actionColor]);
 
   return (
@@ -289,13 +242,7 @@ const handleNavigate = (item: ShowcaseItem) => {
   showProgress={${showProgress}}
 />`}
       >
-        <Stack
-          sx={{
-            width: "100%",
-            alignItems: "stretch",
-          }}
-          spacing={3}
-        >
+        <Stack sx={{ width: "100%", alignItems: "stretch" }} spacing={3}>
           {/* Controls Bar */}
           <Box
             sx={{
@@ -309,22 +256,8 @@ const handleNavigate = (item: ShowcaseItem) => {
             }}
           >
             {/* Variant Selector */}
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 90,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 90 }}>
                 Variant:
               </Typography>
 
@@ -342,201 +275,83 @@ const handleNavigate = (item: ShowcaseItem) => {
                   "none",
                 ] as ShowcaseVariant[]
               ).map((v) => (
-                <Button
-                  key={v}
-                  size="small"
-                  variant={variant === v ? "contained" : "outlined"}
-                  color="accent"
-                  onClick={() => setVariant(v)}
-                >
+                <Button key={v} size="small" variant={variant === v ? "contained" : "outlined"} color="accent" onClick={() => setVariant(v)}>
                   {v}
                 </Button>
               ))}
             </Stack>
 
             {/* Size Selector */}
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 90,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 90 }}>
                 Size:
               </Typography>
 
               {(["small", "medium", "large", "hero"] as ShowcaseSize[]).map((s) => (
-                <Button
-                  key={s}
-                  size="small"
-                  variant={size === s ? "contained" : "outlined"}
-                  color="primary"
-                  onClick={() => setSize(s)}
-                >
+                <Button key={s} size="small" variant={size === s ? "contained" : "outlined"} color="primary" onClick={() => setSize(s)}>
                   {s}
                 </Button>
               ))}
             </Stack>
 
             {/* Transition Selector */}
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 90,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 90 }}>
                 Transition:
               </Typography>
 
               {(["cinematic", "fade", "slide"] as ShowcaseTransition[]).map((t) => (
-                <Button
-                  key={t}
-                  size="small"
-                  variant={transition === t ? "contained" : "outlined"}
-                  color="secondary"
-                  onClick={() => setTransition(t)}
-                >
+                <Button key={t} size="small" variant={transition === t ? "contained" : "outlined"} color="secondary" onClick={() => setTransition(t)}>
                   {t}
                 </Button>
               ))}
             </Stack>
 
             {/* Navigation Style Selector */}
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 90,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 90 }}>
                 Navigation:
               </Typography>
 
               {(["vertical", "dots", "none"] as ShowcaseNavigation[]).map((n) => (
-                <Button
-                  key={n}
-                  size="small"
-                  variant={navigation === n ? "contained" : "outlined"}
-                  color="accent"
-                  onClick={() => setNavigation(n)}
-                >
+                <Button key={n} size="small" variant={navigation === n ? "contained" : "outlined"} color="accent" onClick={() => setNavigation(n)}>
                   {n}
                 </Button>
               ))}
             </Stack>
 
             {/* Radius Selector */}
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 90,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 90 }}>
                 Radius:
               </Typography>
 
               {(["square", "rounded", "soft"] as ShowcaseRadius[]).map((r) => (
-                <Button
-                  key={r}
-                  size="small"
-                  variant={radius === r ? "contained" : "outlined"}
-                  color="primary"
-                  onClick={() => setRadius(r)}
-                >
+                <Button key={r} size="small" variant={radius === r ? "contained" : "outlined"} color="primary" onClick={() => setRadius(r)}>
                   {r}
                 </Button>
               ))}
             </Stack>
 
             {/* Action Color Selector */}
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontWeight: 700,
-                  minWidth: 90,
-                }}
-              >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700, minWidth: 90 }}>
                 CTA Color:
               </Typography>
 
               {(["primary", "secondary", "accent", "glass"] as ShowcaseButtonColor[]).map((c) => (
-                <Button
-                  key={c}
-                  size="small"
-                  variant={actionColor === c ? "contained" : "outlined"}
-                  color="accent"
-                  onClick={() => setActionColor(c)}
-                >
+                <Button key={c} size="small" variant={actionColor === c ? "contained" : "outlined"} color="accent" onClick={() => setActionColor(c)}>
                   {c}
                 </Button>
               ))}
             </Stack>
 
             {/* Boolean Toggles */}
-            <Stack
-              direction="row"
-              spacing={3}
-              sx={{
-                flexWrap: "wrap",
-                pt: 1,
-              }}
-            >
+            <Stack direction="row" spacing={3} sx={{ flexWrap: "wrap", pt: 1 }}>
               <FormControlLabel
                 control={<Switch size="small" checked={autoplay} onChange={(e) => setAutoplay(e.target.checked)} />}
                 label={
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      fontWeight: 600,
-                    }}
-                  >
+                  <Typography variant="caption" sx={{ fontWeight: 600 }}>
                     Autoplay
                   </Typography>
                 }
@@ -545,28 +360,16 @@ const handleNavigate = (item: ShowcaseItem) => {
               <FormControlLabel
                 control={<Switch size="small" checked={showArrows} onChange={(e) => setShowArrows(e.target.checked)} />}
                 label={
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      fontWeight: 600,
-                    }}
-                  >
+                  <Typography variant="caption" sx={{ fontWeight: 600 }}>
                     Arrows
                   </Typography>
                 }
               />
 
               <FormControlLabel
-                control={
-                  <Switch size="small" checked={showProgress} onChange={(e) => setShowProgress(e.target.checked)} />
-                }
+                control={<Switch size="small" checked={showProgress} onChange={(e) => setShowProgress(e.target.checked)} />}
                 label={
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      fontWeight: 600,
-                    }}
-                  >
+                  <Typography variant="caption" sx={{ fontWeight: 600 }}>
                     Progress Bar
                   </Typography>
                 }
@@ -575,12 +378,7 @@ const handleNavigate = (item: ShowcaseItem) => {
           </Box>
 
           {/* Render Active Showcase */}
-          <Box
-            sx={{
-              width: "100%",
-              overflow: "hidden",
-            }}
-          >
+          <Box sx={{ width: "100%", overflow: "hidden" }}>
             <Showcase
               items={activeItems}
               onNavigate={(item) => {
@@ -638,13 +436,7 @@ const imageOnlyItems: ShowcaseItem[] = [
   transition="fade"
 />`}
       >
-        <Box
-          sx={{
-            width: "100%",
-            borderRadius: "20px",
-            overflow: "hidden",
-          }}
-        >
+        <Box sx={{ width: "100%", borderRadius: "20px", overflow: "hidden" }}>
           <Showcase items={imageOnlyItems} size="medium" navigation="dots" transition="fade" interval={4000} />
         </Box>
       </DemoBlock>
@@ -687,13 +479,7 @@ const titleDescItems: ShowcaseItem[] = [
   transition="cinematic"
 />`}
       >
-        <Box
-          sx={{
-            width: "100%",
-            borderRadius: "20px",
-            overflow: "hidden",
-          }}
-        >
+        <Box sx={{ width: "100%", borderRadius: "20px", overflow: "hidden" }}>
           <Showcase items={titleDescItems} size="medium" navigation="vertical" transition="cinematic" interval={5000} />
         </Box>
       </DemoBlock>
@@ -717,11 +503,7 @@ const titleDescItems: ShowcaseItem[] = [
 />`}
       >
         <Box
-          sx={{
-            p: 3,
-            borderRadius: "24px",
-            backgroundImage: "linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(168, 85, 247, 0.4) 100%)",
-          }}
+          sx={{ p: 3, borderRadius: "24px", backgroundImage: "linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(168, 85, 247, 0.4) 100%)" }}
         >
           <Showcase
             items={heroShowcaseItems}
@@ -793,26 +575,13 @@ export function ShowcaseClient({
               border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
-            <Typography
-              variant="subtitle1"
-              sx={{
-                fontWeight: 700,
-                mb: 1,
-              }}
-            >
+            <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
               How it works
             </Typography>
 
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{
-                mb: 2,
-                lineHeight: 1.8,
-              }}
-            >
-              Showcase does not know about Next.js routing. Your API returns framework-agnostic data, while the Next.js
-              application provides the routing implementation and optional image renderer.
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
+              Showcase does not know about Next.js routing. Your API returns framework-agnostic data, while the Next.js application provides the
+              routing implementation and optional image renderer.
             </Typography>
 
             <Stack spacing={1}>
@@ -825,8 +594,7 @@ export function ShowcaseClient({
               </Typography>
 
               <Typography variant="body2">
-                <strong>3. onNavigate</strong> → Showcase prevents native navigation and gives the application the
-                navigation event.
+                <strong>3. onNavigate</strong> → Showcase prevents native navigation and gives the application the navigation event.
               </Typography>
 
               <Typography variant="body2">
@@ -851,40 +619,16 @@ export function ShowcaseClient({
               border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
-            <Typography
-              variant="overline"
-              sx={{
-                display: "block",
-                mb: 1.5,
-                fontWeight: 700,
-              }}
-            >
+            <Typography variant="overline" sx={{ display: "block", mb: 1.5, fontWeight: 700 }}>
               01 — API DATA
             </Typography>
 
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{
-                mb: 2,
-                lineHeight: 1.7,
-              }}
-            >
-              Your backend only needs to return serializable data. There is no <code>Link</code>, <code>Image</code>, or
-              other React component inside the response.
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7 }}>
+              Your backend only needs to return serializable data. There is no <code>Link</code>, <code>Image</code>, or other React component inside
+              the response.
             </Typography>
 
-            <Typography
-              component="pre"
-              variant="body2"
-              sx={{
-                m: 0,
-                overflowX: "auto",
-                fontFamily: "monospace",
-                lineHeight: 1.7,
-                whiteSpace: "pre",
-              }}
-            >
+            <Typography component="pre" variant="body2" sx={{ m: 0, overflowX: "auto", fontFamily: "monospace", lineHeight: 1.7, whiteSpace: "pre" }}>
               {`
 {
   "id": "originals",
@@ -905,20 +649,8 @@ export function ShowcaseClient({
               Flow
               ---------------------------------------------------------- */}
 
-          <Box
-            sx={{
-              textAlign: "center",
-              py: 0.5,
-            }}
-          >
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{
-                fontWeight: 700,
-                letterSpacing: "0.02em",
-              }}
-            >
+          <Box sx={{ textAlign: "center", py: 0.5 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 700, letterSpacing: "0.02em" }}>
               ↓ plain JSON
             </Typography>
           </Box>
@@ -935,40 +667,16 @@ export function ShowcaseClient({
               border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
-            <Typography
-              variant="overline"
-              sx={{
-                display: "block",
-                mb: 1.5,
-                fontWeight: 700,
-              }}
-            >
+            <Typography variant="overline" sx={{ display: "block", mb: 1.5, fontWeight: 700 }}>
               02 — SHOWCASE
             </Typography>
 
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{
-                mb: 2,
-                lineHeight: 1.7,
-              }}
-            >
-              Showcase always renders the full media area as a semantic <code>&lt;a href="..."&gt;</code>. It prevents
-              the browser's default navigation and calls <code>onNavigate</code> instead.
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7 }}>
+              Showcase always renders the full media area as a semantic <code>&lt;a href="..."&gt;</code>. It prevents the browser's default
+              navigation and calls <code>onNavigate</code> instead.
             </Typography>
 
-            <Typography
-              component="pre"
-              variant="body2"
-              sx={{
-                m: 0,
-                overflowX: "auto",
-                fontFamily: "monospace",
-                lineHeight: 1.7,
-                whiteSpace: "pre",
-              }}
-            >
+            <Typography component="pre" variant="body2" sx={{ m: 0, overflowX: "auto", fontFamily: "monospace", lineHeight: 1.7, whiteSpace: "pre" }}>
               {`<Showcase
   items={items}
   onNavigate={(item) => {
@@ -990,40 +698,15 @@ export function ShowcaseClient({
               border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
-            <Typography
-              variant="overline"
-              sx={{
-                display: "block",
-                mb: 1.5,
-                fontWeight: 700,
-              }}
-            >
+            <Typography variant="overline" sx={{ display: "block", mb: 1.5, fontWeight: 700 }}>
               03 — NEXT.JS CLIENT ADAPTER
             </Typography>
 
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{
-                mb: 2,
-                lineHeight: 1.7,
-              }}
-            >
-              The client adapter owns the actual Next.js navigation. This keeps routing concerns outside the reusable UI
-              component.
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7 }}>
+              The client adapter owns the actual Next.js navigation. This keeps routing concerns outside the reusable UI component.
             </Typography>
 
-            <Typography
-              component="pre"
-              variant="body2"
-              sx={{
-                m: 0,
-                overflowX: "auto",
-                fontFamily: "monospace",
-                lineHeight: 1.8,
-                whiteSpace: "pre",
-              }}
-            >
+            <Typography component="pre" variant="body2" sx={{ m: 0, overflowX: "auto", fontFamily: "monospace", lineHeight: 1.8, whiteSpace: "pre" }}>
               {`"use client";
 
 import Image from "next/image";
@@ -1055,14 +738,7 @@ const router = useRouter();
               border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
-            <Typography
-              variant="overline"
-              sx={{
-                display: "block",
-                mb: 1.5,
-                fontWeight: 700,
-              }}
-            >
+            <Typography variant="overline" sx={{ display: "block", mb: 1.5, fontWeight: 700 }}>
               04 — WHY
             </Typography>
 
@@ -1080,13 +756,11 @@ const router = useRouter();
               </Typography>
 
               <Typography variant="body2">
-                <strong>Framework-safe:</strong> Next.js, React Router, Remix, or another application can provide its
-                own navigation logic.
+                <strong>Framework-safe:</strong> Next.js, React Router, Remix, or another application can provide its own navigation logic.
               </Typography>
 
               <Typography variant="body2">
-                <strong>Application-owned routing:</strong> The reusable component does not need to know which router
-                the application uses.
+                <strong>Application-owned routing:</strong> The reusable component does not need to know which router the application uses.
               </Typography>
             </Stack>
           </Box>
@@ -1103,28 +777,11 @@ const router = useRouter();
               border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
-            <Typography
-              variant="overline"
-              sx={{
-                display: "block",
-                mb: 1.5,
-                fontWeight: 700,
-              }}
-            >
+            <Typography variant="overline" sx={{ display: "block", mb: 1.5, fontWeight: 700 }}>
               05 — ARCHITECTURE
             </Typography>
 
-            <Typography
-              component="pre"
-              variant="body2"
-              sx={{
-                m: 0,
-                overflowX: "auto",
-                fontFamily: "monospace",
-                lineHeight: 1.8,
-                whiteSpace: "pre",
-              }}
-            >
+            <Typography component="pre" variant="body2" sx={{ m: 0, overflowX: "auto", fontFamily: "monospace", lineHeight: 1.8, whiteSpace: "pre" }}>
               {`Jivico API
     ↓
 plain JSON
@@ -1163,40 +820,15 @@ Next.js router
               border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.10)"}`,
             }}
           >
-            <Typography
-              variant="overline"
-              sx={{
-                display: "block",
-                mb: 1.5,
-                fontWeight: 700,
-              }}
-            >
+            <Typography variant="overline" sx={{ display: "block", mb: 1.5, fontWeight: 700 }}>
               MINIMAL USAGE
             </Typography>
 
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{
-                mb: 2,
-                lineHeight: 1.7,
-              }}
-            >
-              The reusable component only needs the data and navigation callback. Next.js-specific routing stays at the
-              application boundary.
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7 }}>
+              The reusable component only needs the data and navigation callback. Next.js-specific routing stays at the application boundary.
             </Typography>
 
-            <Typography
-              component="pre"
-              variant="body2"
-              sx={{
-                m: 0,
-                overflowX: "auto",
-                fontFamily: "monospace",
-                lineHeight: 1.7,
-                whiteSpace: "pre",
-              }}
-            >
+            <Typography component="pre" variant="body2" sx={{ m: 0, overflowX: "auto", fontFamily: "monospace", lineHeight: 1.7, whiteSpace: "pre" }}>
               {`<Showcase
   items={items}
   onNavigate={(item) => {
@@ -1209,18 +841,8 @@ Next.js router
             </Typography>
           </Box>
 
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            sx={{
-              display: "block",
-              textAlign: "center",
-              px: 2,
-              lineHeight: 1.7,
-            }}
-          >
-            Keep API responses framework-agnostic. Let Showcase provide semantic links while the consuming application
-            owns actual navigation.
+          <Typography variant="caption" color="text.secondary" sx={{ display: "block", textAlign: "center", px: 2, lineHeight: 1.7 }}>
+            Keep API responses framework-agnostic. Let Showcase provide semantic links while the consuming application owns actual navigation.
           </Typography>
         </Stack>
       </DemoBlock>
