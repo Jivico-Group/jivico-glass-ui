@@ -457,7 +457,7 @@ export const VisualViewer = ({
           overflow: "hidden",
           isolation: "isolate",
           borderRadius: radiusValue,
-          bgcolor: theme.palette.mode === "dark" ? "#303030" : "transparent",
+          bgcolor: "background.paper",
           userSelect: "none",
           WebkitUserSelect: "none",
           touchAction: swipe ? "pan-y" : "auto",
@@ -567,7 +567,7 @@ export const VisualViewer = ({
             height: "100%",
             overflow: "hidden",
             borderRadius: resolvedThumbnailPosition === "bottom" ? radiusValue : radiusValue,
-            bgcolor: theme.palette.mode === "dark" ? "#303030" : "transparent",
+            bgcolor: "background.default",
             cursor: isZoomed ? "zoom-out" : zoom ? "zoom-in" : "default",
           }}
           onClick={() => {
