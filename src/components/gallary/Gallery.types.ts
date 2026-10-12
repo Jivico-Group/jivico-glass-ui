@@ -141,6 +141,13 @@ export interface GalleryProps<T> {
   imageFit?: GalleryImageFit;
 
   /**
+   * Slightly zooms the image internally on card hover.
+   * Accepts a boolean (defaults to 1.05) or a custom number (e.g. 1.06).
+   * Default: false
+   */
+  imageZoomOnHover?: boolean | number;
+
+  /**
    * Radius applied to the built-in image/item structure.
    */
   radius?: GalleryRadius;

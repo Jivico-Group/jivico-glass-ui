@@ -1,16 +1,13 @@
 "use client";
 
-import * as React from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import { GalleryProps } from "./Gallery.types";
 
 const radiusMap = { square: 0, rounded: 0.75, soft: 1 } as const;
 
 function renderNativeImage<T>(src: string | undefined, alt: string | undefined, imageFit: GalleryProps<T>["imageFit"]) {
-  if (!src) {
-    return null;
-  }
-
+  if (!src) return null;
   return <Box component="img" src={src} alt={alt ?? ""} sx={{ display: "block", width: "100%", height: "100%", objectFit: imageFit ?? "cover" }} />;
 }
 
@@ -35,6 +32,7 @@ export function Gallery<T>({
   alignItems = "stretch",
   imageAspectRatio = "4 / 5",
   imageFit = "cover",
+  imageZoomOnHover = false,
   radius = "soft",
   itemSx,
   imageSx,
@@ -74,9 +72,7 @@ export function Gallery<T>({
         const isInteractive = Boolean(href || onNavigate);
 
         const handleItemNavigation = (event: React.MouseEvent<HTMLElement>) => {
-          if (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1) {
-            return;
-          }
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1) return;
           if (onNavigate) {
             event.preventDefault();
             event.stopPropagation();
@@ -85,7 +81,6 @@ export function Gallery<T>({
         };
 
         const renderContext = { item, index, href, onNavigate: isInteractive ? handleItemNavigation : undefined };
-
         if (renderItem) {
           return (
             <Box key={key} sx={{ minWidth: 0, width: "100%", ...itemSx }}>
@@ -93,9 +88,24 @@ export function Gallery<T>({
             </Box>
           );
         }
+        const zoomScale = typeof imageZoomOnHover === "number" ? imageZoomOnHover : 1.05;
 
         return (
-          <Box key={key} sx={{ minWidth: 0, width: "100%", overflow: "hidden", borderRadius: radiusMap[radius], ...itemSx }}>
+          <Box
+            key={key}
+            sx={{
+              minWidth: 0,
+              width: "100%",
+              overflow: "hidden",
+              borderRadius: radiusMap[radius],
+              ...(imageZoomOnHover && {
+                "&:hover .jivico-gallery-zoom-target": {
+                  transform: `scale(${zoomScale})`,
+                },
+              }),
+              ...itemSx,
+            }}
+          >
             <Box
               sx={{
                 position: "relative",
@@ -107,9 +117,21 @@ export function Gallery<T>({
                 ...imageSx,
               }}
             >
-              {renderImage
-                ? renderImage({ item, index, src, alt, href, onNavigate: isInteractive ? handleItemNavigation : undefined })
-                : renderNativeImage(src, alt, imageFit)}
+              <Box
+                className="jivico-gallery-zoom-target"
+                sx={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  transition: imageZoomOnHover ? "transform 450ms cubic-bezier(0.25, 1, 0.5, 1)" : undefined,
+                  willChange: imageZoomOnHover ? "transform" : undefined,
+                }}
+              >
+                {renderImage
+                  ? renderImage({ item, index, src, alt, href, onNavigate: isInteractive ? handleItemNavigation : undefined })
+                  : renderNativeImage(src, alt, imageFit)}
+              </Box>
 
               {href && (
                 <Box
