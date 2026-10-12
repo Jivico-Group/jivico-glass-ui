@@ -148,7 +148,13 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
               {item.description}
             </Typography>
           )}
-          <Button sx={{ width: 100 }} size="large" variant="outlined" color="dark-glass" endIcon={<ArrowRight />}>
+          <Button
+            size="large"
+            variant="outlined"
+            color="dark-glass"
+            sx={{ alignSelf: "flex-start", width: "fit-content", mt: 2.5 }}
+            endIcon={<ArrowRight />}
+          >
             Explore {displayName}
           </Button>
         </Box>
