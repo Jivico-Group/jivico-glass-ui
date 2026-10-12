@@ -22,3 +22,4 @@ export * from "./visualViewer/index.js";
 export * from "./gallary/index.js";
 export * from "./statusShowcase/index.js";
 export * from "./loading/index.js";
+export * from "./expanseGrid/index.js";

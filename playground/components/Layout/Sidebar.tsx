@@ -42,6 +42,7 @@ export const NAV_SECTIONS: NavSection[] = [
   {
     title: "Navigation",
     items: [
+      { id: "expanse-grid", label: "ExpanseGrid (Bento Grid)", badge: "NEW" },
       { id: "rails", label: "Rails (Horizontal Rail)", badge: "NEW" },
       { id: "showcase", label: "Showcase Hero Slider", badge: "NEW" },
       { id: "spotlight", label: "Spotlight Hero Banner", badge: "NEW" },

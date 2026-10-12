@@ -12,6 +12,7 @@ import { ChipsPage } from "./components/Pages/ChipsPage.js";
 import { ColorsPage } from "./components/Pages/ColorsPage.js";
 import { DataDisplayPage } from "./components/Pages/DataDisplayPage.js";
 import { DialogsPage } from "./components/Pages/DialogsPage.js";
+import { ExpanseGridPage } from "./components/Pages/ExpanseGridPage.js";
 import { FeedbackPage } from "./components/Pages/FeedbackPage.js";
 import { GalleryPage } from "./components/Pages/GalleryPage.js";
 import { InputsPage } from "./components/Pages/InputsPage.js";
@@ -40,6 +41,14 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "brand-kit", title: "Brand Kit Palette" },
     { id: "installation", title: "Installation" },
     { id: "setup", title: "Theme Setup" },
+  ],
+  "expanse-grid": [
+    { id: "interactive-expanse-grid", title: "Interactive Playground" },
+    { id: "single-layout", title: "1. Single Item (1)" },
+    { id: "dual-layout", title: "2. Dual Items (2)" },
+    { id: "feature-two-layout", title: "3. Three Items (3)" },
+    { id: "quad-layout", title: "4. Four Items (4)" },
+    { id: "feature-four-layout", title: "5. Five Items (5)" },
   ],
   rails: [
     { id: "interactive-rails", title: "Interactive Playground" },
@@ -294,6 +303,8 @@ export default function App() {
         return <MenusPage />;
       case "showcase":
         return <ShowcasePage />;
+      case "expanse-grid":
+        return <ExpanseGridPage />;
       case "rails":
         return <RailsPage />;
       case "spotlight":
