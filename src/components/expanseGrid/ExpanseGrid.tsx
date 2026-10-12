@@ -16,9 +16,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
   const isMobile = useMediaQuery((theme: any) => theme.breakpoints.down("md"));
   const safeItems = useMemo(() => items.filter(Boolean).slice(0, 5), [items]);
   const count = safeItems.length;
-
   if (!count) return null;
-
   const layout: ExpanseLayout = useMemo(() => {
     if (count === 1) return "single";
     if (count === 2) return "dual";
@@ -28,7 +26,6 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
   }, [count]);
 
   const radiusValue = getRadius(radius);
-  // Match by isFeatured or isFeaturedOnHome
   const featured = safeItems.find((i) => i.isFeatured ?? i.isFeaturedOnHome) ?? safeItems[0];
   const featuredKey = featured.id || featured.value || featured.href || featured.path || featured.name || featured.title || "";
   const rest = safeItems.filter((i) => {
@@ -56,9 +53,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
   const Card = ({ item, featured = false }: { item: ExpanseItem; featured?: boolean }) => {
     const displayName = item.title || item.name || "";
     const targetUrl = item.href || item.path;
-    // Clean repetitive tagline string if "Jivico <Name>" is appended redundantly
     const cleanTagline = displayName ? item.tagline?.replace(new RegExp(` Jivico ${displayName}$`, "i"), "") : item.tagline;
-
     return (
       <Box
         onClick={() => onNavigate?.(item)}
@@ -72,7 +67,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
           overflow: "hidden",
           borderRadius: radiusValue,
           isolation: "isolate",
-          bgcolor: "#111",
+          bgcolor: "#111111",
           cursor: "pointer",
           textDecoration: "none",
           display: "block",
@@ -82,7 +77,6 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
       >
         <Box sx={{ position: "absolute", inset: 0, zIndex: 1 }}>
           <RenderImage item={item} />
-          {/* Deepened vignette gradient for premium text contrast */}
           <Box
             sx={{
               position: "absolute",
@@ -101,7 +95,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
             flexDirection: "column",
             justifyContent: "flex-end",
             p: { xs: 3, md: featured ? 5 : 4 },
-            color: "#fff",
+            color: "#ffffff",
           }}
         >
           {item.badgeText && (
@@ -112,7 +106,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
                 fontWeight: 700,
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
-                color: "#B08D57", // Muted Gold upgrade
+                color: "#ffffff",
                 mb: 1.5,
                 lineHeight: 1,
               }}
@@ -143,7 +137,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
                 fontSize: { xs: "0.85rem", md: "0.90rem" },
                 fontWeight: 400,
                 lineHeight: 1.5,
-                color: "rgba(255,255,255,0.75)", // Reduced opacity for hierarchy
+                color: "rgba(255,255,255,0.75)",
                 maxWidth: "34ch",
                 display: "-webkit-box",
                 WebkitLineClamp: 2,
@@ -154,7 +148,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
               {item.description}
             </Typography>
           )}
-          <Button size="large" variant="outlined" color="glass" endIcon={<ArrowRight />}>
+          <Button size="large" variant="outlined" color="dark-glass" endIcon={<ArrowRight />}>
             Explore {displayName}
           </Button>
         </Box>
@@ -164,7 +158,6 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
 
   const getItemKey = (item: ExpanseItem, index: number) =>
     item.id || item.value || item.href || item.path || item.name || item.title || `item-${index}`;
-
   return (
     <Box className={className} sx={{ width: "100%", mx: "auto", ...sx }}>
       {layout === "single" && <Card item={featured} featured />}
