@@ -100,7 +100,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
                 fontWeight: 700,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#B08D57",
+                color: "#FFFFFF",
                 mb: 1.25,
                 lineHeight: 1,
               }}
