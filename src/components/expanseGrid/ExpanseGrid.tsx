@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { ArrowRight } from "lucide-react";
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import type { ExpanseGridProps, ExpanseLayout } from "./ExpanseGrid.types";
 
 const getRadius = (r: ExpanseGridProps["radius"]) => {
@@ -13,11 +13,9 @@ const getRadius = (r: ExpanseGridProps["radius"]) => {
 };
 
 export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2, onNavigate, className, sx }: ExpanseGridProps) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery((theme: any) => theme.breakpoints.down("md"));
   const safeItems = useMemo(() => items.filter(Boolean).slice(0, 5), [items]);
   const count = safeItems.length;
-
   if (!count) return null;
 
   const layout: ExpanseLayout = useMemo(() => {
@@ -32,7 +30,23 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
   const featured = safeItems.find((i) => i.isFeatured) ?? safeItems[0];
   const rest = safeItems.filter((i) => i.id !== featured.id);
 
-  const Card = ({ item, size = "default", featured = false }: { item: any; size?: "default" | "small"; featured?: boolean }) => {
+  const RenderImage = ({ item }: { item: any }) => {
+    const src = isMobile && item.mobileCoverImage ? item.mobileCoverImage : item.coverImage;
+    if (ImageComponent) {
+      return (
+        <ImageComponent
+          src={src}
+          alt={item.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          style={{ objectFit: "cover" }}
+        />
+      );
+    }
+    return <Box component="img" src={src} alt={item.title} sx={{ width: "100%", height: "100%", objectFit: "cover" }} />;
+  };
+
+  const Card = ({ item, featured = false }: { item: any; featured?: boolean }) => {
     return (
       <Box
         onClick={() => onNavigate?.(item)}
@@ -42,41 +56,26 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
           position: "relative",
           width: "100%",
           height: "100%",
-          minHeight: { xs: featured ? 420 : 280, md: featured ? 520 : 320 },
+          minHeight: { xs: featured ? 460 : 340, md: featured ? 560 : 380 },
           overflow: "hidden",
           borderRadius: radiusValue,
           isolation: "isolate",
-          bgcolor: "background.default",
+          bgcolor: "#111",
           cursor: "pointer",
           textDecoration: "none",
           display: "block",
-          "& img": { transition: "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1), filter 800ms ease", willChange: "transform" },
+          "& img": { transition: "transform 1200ms cubic-bezier(0.16,1,0.3,1)", willChange: "transform" },
           "&:hover img": { transform: "scale(1.06)" },
+          "&:hover.cta": { bgcolor: "#fff", color: "#111", borderColor: "#fff" },
         }}
       >
         <Box sx={{ position: "absolute", inset: 0, zIndex: 1 }}>
-          {ImageComponent ? (
-            <ImageComponent
-              src={item.coverImage}
-              alt={item.title}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              style={{ objectFit: "cover" }}
-            />
-          ) : (
-            <Box
-              component="img"
-              src={isMobile && item.mobileCoverImage ? item.mobileCoverImage : item.coverImage}
-              alt={item.title}
-              sx={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          )}
+          <RenderImage item={item} />
           <Box
             sx={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(180deg, rgba(0,0,0,0.05) 20%, rgba(0,0,0,0.72) 100%)",
-              transition: "opacity 600ms ease",
+              background: "linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.08) 38%, rgba(0,0,0,0.82) 100%)",
             }}
           />
         </Box>
@@ -89,35 +88,81 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-end",
-            p: { xs: 2.5, md: featured ? 4 : 3 },
+            p: { xs: 3, md: featured ? 4.5 : 3.5 },
             color: "#fff",
           }}
         >
           {item.badgeText && (
-            <Typography sx={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#FFF", mb: 0.75 }}>
+            <Typography
+              sx={{
+                fontFamily: '"Space Grotesk", sans-serif',
+                fontSize: "0.70rem",
+                fontWeight: 700,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#B08D57",
+                mb: 1.25,
+                lineHeight: 1,
+              }}
+            >
               {item.badgeText}
             </Typography>
           )}
           <Typography
             sx={{
-              fontSize: { xs: featured ? "1.6rem" : "1.15rem", md: featured ? "2.1rem" : "1.25rem" },
-              fontWeight: 550,
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
-              mb: 0.5,
+              fontFamily: '"Space Grotesk", sans-serif',
+              fontSize: { xs: featured ? "1.85rem" : "1.35rem", md: featured ? "2.45rem" : "1.6rem" },
+              fontWeight: 700,
+              lineHeight: 0.95,
+              letterSpacing: "-0.03em",
+              maxWidth: "12ch",
+              textWrap: "balance",
             }}
           >
-            {item.tagline ?? item.title}
+            {item.tagline}
           </Typography>
           {item.description && (
             <Typography
-              sx={{ fontSize: "0.85rem", opacity: 0.85, lineHeight: 1.4, maxWidth: 380, display: { xs: featured ? "block" : "none", md: "block" } }}
+              sx={{
+                fontFamily: '"Space Grotesk", sans-serif',
+                mt: 1,
+                fontSize: { xs: "0.88rem", md: "0.92rem" },
+                fontWeight: 400,
+                lineHeight: 1.5,
+                opacity: 0.88,
+                maxWidth: "32ch",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }}
             >
               {item.description}
             </Typography>
           )}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 0.75, mt: 1.5, fontSize: "0.78rem", fontWeight: 600, letterSpacing: "0.04em" }}>
-            EXPLORE {item.title.toUpperCase()} <ArrowRight size={14} />
+          <Box
+            className="cta"
+            sx={{
+              mt: 2.5,
+              alignSelf: "flex-start",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 1,
+              px: 2.2,
+              height: 36,
+              borderRadius: 999,
+              border: "1px solid rgba(255,255,255,0.28)",
+              bgcolor: "rgba(255,255,255,0.10)",
+              backdropFilter: "blur(10px)",
+              fontFamily: '"Space Grotesk", sans-serif',
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              transition: "all 250ms ease",
+            }}
+          >
+            Explore {item.name} <ArrowRight size={14} />
           </Box>
         </Box>
       </Box>
@@ -126,9 +171,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
 
   return (
     <Box className={className} sx={{ width: "100%", mx: "auto", ...sx }}>
-      {/* 1 ITEM */}
       {layout === "single" && <Card item={featured} featured />}
-      {/* 2 ITEMS */}
       {layout === "dual" && (
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap }}>
           {safeItems.map((i) => (
@@ -136,20 +179,16 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
           ))}
         </Box>
       )}
-
-      {/* 3 ITEMS - 60% + 2 stacked */}
       {layout === "feature-two" && (
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.6fr 1fr" }, gap }}>
           <Card item={featured} featured />
           <Box sx={{ display: "grid", gridTemplateRows: "1fr 1fr", gap }}>
             {rest.slice(0, 2).map((i) => (
-              <Card key={i.id} item={i} size="small" />
+              <Card key={i.id} item={i} />
             ))}
           </Box>
         </Box>
       )}
-
-      {/* 4 ITEMS - 2x2 */}
       {layout === "quad" && (
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap }}>
           {safeItems.map((i) => (
@@ -157,14 +196,12 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
           ))}
         </Box>
       )}
-
-      {/* 5 ITEMS - 52% + 2x2 */}
       {layout === "feature-four" && (
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.15fr 1fr" }, gap }}>
           <Card item={featured} featured />
           <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap }}>
             {rest.slice(0, 4).map((i) => (
-              <Card key={i.id} item={i} size="small" />
+              <Card key={i.id} item={i} />
             ))}
           </Box>
         </Box>
