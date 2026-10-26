@@ -11,7 +11,44 @@ export const getAutocompleteOverrides = (palette: JivicoPalette, isDark: boolean
 
       paper: { ...liquidGlassPopupRecipe(isDark) },
 
-      input: { "@media (max-width: 599.95px)": { fontSize: "16px" } },
+      root: {
+        "& .MuiOutlinedInput-root": {
+          borderRadius: 9999,
+          paddingLeft: "14px",
+          paddingRight: "40px !important",
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderRadius: 9999,
+          },
+        },
+        "& .MuiOutlinedInput-root.MuiInputBase-sizeSmall": {
+          paddingLeft: "12px",
+          paddingRight: "36px !important",
+        },
+      },
+
+      inputRoot: {
+        "&.MuiOutlinedInput-root": {
+          borderRadius: 9999,
+          paddingLeft: "14px",
+          paddingRight: "40px !important",
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderRadius: 9999,
+          },
+        },
+        "&.MuiOutlinedInput-root.MuiInputBase-sizeSmall": {
+          paddingLeft: "12px",
+          paddingRight: "36px !important",
+        },
+      },
+
+      input: {
+        paddingLeft: "4px !important",
+        "@media (max-width: 599.95px)": { fontSize: "16px" },
+      },
+
+      endAdornment: {
+        right: "14px !important",
+      },
 
       listbox: { backgroundColor: "transparent !important", backgroundImage: "none !important", padding: "4px !important" },
 
@@ -38,7 +75,7 @@ export const getAutocompleteOverrides = (palette: JivicoPalette, isDark: boolean
 
       loading: { color: palette.text.secondary, fontSize: "0.875rem", padding: "12px 16px", backgroundColor: "transparent !important" },
 
-      tag: { margin: "3px" },
+      tag: { margin: "3px", borderRadius: 9999 },
 
       clearIndicator: {
         color: palette.text.secondary,

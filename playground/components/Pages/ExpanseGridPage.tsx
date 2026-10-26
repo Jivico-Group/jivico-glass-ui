@@ -27,6 +27,7 @@ import { DemoBlock } from "../Common/DemoBlock.js";
 const SAMPLE_EXPANSE_ITEMS: ExpanseItem[] = [
   {
     id: "originals",
+    name: "Originals",
     title: "Originals",
     tagline: "Crafted Without Compromise",
     badgeText: "JIVICO ORIGINALS",
@@ -38,6 +39,7 @@ const SAMPLE_EXPANSE_ITEMS: ExpanseItem[] = [
   },
   {
     id: "freestyle",
+    name: "Freestyle",
     title: "Freestyle",
     tagline: "Your Canvas, Unlimited Expression",
     badgeText: "3D STUDIO ENGINE",
@@ -48,6 +50,7 @@ const SAMPLE_EXPANSE_ITEMS: ExpanseItem[] = [
   },
   {
     id: "lehengas",
+    name: "Lehengas",
     title: "Lehengas",
     tagline: "Timeless Heritage, Modern Grandeur",
     badgeText: "HAUTE COUTURE",
@@ -58,6 +61,7 @@ const SAMPLE_EXPANSE_ITEMS: ExpanseItem[] = [
   },
   {
     id: "ethinix",
+    name: "Ethinix",
     title: "Ethinix",
     tagline: "Everyday Ethnic, Refined Aesthetics",
     badgeText: "FUSION SILHOUETTES",
@@ -68,6 +72,7 @@ const SAMPLE_EXPANSE_ITEMS: ExpanseItem[] = [
   },
   {
     id: "pets",
+    name: "Pets",
     title: "Pets",
     tagline: "Canine & Feline Luxury Loungewear",
     badgeText: "COMPANION WEAR",

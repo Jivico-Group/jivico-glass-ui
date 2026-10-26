@@ -28,6 +28,28 @@ export const getSelectOverrides = (palette: JivicoPalette, isDark: boolean): Com
         },
       },
     },
-    styleOverrides: { icon: { color: palette.text.secondary, transition: "transform 0.2s ease, color 0.2s ease" } },
+    styleOverrides: {
+      select: {
+        borderRadius: 9999,
+        "&.MuiSelect-outlined": {
+          paddingLeft: "16px !important",
+          paddingRight: "36px !important",
+        },
+        "&.MuiSelect-outlined.MuiInputBase-inputSizeSmall": {
+          paddingLeft: "14px !important",
+          paddingRight: "32px !important",
+          paddingTop: "6px !important",
+          paddingBottom: "6px !important",
+        },
+      },
+      icon: {
+        color: palette.text.secondary,
+        right: "12px",
+        transition: "transform 0.2s ease, color 0.2s ease",
+      },
+      iconOpen: {
+        transform: "rotate(180deg)",
+      },
+    },
   },
 });
