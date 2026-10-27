@@ -135,6 +135,32 @@ const { mode, resolvedMode, setGlassMode, toggleGlassMode } = useGlassMode();
 
 - **Colors**: `primary` | `secondary` | `accent` | `glass` | `glass-surface`
 - **Sizes**: `small` (36px) | `medium` (48px) | `large` (56px)
+- **Shape**: Single-line controls render proper round pill (`borderRadius: 9999`) with calibrated lateral padding (`small`: `6px 16px`, `medium`: `10px 20px`, `large`: `14px 24px`). Multiline text fields use `borderRadius: 18px`.
+
+#### `<Select>`
+
+```tsx
+<FormControl size="small" variant="outlined">
+  <Select color="glass" value={val} onChange={handleChange}>
+    <MenuItem value="1">Option 1</MenuItem>
+  </Select>
+</FormControl>
+```
+
+- **Colors**: `primary` | `secondary` | `accent` | `glass` | `glass-surface`
+- **Shape**: Full pill curvature (`borderRadius: 9999`) with right-positioned icon (`right: 12px`) and 16px lateral padding.
+
+#### `<Autocomplete>`
+
+```tsx
+<Autocomplete
+  renderInput={(params) => (
+    <TextField {...params} color="glass" size="small" placeholder="Search..." />
+  )}
+/>
+```
+
+- **Shape**: Full pill curvature (`borderRadius: 9999`) with `right: 14px` adornment placement and `borderRadius: 9999` multi-tag chips.
 
 ---
 
