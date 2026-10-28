@@ -31,10 +31,7 @@ export const getSelectOverrides = (palette: JivicoPalette, isDark: boolean): Com
     styleOverrides: {
       select: {
         borderRadius: 9999,
-        "&.MuiSelect-outlined": {
-          paddingLeft: "16px !important",
-          paddingRight: "36px !important",
-        },
+        "&.MuiSelect-outlined": { paddingLeft: "16px !important", paddingRight: "36px !important" },
         "&.MuiSelect-outlined.MuiInputBase-inputSizeSmall": {
           paddingLeft: "14px !important",
           paddingRight: "32px !important",
@@ -42,14 +39,8 @@ export const getSelectOverrides = (palette: JivicoPalette, isDark: boolean): Com
           paddingBottom: "6px !important",
         },
       },
-      icon: {
-        color: palette.text.secondary,
-        right: "12px",
-        transition: "transform 0.2s ease, color 0.2s ease",
-      },
-      iconOpen: {
-        transform: "rotate(180deg)",
-      },
+      icon: { color: palette.text.secondary, right: "12px", transition: "transform 0.2s ease, color 0.2s ease" },
+      iconOpen: { transform: "rotate(180deg)" },
     },
   },
 });

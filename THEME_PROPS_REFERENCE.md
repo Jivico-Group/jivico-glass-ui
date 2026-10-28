@@ -153,11 +153,7 @@ const { mode, resolvedMode, setGlassMode, toggleGlassMode } = useGlassMode();
 #### `<Autocomplete>`
 
 ```tsx
-<Autocomplete
-  renderInput={(params) => (
-    <TextField {...params} color="glass" size="small" placeholder="Search..." />
-  )}
-/>
+<Autocomplete renderInput={(params) => <TextField {...params} color="glass" size="small" placeholder="Search..." />} />
 ```
 
 - **Shape**: Full pill curvature (`borderRadius: 9999`) with `right: 14px` adornment placement and `borderRadius: 9999` multi-tag chips.

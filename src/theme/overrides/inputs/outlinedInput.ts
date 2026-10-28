@@ -15,9 +15,7 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
 
         return {
           borderRadius: 9999,
-          "&.MuiInputBase-multiline": {
-            borderRadius: 18,
-          },
+          "&.MuiInputBase-multiline": { borderRadius: 18 },
           backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.55)") : palette.glass.buttonBg,
           backdropFilter: isGlass ? "blur(20px) saturate(190%)" : "blur(8px)",
           WebkitBackdropFilter: isGlass ? "blur(20px) saturate(190%)" : "blur(8px)",
@@ -34,19 +32,11 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
             transition: "border-color 0.2s ease, box-shadow 0.2s ease",
           },
 
-          "&.MuiInputBase-multiline .MuiOutlinedInput-notchedOutline": {
-            borderRadius: 18,
-          },
+          "&.MuiInputBase-multiline .MuiOutlinedInput-notchedOutline": { borderRadius: 18 },
 
-          "& .MuiInputAdornment-positionStart": {
-            marginLeft: "6px",
-            marginRight: "4px",
-          },
+          "& .MuiInputAdornment-positionStart": { marginLeft: "6px", marginRight: "4px" },
 
-          "& .MuiInputAdornment-positionEnd": {
-            marginRight: "6px",
-            marginLeft: "4px",
-          },
+          "& .MuiInputAdornment-positionEnd": { marginRight: "6px", marginLeft: "4px" },
 
           "&:hover": { ...(isGlass && { backgroundColor: isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.70)" }) },
 

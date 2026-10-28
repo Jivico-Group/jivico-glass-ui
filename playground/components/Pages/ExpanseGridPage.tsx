@@ -18,10 +18,10 @@ import {
 } from "@mui/material";
 import "../../../src/theme/augmentations.d.ts";
 import { ExpanseGrid } from "../../../src/components/expanseGrid/ExpanseGrid.js";
-import type { ExpanseItem, ExpanseGridProps } from "../../../src/components/expanseGrid/ExpanseGrid.types.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
+import type { ExpanseGridProps, ExpanseItem } from "../../../src/components/expanseGrid/ExpanseGrid.types.js";
 
 // Mock Expanse Items with premium fashion & design imagery
 const SAMPLE_EXPANSE_ITEMS: ExpanseItem[] = [
@@ -95,10 +95,7 @@ export const ExpanseGridPage: React.FC = () => {
 
   // Computed playground items
   const playgroundItems: ExpanseItem[] = useMemo(() => {
-    return SAMPLE_EXPANSE_ITEMS.slice(0, itemCount).map((item, idx) => ({
-      ...item,
-      isFeatured: idx === customFeaturedIndex,
-    }));
+    return SAMPLE_EXPANSE_ITEMS.slice(0, itemCount).map((item, idx) => ({ ...item, isFeatured: idx === customFeaturedIndex }));
   }, [itemCount, customFeaturedIndex]);
 
   return (
@@ -169,11 +166,7 @@ export const ExpanseGridPage: React.FC = () => {
                   <FormLabel sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>
                     Corner Radius
                   </FormLabel>
-                  <Select
-                    value={radius}
-                    onChange={(e) => setRadius(e.target.value as any)}
-                    size="small"
-                  >
+                  <Select value={radius} onChange={(e) => setRadius(e.target.value as any)} size="small">
                     <MenuItem value="square">Square (0px)</MenuItem>
                     <MenuItem value="soft">Soft (14px)</MenuItem>
                     <MenuItem value="rounded">Rounded (16px)</MenuItem>
@@ -185,15 +178,7 @@ export const ExpanseGridPage: React.FC = () => {
                   <FormLabel sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>
                     Grid Gap: {gap * 8}px ({gap})
                   </FormLabel>
-                  <Slider
-                    value={gap}
-                    min={1}
-                    max={4}
-                    step={0.5}
-                    valueLabelDisplay="auto"
-                    onChange={(_, val) => setGap(val as number)}
-                    size="small"
-                  />
+                  <Slider value={gap} min={1} max={4} step={0.5} valueLabelDisplay="auto" onChange={(_, val) => setGap(val as number)} size="small" />
                 </Box>
 
                 {/* Featured Card Selector */}
@@ -202,11 +187,7 @@ export const ExpanseGridPage: React.FC = () => {
                     <FormLabel sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>
                       Anchor Featured Card
                     </FormLabel>
-                    <Select
-                      value={customFeaturedIndex}
-                      onChange={(e) => setCustomFeaturedIndex(Number(e.target.value))}
-                      size="small"
-                    >
+                    <Select value={customFeaturedIndex} onChange={(e) => setCustomFeaturedIndex(Number(e.target.value))} size="small">
                       {SAMPLE_EXPANSE_ITEMS.slice(0, itemCount).map((item, idx) => (
                         <MenuItem key={item.id} value={idx}>
                           Card {idx + 1}: {item.title}
@@ -220,12 +201,7 @@ export const ExpanseGridPage: React.FC = () => {
           </Box>
 
           <Box sx={{ width: "100%", py: 1 }}>
-            <ExpanseGrid
-              items={playgroundItems}
-              radius={radius}
-              gap={gap}
-              onNavigate={(item) => console.log("Navigate to:", item)}
-            />
+            <ExpanseGrid items={playgroundItems} radius={radius} gap={gap} onNavigate={(item) => console.log("Navigate to:", item)} />
           </Box>
         </Stack>
       </DemoBlock>

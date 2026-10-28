@@ -8,50 +8,28 @@ export const getAutocompleteOverrides = (palette: JivicoPalette, isDark: boolean
 
     styleOverrides: {
       popper: { zIndex: 1400 },
-
       paper: { ...liquidGlassPopupRecipe(isDark) },
-
       root: {
         "& .MuiOutlinedInput-root": {
           borderRadius: 9999,
           paddingLeft: "14px",
           paddingRight: "40px !important",
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderRadius: 9999,
-          },
+          "& .MuiOutlinedInput-notchedOutline": { borderRadius: 9999 },
         },
-        "& .MuiOutlinedInput-root.MuiInputBase-sizeSmall": {
-          paddingLeft: "12px",
-          paddingRight: "36px !important",
-        },
+        "& .MuiOutlinedInput-root.MuiInputBase-sizeSmall": { paddingLeft: "12px", paddingRight: "36px !important" },
       },
-
       inputRoot: {
         "&.MuiOutlinedInput-root": {
           borderRadius: 9999,
           paddingLeft: "14px",
           paddingRight: "40px !important",
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderRadius: 9999,
-          },
+          "& .MuiOutlinedInput-notchedOutline": { borderRadius: 9999 },
         },
-        "&.MuiOutlinedInput-root.MuiInputBase-sizeSmall": {
-          paddingLeft: "12px",
-          paddingRight: "36px !important",
-        },
+        "&.MuiOutlinedInput-root.MuiInputBase-sizeSmall": { paddingLeft: "12px", paddingRight: "36px !important" },
       },
-
-      input: {
-        paddingLeft: "4px !important",
-        "@media (max-width: 599.95px)": { fontSize: "16px" },
-      },
-
-      endAdornment: {
-        right: "14px !important",
-      },
-
+      input: { paddingLeft: "4px !important", "@media (max-width: 599.95px)": { fontSize: "16px" } },
+      endAdornment: { right: "14px !important" },
       listbox: { backgroundColor: "transparent !important", backgroundImage: "none !important", padding: "4px !important" },
-
       option: {
         borderRadius: 10,
         padding: "7px 12px",
@@ -59,35 +37,19 @@ export const getAutocompleteOverrides = (palette: JivicoPalette, isDark: boolean
         fontSize: "0.875rem",
         color: palette.text.primary,
         transition: "all 0.15s ease",
-
         '&[data-focus="true"]': { backgroundColor: `${palette.glass.menuItemHover} !important` },
-
         '&[aria-selected="true"]': {
           backgroundColor: `${palette.action.selected} !important`,
           color: `${palette.primary.main} !important`,
           fontWeight: 600,
-
           '&[data-focus="true"]': { backgroundColor: `${palette.action.selected} !important` },
         },
       },
-
       noOptions: { color: palette.text.secondary, fontSize: "0.875rem", padding: "12px 16px", backgroundColor: "transparent !important" },
-
       loading: { color: palette.text.secondary, fontSize: "0.875rem", padding: "12px 16px", backgroundColor: "transparent !important" },
-
       tag: { margin: "3px", borderRadius: 9999 },
-
-      clearIndicator: {
-        color: palette.text.secondary,
-
-        "&:hover": { color: palette.text.primary },
-      },
-
-      popupIndicator: {
-        color: palette.text.secondary,
-
-        "&:hover": { color: palette.text.primary },
-      },
+      clearIndicator: { color: palette.text.secondary, "&:hover": { color: palette.text.primary } },
+      popupIndicator: { color: palette.text.secondary, "&:hover": { color: palette.text.primary } },
     },
   },
 });

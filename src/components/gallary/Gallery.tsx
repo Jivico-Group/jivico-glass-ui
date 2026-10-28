@@ -98,11 +98,7 @@ export function Gallery<T>({
               width: "100%",
               overflow: "hidden",
               borderRadius: radiusMap[radius],
-              ...(imageZoomOnHover && {
-                "&:hover .jivico-gallery-zoom-target": {
-                  transform: `scale(${zoomScale})`,
-                },
-              }),
+              ...(imageZoomOnHover && { "&:hover .jivico-gallery-zoom-target": { transform: `scale(${zoomScale})` } }),
               ...itemSx,
             }}
           >
