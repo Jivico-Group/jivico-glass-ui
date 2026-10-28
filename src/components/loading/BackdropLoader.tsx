@@ -35,17 +35,13 @@ export const BackdropLoader = React.forwardRef<HTMLDivElement, BackdropLoaderPro
     sx,
     ...rest
   },
-  ref
+  ref,
 ) {
   const theme = useTheme();
   const isDark = theme.palette?.mode === "dark";
 
   // Resolve glassmorphic backdrop background
-  const resolvedBg =
-    backgroundColor ??
-    (isDark
-      ? "rgba(10, 10, 12, 0.72)"
-      : "rgba(255, 255, 255, 0.72)");
+  const resolvedBg = backgroundColor ?? (isDark ? "rgba(10, 10, 12, 0.49)" : "rgba(255, 255, 255, 0.57)");
 
   const resolvedBlur = typeof blur === "number" ? `${blur}px` : blur;
 
@@ -67,9 +63,7 @@ export const BackdropLoader = React.forwardRef<HTMLDivElement, BackdropLoaderPro
         backdropFilter: `blur(${resolvedBlur})`,
         WebkitBackdropFilter: `blur(${resolvedBlur})`,
         color: isDark ? "#F5F5F7" : "#111111",
-        transition: theme.transitions.create(["opacity", "background-color"], {
-          duration: theme.transitions.duration.shorter,
-        }),
+        transition: theme.transitions.create(["opacity", "background-color"], { duration: theme.transitions.duration.shorter }),
         ...backdropProps?.sx,
       }}
       {...backdropProps}
@@ -96,15 +90,7 @@ export const BackdropLoader = React.forwardRef<HTMLDivElement, BackdropLoaderPro
         <Typography
           variant="body2"
           {...messageProps}
-          sx={{
-            color: "inherit",
-            fontWeight: 500,
-            letterSpacing: "0.01em",
-            textAlign: "center",
-            maxWidth: 380,
-            px: 2,
-            ...messageProps?.sx,
-          }}
+          sx={{ color: "inherit", fontWeight: 500, letterSpacing: "0.01em", textAlign: "center", maxWidth: 380, px: 2, ...messageProps?.sx }}
         >
           {message}
         </Typography>
