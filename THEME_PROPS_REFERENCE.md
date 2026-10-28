@@ -436,3 +436,72 @@ const items: ShowcaseItem[] = [
 - `pauseOnHover`: `boolean` (Default: `true`)
 - `showArrows`: `boolean` (Default: `true`)
 - `showProgress`: `boolean` (Default: `true`)
+
+---
+
+## ⏳ 10. Loading Components (`<Loader>` & `<BackdropLoader>`)
+
+### A. `<Loader>` (Reusable Inline / Standalone Loading Indicator)
+
+Production-ready loading indicator supporting two rendering modes:
+1. **Default Mode**: Material UI `CircularProgress` with Apple-style blue `color="info"`.
+2. **Custom Image Mode**: Replaces spinner with browser-compatible SVG, animated SVG, WebP, animated WebP, GIF, PNG, or JPG.
+
+#### Theme-Aware Source Selection Rules
+
+| `src` | `darkSrc` | Light Mode | Dark Mode |
+| :--- | :--- | :--- | :--- |
+| *Not provided* | *Not provided* | MUI Spinner (`color="info"`) | MUI Spinner (`color="info"`) |
+| **Provided** | *Not provided* | `src` | `src` |
+| **Provided** | **Provided** | `src` | `darkSrc` |
+| *Not provided* | **Provided** | MUI Spinner (`color="info"`) | `darkSrc` |
+
+#### Props Table (`LoaderProps`)
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `src` | `LoaderImageSource` | `undefined` | Light mode image source, or fallback when `darkSrc` omitted. |
+| `darkSrc` | `LoaderImageSource` | `undefined` | Dark mode image source (auto-selected when active theme is dark). |
+| `ImageComponent` | `React.ElementType` | `undefined` | Optional injected image component (e.g. Next.js `Image`). |
+| `imageProps` | `Record<string, unknown>` | `undefined` | Props forwarded to `ImageComponent` (e.g. `unoptimized`, `priority`). |
+| `width` | `number \| string` | `48` | Container & image display width (pixels or CSS string e.g. `"4rem"`). |
+| `height` | `number \| string` | `48` | Container & image display height (pixels or CSS string e.g. `"4rem"`). |
+| `color` | `CircularProgressProps["color"]` | `"info"` | Spinner semantic color (`"info"` = Apple-style brand blue). |
+| `variant` | `"indeterminate" \| "determinate"` | `"indeterminate"` | MUI CircularProgress variant. |
+| `value` | `number` | `undefined` | Progress value (0–100) for determinate variant. |
+| `thickness` | `number` | `undefined` | Stroke thickness of circular spinner track. |
+| `alt` | `string` | `"Loading..."` | Accessible alternative text and `aria-label`. |
+| `objectFit` | `CSSProperties["objectFit"]` | `"contain"` | CSS scaling behavior for custom images. |
+| `onImageError` | `(e: unknown) => void` | `undefined` | Callback fired if custom image fails to load. |
+
+---
+
+### B. `<BackdropLoader>` (Glassmorphic Loading Overlay)
+
+Composes the shared `<Loader>` inside a theme-aware Material UI `<Backdrop>` with frosted glass blur and optional centered typography message.
+
+```tsx
+import { BackdropLoader } from "jivico-glass-ui";
+
+<BackdropLoader
+  open={loading}
+  message="Processing your order..."
+  color="info"
+/>
+```
+
+#### Props Table (`BackdropLoaderProps`)
+
+Inherits all `LoaderProps` (`src`, `darkSrc`, `ImageComponent`, `imageProps`, `width`, `height`, `color`, `variant`, `alt`, etc.) plus:
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `open` | `boolean` | *(Required)* | Controls visibility of the backdrop. |
+| `message` | `React.ReactNode` | `undefined` | Optional loading caption rendered beneath the loader. |
+| `messageProps` | `Partial<TypographyProps>` | `undefined` | Custom styling for the message Typography component. |
+| `zIndex` | `number` | `theme.zIndex.drawer + 1` | Stacking layer override. |
+| `contained` | `boolean` | `false` | When `true`, uses `position: "absolute"` to constrain to parent. |
+| `blur` | `number \| string` | `"12px"` | Glassmorphic backdrop blur amount. |
+| `backgroundColor` | `string` | *Theme-aware* | Optional backdrop color override. |
+| `backdropProps` | `Partial<BackdropProps>` | `undefined` | Additional props forwarded directly to MUI `Backdrop`. |
+

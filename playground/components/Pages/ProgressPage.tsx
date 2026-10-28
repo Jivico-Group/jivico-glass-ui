@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Activity, CheckCircle2, Layers, RefreshCw, Sparkles, Zap } from "lucide-react";
 import { Avatar, Box, Button, Card, CardContent, Chip, LinearProgress, Skeleton, Stack, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
+import { Loader, BackdropLoader } from "../../../src/components/loading/index.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 
@@ -11,6 +12,8 @@ export const ProgressPage: React.FC = () => {
 
   const [progress, setProgress] = useState(45);
   const [buffer, setBuffer] = useState(70);
+  const [backdropOpen, setBackdropOpen] = useState(false);
+  const [containedBackdropOpen, setContainedBackdropOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -214,6 +217,176 @@ export const ProgressPage: React.FC = () => {
               <Skeleton variant="rounded" width={100} height={28} radius="pill" appearance="glass" animation="wave" />
             </Box>
           </Box>
+        </Box>
+      </DemoBlock>
+
+      {/* 5. Reusable Loader (Apple Blue & Colors) */}
+      <DemoBlock
+        id="loader-spinners"
+        title="Reusable Loader (Apple-Blue & Semantic Palette)"
+        description="Standalone loading indicator defaulting to Jivico's signature Apple-style blue (`color='info'`). Supports custom width, height, thickness, and determinate variants."
+        code={`<Loader />
+<Loader color="info" width={48} height={48} />
+<Loader color="success" width={40} height={40} />
+<Loader color="warning" width={32} height={32} />
+<Loader color="error" variant="determinate" value={75} />`}
+      >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "100%" }}>
+          <Stack direction="row" sx={{ alignItems: "center", flexWrap: "wrap" }} spacing={3}>
+            <Box sx={{ textAlign: "center" }}>
+              <Loader color="info" width={56} height={56} />
+              <Typography variant="caption" sx={{ display: "block", mt: 1, fontWeight: 600 }}>
+                Default (info)
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: "center" }}>
+              <Loader color="primary" width={48} height={48} />
+              <Typography variant="caption" sx={{ display: "block", mt: 1, fontWeight: 600 }}>
+                Primary
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: "center" }}>
+              <Loader color="success" width={44} height={44} />
+              <Typography variant="caption" sx={{ display: "block", mt: 1, fontWeight: 600 }}>
+                Success
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: "center" }}>
+              <Loader color="warning" width={40} height={40} />
+              <Typography variant="caption" sx={{ display: "block", mt: 1, fontWeight: 600 }}>
+                Warning
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: "center" }}>
+              <Loader color="error" width={36} height={36} />
+              <Typography variant="caption" sx={{ display: "block", mt: 1, fontWeight: 600 }}>
+                Error
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: "center" }}>
+              <Loader variant="determinate" value={Math.round(progress)} color="info" width={48} height={48} />
+              <Typography variant="caption" sx={{ display: "block", mt: 1, fontWeight: 600 }}>
+                {Math.round(progress)}%
+              </Typography>
+            </Box>
+          </Stack>
+        </Box>
+      </DemoBlock>
+
+      {/* 6. Theme-Aware Image Loader */}
+      <DemoBlock
+        id="loader-custom-images"
+        title="Theme-Aware Custom Image Loader"
+        description="When custom image sources (`src` / `darkSrc`) are supplied, the spinner is seamlessly replaced with browser-compatible SVG, WebP, GIF, or PNG assets. If an image fails, it automatically reverts to the themed spinner."
+        code={`// Separate assets for Light and Dark modes:
+<Loader
+  src="data:image/svg+xml,..." // Dark icon for light background
+  darkSrc="data:image/svg+xml,..." // White icon for dark background
+  width={64}
+  height={64}
+/>`}
+      >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "100%" }}>
+          <Stack direction="row" spacing={4} sx={{ alignItems: "center", flexWrap: "wrap" }}>
+            {/* Theme-aware SVG mock */}
+            <Box sx={{ textAlign: "center" }}>
+              <Loader
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' stroke='%23111111' stroke-width='8' fill='none'/><circle cx='50' cy='20' r='8' fill='%230071E3'/></svg>"
+                darkSrc="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' stroke='%23F5F5F7' stroke-width='8' fill='none'/><circle cx='50' cy='20' r='8' fill='%232997FF'/></svg>"
+                width={56}
+                height={56}
+                alt="Theme-aware Jivico Logo"
+              />
+              <Typography variant="caption" sx={{ display: "block", mt: 1, fontWeight: 600 }}>
+                Theme Adaptive SVG ({isDark ? "Dark Asset" : "Light Asset"})
+              </Typography>
+            </Box>
+
+            {/* Injected Component Mock (Next.js Image) */}
+            <Box sx={{ textAlign: "center" }}>
+              <Loader
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,15 90,85 10,85' fill='%230071E3'/></svg>"
+                ImageComponent={({ src, alt, style }: { src?: unknown; alt?: string; style?: React.CSSProperties }) => (
+                  <img src={typeof src === "object" && src !== null && "src" in src ? (src as { src: string }).src : String(src ?? "")} alt={alt} style={{ ...style, filter: "drop-shadow(0 0 8px rgba(0,113,227,0.5))" }} />
+                )}
+                width={56}
+                height={56}
+                alt="Injected ImageComponent"
+              />
+              <Typography variant="caption" sx={{ display: "block", mt: 1, fontWeight: 600 }}>
+                Injected ImageComponent (Next.js)
+              </Typography>
+            </Box>
+
+            {/* Error Fallback Demo */}
+            <Box sx={{ textAlign: "center" }}>
+              <Loader src="/non-existent-broken-image.png" width={56} height={56} color="info" />
+              <Typography variant="caption" sx={{ display: "block", mt: 1, fontWeight: 600, color: "text.secondary" }}>
+                Auto Fallback on Error
+              </Typography>
+            </Box>
+          </Stack>
+        </Box>
+      </DemoBlock>
+
+      {/* 7. BackdropLoader Overlay */}
+      <DemoBlock
+        id="backdrop-loader"
+        title="BackdropLoader (Glassmorphic Overlay with Messages)"
+        description="Full-screen or container-level overlay composing `<Loader>` inside Material UI's `<Backdrop>` with frosted glass blur and optional centered typography caption."
+        code={`<BackdropLoader
+  open={loading}
+  message="Processing your order..."
+  color="info"
+  blur="12px"
+/>`}
+      >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "100%" }}>
+          <Stack direction="row" spacing={2}>
+            <Button variant="contained" color="accent" onClick={() => setBackdropOpen(true)}>
+              Launch Fullscreen Backdrop (3s)
+            </Button>
+            <Button variant="outlined" color="glass" onClick={() => setContainedBackdropOpen(!containedBackdropOpen)}>
+              Toggle Contained Card Overlay
+            </Button>
+          </Stack>
+
+          {/* Contained overlay card preview */}
+          <Box
+            sx={{
+              position: "relative",
+              height: 200,
+              borderRadius: "20px",
+              border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
+              bgcolor: isDark ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.5)",
+              overflow: "hidden",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              p: 3,
+            }}
+          >
+            <Typography variant="body2" color="text.secondary">
+              Parent Card Content (Container-level loading area)
+            </Typography>
+
+            <BackdropLoader
+              open={containedBackdropOpen}
+              contained={true}
+              message="Syncing inventory..."
+              color="info"
+              width={48}
+              height={48}
+            />
+          </Box>
+
+          <BackdropLoader
+            open={backdropOpen}
+            message="Processing your request with Apple-precision physics..."
+            color="info"
+            blur="16px"
+            onClick={() => setBackdropOpen(false)}
+          />
         </Box>
       </DemoBlock>
     </ComponentPage>

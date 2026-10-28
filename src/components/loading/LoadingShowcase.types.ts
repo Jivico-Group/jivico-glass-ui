@@ -6,11 +6,8 @@ import type React from "react";
 
 export interface LoadingShowcaseImage {
   src: string;
-
   alt?: string;
-
   width?: number;
-
   height?: number;
 }
 

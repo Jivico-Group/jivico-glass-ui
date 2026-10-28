@@ -231,6 +231,9 @@ const TOC_MAP: Record<string, TocItem[]> = {
     { id: "linear-progress-colors", title: "Palette & Glowing Aura" },
     { id: "linear-progress-sizes", title: "Progress Track Scale" },
     { id: "skeleton-placeholders", title: "Glass Skeleton Shimmer" },
+    { id: "loader-spinners", title: "Apple-Style Spinners" },
+    { id: "loader-custom-images", title: "Theme-Aware Image Loaders" },
+    { id: "backdrop-loader", title: "BackdropLoader Overlays" },
   ],
   feedback: [{ id: "alerts", title: "Severity Levels" }],
   typography: [

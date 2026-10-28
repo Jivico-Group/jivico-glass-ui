@@ -4,7 +4,7 @@ import * as react from 'react';
 import react__default, { ReactNode, ComponentType, CSSProperties, MouseEvent, Key, ElementType, Ref } from 'react';
 import * as _mui_system from '@mui/system';
 import * as _mui_material from '@mui/material';
-import { BoxProps, SxProps as SxProps$1 } from '@mui/material';
+import { BoxProps, SxProps as SxProps$1, CircularProgressProps, Theme as Theme$1, TypographyProps, BackdropProps } from '@mui/material';
 import * as _mui_material_OverridableComponent from '@mui/material/OverridableComponent';
 import { ButtonProps } from '@mui/material/Button';
 import { BottomNavigationProps } from '@mui/material/BottomNavigation';
@@ -3014,6 +3014,145 @@ interface LoadingShowcaseProps {
 
 declare const LoadingShowcase: react__default.FC<LoadingShowcaseProps>;
 
+type LoaderDimension = number | string;
+/**
+ * Valid image source representation.
+ * Supports standard URL strings (SVG, animated SVG, WebP, GIF, PNG, JPG, data URLs)
+ * as well as static asset objects (e.g. Next.js StaticImageData or bundler asset imports).
+ */
+type LoaderImageSource = string | {
+    src: string;
+    height?: number;
+    width?: number;
+    blurDataURL?: string;
+    blurWidth?: number;
+    blurHeight?: number;
+    [key: string]: unknown;
+};
+interface LoaderProps extends Omit<react__default.HTMLAttributes<HTMLDivElement>, "color"> {
+    /**
+     * Primary image source.
+     * Rendered in Light mode, or as fallback in Dark mode when darkSrc is omitted.
+     * Supports SVG, animated SVG, WebP, animated WebP, GIF, PNG, JPG/JPEG.
+     */
+    src?: LoaderImageSource;
+    /**
+     * Optional Dark mode image source.
+     * When provided, automatically rendered when the active theme is Dark mode.
+     */
+    darkSrc?: LoaderImageSource;
+    /**
+     * Optional custom image component (e.g. Next.js Image or custom picture element).
+     * When omitted, renders a standard native <img> element.
+     */
+    ImageComponent?: react__default.ElementType;
+    /**
+     * Additional properties forwarded directly to the image renderer.
+     * (e.g. priority, unoptimized, quality).
+     */
+    imageProps?: Record<string, unknown>;
+    /**
+     * Width of the loader. Can be a number (in pixels) or a CSS string (e.g. "4rem", "64px").
+     * @default 48
+     */
+    width?: LoaderDimension;
+    /**
+     * Height of the loader. Can be a number (in pixels) or a CSS string (e.g. "4rem", "64px").
+     * @default 48
+     */
+    height?: LoaderDimension;
+    /**
+     * Material UI semantic color for the CircularProgress spinner.
+     * In Jivico Glass UI, "info" is configured as the Apple-style blue primary brand accent.
+     * @default "info"
+     */
+    color?: CircularProgressProps["color"];
+    /**
+     * Material UI CircularProgress variant.
+     * @default "indeterminate"
+     */
+    variant?: CircularProgressProps["variant"];
+    /**
+     * The value of the progress indicator for the determinate variant (0-100).
+     */
+    value?: number;
+    /**
+     * The thickness of the CircularProgress circle stroke.
+     */
+    thickness?: number;
+    /**
+     * Explicit size override for the spinner if different from width/height.
+     */
+    size?: number | string;
+    /**
+     * Accessible alternative text for the image or screen readers.
+     * @default "Loading..."
+     */
+    alt?: string;
+    /**
+     * CSS object-fit property for custom image scaling.
+     * @default "contain"
+     */
+    objectFit?: react__default.CSSProperties["objectFit"];
+    /**
+     * Optional callback invoked when the image fails to load.
+     */
+    onImageError?: (error: react__default.SyntheticEvent<HTMLImageElement, Event> | unknown) => void;
+    /**
+     * Optional className applied to the root container.
+     */
+    className?: string;
+    /**
+     * MUI system styling prop for the root container.
+     */
+    sx?: SxProps$1<Theme$1>;
+}
+
+declare const Loader: react__default.ForwardRefExoticComponent<LoaderProps & react__default.RefAttributes<HTMLDivElement>>;
+
+interface BackdropLoaderProps extends LoaderProps {
+    /**
+     * Controls the open/visibility state of the backdrop overlay.
+     */
+    open: boolean;
+    /**
+     * Optional loading message displayed beneath the loader.
+     */
+    message?: react__default.ReactNode;
+    /**
+     * Optional props forwarded to the Typography component rendering the message.
+     */
+    messageProps?: Partial<TypographyProps>;
+    /**
+     * Optional z-index override.
+     * Defaults to theme.zIndex.drawer + 1 (layering cleanly above headers and drawers).
+     */
+    zIndex?: number;
+    /**
+     * If true, constrains the backdrop to its parent container using absolute positioning
+     * instead of fixing across the entire viewport.
+     * Note: The parent container must have `position: relative`.
+     * @default false
+     */
+    contained?: boolean;
+    /**
+     * Optional blur radius for the glassmorphic backdrop.
+     * @default "12px"
+     */
+    blur?: number | string;
+    /**
+     * Optional custom backdrop background color override.
+     * By default, automatically resolves theme-appropriate translucent glass colors.
+     */
+    backgroundColor?: string;
+    /**
+     * Additional properties forwarded directly to the Material UI Backdrop component.
+     */
+    backdropProps?: Partial<BackdropProps>;
+}
+
+declare const BackdropLoader: react__default.ForwardRefExoticComponent<BackdropLoaderProps & react__default.RefAttributes<HTMLDivElement>>;
+
 type ExpanseItem = {
     name: string;
     value?: string;
@@ -3117,4 +3256,4 @@ interface GlassThemeScopeProps {
  */
 declare function GlassThemeScope({ mode, children }: GlassThemeScopeProps): react__default.JSX.Element;
 
-export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, type AspectRatio, type AspectRt, BACKGROUND_COLORS, BRAND_COLORS, type BottomNavigationItemProps, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, ExpanseGrid, type ExpanseGridProps, type ExpanseItem, type ExpanseLayout, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_FONTS_URL, JIVICO_FONT_FAMILY, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, LoadingShowcase, type LoadingShowcaseImage, type LoadingShowcaseImageRenderer, type LoadingShowcaseProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveAspectRatio, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseContentAlign, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightButtonColor, type SpotlightContentAlign, type SpotlightDimension, type SpotlightImageComponent, type SpotlightImageComponentProps, type SpotlightItem, type SpotlightMedia, type SpotlightProps, type SpotlightRadius, type SpotlightSize, type SpotlightVariant, type StandardAspectRatio, StatLabel, StatValue, StatusShowcase, type StatusShowcaseImage, type StatusShowcaseProps, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, getVariantOverlay, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook };
+export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, AmbientBlob, type AspectRatio, type AspectRt, BACKGROUND_COLORS, BRAND_COLORS, BackdropLoader, type BackdropLoaderProps, type BottomNavigationItemProps, COLORS, CoverImage, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, ExpanseGrid, type ExpanseGridProps, type ExpanseItem, type ExpanseLayout, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_FONTS_URL, JIVICO_FONT_FAMILY, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, Loader, type LoaderDimension, type LoaderImageSource, type LoaderProps, LoadingShowcase, type LoadingShowcaseImage, type LoadingShowcaseImageRenderer, type LoadingShowcaseProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveAspectRatio, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseContentAlign, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightButtonColor, type SpotlightContentAlign, type SpotlightDimension, type SpotlightImageComponent, type SpotlightImageComponentProps, type SpotlightItem, type SpotlightMedia, type SpotlightProps, type SpotlightRadius, type SpotlightSize, type SpotlightVariant, type StandardAspectRatio, StatLabel, StatValue, StatusShowcase, type StatusShowcaseImage, type StatusShowcaseProps, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, getVariantOverlay, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook };

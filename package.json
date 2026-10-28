@@ -24,6 +24,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "test": "npx -y vitest@3 run",
     "build:docs": "vite build",
     "predeploy": "npm run build:docs",
     "deploy": "gh-pages -d dist-docs --nojekyll",
