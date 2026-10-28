@@ -102,7 +102,7 @@ export const getTabsOverrides = (isDark: boolean): Components<Theme> => ({
 
           info: {
             light: "#4285F4",
-            dark: "#8AB4F8",
+            dark: "#4285F4",
             lightBorder: "rgba(66, 133, 244, 0.20)",
             darkBorder: "rgba(138, 180, 248, 0.20)",
             lightShadow: "0 3px 12px rgba(66, 133, 244, 0.18)",
