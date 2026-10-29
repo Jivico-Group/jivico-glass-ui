@@ -86,6 +86,29 @@ export const getChipOverrides = (palette: JivicoPalette, isDark: boolean): Compo
     MuiChip: {
       defaultProps: { deleteIcon: React.createElement(CloseDeleteIcon) },
       variants: [
+        // Shape variants. Rounded remains the existing default (9999px).
+        { props: { shape: "rounded" }, style: { borderRadius: 9999 } },
+        { props: { shape: "soft" }, style: { borderRadius: 4 } },
+        { props: { shape: "square" }, style: { borderRadius: 0 } },
+        // Custom size (MUI has no sizeMini utility class).
+        {
+          props: { size: "mini" },
+          style: {
+            height: 20,
+            minHeight: 20,
+            fontSize: "0.625rem",
+            padding: "0 6px",
+            "&:not(:has(.MuiChip-icon)):not(:has(.MuiChip-avatar)) .MuiChip-label::before": {
+              width: 5.5,
+              height: 5.5,
+              borderWidth: "1.25px",
+              marginRight: "4px",
+            },
+            "& .MuiChip-avatar": { width: 14, height: 14, marginLeft: "-2px", marginRight: "3px", fontSize: "0.5rem" },
+            "& .MuiChip-icon": { fontSize: "12px", marginLeft: "-1px", marginRight: "3px" },
+            "& .MuiChip-deleteIcon": { fontSize: "12px", marginLeft: "3px", marginRight: "-1px" },
+          },
+        },
         {
           props: { size: "large" },
           style: {

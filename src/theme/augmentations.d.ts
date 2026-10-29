@@ -160,11 +160,15 @@ declare module "@mui/material/Chip" {
   }
 
   interface ChipPropsSizeOverrides {
-    large: true;
+    mini: true; // NEW: 20px
+    large: true; // EXISTING: 32px
   }
 
   interface ChipOwnProps {
     glass?: boolean | "true" | "false";
+
+    // NEW: Controls chip corner radius
+    shape?: "rounded" | "soft" | "square";
   }
 }
 
