@@ -505,3 +505,73 @@ Inherits all `LoaderProps` (`src`, `darkSrc`, `ImageComponent`, `imageProps`, `w
 | `backgroundColor` | `string` | *Theme-aware* | Optional backdrop color override. |
 | `backdropProps` | `Partial<BackdropProps>` | `undefined` | Additional props forwarded directly to MUI `Backdrop`. |
 
+---
+
+## 🔔 11. Enterprise Glass Toast Notification System
+
+### `<ToastProvider>` & `useToast()`
+
+A high-performance, glassmorphic toast notification system with real-time queues, sound effects, action buttons, progress timer bars, and swipe-to-dismiss gestures.
+
+```tsx
+import { ToastProvider, useToast } from "jivico-glass-ui";
+
+// 1. Wrap your application root:
+<ToastProvider
+  maxToasts={5}
+  position="bottom-right"
+  defaultDuration={4000}
+>
+  <App />
+</ToastProvider>
+
+// 2. Trigger toasts anywhere inside components:
+const toast = useToast();
+
+// Shortcut methods:
+toast.success("Coupon code applied successfully!");
+toast.error("Invalid shipping PIN code");
+toast.warning("Low stock alert for this item");
+toast.info("Your cart was merged from guest session");
+
+// Custom glass toast with title and action button:
+toast.show({
+  title: "Order Placed",
+  message: "Your order #JVC-ORD-1002 has been confirmed.",
+  color: "accent",
+  variant: "glass",
+  duration: 6000,
+  action: {
+    label: "View Order",
+    onClick: () => router.push("/orders/JVC-ORD-1002"),
+  },
+});
+```
+
+#### Toast Options (`ToastOptions`)
+
+| Option | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `message` | `React.ReactNode` | *(Required)* | The main body text or node of the notification. |
+| `title` | `string` | `undefined` | Bold heading rendered above the message. |
+| `color` | `ToastColor` | `"accent"` | Semantic color channel: `"primary" \| "secondary" \| "error" \| "success" \| "accent" \| "info" \| "warning" \| "glass"`. |
+| `variant` | `ToastVariant` | `"glass"` | Surface styling: `"glass" \| "soft" \| "solid" \| "outlined"`. |
+| `position` | `ToastPositionInput` | Provider default | Screen anchor: `"top-left" \| "top-center" \| "top-right" \| "bottom-left" \| "bottom-center" \| "bottom-right" \| "bottom"`. |
+| `radius` | `ToastRadius` | `"rounded"` | Border radius style: `"rounded"` (pill 9999px), `"soft"` (4px), or `"square"` (0px). |
+| `duration` | `number` | `4000` | Auto-dismiss countdown in milliseconds (`0` for persistent). |
+| `dismissible` | `boolean` | `true` | When `true`, renders a close icon button. |
+| `action` | `ToastAction` | `undefined` | Interactive button object `{ label: string, onClick: () => void }`. |
+| `loading` | `boolean` | `false` | When `true`, renders an indeterminate circular spinner instead of status icon. |
+| `icon` | `React.ReactNode` | *Semantic icon* | Optional custom icon override. |
+
+#### Provider Props (`ToastProviderProps`)
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `children` | `React.ReactNode` | *(Required)* | Application subtree. |
+| `maxToasts` | `number` | `5` | Maximum concurrent visible toasts per viewport before queueing. |
+| `position` | `ToastPositionInput` | `"bottom-right"` | Default screen anchor position for toasts without an explicit position. |
+| `defaultDuration`| `number` | `4000` | Default timeout duration in milliseconds. |
+| `soundEnabled` | `boolean` | `false` | Enables subtle audio chime feedback on toast trigger. |
+
+
