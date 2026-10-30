@@ -265,7 +265,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
               component="span"
               sx={{
                 fontWeight: 600,
-                fontSize: "0.65rem !important",
+                fontSize: "0.89rem !important",
                 color: isDark ? COLORS.text.primaryDark : COLORS.text.primaryLight,
                 lineHeight: 1.3,
                 overflow: "hidden",
@@ -284,7 +284,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
               <Typography
                 component="span"
                 sx={{
-                  fontSize: "0.45rem !important",
+                  fontSize: "0.8rem !important",
                   color: isDark ? COLORS.text.secondaryDark : COLORS.text.secondaryLight,
                   lineHeight: 1,
                   userSelect: "none",
@@ -321,7 +321,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
         <Typography
           component="div"
           sx={{
-            fontSize: "0.45rem !important",
+            fontSize: "0.8rem !important",
             fontWeight: 400,
             color: isDark ? COLORS.text.secondaryDark : COLORS.text.secondaryLight,
             lineHeight: 1.35,
