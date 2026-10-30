@@ -59,7 +59,7 @@ describe("ToastViewport Component", () => {
     expect(html).toContain('aria-label="Notifications top-right"');
   });
 
-  it("applies column layout for top positions and column-reverse for bottom positions", () => {
+  it("applies column layout for both top and bottom positions ensuring chronological order", () => {
     const topItems = [createMockToast("top-1")];
     const bottomItems = [createMockToast("bottom-1", { position: "bottom-center" })];
 
@@ -82,7 +82,23 @@ describe("ToastViewport Component", () => {
     );
 
     expect(topHtml).toContain("flex-direction:column");
-    expect(bottomHtml).toContain("flex-direction:column-reverse");
+    expect(bottomHtml).toContain("flex-direction:column");
+  });
+
+  it("includes safe-area-inset rules in viewport placement styles", () => {
+    const items = [createMockToast("safe-area-1")];
+
+    const html = renderToString(
+      <ToastViewport
+        position="top-right"
+        items={items}
+        onDismiss={vi.fn()}
+        portal={false}
+      />
+    );
+
+    expect(html).toContain("env(safe-area-inset-top");
+    expect(html).toContain("env(safe-area-inset-right");
   });
 
   it("renders SSR-safe null when portal is enabled in server render mode", () => {
@@ -129,6 +145,37 @@ describe("ToastViewport Component", () => {
       expect(html).not.toContain('data-toast-position="top-center"');
       expect(html).not.toContain('data-toast-position="bottom-center"');
       expect(html).not.toContain('data-toast-position="bottom-right"');
+    });
+
+    it("renders simultaneous active notifications across all six positions without crashing or missing viewports", () => {
+      const state = createInitialToastState();
+      state["top-left"].visible = [createMockToast("tl-1", { position: "top-left", title: "Top Left" })];
+      state["top-center"].visible = [createMockToast("tc-1", { position: "top-center", title: "Top Center" })];
+      state["top-right"].visible = [createMockToast("tr-1", { position: "top-right", title: "Top Right" })];
+      state["bottom-left"].visible = [createMockToast("bl-1", { position: "bottom-left", title: "Bottom Left" })];
+      state["bottom-center"].visible = [createMockToast("bc-1", { position: "bottom-center", title: "Bottom Center" })];
+      state["bottom-right"].visible = [createMockToast("br-1", { position: "bottom-right", title: "Bottom Right" })];
+
+      const html = renderToString(
+        <ToastAllViewports
+          state={state}
+          onDismiss={vi.fn()}
+          portal={false}
+        />
+      );
+
+      expect(html).toContain('data-toast-position="top-left"');
+      expect(html).toContain('data-toast-position="top-center"');
+      expect(html).toContain('data-toast-position="top-right"');
+      expect(html).toContain('data-toast-position="bottom-left"');
+      expect(html).toContain('data-toast-position="bottom-center"');
+      expect(html).toContain('data-toast-position="bottom-right"');
+      expect(html).toContain("Top Left");
+      expect(html).toContain("Top Center");
+      expect(html).toContain("Top Right");
+      expect(html).toContain("Bottom Left");
+      expect(html).toContain("Bottom Center");
+      expect(html).toContain("Bottom Right");
     });
   });
 });

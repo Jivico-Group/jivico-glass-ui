@@ -1,11 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { Fragment } from "react";
 import { createPortal } from "react-dom";
-import { Box, styled } from "@mui/material";
+import { Box, styled, useMediaQuery, useTheme } from "@mui/material";
 import { ToastItem } from "./ToastItem.js";
-import type { ToastItemState, ToastPosition, ToastState } from "./Toast.types.js";
 import { ALL_POSITIONS } from "./toastReducer.js";
+import type { ToastItemState, ToastPosition, ToastState } from "./Toast.types.js";
 
 export interface ToastViewportProps {
   position: ToastPosition;
@@ -18,13 +18,10 @@ export interface ToastViewportProps {
   container?: HTMLElement | null;
 }
 
-const ViewportBox = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "toastPosition" && prop !== "gap",
-})<{ toastPosition: ToastPosition; gap?: number }>(({
-  theme,
-  toastPosition,
-  gap = 12,
-}) => {
+const ViewportBox = styled(Box, { shouldForwardProp: (prop) => prop !== "toastPosition" && prop !== "gap" })<{
+  toastPosition: ToastPosition;
+  gap?: number;
+}>(({ theme, toastPosition, gap = 12 }) => {
   const isTop = toastPosition.startsWith("top");
   const isBottom = toastPosition.startsWith("bottom");
   const isCenter = toastPosition.endsWith("center");
@@ -35,43 +32,42 @@ const ViewportBox = styled(Box, {
     position: "fixed",
     zIndex: (theme.zIndex?.snackbar ?? 1400) + 10,
     display: "flex",
-    flexDirection: isBottom ? "column-reverse" : "column",
+    flexDirection: "column",
     gap: `${gap}px`,
     pointerEvents: "none",
     boxSizing: "border-box",
     maxWidth: "100%",
+    maxHeight: "calc(100vh - 40px)",
+    overflowY: "auto",
     padding: 0,
     margin: 0,
     listStyle: "none",
+    "& > *": {
+      pointerEvents: "auto",
+    },
 
-    // Vertical placement
-    ...(isTop && { top: 20 }),
-    ...(isBottom && { bottom: 20 }),
+    // Vertical placement with safe-area insets
+    ...(isTop && { top: "calc(20px + env(safe-area-inset-top, 0px))" }),
+    ...(isBottom && { bottom: "calc(20px + env(safe-area-inset-bottom, 0px))" }),
 
     // Horizontal placement
-    ...(isCenter && {
-      left: "50%",
-      transform: "translateX(-50%)",
-      alignItems: "center",
-    }),
-    ...(isLeft && {
-      left: 20,
-      alignItems: "flex-start",
-    }),
-    ...(isRight && {
-      right: 20,
-      alignItems: "flex-end",
-    }),
+    ...(isCenter && { left: "50%", transform: "translateX(-50%)", alignItems: "center" }),
+    ...(isLeft && { left: "calc(20px + env(safe-area-inset-left, 0px))", alignItems: "flex-start" }),
+    ...(isRight && { right: "calc(20px + env(safe-area-inset-right, 0px))", alignItems: "flex-end" }),
 
     // Mobile responsive adjustments (< 600px)
     [theme.breakpoints.down("sm")]: {
-      left: 12,
-      right: 12,
-      width: "calc(100% - 24px)",
+      left: "calc(12px + env(safe-area-inset-left, 0px))",
+      right: "calc(12px + env(safe-area-inset-right, 0px))",
+      width: "calc(100% - 24px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px))",
+      maxWidth: "calc(100% - 24px)",
+      maxHeight: "calc(48vh - 24px - env(safe-area-inset-top, 0px))",
+      overflowY: "auto",
+      overscrollBehavior: "contain",
       transform: "none",
       alignItems: "center",
-      ...(isTop && { top: 12 }),
-      ...(isBottom && { bottom: 12 }),
+      ...(isTop && { top: "calc(12px + env(safe-area-inset-top, 0px))" }),
+      ...(isBottom && { bottom: "calc(12px + env(safe-area-inset-bottom, 0px))" }),
     },
   };
 });
@@ -96,26 +92,12 @@ export const ToastViewport: React.FC<ToastViewportProps> = ({
     setMounted(true);
   }, []);
 
-  if (items.length === 0) {
-    return null;
-  }
+  if (items.length === 0) return null;
 
   const content = (
-    <ViewportBox
-      toastPosition={position}
-      gap={gap}
-      role="region"
-      aria-label={`Notifications ${position}`}
-      data-toast-position={position}
-    >
+    <ViewportBox toastPosition={position} gap={gap} role="region" aria-label={`Notifications ${position}`} data-toast-position={position}>
       {items.map((item) => (
-        <ToastItem
-          key={item.id}
-          item={item}
-          onDismiss={onDismiss}
-          onPause={onPause}
-          onResume={onResume}
-        />
+        <ToastItem key={item.id} item={item} onDismiss={onDismiss} onPause={onPause} onResume={onResume} />
       ))}
     </ViewportBox>
   );
@@ -143,19 +125,67 @@ export interface ToastAllViewportsProps {
 }
 
 /**
- * ToastAllViewports — Renders all 6 positional viewports for a given global ToastState.
+ * ToastAllViewports — Renders all active viewports for a given global ToastState.
+ * On desktop (>= 600px), renders independent viewports for each active logical position.
+ * On mobile (< 600px), consolidates active top positions into a shared top stack and
+ * bottom positions into a shared bottom stack, eliminating positional collisions while
+ * preserving exact chronological ordering and notification IDs.
  */
-export const ToastAllViewports: React.FC<ToastAllViewportsProps> = ({
-  state,
-  onDismiss,
-  onPause,
-  onResume,
-  gap = 12,
-  portal = true,
-  container,
-}) => {
+export const ToastAllViewports: React.FC<ToastAllViewportsProps> = ({ state, onDismiss, onPause, onResume, gap = 12, portal = true, container }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"), { noSsr: true, defaultMatches: false });
+
+  if (isMobile) {
+    // Mobile Viewport Consolidation:
+    // Gather all active top toasts into a single top stack, and bottom toasts into a bottom stack
+    // while preserving each notification's logical position and chronological ordering.
+    const topItems: ToastItemState[] = [
+      ...(state["top-left"]?.visible ?? []),
+      ...(state["top-center"]?.visible ?? []),
+      ...(state["top-right"]?.visible ?? []),
+    ].sort((a, b) => a.createdAt - b.createdAt || a.id.localeCompare(b.id));
+
+    const bottomItems: ToastItemState[] = [
+      ...(state["bottom-left"]?.visible ?? []),
+      ...(state["bottom-center"]?.visible ?? []),
+      ...(state["bottom-right"]?.visible ?? []),
+    ].sort((a, b) => a.createdAt - b.createdAt || a.id.localeCompare(b.id));
+
+    return (
+      <Fragment>
+        {topItems.length > 0 && (
+          <ToastViewport
+            key="mobile-top-stack"
+            position="top-center"
+            items={topItems}
+            onDismiss={onDismiss}
+            onPause={onPause}
+            onResume={onResume}
+            gap={gap}
+            portal={portal}
+            container={container}
+          />
+        )}
+        {bottomItems.length > 0 && (
+          <ToastViewport
+            key="mobile-bottom-stack"
+            position="bottom-center"
+            items={bottomItems}
+            onDismiss={onDismiss}
+            onPause={onPause}
+            onResume={onResume}
+            gap={gap}
+            portal={portal}
+            container={container}
+          />
+        )}
+      </Fragment>
+    );
+  }
+
+  // Desktop: Render independent viewports for each active position
   return (
-    <>
+    <Fragment>
       {ALL_POSITIONS.map((pos) => {
         const posState = state[pos];
         if (!posState || posState.visible.length === 0) {
@@ -176,6 +206,6 @@ export const ToastAllViewports: React.FC<ToastAllViewportsProps> = ({
           />
         );
       })}
-    </>
+    </Fragment>
   );
 };

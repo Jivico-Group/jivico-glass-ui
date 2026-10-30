@@ -3262,6 +3262,7 @@ interface ToastItemState {
     status: ToastStatus;
     createdAt: number;
     icon?: react__default.ReactNode;
+    revision?: number;
 }
 /**
  * State for a single positional stack containing visible items and pending queue.
@@ -3329,6 +3330,10 @@ type ToastActionType = {
     id: string;
     maxVisible?: number;
 } | {
+    type: "REMOVE_EXITING_TOASTS";
+    ids: string[];
+    maxVisible?: number;
+} | {
     type: "UPDATE_TOAST";
     id: string;
     updates: Partial<ToastOptions>;
@@ -3343,6 +3348,16 @@ type ToastActionType = {
 } | {
     type: "CLEAR_ALL_IMMEDIATELY";
 };
+declare function sanitizeDuration(duration?: number, fallback?: number): number;
+/**
+ * Searches all 6 positional stacks for a toast with the given ID.
+ */
+declare function findToastGlobally(state: ToastState, id: string): {
+    position: ToastPosition;
+    location: "visible" | "queue";
+    item: ToastItemState;
+    index: number;
+} | null;
 /**
  * Pure, deterministic reducer managing 6 independent FIFO positional toast stacks.
  */
@@ -3381,7 +3396,11 @@ interface ToastAllViewportsProps {
     container?: HTMLElement | null;
 }
 /**
- * ToastAllViewports — Renders all 6 positional viewports for a given global ToastState.
+ * ToastAllViewports — Renders all active viewports for a given global ToastState.
+ * On desktop (>= 600px), renders independent viewports for each active logical position.
+ * On mobile (< 600px), consolidates active top positions into a shared top stack and
+ * bottom positions into a shared bottom stack, eliminating positional collisions while
+ * preserving exact chronological ordering and notification IDs.
  */
 declare const ToastAllViewports: react__default.FC<ToastAllViewportsProps>;
 
@@ -3449,7 +3468,10 @@ interface GlassModeContextType {
      */
     setGlassMode: (mode: ThemeMode) => void;
 }
+declare const GlassModeContext: react__default.Context<GlassModeContextType>;
 declare const useGlassMode: () => GlassModeContextType;
+declare const ThemeContext: react__default.Context<GlassModeContextType>;
+declare const useThemeContext: () => GlassModeContextType;
 interface GlassModeProviderProps {
     children: react__default.ReactNode;
     defaultMode?: ThemeMode;
@@ -3478,4 +3500,4 @@ interface GlassThemeScopeProps {
  */
 declare function GlassThemeScope({ mode, children }: GlassThemeScopeProps): react__default.JSX.Element;
 
-export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, ALL_POSITIONS, AmbientBlob, type AspectRatio, type AspectRt, BACKGROUND_COLORS, BRAND_COLORS, BackdropLoader, type BackdropLoaderProps, type BottomNavigationItemProps, COLORS, CoverImage, DEFAULT_TOAST_DURATIONS, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, ExpanseGrid, type ExpanseGridProps, type ExpanseItem, type ExpanseLayout, type ExtendedToastProviderProps, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_FONTS_URL, JIVICO_FONT_FAMILY, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, Loader, type LoaderDimension, type LoaderImageSource, type LoaderProps, LoadingShowcase, type LoadingShowcaseImage, type LoadingShowcaseImageRenderer, type LoadingShowcaseProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveAspectRatio, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseContentAlign, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightButtonColor, type SpotlightContentAlign, type SpotlightDimension, type SpotlightImageComponent, type SpotlightImageComponentProps, type SpotlightItem, type SpotlightMedia, type SpotlightProps, type SpotlightRadius, type SpotlightSize, type SpotlightVariant, type StandardAspectRatio, StatLabel, StatValue, StatusShowcase, type StatusShowcaseImage, type StatusShowcaseProps, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, type ThemeMode, type ToastAction, type ToastActionType, ToastAllViewports, type ToastAllViewportsProps, type ToastApi, type ToastColor, ToastContext, ToastItem, type ToastItemProps, type ToastItemState, type ToastOptions, type ToastPosition, type ToastPositionInput, type ToastPositionState, ToastProvider, type ToastProviderProps, type ToastRadius, type ToastShortcutOptions, type ToastState, type ToastStatus, type ToastVariant, ToastViewport, type ToastViewportProps, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createInitialToastState, createJivicoTheme, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, getVariantOverlay, normalizePosition, toastReducer, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook, useToast };
+export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, ALL_POSITIONS, AmbientBlob, type AspectRatio, type AspectRt, BACKGROUND_COLORS, BRAND_COLORS, BackdropLoader, type BackdropLoaderProps, type BottomNavigationItemProps, COLORS, CoverImage, DEFAULT_TOAST_DURATIONS, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, ExpanseGrid, type ExpanseGridProps, type ExpanseItem, type ExpanseLayout, type ExtendedToastProviderProps, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, GlassModeContext, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_FONTS_URL, JIVICO_FONT_FAMILY, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, Loader, type LoaderDimension, type LoaderImageSource, type LoaderProps, LoadingShowcase, type LoadingShowcaseImage, type LoadingShowcaseImageRenderer, type LoadingShowcaseProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveAspectRatio, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseContentAlign, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightButtonColor, type SpotlightContentAlign, type SpotlightDimension, type SpotlightImageComponent, type SpotlightImageComponentProps, type SpotlightItem, type SpotlightMedia, type SpotlightProps, type SpotlightRadius, type SpotlightSize, type SpotlightVariant, type StandardAspectRatio, StatLabel, StatValue, StatusShowcase, type StatusShowcaseImage, type StatusShowcaseProps, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, ThemeContext, type ThemeMode, type ToastAction, type ToastActionType, ToastAllViewports, type ToastAllViewportsProps, type ToastApi, type ToastColor, ToastContext, ToastItem, type ToastItemProps, type ToastItemState, type ToastOptions, type ToastPosition, type ToastPositionInput, type ToastPositionState, ToastProvider, type ToastProviderProps, type ToastRadius, type ToastShortcutOptions, type ToastState, type ToastStatus, type ToastVariant, ToastViewport, type ToastViewportProps, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createInitialToastState, createJivicoTheme, findToastGlobally, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, getVariantOverlay, normalizePosition, sanitizeDuration, toastReducer, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook, useThemeContext, useToast };

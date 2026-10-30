@@ -160,4 +160,51 @@ describe("ToastItem Visual Component", () => {
       expect(html).toContain(`data-toast-id="rad-${radius}"`);
     }
   });
+
+  it("renders interactive action button with correct label", () => {
+    const onActionClick = vi.fn();
+    const item = createMockToast("action-toast", {
+      action: {
+        label: "Undo changes",
+        onClick: onActionClick,
+      },
+    });
+
+    const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
+    expect(html).toContain("Undo changes");
+  });
+
+  describe("Phase 8: Accessibility & Reduced Motion", () => {
+    it("renders with aria-atomic='true' to ensure full notification content is announced", () => {
+      const item = createMockToast("a11y-1", {
+        title: "Profile updated",
+        message: "All details have been synchronized.",
+      });
+
+      const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
+      expect(html).toContain('aria-atomic="true"');
+    });
+
+    it("includes prefers-reduced-motion media query style rules", () => {
+      const item = createMockToast("reduced-motion-1");
+      const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
+
+      expect(html).toContain("prefers-reduced-motion");
+    });
+
+    it("does not possess autofocus attribute, preserving user browsing focus", () => {
+      const item = createMockToast("toast-focus-check");
+      const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
+
+      expect(html).not.toContain("autofocus");
+    });
+
+    it("renders dismiss button with accessible label and focus outline", () => {
+      const item = createMockToast("dismiss-a11y", { dismissible: true });
+      const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
+
+      expect(html).toContain('aria-label="Dismiss notification"');
+      expect(html).toContain("outline:2px solid");
+    });
+  });
 });

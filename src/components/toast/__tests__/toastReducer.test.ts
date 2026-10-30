@@ -317,4 +317,161 @@ describe("toastReducer", () => {
       }
     });
   });
+
+  describe("Hardened Edge Cases & Global ID Uniqueness", () => {
+    it("enforces global ID uniqueness across different positions", () => {
+      let state = createInitialToastState();
+
+      // Add custom ID "auth-fail" to top-right
+      state = toastReducer(state, {
+        type: "ADD_TOAST",
+        toast: createMockToast("auth-fail", { position: "top-right" }),
+      });
+
+      expect(state["top-right"].visible).toHaveLength(1);
+
+      // Attempt to add same custom ID "auth-fail" to bottom-center
+      const duplicateState = toastReducer(state, {
+        type: "ADD_TOAST",
+        toast: createMockToast("auth-fail", { position: "bottom-center" }),
+      });
+
+      expect(duplicateState).toBe(state);
+      expect(duplicateState["bottom-center"].visible).toHaveLength(0);
+    });
+
+    it("enforces global ID uniqueness between queued and visible items in different positions", () => {
+      let state = createInitialToastState();
+
+      // Fill top-right with 4 items so item "tr-4" is queued
+      for (let i = 1; i <= 4; i++) {
+        state = toastReducer(state, {
+          type: "ADD_TOAST",
+          toast: createMockToast(`tr-${i}`, { position: "top-right" }),
+        });
+      }
+      expect(state["top-right"].queue.map((t) => t.id)).toEqual(["tr-4"]);
+
+      // Attempt to add "tr-4" to bottom-left
+      const duplicateState = toastReducer(state, {
+        type: "ADD_TOAST",
+        toast: createMockToast("tr-4", { position: "bottom-left" }),
+      });
+
+      expect(duplicateState).toBe(state);
+      expect(duplicateState["bottom-left"].visible).toHaveLength(0);
+    });
+
+    it("removes only specific exiting IDs with REMOVE_EXITING_TOASTS and preserves newer toasts", () => {
+      let state = createInitialToastState();
+
+      state = toastReducer(state, {
+        type: "ADD_TOAST",
+        toast: createMockToast("old-1", { position: "top-right" }),
+      });
+      state = toastReducer(state, {
+        type: "ADD_TOAST",
+        toast: createMockToast("old-2", { position: "top-right" }),
+      });
+
+      // DISMISS_ALL marks old-1 and old-2 as exiting
+      state = toastReducer(state, { type: "DISMISS_ALL" });
+
+      // In the meantime, a new toast arrives
+      state = toastReducer(state, {
+        type: "ADD_TOAST",
+        toast: createMockToast("new-3", { position: "top-right" }),
+      });
+
+      expect(state["top-right"].visible.map((t) => t.id)).toEqual(["old-1", "old-2", "new-3"]);
+
+      // Targeted removal of old-1 and old-2
+      state = toastReducer(state, {
+        type: "REMOVE_EXITING_TOASTS",
+        ids: ["old-1", "old-2"],
+      });
+
+      expect(state["top-right"].visible.map((t) => t.id)).toEqual(["new-3"]);
+      expect(state["top-right"].visible[0]!.status).toBe("visible");
+    });
+
+    it("sanitizes negative or NaN durations safely to 0", () => {
+      let state = createInitialToastState();
+
+      state = toastReducer(state, {
+        type: "ADD_TOAST",
+        toast: createMockToast("neg-1", { duration: -500 }),
+      });
+
+      expect(state["top-right"].visible[0]!.duration).toBe(0);
+
+      state = toastReducer(state, {
+        type: "UPDATE_TOAST",
+        id: "neg-1",
+        updates: { duration: NaN },
+      });
+
+      expect(state["top-right"].visible[0]!.duration).toBe(0);
+    });
+
+    it("handles maxPending=0 by not enqueuing when stack is full", () => {
+      let state = createInitialToastState();
+
+      for (let i = 1; i <= 3; i++) {
+        state = toastReducer(state, {
+          type: "ADD_TOAST",
+          toast: createMockToast(String(i)),
+          maxPending: 0,
+        });
+      }
+
+      expect(state["top-right"].visible).toHaveLength(3);
+
+      // 4th item with maxPending=0 should not be enqueued
+      state = toastReducer(state, {
+        type: "ADD_TOAST",
+        toast: createMockToast("4"),
+        maxPending: 0,
+      });
+
+      expect(state["top-right"].queue).toHaveLength(0);
+    });
+
+    it("prioritizes dropping non-persistent items when queue overflows", () => {
+      let state = createInitialToastState();
+
+      // Fill visible with 3 items
+      for (let i = 1; i <= 3; i++) {
+        state = toastReducer(state, {
+          type: "ADD_TOAST",
+          toast: createMockToast(String(i)),
+        });
+      }
+
+      // Add persistent item (duration: 0) to queue
+      state = toastReducer(state, {
+        type: "ADD_TOAST",
+        toast: createMockToast("persistent-q", { duration: 0 }),
+        maxPending: 2,
+      });
+
+      // Add non-persistent item (duration: 4000) to queue
+      state = toastReducer(state, {
+        type: "ADD_TOAST",
+        toast: createMockToast("timed-q", { duration: 4000 }),
+        maxPending: 2,
+      });
+
+      expect(state["top-right"].queue.map((t) => t.id)).toEqual(["persistent-q", "timed-q"]);
+
+      // Push a 3rd item with maxPending=2: should drop the non-persistent timed-q, keeping persistent-q
+      state = toastReducer(state, {
+        type: "ADD_TOAST",
+        toast: createMockToast("new-q", { duration: 2000 }),
+        maxPending: 2,
+      });
+
+      expect(state["top-right"].queue.map((t) => t.id)).toEqual(["persistent-q", "new-q"]);
+    });
+  });
 });

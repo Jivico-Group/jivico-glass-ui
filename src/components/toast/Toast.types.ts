@@ -97,6 +97,7 @@ export interface ToastItemState {
   status: ToastStatus;
   createdAt: number;
   icon?: React.ReactNode;
+  revision?: number;
 }
 
 /**

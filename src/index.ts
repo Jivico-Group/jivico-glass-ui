@@ -1,3 +1,5 @@
+"use client";
+
 import "./theme/augmentations.d.ts";
 
 // Theme & Design Tokens

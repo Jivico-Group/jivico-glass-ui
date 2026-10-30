@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
 import { DEFAULT_TOAST_DURATIONS, normalizePosition } from "./Toast.types.js";
 import { ToastContext } from "./ToastContext.js";
-import { ALL_POSITIONS, createInitialToastState, toastReducer } from "./toastReducer.js";
+import { ALL_POSITIONS, createInitialToastState, findToastGlobally, sanitizeDuration, toastReducer } from "./toastReducer.js";
 import { ToastAllViewports } from "./ToastViewport.js";
 import type {
   ToastApi,
@@ -27,6 +27,7 @@ interface TimerRecord {
   remaining: number;
   startedAt: number;
   duration: number;
+  revision: number;
   isPaused: boolean;
 }
 
@@ -49,6 +50,46 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
   container,
 }) => {
   const [state, dispatch] = useReducer(toastReducer, undefined, createInitialToastState);
+  const stateRef = useRef(state);
+  const activeIdsRef = useRef<Set<string>>(new Set());
+  const positionCountsRef = useRef<Record<ToastPosition, number>>({
+    "top-left": 0,
+    "top-center": 0,
+    "top-right": 0,
+    "bottom-left": 0,
+    "bottom-center": 0,
+    "bottom-right": 0,
+  });
+
+  useEffect(() => {
+    stateRef.current = state;
+
+    const nextActiveIds = new Set<string>();
+    const nextCounts: Record<ToastPosition, number> = {
+      "top-left": 0,
+      "top-center": 0,
+      "top-right": 0,
+      "bottom-left": 0,
+      "bottom-center": 0,
+      "bottom-right": 0,
+    };
+
+    for (const pos of ALL_POSITIONS) {
+      const posState = state[pos];
+      if (!posState) continue;
+      nextCounts[pos] = posState.visible.length;
+      for (const item of posState.visible) {
+        nextActiveIds.add(item.id);
+      }
+      for (const item of posState.queue) {
+        nextActiveIds.add(item.id);
+      }
+    }
+
+    activeIdsRef.current = nextActiveIds;
+    positionCountsRef.current = nextCounts;
+  }, [state]);
+
   const idCounterRef = useRef(0);
   const timersRef = useRef<Map<string, TimerRecord>>(new Map());
   const exitTimersRef = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
@@ -60,6 +101,11 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
 
   const dismiss = useCallback(
     (id: string) => {
+      // If this toast is already transitioning out (exit timer running), idempotent no-op
+      if (exitTimersRef.current.has(id)) {
+        return;
+      }
+
       // Clear and remove auto-dismiss timer
       const activeTimer = timersRef.current.get(id);
       if (activeTimer) {
@@ -69,49 +115,31 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
 
       // Start exit animation
       dispatch({ type: "START_EXIT", id });
-
-      // Clear any existing exit timer for this ID
-      const existingExitTimer = exitTimersRef.current.get(id);
-      if (existingExitTimer) clearTimeout(existingExitTimer);
-
-      // Schedule removal and FIFO queue promotion after CSS exit animation (220ms)
-      const timer = setTimeout(() => {
-        dispatch({ type: "REMOVE_TOAST", id, maxVisible });
-        exitTimersRef.current.delete(id);
-      }, 220);
-
-      exitTimersRef.current.set(id, timer);
     },
-    [maxVisible],
+    [],
   );
 
   const dismissAll = useCallback(
     (position?: ToastPosition) => {
-      // Clear timers for target position(s)
-      if (position) {
-        const posState = state[position];
-        if (posState) {
-          for (const item of posState.visible) {
-            const timer = timersRef.current.get(item.id);
-            if (timer) {
-              clearTimeout(timer.timeoutId);
-              timersRef.current.delete(item.id);
-            }
+      const targetPositions = position ? [position] : ALL_POSITIONS;
+
+      // Cancel active auto-dismiss timers for targeted visible toasts
+      for (const pos of targetPositions) {
+        const posState = stateRef.current[pos];
+        if (!posState) continue;
+        for (const item of posState.visible) {
+          const timer = timersRef.current.get(item.id);
+          if (timer) {
+            clearTimeout(timer.timeoutId);
+            timersRef.current.delete(item.id);
           }
         }
-      } else {
-        for (const timer of timersRef.current.values()) clearTimeout(timer.timeoutId);
-        timersRef.current.clear();
       }
 
+      // Dispatch DISMISS_ALL to set visible status to 'exiting' and clear queue
       dispatch({ type: "DISMISS_ALL", position });
-
-      setTimeout(() => {
-        if (position) dispatch({ type: "CLEAR_POSITION", position });
-        else dispatch({ type: "CLEAR_ALL_IMMEDIATELY" });
-      }, 220);
     },
-    [state],
+    [],
   );
 
   const handlePause = useCallback((id: string) => {
@@ -144,9 +172,10 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
     [dismiss],
   );
 
-  // Synchronize auto-dismiss timers for visible toasts
+  // Synchronize auto-dismiss timers and exit timers for visible/exiting toasts
   useEffect(() => {
     const currentVisibleIds = new Set<string>();
+    const currentExitingIds = new Set<string>();
 
     for (const pos of ALL_POSITIONS) {
       const posState = state[pos];
@@ -155,14 +184,71 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
       for (const item of posState.visible) {
         if (item.status === "visible") {
           currentVisibleIds.add(item.id);
+          const existingTimer = timersRef.current.get(item.id);
 
-          // If not yet tracked in timersRef and duration is positive
-          if (!timersRef.current.has(item.id) && item.duration > 0) {
-            const timeoutId = setTimeout(() => {
-              dismiss(item.id);
-            }, item.duration);
+          if (!existingTimer) {
+            // New visible toast with positive duration: start auto-dismiss timer
+            if (item.duration > 0) {
+              const timeoutId = setTimeout(() => {
+                dismiss(item.id);
+              }, item.duration);
 
-            timersRef.current.set(item.id, { timeoutId, remaining: item.duration, startedAt: Date.now(), duration: item.duration, isPaused: false });
+              timersRef.current.set(item.id, {
+                timeoutId,
+                remaining: item.duration,
+                startedAt: Date.now(),
+                duration: item.duration,
+                revision: item.revision ?? 0,
+                isPaused: false,
+              });
+            }
+          } else {
+            // Existing timer record: check if duration or revision was updated via toast.update()
+            const isDurationChanged = existingTimer.duration !== item.duration;
+            const isRevisionChanged = existingTimer.revision !== (item.revision ?? 0);
+
+            if (isDurationChanged || isRevisionChanged) {
+              clearTimeout(existingTimer.timeoutId);
+
+              if (item.duration <= 0) {
+                // Changed to persistent: delete timer record
+                timersRef.current.delete(item.id);
+              } else if (existingTimer.isPaused) {
+                // Updated while paused: adjust remaining and duration, stay paused
+                existingTimer.duration = item.duration;
+                existingTimer.remaining = item.duration;
+                existingTimer.revision = item.revision ?? 0;
+              } else {
+                // Updated while active: start new timer with updated duration
+                const timeoutId = setTimeout(() => {
+                  dismiss(item.id);
+                }, item.duration);
+
+                existingTimer.timeoutId = timeoutId;
+                existingTimer.duration = item.duration;
+                existingTimer.remaining = item.duration;
+                existingTimer.startedAt = Date.now();
+                existingTimer.revision = item.revision ?? 0;
+              }
+            }
+          }
+        } else if (item.status === "exiting") {
+          currentExitingIds.add(item.id);
+
+          // Clear any active auto-dismiss timer
+          const activeTimer = timersRef.current.get(item.id);
+          if (activeTimer) {
+            clearTimeout(activeTimer.timeoutId);
+            timersRef.current.delete(item.id);
+          }
+
+          // Schedule exit removal after 220ms CSS transition
+          if (!exitTimersRef.current.has(item.id)) {
+            const exitTimer = setTimeout(() => {
+              dispatch({ type: "REMOVE_TOAST", id: item.id, maxVisible });
+              exitTimersRef.current.delete(item.id);
+            }, 220);
+            exitTimersRef.current.set(item.id, exitTimer);
           }
         }
       }
@@ -175,7 +261,15 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
         timersRef.current.delete(timerId);
       }
     }
-  }, [state, dismiss]);
+
+    // Clean up exit timers for toasts that are no longer in exiting state
+    for (const [exitId, exitTimer] of exitTimersRef.current.entries()) {
+      if (!currentExitingIds.has(exitId)) {
+        clearTimeout(exitTimer);
+        exitTimersRef.current.delete(exitId);
+      }
+    }
+  }, [state, dismiss, maxVisible]);
 
   // Clean up all active timers on provider unmount
   useEffect(() => {
@@ -194,13 +288,33 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
 
   const show = useCallback(
     (options: ToastOptions): string => {
-      const id = options.id || generateId();
       const color: ToastColor = options.color ?? defaultColor;
       const position: ToastPosition = normalizePosition(options.position ?? defaultPosition);
+      const fallbackDuration = defaultDuration !== undefined ? defaultDuration : DEFAULT_TOAST_DURATIONS[color];
+      const rawDuration: number = options.duration !== undefined ? options.duration : fallbackDuration;
+      const duration: number = sanitizeDuration(rawDuration, fallbackDuration);
+      const id = options.id || generateId();
+
+      // Reject custom ID conflicts globally
+      if (options.id && (activeIdsRef.current.has(options.id) || findToastGlobally(stateRef.current, options.id))) {
+        return "";
+      }
+
+      // Reject admission if pending queue is disabled (maxPending === 0) and visible stack is full
+      const currentPosState = stateRef.current[position];
+      const currentCount = Math.max(
+        currentPosState ? currentPosState.visible.length : 0,
+        positionCountsRef.current[position] ?? 0,
+      );
+      if (maxPending === 0 && currentCount >= maxVisible) {
+        return "";
+      }
+
+      activeIdsRef.current.add(id);
+      positionCountsRef.current[position] = (positionCountsRef.current[position] ?? 0) + 1;
+
       const radius: ToastRadius = options.radius ?? defaultRadius;
       const variant: ToastVariant = options.variant ?? defaultVariant;
-      const duration: number =
-        options.duration !== undefined ? options.duration : defaultDuration !== undefined ? defaultDuration : DEFAULT_TOAST_DURATIONS[color];
       const dismissible: boolean = options.dismissible ?? true;
 
       const toastItem: Omit<ToastItemState, "status"> = {
@@ -218,6 +332,7 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
         action: options.action,
         icon: options.icon,
         createdAt: Date.now(),
+        revision: 0,
       };
 
       dispatch({ type: "ADD_TOAST", toast: toastItem, maxVisible, maxPending });

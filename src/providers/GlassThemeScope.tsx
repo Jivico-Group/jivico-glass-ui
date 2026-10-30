@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import JivicoGlassTheme from "../theme/theme.js";
