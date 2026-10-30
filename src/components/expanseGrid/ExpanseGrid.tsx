@@ -56,7 +56,12 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
     const cleanTagline = displayName ? item.tagline?.replace(new RegExp(` Jivico ${displayName}$`, "i"), "") : item.tagline;
     return (
       <Box
-        onClick={() => onNavigate?.(item)}
+        onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+          if (onNavigate) {
+            event.preventDefault();
+            onNavigate(item, event);
+          }
+        }}
         component={targetUrl ? "a" : "div"}
         href={targetUrl}
         sx={{
@@ -149,6 +154,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
             </Typography>
           )}
           <Button
+            component="span"
             size="large"
             variant="outlined"
             color="dark-glass"

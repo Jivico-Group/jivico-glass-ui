@@ -3181,7 +3181,7 @@ interface ExpanseGridProps {
     ImageComponent?: any;
     radius?: "square" | "soft" | "rounded" | "corner";
     gap?: number;
-    onNavigate?: (item: ExpanseItem) => void;
+    onNavigate?: (item: ExpanseItem, event?: React.MouseEvent<HTMLAnchorElement>) => void;
     className?: string;
     sx?: SxProps$1;
 }
