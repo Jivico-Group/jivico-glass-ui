@@ -163,7 +163,7 @@ const ToastContainer = styled(Box, {
     display: "flex",
     alignItems: "flex-start",
     width: "100%",
-    maxWidth: 312,
+    maxWidth: 382,
     minWidth: 0,
     [theme.breakpoints.down("sm")]: { minWidth: 0, maxWidth: "100%" },
     boxSizing: "border-box",
