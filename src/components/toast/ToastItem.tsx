@@ -36,7 +36,7 @@ function resolveColorTokens(color: ToastColor, isDark: boolean, loading?: boolea
       accent: isDark ? "rgba(148, 163, 184, 0.5)" : "rgba(100, 116, 139, 0.4)",
       badgeBg: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)",
       badgeColor: isDark ? COLORS.secondary.dark : COLORS.secondary.light,
-      defaultIcon: <Loader2 size={18} strokeWidth={2.4} style={{ animation: `${spinAnimation} 1s linear infinite` }} />,
+      defaultIcon: <Loader2 size={15} strokeWidth={2.4} style={{ animation: `${spinAnimation} 1s linear infinite` }} />,
     };
   }
 
@@ -47,7 +47,7 @@ function resolveColorTokens(color: ToastColor, isDark: boolean, loading?: boolea
         badgeBg: isDark ? "rgba(129, 201, 149, 0.22)" : COLORS.success.light,
         badgeColor: isDark ? COLORS.success.dark : COLORS.success.textLight,
         badgeGlow: isDark ? COLORS.success.glowDark : undefined,
-        defaultIcon: <Check size={18} strokeWidth={2.75} />,
+        defaultIcon: <Check size={15} strokeWidth={2.75} />,
       };
 
     case "info":
@@ -56,7 +56,7 @@ function resolveColorTokens(color: ToastColor, isDark: boolean, loading?: boolea
         badgeBg: isDark ? "rgba(138, 180, 248, 0.24)" : COLORS.info.light,
         badgeColor: isDark ? COLORS.info.dark : COLORS.info.textLight,
         badgeGlow: isDark ? COLORS.info.glowDark : undefined,
-        defaultIcon: <Info size={18} strokeWidth={2.5} />,
+        defaultIcon: <Info size={15} strokeWidth={2.5} />,
       };
 
     case "warning":
@@ -65,7 +65,7 @@ function resolveColorTokens(color: ToastColor, isDark: boolean, loading?: boolea
         badgeBg: isDark ? "rgba(246, 173, 85, 0.22)" : "rgba(230, 119, 0, 0.16)",
         badgeColor: isDark ? COLORS.warning.dark : COLORS.warning.hoverLight,
         badgeGlow: isDark ? COLORS.warning.glowDark : undefined,
-        defaultIcon: <AlertTriangle size={18} strokeWidth={2.3} />,
+        defaultIcon: <AlertTriangle size={15} strokeWidth={2.3} />,
       };
 
     case "error":
@@ -74,7 +74,7 @@ function resolveColorTokens(color: ToastColor, isDark: boolean, loading?: boolea
         badgeBg: isDark ? "rgba(242, 139, 130, 0.22)" : "rgba(224, 67, 53, 0.16)",
         badgeColor: isDark ? COLORS.error.dark : COLORS.error.hoverLight,
         badgeGlow: isDark ? COLORS.error.glowDark : undefined,
-        defaultIcon: <X size={18} strokeWidth={2.75} />,
+        defaultIcon: <X size={15} strokeWidth={2.75} />,
       };
 
     case "accent":
@@ -83,7 +83,7 @@ function resolveColorTokens(color: ToastColor, isDark: boolean, loading?: boolea
         badgeBg: isDark ? "rgba(212, 183, 122, 0.22)" : "rgba(147, 116, 71, 0.15)",
         badgeColor: isDark ? COLORS.accent.dark : COLORS.accent.light,
         badgeGlow: isDark ? COLORS.accent.glowDark : undefined,
-        defaultIcon: <Sparkles size={18} strokeWidth={2.2} />,
+        defaultIcon: <Sparkles size={15} strokeWidth={2.2} />,
       };
 
     case "secondary":
@@ -91,7 +91,7 @@ function resolveColorTokens(color: ToastColor, isDark: boolean, loading?: boolea
         accent: isDark ? COLORS.secondary.dark : COLORS.secondary.light,
         badgeBg: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)",
         badgeColor: isDark ? COLORS.secondary.dark : COLORS.secondary.light,
-        defaultIcon: <Bell size={18} strokeWidth={2.2} />,
+        defaultIcon: <Bell size={15} strokeWidth={2.2} />,
       };
 
     case "glass":
@@ -99,7 +99,7 @@ function resolveColorTokens(color: ToastColor, isDark: boolean, loading?: boolea
         accent: isDark ? "rgba(255, 255, 255, 0.45)" : "rgba(0, 0, 0, 0.35)",
         badgeBg: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.05)",
         badgeColor: isDark ? "#F8FAFC" : COLORS.primary.light,
-        defaultIcon: <Sparkles size={18} strokeWidth={2.2} />,
+        defaultIcon: <Sparkles size={15} strokeWidth={2.2} />,
       };
 
     case "primary":
@@ -108,7 +108,7 @@ function resolveColorTokens(color: ToastColor, isDark: boolean, loading?: boolea
         accent: isDark ? COLORS.primary.dark : COLORS.primary.light,
         badgeBg: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)",
         badgeColor: isDark ? "#FFFFFF" : COLORS.primary.light,
-        defaultIcon: <Bell size={18} strokeWidth={2.2} />,
+        defaultIcon: <Bell size={15} strokeWidth={2.2} />,
       };
   }
 }
@@ -131,15 +131,15 @@ const ToastContainer = styled(Box, {
   const borderRadius = resolveRadius(radius);
 
   // Default "glass" styling matching Jivico liquid glass recipe
-  let background = isDark ? "rgba(20, 24, 33, 0.85)" : "rgba(255, 255, 255, 0.85)";
+  let background = isDark ? "rgba(23, 25, 30, 0.94)" : "rgba(255, 255, 255, 0.96)";
   let backgroundImage = isDark
     ? "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%)"
     : "linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 250, 252, 0.2) 100%)";
-  let border = isDark ? "1px solid rgba(255, 255, 255, 0.12)" : "1px solid rgba(255, 255, 255, 0.7)";
-  let backdropFilter = "blur(20px) saturate(190%)";
+  let border = isDark ? "1px solid rgba(255, 255, 255, 0.18)" : "1px solid rgba(20, 24, 32, 0.12)";
+  let backdropFilter = "blur(16px) saturate(150%)";
   let boxShadow = isDark
-    ? "0 16px 36px -4px rgba(0, 0, 0, 0.55), 0 6px 16px -2px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14)"
-    : "0 10px 25px -4px rgba(0, 0, 0, 0.08), 0 4px 10px -2px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.9)";
+    ? "0 10px 28px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.14)"
+    : "0 10px 28px rgba(18, 22, 32, 0.09), 0 2px 6px rgba(18, 22, 32, 0.035)";
 
   if (variant === "solid") {
     background = isDark ? "#131720" : "#FFFFFF";
@@ -151,7 +151,7 @@ const ToastContainer = styled(Box, {
     background = isDark ? "rgba(30, 36, 48, 0.92)" : "rgba(248, 250, 252, 0.94)";
     backgroundImage = "none";
     backdropFilter = "none";
-    border = isDark ? "1px solid rgba(255, 255, 255, 0.08)" : "1px solid rgba(0, 0, 0, 0.06)";
+    border = isDark ? "1px solid rgba(255, 255, 255, 0.14)" : "1px solid rgba(20, 24, 32, 0.1)";
   } else if (variant === "outlined") {
     background = isDark ? "rgba(20, 24, 33, 0.4)" : "rgba(255, 255, 255, 0.4)";
     border = isDark ? "1px solid rgba(255, 255, 255, 0.2)" : "1px solid rgba(0, 0, 0, 0.16)";
@@ -163,11 +163,11 @@ const ToastContainer = styled(Box, {
     display: "flex",
     alignItems: "flex-start",
     width: "100%",
-    maxWidth: 400,
-    minWidth: 280,
+    maxWidth: 340,
+    minWidth: 260,
     [theme.breakpoints.down("sm")]: { minWidth: 0, maxWidth: "100%" },
     boxSizing: "border-box",
-    padding: "12px 14px 12px 16px",
+    padding: "10px 11px 10px 13px",
     borderRadius,
     background,
     backgroundImage,
@@ -191,7 +191,7 @@ const AccentPill = styled("span", { shouldForwardProp: (prop) => prop !== "accen
   left: 0,
   top: 0,
   bottom: 0,
-  width: "4.5px",
+  width: "3px",
   backgroundColor: accentColor,
   borderTopLeftRadius: "inherit",
   borderBottomLeftRadius: "inherit",
@@ -205,8 +205,8 @@ const IconBadge = styled(Box, { shouldForwardProp: (prop) => prop !== "badgeBg" 
   badgeColor: string;
   badgeGlow?: string;
 }>(({ badgeBg, badgeColor, badgeGlow }) => ({
-  width: 36,
-  height: 36,
+  width: 28,
+  height: 28,
   borderRadius: "50%",
   display: "flex",
   alignItems: "center",
@@ -215,7 +215,7 @@ const IconBadge = styled(Box, { shouldForwardProp: (prop) => prop !== "badgeBg" 
   backgroundColor: badgeBg,
   color: badgeColor,
   boxShadow: badgeGlow ?? "none",
-  marginTop: 1,
+  marginTop: 2,
 }));
 
 export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, onResume }) => {
@@ -258,14 +258,14 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
         {icon}
       </IconBadge>
 
-      <Box sx={{ flex: 1, minWidth: 0, ml: 1.5, mr: 0.5, display: "flex", flexDirection: "column", gap: 0.35 }}>
-        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 1 }}>
+      <Box sx={{ flex: 1, minWidth: 0, ml: 1.15, mr: 0, display: "flex", flexDirection: "column", gap: 0.2 }}>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 0.5 }}>
           {item.title ? (
             <Typography
               component="span"
               sx={{
                 fontWeight: 650,
-                fontSize: "0.875rem",
+                fontSize: "0.8125rem",
                 color: isDark ? COLORS.text.primaryDark : COLORS.text.primaryLight,
                 lineHeight: 1.3,
                 overflow: "hidden",
@@ -284,7 +284,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
               <Typography
                 component="span"
                 sx={{
-                  fontSize: "0.75rem",
+                  fontSize: "0.6875rem",
                   color: isDark ? COLORS.text.secondaryDark : COLORS.text.secondaryLight,
                   lineHeight: 1,
                   userSelect: "none",
@@ -303,7 +303,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
                   onDismiss(item.id);
                 }}
                 sx={{
-                  p: 0.4,
+                  p: 0.3,
                   color: isDark ? "rgba(255, 255, 255, 0.45)" : "rgba(0, 0, 0, 0.4)",
                   "&:hover": {
                     color: isDark ? "#FFFFFF" : COLORS.primary.light,
@@ -312,7 +312,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
                   "&:focus-visible": { outline: `2px solid ${isDark ? COLORS.accent.dark : COLORS.accent.light}`, outlineOffset: "2px" },
                 }}
               >
-                <X size={15} strokeWidth={2.2} />
+                <X size={13} strokeWidth={2.1} />
               </IconButton>
             )}
           </Box>
@@ -321,18 +321,19 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
         <Typography
           component="div"
           sx={{
-            fontSize: "0.8125rem",
+            fontSize: "0.75rem",
             fontWeight: 400,
             color: isDark ? COLORS.text.secondaryDark : COLORS.text.secondaryLight,
-            lineHeight: 1.4,
+            lineHeight: 1.45,
             wordBreak: "break-word",
+            overflowWrap: "anywhere",
           }}
         >
           {item.message}
         </Typography>
 
         {item.action && (
-          <Box sx={{ mt: 1, display: "flex", justifyContent: "flex-start" }}>
+          <Box sx={{ mt: 0.65, display: "flex", justifyContent: "flex-start" }}>
             <Button
               size="small"
               onClick={(e) => {
@@ -340,12 +341,12 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
                 item.action?.onClick();
               }}
               sx={{
-                py: 0.4,
-                px: 1.25,
-                fontSize: "0.75rem",
+                py: 0.25,
+                px: 1,
+                fontSize: "0.6875rem",
                 fontWeight: 600,
                 textTransform: "none",
-                borderRadius: "8px",
+                borderRadius: "6px",
                 color: isDark ? "#FFFFFF" : COLORS.primary.light,
                 backgroundColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.05)",
                 border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(0, 0, 0, 0.1)"}`,
