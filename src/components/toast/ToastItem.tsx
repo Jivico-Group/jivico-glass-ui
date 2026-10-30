@@ -163,8 +163,8 @@ const ToastContainer = styled(Box, {
     display: "flex",
     alignItems: "flex-start",
     width: "100%",
-    maxWidth: 382,
-    minWidth: 0,
+    minWidth: 382,
+    // minWidth: 0,
     [theme.breakpoints.down("sm")]: { minWidth: 0, maxWidth: "100%" },
     boxSizing: "border-box",
     padding: "9px 10px 9px 12px",
@@ -264,8 +264,8 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
             <Typography
               component="span"
               sx={{
-                fontWeight: 650,
-                fontSize: "0.75rem",
+                fontWeight: 600,
+                fontSize: "0.65rem",
                 color: isDark ? COLORS.text.primaryDark : COLORS.text.primaryLight,
                 lineHeight: 1.3,
                 overflow: "hidden",
@@ -321,7 +321,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
         <Typography
           component="div"
           sx={{
-            fontSize: "0.6875rem",
+            fontSize: "0.45rem",
             fontWeight: 400,
             color: isDark ? COLORS.text.secondaryDark : COLORS.text.secondaryLight,
             lineHeight: 1.35,
