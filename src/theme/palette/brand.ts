@@ -5,4 +5,5 @@ export const buildBrandPalette = () => ({
   stone: COLORS.brand.stone,
   sand: COLORS.brand.sand,
   cream: COLORS.brand.cream,
+  rubyCrimson: COLORS.brand.rubyCrimson,
 });

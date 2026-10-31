@@ -1,0 +1,16 @@
+export const PREMIUM_COLORS = {
+  light: "#A30F2D",
+  dark: "#B51234",
+  hoverLight: "#8C0B25",
+  hoverDark: "#C9183B",
+  activeLight: "#73081E",
+  activeDark: "#A30F2D",
+  disabledLight: "rgba(163, 15, 45, 0.38)",
+  disabledDark: "rgba(181, 18, 52, 0.38)",
+  glowLight: "rgba(163, 15, 45, 0.20)",
+  glowDark: "rgba(181, 18, 52, 0.28)",
+  textLight: "#FFFFFF",
+  textDark: "#FFFFFF",
+  gradient: "linear-gradient(135deg, #B51234 0%, #A30F2D 50%, #8C0B25 100%)",
+} as const;
+

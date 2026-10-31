@@ -14,6 +14,7 @@ declare const buildBrandPalette: () => {
     stone: string;
     sand: string;
     cream: string;
+    rubyCrimson: string;
 };
 
 declare const buildPrimaryPalette: (isDark: boolean) => {
@@ -47,6 +48,18 @@ declare const buildAccentPalette: (isDark: boolean) => {
     disabled: "#D9C9AD" | "#5A4B35";
     glow: "rgba(147, 116, 71, 0.18)" | "rgba(212, 183, 122, 0.20)";
     contrastText: "#FFFFFF" | "#111111";
+};
+
+declare const buildPremiumPalette: (isDark: boolean) => {
+    main: "#A30F2D" | "#B51234";
+    light: "#B51234";
+    dark: "#8C0B25";
+    hover: "#8C0B25" | "#C9183B";
+    active: "#A30F2D" | "#73081E";
+    disabled: "rgba(163, 15, 45, 0.38)" | "rgba(181, 18, 52, 0.38)";
+    glow: "rgba(163, 15, 45, 0.20)" | "rgba(181, 18, 52, 0.28)";
+    contrastText: "#FFFFFF";
+    gradient: "linear-gradient(135deg, #B51234 0%, #A30F2D 50%, #8C0B25 100%)";
 };
 
 declare const buildSemanticPalette: (isDark: boolean) => {
@@ -171,6 +184,8 @@ declare const buildGradientsPalette: () => {
     primaryHover: string;
     accent: string;
     accentDark: string;
+    premium: string;
+    rubyCrimson: string;
 };
 
 declare const buildAliasesPalette: (isDark: boolean) => {
@@ -274,6 +289,8 @@ declare const buildPalette: (mode: "light" | "dark") => {
         primaryHover: string;
         accent: string;
         accentDark: string;
+        premium: string;
+        rubyCrimson: string;
     };
     success: {
         main: string;
@@ -320,6 +337,7 @@ declare const buildPalette: (mode: "light" | "dark") => {
         stone: string;
         sand: string;
         cream: string;
+        rubyCrimson: string;
     };
     primary: {
         main: string;
@@ -351,6 +369,17 @@ declare const buildPalette: (mode: "light" | "dark") => {
         glow: string;
         contrastText: string;
     };
+    premium: {
+        main: "#A30F2D" | "#B51234";
+        light: "#B51234";
+        dark: "#8C0B25";
+        hover: "#8C0B25" | "#C9183B";
+        active: "#A30F2D" | "#73081E";
+        disabled: "rgba(163, 15, 45, 0.38)" | "rgba(181, 18, 52, 0.38)";
+        glow: "rgba(163, 15, 45, 0.20)" | "rgba(181, 18, 52, 0.28)";
+        contrastText: "#FFFFFF";
+        gradient: "linear-gradient(135deg, #B51234 0%, #A30F2D 50%, #8C0B25 100%)";
+    };
 };
 type JivicoPalette = ReturnType<typeof buildPalette>;
 
@@ -364,6 +393,7 @@ declare module "@mui/material/styles" {
   interface Palette {
     accent: JivicoPalette["accent"];
     brand: JivicoPalette["brand"];
+    premium: JivicoPalette["premium"];
     glass: JivicoPalette["glass"];
 
     "glass-surface"?: { main: string; light: string; dark: string; contrastText: string };
@@ -376,6 +406,7 @@ declare module "@mui/material/styles" {
   interface PaletteOptions {
     accent?: JivicoPalette["accent"];
     brand?: JivicoPalette["brand"];
+    premium?: JivicoPalette["premium"];
     glass?: JivicoPalette["glass"];
 
     "glass-surface"?: { main: string; light: string; dark: string; contrastText: string };
@@ -888,6 +919,7 @@ declare const BRAND_COLORS: {
     stone: string;
     sand: string;
     cream: string;
+    rubyCrimson: string;
 };
 
 declare const PRIMARY_COLORS: {
@@ -933,6 +965,22 @@ declare const ACCENT_COLORS: {
     readonly glowDark: "rgba(212, 183, 122, 0.20)";
     readonly textLight: "#FFFFFF";
     readonly textDark: "#111111";
+};
+
+declare const PREMIUM_COLORS: {
+    readonly light: "#A30F2D";
+    readonly dark: "#B51234";
+    readonly hoverLight: "#8C0B25";
+    readonly hoverDark: "#C9183B";
+    readonly activeLight: "#73081E";
+    readonly activeDark: "#A30F2D";
+    readonly disabledLight: "rgba(163, 15, 45, 0.38)";
+    readonly disabledDark: "rgba(181, 18, 52, 0.38)";
+    readonly glowLight: "rgba(163, 15, 45, 0.20)";
+    readonly glowDark: "rgba(181, 18, 52, 0.28)";
+    readonly textLight: "#FFFFFF";
+    readonly textDark: "#FFFFFF";
+    readonly gradient: "linear-gradient(135deg, #B51234 0%, #A30F2D 50%, #8C0B25 100%)";
 };
 
 declare const SEMANTIC_COLORS: {
@@ -1120,6 +1168,8 @@ declare const GRADIENT_COLORS: {
     primaryHover: string;
     accent: string;
     accentDark: string;
+    premium: string;
+    rubyCrimson: string;
 };
 
 declare const COLORS: {
@@ -1245,6 +1295,8 @@ declare const COLORS: {
         primaryHover: string;
         accent: string;
         accentDark: string;
+        premium: string;
+        rubyCrimson: string;
     };
     success: {
         light: string;
@@ -1307,6 +1359,7 @@ declare const COLORS: {
         stone: string;
         sand: string;
         cream: string;
+        rubyCrimson: string;
     };
     primary: {
         light: string;
@@ -1349,6 +1402,21 @@ declare const COLORS: {
         readonly glowDark: "rgba(212, 183, 122, 0.20)";
         readonly textLight: "#FFFFFF";
         readonly textDark: "#111111";
+    };
+    premium: {
+        readonly light: "#A30F2D";
+        readonly dark: "#B51234";
+        readonly hoverLight: "#8C0B25";
+        readonly hoverDark: "#C9183B";
+        readonly activeLight: "#73081E";
+        readonly activeDark: "#A30F2D";
+        readonly disabledLight: "rgba(163, 15, 45, 0.38)";
+        readonly disabledDark: "rgba(181, 18, 52, 0.38)";
+        readonly glowLight: "rgba(163, 15, 45, 0.20)";
+        readonly glowDark: "rgba(181, 18, 52, 0.28)";
+        readonly textLight: "#FFFFFF";
+        readonly textDark: "#FFFFFF";
+        readonly gradient: "linear-gradient(135deg, #B51234 0%, #A30F2D 50%, #8C0B25 100%)";
     };
 };
 
@@ -3500,4 +3568,4 @@ interface GlassThemeScopeProps {
  */
 declare function GlassThemeScope({ mode, children }: GlassThemeScopeProps): react__default.JSX.Element;
 
-export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, ALL_POSITIONS, AmbientBlob, type AspectRatio, type AspectRt, BACKGROUND_COLORS, BRAND_COLORS, BackdropLoader, type BackdropLoaderProps, type BottomNavigationItemProps, COLORS, CoverImage, DEFAULT_TOAST_DURATIONS, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, ExpanseGrid, type ExpanseGridProps, type ExpanseItem, type ExpanseLayout, type ExtendedToastProviderProps, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, GlassModeContext, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_FONTS_URL, JIVICO_FONT_FAMILY, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, Loader, type LoaderDimension, type LoaderImageSource, type LoaderProps, LoadingShowcase, type LoadingShowcaseImage, type LoadingShowcaseImageRenderer, type LoadingShowcaseProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveAspectRatio, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseContentAlign, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightButtonColor, type SpotlightContentAlign, type SpotlightDimension, type SpotlightImageComponent, type SpotlightImageComponentProps, type SpotlightItem, type SpotlightMedia, type SpotlightProps, type SpotlightRadius, type SpotlightSize, type SpotlightVariant, type StandardAspectRatio, StatLabel, StatValue, StatusShowcase, type StatusShowcaseImage, type StatusShowcaseProps, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, ThemeContext, type ThemeMode, type ToastAction, type ToastActionType, ToastAllViewports, type ToastAllViewportsProps, type ToastApi, type ToastColor, ToastContext, ToastItem, type ToastItemProps, type ToastItemState, type ToastOptions, type ToastPosition, type ToastPositionInput, type ToastPositionState, ToastProvider, type ToastProviderProps, type ToastRadius, type ToastShortcutOptions, type ToastState, type ToastStatus, type ToastVariant, ToastViewport, type ToastViewportProps, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createInitialToastState, createJivicoTheme, findToastGlobally, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, getVariantOverlay, normalizePosition, sanitizeDuration, toastReducer, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook, useThemeContext, useToast };
+export { ACCENT_COLORS, ACTION_COLORS, ALERT_RGB, ALL_POSITIONS, AmbientBlob, type AspectRatio, type AspectRt, BACKGROUND_COLORS, BRAND_COLORS, BackdropLoader, type BackdropLoaderProps, type BottomNavigationItemProps, COLORS, CoverImage, DEFAULT_TOAST_DURATIONS, DIVIDER_COLORS, DecorativeBlob, DynamicIsland, DynamicIslandAction, DynamicIslandItem, type DynamicIslandProps, EdgeFade, ExpanseGrid, type ExpanseGridProps, type ExpanseItem, type ExpanseLayout, type ExtendedToastProviderProps, GLASS_COLORS, GOOGLE_SANS_FLEX_URL, GRADIENT_COLORS, Gallery, type GalleryAlign, type GalleryColumns, type GalleryImageContext, type GalleryImageFit, type GalleryJustify, type GalleryOverlayContext, type GalleryProps, type GalleryRadius, type GalleryRenderContext, GlassBox, type GlassBoxProps, GlassCardBody, GlassContainer, type GlassContainerProps, GlassControlsGroup, GlassEdgeFade, type GlassEdgeFadeProps, GlassIconGlow, type GlassIconGlowProps, GlassModeContext, type GlassModeContextType, GlassModeProvider, type GlassModeProviderProps, GlassNavArrowButton, GlassPanel, type GlassPanelProps, GlassProductTitle, GlassScrollButton, GlassSectionHeaderRow, GlassSectionSubtitle, GlassSectionTitle, GlassSurface, type GlassSurfaceProps, GlassThemeScope, type GlassThemeScopeProps, GlassTitleGroup, GlassToolbarRoot, type GlassToolbarRootProps, GlassWishlistButton, GradientContextTitle, GradientText, HeaderAppBar, type HeaderAppBarProps, HeroActions, HeroDescription, HeroImageFrame, HeroSection, HeroStatsPanel, HeroTitle, Highlight, type HighlightAction, type HighlightDimension, type HighlightImageProps, type HighlightProps, type HighlightSize, type HighlightVariant, HolographicBadge, JIVICO_FONTS_URL, JIVICO_FONT_FAMILY, JivicoFontLinks, JivicoFontPreload, JivicoGlassProvider, type JivicoGlassProviderProps, JivicoGlassTheme, type JivicoPalette, LiquidGlassCard, LiquidGlassCardRoot, type LiquidGlassCardRootProps, LiquidSpotlightImageArea, type LiquidSpotlightImageAreaProps, Loader, type LoaderDimension, type LoaderImageSource, type LoaderProps, LoadingShowcase, type LoadingShowcaseImage, type LoadingShowcaseImageRenderer, type LoadingShowcaseProps, MobileViewAll, MobileViewAllButton, type MobileViewAllProps, PREMIUM_COLORS, PRIMARY_COLORS, PageRoot, type RailColumns, type RailItemWidth, type RailNavigation, type RailNavigationContext, type RailProps, type RailRenderContext, Rails, type ResolvedThemeMode, type ResponsiveAspectRatio, type ResponsiveBreakpoint, type ResponsiveState, SECONDARY_COLORS, SEMANTIC_COLORS, Section, SectionContainer, SectionHeader, type SectionHeaderProps, Showcase, type ShowcaseAction, type ShowcaseContentAlign, type ShowcaseItem, type ShowcaseMedia, type ShowcaseNavigation, type ShowcaseProps, type ShowcaseSize, type ShowcaseTransition, type ShowcaseVariant, Spotlight, type SpotlightAction, type SpotlightButtonColor, type SpotlightContentAlign, type SpotlightDimension, type SpotlightImageComponent, type SpotlightImageComponentProps, type SpotlightItem, type SpotlightMedia, type SpotlightProps, type SpotlightRadius, type SpotlightSize, type SpotlightVariant, type StandardAspectRatio, StatLabel, StatValue, StatusShowcase, type StatusShowcaseImage, type StatusShowcaseProps, SectionHeader as StudioSectionHeader, type SectionHeaderProps as StudioSectionHeaderProps, TEXT_COLORS, ThemeContext, type ThemeMode, type ToastAction, type ToastActionType, ToastAllViewports, type ToastAllViewportsProps, type ToastApi, type ToastColor, ToastContext, ToastItem, type ToastItemProps, type ToastItemState, type ToastOptions, type ToastPosition, type ToastPositionInput, type ToastPositionState, ToastProvider, type ToastProviderProps, type ToastRadius, type ToastShortcutOptions, type ToastState, type ToastStatus, type ToastVariant, ToastViewport, type ToastViewportProps, TribeMemberPill, VisualViewer, type VisualViewerDimension, type VisualViewerImageContext, type VisualViewerItem, type VisualViewerNavigation, type VisualViewerNavigationContext, type VisualViewerObjectFit, type VisualViewerProps, type VisualViewerRadius, type VisualViewerThumbnailPosition, buildAccentPalette, buildActionPalette, buildAlertPalette, buildAliasesPalette, buildBackgroundPalette, buildBrandPalette, buildDividerPalette, buildGlassPalette, buildGradientsPalette, buildPalette, buildPremiumPalette, buildPrimaryPalette, buildSecondaryPalette, buildSemanticPalette, buildTextPalette, createInitialToastState, createJivicoTheme, findToastGlobally, getControlOverrides, getDataDisplayOverrides, getFeedbackOverrides, getInputOverrides, getNavigationOverrides, getSurfaceOverrides, getVariantOverlay, normalizePosition, sanitizeDuration, toastReducer, typography, useGlassMode, useResponsive, useResponsive as useResponsiveHook, useThemeContext, useToast };

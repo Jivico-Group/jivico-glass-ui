@@ -10,6 +10,7 @@ declare module "@mui/material/styles" {
   interface Palette {
     accent: JivicoPalette["accent"];
     brand: JivicoPalette["brand"];
+    premium: JivicoPalette["premium"];
     glass: JivicoPalette["glass"];
 
     "glass-surface"?: { main: string; light: string; dark: string; contrastText: string };
@@ -22,6 +23,7 @@ declare module "@mui/material/styles" {
   interface PaletteOptions {
     accent?: JivicoPalette["accent"];
     brand?: JivicoPalette["brand"];
+    premium?: JivicoPalette["premium"];
     glass?: JivicoPalette["glass"];
 
     "glass-surface"?: { main: string; light: string; dark: string; contrastText: string };

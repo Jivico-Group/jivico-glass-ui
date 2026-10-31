@@ -7,6 +7,7 @@ import { buildBrandPalette } from "./brand.js";
 import { buildDividerPalette } from "./divider.js";
 import { buildGlassPalette } from "./glass.js";
 import { buildGradientsPalette } from "./gradients.js";
+import { buildPremiumPalette } from "./premium.js";
 import { buildPrimaryPalette } from "./primary.js";
 import { buildSecondaryPalette } from "./secondary.js";
 import { buildSemanticPalette } from "./semantic.js";
@@ -16,6 +17,7 @@ export * from "./brand.js";
 export * from "./primary.js";
 export * from "./secondary.js";
 export * from "./accent.js";
+export * from "./premium.js";
 export * from "./semantic.js";
 export * from "./background.js";
 export * from "./text.js";
@@ -34,6 +36,7 @@ export const buildPalette = (mode: "light" | "dark") => {
     primary: buildPrimaryPalette(isDark),
     accent: buildAccentPalette(isDark),
     secondary: buildSecondaryPalette(isDark),
+    premium: buildPremiumPalette(isDark),
     ...buildSemanticPalette(isDark),
     background: buildBackgroundPalette(isDark),
     text: buildTextPalette(isDark),

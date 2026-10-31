@@ -6,6 +6,7 @@ import { BRAND_COLORS } from "./brand.js";
 import { DIVIDER_COLORS } from "./divider.js";
 import { GLASS_COLORS } from "./glass.js";
 import { GRADIENT_COLORS } from "./gradients.js";
+import { PREMIUM_COLORS } from "./premium.js";
 import { PRIMARY_COLORS } from "./primary.js";
 import { SECONDARY_COLORS } from "./secondary.js";
 import { SEMANTIC_COLORS } from "./semantic.js";
@@ -15,6 +16,7 @@ export * from "./brand.js";
 export * from "./primary.js";
 export * from "./secondary.js";
 export * from "./accent.js";
+export * from "./premium.js";
 export * from "./semantic.js";
 export * from "./background.js";
 export * from "./text.js";
@@ -29,6 +31,7 @@ export const COLORS = {
   primary: PRIMARY_COLORS,
   secondary: SECONDARY_COLORS,
   accent: ACCENT_COLORS,
+  premium: PREMIUM_COLORS,
   ...SEMANTIC_COLORS,
   background: BACKGROUND_COLORS,
   text: TEXT_COLORS,
