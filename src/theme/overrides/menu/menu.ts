@@ -1,7 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export type MenuColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error";
+export type MenuColor = "primary" | "secondary" | "accent" | "premium" | "success" | "warning" | "error";
 
 export type MenuSurface = "standard" | "glass";
 
@@ -26,6 +26,7 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
     primary: palette.primary.main,
     secondary: palette.secondary.main,
     accent: palette.accent.main,
+    premium: palette.premium.main,
     success: palette.success.main,
     warning: palette.warning.main,
     error: palette.error.main,

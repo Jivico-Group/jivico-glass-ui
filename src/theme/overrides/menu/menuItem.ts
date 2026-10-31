@@ -11,6 +11,7 @@ export const getMenuItemOverrides = (palette: JivicoPalette, isDark: boolean): C
     primary: palette.primary.main,
     secondary: palette.secondary.main,
     accent: palette.accent.main,
+    premium: palette.premium.main,
     success: palette.success.main,
     warning: palette.warning.main,
     error: palette.error.main,

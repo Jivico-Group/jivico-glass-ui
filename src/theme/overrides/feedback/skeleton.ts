@@ -1,7 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-type SkeletonColor = "primary" | "secondary" | "accent" | "success" | "info" | "warning" | "error" | "glass";
+type SkeletonColor = "primary" | "secondary" | "accent" | "premium" | "success" | "info" | "warning" | "error" | "glass";
 
 type SkeletonAppearance = "solid" | "tonal" | "glass" | "outlined";
 
@@ -20,6 +20,8 @@ export const getSkeletonOverrides = (palette: JivicoPalette, isDark: boolean): C
     secondary: { main: palette.secondary.main },
 
     accent: { main: palette.accent.main },
+
+    premium: { main: palette.premium.main },
 
     success: { main: palette.success.main },
 

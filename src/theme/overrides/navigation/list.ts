@@ -5,7 +5,7 @@ import type { JivicoPalette } from "../../palette/index.js";
 // TYPES
 // ============================================================
 
-export type ListColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error";
+export type ListColor = "primary" | "secondary" | "accent" | "premium" | "success" | "warning" | "error";
 
 export type ListVariant = "standard" | "glass";
 export type ListSize = "small" | "medium" | "large";
@@ -70,6 +70,16 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
       hover: isDark ? "rgba(255, 255, 255, 0.07)" : "rgba(17, 17, 17, 0.05)",
 
       active: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(17, 17, 17, 0.10)",
+    },
+
+    premium: {
+      main: palette.premium.main,
+
+      soft: isDark ? "rgba(181, 18, 52, 0.16)" : "rgba(163, 15, 45, 0.10)",
+
+      hover: isDark ? "rgba(181, 18, 52, 0.10)" : "rgba(163, 15, 45, 0.06)",
+
+      active: isDark ? "rgba(181, 18, 52, 0.22)" : "rgba(163, 15, 45, 0.14)",
     },
 
     success: {

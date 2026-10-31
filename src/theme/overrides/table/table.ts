@@ -1,7 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-export type TableColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error";
+export type TableColor = "primary" | "secondary" | "accent" | "premium" | "success" | "warning" | "error";
 
 export type TableVariant = "standard" | "glass";
 
@@ -42,6 +42,13 @@ export const getTableOverrides = (palette: JivicoPalette, isDark: boolean): Comp
       header: isDark ? "rgba(255, 255, 255, 0.065)" : "rgba(17, 17, 17, 0.055)",
       hover: isDark ? "rgba(255, 255, 255, 0.065)" : "rgba(17, 17, 17, 0.055)",
       selected: isDark ? "rgba(255, 255, 255, 0.13)" : "rgba(17, 17, 17, 0.095)",
+    },
+
+    premium: {
+      main: palette.premium.main,
+      header: isDark ? "rgba(181, 18, 52, 0.12)" : "rgba(163, 15, 45, 0.08)",
+      hover: isDark ? "rgba(181, 18, 52, 0.10)" : "rgba(163, 15, 45, 0.06)",
+      selected: isDark ? "rgba(181, 18, 52, 0.18)" : "rgba(163, 15, 45, 0.12)",
     },
 
     success: {

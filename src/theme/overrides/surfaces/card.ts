@@ -1,7 +1,7 @@
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette.js";
 
-type CardColor = "primary" | "secondary" | "accent" | "info" | "success" | "warning" | "error" | "glass";
+type CardColor = "primary" | "secondary" | "accent" | "premium" | "info" | "success" | "warning" | "error" | "glass";
 
 type CardRadius = "none" | "small" | "medium" | "large" | "full";
 
@@ -72,6 +72,21 @@ const getCardColor = (palette: JivicoPalette, color: CardColor, isDark: boolean)
       hoverBackground: palette.accent.hover,
 
       hoverBorder: palette.accent.hover,
+    },
+
+    /*
+     * -----------------------------------------
+     * PREMIUM
+     * -----------------------------------------
+     */
+    premium: {
+      background: palette.premium.main,
+
+      border: palette.premium.main,
+
+      hoverBackground: palette.premium.hover,
+
+      hoverBorder: palette.premium.hover,
     },
 
     /*
@@ -197,7 +212,7 @@ export const getCardOverrides = (palette: JivicoPalette, isDark: boolean): Compo
          * Semantic colors need tonal treatment.
          */
         const isSemantic =
-          cardColor === "accent" || cardColor === "info" || cardColor === "success" || cardColor === "warning" || cardColor === "error";
+          cardColor === "accent" || cardColor === "premium" || cardColor === "info" || cardColor === "success" || cardColor === "warning" || cardColor === "error";
 
         const styles: Record<string, any> = {
           position: "relative",

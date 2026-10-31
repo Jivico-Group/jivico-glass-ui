@@ -18,6 +18,10 @@ export const getStepperOverrides = (palette: JivicoPalette, isDark: boolean): Co
         props: { color: "accent" },
         style: { "--jivico-stepper-color": palette.accent.main, "--jivico-stepper-contrast": palette.accent.contrastText },
       },
+      {
+        props: { color: "premium" },
+        style: { "--jivico-stepper-color": palette.premium.main, "--jivico-stepper-contrast": palette.premium.contrastText },
+      },
       { props: { color: "info" }, style: { "--jivico-stepper-color": palette.info.main, "--jivico-stepper-contrast": palette.info.contrastText } },
       {
         props: { color: "success" },

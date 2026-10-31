@@ -2,7 +2,7 @@ import { linearProgressClasses } from "@mui/material/LinearProgress";
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-type ProgressColor = "primary" | "secondary" | "accent" | "success" | "info" | "warning" | "error" | "glass";
+type ProgressColor = "primary" | "secondary" | "accent" | "premium" | "success" | "info" | "warning" | "error" | "glass";
 
 type ProgressAppearance = "solid" | "tonal" | "glass" | "outlined";
 
@@ -49,6 +49,8 @@ export const getLinearProgressOverrides = (palette: JivicoPalette, isDark: boole
     secondary: { main: palette.secondary.main, contrastText: palette.secondary.contrastText },
 
     accent: { main: palette.accent.main, contrastText: palette.accent.contrastText },
+
+    premium: { main: palette.premium.main, contrastText: palette.premium.contrastText },
 
     success: { main: palette.success.main, contrastText: palette.success.contrastText },
 

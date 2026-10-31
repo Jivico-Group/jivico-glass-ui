@@ -25,6 +25,9 @@ const resolveControlColors = (colorName: string, isDark: boolean, palette: Jivic
   if (colorName === "accent") {
     return { active: palette.accent.main, glow: palette.accent.glow, track: palette.accent.main };
   }
+  if (colorName === "premium") {
+    return { active: palette.premium.main, glow: palette.premium.glow, track: palette.premium.main };
+  }
   if (colorName === "default") {
     return {
       active: isDark ? "rgba(255, 255, 255, 0.7)" : "rgba(17, 17, 17, 0.65)",

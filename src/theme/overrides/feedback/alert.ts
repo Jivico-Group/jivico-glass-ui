@@ -2,7 +2,7 @@ import { COLORS } from "../../colors/index.js";
 import type { Components, Theme } from "@mui/material/styles";
 import type { JivicoPalette } from "../../palette/index.js";
 
-type AlertColor = "primary" | "secondary" | "accent" | "glass";
+type AlertColor = "primary" | "secondary" | "accent" | "premium" | "glass";
 type AlertAppearance = "solid" | "tonal" | "glass" | "outlined";
 type AlertRadius = "square" | "small" | "medium" | "large" | "rounded" | "pill";
 type GlassIntensity = "subtle" | "medium" | "strong" | "ultra";
