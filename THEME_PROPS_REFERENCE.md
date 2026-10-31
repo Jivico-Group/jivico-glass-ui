@@ -18,12 +18,13 @@
 
 The foundational brand color palette defined in `src/theme/colors/brand.ts`:
 
-| Token      | Hex       | Role & Description                                                  |
-| :--------- | :-------- | :------------------------------------------------------------------ |
-| `charcoal` | `#111111` | Bold dark primary in Light Mode; background anchor in Dark Mode     |
-| `stone`    | `#686868` | Neutral text, unselected icon states, and subtle metadata accents   |
-| `sand`     | `#D9D9CF` | Warm secondary tone used in segmented control tracks & pill borders |
-| `cream`    | `#F6F5F2` | Primary high-contrast text/surface in Dark Mode; base light canvas  |
+| Token         | Hex       | Role & Description                                                  |
+| :------------ | :-------- | :------------------------------------------------------------------ |
+| `charcoal`    | `#111111` | Bold dark primary in Light Mode; background anchor in Dark Mode     |
+| `stone`       | `#686868` | Neutral text, unselected icon states, and subtle metadata accents   |
+| `sand`        | `#D9D9CF` | Warm secondary tone used in segmented control tracks & pill borders |
+| `cream`       | `#F6F5F2` | Primary high-contrast text/surface in Dark Mode; base light canvas  |
+| `rubyCrimson` | `#A30F2D` | Premium highlight & Jivico One brand tone for elevated components   |
 
 ---
 
@@ -42,6 +43,7 @@ theme.palette.gradients.primary; // "linear-gradient(135deg, #111111 0%, #686868
 #### Palette Summary
 
 - **`accent`**: `main`, `light`, `dark`, `hover`, `contrastText`
+- **`premium`**: `main`, `light`, `dark`, `hover`, `active`, `contrastText`, `gradient` (Ruby Crimson `#A30F2D`)
 - **`glass`**: `main`, `light`, `dark`, `hover`, `contrastText`
 - **`glass-surface` / `glassSurface`**: Elevated translucent surface background
 - **`gradients`**:
