@@ -34,6 +34,7 @@ function buildTheme(mode: "light" | "dark"): Theme {
       primary: palette.primary,
       secondary: palette.secondary,
       accent: palette.accent,
+      premium: palette.premium as any,
       brand: palette.brand as any,
       gradients: palette.gradients as any,
       success: palette.success,
