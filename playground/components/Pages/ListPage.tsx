@@ -1,22 +1,5 @@
 import React, { useState } from "react";
-import {
-  AlertCircle,
-  Bell,
-  CheckCircle2,
-  ChevronRight,
-  CreditCard,
-  HelpCircle,
-  Home,
-  Lock,
-  Mail,
-  Settings,
-  Shield,
-  Smartphone,
-  Sparkles,
-  Star,
-  Trash2,
-  User,
-} from "lucide-react";
+import { AlertCircle, Bell, CheckCircle2, ChevronRight, CreditCard, HelpCircle, Home, Lock, Mail, Settings, Shield, Smartphone, Sparkles, Star, Trash2, User } from "lucide-react";
 import {
   Avatar,
   Box,
@@ -175,10 +158,7 @@ export const ListPage: React.FC = () => {
         <Stack spacing={4} sx={{ width: "100%", maxWidth: 650, mx: "auto" }}>
           {/* Small Size */}
           <Box>
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1, display: "block" }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1, display: "block" }}>
               Small Scale (size="small" — 36px min-height)
             </Typography>
             <Paper elevation={0} sx={{ p: 1, borderRadius: "14px", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}` }}>
@@ -201,10 +181,7 @@ export const ListPage: React.FC = () => {
 
           {/* Medium Size */}
           <Box>
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1, display: "block" }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1, display: "block" }}>
               Medium Scale (size="medium" — 44px min-height - Default)
             </Typography>
             <Paper elevation={0} sx={{ p: 1.5, borderRadius: "16px", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}` }}>
@@ -227,10 +204,7 @@ export const ListPage: React.FC = () => {
 
           {/* Large Size */}
           <Box>
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1, display: "block" }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1, display: "block" }}>
               Large Scale (size="large" — 52px min-height)
             </Typography>
             <Paper elevation={0} sx={{ p: 1.5, borderRadius: "18px", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}` }}>

@@ -1,19 +1,6 @@
 import React, { useState } from "react";
 import { Check, DollarSign, Eye, EyeOff, Mail, Search, Sparkles } from "lucide-react";
-import {
-  Autocomplete,
-  Box,
-  Chip,
-  FormControl,
-  FormHelperText,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Autocomplete, Box, Chip, FormControl, FormHelperText, IconButton, InputAdornment, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
@@ -29,15 +16,7 @@ export const InputsPage: React.FC = () => {
 
   const [largeListValue, setLargeListValue] = useState("item-1");
 
-  const designOptions = [
-    "Apple Precision",
-    "Google Antigravity",
-    "Frosted Glass",
-    "Brand Kit",
-    "Luxury Monochrome",
-    "Charcoal Surface",
-    "Cream Canvas",
-  ];
+  const designOptions = ["Apple Precision", "Google Antigravity", "Frosted Glass", "Brand Kit", "Luxury Monochrome", "Charcoal Surface", "Cream Canvas"];
 
   const largeOptionsList = Array.from({ length: 35 }, (_, i) => ({
     id: `item-${i + 1}`,
@@ -109,9 +88,7 @@ export const InputsPage: React.FC = () => {
             p: { xs: 2, sm: 3 },
             borderRadius: "16px",
             overflow: "visible",
-            background: isDark
-              ? "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)"
-              : "linear-gradient(135deg, #FAF9F6 0%, #F0EFEA 100%)",
+            background: isDark ? "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)" : "linear-gradient(135deg, #FAF9F6 0%, #F0EFEA 100%)",
             border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)"}`,
             "&::before": {
               content: '""',
@@ -164,14 +141,7 @@ export const InputsPage: React.FC = () => {
             />
             <FormControl sx={{ minWidth: 240 }}>
               <InputLabel id="glass-select-label">Glass Select</InputLabel>
-              <Select
-                color="glass"
-                labelId="glass-select-label"
-                id="glass-select"
-                value={selectValue}
-                label="Glass Select"
-                onChange={(e) => setSelectValue(e.target.value)}
-              >
+              <Select color="glass" labelId="glass-select-label" id="glass-select" value={selectValue} label="Glass Select" onChange={(e) => setSelectValue(e.target.value)}>
                 <MenuItem value="charcoal">Charcoal (#111111)</MenuItem>
                 <MenuItem value="stone">Stone Gray (#686868)</MenuItem>
                 <MenuItem value="sand">Sand Light (#D9D9CF)</MenuItem>
@@ -183,15 +153,7 @@ export const InputsPage: React.FC = () => {
               options={designOptions}
               defaultValue="Frosted Glass"
               sx={{ minWidth: 250 }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  color="glass"
-                  label="Glass Autocomplete"
-                  placeholder="Search or select..."
-                  helperText="Liquid glass 40px blur"
-                />
-              )}
+              renderInput={(params) => <TextField {...params} color="glass" label="Glass Autocomplete" placeholder="Search or select..." helperText="Liquid glass 40px blur" />}
             />
           </Box>
         </Box>
@@ -207,22 +169,9 @@ export const InputsPage: React.FC = () => {
 <TextField label="Required Field" required placeholder="Required input" />`}
       >
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, width: "100%" }}>
-          <TextField
-            label="Error State"
-            error
-            defaultValue="invalid_token_id"
-            helperText="Invalid token: Must contain valid hex or slug"
-            sx={{ minWidth: 260 }}
-          />
+          <TextField label="Error State" error defaultValue="invalid_token_id" helperText="Invalid token: Must contain valid hex or slug" sx={{ minWidth: 260 }} />
 
-          <TextField
-            label="Required Input"
-            color="success"
-            required
-            placeholder="Required system slug"
-            helperText="This field cannot be left blank"
-            sx={{ minWidth: 260 }}
-          />
+          <TextField label="Required Input" color="success" required placeholder="Required system slug" helperText="This field cannot be left blank" sx={{ minWidth: 260 }} />
           <TextField
             label="Success Validation"
             defaultValue="token_auth_verified"
@@ -258,13 +207,7 @@ export const InputsPage: React.FC = () => {
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, width: "100%" }}>
           <FormControl sx={{ minWidth: 240 }}>
             <InputLabel id="palette-select-label">Theme Palette</InputLabel>
-            <Select
-              labelId="palette-select-label"
-              id="palette-select"
-              value={selectValue}
-              label="Theme Palette"
-              onChange={(e) => setSelectValue(e.target.value)}
-            >
+            <Select labelId="palette-select-label" id="palette-select" value={selectValue} label="Theme Palette" onChange={(e) => setSelectValue(e.target.value)}>
               <MenuItem value="charcoal">Charcoal (#111111)</MenuItem>
               <MenuItem value="stone">Stone Gray (#686868)</MenuItem>
               <MenuItem value="sand">Sand Light (#D9D9CF)</MenuItem>
@@ -285,13 +228,7 @@ export const InputsPage: React.FC = () => {
 
           <FormControl sx={{ minWidth: 280 }}>
             <InputLabel id="large-select-label">Large Options List (35 Items)</InputLabel>
-            <Select
-              labelId="large-select-label"
-              id="large-select"
-              value={largeListValue}
-              label="Large Options List (35 Items)"
-              onChange={(e) => setLargeListValue(e.target.value)}
-            >
+            <Select labelId="large-select-label" id="large-select" value={largeListValue} label="Large Options List (35 Items)" onChange={(e) => setLargeListValue(e.target.value)}>
               {largeOptionsList.map((item) => (
                 <MenuItem key={item.id} value={item.id}>
                   {item.label}

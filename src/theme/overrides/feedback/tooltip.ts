@@ -30,13 +30,7 @@ export const getTooltipOverrides = (_palette: JivicoPalette, isDark: boolean): C
         /**
          * Border
          */
-        const borderColor = glass
-          ? isDark
-            ? "rgba(255, 255, 255, 0.85)"
-            : "rgba(255, 255, 255, 0.18)"
-          : isDark
-            ? "rgba(0, 0, 0, 0.12)"
-            : "rgba(255, 255, 255, 0.12)";
+        const borderColor = glass ? (isDark ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0.18)") : isDark ? "rgba(0, 0, 0, 0.12)" : "rgba(255, 255, 255, 0.12)";
 
         /**
          * Shadow
@@ -93,13 +87,7 @@ export const getTooltipOverrides = (_palette: JivicoPalette, isDark: boolean): C
         const glass = ownerState.glass === "true" || ownerState.glass === true;
         const arrowBackground = glass ? (isDark ? "rgba(245, 245, 247, 0.82)" : "rgba(17, 17, 17, 0.78)") : isDark ? "#F5F5F7" : "#111111";
 
-        const arrowBorder = glass
-          ? isDark
-            ? "rgba(255, 255, 255, 0.85)"
-            : "rgba(255, 255, 255, 0.18)"
-          : isDark
-            ? "rgba(0, 0, 0, 0.12)"
-            : "rgba(255, 255, 255, 0.12)";
+        const arrowBorder = glass ? (isDark ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0.18)") : isDark ? "rgba(0, 0, 0, 0.12)" : "rgba(255, 255, 255, 0.12)";
 
         return { color: arrowBackground, "&::before": { backgroundColor: arrowBackground, border: `1px solid ${arrowBorder}` } };
       },

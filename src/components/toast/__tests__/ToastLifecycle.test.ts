@@ -1,12 +1,9 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DEFAULT_TOAST_DURATIONS, normalizePosition } from "../Toast.types.js";
-import { toastReducer, createInitialToastState, sanitizeDuration } from "../toastReducer.js";
+import { createInitialToastState, sanitizeDuration, toastReducer } from "../toastReducer.js";
 import type { ToastItemState } from "../Toast.types.js";
 
-const createMockToast = (
-  id: string,
-  overrides: Partial<ToastItemState> = {}
-): ToastItemState => ({
+const createMockToast = (id: string, overrides: Partial<ToastItemState> = {}): ToastItemState => ({
   id,
   message: `Message for ${id}`,
   title: `Title for ${id}`,
@@ -89,10 +86,7 @@ describe("Toast Lifecycle and Timer Semantics", () => {
 
   it("verifies exit transition sequence: START_EXIT -> delay -> REMOVE_TOAST", () => {
     let state = createInitialToastState();
-    state = toastReducer(state, {
-      type: "ADD_TOAST",
-      toast: createMockToast("exit-test"),
-    });
+    state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("exit-test") });
 
     expect(state["top-right"].visible[0].status).toBe("visible");
 
@@ -192,13 +186,7 @@ describe("Toast Lifecycle and Timer Semantics", () => {
     });
 
     it("adjusts duration and remaining without starting timer when updated while paused", () => {
-      const timerRecord = {
-        timeoutId: setTimeout(() => {}, 4000),
-        remaining: 4000,
-        startedAt: 1000,
-        duration: 4000,
-        isPaused: false,
-      };
+      const timerRecord = { timeoutId: setTimeout(() => {}, 4000), remaining: 4000, startedAt: 1000, duration: 4000, isPaused: false };
 
       // Pause at 2500ms (1500ms elapsed, 2500ms remaining)
       clearTimeout(timerRecord.timeoutId);

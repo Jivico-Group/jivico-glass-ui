@@ -1,14 +1,11 @@
 import React from "react";
-import { describe, it, expect, vi } from "vitest";
 import { renderToString } from "react-dom/server";
-import { ToastViewport, ToastAllViewports } from "../ToastViewport.js";
+import { describe, expect, it, vi } from "vitest";
 import { createInitialToastState } from "../toastReducer.js";
+import { ToastAllViewports, ToastViewport } from "../ToastViewport.js";
 import type { ToastItemState } from "../Toast.types.js";
 
-const createMockToast = (
-  id: string,
-  overrides: Partial<ToastItemState> = {}
-): ToastItemState => ({
+const createMockToast = (id: string, overrides: Partial<ToastItemState> = {}): ToastItemState => ({
   id,
   message: `Message for ${id}`,
   title: `Title for ${id}`,
@@ -25,32 +22,15 @@ const createMockToast = (
 
 describe("ToastViewport Component", () => {
   it("renders null when items array is empty", () => {
-    const html = renderToString(
-      <ToastViewport
-        position="top-right"
-        items={[]}
-        onDismiss={vi.fn()}
-        portal={false}
-      />
-    );
+    const html = renderToString(<ToastViewport position="top-right" items={[]} onDismiss={vi.fn()} portal={false} />);
 
     expect(html).toBe("");
   });
 
   it("renders viewport with items when portal is false", () => {
-    const items = [
-      createMockToast("toast-1", { title: "First Toast" }),
-      createMockToast("toast-2", { title: "Second Toast" }),
-    ];
+    const items = [createMockToast("toast-1", { title: "First Toast" }), createMockToast("toast-2", { title: "Second Toast" })];
 
-    const html = renderToString(
-      <ToastViewport
-        position="top-right"
-        items={items}
-        onDismiss={vi.fn()}
-        portal={false}
-      />
-    );
+    const html = renderToString(<ToastViewport position="top-right" items={items} onDismiss={vi.fn()} portal={false} />);
 
     expect(html).toContain('data-toast-position="top-right"');
     expect(html).toContain("First Toast");
@@ -63,23 +43,9 @@ describe("ToastViewport Component", () => {
     const topItems = [createMockToast("top-1")];
     const bottomItems = [createMockToast("bottom-1", { position: "bottom-center" })];
 
-    const topHtml = renderToString(
-      <ToastViewport
-        position="top-right"
-        items={topItems}
-        onDismiss={vi.fn()}
-        portal={false}
-      />
-    );
+    const topHtml = renderToString(<ToastViewport position="top-right" items={topItems} onDismiss={vi.fn()} portal={false} />);
 
-    const bottomHtml = renderToString(
-      <ToastViewport
-        position="bottom-center"
-        items={bottomItems}
-        onDismiss={vi.fn()}
-        portal={false}
-      />
-    );
+    const bottomHtml = renderToString(<ToastViewport position="bottom-center" items={bottomItems} onDismiss={vi.fn()} portal={false} />);
 
     expect(topHtml).toContain("flex-direction:column");
     expect(bottomHtml).toContain("flex-direction:column");
@@ -88,14 +54,7 @@ describe("ToastViewport Component", () => {
   it("includes safe-area-inset rules in viewport placement styles", () => {
     const items = [createMockToast("safe-area-1")];
 
-    const html = renderToString(
-      <ToastViewport
-        position="top-right"
-        items={items}
-        onDismiss={vi.fn()}
-        portal={false}
-      />
-    );
+    const html = renderToString(<ToastViewport position="top-right" items={items} onDismiss={vi.fn()} portal={false} />);
 
     expect(html).toContain("env(safe-area-inset-top");
     expect(html).toContain("env(safe-area-inset-right");
@@ -105,14 +64,7 @@ describe("ToastViewport Component", () => {
     const items = [createMockToast("ssr-1")];
 
     // During renderToString (SSR), mounted is false and document is undefined/unmounted
-    const html = renderToString(
-      <ToastViewport
-        position="top-right"
-        items={items}
-        onDismiss={vi.fn()}
-        portal={true}
-      />
-    );
+    const html = renderToString(<ToastViewport position="top-right" items={items} onDismiss={vi.fn()} portal={true} />);
 
     expect(html).toBe("");
   });
@@ -120,20 +72,10 @@ describe("ToastViewport Component", () => {
   describe("ToastAllViewports", () => {
     it("renders only viewports that have active visible items", () => {
       const state = createInitialToastState();
-      state["top-right"].visible = [
-        createMockToast("tr-1", { position: "top-right", title: "TR Active" }),
-      ];
-      state["bottom-left"].visible = [
-        createMockToast("bl-1", { position: "bottom-left", title: "BL Active" }),
-      ];
+      state["top-right"].visible = [createMockToast("tr-1", { position: "top-right", title: "TR Active" })];
+      state["bottom-left"].visible = [createMockToast("bl-1", { position: "bottom-left", title: "BL Active" })];
 
-      const html = renderToString(
-        <ToastAllViewports
-          state={state}
-          onDismiss={vi.fn()}
-          portal={false}
-        />
-      );
+      const html = renderToString(<ToastAllViewports state={state} onDismiss={vi.fn()} portal={false} />);
 
       expect(html).toContain('data-toast-position="top-right"');
       expect(html).toContain("TR Active");
@@ -156,13 +98,7 @@ describe("ToastViewport Component", () => {
       state["bottom-center"].visible = [createMockToast("bc-1", { position: "bottom-center", title: "Bottom Center" })];
       state["bottom-right"].visible = [createMockToast("br-1", { position: "bottom-right", title: "Bottom Right" })];
 
-      const html = renderToString(
-        <ToastAllViewports
-          state={state}
-          onDismiss={vi.fn()}
-          portal={false}
-        />
-      );
+      const html = renderToString(<ToastAllViewports state={state} onDismiss={vi.fn()} portal={false} />);
 
       expect(html).toContain('data-toast-position="top-left"');
       expect(html).toContain('data-toast-position="top-center"');

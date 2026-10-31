@@ -1,5 +1,5 @@
-import type React from "react";
 import type { CircularProgressProps, SxProps, Theme } from "@mui/material";
+import type React from "react";
 
 export type LoaderDimension = number | string;
 
@@ -8,17 +8,7 @@ export type LoaderDimension = number | string;
  * Supports standard URL strings (SVG, animated SVG, WebP, GIF, PNG, JPG, data URLs)
  * as well as static asset objects (e.g. Next.js StaticImageData or bundler asset imports).
  */
-export type LoaderImageSource =
-  | string
-  | {
-      src: string;
-      height?: number;
-      width?: number;
-      blurDataURL?: string;
-      blurWidth?: number;
-      blurHeight?: number;
-      [key: string]: unknown;
-    };
+export type LoaderImageSource = string | { src: string; height?: number; width?: number; blurDataURL?: string; blurWidth?: number; blurHeight?: number; [key: string]: unknown };
 
 export interface LoaderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "color"> {
   /**

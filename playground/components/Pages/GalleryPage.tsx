@@ -2,23 +2,7 @@
 
 import React, { useState } from "react";
 import { Eye, Heart, ShoppingBag, Star } from "lucide-react";
-import {
-  Box,
-  Chip,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  IconButton,
-  MenuItem,
-  Radio,
-  RadioGroup,
-  Select,
-  Slider,
-  Stack,
-  Switch,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Box, Chip, FormControl, FormControlLabel, FormLabel, IconButton, MenuItem, Radio, RadioGroup, Select, Slider, Stack, Switch, Tooltip, Typography } from "@mui/material";
 import "../../../src/theme/augmentations.d.ts";
 import { Gallery } from "../../../src/components/gallary/Gallery.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
@@ -191,15 +175,7 @@ export const GalleryPage: React.FC = () => {
                     <Typography sx={{ ...labelSx, mb: 1 }}>
                       Cols ({bp.toUpperCase()}): {columns[bp]}
                     </Typography>
-                    <Slider
-                      value={columns[bp] ?? 2}
-                      onChange={(_, v) => setColumns((prev) => ({ ...prev, [bp]: v as number }))}
-                      min={1}
-                      max={6}
-                      step={1}
-                      marks
-                      size="small"
-                    />
+                    <Slider value={columns[bp] ?? 2} onChange={(_, v) => setColumns((prev) => ({ ...prev, [bp]: v as number }))} min={1} max={6} step={1} marks size="small" />
                   </Box>
                 ))}
               </Stack>
@@ -283,14 +259,7 @@ export const GalleryPage: React.FC = () => {
                           <Chip
                             label={item.badge}
                             size="small"
-                            sx={{
-                              height: 20,
-                              fontSize: "0.6rem",
-                              fontWeight: 700,
-                              bgcolor: badgeColor[item.badge] ?? "#333",
-                              color: "#fff",
-                              "& .MuiChip-label": { px: 0.75 },
-                            }}
+                            sx={{ height: 20, fontSize: "0.6rem", fontWeight: 700, bgcolor: badgeColor[item.badge] ?? "#333", color: "#fff", "& .MuiChip-label": { px: 0.75 } }}
                           />
                         </Box>
                       )}
@@ -435,42 +404,15 @@ export const GalleryPage: React.FC = () => {
                   <Chip
                     label={item.badge}
                     size="small"
-                    sx={{
-                      height: 20,
-                      fontSize: "0.6rem",
-                      fontWeight: 700,
-                      bgcolor: badgeColor[item.badge] ?? "#333",
-                      color: "#fff",
-                      "& .MuiChip-label": { px: 0.75 },
-                    }}
+                    sx={{ height: 20, fontSize: "0.6rem", fontWeight: 700, bgcolor: badgeColor[item.badge] ?? "#333", color: "#fff", "& .MuiChip-label": { px: 0.75 } }}
                   />
                 </Box>
               )}
               <Stack direction="row" spacing={0.5} sx={{ position: "absolute", bottom: 10, right: 10 }}>
-                <IconButton
-                  size="small"
-                  sx={{
-                    width: 30,
-                    height: 30,
-                    bgcolor: "rgba(0,0,0,0.4)",
-                    backdropFilter: "blur(8px)",
-                    color: "#fff",
-                    "&:hover": { bgcolor: "rgba(0,0,0,0.6)" },
-                  }}
-                >
+                <IconButton size="small" sx={{ width: 30, height: 30, bgcolor: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)", color: "#fff", "&:hover": { bgcolor: "rgba(0,0,0,0.6)" } }}>
                   <Eye size={13} />
                 </IconButton>
-                <IconButton
-                  size="small"
-                  sx={{
-                    width: 30,
-                    height: 30,
-                    bgcolor: "rgba(0,0,0,0.4)",
-                    backdropFilter: "blur(8px)",
-                    color: "#fff",
-                    "&:hover": { bgcolor: "rgba(0,0,0,0.6)" },
-                  }}
-                >
+                <IconButton size="small" sx={{ width: 30, height: 30, bgcolor: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)", color: "#fff", "&:hover": { bgcolor: "rgba(0,0,0,0.6)" } }}>
                   <ShoppingBag size={13} />
                 </IconButton>
               </Stack>
@@ -576,10 +518,7 @@ export const GalleryPage: React.FC = () => {
                       </Typography>
                     )}
                   </Stack>
-                  <IconButton
-                    size="small"
-                    sx={{ width: 32, height: 32, border: `1px solid ${isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.15)"}` }}
-                  >
+                  <IconButton size="small" sx={{ width: 32, height: 32, border: `1px solid ${isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.15)"}` }}>
                     <ShoppingBag size={14} />
                   </IconButton>
                 </Stack>
@@ -654,12 +593,7 @@ export const GalleryPage: React.FC = () => {
 />`}
       >
         <Box
-          sx={{
-            p: 3,
-            borderRadius: 3,
-            bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)",
-            border: `1px solid ${isDark ? "rgba(255,255,255,0.10)" : "rgba(17,17,17,0.10)"}`,
-          }}
+          sx={{ p: 3, borderRadius: 3, bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)", border: `1px solid ${isDark ? "rgba(255,255,255,0.10)" : "rgba(17,17,17,0.10)"}` }}
         >
           <Typography variant="overline" sx={{ display: "block", mb: 1.5, fontWeight: 700 }}>
             Rendering Layers — Architecture
@@ -667,19 +601,10 @@ export const GalleryPage: React.FC = () => {
           <Stack spacing={1.5}>
             {[
               { title: "getImage / getImageAlt", desc: "Fastest setup — Gallery renders a native <img>. No renderImage needed." },
-              {
-                title: "renderImage({ item, index, src, alt })",
-                desc: "Inject next/image with fill + sizes. Gallery wraps it in the correct aspect-ratio container.",
-              },
-              {
-                title: "renderOverlay({ item, index, src, alt })",
-                desc: "Renders over the image with position: absolute inset 0. Use for badges, wishlist, quick-add.",
-              },
+              { title: "renderImage({ item, index, src, alt })", desc: "Inject next/image with fill + sizes. Gallery wraps it in the correct aspect-ratio container." },
+              { title: "renderOverlay({ item, index, src, alt })", desc: "Renders over the image with position: absolute inset 0. Use for badges, wishlist, quick-add." },
               { title: "renderBlock({ item, index })", desc: "Renders below the image in normal document flow. Use for name, price, ratings, CTA." },
-              {
-                title: "renderItem({ item, index })",
-                desc: "Full override — bypasses image/overlay/block. Use when you need a completely custom card layout.",
-              },
+              { title: "renderItem({ item, index })", desc: "Full override — bypasses image/overlay/block. Use when you need a completely custom card layout." },
             ].map(({ title, desc }) => (
               <Box key={title}>
                 <Typography variant="body2" sx={{ fontWeight: 700, fontFamily: "monospace", fontSize: "0.78rem", mb: 0.25 }}>

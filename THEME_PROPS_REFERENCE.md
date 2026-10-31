@@ -401,17 +401,7 @@ const items: ShowcaseItem[] = [
   },
 ];
 
-<Showcase
-  items={items}
-  variant="editorial"
-  size="hero"
-  transition="cinematic"
-  navigation="vertical"
-  autoplay={true}
-  interval={6000}
-  showArrows={true}
-  showProgress={true}
-/>;
+<Showcase items={items} variant="editorial" size="hero" transition="cinematic" navigation="vertical" autoplay={true} interval={6000} showArrows={true} showProgress={true} />;
 ```
 
 #### `ShowcaseItem` Interface
@@ -444,35 +434,36 @@ const items: ShowcaseItem[] = [
 ### A. `<Loader>` (Reusable Inline / Standalone Loading Indicator)
 
 Production-ready loading indicator supporting two rendering modes:
+
 1. **Default Mode**: Material UI `CircularProgress` with Apple-style blue `color="info"`.
 2. **Custom Image Mode**: Replaces spinner with browser-compatible SVG, animated SVG, WebP, animated WebP, GIF, PNG, or JPG.
 
 #### Theme-Aware Source Selection Rules
 
-| `src` | `darkSrc` | Light Mode | Dark Mode |
-| :--- | :--- | :--- | :--- |
-| *Not provided* | *Not provided* | MUI Spinner (`color="info"`) | MUI Spinner (`color="info"`) |
-| **Provided** | *Not provided* | `src` | `src` |
-| **Provided** | **Provided** | `src` | `darkSrc` |
-| *Not provided* | **Provided** | MUI Spinner (`color="info"`) | `darkSrc` |
+| `src`          | `darkSrc`      | Light Mode                   | Dark Mode                    |
+| :------------- | :------------- | :--------------------------- | :--------------------------- |
+| _Not provided_ | _Not provided_ | MUI Spinner (`color="info"`) | MUI Spinner (`color="info"`) |
+| **Provided**   | _Not provided_ | `src`                        | `src`                        |
+| **Provided**   | **Provided**   | `src`                        | `darkSrc`                    |
+| _Not provided_ | **Provided**   | MUI Spinner (`color="info"`) | `darkSrc`                    |
 
 #### Props Table (`LoaderProps`)
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `src` | `LoaderImageSource` | `undefined` | Light mode image source, or fallback when `darkSrc` omitted. |
-| `darkSrc` | `LoaderImageSource` | `undefined` | Dark mode image source (auto-selected when active theme is dark). |
-| `ImageComponent` | `React.ElementType` | `undefined` | Optional injected image component (e.g. Next.js `Image`). |
-| `imageProps` | `Record<string, unknown>` | `undefined` | Props forwarded to `ImageComponent` (e.g. `unoptimized`, `priority`). |
-| `width` | `number \| string` | `48` | Container & image display width (pixels or CSS string e.g. `"4rem"`). |
-| `height` | `number \| string` | `48` | Container & image display height (pixels or CSS string e.g. `"4rem"`). |
-| `color` | `CircularProgressProps["color"]` | `"info"` | Spinner semantic color (`"info"` = Apple-style brand blue). |
-| `variant` | `"indeterminate" \| "determinate"` | `"indeterminate"` | MUI CircularProgress variant. |
-| `value` | `number` | `undefined` | Progress value (0–100) for determinate variant. |
-| `thickness` | `number` | `undefined` | Stroke thickness of circular spinner track. |
-| `alt` | `string` | `"Loading..."` | Accessible alternative text and `aria-label`. |
-| `objectFit` | `CSSProperties["objectFit"]` | `"contain"` | CSS scaling behavior for custom images. |
-| `onImageError` | `(e: unknown) => void` | `undefined` | Callback fired if custom image fails to load. |
+| Prop             | Type                               | Default           | Description                                                            |
+| :--------------- | :--------------------------------- | :---------------- | :--------------------------------------------------------------------- |
+| `src`            | `LoaderImageSource`                | `undefined`       | Light mode image source, or fallback when `darkSrc` omitted.           |
+| `darkSrc`        | `LoaderImageSource`                | `undefined`       | Dark mode image source (auto-selected when active theme is dark).      |
+| `ImageComponent` | `React.ElementType`                | `undefined`       | Optional injected image component (e.g. Next.js `Image`).              |
+| `imageProps`     | `Record<string, unknown>`          | `undefined`       | Props forwarded to `ImageComponent` (e.g. `unoptimized`, `priority`).  |
+| `width`          | `number \| string`                 | `48`              | Container & image display width (pixels or CSS string e.g. `"4rem"`).  |
+| `height`         | `number \| string`                 | `48`              | Container & image display height (pixels or CSS string e.g. `"4rem"`). |
+| `color`          | `CircularProgressProps["color"]`   | `"info"`          | Spinner semantic color (`"info"` = Apple-style brand blue).            |
+| `variant`        | `"indeterminate" \| "determinate"` | `"indeterminate"` | MUI CircularProgress variant.                                          |
+| `value`          | `number`                           | `undefined`       | Progress value (0–100) for determinate variant.                        |
+| `thickness`      | `number`                           | `undefined`       | Stroke thickness of circular spinner track.                            |
+| `alt`            | `string`                           | `"Loading..."`    | Accessible alternative text and `aria-label`.                          |
+| `objectFit`      | `CSSProperties["objectFit"]`       | `"contain"`       | CSS scaling behavior for custom images.                                |
+| `onImageError`   | `(e: unknown) => void`             | `undefined`       | Callback fired if custom image fails to load.                          |
 
 ---
 
@@ -483,27 +474,23 @@ Composes the shared `<Loader>` inside a theme-aware Material UI `<Backdrop>` wit
 ```tsx
 import { BackdropLoader } from "jivico-glass-ui";
 
-<BackdropLoader
-  open={loading}
-  message="Processing your order..."
-  color="info"
-/>
+<BackdropLoader open={loading} message="Processing your order..." color="info" />;
 ```
 
 #### Props Table (`BackdropLoaderProps`)
 
 Inherits all `LoaderProps` (`src`, `darkSrc`, `ImageComponent`, `imageProps`, `width`, `height`, `color`, `variant`, `alt`, etc.) plus:
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `open` | `boolean` | *(Required)* | Controls visibility of the backdrop. |
-| `message` | `React.ReactNode` | `undefined` | Optional loading caption rendered beneath the loader. |
-| `messageProps` | `Partial<TypographyProps>` | `undefined` | Custom styling for the message Typography component. |
-| `zIndex` | `number` | `theme.zIndex.drawer + 1` | Stacking layer override. |
-| `contained` | `boolean` | `false` | When `true`, uses `position: "absolute"` to constrain to parent. |
-| `blur` | `number \| string` | `"12px"` | Glassmorphic backdrop blur amount. |
-| `backgroundColor` | `string` | *Theme-aware* | Optional backdrop color override. |
-| `backdropProps` | `Partial<BackdropProps>` | `undefined` | Additional props forwarded directly to MUI `Backdrop`. |
+| Prop              | Type                       | Default                   | Description                                                      |
+| :---------------- | :------------------------- | :------------------------ | :--------------------------------------------------------------- |
+| `open`            | `boolean`                  | _(Required)_              | Controls visibility of the backdrop.                             |
+| `message`         | `React.ReactNode`          | `undefined`               | Optional loading caption rendered beneath the loader.            |
+| `messageProps`    | `Partial<TypographyProps>` | `undefined`               | Custom styling for the message Typography component.             |
+| `zIndex`          | `number`                   | `theme.zIndex.drawer + 1` | Stacking layer override.                                         |
+| `contained`       | `boolean`                  | `false`                   | When `true`, uses `position: "absolute"` to constrain to parent. |
+| `blur`            | `number \| string`         | `"12px"`                  | Glassmorphic backdrop blur amount.                               |
+| `backgroundColor` | `string`                   | _Theme-aware_             | Optional backdrop color override.                                |
+| `backdropProps`   | `Partial<BackdropProps>`   | `undefined`               | Additional props forwarded directly to MUI `Backdrop`.           |
 
 ---
 
@@ -517,13 +504,9 @@ A high-performance, glassmorphic toast notification system with real-time queues
 import { ToastProvider, useToast } from "jivico-glass-ui";
 
 // 1. Wrap your application root:
-<ToastProvider
-  maxToasts={5}
-  position="bottom-right"
-  defaultDuration={4000}
->
+<ToastProvider maxToasts={5} position="bottom-right" defaultDuration={4000}>
   <App />
-</ToastProvider>
+</ToastProvider>;
 
 // 2. Trigger toasts anywhere inside components:
 const toast = useToast();
@@ -541,37 +524,32 @@ toast.show({
   color: "accent",
   variant: "glass",
   duration: 6000,
-  action: {
-    label: "View Order",
-    onClick: () => router.push("/orders/JVC-ORD-1002"),
-  },
+  action: { label: "View Order", onClick: () => router.push("/orders/JVC-ORD-1002") },
 });
 ```
 
 #### Toast Options (`ToastOptions`)
 
-| Option | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `message` | `React.ReactNode` | *(Required)* | The main body text or node of the notification. |
-| `title` | `string` | `undefined` | Bold heading rendered above the message. |
-| `color` | `ToastColor` | `"accent"` | Semantic color channel: `"primary" \| "secondary" \| "error" \| "success" \| "accent" \| "info" \| "warning" \| "glass"`. |
-| `variant` | `ToastVariant` | `"glass"` | Surface styling: `"glass" \| "soft" \| "solid" \| "outlined"`. |
-| `position` | `ToastPositionInput` | Provider default | Screen anchor: `"top-left" \| "top-center" \| "top-right" \| "bottom-left" \| "bottom-center" \| "bottom-right" \| "bottom"`. |
-| `radius` | `ToastRadius` | `"rounded"` | Border radius style: `"rounded"` (pill 9999px), `"soft"` (4px), or `"square"` (0px). |
-| `duration` | `number` | `4000` | Auto-dismiss countdown in milliseconds (`0` for persistent). |
-| `dismissible` | `boolean` | `true` | When `true`, renders a close icon button. |
-| `action` | `ToastAction` | `undefined` | Interactive button object `{ label: string, onClick: () => void }`. |
-| `loading` | `boolean` | `false` | When `true`, renders an indeterminate circular spinner instead of status icon. |
-| `icon` | `React.ReactNode` | *Semantic icon* | Optional custom icon override. |
+| Option        | Type                 | Default          | Description                                                                                                                   |
+| :------------ | :------------------- | :--------------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| `message`     | `React.ReactNode`    | _(Required)_     | The main body text or node of the notification.                                                                               |
+| `title`       | `string`             | `undefined`      | Bold heading rendered above the message.                                                                                      |
+| `color`       | `ToastColor`         | `"accent"`       | Semantic color channel: `"primary" \| "secondary" \| "error" \| "success" \| "accent" \| "info" \| "warning" \| "glass"`.     |
+| `variant`     | `ToastVariant`       | `"glass"`        | Surface styling: `"glass" \| "soft" \| "solid" \| "outlined"`.                                                                |
+| `position`    | `ToastPositionInput` | Provider default | Screen anchor: `"top-left" \| "top-center" \| "top-right" \| "bottom-left" \| "bottom-center" \| "bottom-right" \| "bottom"`. |
+| `radius`      | `ToastRadius`        | `"rounded"`      | Border radius style: `"rounded"` (pill 9999px), `"soft"` (4px), or `"square"` (0px).                                          |
+| `duration`    | `number`             | `4000`           | Auto-dismiss countdown in milliseconds (`0` for persistent).                                                                  |
+| `dismissible` | `boolean`            | `true`           | When `true`, renders a close icon button.                                                                                     |
+| `action`      | `ToastAction`        | `undefined`      | Interactive button object `{ label: string, onClick: () => void }`.                                                           |
+| `loading`     | `boolean`            | `false`          | When `true`, renders an indeterminate circular spinner instead of status icon.                                                |
+| `icon`        | `React.ReactNode`    | _Semantic icon_  | Optional custom icon override.                                                                                                |
 
 #### Provider Props (`ToastProviderProps`)
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `children` | `React.ReactNode` | *(Required)* | Application subtree. |
-| `maxToasts` | `number` | `5` | Maximum concurrent visible toasts per viewport before queueing. |
-| `position` | `ToastPositionInput` | `"bottom-right"` | Default screen anchor position for toasts without an explicit position. |
-| `defaultDuration`| `number` | `4000` | Default timeout duration in milliseconds. |
-| `soundEnabled` | `boolean` | `false` | Enables subtle audio chime feedback on toast trigger. |
-
-
+| Prop              | Type                 | Default          | Description                                                             |
+| :---------------- | :------------------- | :--------------- | :---------------------------------------------------------------------- |
+| `children`        | `React.ReactNode`    | _(Required)_     | Application subtree.                                                    |
+| `maxToasts`       | `number`             | `5`              | Maximum concurrent visible toasts per viewport before queueing.         |
+| `position`        | `ToastPositionInput` | `"bottom-right"` | Default screen anchor position for toasts without an explicit position. |
+| `defaultDuration` | `number`             | `4000`           | Default timeout duration in milliseconds.                               |
+| `soundEnabled`    | `boolean`            | `false`          | Enables subtle audio chime feedback on toast trigger.                   |

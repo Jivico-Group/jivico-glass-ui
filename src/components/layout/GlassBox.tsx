@@ -18,11 +18,7 @@ export interface GlassBoxProps extends BoxProps {
  * GlassBox — Lightweight MUI Box component styled with the signature frosted glass recipe.
  * Accepts all standard Box props, custom `sx`, arbitrary children, and responds to light/dark themes.
  */
-export const GlassBox = styled(Box, { shouldForwardProp: (prop) => prop !== "isDark" && prop !== "radius" })<GlassBoxProps>(({
-  theme,
-  isDark: explicitDark,
-  radius = 20,
-}) => {
+export const GlassBox = styled(Box, { shouldForwardProp: (prop) => prop !== "isDark" && prop !== "radius" })<GlassBoxProps>(({ theme, isDark: explicitDark, radius = 20 }) => {
   const isDark = explicitDark ?? theme.palette.mode === "dark";
   const recipe = glassRecipe(isDark);
 

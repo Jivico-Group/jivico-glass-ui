@@ -10,21 +10,11 @@ export const getAutocompleteOverrides = (palette: JivicoPalette, isDark: boolean
       popper: { zIndex: 1400 },
       paper: { ...liquidGlassPopupRecipe(isDark) },
       root: {
-        "& .MuiOutlinedInput-root": {
-          borderRadius: 9999,
-          paddingLeft: "14px",
-          paddingRight: "40px !important",
-          "& .MuiOutlinedInput-notchedOutline": { borderRadius: 9999 },
-        },
+        "& .MuiOutlinedInput-root": { borderRadius: 9999, paddingLeft: "14px", paddingRight: "40px !important", "& .MuiOutlinedInput-notchedOutline": { borderRadius: 9999 } },
         "& .MuiOutlinedInput-root.MuiInputBase-sizeSmall": { paddingLeft: "12px", paddingRight: "36px !important" },
       },
       inputRoot: {
-        "&.MuiOutlinedInput-root": {
-          borderRadius: 9999,
-          paddingLeft: "14px",
-          paddingRight: "40px !important",
-          "& .MuiOutlinedInput-notchedOutline": { borderRadius: 9999 },
-        },
+        "&.MuiOutlinedInput-root": { borderRadius: 9999, paddingLeft: "14px", paddingRight: "40px !important", "& .MuiOutlinedInput-notchedOutline": { borderRadius: 9999 } },
         "&.MuiOutlinedInput-root.MuiInputBase-sizeSmall": { paddingLeft: "12px", paddingRight: "36px !important" },
       },
       input: { paddingLeft: "4px !important", "@media (max-width: 599.95px)": { fontSize: "16px" } },

@@ -46,17 +46,7 @@ export const ChipsPage: React.FC = () => {
         <Chip icon={<Star size={13} />} variant="tonal" label="Accent" color="accent" onDelete={() => {}} />
         <Chip
           avatar={
-            <Avatar
-              sx={{
-                width: 20,
-                height: 20,
-                fontSize: "0.65rem",
-                bgcolor: isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.15)",
-                color: isDark ? "#F6F5F2" : "#111111",
-              }}
-            >
-              GL
-            </Avatar>
+            <Avatar sx={{ width: 20, height: 20, fontSize: "0.65rem", bgcolor: isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.15)", color: isDark ? "#F6F5F2" : "#111111" }}>GL</Avatar>
           }
           label="Glass Avatar"
           color="glass"
@@ -86,13 +76,7 @@ export const ChipsPage: React.FC = () => {
         <Chip icon={<Tag size={13} />} label="Clickable" clickable deleteIcon={<ChevronRight size={13} />} onDelete={() => {}} />
         <Chip icon={<Filter size={13} />} label="Filter" clickable deleteIcon={<ChevronRight size={13} />} onDelete={() => {}} />
         <Chip
-          avatar={
-            <Avatar
-              sx={{ width: 20, height: 20, fontSize: "0.65rem", bgcolor: isDark ? "#F6F5F2" : "#111111", color: isDark ? "#111111" : "#FFFFFF" }}
-            >
-              JD
-            </Avatar>
-          }
+          avatar={<Avatar sx={{ width: 20, height: 20, fontSize: "0.65rem", bgcolor: isDark ? "#F6F5F2" : "#111111", color: isDark ? "#111111" : "#FFFFFF" }}>JD</Avatar>}
           label="Avatar"
           onDelete={() => {}}
         />

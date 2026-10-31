@@ -29,11 +29,7 @@ export const getAccordionOverrides = (palette: JivicoPalette, isDark: boolean): 
         /*
          * Expanded state.
          */
-        "&.Mui-expanded": {
-          margin: "8px 0",
-          backgroundColor: isDark ? "#181818" : "#FAFAFA",
-          borderColor: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(17, 17, 17, 0.14)",
-        },
+        "&.Mui-expanded": { margin: "8px 0", backgroundColor: isDark ? "#181818" : "#FAFAFA", borderColor: isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(17, 17, 17, 0.14)" },
 
         /*
          * Keep the outer corners clean when

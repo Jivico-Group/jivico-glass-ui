@@ -1,14 +1,7 @@
 import { normalizePosition } from "./Toast.types.js";
 import type { ToastItemState, ToastOptions, ToastPosition, ToastPositionState, ToastState } from "./Toast.types.js";
 
-export const ALL_POSITIONS: readonly ToastPosition[] = [
-  "top-left",
-  "top-center",
-  "top-right",
-  "bottom-left",
-  "bottom-center",
-  "bottom-right",
-] as const;
+export const ALL_POSITIONS: readonly ToastPosition[] = ["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"] as const;
 
 export function createInitialToastState(): ToastState {
   return {
@@ -55,10 +48,7 @@ export function sanitizeDuration(duration?: number, fallback: number = 0): numbe
 /**
  * Searches all 6 positional stacks for a toast with the given ID.
  */
-export function findToastGlobally(
-  state: ToastState,
-  id: string,
-): { position: ToastPosition; location: "visible" | "queue"; item: ToastItemState; index: number } | null {
+export function findToastGlobally(state: ToastState, id: string): { position: ToastPosition; location: "visible" | "queue"; item: ToastItemState; index: number } | null {
   for (const pos of ALL_POSITIONS) {
     const posState = state[pos];
     const visibleIdx = posState.visible.findIndex((t) => t.id === id);
@@ -86,11 +76,7 @@ export function toastReducer(state: ToastState, action: ToastActionType): ToastS
         return state;
       }
 
-      const validatedToast: Omit<ToastItemState, "status"> = {
-        ...toast,
-        duration: sanitizeDuration(toast.duration),
-        revision: toast.revision ?? 0,
-      };
+      const validatedToast: Omit<ToastItemState, "status"> = { ...toast, duration: sanitizeDuration(toast.duration), revision: toast.revision ?? 0 };
 
       // Check if slot available in visible stack
       if (currentPosState.visible.length < safeMaxVisible) {

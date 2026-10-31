@@ -52,7 +52,7 @@ export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(function Loa
     sx,
     ...rest
   },
-  ref
+  ref,
 ) {
   const theme = useTheme();
   const isDark = theme.palette?.mode === "dark";
@@ -76,8 +76,7 @@ export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(function Loa
   const activeSourceKey = useMemo(() => {
     if (!activeSource) return "";
     if (typeof activeSource === "string") return activeSource;
-    if (typeof activeSource === "object" && "src" in activeSource) 
-      return String((activeSource as { src: unknown }).src);
+    if (typeof activeSource === "object" && "src" in activeSource) return String((activeSource as { src: unknown }).src);
     return String(activeSource);
   }, [activeSource]);
 
@@ -140,14 +139,7 @@ export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(function Loa
             width={numericWidth}
             height={numericHeight}
             onError={handleImageError}
-            style={{
-              width: resolvedWidth,
-              height: resolvedHeight,
-              maxWidth: "100%",
-              maxHeight: "100%",
-              objectFit,
-              display: "block",
-            }}
+            style={{ width: resolvedWidth, height: resolvedHeight, maxWidth: "100%", maxHeight: "100%", objectFit, display: "block" }}
             {...imageProps}
           />
         ) : (
@@ -156,26 +148,12 @@ export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(function Loa
             src={typeof activeSource === "string" ? activeSource : (activeSource as { src: string }).src}
             alt={alt}
             onError={handleImageError}
-            sx={{
-              width: resolvedWidth,
-              height: resolvedHeight,
-              maxWidth: "100%",
-              maxHeight: "100%",
-              objectFit,
-              display: "block",
-            }}
+            sx={{ width: resolvedWidth, height: resolvedHeight, maxWidth: "100%", maxHeight: "100%", objectFit, display: "block" }}
             {...imageProps}
           />
         )
       ) : (
-        <CircularProgress
-          color={color}
-          variant={variant}
-          value={value}
-          thickness={thickness}
-          size={spinnerSize}
-          aria-label={alt}
-        />
+        <CircularProgress color={color} variant={variant} value={value} thickness={thickness} size={spinnerSize} aria-label={alt} />
       )}
     </Box>
   );

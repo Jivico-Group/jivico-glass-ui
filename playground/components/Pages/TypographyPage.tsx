@@ -26,28 +26,10 @@ export const TypographyPage: React.FC = () => {
       desc: "Muted secondary labels, subtitles & descriptions",
       sample: "Secondary auxiliary metadata text",
     },
-    {
-      name: "Brand Charcoal",
-      prop: "brand.charcoal",
-      hex: COLORS.brand.charcoal,
-      desc: "Signature deep obsidian brand accent",
-      sample: "Deep Charcoal Brand Typography",
-    },
-    {
-      name: "Brand Stone",
-      prop: "brand.stone",
-      hex: COLORS.brand.stone,
-      desc: "Sophisticated editorial stone gray",
-      sample: "Refined Stone Gray Typography",
-    },
+    { name: "Brand Charcoal", prop: "brand.charcoal", hex: COLORS.brand.charcoal, desc: "Signature deep obsidian brand accent", sample: "Deep Charcoal Brand Typography" },
+    { name: "Brand Stone", prop: "brand.stone", hex: COLORS.brand.stone, desc: "Sophisticated editorial stone gray", sample: "Refined Stone Gray Typography" },
     { name: "Brand Sand", prop: "brand.sand", hex: COLORS.brand.sand, desc: "Warm tactile sand token", sample: "Warm Sand Accent Text" },
-    {
-      name: "Brand Cream",
-      prop: "brand.cream",
-      hex: COLORS.brand.cream,
-      desc: "Ultra-clean luminous cream white",
-      sample: "Luminous Cream Typography",
-    },
+    { name: "Brand Cream", prop: "brand.cream", hex: COLORS.brand.cream, desc: "Ultra-clean luminous cream white", sample: "Luminous Cream Typography" },
     {
       name: "Primary Main",
       prop: "primary.main",
@@ -55,20 +37,8 @@ export const TypographyPage: React.FC = () => {
       desc: "Main brand interactive color token",
       sample: "Primary Interactive Typography",
     },
-    {
-      name: "Secondary Main",
-      prop: "secondary.main",
-      hex: isDark ? COLORS.secondary.dark : COLORS.secondary.light,
-      desc: "Balanced secondary tone",
-      sample: "Secondary Accent Typography",
-    },
-    {
-      name: "Accent Gold",
-      prop: "accent.main",
-      hex: isDark ? COLORS.accent.dark : COLORS.accent.light,
-      desc: "Luxury metallic champagne gold",
-      sample: "Champagne Gold Accent Text",
-    },
+    { name: "Secondary Main", prop: "secondary.main", hex: isDark ? COLORS.secondary.dark : COLORS.secondary.light, desc: "Balanced secondary tone", sample: "Secondary Accent Typography" },
+    { name: "Accent Gold", prop: "accent.main", hex: isDark ? COLORS.accent.dark : COLORS.accent.light, desc: "Luxury metallic champagne gold", sample: "Champagne Gold Accent Text" },
     {
       name: "Semantic Success",
       prop: "success.main",
@@ -145,21 +115,8 @@ export const TypographyPage: React.FC = () => {
                   {col.prop}
                 </Typography>
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                  <Box
-                    sx={{
-                      width: 16,
-                      height: 16,
-                      borderRadius: "50%",
-                      bgcolor: col.hex,
-                      border: "1px solid rgba(255,255,255,0.2)",
-                      boxShadow: `0 0 8px ${col.hex}44`,
-                    }}
-                  />
-                  <Chip
-                    label={col.hex}
-                    size="small"
-                    sx={{ fontFamily: "monospace", fontSize: "0.7rem", height: 20, bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)" }}
-                  />
+                  <Box sx={{ width: 16, height: 16, borderRadius: "50%", bgcolor: col.hex, border: "1px solid rgba(255,255,255,0.2)", boxShadow: `0 0 8px ${col.hex}44` }} />
+                  <Chip label={col.hex} size="small" sx={{ fontFamily: "monospace", fontSize: "0.7rem", height: 20, bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)" }} />
                 </Box>
               </Box>
 
@@ -167,12 +124,7 @@ export const TypographyPage: React.FC = () => {
                 sx={{
                   p: 1.5,
                   borderRadius: "12px",
-                  bgcolor:
-                    col.hex === "#F6F5F2" || col.hex === "#D9D9CF" || col.hex === "#FFFFFF"
-                      ? isDark
-                        ? "rgba(255, 255, 255, 0.08)"
-                        : "#18181B"
-                      : "transparent",
+                  bgcolor: col.hex === "#F6F5F2" || col.hex === "#D9D9CF" || col.hex === "#FFFFFF" ? (isDark ? "rgba(255, 255, 255, 0.08)" : "#18181B") : "transparent",
                   display: "inline-block",
                 }}
               >
@@ -247,12 +199,7 @@ export const TypographyPage: React.FC = () => {
               >
                 <Typography
                   variant="h6"
-                  sx={{
-                    fontWeight: 800,
-                    background: "linear-gradient(135deg, #D4B77A 0%, #B08D57 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
+                  sx={{ fontWeight: 800, background: "linear-gradient(135deg, #D4B77A 0%, #B08D57 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
                 >
                   Champagne Gold
                 </Typography>
@@ -271,12 +218,7 @@ export const TypographyPage: React.FC = () => {
               >
                 <Typography
                   variant="h6"
-                  sx={{
-                    fontWeight: 800,
-                    background: "linear-gradient(135deg, #8AB4F8 0%, #4285F4 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
+                  sx={{ fontWeight: 800, background: "linear-gradient(135deg, #8AB4F8 0%, #4285F4 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
                 >
                   Sapphire Ocean
                 </Typography>
@@ -295,12 +237,7 @@ export const TypographyPage: React.FC = () => {
               >
                 <Typography
                   variant="h6"
-                  sx={{
-                    fontWeight: 800,
-                    background: "linear-gradient(135deg, #81C995 0%, #34A853 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
+                  sx={{ fontWeight: 800, background: "linear-gradient(135deg, #81C995 0%, #34A853 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
                 >
                   Emerald Neon
                 </Typography>
@@ -319,12 +256,7 @@ export const TypographyPage: React.FC = () => {
               >
                 <Typography
                   variant="h6"
-                  sx={{
-                    fontWeight: 800,
-                    background: "linear-gradient(135deg, #F28B82 0%, #EA4335 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
+                  sx={{ fontWeight: 800, background: "linear-gradient(135deg, #F28B82 0%, #EA4335 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
                 >
                   Ruby Flame
                 </Typography>
@@ -413,8 +345,7 @@ export const TypographyPage: React.FC = () => {
               body1 · 1.0625rem (17px) · SF Pro Display / Space Grotesk 400
             </Typography>
             <Typography variant="body1" color="text.primary">
-              Crafted for high-density dashboards and modern web application interfaces. Features comfortable 1.55 line height, optical kerning, and
-              smooth dark mode contrast transitions.
+              Crafted for high-density dashboards and modern web application interfaces. Features comfortable 1.55 line height, optical kerning, and smooth dark mode contrast transitions.
             </Typography>
           </Box>
 

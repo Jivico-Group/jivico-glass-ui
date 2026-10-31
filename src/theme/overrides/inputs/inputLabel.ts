@@ -26,15 +26,10 @@ export const getInputLabelOverrides = (palette: JivicoPalette): Components<Theme
           color: isSemantic ? activeColor : palette.text.secondary,
           "&.Mui-focused": { color: activeColor },
           // Use explicit class targeting and !important to beat MUI's default specificity
-          "&.MuiInputLabel-outlined": {
-            transform: `${translate} !important`,
-            "&.MuiInputLabel-shrink": { transform: `${shrinkTranslate} !important` },
-          },
+          "&.MuiInputLabel-outlined": { transform: `${translate} !important`, "&.MuiInputLabel-shrink": { transform: `${shrinkTranslate} !important` } },
           ...(ownerState.variant === "outlined" && {
             // Also ensure that the legend width accommodates the horizontal padding changes
-            "& + .MuiOutlinedInput-root > fieldset > legend": {
-              marginLeft: ownerState.size === "small" ? 0 : (ownerState.size as string) === "large" ? 6 : 4,
-            },
+            "& + .MuiOutlinedInput-root > fieldset > legend": { marginLeft: ownerState.size === "small" ? 0 : (ownerState.size as string) === "large" ? 6 : 4 },
           }),
         };
       },

@@ -18,10 +18,11 @@ export interface ToastViewportProps {
   container?: HTMLElement | null;
 }
 
-const ViewportBox = styled(Box, { shouldForwardProp: (prop) => prop !== "toastPosition" && prop !== "gap" })<{
-  toastPosition: ToastPosition;
-  gap?: number;
-}>(({ theme, toastPosition, gap = 12 }) => {
+const ViewportBox = styled(Box, { shouldForwardProp: (prop) => prop !== "toastPosition" && prop !== "gap" })<{ toastPosition: ToastPosition; gap?: number }>(({
+  theme,
+  toastPosition,
+  gap = 12,
+}) => {
   const isTop = toastPosition.startsWith("top");
   const isBottom = toastPosition.startsWith("bottom");
   const isCenter = toastPosition.endsWith("center");
@@ -42,9 +43,7 @@ const ViewportBox = styled(Box, { shouldForwardProp: (prop) => prop !== "toastPo
     padding: 0,
     margin: 0,
     listStyle: "none",
-    "& > *": {
-      pointerEvents: "auto",
-    },
+    "& > *": { pointerEvents: "auto" },
 
     // Vertical placement with safe-area insets
     ...(isTop && { top: "calc(20px + env(safe-area-inset-top, 0px))" }),
@@ -76,16 +75,7 @@ const ViewportBox = styled(Box, { shouldForwardProp: (prop) => prop !== "toastPo
  * ToastViewport — Renders a single positional stack of toast notifications.
  * Supports SSR-safe portal mounting to document.body and mobile responsive docking.
  */
-export const ToastViewport: React.FC<ToastViewportProps> = ({
-  position,
-  items,
-  onDismiss,
-  onPause,
-  onResume,
-  gap = 12,
-  portal = true,
-  container,
-}) => {
+export const ToastViewport: React.FC<ToastViewportProps> = ({ position, items, onDismiss, onPause, onResume, gap = 12, portal = true, container }) => {
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -139,17 +129,13 @@ export const ToastAllViewports: React.FC<ToastAllViewportsProps> = ({ state, onD
     // Mobile Viewport Consolidation:
     // Gather all active top toasts into a single top stack, and bottom toasts into a bottom stack
     // while preserving each notification's logical position and chronological ordering.
-    const topItems: ToastItemState[] = [
-      ...(state["top-left"]?.visible ?? []),
-      ...(state["top-center"]?.visible ?? []),
-      ...(state["top-right"]?.visible ?? []),
-    ].sort((a, b) => a.createdAt - b.createdAt || a.id.localeCompare(b.id));
+    const topItems: ToastItemState[] = [...(state["top-left"]?.visible ?? []), ...(state["top-center"]?.visible ?? []), ...(state["top-right"]?.visible ?? [])].sort(
+      (a, b) => a.createdAt - b.createdAt || a.id.localeCompare(b.id),
+    );
 
-    const bottomItems: ToastItemState[] = [
-      ...(state["bottom-left"]?.visible ?? []),
-      ...(state["bottom-center"]?.visible ?? []),
-      ...(state["bottom-right"]?.visible ?? []),
-    ].sort((a, b) => a.createdAt - b.createdAt || a.id.localeCompare(b.id));
+    const bottomItems: ToastItemState[] = [...(state["bottom-left"]?.visible ?? []), ...(state["bottom-center"]?.visible ?? []), ...(state["bottom-right"]?.visible ?? [])].sort(
+      (a, b) => a.createdAt - b.createdAt || a.id.localeCompare(b.id),
+    );
 
     return (
       <Fragment>
@@ -193,17 +179,7 @@ export const ToastAllViewports: React.FC<ToastAllViewportsProps> = ({ state, onD
         }
 
         return (
-          <ToastViewport
-            key={pos}
-            position={pos}
-            items={posState.visible}
-            onDismiss={onDismiss}
-            onPause={onPause}
-            onResume={onResume}
-            gap={gap}
-            portal={portal}
-            container={container}
-          />
+          <ToastViewport key={pos} position={pos} items={posState.visible} onDismiss={onDismiss} onPause={onPause} onResume={onResume} gap={gap} portal={portal} container={container} />
         );
       })}
     </Fragment>

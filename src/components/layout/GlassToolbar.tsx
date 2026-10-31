@@ -5,32 +5,30 @@ export interface GlassToolbarRootProps {
   isScrolled?: boolean;
 }
 
-export const GlassToolbarRoot = styled(Box, { shouldForwardProp: (p) => p !== "isDark" && p !== "isScrolled" })<GlassToolbarRootProps>(
-  ({ theme, isDark, isScrolled }) => ({
-    position: "fixed",
-    top: "calc(72px + env(safe-area-inset-top, 0px))",
-    zIndex: 1000,
-    width: "100%",
-    padding: isScrolled ? theme.spacing(0.8, 0) : theme.spacing(1.5, 0),
-    borderBottom: `1px solid ${isScrolled ? (isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.1)") : "transparent"}`,
-    background: isDark ? "rgba(10,10,12,0.85)" : "rgba(255,255,255,0.88)",
-    backdropFilter: isScrolled ? "blur(24px) saturate(180%)" : "none",
-    WebkitBackdropFilter: isScrolled ? "blur(24px) saturate(180%)" : "none",
-    transform: "translateZ(0)",
-    WebkitTransform: "translateZ(0)",
-    backfaceVisibility: "hidden",
-    WebkitBackfaceVisibility: "hidden",
-    boxShadow: isScrolled ? (isDark ? "0 10px 30px rgba(0,0,0,0.5)" : "0 10px 30px rgba(0,0,0,0.06)") : "none",
-    transition: [
-      "padding 450ms cubic-bezier(0.16, 1, 0.3, 1)",
-      "background-color 350ms ease",
-      "border-color 350ms ease",
-      "box-shadow 450ms cubic-bezier(0.16, 1, 0.3, 1)",
-      "backdrop-filter 450ms ease",
-    ].join(", "),
-    [theme.breakpoints.down("md")]: { position: "relative", top: 0 },
-  }),
-);
+export const GlassToolbarRoot = styled(Box, { shouldForwardProp: (p) => p !== "isDark" && p !== "isScrolled" })<GlassToolbarRootProps>(({ theme, isDark, isScrolled }) => ({
+  position: "fixed",
+  top: "calc(72px + env(safe-area-inset-top, 0px))",
+  zIndex: 1000,
+  width: "100%",
+  padding: isScrolled ? theme.spacing(0.8, 0) : theme.spacing(1.5, 0),
+  borderBottom: `1px solid ${isScrolled ? (isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.1)") : "transparent"}`,
+  background: isDark ? "rgba(10,10,12,0.85)" : "rgba(255,255,255,0.88)",
+  backdropFilter: isScrolled ? "blur(24px) saturate(180%)" : "none",
+  WebkitBackdropFilter: isScrolled ? "blur(24px) saturate(180%)" : "none",
+  transform: "translateZ(0)",
+  WebkitTransform: "translateZ(0)",
+  backfaceVisibility: "hidden",
+  WebkitBackfaceVisibility: "hidden",
+  boxShadow: isScrolled ? (isDark ? "0 10px 30px rgba(0,0,0,0.5)" : "0 10px 30px rgba(0,0,0,0.06)") : "none",
+  transition: [
+    "padding 450ms cubic-bezier(0.16, 1, 0.3, 1)",
+    "background-color 350ms ease",
+    "border-color 350ms ease",
+    "box-shadow 450ms cubic-bezier(0.16, 1, 0.3, 1)",
+    "backdrop-filter 450ms ease",
+  ].join(", "),
+  [theme.breakpoints.down("md")]: { position: "relative", top: 0 },
+}));
 
 export const GlassNavArrowButton = styled(IconButton, { shouldForwardProp: (p) => p !== "isDark" })<{ isDark: boolean }>(({ theme, isDark }) => ({
   position: "absolute",
@@ -62,9 +60,14 @@ export interface GlassEdgeFadeProps {
   bottomOffset?: number;
 }
 
-export const GlassEdgeFade = styled(Box, {
-  shouldForwardProp: (p) => p !== "side" && p !== "direction" && p !== "isDark" && p !== "visible" && p !== "bottomOffset",
-})<GlassEdgeFadeProps>(({ theme, side, direction, isDark, visible = true, bottomOffset = 0 }) => {
+export const GlassEdgeFade = styled(Box, { shouldForwardProp: (p) => p !== "side" && p !== "direction" && p !== "isDark" && p !== "visible" && p !== "bottomOffset" })<GlassEdgeFadeProps>(({
+  theme,
+  side,
+  direction,
+  isDark,
+  visible = true,
+  bottomOffset = 0,
+}) => {
   const align = side ?? direction ?? "left";
   const bg =
     align === "left"

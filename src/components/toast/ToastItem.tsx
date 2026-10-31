@@ -125,9 +125,12 @@ function resolveRadius(radius: ToastRadius): string {
   }
 }
 
-const ToastContainer = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "variant" && prop !== "radius" && prop !== "isDark" && prop !== "isExiting",
-})<{ variant: ToastVariant; radius: ToastRadius; isDark: boolean; isExiting: boolean }>(({ theme, variant, radius, isDark, isExiting }) => {
+const ToastContainer = styled(Box, { shouldForwardProp: (prop) => prop !== "variant" && prop !== "radius" && prop !== "isDark" && prop !== "isExiting" })<{
+  variant: ToastVariant;
+  radius: ToastRadius;
+  isDark: boolean;
+  isExiting: boolean;
+}>(({ theme, variant, radius, isDark, isExiting }) => {
   const borderRadius = resolveRadius(radius);
 
   // Default "glass" styling matching Jivico liquid glass recipe
@@ -137,9 +140,7 @@ const ToastContainer = styled(Box, {
     : "linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 250, 252, 0.2) 100%)";
   let border = isDark ? "1px solid rgba(255, 255, 255, 0.18)" : "1px solid rgba(20, 24, 32, 0.18)";
   let backdropFilter = "blur(16px) saturate(150%)";
-  let boxShadow = isDark
-    ? "0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1)"
-    : "0 8px 24px rgba(18, 22, 32, 0.08), 0 2px 6px rgba(18, 22, 32, 0.03)";
+  let boxShadow = isDark ? "0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1)" : "0 8px 24px rgba(18, 22, 32, 0.08), 0 2px 6px rgba(18, 22, 32, 0.03)";
 
   if (variant === "solid") {
     background = isDark ? "#131720" : "#FFFFFF";
@@ -281,15 +282,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexShrink: 0, ml: "auto" }}>
             {item.timestamp && (
-              <Typography
-                component="span"
-                sx={{
-                  fontSize: "0.8rem !important",
-                  color: isDark ? COLORS.text.secondaryDark : COLORS.text.secondaryLight,
-                  lineHeight: 1,
-                  userSelect: "none",
-                }}
-              >
+              <Typography component="span" sx={{ fontSize: "0.8rem !important", color: isDark ? COLORS.text.secondaryDark : COLORS.text.secondaryLight, lineHeight: 1, userSelect: "none" }}>
                 {item.timestamp}
               </Typography>
             )}
@@ -305,10 +298,7 @@ export const ToastItem: React.FC<ToastItemProps> = ({ item, onDismiss, onPause, 
                 sx={{
                   p: 0.3,
                   color: isDark ? "rgba(255, 255, 255, 0.45)" : "rgba(0, 0, 0, 0.4)",
-                  "&:hover": {
-                    color: isDark ? "#FFFFFF" : COLORS.primary.light,
-                    backgroundColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.06)",
-                  },
+                  "&:hover": { color: isDark ? "#FFFFFF" : COLORS.primary.light, backgroundColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.06)" },
                   "&:focus-visible": { outline: `2px solid ${isDark ? COLORS.accent.dark : COLORS.accent.light}`, outlineOffset: "2px" },
                 }}
               >

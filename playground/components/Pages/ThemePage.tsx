@@ -1,22 +1,6 @@
 import React, { useState } from "react";
 import { CheckCircle2, Layers, Lock, Moon, Palette, ShieldCheck, Sparkles, Sun, Zap } from "lucide-react";
-import {
-  Alert,
-  Box,
-  Button,
-  Card,
-  Chip,
-  Paper,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Alert, Box, Button, Card, Chip, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { GlassThemeScope } from "../../../src/providers/GlassThemeScope.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
@@ -78,20 +62,10 @@ export const ThemePage: React.FC = () => {
         </Stack>
 
         <Stack direction="row" spacing={1.5}>
-          <Button
-            size="small"
-            variant={resolvedMode === "light" ? "contained" : "outlined"}
-            onClick={() => setGlassMode("light")}
-            startIcon={<Sun size={15} />}
-          >
+          <Button size="small" variant={resolvedMode === "light" ? "contained" : "outlined"} onClick={() => setGlassMode("light")} startIcon={<Sun size={15} />}>
             Switch App to Light
           </Button>
-          <Button
-            size="small"
-            variant={resolvedMode === "dark" ? "contained" : "outlined"}
-            onClick={() => setGlassMode("dark")}
-            startIcon={<Moon size={15} />}
-          >
+          <Button size="small" variant={resolvedMode === "dark" ? "contained" : "outlined"} onClick={() => setGlassMode("dark")} startIcon={<Moon size={15} />}>
             Switch App to Dark
           </Button>
         </Stack>
@@ -116,8 +90,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 );`}
       >
         <Alert severity="info" sx={{ borderRadius: "14px", mb: 2 }}>
-          <code>JivicoGlassProvider</code> accepts <code>defaultMode="system" | "light" | "dark"</code> and automatically persists theme preference in
-          local storage.
+          <code>JivicoGlassProvider</code> accepts <code>defaultMode="system" | "light" | "dark"</code> and automatically persists theme preference in local storage.
         </Alert>
       </DemoBlock>
 
@@ -151,12 +124,7 @@ function SpecificPage() {
       >
         <Paper
           elevation={0}
-          sx={{
-            p: 3,
-            borderRadius: "16px",
-            border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}`,
-            bgcolor: isDark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)",
-          }}
+          sx={{ p: 3, borderRadius: "16px", border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}`, bgcolor: isDark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)" }}
         >
           <Stack spacing={1.5}>
             <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
@@ -166,8 +134,7 @@ function SpecificPage() {
               </Typography>
             </Stack>
             <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.88rem" }}>
-              Because Jivico Glass UI is built directly on native Material-UI v9 theme overrides, all components are standard MUI elements. No wrapper
-              boilerplate required.
+              Because Jivico Glass UI is built directly on native Material-UI v9 theme overrides, all components are standard MUI elements. No wrapper boilerplate required.
             </Typography>
           </Stack>
         </Paper>
@@ -198,10 +165,7 @@ import { Card, Button, Chip } from '@mui/material';
         <Stack direction={{ xs: "column", md: "row" }} spacing={3} sx={{ width: "100%" }}>
           {/* Left: Forced Dark Scope Card */}
           <Box sx={{ flex: 1 }}>
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#A855F7", mb: 1, display: "block" }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#A855F7", mb: 1, display: "block" }}>
               1. Scoped Dark Mode (&lt;GlassThemeScope mode="dark"&gt;)
             </Typography>
             <GlassThemeScope mode="dark">
@@ -246,23 +210,13 @@ import { Card, Button, Chip } from '@mui/material';
 
           {/* Right: Forced Light Scope Card */}
           <Box sx={{ flex: 1 }}>
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6366F1", mb: 1, display: "block" }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6366F1", mb: 1, display: "block" }}>
               2. Scoped Light Mode (&lt;GlassThemeScope mode="light"&gt;)
             </Typography>
             <GlassThemeScope mode="light">
               <Card
                 variant="outlined"
-                sx={{
-                  p: 3,
-                  borderRadius: "20px",
-                  bgcolor: "#FFFFFF",
-                  border: "1px solid rgba(17, 17, 17, 0.12)",
-                  boxShadow: "0 12px 32px rgba(0, 0, 0, 0.08)",
-                  color: "#111111",
-                }}
+                sx={{ p: 3, borderRadius: "20px", bgcolor: "#FFFFFF", border: "1px solid rgba(17, 17, 17, 0.12)", boxShadow: "0 12px 32px rgba(0, 0, 0, 0.08)", color: "#111111" }}
               >
                 <Stack spacing={2}>
                   <Stack direction="row" sx={{ alignItems: "center", justifyContent: "space-between" }}>
@@ -323,8 +277,7 @@ import { Card, Button, Chip } from '@mui/material';
             p: { xs: 2.5, sm: 4 },
             borderRadius: "24px",
             overflow: "hidden",
-            backgroundImage:
-              "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80')",
+            backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             boxShadow: "0 24px 60px rgba(0, 0, 0, 0.5)",
@@ -409,22 +362,10 @@ import { Card, Button, Chip } from '@mui/material';
             <Typography variant="body2" sx={{ fontWeight: 700 }}>
               Select Scope Target Mode:
             </Typography>
-            <Button
-              variant={forcedMode === "dark" ? "contained" : "outlined"}
-              color="accent"
-              size="small"
-              onClick={() => setForcedMode("dark")}
-              startIcon={<Moon size={15} />}
-            >
+            <Button variant={forcedMode === "dark" ? "contained" : "outlined"} color="accent" size="small" onClick={() => setForcedMode("dark")} startIcon={<Moon size={15} />}>
               Force Dark Scope
             </Button>
-            <Button
-              variant={forcedMode === "light" ? "contained" : "outlined"}
-              color="primary"
-              size="small"
-              onClick={() => setForcedMode("light")}
-              startIcon={<Sun size={15} />}
-            >
+            <Button variant={forcedMode === "light" ? "contained" : "outlined"} color="primary" size="small" onClick={() => setForcedMode("light")} startIcon={<Sun size={15} />}>
               Force Light Scope
             </Button>
           </Stack>
@@ -454,8 +395,7 @@ import { Card, Button, Chip } from '@mui/material';
                   </Stack>
 
                   <Typography variant="body2" sx={{ opacity: 0.85, fontSize: "0.88rem" }}>
-                    This container is dynamically scoped to <strong>{forcedMode.toUpperCase()} MODE</strong>. Toggling the global app header theme
-                    leaves this target intact!
+                    This container is dynamically scoped to <strong>{forcedMode.toUpperCase()} MODE</strong>. Toggling the global app header theme leaves this target intact!
                   </Typography>
 
                   <Stack direction="row" spacing={1.5} sx={{ pt: 1 }}>

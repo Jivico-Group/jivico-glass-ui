@@ -124,9 +124,7 @@ export function Gallery<T>({
                   willChange: imageZoomOnHover ? "transform" : undefined,
                 }}
               >
-                {renderImage
-                  ? renderImage({ item, index, src, alt, href, onNavigate: isInteractive ? handleItemNavigation : undefined })
-                  : renderNativeImage(src, alt, imageFit)}
+                {renderImage ? renderImage({ item, index, src, alt, href, onNavigate: isInteractive ? handleItemNavigation : undefined }) : renderNativeImage(src, alt, imageFit)}
               </Box>
 
               {href && (
@@ -135,16 +133,7 @@ export function Gallery<T>({
                   href={href}
                   aria-label={linkLabel}
                   onClick={handleItemNavigation}
-                  sx={{
-                    position: "absolute",
-                    inset: 0,
-                    zIndex: 1,
-                    display: "block",
-                    width: "100%",
-                    height: "100%",
-                    textDecoration: "none",
-                    cursor: "pointer",
-                  }}
+                  sx={{ position: "absolute", inset: 0, zIndex: 1, display: "block", width: "100%", height: "100%", textDecoration: "none", cursor: "pointer" }}
                 />
               )}
 

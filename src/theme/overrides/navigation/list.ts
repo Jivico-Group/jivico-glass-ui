@@ -117,39 +117,12 @@ export const getListOverrides = (palette: JivicoPalette, isDark: boolean): Compo
   // SIZE MAP
   // ==========================================================
 
-  const sizeMap: Record<
-    ListSize,
-    { minHeight: number; padding: string; radius: number; iconMinWidth: number; iconSize: number; primaryFontSize: string; secondaryFontSize: string }
-  > = {
-    small: {
-      minHeight: 36,
-      padding: "6px 10px",
-      radius: 10,
-      iconMinWidth: 36,
-      iconSize: 18,
-      primaryFontSize: "0.8125rem",
-      secondaryFontSize: "0.75rem",
-    },
+  const sizeMap: Record<ListSize, { minHeight: number; padding: string; radius: number; iconMinWidth: number; iconSize: number; primaryFontSize: string; secondaryFontSize: string }> = {
+    small: { minHeight: 36, padding: "6px 10px", radius: 10, iconMinWidth: 36, iconSize: 18, primaryFontSize: "0.8125rem", secondaryFontSize: "0.75rem" },
 
-    medium: {
-      minHeight: 44,
-      padding: "9px 12px",
-      radius: 12,
-      iconMinWidth: 40,
-      iconSize: 20,
-      primaryFontSize: "0.925rem",
-      secondaryFontSize: "0.8125rem",
-    },
+    medium: { minHeight: 44, padding: "9px 12px", radius: 12, iconMinWidth: 40, iconSize: 20, primaryFontSize: "0.925rem", secondaryFontSize: "0.8125rem" },
 
-    large: {
-      minHeight: 52,
-      padding: "12px 14px",
-      radius: 14,
-      iconMinWidth: 44,
-      iconSize: 22,
-      primaryFontSize: "1rem",
-      secondaryFontSize: "0.875rem",
-    },
+    large: { minHeight: 52, padding: "12px 14px", radius: 14, iconMinWidth: 44, iconSize: 22, primaryFontSize: "1rem", secondaryFontSize: "0.875rem" },
   };
 
   // ==========================================================

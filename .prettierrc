@@ -10,16 +10,7 @@
   "endOfLine": "lf",
   "objectWrap": "collapse",
   "plugins": ["@ianvs/prettier-plugin-sort-imports"],
-  "importOrder": [
-    "^(react/(.*)$)|^(react$)",
-    "<THIRD_PARTY_MODULES>",
-    "^@mui/(.*)$",
-    "^jivico-(.*)$",
-    "^@/(.*)$",
-    "^[./]",
-    "<TYPES>",
-    "<TYPES>^[./]"
-  ],
+  "importOrder": ["^(react/(.*)$)|^(react$)", "<THIRD_PARTY_MODULES>", "^@mui/(.*)$", "^jivico-(.*)$", "^@/(.*)$", "^[./]", "<TYPES>", "<TYPES>^[./]"],
   "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
   "importOrderTypeScriptVersion": "5.0.0"
 }

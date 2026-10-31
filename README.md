@@ -575,6 +575,7 @@ for applications that need direct access to the Google Sans Flex stylesheet URL.
 # ⏳ Loading Indicators (`<Loader>` & `<BackdropLoader>`)
 
 `jivico-glass-ui` provides two production-ready loading components:
+
 - **`Loader`**: Reusable inline or standalone loading indicator.
 - **`BackdropLoader`**: Full-screen or container-level loading overlay composing the shared `Loader`.
 
@@ -589,26 +590,28 @@ for applications that need direct access to the Google Sans Flex stylesheet URL.
 
 ### Theme-Aware Image Selection Matrix
 
-| `src` | `darkSrc` | Light Mode | Dark Mode |
-| :--- | :--- | :--- | :--- |
-| *Not provided* | *Not provided* | MUI Spinner (`color="info"`) | MUI Spinner (`color="info"`) |
-| **Provided** | *Not provided* | `src` | `src` |
-| **Provided** | **Provided** | `src` | `darkSrc` |
-| *Not provided* | **Provided** | MUI Spinner (`color="info"`) | `darkSrc` |
+| `src`          | `darkSrc`      | Light Mode                   | Dark Mode                    |
+| :------------- | :------------- | :--------------------------- | :--------------------------- |
+| _Not provided_ | _Not provided_ | MUI Spinner (`color="info"`) | MUI Spinner (`color="info"`) |
+| **Provided**   | _Not provided_ | `src`                        | `src`                        |
+| **Provided**   | **Provided**   | `src`                        | `darkSrc`                    |
+| _Not provided_ | **Provided**   | MUI Spinner (`color="info"`) | `darkSrc`                    |
 
 ---
 
 ### Practical Examples
 
 #### A. Default Spinner
+
 ```tsx
 import { Loader } from "jivico-glass-ui";
 
 // Renders Material UI CircularProgress in Apple-style blue (color="info")
-<Loader />
+<Loader />;
 ```
 
 #### B. Colored Spinner & Custom Dimensions
+
 ```tsx
 // Configurable semantic color and custom dimensions (numeric or CSS strings)
 <Loader color="success" width={40} height={40} />
@@ -617,86 +620,63 @@ import { Loader } from "jivico-glass-ui";
 ```
 
 #### C. Single Image for Both Themes
+
 ```tsx
 // Reuses the single source in both Light and Dark themes
 <Loader src="/loader.webp" width={64} height={64} alt="Loading..." />
 ```
 
 #### D. Separate Light & Dark Images
+
 ```tsx
 // Automatically switches between black (light mode) and white (dark mode) assets
-<Loader
-  src="/loader-black.webp"
-  darkSrc="/loader-white.webp"
-  width={80}
-  height={80}
-/>
+<Loader src="/loader-black.webp" darkSrc="/loader-white.webp" width={80} height={80} />
 ```
 
 #### E. Only Dark Image
+
 ```tsx
 // Uses the MUI spinner in Light mode, and the custom SVG in Dark mode
 <Loader darkSrc="/loader-white.svg" width={48} height={48} />
 ```
 
 #### F. Next.js Image Integration
+
 ```tsx
 import Image from "next/image";
 import { Loader } from "jivico-glass-ui";
 
-<Loader
-  src="/loader-black.webp"
-  darkSrc="/loader-white.webp"
-  ImageComponent={Image}
-  width={96}
-  height={96}
-  alt="Loading Jivico"
-  imageProps={{ unoptimized: true, priority: true }}
-/>
+<Loader src="/loader-black.webp" darkSrc="/loader-white.webp" ImageComponent={Image} width={96} height={96} alt="Loading Jivico" imageProps={{ unoptimized: true, priority: true }} />;
 ```
 
 #### G. Backdrop Spinner
+
 ```tsx
 import { BackdropLoader } from "jivico-glass-ui";
 
 // Full-screen glassmorphic overlay with default Apple-blue spinner
-<BackdropLoader open={loading} />
+<BackdropLoader open={loading} />;
 ```
 
 #### H. Backdrop with Theme-Aware Images
+
 ```tsx
-<BackdropLoader
-  open={loading}
-  src="/loader-black.svg"
-  darkSrc="/loader-white.svg"
-  width={100}
-  height={100}
-/>
+<BackdropLoader open={loading} src="/loader-black.svg" darkSrc="/loader-white.svg" width={100} height={100} />
 ```
 
 #### I. Backdrop with Next.js Image
+
 ```tsx
 import Image from "next/image";
 import { BackdropLoader } from "jivico-glass-ui";
 
-<BackdropLoader
-  open={loading}
-  src="/loader-black.webp"
-  darkSrc="/loader-white.webp"
-  ImageComponent={Image}
-  width={96}
-  height={96}
-  imageProps={{ unoptimized: true }}
-/>
+<BackdropLoader open={loading} src="/loader-black.webp" darkSrc="/loader-white.webp" ImageComponent={Image} width={96} height={96} imageProps={{ unoptimized: true }} />;
 ```
 
 #### J. Backdrop with Message
+
 ```tsx
-<BackdropLoader
-  open={loading}
-  message="Processing your request..."
-  blur="16px"
-/>
+<BackdropLoader open={loading} message="Processing your request..." blur="16px" />
 ```
 
 ---

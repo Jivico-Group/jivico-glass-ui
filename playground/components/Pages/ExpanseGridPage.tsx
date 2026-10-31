@@ -1,21 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import {
-  Box,
-  Chip,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  MenuItem,
-  Radio,
-  RadioGroup,
-  Select,
-  Slider,
-  Stack,
-  Switch,
-  Typography,
-} from "@mui/material";
+import { Box, Chip, FormControl, FormControlLabel, FormLabel, MenuItem, Radio, RadioGroup, Select, Slider, Stack, Switch, Typography } from "@mui/material";
 import "../../../src/theme/augmentations.d.ts";
 import { ExpanseGrid } from "../../../src/components/expanseGrid/ExpanseGrid.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
@@ -128,9 +114,7 @@ export const ExpanseGridPage: React.FC = () => {
             <Stack spacing={2.5}>
               {/* Item Count Selection */}
               <FormControl size="small">
-                <FormLabel sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>
-                  Item Count & Responsive Layout
-                </FormLabel>
+                <FormLabel sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>Item Count & Responsive Layout</FormLabel>
                 <RadioGroup
                   row
                   value={itemCount}
@@ -141,21 +125,8 @@ export const ExpanseGridPage: React.FC = () => {
                   }}
                 >
                   {[1, 2, 3, 4, 5].map((count) => {
-                    const labels: Record<number, string> = {
-                      1: "1 (Single Hero)",
-                      2: "2 (Dual 50/50)",
-                      3: "3 (Feature + 2 Stacked)",
-                      4: "4 (Quad 2x2)",
-                      5: "5 (Feature + 4 Grid)",
-                    };
-                    return (
-                      <FormControlLabel
-                        key={count}
-                        value={count}
-                        control={<Radio size="small" />}
-                        label={<Typography variant="body2">{labels[count]}</Typography>}
-                      />
-                    );
+                    const labels: Record<number, string> = { 1: "1 (Single Hero)", 2: "2 (Dual 50/50)", 3: "3 (Feature + 2 Stacked)", 4: "4 (Quad 2x2)", 5: "5 (Feature + 4 Grid)" };
+                    return <FormControlLabel key={count} value={count} control={<Radio size="small" />} label={<Typography variant="body2">{labels[count]}</Typography>} />;
                   })}
                 </RadioGroup>
               </FormControl>
@@ -163,9 +134,7 @@ export const ExpanseGridPage: React.FC = () => {
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, alignItems: "center" }}>
                 {/* Corner Radius */}
                 <FormControl size="small" sx={{ minWidth: 160 }}>
-                  <FormLabel sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>
-                    Corner Radius
-                  </FormLabel>
+                  <FormLabel sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>Corner Radius</FormLabel>
                   <Select value={radius} onChange={(e) => setRadius(e.target.value as any)} size="small">
                     <MenuItem value="square">Square (0px)</MenuItem>
                     <MenuItem value="soft">Soft (14px)</MenuItem>
@@ -184,9 +153,7 @@ export const ExpanseGridPage: React.FC = () => {
                 {/* Featured Card Selector */}
                 {itemCount > 1 && (
                   <FormControl size="small" sx={{ minWidth: 180 }}>
-                    <FormLabel sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>
-                      Anchor Featured Card
-                    </FormLabel>
+                    <FormLabel sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>Anchor Featured Card</FormLabel>
                     <Select value={customFeaturedIndex} onChange={(e) => setCustomFeaturedIndex(Number(e.target.value))} size="small">
                       {SAMPLE_EXPANSE_ITEMS.slice(0, itemCount).map((item, idx) => (
                         <MenuItem key={item.id} value={idx}>

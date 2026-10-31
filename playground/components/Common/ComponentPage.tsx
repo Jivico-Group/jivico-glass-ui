@@ -10,13 +10,7 @@ interface ComponentPageProps {
   children: React.ReactNode;
 }
 
-export const ComponentPage: React.FC<ComponentPageProps> = ({
-  title,
-  description,
-  category = "Components",
-  badges = ["Glass UI", "MUI v9"],
-  children,
-}) => {
+export const ComponentPage: React.FC<ComponentPageProps> = ({ title, description, category = "Components", badges = ["Glass UI", "MUI v9"], children }) => {
   const { mode } = useGlassMode();
   const isDark = mode === "dark";
 

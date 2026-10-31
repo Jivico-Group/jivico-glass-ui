@@ -48,11 +48,7 @@ const PRESETS: Record<string, PresetConfig> = {
     code: "404 ERROR",
     title: "Lost in the Multiverse",
     description: "The page or archival drop you are searching for does not exist, has been archived, or was moved to another universe coordinate.",
-    image: {
-      src: "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=600&q=80",
-      alt: "404 Not Found Art",
-      width: 240,
-    },
+    image: { src: "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=600&q=80", alt: "404 Not Found Art", width: 240 },
     actionLabel: "Back to Home",
     secondaryActionLabel: "Search Studio",
     surface: "glass",
@@ -62,8 +58,7 @@ const PRESETS: Record<string, PresetConfig> = {
     label: "Drop Release",
     code: "DROP 004 · COMING SOON",
     title: "Heavyweight Winter Capsule",
-    description:
-      "Crafted from custom 480 GSM luxury fleece and Japanese selvedge denim. Priority allocation opens in 48 hours for verified studio members.",
+    description: "Crafted from custom 480 GSM luxury fleece and Japanese selvedge denim. Priority allocation opens in 48 hours for verified studio members.",
     image: { src: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80", alt: "Drop Preview", width: 260 },
     actionLabel: "Join Early Access",
     secondaryActionLabel: "View Lookbook",
@@ -75,11 +70,7 @@ const PRESETS: Record<string, PresetConfig> = {
     code: "500 INTERNAL ERROR",
     title: "Signal Disrupted",
     description: "Our edge runtime encountered an unexpected response while rendering this view. Our engineering team has been notified.",
-    image: {
-      src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
-      alt: "500 Error Signal",
-      width: 220,
-    },
+    image: { src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80", alt: "500 Error Signal", width: 220 },
     actionLabel: "Retry Connection",
     secondaryActionLabel: "System Status",
     surface: "standard",
@@ -117,9 +108,7 @@ export const StatusShowcasePage: React.FC = () => {
   const [surface, setSurface] = useState<"standard" | "glass">("glass");
   const [code, setCode] = useState("404 ERROR");
   const [title, setTitle] = useState("Lost in the Multiverse");
-  const [description, setDescription] = useState(
-    "The page or archival drop you are searching for does not exist, has been archived, or was moved to another universe coordinate.",
-  );
+  const [description, setDescription] = useState("The page or archival drop you are searching for does not exist, has been archived, or was moved to another universe coordinate.");
   const [showImage, setShowImage] = useState(true);
   const [showAction, setShowAction] = useState(true);
   const [showSecondaryAction, setShowSecondaryAction] = useState(true);
@@ -291,15 +280,7 @@ ${
                 <TextField size="small" label="Code / Eyebrow" value={code} onChange={(e) => setCode(e.target.value)} sx={{ flex: 1 }} />
                 <TextField size="small" label="Title" value={title} onChange={(e) => setTitle(e.target.value)} sx={{ flex: 2 }} />
               </Stack>
-              <TextField
-                size="small"
-                label="Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                multiline
-                rows={2}
-                fullWidth
-              />
+              <TextField size="small" label="Description" value={description} onChange={(e) => setDescription(e.target.value)} multiline rows={2} fullWidth />
             </Stack>
           </Box>
 
@@ -327,9 +308,7 @@ ${
                 width: 320,
                 height: 320,
                 borderRadius: "50%",
-                background: isDark
-                  ? "radial-gradient(circle, rgba(99,102,241,0.18) 0%, rgba(0,0,0,0) 70%)"
-                  : "radial-gradient(circle, rgba(99,102,241,0.12) 0%, rgba(255,255,255,0) 70%)",
+                background: isDark ? "radial-gradient(circle, rgba(99,102,241,0.18) 0%, rgba(0,0,0,0) 70%)" : "radial-gradient(circle, rgba(99,102,241,0.12) 0%, rgba(255,255,255,0) 70%)",
                 filter: "blur(60px)",
                 pointerEvents: "none",
               }}
@@ -342,9 +321,7 @@ ${
                 width: 280,
                 height: 280,
                 borderRadius: "50%",
-                background: isDark
-                  ? "radial-gradient(circle, rgba(236,72,153,0.15) 0%, rgba(0,0,0,0) 70%)"
-                  : "radial-gradient(circle, rgba(236,72,153,0.1) 0%, rgba(255,255,255,0) 70%)",
+                background: isDark ? "radial-gradient(circle, rgba(236,72,153,0.15) 0%, rgba(0,0,0,0) 70%)" : "radial-gradient(circle, rgba(236,72,153,0.1) 0%, rgba(255,255,255,0) 70%)",
                 filter: "blur(50px)",
                 pointerEvents: "none",
               }}
@@ -363,12 +340,7 @@ ${
               onSecondaryAction={() => alert(`Triggered secondary action: ${PRESETS[selectedPreset]?.secondaryActionLabel}`)}
               signature={
                 showSignature ? (
-                  <Chip
-                    label="JIVICO MULTIVERSE PROTOCOL"
-                    size="small"
-                    variant="outlined"
-                    sx={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.1em", borderColor: "divider" }}
-                  />
+                  <Chip label="JIVICO MULTIVERSE PROTOCOL" size="small" variant="outlined" sx={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.1em", borderColor: "divider" }} />
                 ) : undefined
               }
             >
@@ -389,9 +361,7 @@ ${
                         ),
                       },
                     }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": { borderRadius: "9999px", bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.8)" },
-                    }}
+                    sx={{ "& .MuiOutlinedInput-root": { borderRadius: "9999px", bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.8)" } }}
                   />
                 </Box>
               )}
@@ -433,11 +403,7 @@ ${
           }}
         >
           <StatusShowcase
-            image={{
-              src: "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=600&q=80",
-              alt: "404 Lost",
-              width: 220,
-            }}
+            image={{ src: "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=600&q=80", alt: "404 Lost", width: 220 }}
             code="404 ERROR"
             title="Lost in the Multiverse"
             description="The coordinate or collection you are looking for does not exist, has expired, or was relocated."
@@ -767,56 +733,16 @@ ${
                 { prop: "title", type: "ReactNode", default: "Required", desc: "Main primary heading of the status showcase." },
                 { prop: "code", type: "ReactNode", default: "undefined", desc: "Status code or eyebrow text (e.g., '404', '500', 'COMING SOON')." },
                 { prop: "description", type: "ReactNode", default: "undefined", desc: "Supporting message explaining the status or next steps." },
-                {
-                  prop: "image",
-                  type: "StatusShowcaseImage",
-                  default: "undefined",
-                  desc: "Optional visual displayed above the title ({ src, alt, width, height }).",
-                },
-                {
-                  prop: "renderImage",
-                  type: "(image: StatusShowcaseImage) => ReactNode",
-                  default: "undefined",
-                  desc: "Custom image renderer for Next.js Image or custom picture tags.",
-                },
+                { prop: "image", type: "StatusShowcaseImage", default: "undefined", desc: "Optional visual displayed above the title ({ src, alt, width, height })." },
+                { prop: "renderImage", type: "(image: StatusShowcaseImage) => ReactNode", default: "undefined", desc: "Custom image renderer for Next.js Image or custom picture tags." },
                 { prop: "actionLabel", type: "ReactNode", default: "undefined", desc: "Label for the primary CTA contained button." },
-                {
-                  prop: "onAction",
-                  type: "MouseEventHandler<HTMLButtonElement>",
-                  default: "undefined",
-                  desc: "Click handler for the primary CTA button.",
-                },
+                { prop: "onAction", type: "MouseEventHandler<HTMLButtonElement>", default: "undefined", desc: "Click handler for the primary CTA button." },
                 { prop: "secondaryActionLabel", type: "ReactNode", default: "undefined", desc: "Label for the secondary CTA outlined button." },
-                {
-                  prop: "onSecondaryAction",
-                  type: "MouseEventHandler<HTMLButtonElement>",
-                  default: "undefined",
-                  desc: "Click handler for the secondary CTA button.",
-                },
-                {
-                  prop: "children",
-                  type: "ReactNode",
-                  default: "undefined",
-                  desc: "Custom content rendered between description and action buttons.",
-                },
-                {
-                  prop: "signature",
-                  type: "ReactNode",
-                  default: "undefined",
-                  desc: "Optional footer signature, badge, or brand logo rendered at the bottom.",
-                },
-                {
-                  prop: "size",
-                  type: "'small' | 'medium' | 'large'",
-                  default: "'medium'",
-                  desc: "Controls font scale, container width, and button heights.",
-                },
-                {
-                  prop: "surface",
-                  type: "'standard' | 'glass'",
-                  default: "'standard'",
-                  desc: "Controls whether the container uses a flat transparent surface or frosted glass.",
-                },
+                { prop: "onSecondaryAction", type: "MouseEventHandler<HTMLButtonElement>", default: "undefined", desc: "Click handler for the secondary CTA button." },
+                { prop: "children", type: "ReactNode", default: "undefined", desc: "Custom content rendered between description and action buttons." },
+                { prop: "signature", type: "ReactNode", default: "undefined", desc: "Optional footer signature, badge, or brand logo rendered at the bottom." },
+                { prop: "size", type: "'small' | 'medium' | 'large'", default: "'medium'", desc: "Controls font scale, container width, and button heights." },
+                { prop: "surface", type: "'standard' | 'glass'", default: "'standard'", desc: "Controls whether the container uses a flat transparent surface or frosted glass." },
                 { prop: "sx", type: "Record<string, unknown>", default: "undefined", desc: "Custom MUI sx style overrides." },
               ].map((row) => (
                 <TableRow key={row.prop}>

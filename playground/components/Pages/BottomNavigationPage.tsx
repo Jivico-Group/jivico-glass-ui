@@ -1,41 +1,6 @@
 import { useState } from "react";
-import {
-  Battery,
-  Bell,
-  Bookmark,
-  Compass,
-  Film,
-  Heart,
-  Home,
-  Loader2,
-  MessageCircle,
-  MoreHorizontal,
-  PlusSquare,
-  Scan,
-  Search,
-  Send,
-  Sliders,
-  Sparkles,
-  User,
-  Wifi,
-  X,
-} from "lucide-react";
-import {
-  Avatar,
-  Badge,
-  BottomNavigation,
-  BottomNavigationAction,
-  Box,
-  Button,
-  Chip,
-  FormControlLabel,
-  IconButton,
-  InputBase,
-  Paper,
-  Stack,
-  Switch,
-  Typography,
-} from "@mui/material";
+import { Battery, Bell, Bookmark, Compass, Film, Heart, Home, Loader2, MessageCircle, MoreHorizontal, PlusSquare, Scan, Search, Send, Sliders, Sparkles, User, Wifi, X } from "lucide-react";
+import { Avatar, Badge, BottomNavigation, BottomNavigationAction, Box, Button, Chip, FormControlLabel, IconButton, InputBase, Paper, Stack, Switch, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
@@ -114,14 +79,7 @@ export const BottomNavigationPage: React.FC = () => {
         >
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
             <FormControlLabel
-              control={
-                <Switch
-                  checked={instaGlass === "true"}
-                  onChange={(e) => setInstaGlass(e.target.checked ? "true" : "false")}
-                  color="glass"
-                  size="small"
-                />
-              }
+              control={<Switch checked={instaGlass === "true"} onChange={(e) => setInstaGlass(e.target.checked ? "true" : "false")} color="glass" size="small" />}
               label={
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
                   Frosted Glass:{" "}
@@ -171,9 +129,7 @@ export const BottomNavigationPage: React.FC = () => {
               borderRadius: "44px",
               overflow: "hidden",
               border: `10px solid ${isDark ? "#1C1C1E" : "#000000"}`,
-              boxShadow: isDark
-                ? "0 32px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.15)"
-                : "0 32px 80px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.1)",
+              boxShadow: isDark ? "0 32px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.15)" : "0 32px 80px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.1)",
               bgcolor: isDark ? "#000000" : "#FFFFFF",
               color: isDark ? "#FFFFFF" : "#000000",
               fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -193,9 +149,7 @@ export const BottomNavigationPage: React.FC = () => {
                 left: 0,
                 right: 0,
                 zIndex: 10,
-                background: isDark
-                  ? "linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 100%)"
-                  : "linear-gradient(180deg, rgba(255,255,255,0.7) 0%, transparent 100%)",
+                background: isDark ? "linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 100%)" : "linear-gradient(180deg, rgba(255,255,255,0.7) 0%, transparent 100%)",
               }}
             >
               <Typography variant="caption" sx={{ fontWeight: 700, fontSize: "0.85rem" }}>
@@ -203,18 +157,7 @@ export const BottomNavigationPage: React.FC = () => {
               </Typography>
 
               {/* Speaker / Notch Pill */}
-              <Box
-                sx={{
-                  width: 90,
-                  height: 22,
-                  bgcolor: "#000000",
-                  borderRadius: 9999,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 1,
-                }}
-              >
+              <Box sx={{ width: 90, height: 22, bgcolor: "#000000", borderRadius: 9999, display: "flex", alignItems: "center", justifyContent: "center", gap: 1 }}>
                 <Box sx={{ width: 8, height: 8, borderRadius: "50%", bgcolor: "#10B981" }} />
               </Box>
 
@@ -291,24 +234,14 @@ export const BottomNavigationPage: React.FC = () => {
                       sx={{
                         p: "2px",
                         borderRadius: "50%",
-                        background: story.active
-                          ? "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)"
-                          : "transparent",
+                        background: story.active ? "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)" : "transparent",
                       }}
                     >
                       <Avatar src={story.img} sx={{ width: 56, height: 56, border: `2px solid ${isDark ? "#000" : "#FFF"}` }} />
                     </Box>
                     <Typography
                       variant="caption"
-                      sx={{
-                        fontSize: "0.68rem",
-                        fontWeight: 500,
-                        maxWidth: 60,
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                        opacity: 0.8,
-                      }}
+                      sx={{ fontSize: "0.68rem", fontWeight: 500, maxWidth: 60, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", opacity: 0.8 }}
                     >
                       {story.name}
                     </Typography>
@@ -376,16 +309,7 @@ export const BottomNavigationPage: React.FC = () => {
                   <Chip
                     label={`Active Tab: Index ${instaTab}`}
                     size="small"
-                    sx={{
-                      position: "absolute",
-                      top: 12,
-                      right: 12,
-                      bgcolor: "rgba(0,0,0,0.6)",
-                      color: "#FFF",
-                      backdropFilter: "blur(10px)",
-                      fontWeight: 600,
-                      fontSize: "0.7rem",
-                    }}
+                    sx={{ position: "absolute", top: 12, right: 12, bgcolor: "rgba(0,0,0,0.6)", color: "#FFF", backdropFilter: "blur(10px)", fontWeight: 600, fontSize: "0.7rem" }}
                   />
                 </Box>
 
@@ -459,9 +383,7 @@ export const BottomNavigationPage: React.FC = () => {
                   ...(instaFloating
                     ? {
                         borderRadius: 9999,
-                        boxShadow: isDark
-                          ? "0 20px 48px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.12)"
-                          : "0 16px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08)",
+                        boxShadow: isDark ? "0 20px 48px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.12)" : "0 16px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08)",
                       }
                     : { borderRadius: 0, borderLeft: "none", borderRight: "none", borderBottom: "none" }),
                 }}
@@ -591,12 +513,7 @@ const [query, setQuery] = useState('');
               <Typography variant="body2" sx={{ fontWeight: 600, mr: 1 }}>
                 Position:
               </Typography>
-              <Button
-                size="small"
-                variant={searchPosition === "top" ? "contained" : "outlined"}
-                onClick={() => setSearchPosition("top")}
-                sx={{ borderRadius: 9999, textTransform: "none" }}
-              >
+              <Button size="small" variant={searchPosition === "top" ? "contained" : "outlined"} onClick={() => setSearchPosition("top")} sx={{ borderRadius: 9999, textTransform: "none" }}>
                 Top Floating
               </Button>
               <Button
@@ -610,13 +527,7 @@ const [query, setQuery] = useState('');
             </Stack>
           </Stack>
 
-          <Chip
-            label="Click Search Field to Test Expansion"
-            color="secondary"
-            size="small"
-            variant="outlined"
-            sx={{ fontWeight: 700, fontSize: "0.75rem" }}
-          />
+          <Chip label="Click Search Field to Test Expansion" color="secondary" size="small" variant="outlined" sx={{ fontWeight: 700, fontSize: "0.75rem" }} />
         </Box>
 
         {/* Live Simulation Viewport */}
@@ -731,15 +642,7 @@ const [query, setQuery] = useState('');
               }}
             >
               <Avatar
-                sx={{
-                  width: 24,
-                  height: 24,
-                  bgcolor: isDark ? "#FFFFFF" : "#000000",
-                  color: isDark ? "#000000" : "#FFFFFF",
-                  fontSize: "0.65rem",
-                  fontWeight: 800,
-                  letterSpacing: -0.5,
-                }}
+                sx={{ width: 24, height: 24, bgcolor: isDark ? "#FFFFFF" : "#000000", color: isDark ? "#000000" : "#FFFFFF", fontSize: "0.65rem", fontWeight: 800, letterSpacing: -0.5 }}
               >
                 B
               </Avatar>
@@ -765,17 +668,11 @@ const [query, setQuery] = useState('');
                 </IconButton>
               )}
 
-              <IconButton
-                size="small"
-                sx={{ color: "inherit", opacity: 0.85, transition: "transform 0.2s ease", "&:hover": { transform: "scale(1.1)" } }}
-              >
+              <IconButton size="small" sx={{ color: "inherit", opacity: 0.85, transition: "transform 0.2s ease", "&:hover": { transform: "scale(1.1)" } }}>
                 <Scan size={18} />
               </IconButton>
 
-              <IconButton
-                size="small"
-                sx={{ color: "inherit", opacity: 0.85, transition: "transform 0.2s ease", "&:hover": { transform: "scale(1.1)" } }}
-              >
+              <IconButton size="small" sx={{ color: "inherit", opacity: 0.85, transition: "transform 0.2s ease", "&:hover": { transform: "scale(1.1)" } }}>
                 <Loader2 size={18} style={{ animation: "spin 4s linear infinite" }} />
               </IconButton>
 
@@ -815,10 +712,7 @@ const [query, setQuery] = useState('');
                 animation: "fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
-              <Typography
-                variant="caption"
-                sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.8, color: "text.secondary", fontSize: "0.68rem" }}
-              >
+              <Typography variant="caption" sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.8, color: "text.secondary", fontSize: "0.68rem" }}>
                 Trending Searches
               </Typography>
               <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: 1 }}>

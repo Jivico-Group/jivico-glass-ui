@@ -51,18 +51,7 @@ export const DemoBlock: React.FC<DemoBlockProps> = ({ id, title, description, co
         }}
       >
         {/* Live Component Preview Area */}
-        <Box
-          sx={{
-            p: { xs: 2.5, sm: 4 },
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 2,
-            alignItems: "center",
-            justifyContent: "flex-start",
-            minHeight: 120,
-            position: "relative",
-          }}
-        >
+        <Box sx={{ p: { xs: 2.5, sm: 4 }, display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center", justifyContent: "flex-start", minHeight: 120, position: "relative" }}>
           {children}
         </Box>
 

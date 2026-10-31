@@ -9,8 +9,7 @@ const DEFAULT_COLUMNS = { xs: 2, sm: 3, md: 4, lg: 5, xl: 5 } as const;
 const DEFAULT_GAP = 2;
 const DEFAULT_INTERVAL = 5000;
 
-const resolveResponsiveValue = <T,>(value: Record<string, T> | undefined, fallback: Record<string, T>, breakpoint: string): T =>
-  value?.[breakpoint] ?? fallback[breakpoint];
+const resolveResponsiveValue = <T,>(value: Record<string, T> | undefined, fallback: Record<string, T>, breakpoint: string): T => value?.[breakpoint] ?? fallback[breakpoint];
 
 export function Rails<T>({
   items,
@@ -299,13 +298,7 @@ export function Rails<T>({
             fill
             sizes="(max-width: 600px) 50vw, (max-width: 900px) 33vw, 20vw"
             priority={index < currentColumns}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-              transition: "transform 500ms cubic-bezier(0.22, 1, 0.36, 1)",
-            }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", transition: "transform 500ms cubic-bezier(0.22, 1, 0.36, 1)" }}
           />
         );
       }
@@ -317,15 +310,7 @@ export function Rails<T>({
           alt={alt}
           loading={index < currentColumns ? "eager" : "lazy"}
           draggable={false}
-          sx={{
-            display: "block",
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center",
-            userSelect: "none",
-            ...transitionConfig.image,
-          }}
+          sx={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", userSelect: "none", ...transitionConfig.image }}
         />
       );
     },
@@ -347,29 +332,13 @@ export function Rails<T>({
       };
 
       const imageContent = (
-        <Box
-          sx={{
-            position: "relative",
-            width: "100%",
-            aspectRatio: imageAspectRatio,
-            overflow: "hidden",
-            borderRadius: radius,
-            backgroundColor: theme.palette.action.hover,
-          }}
-        >
+        <Box sx={{ position: "relative", width: "100%", aspectRatio: imageAspectRatio, overflow: "hidden", borderRadius: radius, backgroundColor: theme.palette.action.hover }}>
           {renderDefaultImage({ src: image, alt: typeof title === "string" ? title : "", index })}
 
           <Box
             className="Rail-image-overlay"
             aria-hidden
-            sx={{
-              position: "absolute",
-              inset: 0,
-              pointerEvents: "none",
-              background: "linear-gradient(to top, rgba(0,0,0,0.22), transparent 45%)",
-              opacity: 0,
-              ...transitionConfig.overlay,
-            }}
+            sx={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to top, rgba(0,0,0,0.22), transparent 45%)", opacity: 0, ...transitionConfig.overlay }}
           />
         </Box>
       );
@@ -382,16 +351,7 @@ export function Rails<T>({
               href={href}
               aria-label={linkLabel}
               onClick={handleItemNavigation}
-              sx={{
-                position: "absolute",
-                inset: 0,
-                zIndex: 3,
-                display: "block",
-                width: "100%",
-                height: "100%",
-                textDecoration: "none",
-                cursor: "pointer",
-              }}
+              sx={{ position: "absolute", inset: 0, zIndex: 3, display: "block", width: "100%", height: "100%", textDecoration: "none", cursor: "pointer" }}
             />
           )}
 
@@ -399,18 +359,7 @@ export function Rails<T>({
 
           {title && (
             <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 1.5, pt: 1.5 }}>
-              <Typography
-                variant="body2"
-                sx={{
-                  minWidth: 0,
-                  flex: 1,
-                  fontWeight: 450,
-                  color: "text.primary",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-              >
+              <Typography variant="body2" sx={{ minWidth: 0, flex: 1, fontWeight: 450, color: "text.primary", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                 {title}
               </Typography>
 
@@ -422,18 +371,7 @@ export function Rails<T>({
         </Box>
       );
     },
-    [
-      getHref,
-      getImage,
-      getTitle,
-      imageAspectRatio,
-      onNavigate,
-      radius,
-      renderContent,
-      renderDefaultImage,
-      theme.palette.action.hover,
-      transitionConfig.overlay,
-    ],
+    [getHref, getImage, getTitle, imageAspectRatio, onNavigate, radius, renderContent, renderDefaultImage, theme.palette.action.hover, transitionConfig.overlay],
   );
 
   const renderNavigationButton = (direction: "previous" | "next") => {
@@ -483,10 +421,7 @@ export function Rails<T>({
           border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
           boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
           transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
-          "&:hover": {
-            bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
-            transform: "translateY(-1px)",
-          },
+          "&:hover": { bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)", transform: "translateY(-1px)" },
           "&.Mui-disabled": { opacity: 0.35, pointerEvents: "auto", cursor: "not-allowed" },
         }}
       >
@@ -559,13 +494,9 @@ export function Rails<T>({
 
       {(navigation === "arrows" || navigation === "both") && (
         <>
-          <Box sx={{ position: "absolute", top: "50%", left: 12, zIndex: 10, transform: "translateY(-50%)", display: { xs: "none", sm: "block" } }}>
-            {renderNavigationButton("previous")}
-          </Box>
+          <Box sx={{ position: "absolute", top: "50%", left: 12, zIndex: 10, transform: "translateY(-50%)", display: { xs: "none", sm: "block" } }}>{renderNavigationButton("previous")}</Box>
 
-          <Box sx={{ position: "absolute", top: "50%", right: 12, zIndex: 10, transform: "translateY(-50%)", display: { xs: "none", sm: "block" } }}>
-            {renderNavigationButton("next")}
-          </Box>
+          <Box sx={{ position: "absolute", top: "50%", right: 12, zIndex: 10, transform: "translateY(-50%)", display: { xs: "none", sm: "block" } }}>{renderNavigationButton("next")}</Box>
         </>
       )}
 

@@ -7,13 +7,7 @@ import { Spotlight } from "../../../src/components/spotlight/Spotlight.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
-import type {
-  SpotlightImageComponentProps,
-  SpotlightItem,
-  SpotlightRadius,
-  SpotlightSize,
-  SpotlightVariant,
-} from "../../../src/components/spotlight/Spotlight.types.js";
+import type { SpotlightImageComponentProps, SpotlightItem, SpotlightRadius, SpotlightSize, SpotlightVariant } from "../../../src/components/spotlight/Spotlight.types.js";
 
 /**
  * Mock image renderer component for demonstration.
@@ -130,10 +124,7 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
               {/* Row 1: Variant & Size */}
               <Stack direction={{ xs: "column", md: "row" }} spacing={3} sx={{ alignItems: { xs: "stretch", md: "center" } }}>
                 <FormControl component="fieldset">
-                  <FormLabel
-                    component="legend"
-                    sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}
-                  >
+                  <FormLabel component="legend" sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>
                     Variant
                   </FormLabel>
                   <RadioGroup row value={variant} onChange={(e) => setVariant(e.target.value as SpotlightVariant)}>
@@ -144,10 +135,7 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
                 </FormControl>
 
                 <FormControl component="fieldset">
-                  <FormLabel
-                    component="legend"
-                    sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}
-                  >
+                  <FormLabel component="legend" sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>
                     Size
                   </FormLabel>
                   <RadioGroup row value={size} onChange={(e) => setSize(e.target.value as SpotlightSize)}>
@@ -162,9 +150,7 @@ ${enableHref ? "  onNavigate={(item) => router.push(item.href)}\n" : ""}\
               {/* Row 2: Radius & Toggles */}
               <Stack direction={{ xs: "column", sm: "row" }} spacing={3} sx={{ alignItems: { xs: "stretch", md: "center" } }}>
                 <FormControl size="small" sx={{ minWidth: 160 }}>
-                  <FormLabel sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>
-                    Corner Radius
-                  </FormLabel>
+                  <FormLabel sx={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", mb: 0.5 }}>Corner Radius</FormLabel>
                   <Select value={radius} onChange={(e) => setRadius(e.target.value as SpotlightRadius)}>
                     <MenuItem value="square">Square</MenuItem>
                     <MenuItem value="rounded">Rounded</MenuItem>
@@ -268,10 +254,7 @@ const item = {
           <Spotlight
             item={{
               id: "freestyle-hero",
-              media: {
-                src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1600&q=80",
-                alt: "Freestyle Design Studio",
-              },
+              media: { src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1600&q=80", alt: "Freestyle Design Studio" },
               eyebrow: "DESIGN STUDIO",
               title: "Create Your Freestyle",
               description: "Upload custom artwork and print 1-of-1 heavyweight apparel with studio finish.",
@@ -327,10 +310,7 @@ const item = {
           <Spotlight
             item={{
               id: "liquid-glass-hero",
-              media: {
-                src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
-                alt: "Liquid Glass Architecture",
-              },
+              media: { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80", alt: "Liquid Glass Architecture" },
               eyebrow: "MATERIAL UI V9",
               title: "Liquid Glass System",
               description: "Real-time backdrop blur filters with ambient dynamic lighting for modern React interfaces.",
@@ -384,10 +364,7 @@ const item = {
           <Spotlight
             item={{
               id: "hardware-hero",
-              media: {
-                src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
-                alt: "Microchip Hardware",
-              },
+              media: { src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80", alt: "Microchip Hardware" },
               eyebrow: "HARDWARE ENGINE",
               title: "Next-Gen Engine",
               description: "Zero layout shift, 60 FPS GPU-accelerated transitions.",
@@ -449,9 +426,8 @@ export function SpotlightHero({ item }) {
             </Typography>
 
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7 }}>
-              Spotlight remains completely decoupled from framework routers. The component renders standard HTML5 <code>&lt;a href="..."&gt;</code>{" "}
-              anchors, enabling browser status previews and search engine indexing, while <code>onNavigate</code> triggers client-side router
-              navigation.
+              Spotlight remains completely decoupled from framework routers. The component renders standard HTML5 <code>&lt;a href="..."&gt;</code> anchors, enabling browser status previews
+              and search engine indexing, while <code>onNavigate</code> triggers client-side router navigation.
             </Typography>
 
             <Stack spacing={1}>

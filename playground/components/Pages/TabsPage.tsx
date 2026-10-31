@@ -47,13 +47,7 @@ export const TabsPage: React.FC = () => {
   <Tab label="Orders" />
 </Tabs>`}
       >
-        <Tabs
-          value={secondaryTab}
-          onChange={(e, value) => setSecondaryTab(value)}
-          indicatorColor="secondary"
-          textColor="secondary"
-          aria-label="secondary tabs"
-        >
+        <Tabs value={secondaryTab} onChange={(e, value) => setSecondaryTab(value)} indicatorColor="secondary" textColor="secondary" aria-label="secondary tabs">
           <Tab label="Overview" />
           <Tab label="Products" />
           <Tab label="Orders" />
@@ -80,13 +74,7 @@ export const TabsPage: React.FC = () => {
   <Tab label="Orders" />
 </Tabs>`}
       >
-        <Tabs
-          value={accentTab}
-          onChange={(e, value) => setAccentTab(value)}
-          indicatorColorOverride="accent"
-          textColorOverride="accent"
-          aria-label="accent tabs"
-        >
+        <Tabs value={accentTab} onChange={(e, value) => setAccentTab(value)} indicatorColorOverride="accent" textColorOverride="accent" aria-label="accent tabs">
           <Tab label="Overview" />
           <Tab label="Products" />
           <Tab label="Orders" />
@@ -140,13 +128,7 @@ export const TabsPage: React.FC = () => {
   <Tab label="Reports" />
 </Tabs>`}
       >
-        <Tabs
-          value={infoTab}
-          onChange={(e, value) => setInfoTab(value)}
-          indicatorColorOverride="info"
-          textColorOverride="info"
-          aria-label="info tabs"
-        >
+        <Tabs value={infoTab} onChange={(e, value) => setInfoTab(value)} indicatorColorOverride="info" textColorOverride="info" aria-label="info tabs">
           <Tab label="Overview" />
           <Tab label="Analytics" />
           <Tab label="Reports" />
@@ -173,13 +155,7 @@ export const TabsPage: React.FC = () => {
   <Tab label="Verified" />
 </Tabs>`}
       >
-        <Tabs
-          value={successTab}
-          onChange={(e, value) => setSuccessTab(value)}
-          indicatorColorOverride="success"
-          textColorOverride="success"
-          aria-label="success tabs"
-        >
+        <Tabs value={successTab} onChange={(e, value) => setSuccessTab(value)} indicatorColorOverride="success" textColorOverride="success" aria-label="success tabs">
           <Tab label="Active" />
           <Tab label="Completed" />
           <Tab label="Verified" />
@@ -206,13 +182,7 @@ export const TabsPage: React.FC = () => {
   <Tab label="Attention" />
 </Tabs>`}
       >
-        <Tabs
-          value={warningTab}
-          onChange={(e, value) => setWarningTab(value)}
-          indicatorColorOverride="warning"
-          textColorOverride="warning"
-          aria-label="warning tabs"
-        >
+        <Tabs value={warningTab} onChange={(e, value) => setWarningTab(value)} indicatorColorOverride="warning" textColorOverride="warning" aria-label="warning tabs">
           <Tab label="Pending" />
           <Tab label="Review" />
           <Tab label="Attention" />
@@ -239,13 +209,7 @@ export const TabsPage: React.FC = () => {
   <Tab label="Blocked" />
 </Tabs>`}
       >
-        <Tabs
-          value={errorTab}
-          onChange={(e, value) => setErrorTab(value)}
-          indicatorColorOverride="error"
-          textColorOverride="error"
-          aria-label="error tabs"
-        >
+        <Tabs value={errorTab} onChange={(e, value) => setErrorTab(value)} indicatorColorOverride="error" textColorOverride="error" aria-label="error tabs">
           <Tab label="Failed" />
           <Tab label="Rejected" />
           <Tab label="Blocked" />
@@ -272,13 +236,7 @@ export const TabsPage: React.FC = () => {
   <Tab label="Reports" />
 </Tabs>`}
       >
-        <Tabs
-          value={glassTab}
-          onChange={(e, value) => setGlassTab(value)}
-          indicatorColorOverride="glass"
-          textColorOverride="glass"
-          aria-label="glass tabs"
-        >
+        <Tabs value={glassTab} onChange={(e, value) => setGlassTab(value)} indicatorColorOverride="glass" textColorOverride="glass" aria-label="glass tabs">
           <Tab label="Overview" />
           <Tab label="Analytics" />
           <Tab label="Reports" />
@@ -307,14 +265,7 @@ export const TabsPage: React.FC = () => {
 </Tabs>`}
       >
         <Box sx={{ width: "100%" }}>
-          <Tabs
-            value={fullTab}
-            onChange={(e, value) => setFullTab(value)}
-            variant="fullWidth"
-            indicatorColor="secondary"
-            textColor="secondary"
-            aria-label="full width secondary tabs"
-          >
+          <Tabs value={fullTab} onChange={(e, value) => setFullTab(value)} variant="fullWidth" indicatorColor="secondary" textColor="secondary" aria-label="full width secondary tabs">
             <Tab label="Active" />
             <Tab label="Completed" />
             <Tab label="Canceled" />
@@ -387,15 +338,7 @@ export const TabsPage: React.FC = () => {
           { name: "Champagne", hex: "#B08D57", border: false },
         ].map((c) => (
           <Box key={c.name} sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Box
-              sx={{
-                width: 14,
-                height: 14,
-                borderRadius: "50%",
-                bgcolor: c.hex,
-                border: c.border ? `1px solid ${isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.15)"}` : "none",
-              }}
-            />
+            <Box sx={{ width: 14, height: 14, borderRadius: "50%", bgcolor: c.hex, border: c.border ? `1px solid ${isDark ? "rgba(255,255,255,0.2)" : "rgba(17,17,17,0.15)"}` : "none" }} />
 
             <Typography variant="caption" sx={{ fontWeight: 600 }}>
               {c.name}

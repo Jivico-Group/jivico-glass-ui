@@ -89,21 +89,9 @@ const heroShowcaseItems: ShowcaseItem[] = [
 
 // Minimal Image-Only Items
 const imageOnlyItems: ShowcaseItem[] = [
-  {
-    id: "img-1",
-    media: { src: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80", alt: "Abstract Geometry 1" },
-    title: "",
-  },
-  {
-    id: "img-2",
-    media: { src: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1200&q=80", alt: "Abstract Geometry 2" },
-    title: "",
-  },
-  {
-    id: "img-3",
-    media: { src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80", alt: "Abstract Beach Vista" },
-    title: "",
-  },
+  { id: "img-1", media: { src: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80", alt: "Abstract Geometry 1" }, title: "" },
+  { id: "img-2", media: { src: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1200&q=80", alt: "Abstract Geometry 2" }, title: "" },
+  { id: "img-3", media: { src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80", alt: "Abstract Beach Vista" }, title: "" },
 ];
 
 // Title & Description Only Items
@@ -261,20 +249,7 @@ const handleNavigate = (item: ShowcaseItem) => {
                 Variant:
               </Typography>
 
-              {(
-                [
-                  "editorial",
-                  "editorial-soft",
-                  "spotlight",
-                  "spotlight-soft",
-                  "cinematic",
-                  "cinematic-soft",
-                  "cinematic-deep",
-                  "minimal",
-                  "glass",
-                  "none",
-                ] as ShowcaseVariant[]
-              ).map((v) => (
+              {(["editorial", "editorial-soft", "spotlight", "spotlight-soft", "cinematic", "cinematic-soft", "cinematic-deep", "minimal", "glass", "none"] as ShowcaseVariant[]).map((v) => (
                 <Button key={v} size="small" variant={variant === v ? "contained" : "outlined"} color="accent" onClick={() => setVariant(v)}>
                   {v}
                 </Button>
@@ -502,9 +477,7 @@ const titleDescItems: ShowcaseItem[] = [
   radius="soft"
 />`}
       >
-        <Box
-          sx={{ p: 3, borderRadius: "24px", backgroundImage: "linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(168, 85, 247, 0.4) 100%)" }}
-        >
+        <Box sx={{ p: 3, borderRadius: "24px", backgroundImage: "linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(168, 85, 247, 0.4) 100%)" }}>
           <Showcase
             items={heroShowcaseItems}
             variant="glass"
@@ -580,8 +553,8 @@ export function ShowcaseClient({
             </Typography>
 
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
-              Showcase does not know about Next.js routing. Your API returns framework-agnostic data, while the Next.js application provides the
-              routing implementation and optional image renderer.
+              Showcase does not know about Next.js routing. Your API returns framework-agnostic data, while the Next.js application provides the routing implementation and optional image
+              renderer.
             </Typography>
 
             <Stack spacing={1}>
@@ -624,8 +597,7 @@ export function ShowcaseClient({
             </Typography>
 
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7 }}>
-              Your backend only needs to return serializable data. There is no <code>Link</code>, <code>Image</code>, or other React component inside
-              the response.
+              Your backend only needs to return serializable data. There is no <code>Link</code>, <code>Image</code>, or other React component inside the response.
             </Typography>
 
             <Typography component="pre" variant="body2" sx={{ m: 0, overflowX: "auto", fontFamily: "monospace", lineHeight: 1.7, whiteSpace: "pre" }}>
@@ -672,8 +644,8 @@ export function ShowcaseClient({
             </Typography>
 
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7 }}>
-              Showcase always renders the full media area as a semantic <code>&lt;a href="..."&gt;</code>. It prevents the browser's default
-              navigation and calls <code>onNavigate</code> instead.
+              Showcase always renders the full media area as a semantic <code>&lt;a href="..."&gt;</code>. It prevents the browser's default navigation and calls <code>onNavigate</code>{" "}
+              instead.
             </Typography>
 
             <Typography component="pre" variant="body2" sx={{ m: 0, overflowX: "auto", fontFamily: "monospace", lineHeight: 1.7, whiteSpace: "pre" }}>

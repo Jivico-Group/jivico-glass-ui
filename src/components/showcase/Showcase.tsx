@@ -334,11 +334,7 @@ export const Showcase = ({
         transition: "opacity 700ms ease, transform 700ms ease",
       };
     }
-    return {
-      opacity: isActive ? 1 : 0,
-      transform: isActive ? "scale(1)" : "scale(1.035)",
-      transition: "opacity 900ms ease, transform 1400ms cubic-bezier(0.22, 1, 0.36, 1)",
-    };
+    return { opacity: isActive ? 1 : 0, transform: isActive ? "scale(1)" : "scale(1.035)", transition: "opacity 900ms ease, transform 1400ms cubic-bezier(0.22, 1, 0.36, 1)" };
   };
 
   /* ── Overlays ─────────────────────────────────────────────────────────── */
@@ -440,15 +436,7 @@ export const Showcase = ({
           <Box
             key={item.id}
             aria-hidden={!active}
-            sx={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              overflow: "hidden",
-              pointerEvents: active ? "auto" : "none",
-              ...getTransition(index),
-            }}
+            sx={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "hidden", pointerEvents: active ? "auto" : "none", ...getTransition(index) }}
           >
             {/* Media */}
 
@@ -865,11 +853,7 @@ export const Showcase = ({
               bgcolor: "#FFFFFF",
 
               ...(autoplay
-                ? {
-                    width: "0%",
-                    animation: `showcaseProgress ${interval}ms linear forwards`,
-                    animationPlayState: pauseOnHover && isHovered ? "paused" : "running",
-                  }
+                ? { width: "0%", animation: `showcaseProgress ${interval}ms linear forwards`, animationPlayState: pauseOnHover && isHovered ? "paused" : "running" }
                 : { width: `${((currentIndex + 1) / itemCount) * 100}%`, transition: "width 400ms ease" }),
 
               "@keyframes showcaseProgress": { "0%": { width: "0%" }, "100%": { width: "100%" } },

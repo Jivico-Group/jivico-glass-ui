@@ -2,10 +2,7 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Box, Button, styled } from "@mui/material";
 
-export const MobileViewAllButton = styled(Button, { shouldForwardProp: (p) => p !== "isDark" })<{ isDark?: boolean }>(({
-  theme,
-  isDark: explicitDark,
-}) => {
+export const MobileViewAllButton = styled(Button, { shouldForwardProp: (p) => p !== "isDark" })<{ isDark?: boolean }>(({ theme, isDark: explicitDark }) => {
   const isDark = explicitDark ?? theme.palette.mode === "dark";
   return {
     width: "100%",
@@ -19,10 +16,7 @@ export const MobileViewAllButton = styled(Button, { shouldForwardProp: (p) => p 
     fontSize: "0.875rem",
     textTransform: "none",
     transition: "all 0.2s ease",
-    "&:hover": {
-      backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
-      borderColor: isDark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.2)",
-    },
+    "&:hover": { backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)", borderColor: isDark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.2)" },
   };
 });
 

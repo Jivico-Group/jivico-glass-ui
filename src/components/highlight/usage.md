@@ -25,13 +25,7 @@ import { Highlight } from "jivico-glass-ui";
 ## Basic Usage
 
 ```tsx
-<Highlight
-  image="/images/graphic-tees.jpg"
-  eyebrow="JIVICO ORIGINALS"
-  title="Graphic Tees"
-  description="Bold graphics. Everyday essentials."
-  href="/collections/graphic-tees"
-/>
+<Highlight image="/images/graphic-tees.jpg" eyebrow="JIVICO ORIGINALS" title="Graphic Tees" description="Bold graphics. Everyday essentials." href="/collections/graphic-tees" />
 ```
 
 ---

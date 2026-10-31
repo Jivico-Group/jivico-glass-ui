@@ -21,13 +21,7 @@ export const getDrawerOverrides = (isDark: boolean): Components<Theme> => ({
         /**
          * Border
          */
-        const borderColor = glass
-          ? isDark
-            ? "rgba(255, 255, 255, 0.14)"
-            : "rgba(255, 255, 255, 0.85)"
-          : isDark
-            ? "rgba(255, 255, 255, 0.08)"
-            : "rgba(0, 0, 0, 0.08)";
+        const borderColor = glass ? (isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.85)") : isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)";
 
         /**
          * Shadow

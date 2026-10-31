@@ -24,22 +24,8 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ items, activeI
   };
 
   return (
-    <Box
-      sx={{
-        width: 220,
-        flexShrink: 0,
-        display: { xs: "none", lg: "block" },
-        position: "sticky",
-        top: 80,
-        maxHeight: "calc(100vh - 100px)",
-        overflowY: "auto",
-        pl: 2,
-      }}
-    >
-      <Typography
-        variant="overline"
-        sx={{ display: "block", fontWeight: 700, letterSpacing: "0.06em", color: "text.secondary", fontSize: "0.72rem", mb: 1 }}
-      >
+    <Box sx={{ width: 220, flexShrink: 0, display: { xs: "none", lg: "block" }, position: "sticky", top: 80, maxHeight: "calc(100vh - 100px)", overflowY: "auto", pl: 2 }}>
+      <Typography variant="overline" sx={{ display: "block", fontWeight: 700, letterSpacing: "0.06em", color: "text.secondary", fontSize: "0.72rem", mb: 1 }}>
         Contents
       </Typography>
       <List sx={{ p: 0 }}>

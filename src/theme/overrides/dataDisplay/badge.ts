@@ -21,11 +21,7 @@ export const getBadgeOverrides = (palette: JivicoPalette, isDark: boolean): Comp
             borderRadius: "50%",
             backgroundColor: dotColor,
             border: `2px solid ${isDark ? "#12141A" : "#FFFFFF"}`,
-            boxShadow: isGlass
-              ? isDark
-                ? "0 0 8px rgba(255, 255, 255, 0.5)"
-                : "0 0 6px rgba(0, 0, 0, 0.3)"
-              : `0 0 8px ${colorGroup.glow || colorGroup.main}`,
+            boxShadow: isGlass ? (isDark ? "0 0 8px rgba(255, 255, 255, 0.5)" : "0 0 6px rgba(0, 0, 0, 0.3)") : `0 0 8px ${colorGroup.glow || colorGroup.main}`,
           };
         }
 
@@ -36,9 +32,7 @@ export const getBadgeOverrides = (palette: JivicoPalette, isDark: boolean): Comp
             border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.25)" : "rgba(255, 255, 255, 0.9)"}`,
             backdropFilter: "blur(16px) saturate(180%)",
             WebkitBackdropFilter: "blur(16px) saturate(180%)",
-            boxShadow: isDark
-              ? "0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.25)"
-              : "0 4px 12px rgba(17, 17, 17, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95)",
+            boxShadow: isDark ? "0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.25)" : "0 4px 12px rgba(17, 17, 17, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95)",
             fontWeight: 700,
             fontSize: "0.72rem",
             height: 20,

@@ -126,9 +126,7 @@ export const PaperPage: React.FC = () => {
               backdropFilter: "blur(20px) saturate(180%)",
               WebkitBackdropFilter: "blur(20px) saturate(180%)",
               border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.16)" : "rgba(255, 255, 255, 0.85)"}`,
-              boxShadow: isDark
-                ? "0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.2)"
-                : "0 6px 24px rgba(0, 0, 0, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9)",
+              boxShadow: isDark ? "0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.2)" : "0 6px 24px rgba(0, 0, 0, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9)",
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2 }}>
@@ -158,14 +156,7 @@ export const PaperPage: React.FC = () => {
   <Typography variant="body2">© 2026 Jivico Studio Glass UI</Typography>
 </Paper>`}
       >
-        <Box
-          sx={{
-            width: "100%",
-            overflow: "hidden",
-            borderRadius: "14px",
-            border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}`,
-          }}
-        >
+        <Box sx={{ width: "100%", overflow: "hidden", borderRadius: "14px", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.08)"}` }}>
           <Box sx={{ p: 4, minHeight: 120, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <Typography variant="body2" color="text.secondary">
               Canvas Content Area

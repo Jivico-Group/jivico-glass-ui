@@ -163,14 +163,7 @@ export const typography = {
    * - Proceed to Checkout
    * - Pay ₹4,477
    */
-  button: {
-    textTransform: "none" as const,
-    fontWeight: 450,
-    letterSpacing: "0.005em",
-    fontSize: "0.9375rem",
-    lineHeight: 1.2,
-    fontFamily: BUTTON_FONT,
-  },
+  button: { textTransform: "none" as const, fontWeight: 450, letterSpacing: "0.005em", fontSize: "0.9375rem", lineHeight: 1.2, fontFamily: BUTTON_FONT },
 
   /**
    * ------------------------------------------------------------------------
@@ -194,14 +187,7 @@ export const typography = {
    */
   caption: { fontSize: "0.75rem", fontWeight: 400, letterSpacing: "0.01em", lineHeight: 1.4, fontFamily: TEXT_FONT },
 
-  overline: {
-    fontSize: "0.7rem",
-    fontWeight: 450,
-    letterSpacing: "0.12em",
-    lineHeight: 1.2,
-    textTransform: "uppercase" as const,
-    fontFamily: LABEL_FONT,
-  },
+  overline: { fontSize: "0.7rem", fontWeight: 450, letterSpacing: "0.12em", lineHeight: 1.2, textTransform: "uppercase" as const, fontFamily: LABEL_FONT },
 };
 
 /* -------------------------------------------------------------------------- */
@@ -221,8 +207,7 @@ export const typography = {
  *
  *     Google Sans Flex → Google Sans → system fallback
  */
-const GOOGLE_SANS_FLEX_URL =
-  "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..450,0..100&display=swap";
+const GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..450,0..100&display=swap";
 
 /**
  * Backwards-compatible alias.

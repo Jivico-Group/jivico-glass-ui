@@ -44,48 +44,12 @@ interface SampleHighlight {
  * ======================================================= */
 
 const CATEGORIES: SampleCategory[] = [
-  {
-    id: "cat-1",
-    name: "Heavyweight Tees",
-    image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
-    count: 24,
-    slug: "heavyweight-tees",
-  },
-  {
-    id: "cat-2",
-    name: "Luxury Hoodies",
-    image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
-    count: 18,
-    slug: "luxury-hoodies",
-  },
-  {
-    id: "cat-3",
-    name: "Overalls & Denim",
-    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80",
-    count: 12,
-    slug: "overalls-denim",
-  },
-  {
-    id: "cat-4",
-    name: "Glass Outerwear",
-    image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
-    count: 15,
-    slug: "glass-outerwear",
-  },
-  {
-    id: "cat-5",
-    name: "Footwear & Boots",
-    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80",
-    count: 30,
-    slug: "footwear-boots",
-  },
-  {
-    id: "cat-6",
-    name: "Studio Accessories",
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
-    count: 42,
-    slug: "studio-accessories",
-  },
+  { id: "cat-1", name: "Heavyweight Tees", image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80", count: 24, slug: "heavyweight-tees" },
+  { id: "cat-2", name: "Luxury Hoodies", image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80", count: 18, slug: "luxury-hoodies" },
+  { id: "cat-3", name: "Overalls & Denim", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80", count: 12, slug: "overalls-denim" },
+  { id: "cat-4", name: "Glass Outerwear", image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80", count: 15, slug: "glass-outerwear" },
+  { id: "cat-5", name: "Footwear & Boots", image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80", count: 30, slug: "footwear-boots" },
+  { id: "cat-6", name: "Studio Accessories", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80", count: 42, slug: "studio-accessories" },
 ];
 
 /* =========================================================
@@ -292,18 +256,7 @@ export const RailsPage: React.FC = () => {
 />`}
       >
         <Stack spacing={3} sx={{ width: "100%", alignItems: "stretch" }}>
-          <Box
-            sx={{
-              p: 2.5,
-              borderRadius: 0,
-              bgcolor: "action.hover",
-              border: 1,
-              borderColor: "divider",
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-            }}
-          >
+          <Box sx={{ p: 2.5, borderRadius: 0, bgcolor: "action.hover", border: 1, borderColor: "divider", display: "flex", flexDirection: "column", gap: 2 }}>
             {/* Navigation */}
 
             <Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
@@ -312,13 +265,7 @@ export const RailsPage: React.FC = () => {
               </Typography>
 
               {(["arrows", "dots", "both", "none"] as RailNavigation[]).map((nav) => (
-                <Button
-                  key={nav}
-                  size="small"
-                  variant={navigation === nav ? "contained" : "outlined"}
-                  color="accent"
-                  onClick={() => setNavigation(nav)}
-                >
+                <Button key={nav} size="small" variant={navigation === nav ? "contained" : "outlined"} color="accent" onClick={() => setNavigation(nav)}>
                   {nav}
                 </Button>
               ))}
@@ -332,13 +279,7 @@ export const RailsPage: React.FC = () => {
               </Typography>
 
               {[1, 2, 3].map((value) => (
-                <Button
-                  key={value}
-                  size="small"
-                  variant={columnsXs === value ? "contained" : "outlined"}
-                  color="primary"
-                  onClick={() => setColumnsXs(value)}
-                >
+                <Button key={value} size="small" variant={columnsXs === value ? "contained" : "outlined"} color="primary" onClick={() => setColumnsXs(value)}>
                   {value}
                 </Button>
               ))}
@@ -352,13 +293,7 @@ export const RailsPage: React.FC = () => {
               </Typography>
 
               {[3, 4, 5, 6].map((value) => (
-                <Button
-                  key={value}
-                  size="small"
-                  variant={columnsMd === value ? "contained" : "outlined"}
-                  color="secondary"
-                  onClick={() => setColumnsMd(value)}
-                >
+                <Button key={value} size="small" variant={columnsMd === value ? "contained" : "outlined"} color="secondary" onClick={() => setColumnsMd(value)}>
                   {value}
                 </Button>
               ))}
@@ -386,13 +321,7 @@ export const RailsPage: React.FC = () => {
               </Typography>
 
               {["4 / 5", "1 / 1", "16 / 9", "3 / 4"].map((ratio) => (
-                <Button
-                  key={ratio}
-                  size="small"
-                  variant={imageAspectRatio === ratio ? "contained" : "outlined"}
-                  color="accent"
-                  onClick={() => setImageAspectRatio(ratio)}
-                >
+                <Button key={ratio} size="small" variant={imageAspectRatio === ratio ? "contained" : "outlined"} color="accent" onClick={() => setImageAspectRatio(ratio)}>
                   {ratio}
                 </Button>
               ))}
@@ -410,13 +339,7 @@ export const RailsPage: React.FC = () => {
                 { label: "Rounded", value: 1 },
                 { label: "Soft", value: 3 },
               ].map((option) => (
-                <Button
-                  key={option.label}
-                  size="small"
-                  variant={radius === option.value ? "contained" : "outlined"}
-                  color="secondary"
-                  onClick={() => setRadius(option.value)}
-                >
+                <Button key={option.label} size="small" variant={radius === option.value ? "contained" : "outlined"} color="secondary" onClick={() => setRadius(option.value)}>
                   {option.label}
                 </Button>
               ))}
@@ -430,13 +353,7 @@ export const RailsPage: React.FC = () => {
               </Typography>
 
               {(["none", "fade", "scale", "lift"] as RailTransition[]).map((value) => (
-                <Button
-                  key={value}
-                  size="small"
-                  variant={transition === value ? "contained" : "outlined"}
-                  color="accent"
-                  onClick={() => setTransition(value)}
-                >
+                <Button key={value} size="small" variant={transition === value ? "contained" : "outlined"} color="accent" onClick={() => setTransition(value)}>
                   {value}
                 </Button>
               ))}
@@ -491,13 +408,7 @@ export const RailsPage: React.FC = () => {
                 </Typography>
 
                 {[2000, 3000, 4000, 5000].map((value) => (
-                  <Button
-                    key={value}
-                    size="small"
-                    variant={interval === value ? "contained" : "outlined"}
-                    color="primary"
-                    onClick={() => setInterval(value)}
-                  >
+                  <Button key={value} size="small" variant={interval === value ? "contained" : "outlined"} color="primary" onClick={() => setInterval(value)}>
                     {value / 1000}s
                   </Button>
                 ))}
@@ -940,12 +851,7 @@ export const RailsPage: React.FC = () => {
             getImage={(item) => item.image}
             renderItem={({ item }) => (
               <Box>
-                <Box
-                  component="img"
-                  src={item.image}
-                  alt={item.name}
-                  sx={{ display: "block", width: "100%", aspectRatio: "4 / 5", objectFit: "cover", borderRadius: 3 }}
-                />
+                <Box component="img" src={item.image} alt={item.name} sx={{ display: "block", width: "100%", aspectRatio: "4 / 5", objectFit: "cover", borderRadius: 3 }} />
 
                 <Typography sx={{ mt: 1.5, fontWeight: 600 }}>{item.name}</Typography>
 
@@ -992,9 +898,7 @@ export const RailsPage: React.FC = () => {
             getKey={(item) => item.id}
             getImage={(item) => item.image}
             getTitle={(item) => item.name}
-            renderImage={({ item, src }) => (
-              <Box component="img" src={src} alt={item.name} sx={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
-            )}
+            renderImage={({ item, src }) => <Box component="img" src={src} alt={item.name} sx={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />}
           />
         </Box>
       </DemoBlock>
@@ -1081,16 +985,14 @@ export function CollectionHighlight() {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Rails and Highlight do not import Next.js or depend on any routing framework. The application owns routing through onNavigate, while
-                framework-specific image rendering can be injected through ImageComponent.
+                Rails and Highlight do not import Next.js or depend on any routing framework. The application owns routing through onNavigate, while framework-specific image rendering can be
+                injected through ImageComponent.
               </Typography>
 
               <Stack direction={{ xs: "column", sm: "row" }} spacing={1} sx={{ alignItems: { xs: "stretch", sm: "center" } }}>
                 {["API JSON", "Next.js Page", "Rails / Highlight", "onNavigate", "ImageComponent"].map((label, index) => (
                   <React.Fragment key={label}>
-                    <Box
-                      sx={{ px: 1.5, py: 1, borderRadius: 2, bgcolor: "background.paper", border: 1, borderColor: "divider", textAlign: "center" }}
-                    >
+                    <Box sx={{ px: 1.5, py: 1, borderRadius: 2, bgcolor: "background.paper", border: 1, borderColor: "divider", textAlign: "center" }}>
                       <Typography variant="caption" sx={{ fontWeight: 700 }}>
                         {label}
                       </Typography>
@@ -1112,14 +1014,10 @@ export function CollectionHighlight() {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Your backend only needs to return serializable data such as IDs, titles, images, and slugs. No React components, router objects, or
-                Next.js objects are included.
+                Your backend only needs to return serializable data such as IDs, titles, images, and slugs. No React components, router objects, or Next.js objects are included.
               </Typography>
 
-              <Box
-                component="pre"
-                sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}
-              >
+              <Box component="pre" sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}>
                 {`{
   "id": "tshirts",
   "name": "T-Shirts",
@@ -1139,14 +1037,11 @@ export function CollectionHighlight() {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Rails renders a real anchor with the resolved href, but prevents native navigation. The consuming application receives the item
-                through onNavigate and decides how routing should happen.
+                Rails renders a real anchor with the resolved href, but prevents native navigation. The consuming application receives the item through onNavigate and decides how routing
+                should happen.
               </Typography>
 
-              <Box
-                component="pre"
-                sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}
-              >
+              <Box component="pre" sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}>
                 {`getHref={(item) =>
   \\\`/collections/\\\${item.slug}\\\`
 }
@@ -1169,14 +1064,11 @@ onNavigate={(item) => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Highlight uses the same principle. Its full image becomes a semantic anchor when href is provided. Native navigation is prevented and
-                onNavigate controls the actual application route.
+                Highlight uses the same principle. Its full image becomes a semantic anchor when href is provided. Native navigation is prevented and onNavigate controls the actual
+                application route.
               </Typography>
 
-              <Box
-                component="pre"
-                sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}
-              >
+              <Box component="pre" sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}>
                 {`<Highlight
   image={item.image}
   href={item.href}
@@ -1198,14 +1090,10 @@ onNavigate={(item) => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                The href remains in the DOM as a real anchor destination. This provides semantic link information, while onNavigate owns the actual
-                client-side navigation.
+                The href remains in the DOM as a real anchor destination. This provides semantic link information, while onNavigate owns the actual client-side navigation.
               </Typography>
 
-              <Box
-                component="pre"
-                sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}
-              >
+              <Box component="pre" sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}>
                 {`href="/collections/originals"
 
 onNavigate={() => {
@@ -1226,14 +1114,10 @@ onNavigate={() => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                ImageComponent remains available independently from routing. This allows Rails and Highlight to use next/image without coupling either
-                component to Next.js.
+                ImageComponent remains available independently from routing. This allows Rails and Highlight to use next/image without coupling either component to Next.js.
               </Typography>
 
-              <Box
-                component="pre"
-                sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}
-              >
+              <Box component="pre" sx={{ m: 0, p: 2, overflow: "auto", borderRadius: 2, bgcolor: "action.hover", fontFamily: "monospace", fontSize: 12 }}>
                 {`import Image from "next/image";
 
 <Rails
@@ -1256,8 +1140,8 @@ onNavigate={() => {
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
-                Keep the API framework-independent. Keep Rails and Highlight framework-independent. Let the consuming application own routing and
-                optionally provide framework-specific image rendering.
+                Keep the API framework-independent. Keep Rails and Highlight framework-independent. Let the consuming application own routing and optionally provide framework-specific image
+                rendering.
               </Typography>
 
               <Typography variant="body2" sx={{ fontWeight: 700 }}>

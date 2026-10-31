@@ -350,15 +350,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                     }}
                     aria-label={item.action.ariaLabel}
                     sx={[
-                      {
-                        borderRadius: 999,
-                        whiteSpace: "nowrap",
-                        fontWeight: 550,
-                        letterSpacing: "-0.01em",
-                        textTransform: "none",
-                        lineHeight: 1.2,
-                        "& .MuiButton-endIcon": { ml: 0.75 },
-                      },
+                      { borderRadius: 999, whiteSpace: "nowrap", fontWeight: 550, letterSpacing: "-0.01em", textTransform: "none", lineHeight: 1.2, "& .MuiButton-endIcon": { ml: 0.75 } },
                       ...(Array.isArray(item.action.sx) ? item.action.sx : [item.action.sx]),
                     ]}
                   >
@@ -376,15 +368,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({
                     }}
                     aria-label={item.action.ariaLabel}
                     sx={[
-                      {
-                        borderRadius: 999,
-                        whiteSpace: "nowrap",
-                        fontWeight: 550,
-                        letterSpacing: "-0.01em",
-                        textTransform: "none",
-                        lineHeight: 1.2,
-                        "& .MuiButton-endIcon": { ml: 0.75 },
-                      },
+                      { borderRadius: 999, whiteSpace: "nowrap", fontWeight: 550, letterSpacing: "-0.01em", textTransform: "none", lineHeight: 1.2, "& .MuiButton-endIcon": { ml: 0.75 } },
                       ...(Array.isArray(item.action.sx) ? item.action.sx : [item.action.sx]),
                     ]}
                   >
@@ -400,29 +384,10 @@ export const Spotlight: React.FC<SpotlightProps> = ({
       {/* ── Rotated Side Label ─────────────────────────────────────────────── */}
 
       {item.sideLabel && (
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            right: { xs: 12, md: 24 },
-            zIndex: 4,
-            transform: "translateY(-50%) rotate(-90deg)",
-            transformOrigin: "center",
-            pointerEvents: "none",
-          }}
-        >
+        <Box sx={{ position: "absolute", top: "50%", right: { xs: 12, md: 24 }, zIndex: 4, transform: "translateY(-50%) rotate(-90deg)", transformOrigin: "center", pointerEvents: "none" }}>
           <Typography
             sx={[
-              {
-                fontSize: "0.65rem",
-                fontWeight: 550,
-                lineHeight: 1.2,
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                color: "#fff",
-                opacity: 0.75,
-                whiteSpace: "nowrap",
-              },
+              { fontSize: "0.65rem", fontWeight: 550, lineHeight: 1.2, letterSpacing: "0.15em", textTransform: "uppercase", color: "#fff", opacity: 0.75, whiteSpace: "nowrap" },
               ...(Array.isArray(item.sideLabelSx) ? item.sideLabelSx : [item.sideLabelSx]),
             ]}
           >

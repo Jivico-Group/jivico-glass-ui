@@ -318,11 +318,7 @@ export const VisualViewer = ({
   const responsiveMinHeight = getResponsiveValue(minHeight);
   const responsiveMaxHeight = getResponsiveValue(maxHeight);
   const responsiveAspectRatio =
-    typeof aspectRatio === "string"
-      ? aspectRatio
-      : aspectRatio
-        ? { xs: aspectRatio.xs, sm: aspectRatio.sm, md: aspectRatio.md, lg: aspectRatio.lg, xl: aspectRatio.xl }
-        : undefined;
+    typeof aspectRatio === "string" ? aspectRatio : aspectRatio ? { xs: aspectRatio.xs, sm: aspectRatio.sm, md: aspectRatio.md, lg: aspectRatio.lg, xl: aspectRatio.xl } : undefined;
 
   /*
    * =========================================================
@@ -339,15 +335,7 @@ export const VisualViewer = ({
    */
 
   const renderMainImage = (item: VisualViewerItem) => {
-    const context: VisualViewerImageContext = {
-      item,
-      index: currentIndex,
-      active: true,
-      isThumbnail: false,
-      isFullscreen,
-      isZoomed,
-      zoomed: isZoomed,
-    };
+    const context: VisualViewerImageContext = { item, index: currentIndex, active: true, isThumbnail: false, isFullscreen, isZoomed, zoomed: isZoomed };
 
     if (renderImage) {
       return (
@@ -614,10 +602,7 @@ export const VisualViewer = ({
                     border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
                     boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
                     transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
-                    "&:hover": {
-                      bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
-                      transform: "translateY(-50%) scale(1.04)",
-                    },
+                    "&:hover": { bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)", transform: "translateY(-50%) scale(1.04)" },
                     "&.Mui-disabled": { opacity: 0.35 },
                   }}
                 >
@@ -659,10 +644,7 @@ export const VisualViewer = ({
                     border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
                     boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
                     transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
-                    "&:hover": {
-                      bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
-                      transform: "translateY(-50%) scale(1.04)",
-                    },
+                    "&:hover": { bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)", transform: "translateY(-50%) scale(1.04)" },
                     "&.Mui-disabled": { opacity: 0.35 },
                   }}
                 >
@@ -715,10 +697,7 @@ export const VisualViewer = ({
                     border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
                     boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
                     transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
-                    "&:hover": {
-                      bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
-                      transform: "scale(1.04)",
-                    },
+                    "&:hover": { bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)", transform: "scale(1.04)" },
                   }}
                 >
                   {isZoomed ? <ZoomOut size={17} /> : <ZoomIn size={17} />}
@@ -745,10 +724,7 @@ export const VisualViewer = ({
                     border: theme.palette.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.28)" : "1px solid rgba(255, 255, 255, 0.6)",
                     boxShadow: theme.palette.mode === "dark" ? "0 4px 20px rgba(0, 0, 0, 0.25)" : "0 4px 20px rgba(0, 0, 0, 0.08)",
                     transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
-                    "&:hover": {
-                      bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)",
-                      transform: "scale(1.04)",
-                    },
+                    "&:hover": { bgcolor: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.85)", transform: "scale(1.04)" },
                   }}
                 >
                   {isFullscreen ? <Minimize2 size={17} /> : <Maximize2 size={17} />}
@@ -872,14 +848,7 @@ export const VisualViewer = ({
             <IconButton
               aria-label="Close fullscreen"
               onClick={exitFullscreen}
-              sx={{
-                width: 42,
-                height: 42,
-                bgcolor: "rgba(255,255,255,0.12)",
-                backdropFilter: "blur(12px)",
-                color: "#fff",
-                "&:hover": { bgcolor: "rgba(255,255,255,0.22)" },
-              }}
+              sx={{ width: 42, height: 42, bgcolor: "rgba(255,255,255,0.12)", backdropFilter: "blur(12px)", color: "#fff", "&:hover": { bgcolor: "rgba(255,255,255,0.22)" } }}
             >
               <Minimize2 size={18} />
             </IconButton>
@@ -907,10 +876,7 @@ export const VisualViewer = ({
         </Box>
 
         {/* Main image area */}
-        <Box
-          sx={{ flex: 1, position: "relative", overflow: "hidden", cursor: isZoomed ? "zoom-out" : "default" }}
-          onClick={() => isZoomed && setIsZoomed(false)}
-        >
+        <Box sx={{ flex: 1, position: "relative", overflow: "hidden", cursor: isZoomed ? "zoom-out" : "default" }} onClick={() => isZoomed && setIsZoomed(false)}>
           {currentItem &&
             (renderImage ? (
               <Box

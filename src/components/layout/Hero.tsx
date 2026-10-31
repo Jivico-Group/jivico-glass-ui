@@ -1,13 +1,7 @@
 import { Box, styled, Typography } from "@mui/material";
 import { GlassPanel } from "./GlassPanel.js";
 
-export const HeroSection = styled(Box)({
-  position: "relative",
-  zIndex: 1,
-  paddingTop: 48,
-  paddingBottom: 128,
-  "@media (max-width:899.95px)": { paddingTop: 32, paddingBottom: 80 },
-});
+export const HeroSection = styled(Box)({ position: "relative", zIndex: 1, paddingTop: 48, paddingBottom: 128, "@media (max-width:899.95px)": { paddingTop: 32, paddingBottom: 80 } });
 
 export const HeroTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 800,
@@ -18,14 +12,7 @@ export const HeroTitle = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down("md")]: { fontSize: "1.8rem" },
 }));
 
-export const HeroDescription = styled(Typography)(({ theme }) => ({
-  opacity: 0.7,
-  marginBottom: theme.spacing(5),
-  fontWeight: 400,
-  maxWidth: 480,
-  lineHeight: 1.6,
-  fontSize: "1.05rem",
-}));
+export const HeroDescription = styled(Typography)(({ theme }) => ({ opacity: 0.7, marginBottom: theme.spacing(5), fontWeight: 400, maxWidth: 480, lineHeight: 1.6, fontSize: "1.05rem" }));
 
 export const HeroActions = styled(Box)(({ theme }) => ({
   display: "flex",

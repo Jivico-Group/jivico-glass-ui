@@ -18,81 +18,21 @@ import type {
 // ─── Sample items ─────────────────────────────────────────────────────────────
 
 const FASHION_ITEMS: VisualViewerItem[] = [
-  {
-    id: "1",
-    src: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1200&q=80",
-    alt: "Black oversized hoodie",
-    title: "Oversized Hoodie",
-  },
-  {
-    id: "2",
-    src: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80",
-    alt: "White graphic tee",
-    title: "Graphic Tee",
-  },
-  {
-    id: "3",
-    src: "https://images.unsplash.com/photo-1588117305388-c2631a279f82?auto=format&fit=crop&w=1200&q=80",
-    alt: "Beige cargo pants",
-    title: "Cargo Pants",
-  },
-  {
-    id: "4",
-    src: "https://images.unsplash.com/photo-1555689502-c4b22d76c56f?auto=format&fit=crop&w=1200&q=80",
-    alt: "Denim jacket",
-    title: "Denim Jacket",
-  },
-  {
-    id: "5",
-    src: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=1200&q=80",
-    alt: "Streetwear collection",
-    title: "Streetwear Drop",
-  },
-  {
-    id: "6",
-    src: "https://images.unsplash.com/photo-1544441892-794166f1e3be?auto=format&fit=crop&w=1200&q=80",
-    alt: "Minimal white t-shirt",
-    title: "Essential White Tee",
-  },
-  {
-    id: "7",
-    src: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=1200&q=80",
-    alt: "Sports jacket",
-    title: "Track Jacket",
-  },
-  {
-    id: "8",
-    src: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1200&q=80",
-    alt: "Summer linen shirt",
-    title: "Linen Overshirt",
-  },
+  { id: "1", src: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1200&q=80", alt: "Black oversized hoodie", title: "Oversized Hoodie" },
+  { id: "2", src: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80", alt: "White graphic tee", title: "Graphic Tee" },
+  { id: "3", src: "https://images.unsplash.com/photo-1588117305388-c2631a279f82?auto=format&fit=crop&w=1200&q=80", alt: "Beige cargo pants", title: "Cargo Pants" },
+  { id: "4", src: "https://images.unsplash.com/photo-1555689502-c4b22d76c56f?auto=format&fit=crop&w=1200&q=80", alt: "Denim jacket", title: "Denim Jacket" },
+  { id: "5", src: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=1200&q=80", alt: "Streetwear collection", title: "Streetwear Drop" },
+  { id: "6", src: "https://images.unsplash.com/photo-1544441892-794166f1e3be?auto=format&fit=crop&w=1200&q=80", alt: "Minimal white t-shirt", title: "Essential White Tee" },
+  { id: "7", src: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=1200&q=80", alt: "Sports jacket", title: "Track Jacket" },
+  { id: "8", src: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1200&q=80", alt: "Summer linen shirt", title: "Linen Overshirt" },
 ];
 
 const ARCHITECTURE_ITEMS: VisualViewerItem[] = [
-  {
-    id: "a1",
-    src: "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1400&q=80",
-    alt: "Glass building facade",
-    title: "Glass Facade",
-  },
-  {
-    id: "a2",
-    src: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=1400&q=80",
-    alt: "Modern interior",
-    title: "Interior Space",
-  },
-  {
-    id: "a3",
-    src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80",
-    alt: "Luxury living room",
-    title: "Living Room",
-  },
-  {
-    id: "a4",
-    src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=80",
-    alt: "Minimalist kitchen",
-    title: "Kitchen",
-  },
+  { id: "a1", src: "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1400&q=80", alt: "Glass building facade", title: "Glass Facade" },
+  { id: "a2", src: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=1400&q=80", alt: "Modern interior", title: "Interior Space" },
+  { id: "a3", src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80", alt: "Luxury living room", title: "Living Room" },
+  { id: "a4", src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=80", alt: "Minimalist kitchen", title: "Kitchen" },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -313,16 +253,7 @@ export const VisualViewerPage: React.FC = () => {
   height={{ xs: "320px", md: "480px" }}
 />`}
       >
-        <VisualViewer
-          items={ARCHITECTURE_ITEMS}
-          thumbnailPosition="bottom"
-          objectFit="cover"
-          radius="rounded"
-          zoom
-          fullscreen
-          thumbnailSize={72}
-          height={{ xs: "320px", md: "480px" }}
-        />
+        <VisualViewer items={ARCHITECTURE_ITEMS} thumbnailPosition="bottom" objectFit="cover" radius="rounded" zoom fullscreen thumbnailSize={72} height={{ xs: "320px", md: "480px" }} />
       </DemoBlock>
 
       {/* ============================================================
@@ -357,15 +288,7 @@ export const VisualViewerPage: React.FC = () => {
                   width: 48,
                   height: 48,
                   p: 0,
-                  border: `2px solid ${
-                    index === controlledIndex
-                      ? isDark
-                        ? "rgba(255,255,255,0.8)"
-                        : "rgba(17,17,17,0.8)"
-                      : isDark
-                        ? "rgba(255,255,255,0.15)"
-                        : "rgba(17,17,17,0.12)"
-                  }`,
+                  border: `2px solid ${index === controlledIndex ? (isDark ? "rgba(255,255,255,0.8)" : "rgba(17,17,17,0.8)") : isDark ? "rgba(255,255,255,0.15)" : "rgba(17,17,17,0.12)"}`,
                   borderRadius: 1.5,
                   overflow: "hidden",
                   cursor: "pointer",
@@ -493,30 +416,16 @@ export const VisualViewerPage: React.FC = () => {
 />`}
       >
         <Box
-          sx={{
-            p: 3,
-            borderRadius: 3,
-            bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)",
-            border: `1px solid ${isDark ? "rgba(255,255,255,0.10)" : "rgba(17,17,17,0.10)"}`,
-          }}
+          sx={{ p: 3, borderRadius: 3, bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)", border: `1px solid ${isDark ? "rgba(255,255,255,0.10)" : "rgba(17,17,17,0.10)"}` }}
         >
           <Typography variant="overline" sx={{ display: "block", mb: 1, fontWeight: 700 }}>
             Architecture notes
           </Typography>
           <Stack spacing={1.5}>
             {[
-              {
-                title: "renderImage prop",
-                desc: "Receives { item, index, active, isThumbnail, isFullscreen } — use it to inject next/image with fill, sizes, and priority.",
-              },
-              {
-                title: "renderThumbnail prop",
-                desc: "Same context object, but for the thumbnail slots. Lets you use a lower-quality thumbnail source automatically.",
-              },
-              {
-                title: "thumbnailSrc on items",
-                desc: 'Set item.thumbnailSrc to a smaller image URL (e.g. "?w=200"). Falls back to item.src automatically.',
-              },
+              { title: "renderImage prop", desc: "Receives { item, index, active, isThumbnail, isFullscreen } — use it to inject next/image with fill, sizes, and priority." },
+              { title: "renderThumbnail prop", desc: "Same context object, but for the thumbnail slots. Lets you use a lower-quality thumbnail source automatically." },
+              { title: "thumbnailSrc on items", desc: 'Set item.thumbnailSrc to a smaller image URL (e.g. "?w=200"). Falls back to item.src automatically.' },
               {
                 title: "Controlled vs Uncontrolled",
                 desc: "Pass activeIndex + onActiveIndexChange for controlled mode (colour swatch sync), or rely on defaultActiveIndex for self-managed state.",

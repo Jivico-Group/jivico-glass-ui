@@ -134,13 +134,7 @@ export const getTableOverrides = (palette: JivicoPalette, isDark: boolean): Comp
               },
             },
 
-            "& .MuiTableFooter-root": {
-              "& .MuiTableCell-root": {
-                color: secondaryText,
-                fontWeight: 500,
-                backgroundColor: isGlass ? "rgba(255, 255, 255, 0.025)" : "transparent",
-              },
-            },
+            "& .MuiTableFooter-root": { "& .MuiTableCell-root": { color: secondaryText, fontWeight: 500, backgroundColor: isGlass ? "rgba(255, 255, 255, 0.025)" : "transparent" } },
 
             "& .MuiTableCell-head": { borderBottom: `1px solid ${isGlass ? glassBorder : divider}` },
 

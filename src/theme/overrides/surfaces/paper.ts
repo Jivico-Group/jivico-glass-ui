@@ -20,8 +20,9 @@ export const getPaperOverrides = (palette: JivicoPalette, isDark: boolean): Comp
          * Floating surfaces keep the dedicated
          * Jivico glass treatment.
          */
-        "&.MuiPopover-paper:not(.MuiMenu-paper), &.MuiAutocomplete-paper, &.MuiMenu-paper[data-jivico-surface='glass'], &.MuiMenu-paper[data-jivico-menu-variant='glass']":
-          { ...liquidGlassPopupRecipe(isDark) },
+        "&.MuiPopover-paper:not(.MuiMenu-paper), &.MuiAutocomplete-paper, &.MuiMenu-paper[data-jivico-surface='glass'], &.MuiMenu-paper[data-jivico-menu-variant='glass']": {
+          ...liquidGlassPopupRecipe(isDark),
+        },
 
         /*
          * Remove MUI elevation from Paper.

@@ -1,15 +1,8 @@
-import { describe, it, expect } from "vitest";
-import {
-  createInitialToastState,
-  toastReducer,
-  ALL_POSITIONS,
-} from "../toastReducer.js";
+import { describe, expect, it } from "vitest";
+import { ALL_POSITIONS, createInitialToastState, toastReducer } from "../toastReducer.js";
 import type { ToastItemState } from "../Toast.types.js";
 
-const createMockToast = (
-  id: string,
-  overrides: Partial<Omit<ToastItemState, "status">> = {}
-): Omit<ToastItemState, "status"> => ({
+const createMockToast = (id: string, overrides: Partial<Omit<ToastItemState, "status">> = {}): Omit<ToastItemState, "status"> => ({
   id,
   message: `Toast message ${id}`,
   title: `Title ${id}`,
@@ -57,10 +50,7 @@ describe("toastReducer", () => {
       let state = createInitialToastState();
 
       for (let i = 1; i <= 5; i++) {
-        state = toastReducer(state, {
-          type: "ADD_TOAST",
-          toast: createMockToast(String(i)),
-        });
+        state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast(String(i)) });
       }
 
       const topright = state["top-right"];
@@ -104,36 +94,17 @@ describe("toastReducer", () => {
 
       // Fill visible (3)
       for (let i = 1; i <= 3; i++) {
-        state = toastReducer(state, {
-          type: "ADD_TOAST",
-          toast: createMockToast(`vis-${i}`),
-          maxVisible: 3,
-        });
+        state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast(`vis-${i}`), maxVisible: 3 });
       }
 
       // Add 2 queued: first is non-persistent (duration > 0), second is persistent (duration 0)
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("q-normal-1", { duration: 3000 }),
-        maxVisible: 3,
-        maxPending: 2,
-      });
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("q-persist-2", { duration: 0 }),
-        maxVisible: 3,
-        maxPending: 2,
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("q-normal-1", { duration: 3000 }), maxVisible: 3, maxPending: 2 });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("q-persist-2", { duration: 0 }), maxVisible: 3, maxPending: 2 });
 
       expect(state["top-right"].queue.map((t) => t.id)).toEqual(["q-normal-1", "q-persist-2"]);
 
       // Exceed maxPending (2): adding 3rd queued item should drop non-persistent "q-normal-1"
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("q-normal-3", { duration: 4000 }),
-        maxVisible: 3,
-        maxPending: 2,
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("q-normal-3", { duration: 4000 }), maxVisible: 3, maxPending: 2 });
 
       expect(state["top-right"].queue).toHaveLength(2);
       expect(state["top-right"].queue.map((t) => t.id)).toEqual(["q-persist-2", "q-normal-3"]);
@@ -143,10 +114,7 @@ describe("toastReducer", () => {
   describe("START_EXIT", () => {
     it("transitions visible toast to exiting status without changing list length", () => {
       let state = createInitialToastState();
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("1"),
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("1") });
 
       expect(state["top-right"].visible[0].status).toBe("visible");
 
@@ -158,10 +126,7 @@ describe("toastReducer", () => {
     it("directly removes queued toast if START_EXIT is invoked before visibility", () => {
       let state = createInitialToastState();
       for (let i = 1; i <= 4; i++) {
-        state = toastReducer(state, {
-          type: "ADD_TOAST",
-          toast: createMockToast(String(i)),
-        });
+        state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast(String(i)) });
       }
 
       expect(state["top-right"].queue.map((t) => t.id)).toEqual(["4"]);
@@ -175,10 +140,7 @@ describe("toastReducer", () => {
     it("removes toast from visible stack and promotes the next queued toast", () => {
       let state = createInitialToastState();
       for (let i = 1; i <= 4; i++) {
-        state = toastReducer(state, {
-          type: "ADD_TOAST",
-          toast: createMockToast(String(i)),
-        });
+        state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast(String(i)) });
       }
 
       expect(state["top-right"].visible.map((t) => t.id)).toEqual(["1", "2", "3"]);
@@ -196,10 +158,7 @@ describe("toastReducer", () => {
     it("removes a queued toast cleanly if removed directly", () => {
       let state = createInitialToastState();
       for (let i = 1; i <= 5; i++) {
-        state = toastReducer(state, {
-          type: "ADD_TOAST",
-          toast: createMockToast(String(i)),
-        });
+        state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast(String(i)) });
       }
 
       state = toastReducer(state, { type: "REMOVE_TOAST", id: "4" });
@@ -211,16 +170,9 @@ describe("toastReducer", () => {
   describe("UPDATE_TOAST", () => {
     it("updates toast properties in-place within the same position", () => {
       let state = createInitialToastState();
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("1", { title: "Original Title", color: "info" }),
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("1", { title: "Original Title", color: "info" }) });
 
-      state = toastReducer(state, {
-        type: "UPDATE_TOAST",
-        id: "1",
-        updates: { title: "Updated Title", color: "success" },
-      });
+      state = toastReducer(state, { type: "UPDATE_TOAST", id: "1", updates: { title: "Updated Title", color: "success" } });
 
       const updated = state["top-right"].visible[0];
       expect(updated.title).toBe("Updated Title");
@@ -232,18 +184,11 @@ describe("toastReducer", () => {
 
       // Top-right has 4 items (3 visible, 1 queued)
       for (let i = 1; i <= 4; i++) {
-        state = toastReducer(state, {
-          type: "ADD_TOAST",
-          toast: createMockToast(String(i), { position: "top-right" }),
-        });
+        state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast(String(i), { position: "top-right" }) });
       }
 
       // Move toast "1" from top-right to bottom-center
-      state = toastReducer(state, {
-        type: "UPDATE_TOAST",
-        id: "1",
-        updates: { position: "bottom-center" },
-      });
+      state = toastReducer(state, { type: "UPDATE_TOAST", id: "1", updates: { position: "bottom-center" } });
 
       // Top-right visible should now be 2, 3, and promoted 4
       expect(state["top-right"].visible.map((t) => t.id)).toEqual(["2", "3", "4"]);
@@ -261,17 +206,11 @@ describe("toastReducer", () => {
 
       // Add to top-right
       for (let i = 1; i <= 4; i++) {
-        state = toastReducer(state, {
-          type: "ADD_TOAST",
-          toast: createMockToast(`tr-${i}`, { position: "top-right" }),
-        });
+        state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast(`tr-${i}`, { position: "top-right" }) });
       }
 
       // Add to bottom-left
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("bl-1", { position: "bottom-left" }),
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("bl-1", { position: "bottom-left" }) });
 
       // Dismiss only top-right
       state = toastReducer(state, { type: "DISMISS_ALL", position: "top-right" });
@@ -286,14 +225,8 @@ describe("toastReducer", () => {
     it("marks all visible toasts as exiting globally when position is omitted", () => {
       let state = createInitialToastState();
 
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("tr-1", { position: "top-right" }),
-      });
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("bl-1", { position: "bottom-left" }),
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("tr-1", { position: "top-right" }) });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("bl-1", { position: "bottom-left" }) });
 
       state = toastReducer(state, { type: "DISMISS_ALL" });
 
@@ -304,10 +237,7 @@ describe("toastReducer", () => {
     it("resets all positions immediately with CLEAR_ALL_IMMEDIATELY", () => {
       let state = createInitialToastState();
 
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("1"),
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("1") });
 
       state = toastReducer(state, { type: "CLEAR_ALL_IMMEDIATELY" });
 
@@ -323,18 +253,12 @@ describe("toastReducer", () => {
       let state = createInitialToastState();
 
       // Add custom ID "auth-fail" to top-right
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("auth-fail", { position: "top-right" }),
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("auth-fail", { position: "top-right" }) });
 
       expect(state["top-right"].visible).toHaveLength(1);
 
       // Attempt to add same custom ID "auth-fail" to bottom-center
-      const duplicateState = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("auth-fail", { position: "bottom-center" }),
-      });
+      const duplicateState = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("auth-fail", { position: "bottom-center" }) });
 
       expect(duplicateState).toBe(state);
       expect(duplicateState["bottom-center"].visible).toHaveLength(0);
@@ -345,18 +269,12 @@ describe("toastReducer", () => {
 
       // Fill top-right with 4 items so item "tr-4" is queued
       for (let i = 1; i <= 4; i++) {
-        state = toastReducer(state, {
-          type: "ADD_TOAST",
-          toast: createMockToast(`tr-${i}`, { position: "top-right" }),
-        });
+        state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast(`tr-${i}`, { position: "top-right" }) });
       }
       expect(state["top-right"].queue.map((t) => t.id)).toEqual(["tr-4"]);
 
       // Attempt to add "tr-4" to bottom-left
-      const duplicateState = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("tr-4", { position: "bottom-left" }),
-      });
+      const duplicateState = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("tr-4", { position: "bottom-left" }) });
 
       expect(duplicateState).toBe(state);
       expect(duplicateState["bottom-left"].visible).toHaveLength(0);
@@ -365,31 +283,19 @@ describe("toastReducer", () => {
     it("removes only specific exiting IDs with REMOVE_EXITING_TOASTS and preserves newer toasts", () => {
       let state = createInitialToastState();
 
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("old-1", { position: "top-right" }),
-      });
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("old-2", { position: "top-right" }),
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("old-1", { position: "top-right" }) });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("old-2", { position: "top-right" }) });
 
       // DISMISS_ALL marks old-1 and old-2 as exiting
       state = toastReducer(state, { type: "DISMISS_ALL" });
 
       // In the meantime, a new toast arrives
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("new-3", { position: "top-right" }),
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("new-3", { position: "top-right" }) });
 
       expect(state["top-right"].visible.map((t) => t.id)).toEqual(["old-1", "old-2", "new-3"]);
 
       // Targeted removal of old-1 and old-2
-      state = toastReducer(state, {
-        type: "REMOVE_EXITING_TOASTS",
-        ids: ["old-1", "old-2"],
-      });
+      state = toastReducer(state, { type: "REMOVE_EXITING_TOASTS", ids: ["old-1", "old-2"] });
 
       expect(state["top-right"].visible.map((t) => t.id)).toEqual(["new-3"]);
       expect(state["top-right"].visible[0]!.status).toBe("visible");
@@ -398,18 +304,11 @@ describe("toastReducer", () => {
     it("sanitizes negative or NaN durations safely to 0", () => {
       let state = createInitialToastState();
 
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("neg-1", { duration: -500 }),
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("neg-1", { duration: -500 }) });
 
       expect(state["top-right"].visible[0]!.duration).toBe(0);
 
-      state = toastReducer(state, {
-        type: "UPDATE_TOAST",
-        id: "neg-1",
-        updates: { duration: NaN },
-      });
+      state = toastReducer(state, { type: "UPDATE_TOAST", id: "neg-1", updates: { duration: NaN } });
 
       expect(state["top-right"].visible[0]!.duration).toBe(0);
     });
@@ -418,21 +317,13 @@ describe("toastReducer", () => {
       let state = createInitialToastState();
 
       for (let i = 1; i <= 3; i++) {
-        state = toastReducer(state, {
-          type: "ADD_TOAST",
-          toast: createMockToast(String(i)),
-          maxPending: 0,
-        });
+        state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast(String(i)), maxPending: 0 });
       }
 
       expect(state["top-right"].visible).toHaveLength(3);
 
       // 4th item with maxPending=0 should not be enqueued
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("4"),
-        maxPending: 0,
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("4"), maxPending: 0 });
 
       expect(state["top-right"].queue).toHaveLength(0);
     });
@@ -442,34 +333,19 @@ describe("toastReducer", () => {
 
       // Fill visible with 3 items
       for (let i = 1; i <= 3; i++) {
-        state = toastReducer(state, {
-          type: "ADD_TOAST",
-          toast: createMockToast(String(i)),
-        });
+        state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast(String(i)) });
       }
 
       // Add persistent item (duration: 0) to queue
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("persistent-q", { duration: 0 }),
-        maxPending: 2,
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("persistent-q", { duration: 0 }), maxPending: 2 });
 
       // Add non-persistent item (duration: 4000) to queue
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("timed-q", { duration: 4000 }),
-        maxPending: 2,
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("timed-q", { duration: 4000 }), maxPending: 2 });
 
       expect(state["top-right"].queue.map((t) => t.id)).toEqual(["persistent-q", "timed-q"]);
 
       // Push a 3rd item with maxPending=2: should drop the non-persistent timed-q, keeping persistent-q
-      state = toastReducer(state, {
-        type: "ADD_TOAST",
-        toast: createMockToast("new-q", { duration: 2000 }),
-        maxPending: 2,
-      });
+      state = toastReducer(state, { type: "ADD_TOAST", toast: createMockToast("new-q", { duration: 2000 }), maxPending: 2 });
 
       expect(state["top-right"].queue.map((t) => t.id)).toEqual(["persistent-q", "new-q"]);
     });

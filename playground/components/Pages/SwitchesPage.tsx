@@ -1,21 +1,6 @@
 import React, { useState } from "react";
 import { Bell, Bookmark, Heart, Lock, Moon, Shield, Sparkles, Star, Sun, Volume2, Wifi } from "lucide-react";
-import {
-  Box,
-  Checkbox,
-  Chip,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormHelperText,
-  FormLabel,
-  Grid,
-  Radio,
-  RadioGroup,
-  Slider,
-  Switch,
-  Typography,
-} from "@mui/material";
+import { Box, Checkbox, Chip, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, Grid, Radio, RadioGroup, Slider, Switch, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
@@ -68,16 +53,7 @@ export const SwitchesPage: React.FC = () => {
   });
 
   // State for color radio groups
-  const [colorRadios, setColorRadios] = useState<Record<PaletteColor, string>>({
-    primary: "1",
-    secondary: "1",
-    success: "1",
-    error: "1",
-    warning: "1",
-    info: "1",
-    default: "1",
-    glass: "1",
-  });
+  const [colorRadios, setColorRadios] = useState<Record<PaletteColor, string>>({ primary: "1", secondary: "1", success: "1", error: "1", warning: "1", info: "1", default: "1", glass: "1" });
 
   // Custom icon checkbox states
   const [favChecked, setFavChecked] = useState(true);
@@ -130,9 +106,7 @@ export const SwitchesPage: React.FC = () => {
               width: "280px",
               height: "280px",
               borderRadius: "50%",
-              background: isDark
-                ? "radial-gradient(circle, rgba(120, 80, 240, 0.35) 0%, transparent 70%)"
-                : "radial-gradient(circle, rgba(220, 195, 160, 0.45) 0%, transparent 70%)",
+              background: isDark ? "radial-gradient(circle, rgba(120, 80, 240, 0.35) 0%, transparent 70%)" : "radial-gradient(circle, rgba(220, 195, 160, 0.45) 0%, transparent 70%)",
               filter: "blur(40px)",
               pointerEvents: "none",
             }}
@@ -145,9 +119,7 @@ export const SwitchesPage: React.FC = () => {
               width: "320px",
               height: "320px",
               borderRadius: "50%",
-              background: isDark
-                ? "radial-gradient(circle, rgba(50, 180, 220, 0.3) 0%, transparent 70%)"
-                : "radial-gradient(circle, rgba(185, 205, 225, 0.45) 0%, transparent 70%)",
+              background: isDark ? "radial-gradient(circle, rgba(50, 180, 220, 0.3) 0%, transparent 70%)" : "radial-gradient(circle, rgba(185, 205, 225, 0.45) 0%, transparent 70%)",
               filter: "blur(45px)",
               pointerEvents: "none",
             }}
@@ -175,13 +147,7 @@ export const SwitchesPage: React.FC = () => {
               <Chip
                 label="OPTICAL BLUR 24PX"
                 size="small"
-                sx={{
-                  height: 20,
-                  fontSize: "0.62rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.05em",
-                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)",
-                }}
+                sx={{ height: 20, fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.05em", backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)" }}
               />
             </Box>
 
@@ -237,18 +203,8 @@ export const SwitchesPage: React.FC = () => {
                   GLASS RADIO
                 </Typography>
                 <RadioGroup row value={glassRadio} onChange={(e) => setGlassRadio(e.target.value)} sx={{ gap: 1 }}>
-                  <FormControlLabel
-                    value="pro"
-                    control={<Radio color="glass" />}
-                    label="Pro"
-                    sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.84rem", fontWeight: 600 } }}
-                  />
-                  <FormControlLabel
-                    value="ultra"
-                    control={<Radio color="glass" />}
-                    label="Ultra"
-                    sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.84rem", fontWeight: 600 } }}
-                  />
+                  <FormControlLabel value="pro" control={<Radio color="glass" />} label="Pro" sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.84rem", fontWeight: 600 } }} />
+                  <FormControlLabel value="ultra" control={<Radio color="glass" />} label="Ultra" sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.84rem", fontWeight: 600 } }} />
                 </RadioGroup>
               </Box>
 
@@ -261,10 +217,7 @@ export const SwitchesPage: React.FC = () => {
                   border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.06)"}`,
                 }}
               >
-                <Typography
-                  variant="caption"
-                  sx={{ display: "flex", justifyContent: "space-between", color: "text.secondary", fontWeight: 600, mb: 1.5 }}
-                >
+                <Typography variant="caption" sx={{ display: "flex", justifyContent: "space-between", color: "text.secondary", fontWeight: 600, mb: 1.5 }}>
                   <span>GLASS SLIDER</span>
                   <span>{glassSlider}%</span>
                 </Typography>
@@ -315,14 +268,7 @@ export const SwitchesPage: React.FC = () => {
                       height: 18,
                       fontSize: "0.62rem",
                       fontWeight: 700,
-                      backgroundColor:
-                        item.key === "glass"
-                          ? isDark
-                            ? "rgba(255,255,255,0.12)"
-                            : "rgba(0,0,0,0.08)"
-                          : isDark
-                            ? "rgba(255,255,255,0.08)"
-                            : "rgba(17,17,17,0.06)",
+                      backgroundColor: item.key === "glass" ? (isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)") : isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)",
                     }}
                   />
                 </Box>
@@ -333,13 +279,7 @@ export const SwitchesPage: React.FC = () => {
 
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <FormControlLabel
-                    control={
-                      <Switch
-                        color={item.key}
-                        checked={isChecked}
-                        onChange={(e) => setColorSwitches((prev) => ({ ...prev, [item.key]: e.target.checked }))}
-                      />
-                    }
+                    control={<Switch color={item.key} checked={isChecked} onChange={(e) => setColorSwitches((prev) => ({ ...prev, [item.key]: e.target.checked }))} />}
                     label={isChecked ? "On" : "Off"}
                     sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.82rem", fontWeight: 600 } }}
                   />
@@ -390,14 +330,7 @@ export const SwitchesPage: React.FC = () => {
                       height: 18,
                       fontSize: "0.62rem",
                       fontWeight: 700,
-                      backgroundColor:
-                        item.key === "glass"
-                          ? isDark
-                            ? "rgba(255,255,255,0.12)"
-                            : "rgba(0,0,0,0.08)"
-                          : isDark
-                            ? "rgba(255,255,255,0.08)"
-                            : "rgba(17,17,17,0.06)",
+                      backgroundColor: item.key === "glass" ? (isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)") : isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)",
                     }}
                   />
                 </Box>
@@ -408,13 +341,7 @@ export const SwitchesPage: React.FC = () => {
 
                 <FormGroup sx={{ gap: 0.5 }}>
                   <FormControlLabel
-                    control={
-                      <Checkbox
-                        color={item.key}
-                        checked={isChecked}
-                        onChange={(e) => setColorChecks((prev) => ({ ...prev, [item.key]: e.target.checked }))}
-                      />
-                    }
+                    control={<Checkbox color={item.key} checked={isChecked} onChange={(e) => setColorChecks((prev) => ({ ...prev, [item.key]: e.target.checked }))} />}
                     label="Checked State"
                     sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.82rem" } }}
                   />
@@ -423,11 +350,7 @@ export const SwitchesPage: React.FC = () => {
                     label="Indeterminate"
                     sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.82rem" } }}
                   />
-                  <FormControlLabel
-                    control={<Checkbox color={item.key} />}
-                    label="Unchecked"
-                    sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.82rem" } }}
-                  />
+                  <FormControlLabel control={<Checkbox color={item.key} />} label="Unchecked" sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.82rem" } }} />
                 </FormGroup>
               </Box>
             );
@@ -471,14 +394,7 @@ export const SwitchesPage: React.FC = () => {
                       height: 18,
                       fontSize: "0.62rem",
                       fontWeight: 700,
-                      backgroundColor:
-                        item.key === "glass"
-                          ? isDark
-                            ? "rgba(255,255,255,0.12)"
-                            : "rgba(0,0,0,0.08)"
-                          : isDark
-                            ? "rgba(255,255,255,0.08)"
-                            : "rgba(17,17,17,0.06)",
+                      backgroundColor: item.key === "glass" ? (isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)") : isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)",
                     }}
                   />
                 </Box>
@@ -488,18 +404,8 @@ export const SwitchesPage: React.FC = () => {
                 </Typography>
 
                 <RadioGroup value={selectedVal} onChange={(e) => setColorRadios((prev) => ({ ...prev, [item.key]: e.target.value }))}>
-                  <FormControlLabel
-                    value="1"
-                    control={<Radio color={item.key} />}
-                    label="Selected Option"
-                    sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.82rem" } }}
-                  />
-                  <FormControlLabel
-                    value="2"
-                    control={<Radio color={item.key} />}
-                    label="Alternative Choice"
-                    sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.82rem" } }}
-                  />
+                  <FormControlLabel value="1" control={<Radio color={item.key} />} label="Selected Option" sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.82rem" } }} />
+                  <FormControlLabel value="2" control={<Radio color={item.key} />} label="Alternative Choice" sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.82rem" } }} />
                 </RadioGroup>
               </Box>
             );

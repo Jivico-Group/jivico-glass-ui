@@ -13,4 +13,3 @@ export const PREMIUM_COLORS = {
   textDark: "#FFFFFF",
   gradient: "linear-gradient(135deg, #B51234 0%, #A30F2D 50%, #8C0B25 100%)",
 } as const;
-

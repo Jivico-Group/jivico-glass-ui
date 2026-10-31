@@ -50,13 +50,7 @@ export const getTableBodyOverrides = (palette: JivicoPalette, isDark: boolean): 
                 backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(255, 255, 255, 0.52)") : selectedBackground,
 
                 "&:hover": {
-                  backgroundColor: isGlass
-                    ? isDark
-                      ? "rgba(255, 255, 255, 0.14)"
-                      : "rgba(255, 255, 255, 0.62)"
-                    : isDark
-                      ? "rgba(255, 255, 255, 0.12)"
-                      : "rgba(17, 17, 17, 0.095)",
+                  backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.62)") : isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.095)",
                 },
               },
 

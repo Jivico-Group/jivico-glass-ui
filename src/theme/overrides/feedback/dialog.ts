@@ -48,13 +48,7 @@ export const getDialogOverrides = (_palette: JivicoPalette, isDark: boolean): Co
          * Border
          * -----------------------------------------------
          */
-        const borderColor = glass
-          ? isDark
-            ? "rgba(255, 255, 255, 0.14)"
-            : "rgba(255, 255, 255, 0.85)"
-          : isDark
-            ? "rgba(255, 255, 255, 0.08)"
-            : "rgba(0, 0, 0, 0.08)";
+        const borderColor = glass ? (isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(255, 255, 255, 0.85)") : isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)";
 
         /**
          * -----------------------------------------------
@@ -177,9 +171,7 @@ export const getDialogOverrides = (_palette: JivicoPalette, isDark: boolean): Co
            * Dialog content text
            * ---------------------------------------------
            */
-          "& .MuiDialogContentText-root": {
-            color: glass ? (isDark ? "rgba(245,245,247,0.72)" : "rgba(17,17,17,0.68)") : isDark ? "rgba(245,245,247,0.70)" : "rgba(17,17,17,0.68)",
-          },
+          "& .MuiDialogContentText-root": { color: glass ? (isDark ? "rgba(245,245,247,0.72)" : "rgba(17,17,17,0.68)") : isDark ? "rgba(245,245,247,0.70)" : "rgba(17,17,17,0.68)" },
 
           /**
            * ---------------------------------------------

@@ -64,10 +64,7 @@ export const getTableContainerOverrides = (palette: JivicoPalette, isDark: boole
 
           "&[data-glass='true'] .MuiTableHead-root": { backgroundColor: "transparent" },
 
-          "&[data-glass='true'] .MuiTableHead-root .MuiTableCell-root": {
-            backdropFilter: "blur(20px) saturate(180%)",
-            WebkitBackdropFilter: "blur(20px) saturate(180%)",
-          },
+          "&[data-glass='true'] .MuiTableHead-root .MuiTableCell-root": { backdropFilter: "blur(20px) saturate(180%)", WebkitBackdropFilter: "blur(20px) saturate(180%)" },
         },
       },
     },

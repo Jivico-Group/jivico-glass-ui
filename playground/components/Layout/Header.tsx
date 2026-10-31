@@ -114,10 +114,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleMobileSidebar, onOpenSea
             fontWeight: 400,
             textTransform: "none",
             fontSize: "0.82rem",
-            "&:hover": {
-              borderColor: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(17, 17, 17, 0.3)",
-              backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.05)",
-            },
+            "&:hover": { borderColor: isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(17, 17, 17, 0.3)", backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.05)" },
           }}
         >
           <Box component="span" sx={{ display: { xs: "none", sm: "inline" }, mr: 3 }}>

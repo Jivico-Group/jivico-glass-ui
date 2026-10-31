@@ -1,20 +1,5 @@
 import React, { useState } from "react";
-import {
-  Bell,
-  CheckCircle2,
-  ChevronRight,
-  Copy,
-  Layers,
-  Layers3,
-  Maximize2,
-  Settings,
-  Share2,
-  Shield,
-  Sliders,
-  Sparkles,
-  Trash2,
-  X,
-} from "lucide-react";
+import { Bell, CheckCircle2, ChevronRight, Copy, Layers, Layers3, Maximize2, Settings, Share2, Shield, Sliders, Sparkles, Trash2, X } from "lucide-react";
 import {
   Box,
   Button,
@@ -47,10 +32,7 @@ import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & { children: React.ReactElement<any, any> },
-  ref: React.Ref<unknown>,
-) {
+const Transition = React.forwardRef(function Transition(props: TransitionProps & { children: React.ReactElement<any, any> }, ref: React.Ref<unknown>) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
@@ -127,8 +109,7 @@ export const DialogsPage: React.FC = () => {
           </Box>
           <DialogContent>
             <DialogContentText sx={{ pt: 1 }}>
-              This dialog renders with <strong>glass={"{true}"}</strong> featuring 32px backdrop blur, specular top perimeter light reflection, and
-              refined contrast typography.
+              This dialog renders with <strong>glass={"{true}"}</strong> featuring 32px backdrop blur, specular top perimeter light reflection, and refined contrast typography.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
@@ -214,9 +195,7 @@ export const DialogsPage: React.FC = () => {
             </IconButton>
           </Box>
           <DialogContent>
-            <DialogContentText sx={{ pt: 1 }}>
-              Revoking this session will instantly sign out the user from all active browsers and revoke hardware security key tokens.
-            </DialogContentText>
+            <DialogContentText sx={{ pt: 1 }}>Revoking this session will instantly sign out the user from all active browsers and revoke hardware security key tokens.</DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button variant="outlined" color="glass" onClick={() => setConfirmOpen(false)}>
@@ -315,8 +294,7 @@ export const DialogsPage: React.FC = () => {
               Immersive Liquid Experience
             </Typography>
             <Typography variant="body1" sx={{ color: "text.secondary", mb: 4, lineHeight: 1.7 }}>
-              Full-screen modals expand smoothly from the bottom with Apple spring physics, preserving background context through translucent
-              navigation headers.
+              Full-screen modals expand smoothly from the bottom with Apple spring physics, preserving background context through translucent navigation headers.
             </Typography>
             <Box
               sx={{
@@ -423,9 +401,7 @@ export const DialogsPage: React.FC = () => {
         {/* Bottom Sheet Drawer */}
         <Drawer anchor="bottom" glass={drawerGlass} open={bottomSheetOpen} onClose={() => setBottomSheetOpen(false)}>
           <Box sx={{ maxWidth: 600, width: "100%", mx: "auto", pt: 1.5, pb: 4, px: 3 }}>
-            <Box
-              sx={{ width: 44, height: 5, borderRadius: 3, bgcolor: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.25)", mx: "auto", mb: 2.5 }}
-            />
+            <Box sx={{ width: 44, height: 5, borderRadius: 3, bgcolor: isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.25)", mx: "auto", mb: 2.5 }} />
 
             <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2 }}>
               <Box>
@@ -443,10 +419,7 @@ export const DialogsPage: React.FC = () => {
 
             <List sx={{ pt: 0 }}>
               <ListItem disablePadding sx={{ mb: 1 }}>
-                <ListItemButton
-                  onClick={() => setBottomSheetOpen(false)}
-                  sx={{ borderRadius: "12px", bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)" }}
-                >
+                <ListItemButton onClick={() => setBottomSheetOpen(false)} sx={{ borderRadius: "12px", bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)" }}>
                   <ListItemIcon>
                     <Copy size={20} />
                   </ListItemIcon>
@@ -455,10 +428,7 @@ export const DialogsPage: React.FC = () => {
               </ListItem>
 
               <ListItem disablePadding sx={{ mb: 1 }}>
-                <ListItemButton
-                  onClick={() => setBottomSheetOpen(false)}
-                  sx={{ borderRadius: "12px", bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)" }}
-                >
+                <ListItemButton onClick={() => setBottomSheetOpen(false)} sx={{ borderRadius: "12px", bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)" }}>
                   <ListItemIcon>
                     <Share2 size={20} />
                   </ListItemIcon>
@@ -467,10 +437,7 @@ export const DialogsPage: React.FC = () => {
               </ListItem>
 
               <ListItem disablePadding>
-                <ListItemButton
-                  onClick={() => setBottomSheetOpen(false)}
-                  sx={{ borderRadius: "12px", bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)" }}
-                >
+                <ListItemButton onClick={() => setBottomSheetOpen(false)} sx={{ borderRadius: "12px", bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(17,17,17,0.03)" }}>
                   <ListItemIcon>
                     <Sliders size={20} />
                   </ListItemIcon>

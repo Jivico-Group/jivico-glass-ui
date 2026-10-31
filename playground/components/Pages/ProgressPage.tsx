@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Activity, CheckCircle2, Layers, RefreshCw, Sparkles, Zap } from "lucide-react";
 import { Avatar, Box, Button, Card, CardContent, Chip, LinearProgress, Skeleton, Stack, Typography } from "@mui/material";
+import { BackdropLoader, Loader } from "../../../src/components/loading/index.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
-import { Loader, BackdropLoader } from "../../../src/components/loading/index.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
 
@@ -307,7 +307,11 @@ export const ProgressPage: React.FC = () => {
               <Loader
                 src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,15 90,85 10,85' fill='%230071E3'/></svg>"
                 ImageComponent={({ src, alt, style }: { src?: unknown; alt?: string; style?: React.CSSProperties }) => (
-                  <img src={typeof src === "object" && src !== null && "src" in src ? (src as { src: string }).src : String(src ?? "")} alt={alt} style={{ ...style, filter: "drop-shadow(0 0 8px rgba(0,113,227,0.5))" }} />
+                  <img
+                    src={typeof src === "object" && src !== null && "src" in src ? (src as { src: string }).src : String(src ?? "")}
+                    alt={alt}
+                    style={{ ...style, filter: "drop-shadow(0 0 8px rgba(0,113,227,0.5))" }}
+                  />
                 )}
                 width={56}
                 height={56}
@@ -370,23 +374,10 @@ export const ProgressPage: React.FC = () => {
               Parent Card Content (Container-level loading area)
             </Typography>
 
-            <BackdropLoader
-              open={containedBackdropOpen}
-              contained={true}
-              message="Syncing inventory..."
-              color="info"
-              width={48}
-              height={48}
-            />
+            <BackdropLoader open={containedBackdropOpen} contained={true} message="Syncing inventory..." color="info" width={48} height={48} />
           </Box>
 
-          <BackdropLoader
-            open={backdropOpen}
-            message="Processing your request with Apple-precision physics..."
-            color="info"
-            blur="16px"
-            onClick={() => setBackdropOpen(false)}
-          />
+          <BackdropLoader open={backdropOpen} message="Processing your request with Apple-precision physics..." color="info" blur="16px" onClick={() => setBackdropOpen(false)} />
         </Box>
       </DemoBlock>
     </ComponentPage>

@@ -94,10 +94,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeId, onSelect, mobileOpen
       <List size="small" sx={{ p: 0 }}>
         {NAV_SECTIONS.map((section) => (
           <Box key={section.title} sx={{ mb: 2 }}>
-            <Typography
-              variant="overline"
-              sx={{ px: 1.5, mb: 0.5, display: "block", fontWeight: 700, letterSpacing: "0.06em", color: "text.secondary", fontSize: "0.7rem" }}
-            >
+            <Typography variant="overline" sx={{ px: 1.5, mb: 0.5, display: "block", fontWeight: 700, letterSpacing: "0.06em", color: "text.secondary", fontSize: "0.7rem" }}>
               {section.title}
             </Typography>
 
@@ -125,8 +122,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeId, onSelect, mobileOpen
                         height: 18,
                         fontSize: "0.62rem",
                         fontWeight: 700,
-                        backgroundColor:
-                          item.badge === "GLASS" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.08)") : isDark ? "#F6F5F2" : "#111111",
+                        backgroundColor: item.badge === "GLASS" ? (isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.08)") : isDark ? "#F6F5F2" : "#111111",
                         color: item.badge === "GLASS" ? (isDark ? "#F6F5F2" : "#111111") : isDark ? "#111111" : "#FFFFFF",
                         "& .MuiChip-label": { px: 0.7 },
                       }}
@@ -170,11 +166,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeId, onSelect, mobileOpen
         ModalProps={{ keepMounted: true }}
         sx={{
           display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": {
-            width: 260,
-            backgroundColor: isDark ? "rgba(20, 20, 20, 0.95)" : "rgba(255, 255, 255, 0.95)",
-            backdropFilter: "blur(20px)",
-          },
+          "& .MuiDrawer-paper": { width: 260, backgroundColor: isDark ? "rgba(20, 20, 20, 0.95)" : "rgba(255, 255, 255, 0.95)", backdropFilter: "blur(20px)" },
         }}
       >
         {content}

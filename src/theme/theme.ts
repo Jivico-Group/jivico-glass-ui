@@ -11,8 +11,7 @@ import "./augmentations.d.ts";
 import { getMenuRootOverrides } from "./overrides/menu/index.js";
 import { getTableRootOverrides } from "./overrides/table/index.js";
 
-export const GOOGLE_SANS_FLEX_URL =
-  "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
+export const GOOGLE_SANS_FLEX_URL = "https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..600,0..100&display=swap";
 
 /**
  * Jivico Comprehensive Design System
@@ -54,13 +53,7 @@ function buildTheme(mode: "light" | "dark"): Theme {
     components: {
       MuiCssBaseline: {
         styleOverrides: {
-          body: {
-            scrollBehavior: "smooth",
-            backgroundColor: palette.background.default,
-            color: palette.text.primary,
-            WebkitFontSmoothing: "antialiased",
-            MozOsxFontSmoothing: "grayscale",
-          },
+          body: { scrollBehavior: "smooth", backgroundColor: palette.background.default, color: palette.text.primary, WebkitFontSmoothing: "antialiased", MozOsxFontSmoothing: "grayscale" },
           // Firefox scrollbars
           "@supports not (-webkit-touch-callout: none)": {
             "*": { scrollbarWidth: "thin", scrollbarColor: isDark ? "rgba(255, 255, 255, 0.2) transparent" : "rgba(0, 0, 0, 0.2) transparent" },

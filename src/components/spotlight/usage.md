@@ -29,12 +29,7 @@ import { Spotlight } from "jivico-glass-ui";
 ## Basic Usage
 
 ```tsx
-<Spotlight
-  image="/images/new-drop.jpg"
-  title="NEW DROP"
-  description="Fresh pieces, made to stand out."
-  action={{ label: "SHOP NOW", href: "/collections/new-drop" }}
-/>
+<Spotlight image="/images/new-drop.jpg" title="NEW DROP" description="Fresh pieces, made to stand out." action={{ label: "SHOP NOW", href: "/collections/new-drop" }} />
 ```
 
 The default variant is `overlay` and the default size is `medium`.

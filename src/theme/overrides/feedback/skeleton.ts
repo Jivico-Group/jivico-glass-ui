@@ -71,8 +71,7 @@ export const getSkeletonOverrides = (palette: JivicoPalette, isDark: boolean): C
            * TONAL
            */
           if (appearance === "tonal") {
-            backgroundColor =
-              color === "glass" ? palette.glass.skeletonBg : `color-mix(in srgb, ${selected.main} ${isDark ? "16%" : "9%"}, transparent)`;
+            backgroundColor = color === "glass" ? palette.glass.skeletonBg : `color-mix(in srgb, ${selected.main} ${isDark ? "16%" : "9%"}, transparent)`;
           }
 
           /*
@@ -98,12 +97,7 @@ export const getSkeletonOverrides = (palette: JivicoPalette, isDark: boolean): C
 
             backgroundColor,
 
-            border:
-              appearance === "outlined"
-                ? `1px solid ${selected.main}`
-                : appearance === "glass"
-                  ? `1px solid ${isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.05)"}`
-                  : "none",
+            border: appearance === "outlined" ? `1px solid ${selected.main}` : appearance === "glass" ? `1px solid ${isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.05)"}` : "none",
 
             backdropFilter: appearance === "glass" ? `saturate(180%) ${blurMap[glassIntensity]}` : undefined,
 

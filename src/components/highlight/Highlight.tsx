@@ -72,19 +72,7 @@ interface HighlightImageRendererProps {
   ImageComponent?: HighlightProps["ImageComponent"];
 }
 
-const DefaultImage = ({
-  src,
-  alt,
-  imagePosition,
-  imageSizes,
-  imagePriority,
-}: {
-  src: string;
-  alt: string;
-  imagePosition: string;
-  imageSizes?: string;
-  imagePriority?: boolean;
-}) => {
+const DefaultImage = ({ src, alt, imagePosition, imageSizes, imagePriority }: { src: string; alt: string; imagePosition: string; imageSizes?: string; imagePriority?: boolean }) => {
   return (
     <Box
       component="img"
@@ -92,27 +80,12 @@ const DefaultImage = ({
       alt={alt}
       loading={imagePriority ? "eager" : "lazy"}
       sizes={imageSizes ?? DEFAULT_IMAGE_SIZES}
-      sx={{
-        display: "block",
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        objectPosition: imagePosition,
-        transition: "transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1)",
-      }}
+      sx={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: imagePosition, transition: "transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1)" }}
     />
   );
 };
 
-const HighlightImage = ({
-  image,
-  mobileImage,
-  alt,
-  imagePosition,
-  imageSizes,
-  imagePriority = false,
-  ImageComponent,
-}: HighlightImageRendererProps) => {
+const HighlightImage = ({ image, mobileImage, alt, imagePosition, imageSizes, imagePriority = false, ImageComponent }: HighlightImageRendererProps) => {
   /*
    * Native <img> fallback.
    */
@@ -144,13 +117,7 @@ const HighlightImage = ({
     sizes: imageSizes ?? DEFAULT_IMAGE_SIZES,
     priority: imagePriority,
     fill: true,
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      objectPosition: imagePosition,
-      transition: "transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1)",
-    },
+    style: { width: "100%", height: "100%", objectFit: "cover", objectPosition: imagePosition, transition: "transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1)" },
   };
 
   return <CustomImage {...imageProps} />;
@@ -275,17 +242,7 @@ export const Highlight = ({
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
-        <Box
-          sx={{
-            position: "relative",
-            width: "100%",
-            aspectRatio,
-            height: resolvedHeight,
-            minHeight: resolvedMinHeight,
-            maxHeight: resolvedMaxHeight,
-            overflow: "hidden",
-          }}
-        >
+        <Box sx={{ position: "relative", width: "100%", aspectRatio, height: resolvedHeight, minHeight: resolvedMinHeight, maxHeight: resolvedMaxHeight, overflow: "hidden" }}>
           <HighlightImage
             image={image}
             mobileImage={mobileImage}
@@ -358,27 +315,11 @@ export const Highlight = ({
           inset: 0,
           zIndex: 1,
           pointerEvents: "none",
-          background:
-            variant === "center"
-              ? "linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.5) 100%)"
-              : "linear-gradient(180deg, rgba(0,0,0,0.02) 25%, rgba(0,0,0,0.72) 100%)",
+          background: variant === "center" ? "linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.5) 100%)" : "linear-gradient(180deg, rgba(0,0,0,0.02) 25%, rgba(0,0,0,0.72) 100%)",
         }}
       />
 
-      <Box
-        sx={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 3,
-          pointerEvents: "none",
-          display: "flex",
-          flexDirection: "column",
-          ...contentPosition,
-          p: sizeStyles.padding,
-        }}
-      >
-        {content}
-      </Box>
+      <Box sx={{ position: "absolute", inset: 0, zIndex: 3, pointerEvents: "none", display: "flex", flexDirection: "column", ...contentPosition, p: sizeStyles.padding }}>{content}</Box>
     </Box>
   );
 };

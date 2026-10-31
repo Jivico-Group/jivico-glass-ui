@@ -1,5 +1,5 @@
-import type React from "react";
 import type { BackdropProps, TypographyProps } from "@mui/material";
+import type React from "react";
 import type { LoaderProps } from "./Loader.types.js";
 
 export interface BackdropLoaderProps extends LoaderProps {

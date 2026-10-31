@@ -34,47 +34,11 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
 
   const sizeMap: Record<
     MenuSize,
-    {
-      listPadding: string;
-      itemMinHeight: number;
-      itemPadding: string;
-      itemFontSize: string;
-      iconSize: number;
-      iconGap: number;
-      radius: number;
-      minWidth: number;
-    }
+    { listPadding: string; itemMinHeight: number; itemPadding: string; itemFontSize: string; iconSize: number; iconGap: number; radius: number; minWidth: number }
   > = {
-    compact: {
-      listPadding: "3px",
-      itemMinHeight: 20,
-      itemPadding: "4px 8px",
-      itemFontSize: "0.75rem",
-      iconSize: 15,
-      iconGap: 6,
-      radius: 6,
-      minWidth: 150,
-    },
-    small: {
-      listPadding: "4px",
-      itemMinHeight: 24,
-      itemPadding: "6px 10px",
-      itemFontSize: "0.8125rem",
-      iconSize: 18,
-      iconGap: 8,
-      radius: 8,
-      minWidth: 180,
-    },
-    medium: {
-      listPadding: "6px",
-      itemMinHeight: 32,
-      itemPadding: "9px 12px",
-      itemFontSize: "0.875rem",
-      iconSize: 20,
-      iconGap: 10,
-      radius: 10,
-      minWidth: 180,
-    },
+    compact: { listPadding: "3px", itemMinHeight: 20, itemPadding: "4px 8px", itemFontSize: "0.75rem", iconSize: 15, iconGap: 6, radius: 6, minWidth: 150 },
+    small: { listPadding: "4px", itemMinHeight: 24, itemPadding: "6px 10px", itemFontSize: "0.8125rem", iconSize: 18, iconGap: 8, radius: 8, minWidth: 180 },
+    medium: { listPadding: "6px", itemMinHeight: 32, itemPadding: "9px 12px", itemFontSize: "0.875rem", iconSize: 20, iconGap: 10, radius: 10, minWidth: 180 },
   };
 
   return {
@@ -155,34 +119,16 @@ export const getMenuOverrides = (palette: JivicoPalette, isDark: boolean): Compo
             },
 
             "& .MuiMenuItem-root:hover": {
-              backgroundColor: isGlass
-                ? isDark
-                  ? "rgba(255, 255, 255, 0.09)"
-                  : "rgba(255, 255, 255, 0.58)"
-                : isDark
-                  ? "rgba(255, 255, 255, 0.07)"
-                  : "rgba(17, 17, 17, 0.045)",
+              backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.58)") : isDark ? "rgba(255, 255, 255, 0.07)" : "rgba(17, 17, 17, 0.045)",
             },
 
             "& .MuiMenuItem-root.Mui-selected": {
-              backgroundColor: isGlass
-                ? isDark
-                  ? "rgba(255, 255, 255, 0.13)"
-                  : "rgba(255, 255, 255, 0.68)"
-                : isDark
-                  ? "rgba(255, 255, 255, 0.10)"
-                  : "rgba(17, 17, 17, 0.065)",
+              backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.13)" : "rgba(255, 255, 255, 0.68)") : isDark ? "rgba(255, 255, 255, 0.10)" : "rgba(17, 17, 17, 0.065)",
               color: text,
             },
 
             "& .MuiMenuItem-root.Mui-selected:hover": {
-              backgroundColor: isGlass
-                ? isDark
-                  ? "rgba(255, 255, 255, 0.17)"
-                  : "rgba(255, 255, 255, 0.76)"
-                : isDark
-                  ? "rgba(255, 255, 255, 0.14)"
-                  : "rgba(17, 17, 17, 0.085)",
+              backgroundColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.17)" : "rgba(255, 255, 255, 0.76)") : isDark ? "rgba(255, 255, 255, 0.14)" : "rgba(17, 17, 17, 0.085)",
             },
 
             "& .MuiMenuItem-root.Mui-focusVisible": { outline: `2px solid ${color}`, outlineOffset: -2 },

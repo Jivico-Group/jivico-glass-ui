@@ -1,6 +1,6 @@
 import React from "react";
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { renderToString } from "react-dom/server";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { GlassModeProvider, useGlassMode } from "../ThemeContext.js";
 import type { GlassModeContextType } from "../ThemeContext.js";
 
@@ -33,7 +33,7 @@ describe("GlassModeProvider and useGlassMode", () => {
     const html = renderToString(
       <GlassModeProvider defaultMode="system">
         <ThemeConsumer onContext={(ctx) => (capturedCtx = ctx)} />
-      </GlassModeProvider>
+      </GlassModeProvider>,
     );
 
     expect(html).toContain('data-mode="system"');
@@ -46,17 +46,14 @@ describe("GlassModeProvider and useGlassMode", () => {
   });
 
   it("handles first visit with no saved preference", () => {
-    const mockStorage = {
-      getItem: vi.fn().mockReturnValue(null),
-      setItem: vi.fn(),
-    };
+    const mockStorage = { getItem: vi.fn().mockReturnValue(null), setItem: vi.fn() };
     globalThis.localStorage = mockStorage as any;
 
     let capturedCtx: GlassModeContextType | null = null;
     renderToString(
       <GlassModeProvider defaultMode="dark" storageKey="custom-key">
         <ThemeConsumer onContext={(ctx) => (capturedCtx = ctx)} />
-      </GlassModeProvider>
+      </GlassModeProvider>,
     );
 
     expect(capturedCtx!.mode).toBe("dark");
@@ -80,7 +77,7 @@ describe("GlassModeProvider and useGlassMode", () => {
       renderToString(
         <GlassModeProvider defaultMode="light">
           <ThemeConsumer onContext={(ctx) => (capturedCtx = ctx)} />
-        </GlassModeProvider>
+        </GlassModeProvider>,
       );
     }).not.toThrow();
 
@@ -91,34 +88,28 @@ describe("GlassModeProvider and useGlassMode", () => {
   });
 
   it("ignores invalid stored values", () => {
-    const mockStorage = {
-      getItem: vi.fn().mockReturnValue("invalid-mode-string"),
-      setItem: vi.fn(),
-    };
+    const mockStorage = { getItem: vi.fn().mockReturnValue("invalid-mode-string"), setItem: vi.fn() };
     globalThis.localStorage = mockStorage as any;
 
     let capturedCtx: GlassModeContextType | null = null;
     renderToString(
       <GlassModeProvider defaultMode="light">
         <ThemeConsumer onContext={(ctx) => (capturedCtx = ctx)} />
-      </GlassModeProvider>
+      </GlassModeProvider>,
     );
 
     expect(capturedCtx!.mode).toBe("light");
   });
 
   it("persists valid user mode selections to localStorage without updater side-effects", () => {
-    const mockStorage = {
-      getItem: vi.fn().mockReturnValue(null),
-      setItem: vi.fn(),
-    };
+    const mockStorage = { getItem: vi.fn().mockReturnValue(null), setItem: vi.fn() };
     globalThis.localStorage = mockStorage as any;
 
     let capturedCtx: GlassModeContextType | null = null;
     renderToString(
       <GlassModeProvider defaultMode="light" storageKey="app-theme-pref">
         <ThemeConsumer onContext={(ctx) => (capturedCtx = ctx)} />
-      </GlassModeProvider>
+      </GlassModeProvider>,
     );
 
     capturedCtx!.setGlassMode("dark");
@@ -129,10 +120,7 @@ describe("GlassModeProvider and useGlassMode", () => {
   });
 
   it("gracefully falls back when startViewTransition is unsupported or throws", () => {
-    const mockStorage = {
-      getItem: vi.fn().mockReturnValue(null),
-      setItem: vi.fn(),
-    };
+    const mockStorage = { getItem: vi.fn().mockReturnValue(null), setItem: vi.fn() };
     globalThis.localStorage = mockStorage as any;
 
     // Simulate startViewTransition throwing
@@ -146,7 +134,7 @@ describe("GlassModeProvider and useGlassMode", () => {
     renderToString(
       <GlassModeProvider defaultMode="light">
         <ThemeConsumer onContext={(ctx) => (capturedCtx = ctx)} />
-      </GlassModeProvider>
+      </GlassModeProvider>,
     );
 
     expect(() => {
@@ -156,17 +144,14 @@ describe("GlassModeProvider and useGlassMode", () => {
   });
 
   it("supports rapid consecutive toggle operations without state loss", () => {
-    const mockStorage = {
-      getItem: vi.fn().mockReturnValue(null),
-      setItem: vi.fn(),
-    };
+    const mockStorage = { getItem: vi.fn().mockReturnValue(null), setItem: vi.fn() };
     globalThis.localStorage = mockStorage as any;
 
     let capturedCtx: GlassModeContextType | null = null;
     renderToString(
       <GlassModeProvider defaultMode="light" storageKey="rapid-toggle-key">
         <ThemeConsumer onContext={(ctx) => (capturedCtx = ctx)} />
-      </GlassModeProvider>
+      </GlassModeProvider>,
     );
 
     capturedCtx!.toggleGlassMode(); // -> dark
@@ -182,10 +167,7 @@ describe("GlassModeProvider and useGlassMode", () => {
     const originalWindow = (globalThis as any).window;
     (globalThis as any).window = globalThis;
 
-    const mockStorage = {
-      getItem: vi.fn().mockReturnValue(null),
-      setItem: vi.fn(),
-    };
+    const mockStorage = { getItem: vi.fn().mockReturnValue(null), setItem: vi.fn() };
     globalThis.localStorage = mockStorage as any;
 
     let callbackExecuted = false;
@@ -197,11 +179,7 @@ describe("GlassModeProvider and useGlassMode", () => {
       startViewTransition: vi.fn().mockImplementation((cb: () => void) => {
         callbackExecuted = true;
         cb();
-        return {
-          finished: rejectingPromise,
-          ready: rejectingPromise,
-          updateCallbackDone: Promise.resolve(),
-        };
+        return { finished: rejectingPromise, ready: rejectingPromise, updateCallbackDone: Promise.resolve() };
       }),
     };
 
@@ -209,7 +187,7 @@ describe("GlassModeProvider and useGlassMode", () => {
     renderToString(
       <GlassModeProvider defaultMode="light">
         <ThemeConsumer onContext={(ctx) => (capturedCtx = ctx)} />
-      </GlassModeProvider>
+      </GlassModeProvider>,
     );
 
     expect(() => {

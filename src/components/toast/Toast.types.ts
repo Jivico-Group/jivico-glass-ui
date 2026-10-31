@@ -4,27 +4,13 @@ import React from "react";
  * Supported semantic and branded toast colors.
  * Maps directly to existing Jivico theme palette tokens.
  */
-export type ToastColor =
-  | "primary"
-  | "secondary"
-  | "error"
-  | "success"
-  | "accent"
-  | "info"
-  | "warning"
-  | "glass";
+export type ToastColor = "primary" | "secondary" | "error" | "success" | "accent" | "info" | "warning" | "glass";
 
 /**
  * Supported screen positioning anchors.
  * Supports 6 distinct positions plus 'bottom' as an alias for 'bottom-center'.
  */
-export type ToastPosition =
-  | "top-left"
-  | "top-center"
-  | "top-right"
-  | "bottom-left"
-  | "bottom-center"
-  | "bottom-right";
+export type ToastPosition = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
 
 export type ToastPositionInput = ToastPosition | "bottom";
 
@@ -149,30 +135,14 @@ export interface ToastApi {
 /**
  * Default semantic duration map in milliseconds.
  */
-export const DEFAULT_TOAST_DURATIONS: Record<ToastColor, number> = {
-  success: 3000,
-  error: 6000,
-  warning: 5000,
-  info: 4000,
-  primary: 4000,
-  secondary: 4000,
-  accent: 4000,
-  glass: 4000,
-};
+export const DEFAULT_TOAST_DURATIONS: Record<ToastColor, number> = { success: 3000, error: 6000, warning: 5000, info: 4000, primary: 4000, secondary: 4000, accent: 4000, glass: 4000 };
 
 /**
  * Normalizes position string, translating aliases like 'bottom' to 'bottom-center'.
  */
 export function normalizePosition(position?: ToastPositionInput): ToastPosition {
   if (position === "bottom") return "bottom-center";
-  if (
-    position === "top-left" ||
-    position === "top-center" ||
-    position === "top-right" ||
-    position === "bottom-left" ||
-    position === "bottom-center" ||
-    position === "bottom-right"
-  ) {
+  if (position === "top-left" || position === "top-center" || position === "top-right" || position === "bottom-left" || position === "bottom-center" || position === "bottom-right") {
     return position;
   }
   return "top-right";

@@ -36,12 +36,7 @@ export interface GlassModeContextType {
   setGlassMode: (mode: ThemeMode) => void;
 }
 
-export const GlassModeContext = createContext<GlassModeContextType>({
-  mode: "light",
-  resolvedMode: "light",
-  toggleGlassMode: () => {},
-  setGlassMode: () => {},
-});
+export const GlassModeContext = createContext<GlassModeContextType>({ mode: "light", resolvedMode: "light", toggleGlassMode: () => {}, setGlassMode: () => {} });
 
 export const useGlassMode = () => useContext(GlassModeContext);
 
@@ -157,12 +152,7 @@ export function GlassModeProvider({ children, defaultMode = "light", storageKey 
    * Must not run during SSR, must degrade gracefully if unsupported or throwing.
    */
   const withViewTransition = useCallback((callback: () => void) => {
-    if (
-      typeof window !== "undefined" &&
-      typeof document !== "undefined" &&
-      "startViewTransition" in document &&
-      typeof (document as any).startViewTransition === "function"
-    ) {
+    if (typeof window !== "undefined" && typeof document !== "undefined" && "startViewTransition" in document && typeof (document as any).startViewTransition === "function") {
       let executed = false;
       const safeCallback = () => {
         if (!executed) {
@@ -245,10 +235,7 @@ export function GlassModeProvider({ children, defaultMode = "light", storageKey 
     [storageKey, withViewTransition],
   );
 
-  const value = useMemo<GlassModeContextType>(
-    () => ({ mode, resolvedMode, toggleGlassMode, setGlassMode }),
-    [mode, resolvedMode, toggleGlassMode, setGlassMode],
-  );
+  const value = useMemo<GlassModeContextType>(() => ({ mode, resolvedMode, toggleGlassMode, setGlassMode }), [mode, resolvedMode, toggleGlassMode, setGlassMode]);
 
   return <GlassModeContext.Provider value={value}>{children}</GlassModeContext.Provider>;
 }

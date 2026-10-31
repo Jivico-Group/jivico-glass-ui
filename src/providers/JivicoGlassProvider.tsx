@@ -26,12 +26,7 @@ export interface JivicoGlassProviderProps {
   enableCssBaseline?: boolean;
 }
 
-export function JivicoGlassProvider({
-  children,
-  defaultMode = "system",
-  storageKey = "jivico-theme-mode",
-  enableCssBaseline = true,
-}: JivicoGlassProviderProps) {
+export function JivicoGlassProvider({ children, defaultMode = "system", storageKey = "jivico-theme-mode", enableCssBaseline = true }: JivicoGlassProviderProps) {
   return (
     <GlassModeProvider defaultMode={defaultMode} storageKey={storageKey}>
       <InternalMuiWrapper enableCssBaseline={enableCssBaseline}>{children}</InternalMuiWrapper>

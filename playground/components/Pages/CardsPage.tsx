@@ -252,11 +252,7 @@ export const CardsPage: React.FC = () => {
         <Box sx={{ width: "100%", maxWidth: 640, mx: "auto" }}>
           <Card hoverEffect={true} radius="large">
             <CardHeader
-              avatar={
-                <Avatar sx={{ bgcolor: isDark ? "rgba(255,255,255,0.15)" : "#111111", color: isDark ? "#111111" : "#FFFFFF", fontWeight: 700 }}>
-                  JS
-                </Avatar>
-              }
+              avatar={<Avatar sx={{ bgcolor: isDark ? "rgba(255,255,255,0.15)" : "#111111", color: isDark ? "#111111" : "#FFFFFF", fontWeight: 700 }}>JS</Avatar>}
               action={
                 <IconButton size="small">
                   <MoreVertical size={18} />
@@ -271,8 +267,7 @@ export const CardsPage: React.FC = () => {
             />
             <CardContent sx={{ py: 1 }}>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                Full-stack luxury studio suite with automated inventory sync, variant pricing matrices, and real-time glassmorphism playground
-                integrations.
+                Full-stack luxury studio suite with automated inventory sync, variant pricing matrices, and real-time glassmorphism playground integrations.
               </Typography>
               <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
                 <Chip label="Production Ready" size="small" color="success" />
@@ -280,9 +275,7 @@ export const CardsPage: React.FC = () => {
                 <Chip label="Glass UI v2.0" size="small" color="accent" />
               </Box>
             </CardContent>
-            <CardActions
-              sx={{ p: 2.5, justifyContent: "space-between", borderTop: `1px solid ${isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.06)"}` }}
-            >
+            <CardActions sx={{ p: 2.5, justifyContent: "space-between", borderTop: `1px solid ${isDark ? "rgba(255,255,255,0.06)" : "rgba(17,17,17,0.06)"}` }}>
               <Button size="small" variant="outlined" color="primary">
                 Documentation
               </Button>

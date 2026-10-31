@@ -95,23 +95,11 @@ export const TablePage: React.FC = () => {
   const getStatusChip = (status: string) => {
     switch (status) {
       case "Completed":
-        return (
-          <Chip
-            icon={<CheckCircle2 size={13} />}
-            label="Completed"
-            color="success"
-            size="small"
-            sx={{ fontWeight: 600, fontSize: "0.7rem", height: 22 }}
-          />
-        );
+        return <Chip icon={<CheckCircle2 size={13} />} label="Completed" color="success" size="small" sx={{ fontWeight: 600, fontSize: "0.7rem", height: 22 }} />;
       case "Pending":
-        return (
-          <Chip icon={<Clock size={13} />} label="Pending" color="warning" size="small" sx={{ fontWeight: 600, fontSize: "0.7rem", height: 22 }} />
-        );
+        return <Chip icon={<Clock size={13} />} label="Pending" color="warning" size="small" sx={{ fontWeight: 600, fontSize: "0.7rem", height: 22 }} />;
       case "Failed":
-        return (
-          <Chip icon={<XCircle size={13} />} label="Failed" color="error" size="small" sx={{ fontWeight: 600, fontSize: "0.7rem", height: 22 }} />
-        );
+        return <Chip icon={<XCircle size={13} />} label="Failed" color="error" size="small" sx={{ fontWeight: 600, fontSize: "0.7rem", height: 22 }} />;
       default:
         return null;
     }
@@ -295,18 +283,11 @@ export const TablePage: React.FC = () => {
         <Stack spacing={4}>
           {/* Small Size Table */}
           <Box>
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1.5, display: "block" }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1.5, display: "block" }}>
               Compact Table (size="small")
             </Typography>
 
-            <TableContainer
-              component={Paper}
-              elevation={0}
-              sx={{ borderRadius: "14px", border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}` }}
-            >
+            <TableContainer component={Paper} elevation={0} sx={{ borderRadius: "14px", border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}` }}>
               <Table size="small">
                 <TableHead>
                   <TableRow>
@@ -334,18 +315,11 @@ export const TablePage: React.FC = () => {
 
           {/* Medium Size Table */}
           <Box>
-            <Typography
-              variant="caption"
-              sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1.5, display: "block" }}
-            >
+            <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", opacity: 0.6, mb: 1.5, display: "block" }}>
               Medium Table (size="medium" — Default)
             </Typography>
 
-            <TableContainer
-              component={Paper}
-              elevation={0}
-              sx={{ borderRadius: "16px", border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}` }}
-            >
+            <TableContainer component={Paper} elevation={0} sx={{ borderRadius: "16px", border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}` }}>
               <Table size="medium">
                 <TableHead>
                   <TableRow>
@@ -397,11 +371,7 @@ export const TablePage: React.FC = () => {
           ))}
         </Box>
 
-        <TableContainer
-          component={Paper}
-          elevation={0}
-          sx={{ borderRadius: "16px", border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}` }}
-        >
+        <TableContainer component={Paper} elevation={0} sx={{ borderRadius: "16px", border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}` }}>
           <Table color={activeColor}>
             <TableHead>
               <TableRow>

@@ -64,9 +64,7 @@ export const DataDisplayPage: React.FC = () => {
               width: "280px",
               height: "280px",
               borderRadius: "50%",
-              background: isDark
-                ? "radial-gradient(circle, rgba(120, 80, 240, 0.35) 0%, transparent 70%)"
-                : "radial-gradient(circle, rgba(220, 195, 160, 0.45) 0%, transparent 70%)",
+              background: isDark ? "radial-gradient(circle, rgba(120, 80, 240, 0.35) 0%, transparent 70%)" : "radial-gradient(circle, rgba(220, 195, 160, 0.45) 0%, transparent 70%)",
               filter: "blur(40px)",
               pointerEvents: "none",
             }}
@@ -94,12 +92,7 @@ export const DataDisplayPage: React.FC = () => {
               <Chip
                 label="OPTICAL BLUR 16PX"
                 size="small"
-                sx={{
-                  height: 20,
-                  fontSize: "0.62rem",
-                  fontWeight: 700,
-                  backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)",
-                }}
+                sx={{ height: 20, fontSize: "0.62rem", fontWeight: 700, backgroundColor: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(17, 17, 17, 0.08)" }}
               />
             </Box>
 
@@ -119,11 +112,7 @@ export const DataDisplayPage: React.FC = () => {
               {/* Photo Avatar with Online Aura Dot */}
               <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
                 <Badge variant="dot" color="success" overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
-                  <Avatar
-                    alt="Sophia Chen"
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80"
-                    sx={{ width: 64, height: 64 }}
-                  />
+                  <Avatar alt="Sophia Chen" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80" sx={{ width: 64, height: 64 }} />
                 </Badge>
                 <Typography variant="caption" sx={{ fontWeight: 600, color: "text.secondary" }}>
                   Active Online
@@ -204,11 +193,7 @@ export const DataDisplayPage: React.FC = () => {
 
           {/* Photo Squircle */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <Avatar
-              variant="rounded"
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80"
-              sx={{ width: 48, height: 48 }}
-            />
+            <Avatar variant="rounded" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80" sx={{ width: 48, height: 48 }} />
             <Box>
               <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
                 Photo Squircle

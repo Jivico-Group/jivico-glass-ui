@@ -27,8 +27,7 @@ const ColorSwatch: React.FC<ColorItemProps> = ({ name, token, value, description
     setTimeout(() => setCopied(false), 1800);
   };
 
-  const isLightColor =
-    value === "#FFFFFF" || value === "#F6F5F2" || value === "#D9D9CF" || value.includes("255, 255, 255") || value.includes("246, 245, 242");
+  const isLightColor = value === "#FFFFFF" || value === "#F6F5F2" || value === "#D9D9CF" || value.includes("255, 255, 255") || value.includes("246, 245, 242");
 
   const effectiveTextColor = textColor || (isLightColor ? "#111111" : "#FFFFFF");
 
@@ -143,42 +142,12 @@ export const ColorsPage: React.FC = () => {
 const { charcoal, stone, sand, cream } = COLORS.brand;`}
       >
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" }, gap: 2, width: "100%" }}>
-          <ColorSwatch
-            name="Charcoal"
-            token="COLORS.brand.charcoal"
-            value={COLORS.brand.charcoal}
-            description="Primary Light hero, dark accent, solid buttons, and text."
-          />
-          <ColorSwatch
-            name="Stone Gray"
-            token="COLORS.brand.stone"
-            value={COLORS.brand.stone}
-            description="Secondary text, subtle borders, and balanced neutral tones."
-          />
-          <ColorSwatch
-            name="Sand Light"
-            token="COLORS.brand.sand"
-            value={COLORS.brand.sand}
-            description="Subtle borders, dividers, chip backgrounds, and warm fills."
-          />
-          <ColorSwatch
-            name="Cream White"
-            token="COLORS.brand.cream"
-            value={COLORS.brand.cream}
-            description="Light mode default background and Dark mode primary text/hero."
-          />
-          <ColorSwatch
-            name="Pure White"
-            token="COLORS.white"
-            value={COLORS.white}
-            description="Paper cards, elevated dialogs, and high-contrast text."
-          />
-          <ColorSwatch
-            name="Deep Black (OLED)"
-            token="COLORS.black"
-            value={COLORS.black}
-            description="Dark mode canvas background, glass overlays, and deep shadows."
-          />
+          <ColorSwatch name="Charcoal" token="COLORS.brand.charcoal" value={COLORS.brand.charcoal} description="Primary Light hero, dark accent, solid buttons, and text." />
+          <ColorSwatch name="Stone Gray" token="COLORS.brand.stone" value={COLORS.brand.stone} description="Secondary text, subtle borders, and balanced neutral tones." />
+          <ColorSwatch name="Sand Light" token="COLORS.brand.sand" value={COLORS.brand.sand} description="Subtle borders, dividers, chip backgrounds, and warm fills." />
+          <ColorSwatch name="Cream White" token="COLORS.brand.cream" value={COLORS.brand.cream} description="Light mode default background and Dark mode primary text/hero." />
+          <ColorSwatch name="Pure White" token="COLORS.white" value={COLORS.white} description="Paper cards, elevated dialogs, and high-contrast text." />
+          <ColorSwatch name="Deep Black (OLED)" token="COLORS.black" value={COLORS.black} description="Dark mode canvas background, glass overlays, and deep shadows." />
         </Box>
       </DemoBlock>
 
@@ -235,22 +204,11 @@ const primaryGlow = theme.palette.primary.glow;`}
           </Tabs>
         </Box>
 
-        <Typography
-          variant="subtitle2"
-          sx={{ fontWeight: 700, mb: 1.5, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.05em", fontSize: "0.75rem" }}
-        >
+        <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.05em", fontSize: "0.75rem" }}>
           Primary Spectrum ({primaryMode.toUpperCase()} MODE)
         </Typography>
 
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "repeat(2, 1fr)", sm: "repeat(3, 1fr)", md: "repeat(6, 1fr)" },
-            gap: 2,
-            mb: 3,
-            width: "100%",
-          }}
-        >
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "repeat(2, 1fr)", sm: "repeat(3, 1fr)", md: "repeat(6, 1fr)" }, gap: 2, mb: 3, width: "100%" }}>
           <ColorSwatch name="Main" token={`COLORS.primary.${primaryMode}`} value={COLORS.primary[primaryMode]} description="Default button fill" />
           <ColorSwatch
             name="Hover"
@@ -285,28 +243,12 @@ const primaryGlow = theme.palette.primary.glow;`}
           />
         </Box>
 
-        <Typography
-          variant="subtitle2"
-          sx={{ fontWeight: 700, mb: 1.5, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.05em", fontSize: "0.75rem" }}
-        >
+        <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.05em", fontSize: "0.75rem" }}>
           Secondary Spectrum ({primaryMode.toUpperCase()} MODE)
         </Typography>
 
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "repeat(2, 1fr)", sm: "repeat(3, 1fr)", md: "repeat(6, 1fr)" },
-            gap: 2,
-            mb: 3,
-            width: "100%",
-          }}
-        >
-          <ColorSwatch
-            name="Main"
-            token={`COLORS.secondary.${primaryMode}`}
-            value={COLORS.secondary[primaryMode]}
-            description="Secondary control fill"
-          />
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "repeat(2, 1fr)", sm: "repeat(3, 1fr)", md: "repeat(6, 1fr)" }, gap: 2, mb: 3, width: "100%" }}>
+          <ColorSwatch name="Main" token={`COLORS.secondary.${primaryMode}`} value={COLORS.secondary[primaryMode]} description="Secondary control fill" />
           <ColorSwatch
             name="Hover"
             token={`COLORS.secondary.hover${primaryMode === "light" ? "Light" : "Dark"}`}
@@ -340,22 +282,12 @@ const primaryGlow = theme.palette.primary.glow;`}
           />
         </Box>
 
-        <Typography
-          variant="subtitle2"
-          sx={{ fontWeight: 700, mb: 1.5, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.05em", fontSize: "0.75rem" }}
-        >
+        <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.05em", fontSize: "0.75rem" }}>
           Accent Gold Spectrum ({primaryMode.toUpperCase()} MODE)
         </Typography>
 
-        <Box
-          sx={{ display: "grid", gridTemplateColumns: { xs: "repeat(2, 1fr)", sm: "repeat(3, 1fr)", md: "repeat(6, 1fr)" }, gap: 2, width: "100%" }}
-        >
-          <ColorSwatch
-            name="Main"
-            token={`COLORS.accent.${primaryMode}`}
-            value={COLORS.accent[primaryMode]}
-            description="Luxury champagne gold accent"
-          />
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "repeat(2, 1fr)", sm: "repeat(3, 1fr)", md: "repeat(6, 1fr)" }, gap: 2, width: "100%" }}>
+          <ColorSwatch name="Main" token={`COLORS.accent.${primaryMode}`} value={COLORS.accent[primaryMode]} description="Luxury champagne gold accent" />
           <ColorSwatch
             name="Hover"
             token={`COLORS.accent.hover${primaryMode === "light" ? "Light" : "Dark"}`}
@@ -446,12 +378,7 @@ const errorColor = theme.palette.error.main;`}
             <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1, color: "success.main" }}>
               SUCCESS
             </Typography>
-            <ColorSwatch
-              name="Main"
-              token={`COLORS.success.${semanticMode}`}
-              value={COLORS.success[semanticMode]}
-              description="Confirmations, positive metrics"
-            />
+            <ColorSwatch name="Main" token={`COLORS.success.${semanticMode}`} value={COLORS.success[semanticMode]} description="Confirmations, positive metrics" />
             <Box sx={{ mt: 1.5 }}>
               <ColorSwatch
                 name="Glow"
@@ -468,12 +395,7 @@ const errorColor = theme.palette.error.main;`}
             <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1, color: "warning.main" }}>
               WARNING
             </Typography>
-            <ColorSwatch
-              name="Main"
-              token={`COLORS.warning.${semanticMode}`}
-              value={COLORS.warning[semanticMode]}
-              description="Caution banners, pending states"
-            />
+            <ColorSwatch name="Main" token={`COLORS.warning.${semanticMode}`} value={COLORS.warning[semanticMode]} description="Caution banners, pending states" />
             <Box sx={{ mt: 1.5 }}>
               <ColorSwatch
                 name="Glow"
@@ -490,12 +412,7 @@ const errorColor = theme.palette.error.main;`}
             <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1, color: "error.main" }}>
               ERROR
             </Typography>
-            <ColorSwatch
-              name="Main"
-              token={`COLORS.error.${semanticMode}`}
-              value={COLORS.error[semanticMode]}
-              description="Destructive actions, error alerts"
-            />
+            <ColorSwatch name="Main" token={`COLORS.error.${semanticMode}`} value={COLORS.error[semanticMode]} description="Destructive actions, error alerts" />
             <Box sx={{ mt: 1.5 }}>
               <ColorSwatch
                 name="Glow"
@@ -536,42 +453,17 @@ const bgDefault = theme.palette.background.default;
 const textPrimary = theme.palette.text.primary;`}
       >
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" }, gap: 2, width: "100%" }}>
-          <ColorSwatch
-            name="Background (Default Light)"
-            token="COLORS.background.light"
-            value={COLORS.background.light}
-            description="Editorial Cream canvas for light theme."
-          />
-          <ColorSwatch
-            name="Background (Default Dark)"
-            token="COLORS.background.dark"
-            value={COLORS.background.dark}
-            description="Deep black canvas for dark theme."
-          />
+          <ColorSwatch name="Background (Default Light)" token="COLORS.background.light" value={COLORS.background.light} description="Editorial Cream canvas for light theme." />
+          <ColorSwatch name="Background (Default Dark)" token="COLORS.background.dark" value={COLORS.background.dark} description="Deep black canvas for dark theme." />
           <ColorSwatch
             name="Paper Surface (Light)"
             token="COLORS.background.paperLight"
             value={COLORS.background.paperLight}
             description="Pure White card surface with high contrast against Cream."
           />
-          <ColorSwatch
-            name="Paper Surface (Dark)"
-            token="COLORS.background.paperDark"
-            value={COLORS.background.paperDark}
-            description="Elevated dark surface for cards and dropdowns."
-          />
-          <ColorSwatch
-            name="Text Primary (Light)"
-            token="COLORS.text.primaryLight"
-            value={COLORS.text.primaryLight}
-            description="Charcoal text with crispness on light backgrounds."
-          />
-          <ColorSwatch
-            name="Text Primary (Dark)"
-            token="COLORS.text.primaryDark"
-            value={COLORS.text.primaryDark}
-            description="Cream text with ultra-high contrast on dark surfaces."
-          />
+          <ColorSwatch name="Paper Surface (Dark)" token="COLORS.background.paperDark" value={COLORS.background.paperDark} description="Elevated dark surface for cards and dropdowns." />
+          <ColorSwatch name="Text Primary (Light)" token="COLORS.text.primaryLight" value={COLORS.text.primaryLight} description="Charcoal text with crispness on light backgrounds." />
+          <ColorSwatch name="Text Primary (Dark)" token="COLORS.text.primaryDark" value={COLORS.text.primaryDark} description="Cream text with ultra-high contrast on dark surfaces." />
         </Box>
       </DemoBlock>
 

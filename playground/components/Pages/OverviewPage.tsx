@@ -11,28 +11,10 @@ export const OverviewPage: React.FC = () => {
   const isDark = mode === "dark";
 
   const brandColors = [
-    {
-      name: "Charcoal",
-      hex: "#111111",
-      role: "Primary bold element in Light Mode; background anchor in Dark Mode.",
-      textDark: "#FFFFFF",
-      border: false,
-    },
+    { name: "Charcoal", hex: "#111111", role: "Primary bold element in Light Mode; background anchor in Dark Mode.", textDark: "#FFFFFF", border: false },
     { name: "Cream", hex: "#F6F5F2", role: "Primary high-contrast element in Dark Mode; base light surface.", textDark: "#111111", border: true },
-    {
-      name: "Sand",
-      hex: "#D9D9CF",
-      role: "Warm secondary tone used in segmented control tracks and pill borders.",
-      textDark: "#111111",
-      border: true,
-    },
-    {
-      name: "Stone",
-      hex: "#686868",
-      role: "Neutral text and icon accents for unselected states and subtle metadata.",
-      textDark: "#FFFFFF",
-      border: false,
-    },
+    { name: "Sand", hex: "#D9D9CF", role: "Warm secondary tone used in segmented control tracks and pill borders.", textDark: "#111111", border: true },
+    { name: "Stone", hex: "#686868", role: "Neutral text and icon accents for unselected states and subtle metadata.", textDark: "#FFFFFF", border: false },
   ];
 
   const installCode = `npm install @mui/material @emotion/react @emotion/styled lucide-react
@@ -79,8 +61,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           Welcome to <GradientText isDark={isDark}>Jivico Glass UI</GradientText>
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ maxWidth: "700px", lineHeight: 1.7, mb: 3 }}>
-          A comprehensive design system providing frosted glassmorphic overrides for MUI Buttons, Chips, Tabs, Inputs, Switches, and Data Display
-          components, tailored to modern luxury aesthetic standards.
+          A comprehensive design system providing frosted glassmorphic overrides for MUI Buttons, Chips, Tabs, Inputs, Switches, and Data Display components, tailored to modern luxury
+          aesthetic standards.
         </Typography>
 
         <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
@@ -143,27 +125,14 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </Box>
 
       {/* Quick Start Installation */}
-      <DemoBlock
-        id="installation"
-        title="Installation"
-        description="Install peer dependencies and reference the Jivico Glass UI package."
-        code={installCode}
-      >
+      <DemoBlock id="installation" title="Installation" description="Install peer dependencies and reference the Jivico Glass UI package." code={installCode}>
         <Box sx={{ width: "100%", py: 1 }}>
           <Typography variant="body2" color="text.secondary">
             Install the library via npm from the official GitHub repository:
           </Typography>
           <Box
             component="code"
-            sx={{
-              display: "block",
-              mt: 1.5,
-              p: 1.5,
-              borderRadius: "8px",
-              bgcolor: isDark ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0.04)",
-              fontFamily: "monospace",
-              fontSize: "0.82rem",
-            }}
+            sx={{ display: "block", mt: 1.5, p: 1.5, borderRadius: "8px", bgcolor: isDark ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0.04)", fontFamily: "monospace", fontSize: "0.82rem" }}
           >
             npm install github:Jivico-Group/jivico-glass-ui
           </Box>

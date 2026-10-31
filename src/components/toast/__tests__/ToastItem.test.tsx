@@ -1,13 +1,10 @@
 import React from "react";
-import { describe, it, expect, vi } from "vitest";
 import { renderToString } from "react-dom/server";
+import { describe, expect, it, vi } from "vitest";
 import { ToastItem } from "../ToastItem.js";
 import type { ToastItemState } from "../Toast.types.js";
 
-const createMockToast = (
-  id: string,
-  overrides: Partial<ToastItemState> = {}
-): ToastItemState => ({
+const createMockToast = (id: string, overrides: Partial<ToastItemState> = {}): ToastItemState => ({
   id,
   message: `Toast message ${id}`,
   title: `Title ${id}`,
@@ -24,12 +21,7 @@ const createMockToast = (
 
 describe("ToastItem Visual Component", () => {
   it("renders basic toast with title, message, and timestamp", () => {
-    const item = createMockToast("test-1", {
-      title: "Saved successfully",
-      message: "Your product details were updated.",
-      timestamp: "2m ago",
-      color: "success",
-    });
+    const item = createMockToast("test-1", { title: "Saved successfully", message: "Your product details were updated.", timestamp: "2m ago", color: "success" });
 
     const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
 
@@ -42,12 +34,7 @@ describe("ToastItem Visual Component", () => {
   });
 
   it("renders error toast with role=alert and assertive aria-live", () => {
-    const item = createMockToast("err-1", {
-      title: "Upload failed",
-      message: "Image could not be processed. Try again.",
-      color: "error",
-      timestamp: "8m ago",
-    });
+    const item = createMockToast("err-1", { title: "Upload failed", message: "Image could not be processed. Try again.", color: "error", timestamp: "8m ago" });
 
     const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
 
@@ -58,12 +45,7 @@ describe("ToastItem Visual Component", () => {
   });
 
   it("renders warning toast with role=alert and polite aria-live", () => {
-    const item = createMockToast("warn-1", {
-      title: "Draft not published",
-      message: "Complete required fields before publishing.",
-      color: "warning",
-      timestamp: "6m ago",
-    });
+    const item = createMockToast("warn-1", { title: "Draft not published", message: "Complete required fields before publishing.", color: "warning", timestamp: "6m ago" });
 
     const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
 
@@ -74,14 +56,7 @@ describe("ToastItem Visual Component", () => {
 
   it("renders action button when action prop is provided", () => {
     const onClick = vi.fn();
-    const item = createMockToast("action-1", {
-      title: "Item archived",
-      message: "Product was moved to archive.",
-      action: {
-        label: "Undo",
-        onClick,
-      },
-    });
+    const item = createMockToast("action-1", { title: "Item archived", message: "Product was moved to archive.", action: { label: "Undo", onClick } });
 
     const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
 
@@ -90,11 +65,7 @@ describe("ToastItem Visual Component", () => {
   });
 
   it("omits dismiss button when dismissible is false", () => {
-    const item = createMockToast("no-dismiss", {
-      title: "Mandatory update",
-      message: "System maintenance in progress.",
-      dismissible: false,
-    });
+    const item = createMockToast("no-dismiss", { title: "Mandatory update", message: "System maintenance in progress.", dismissible: false });
 
     const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
 
@@ -102,11 +73,7 @@ describe("ToastItem Visual Component", () => {
   });
 
   it("includes dismiss button when dismissible is true", () => {
-    const item = createMockToast("can-dismiss", {
-      title: "Notice",
-      message: "Regular notice.",
-      dismissible: true,
-    });
+    const item = createMockToast("can-dismiss", { title: "Notice", message: "Regular notice.", dismissible: true });
 
     const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
 
@@ -114,12 +81,7 @@ describe("ToastItem Visual Component", () => {
   });
 
   it("renders loading state with spinning loader", () => {
-    const item = createMockToast("loading-1", {
-      title: "Syncing changes",
-      message: "Updating storefront pricing...",
-      loading: true,
-      color: "info",
-    });
+    const item = createMockToast("loading-1", { title: "Syncing changes", message: "Updating storefront pricing...", loading: true, color: "info" });
 
     const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
 
@@ -129,11 +91,7 @@ describe("ToastItem Visual Component", () => {
   });
 
   it("renders custom icon override when provided", () => {
-    const item = createMockToast("custom-icon", {
-      title: "Custom Badge",
-      message: "Testing custom icon injection.",
-      icon: <span data-testid="custom-gem">💎</span>,
-    });
+    const item = createMockToast("custom-icon", { title: "Custom Badge", message: "Testing custom icon injection.", icon: <span data-testid="custom-gem">💎</span> });
 
     const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
 
@@ -163,12 +121,7 @@ describe("ToastItem Visual Component", () => {
 
   it("renders interactive action button with correct label", () => {
     const onActionClick = vi.fn();
-    const item = createMockToast("action-toast", {
-      action: {
-        label: "Undo changes",
-        onClick: onActionClick,
-      },
-    });
+    const item = createMockToast("action-toast", { action: { label: "Undo changes", onClick: onActionClick } });
 
     const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
     expect(html).toContain("Undo changes");
@@ -176,10 +129,7 @@ describe("ToastItem Visual Component", () => {
 
   describe("Phase 8: Accessibility & Reduced Motion", () => {
     it("renders with aria-atomic='true' to ensure full notification content is announced", () => {
-      const item = createMockToast("a11y-1", {
-        title: "Profile updated",
-        message: "All details have been synchronized.",
-      });
+      const item = createMockToast("a11y-1", { title: "Profile updated", message: "All details have been synchronized." });
 
       const html = renderToString(<ToastItem item={item} onDismiss={vi.fn()} />);
       expect(html).toContain('aria-atomic="true"');

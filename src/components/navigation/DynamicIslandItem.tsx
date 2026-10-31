@@ -31,12 +31,10 @@ export interface BottomNavigationItemProps {
  * and `onChange` to all direct children. This component intercepts and consumes those props
  * so they are NOT leaked down as invalid attributes to underlying HTML DOM elements.
  */
-export const DynamicIslandItem = forwardRef<any, BottomNavigationItemProps>(
-  ({ showLabel, selected, value, onChange, component: Component = Box, children, sx, ...props }, ref) => (
-    <Component ref={ref} sx={{ position: "relative", zIndex: 1, ...sx }} {...props}>
-      {children}
-    </Component>
-  ),
-);
+export const DynamicIslandItem = forwardRef<any, BottomNavigationItemProps>(({ showLabel, selected, value, onChange, component: Component = Box, children, sx, ...props }, ref) => (
+  <Component ref={ref} sx={{ position: "relative", zIndex: 1, ...sx }} {...props}>
+    {children}
+  </Component>
+));
 
 DynamicIslandItem.displayName = "DynamicIslandItem";

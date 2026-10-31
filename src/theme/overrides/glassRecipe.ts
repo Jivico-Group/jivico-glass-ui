@@ -32,9 +32,7 @@ export const glassAppBarRecipe = (isDark: boolean) => ({
   borderLeft: "none !important",
   borderRight: "none !important",
   borderBottom: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.08)"} !important`,
-  boxShadow: isDark
-    ? "0 4px 24px -2px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3) !important"
-    : "0 4px 20px -2px rgba(17, 17, 17, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02) !important",
+  boxShadow: isDark ? "0 4px 24px -2px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3) !important" : "0 4px 20px -2px rgba(17, 17, 17, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02) !important",
   borderRadius: "0 !important",
 });
 

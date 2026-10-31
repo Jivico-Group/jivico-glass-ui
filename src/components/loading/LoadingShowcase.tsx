@@ -75,9 +75,7 @@ const Root = styled(Box)(({ theme }) => ({
   overflow: "hidden",
   padding: theme.spacing(4, 3),
   [theme.breakpoints.down("sm")]: { minHeight: "100svh", padding: theme.spacing(3, 2) },
-  "@media (prefers-reduced-motion: reduce)": {
-    "& *": { animationDuration: "0.01ms !important", animationIterationCount: "1 !important", transitionDuration: "0.01ms !important" },
-  },
+  "@media (prefers-reduced-motion: reduce)": { "& *": { animationDuration: "0.01ms !important", animationIterationCount: "1 !important", transitionDuration: "0.01ms !important" } },
 }));
 
 /* -------------------------------------------------------------------------- */
@@ -111,10 +109,7 @@ const Visual = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),
   color: theme.palette.text.primary,
   [theme.breakpoints.down("md")]: { width: "min(460px, 70vw)" },
-  [theme.breakpoints.down("sm")]: {
-    width: "min(350px, 82vw)",
-    marginBottom: theme.spacing(1),
-  },
+  [theme.breakpoints.down("sm")]: { width: "min(350px, 82vw)", marginBottom: theme.spacing(1) },
 }));
 
 /* -------------------------------------------------------------------------- */
@@ -132,14 +127,7 @@ const Product = styled(Box)(() => ({
   animation: "loading-showcase-product-float 6s ease-in-out infinite",
   willChange: "transform",
   "@keyframes loading-showcase-product-float": floatProduct,
-  "& img": {
-    display: "block",
-    width: "100%",
-    height: "100%",
-    maxWidth: "100%",
-    maxHeight: "100%",
-    objectFit: "contain",
-  },
+  "& img": { display: "block", width: "100%", height: "100%", maxWidth: "100%", maxHeight: "100%", objectFit: "contain" },
 }));
 
 /* -------------------------------------------------------------------------- */
@@ -185,11 +173,7 @@ const Title = styled(Typography)(({ theme }) => ({
   lineHeight: 1.05,
   fontSize: "clamp(2.25rem, 4.2vw, 4.25rem)",
   textWrap: "balance",
-  [theme.breakpoints.down("sm")]: {
-    maxWidth: 340,
-    fontSize: "clamp(2rem, 9vw, 3rem)",
-    lineHeight: 1.08,
-  },
+  [theme.breakpoints.down("sm")]: { maxWidth: 340, fontSize: "clamp(2rem, 9vw, 3rem)", lineHeight: 1.08 },
 }));
 
 /* -------------------------------------------------------------------------- */
@@ -202,10 +186,7 @@ const ProgressSection = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   alignItems: "center",
   marginTop: theme.spacing(4),
-  [theme.breakpoints.down("sm")]: {
-    width: "min(320px, 78vw)",
-    marginTop: theme.spacing(3),
-  },
+  [theme.breakpoints.down("sm")]: { width: "min(320px, 78vw)", marginTop: theme.spacing(3) },
 }));
 
 /* -------------------------------------------------------------------------- */
@@ -218,11 +199,7 @@ const ProgressBar = styled(LinearProgress)(({ theme }) => ({
   borderRadius: 999,
   backgroundColor: theme.palette.action.disabledBackground,
   overflow: "hidden",
-  "& .MuiLinearProgress-bar": {
-    borderRadius: 999,
-    backgroundColor: theme.palette.text.primary,
-    transition: "transform 500ms cubic-bezier(0.22, 1, 0.36, 1)",
-  },
+  "& .MuiLinearProgress-bar": { borderRadius: 999, backgroundColor: theme.palette.text.primary, transition: "transform 500ms cubic-bezier(0.22, 1, 0.36, 1)" },
 }));
 
 /* -------------------------------------------------------------------------- */
@@ -241,19 +218,10 @@ const ProgressLabel = styled(Typography)(({ theme }) => ({
   letterSpacing: "0.28em",
   lineHeight: 1.4,
   textTransform: "uppercase",
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "0.58rem",
-    letterSpacing: "0.22em",
-    gap: theme.spacing(0.75),
-  },
+  [theme.breakpoints.down("sm")]: { fontSize: "0.58rem", letterSpacing: "0.22em", gap: theme.spacing(0.75) },
 }));
 
-const ProgressDot = styled("span")(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  opacity: 0.65,
-  fontSize: "0.8rem",
-  lineHeight: 1,
-}));
+const ProgressDot = styled("span")(({ theme }) => ({ color: theme.palette.text.secondary, opacity: 0.65, fontSize: "0.8rem", lineHeight: 1 }));
 
 /* -------------------------------------------------------------------------- */
 /* Signature                                                                   */
@@ -269,13 +237,7 @@ const Signature = styled(Box)(({ theme }) => ({
   alignItems: "flex-end",
   color: theme.palette.text.primary,
   [theme.breakpoints.down("md")]: { right: theme.spacing(4), bottom: theme.spacing(4) },
-  [theme.breakpoints.down("sm")]: {
-    position: "relative",
-    right: "auto",
-    bottom: "auto",
-    marginTop: theme.spacing(6),
-    alignItems: "center",
-  },
+  [theme.breakpoints.down("sm")]: { position: "relative", right: "auto", bottom: "auto", marginTop: theme.spacing(6), alignItems: "center" },
 }));
 
 /* -------------------------------------------------------------------------- */
@@ -299,10 +261,7 @@ const DefaultSignatureCaption = styled("span")(({ theme }) => ({
   letterSpacing: "0.32em",
   lineHeight: 1,
   color: theme.palette.text.secondary,
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "0.48rem",
-    letterSpacing: "0.27em",
-  },
+  [theme.breakpoints.down("sm")]: { fontSize: "0.48rem", letterSpacing: "0.27em" },
 }));
 
 /* -------------------------------------------------------------------------- */
@@ -400,14 +359,7 @@ export const LoadingShowcase: React.FC<LoadingShowcaseProps> = ({
         alt={imageProps.alt ?? ""}
         width={imageProps.width}
         height={imageProps.height}
-        sx={{
-          display: "block",
-          width: "100%",
-          height: "100%",
-          maxWidth: "100%",
-          maxHeight: "100%",
-          objectFit: "contain",
-        }}
+        sx={{ display: "block", width: "100%", height: "100%", maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
       />
     );
   };

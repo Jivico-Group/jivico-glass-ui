@@ -16,11 +16,7 @@ const resolveControlColors = (colorName: string, isDark: boolean, palette: Jivic
     };
   }
   if (colorName === "secondary") {
-    return {
-      active: isDark ? "#A0A09B" : COLORS.brand.stone,
-      glow: isDark ? "rgba(160, 160, 155, 0.3)" : "rgba(104, 104, 104, 0.25)",
-      track: isDark ? "#8A8A82" : COLORS.brand.stone,
-    };
+    return { active: isDark ? "#A0A09B" : COLORS.brand.stone, glow: isDark ? "rgba(160, 160, 155, 0.3)" : "rgba(104, 104, 104, 0.25)", track: isDark ? "#8A8A82" : COLORS.brand.stone };
   }
   if (colorName === "accent") {
     return { active: palette.accent.main, glow: palette.accent.glow, track: palette.accent.main };
@@ -38,11 +34,7 @@ const resolveControlColors = (colorName: string, isDark: boolean, palette: Jivic
   // accent + all semantic colors (primary, success, warning, error, info)
   // resolved generically from the theme palette
   const pal = (theme.palette as any)[colorName];
-  return {
-    active: pal?.main || palette.primary.main,
-    glow: pal?.glow || `${pal?.main}40` || palette.primary.glow,
-    track: pal?.main || palette.primary.main,
-  };
+  return { active: pal?.main || palette.primary.main, glow: pal?.glow || `${pal?.main}40` || palette.primary.glow, track: pal?.main || palette.primary.main };
 };
 
 export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Components<Theme> => ({
@@ -82,10 +74,7 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
           padding: 8,
           transition: "color 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease",
           "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(17, 17, 17, 0.04)" },
-          "&.Mui-checked": {
-            color: resolved.active,
-            ...(isGlass && { filter: isDark ? "drop-shadow(0 2px 6px rgba(255, 255, 255, 0.25))" : "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18))" }),
-          },
+          "&.Mui-checked": { color: resolved.active, ...(isGlass && { filter: isDark ? "drop-shadow(0 2px 6px rgba(255, 255, 255, 0.25))" : "drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18))" }) },
           "&.Mui-focusVisible": { boxShadow: `0 0 0 3px ${resolved.glow}` },
           "&.Mui-disabled": { color: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)" },
         };
@@ -184,12 +173,7 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
             "&::before": { display: "none" },
           },
           "& .MuiSlider-track": { border: "none", height: 6, borderRadius: 3, backgroundColor: resolved.track },
-          "& .MuiSlider-rail": {
-            opacity: 1,
-            backgroundColor: isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.12)",
-            height: 6,
-            borderRadius: 3,
-          },
+          "& .MuiSlider-rail": { opacity: 1, backgroundColor: isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(17, 17, 17, 0.12)", height: 6, borderRadius: 3 },
           "& .MuiSlider-valueLabel": {
             backgroundColor: isDark ? "rgba(30, 32, 38, 0.9)" : "rgba(17, 17, 17, 0.9)",
             borderRadius: 6,
@@ -204,13 +188,7 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
 
   MuiFormControlLabel: {
     styleOverrides: {
-      root: {
-        marginLeft: 0,
-        marginRight: 0,
-        gap: "10px",
-        userSelect: "none",
-        "& .MuiFormControlLabel-label": { fontSize: "0.875rem", fontWeight: 500, color: palette.text.primary },
-      },
+      root: { marginLeft: 0, marginRight: 0, gap: "10px", userSelect: "none", "& .MuiFormControlLabel-label": { fontSize: "0.875rem", fontWeight: 500, color: palette.text.primary } },
     },
   },
 
@@ -222,11 +200,7 @@ export const getControlOverrides = (palette: JivicoPalette, isDark: boolean): Co
         border: `1px solid ${palette.glass.paperBorder}`,
         color: palette.text.secondary,
         transition: "all 0.18s cubic-bezier(0.16, 1, 0.3, 1)",
-        "&.Mui-selected": {
-          backgroundColor: palette.secondary.main,
-          color: palette.secondary.contrastText,
-          "&:hover": { backgroundColor: palette.secondary.hover },
-        },
+        "&.Mui-selected": { backgroundColor: palette.secondary.main, color: palette.secondary.contrastText, "&:hover": { backgroundColor: palette.secondary.hover } },
       },
     },
   },

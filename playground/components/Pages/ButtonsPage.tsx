@@ -21,19 +21,7 @@ import {
   Trash2,
   Underline,
 } from "lucide-react";
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  CircularProgress,
-  Fab,
-  IconButton,
-  Menu,
-  MenuItem,
-  ToggleButton,
-  ToggleButtonGroup,
-  Typography,
-} from "@mui/material";
+import { Box, Button, ButtonGroup, CircularProgress, Fab, IconButton, Menu, MenuItem, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
 import { DemoBlock } from "../Common/DemoBlock.js";
@@ -110,10 +98,7 @@ export const ButtonsPage: React.FC = () => {
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "100%" }}>
           {/* Contained Row */}
           <Box>
-            <Typography
-              variant="caption"
-              sx={{ display: "block", fontWeight: 700, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.06em", mb: 1.5 }}
-            >
+            <Typography variant="caption" sx={{ display: "block", fontWeight: 700, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.06em", mb: 1.5 }}>
               Contained Variant (All Colors)
             </Typography>
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, alignItems: "center" }}>
@@ -146,10 +131,7 @@ export const ButtonsPage: React.FC = () => {
 
           {/* Outlined Row */}
           <Box>
-            <Typography
-              variant="caption"
-              sx={{ display: "block", fontWeight: 700, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.06em", mb: 1.5 }}
-            >
+            <Typography variant="caption" sx={{ display: "block", fontWeight: 700, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.06em", mb: 1.5 }}>
               Outlined Variant (All Colors)
             </Typography>
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, alignItems: "center" }}>
@@ -182,10 +164,7 @@ export const ButtonsPage: React.FC = () => {
 
           {/* Text Row */}
           <Box>
-            <Typography
-              variant="caption"
-              sx={{ display: "block", fontWeight: 700, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.06em", mb: 1.5 }}
-            >
+            <Typography variant="caption" sx={{ display: "block", fontWeight: 700, color: "text.secondary", textTransform: "uppercase", letterSpacing: "0.06em", mb: 1.5 }}>
               Text Variant (All Colors)
             </Typography>
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, alignItems: "center" }}>
@@ -414,9 +393,7 @@ export const ButtonsPage: React.FC = () => {
               <Trash2 size={18} />
             </IconButton>
 
-            <IconButton
-              sx={{ color: "primary.main", "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.06)" } }}
-            >
+            <IconButton sx={{ color: "primary.main", "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(17, 17, 17, 0.06)" } }}>
               <Settings size={18} />
             </IconButton>
           </Box>

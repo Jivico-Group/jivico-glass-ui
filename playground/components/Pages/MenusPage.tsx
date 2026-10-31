@@ -1,20 +1,5 @@
 import React, { useState } from "react";
-import {
-  Check,
-  ChevronRight,
-  Copy,
-  CreditCard,
-  LogOut,
-  MoreVertical,
-  Settings,
-  Share2,
-  Shield,
-  Sliders,
-  Sparkles,
-  Trash2,
-  User,
-  Zap,
-} from "lucide-react";
+import { Check, ChevronRight, Copy, CreditCard, LogOut, MoreVertical, Settings, Share2, Shield, Sliders, Sparkles, Trash2, User, Zap } from "lucide-react";
 import { Box, Button, Chip, Divider, ListItemIcon, ListItemText, Menu, MenuItem, Paper, Stack, Typography } from "@mui/material";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
 import { ComponentPage } from "../Common/ComponentPage.js";
@@ -115,13 +100,7 @@ export const MenusPage: React.FC = () => {
             }}
           />
 
-          <Button
-            variant="contained"
-            color="glass"
-            onClick={(e) => setGlassAnchor(e.currentTarget)}
-            startIcon={<Sparkles size={18} />}
-            sx={{ zIndex: 2, px: 3, py: 1.2, fontWeight: 700 }}
-          >
+          <Button variant="contained" color="glass" onClick={(e) => setGlassAnchor(e.currentTarget)} startIcon={<Sparkles size={18} />} sx={{ zIndex: 2, px: 3, py: 1.2, fontWeight: 700 }}>
             Trigger Frosted Glass Menu
           </Button>
 

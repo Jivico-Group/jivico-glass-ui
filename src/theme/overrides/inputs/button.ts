@@ -119,9 +119,7 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
               backgroundColor: mainColor,
               color: textColor,
 
-              boxShadow: isDark
-                ? "0 6px 24px rgba(0,0,0,0.55), inset 0 1px 1px rgba(255,255,255,0.25)"
-                : "0 6px 20px rgba(17,17,17,0.22), inset 0 1px 1px rgba(255,255,255,0.15)",
+              boxShadow: isDark ? "0 6px 24px rgba(0,0,0,0.55), inset 0 1px 1px rgba(255,255,255,0.25)" : "0 6px 20px rgba(17,17,17,0.22), inset 0 1px 1px rgba(255,255,255,0.15)",
 
               "&:hover": {
                 backgroundColor: hoverColor,
@@ -132,9 +130,7 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
 
               "&:active": { backgroundColor: activeColor, transform: "translateY(0) scale(0.985)" },
 
-              "&:focus-visible": {
-                boxShadow: isDark ? `0 0 0 3px ${glowColor}, 0 6px 24px rgba(0,0,0,0.55)` : `0 0 0 3px ${glowColor}, 0 6px 20px rgba(17,17,17,0.22)`,
-              },
+              "&:focus-visible": { boxShadow: isDark ? `0 0 0 3px ${glowColor}, 0 6px 24px rgba(0,0,0,0.55)` : `0 0 0 3px ${glowColor}, 0 6px 20px rgba(17,17,17,0.22)` },
 
               "&.Mui-disabled": { backgroundColor: disabledColor, color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)", boxShadow: "none" },
             }),
@@ -154,27 +150,19 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
               backdropFilter: "blur(12px)",
               WebkitBackdropFilter: "blur(12px)",
 
-              boxShadow: isDark
-                ? "0 6px 20px rgba(0,0,0,0.5), inset 0 0 0 1.5px rgba(255,255,255,0.15)"
-                : "0 6px 20px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(17,17,17,0.08)",
+              boxShadow: isDark ? "0 6px 20px rgba(0,0,0,0.5), inset 0 0 0 1.5px rgba(255,255,255,0.15)" : "0 6px 20px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(17,17,17,0.08)",
 
               "&:hover": {
                 background: isDark ? "rgba(255, 255, 255, 0.15)" : COLORS.white,
 
                 transform: "translateY(-1px)",
 
-                boxShadow: isDark
-                  ? "0 12px 32px rgba(0,0,0,0.6), inset 0 0 0 1.5px rgba(255,255,255,0.25)"
-                  : "0 12px 32px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(17,17,17,0.15)",
+                boxShadow: isDark ? "0 12px 32px rgba(0,0,0,0.6), inset 0 0 0 1.5px rgba(255,255,255,0.25)" : "0 12px 32px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(17,17,17,0.15)",
               },
 
               "&:active": { transform: "translateY(0) scale(0.985)" },
 
-              "&:focus-visible": {
-                boxShadow: isDark
-                  ? `0 0 0 3px ${glowColor}, 0 6px 24px rgba(0,0,0,0.55)`
-                  : "0 0 0 3px rgba(246,245,242,0.6), 0 6px 20px rgba(0,0,0,0.06)",
-              },
+              "&:focus-visible": { boxShadow: isDark ? `0 0 0 3px ${glowColor}, 0 6px 24px rgba(0,0,0,0.55)` : "0 0 0 3px rgba(246,245,242,0.6), 0 6px 20px rgba(0,0,0,0.06)" },
 
               "&.Mui-disabled": {
                 background: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
@@ -208,9 +196,7 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
 
                 transform: "translateY(-1px)",
 
-                boxShadow: isDark
-                  ? "0 4px 14px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.1)"
-                  : "0 4px 14px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(17,17,17,0.1)",
+                boxShadow: isDark ? "0 4px 14px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.1)" : "0 4px 14px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(17,17,17,0.1)",
               },
 
               "&:active": { transform: "translateY(0) scale(0.985)" },
@@ -292,11 +278,7 @@ export const getButtonOverrides = (palette: JivicoPalette, isDark: boolean): Com
 
               "&:active": { background: glass.containedActive, transform: "translateY(0) scale(0.985)" },
 
-              "&:focus-visible": {
-                boxShadow: glassDark
-                  ? "0 0 0 3px rgba(255,255,255,0.35), 0 8px 32px rgba(0,0,0,0.45)"
-                  : "0 0 0 3px rgba(17,17,17,0.2), 0 6px 22px rgba(0,0,0,0.08)",
-              },
+              "&:focus-visible": { boxShadow: glassDark ? "0 0 0 3px rgba(255,255,255,0.35), 0 8px 32px rgba(0,0,0,0.45)" : "0 0 0 3px rgba(17,17,17,0.2), 0 6px 22px rgba(0,0,0,0.08)" },
 
               "&.Mui-disabled": {
                 background: glass.containedDisabled,

@@ -11,4 +11,3 @@ export const buildPremiumPalette = (isDark: boolean) => ({
   contrastText: isDark ? COLORS.premium.textDark : COLORS.premium.textLight,
   gradient: COLORS.premium.gradient,
 });
-

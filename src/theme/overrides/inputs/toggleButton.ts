@@ -4,13 +4,7 @@ import type { JivicoPalette } from "../../palette/index.js";
 
 const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
 
-const TRANSITION = [
-  `background-color 180ms ${EASE}`,
-  `border-color 180ms ${EASE}`,
-  `box-shadow 220ms ${EASE}`,
-  `color 180ms ${EASE}`,
-  `transform 180ms ${EASE}`,
-].join(", ");
+const TRANSITION = [`background-color 180ms ${EASE}`, `border-color 180ms ${EASE}`, `box-shadow 220ms ${EASE}`, `color 180ms ${EASE}`, `transform 180ms ${EASE}`].join(", ");
 
 type ColorGroup = { main: string; hover?: string; active?: string; disabled?: string; contrastText?: string; glow?: string };
 
@@ -57,12 +51,7 @@ export const getToggleButtonOverrides = (palette: JivicoPalette, isDark: boolean
 
             "&:last-of-type": { borderRadius: "6px !important" },
 
-            "&:hover": {
-              backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)",
-              color: mainColor,
-              transform: "translateY(-1px)",
-              zIndex: 1,
-            },
+            "&:hover": { backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(17,17,17,0.06)", color: mainColor, transform: "translateY(-1px)", zIndex: 1 },
 
             "&:active": { backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.08)", transform: "translateY(0) scale(0.985)" },
 
@@ -108,13 +97,7 @@ export const getToggleButtonOverrides = (palette: JivicoPalette, isDark: boolean
               "&.Mui-selected": {
                 backgroundColor: isGlass ? (isDark ? "rgba(255,255,255,0.05)" : "rgba(17,17,17,0.04)") : disabledColor,
 
-                color: isGlass
-                  ? isDark
-                    ? "rgba(255,255,255,0.3)"
-                    : "rgba(17,17,17,0.3)"
-                  : isDark
-                    ? "rgba(255,255,255,0.4)"
-                    : "rgba(255,255,255,0.7)",
+                color: isGlass ? (isDark ? "rgba(255,255,255,0.3)" : "rgba(17,17,17,0.3)") : isDark ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.7)",
 
                 boxShadow: "none",
                 transform: "none",

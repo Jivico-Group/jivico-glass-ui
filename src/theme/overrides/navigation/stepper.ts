@@ -6,31 +6,13 @@ export const getStepperOverrides = (palette: JivicoPalette, isDark: boolean): Co
     defaultProps: { color: "primary" },
     styleOverrides: { root: { "--jivico-stepper-color": palette.primary.main, "--jivico-stepper-contrast": palette.primary.contrastText } },
     variants: [
-      {
-        props: { color: "primary" },
-        style: { "--jivico-stepper-color": palette.primary.main, "--jivico-stepper-contrast": palette.primary.contrastText },
-      },
-      {
-        props: { color: "secondary" },
-        style: { "--jivico-stepper-color": palette.secondary.main, "--jivico-stepper-contrast": palette.secondary.contrastText },
-      },
-      {
-        props: { color: "accent" },
-        style: { "--jivico-stepper-color": palette.accent.main, "--jivico-stepper-contrast": palette.accent.contrastText },
-      },
-      {
-        props: { color: "premium" },
-        style: { "--jivico-stepper-color": palette.premium.main, "--jivico-stepper-contrast": palette.premium.contrastText },
-      },
+      { props: { color: "primary" }, style: { "--jivico-stepper-color": palette.primary.main, "--jivico-stepper-contrast": palette.primary.contrastText } },
+      { props: { color: "secondary" }, style: { "--jivico-stepper-color": palette.secondary.main, "--jivico-stepper-contrast": palette.secondary.contrastText } },
+      { props: { color: "accent" }, style: { "--jivico-stepper-color": palette.accent.main, "--jivico-stepper-contrast": palette.accent.contrastText } },
+      { props: { color: "premium" }, style: { "--jivico-stepper-color": palette.premium.main, "--jivico-stepper-contrast": palette.premium.contrastText } },
       { props: { color: "info" }, style: { "--jivico-stepper-color": palette.info.main, "--jivico-stepper-contrast": palette.info.contrastText } },
-      {
-        props: { color: "success" },
-        style: { "--jivico-stepper-color": palette.success.main, "--jivico-stepper-contrast": palette.success.contrastText },
-      },
-      {
-        props: { color: "warning" },
-        style: { "--jivico-stepper-color": palette.warning.main, "--jivico-stepper-contrast": palette.warning.contrastText },
-      },
+      { props: { color: "success" }, style: { "--jivico-stepper-color": palette.success.main, "--jivico-stepper-contrast": palette.success.contrastText } },
+      { props: { color: "warning" }, style: { "--jivico-stepper-color": palette.warning.main, "--jivico-stepper-contrast": palette.warning.contrastText } },
       { props: { color: "error" }, style: { "--jivico-stepper-color": palette.error.main, "--jivico-stepper-contrast": palette.error.contrastText } },
     ],
   },

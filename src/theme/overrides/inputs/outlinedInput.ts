@@ -41,13 +41,7 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
           "&:hover": { ...(isGlass && { backgroundColor: isDark ? "rgba(255, 255, 255, 0.09)" : "rgba(255, 255, 255, 0.70)" }) },
 
           "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: isGlass
-              ? isDark
-                ? "rgba(255, 255, 255, 0.35)"
-                : "rgba(17, 17, 17, 0.32)"
-              : isSemantic
-                ? hoverColor
-                : palette.glass.inputBorderHover,
+            borderColor: isGlass ? (isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(17, 17, 17, 0.32)") : isSemantic ? hoverColor : palette.glass.inputBorderHover,
           },
 
           "&.Mui-focused": {
@@ -71,11 +65,7 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
           fontSize: "0.85rem",
           "@media (max-width: 599.95px)": { fontSize: "16px" },
           "&:not(.MuiInputBase-multiline)": { minHeight: 36 },
-          "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
-            padding: "6px 16px",
-            fontSize: "0.85rem",
-            "@media (max-width: 599.95px)": { fontSize: "16px" },
-          },
+          "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": { padding: "6px 16px", fontSize: "0.85rem", "@media (max-width: 599.95px)": { fontSize: "16px" } },
           "&.MuiInputBase-multiline": { padding: "8px 16px", alignItems: "flex-start", "& .MuiInputBase-input": { fontSize: "16px" } },
         },
       },
@@ -84,11 +74,7 @@ export const getOutlinedInputOverrides = (palette: JivicoPalette, isDark: boolea
         style: {
           fontSize: "0.9375rem",
           "&:not(.MuiInputBase-multiline)": { minHeight: 48 },
-          "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": {
-            padding: "10px 20px",
-            fontSize: "0.9375rem",
-            "@media (max-width: 599.95px)": { fontSize: "16px" },
-          },
+          "& .MuiInputBase-input:not(.MuiInputBase-inputMultiline)": { padding: "10px 20px", fontSize: "0.9375rem", "@media (max-width: 599.95px)": { fontSize: "16px" } },
           "&.MuiInputBase-multiline": { padding: "12px 18px", alignItems: "flex-start", "& .MuiInputBase-input": { fontSize: "16px" } },
         },
       },

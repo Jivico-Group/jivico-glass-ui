@@ -103,13 +103,7 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({ open, onClose, onSel
                   onClose();
                   setQuery("");
                 }}
-                sx={{
-                  borderRadius: "8px",
-                  py: 1,
-                  px: 1.5,
-                  mb: 0.5,
-                  "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.05)" },
-                }}
+                sx={{ borderRadius: "8px", py: 1, px: 1.5, mb: 0.5, "&:hover": { backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(17, 17, 17, 0.05)" } }}
               >
                 <ListItemText
                   primary={<Typography sx={{ fontSize: "0.88rem", fontWeight: 600, color: "inherit" }}>{item.label}</Typography>}
@@ -123,12 +117,7 @@ export const SearchDialog: React.FC<SearchDialogProps> = ({ open, onClose, onSel
                   <Chip
                     label={item.badge}
                     size="small"
-                    sx={{
-                      height: 20,
-                      fontSize: "0.62rem",
-                      fontWeight: 700,
-                      backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.06)",
-                    }}
+                    sx={{ height: 20, fontSize: "0.62rem", fontWeight: 700, backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(17,17,17,0.06)" }}
                   />
                 )}
               </ListItemButton>

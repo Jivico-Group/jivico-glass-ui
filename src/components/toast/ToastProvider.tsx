@@ -5,17 +5,7 @@ import { DEFAULT_TOAST_DURATIONS, normalizePosition } from "./Toast.types.js";
 import { ToastContext } from "./ToastContext.js";
 import { ALL_POSITIONS, createInitialToastState, findToastGlobally, sanitizeDuration, toastReducer } from "./toastReducer.js";
 import { ToastAllViewports } from "./ToastViewport.js";
-import type {
-  ToastApi,
-  ToastColor,
-  ToastItemState,
-  ToastOptions,
-  ToastPosition,
-  ToastProviderProps,
-  ToastRadius,
-  ToastShortcutOptions,
-  ToastVariant,
-} from "./Toast.types.js";
+import type { ToastApi, ToastColor, ToastItemState, ToastOptions, ToastPosition, ToastProviderProps, ToastRadius, ToastShortcutOptions, ToastVariant } from "./Toast.types.js";
 
 export interface ExtendedToastProviderProps extends ToastProviderProps {
   portal?: boolean;
@@ -52,27 +42,13 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
   const [state, dispatch] = useReducer(toastReducer, undefined, createInitialToastState);
   const stateRef = useRef(state);
   const activeIdsRef = useRef<Set<string>>(new Set());
-  const positionCountsRef = useRef<Record<ToastPosition, number>>({
-    "top-left": 0,
-    "top-center": 0,
-    "top-right": 0,
-    "bottom-left": 0,
-    "bottom-center": 0,
-    "bottom-right": 0,
-  });
+  const positionCountsRef = useRef<Record<ToastPosition, number>>({ "top-left": 0, "top-center": 0, "top-right": 0, "bottom-left": 0, "bottom-center": 0, "bottom-right": 0 });
 
   useEffect(() => {
     stateRef.current = state;
 
     const nextActiveIds = new Set<string>();
-    const nextCounts: Record<ToastPosition, number> = {
-      "top-left": 0,
-      "top-center": 0,
-      "top-right": 0,
-      "bottom-left": 0,
-      "bottom-center": 0,
-      "bottom-right": 0,
-    };
+    const nextCounts: Record<ToastPosition, number> = { "top-left": 0, "top-center": 0, "top-right": 0, "bottom-left": 0, "bottom-center": 0, "bottom-right": 0 };
 
     for (const pos of ALL_POSITIONS) {
       const posState = state[pos];
@@ -99,48 +75,42 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
     return `toast-${Date.now().toString(36)}-${idCounterRef.current}`;
   }, []);
 
-  const dismiss = useCallback(
-    (id: string) => {
-      // If this toast is already transitioning out (exit timer running), idempotent no-op
-      if (exitTimersRef.current.has(id)) {
-        return;
-      }
+  const dismiss = useCallback((id: string) => {
+    // If this toast is already transitioning out (exit timer running), idempotent no-op
+    if (exitTimersRef.current.has(id)) {
+      return;
+    }
 
-      // Clear and remove auto-dismiss timer
-      const activeTimer = timersRef.current.get(id);
-      if (activeTimer) {
-        clearTimeout(activeTimer.timeoutId);
-        timersRef.current.delete(id);
-      }
+    // Clear and remove auto-dismiss timer
+    const activeTimer = timersRef.current.get(id);
+    if (activeTimer) {
+      clearTimeout(activeTimer.timeoutId);
+      timersRef.current.delete(id);
+    }
 
-      // Start exit animation
-      dispatch({ type: "START_EXIT", id });
-    },
-    [],
-  );
+    // Start exit animation
+    dispatch({ type: "START_EXIT", id });
+  }, []);
 
-  const dismissAll = useCallback(
-    (position?: ToastPosition) => {
-      const targetPositions = position ? [position] : ALL_POSITIONS;
+  const dismissAll = useCallback((position?: ToastPosition) => {
+    const targetPositions = position ? [position] : ALL_POSITIONS;
 
-      // Cancel active auto-dismiss timers for targeted visible toasts
-      for (const pos of targetPositions) {
-        const posState = stateRef.current[pos];
-        if (!posState) continue;
-        for (const item of posState.visible) {
-          const timer = timersRef.current.get(item.id);
-          if (timer) {
-            clearTimeout(timer.timeoutId);
-            timersRef.current.delete(item.id);
-          }
+    // Cancel active auto-dismiss timers for targeted visible toasts
+    for (const pos of targetPositions) {
+      const posState = stateRef.current[pos];
+      if (!posState) continue;
+      for (const item of posState.visible) {
+        const timer = timersRef.current.get(item.id);
+        if (timer) {
+          clearTimeout(timer.timeoutId);
+          timersRef.current.delete(item.id);
         }
       }
+    }
 
-      // Dispatch DISMISS_ALL to set visible status to 'exiting' and clear queue
-      dispatch({ type: "DISMISS_ALL", position });
-    },
-    [],
-  );
+    // Dispatch DISMISS_ALL to set visible status to 'exiting' and clear queue
+    dispatch({ type: "DISMISS_ALL", position });
+  }, []);
 
   const handlePause = useCallback((id: string) => {
     const timer = timersRef.current.get(id);
@@ -193,14 +163,7 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
                 dismiss(item.id);
               }, item.duration);
 
-              timersRef.current.set(item.id, {
-                timeoutId,
-                remaining: item.duration,
-                startedAt: Date.now(),
-                duration: item.duration,
-                revision: item.revision ?? 0,
-                isPaused: false,
-              });
+              timersRef.current.set(item.id, { timeoutId, remaining: item.duration, startedAt: Date.now(), duration: item.duration, revision: item.revision ?? 0, isPaused: false });
             }
           } else {
             // Existing timer record: check if duration or revision was updated via toast.update()
@@ -302,10 +265,7 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
 
       // Reject admission if pending queue is disabled (maxPending === 0) and visible stack is full
       const currentPosState = stateRef.current[position];
-      const currentCount = Math.max(
-        currentPosState ? currentPosState.visible.length : 0,
-        positionCountsRef.current[position] ?? 0,
-      );
+      const currentCount = Math.max(currentPosState ? currentPosState.visible.length : 0, positionCountsRef.current[position] ?? 0);
       if (maxPending === 0 && currentCount >= maxVisible) {
         return "";
       }
@@ -413,15 +373,7 @@ export const ToastProvider: React.FC<ExtendedToastProviderProps> = ({
   return (
     <ToastContext.Provider value={api}>
       {children}
-      <ToastAllViewports
-        state={state}
-        onDismiss={dismiss}
-        onPause={handlePause}
-        onResume={handleResume}
-        gap={gap}
-        portal={portal}
-        container={container}
-      />
+      <ToastAllViewports state={state} onDismiss={dismiss} onPause={handlePause} onResume={handleResume} gap={gap} portal={portal} container={container} />
     </ToastContext.Provider>
   );
 };

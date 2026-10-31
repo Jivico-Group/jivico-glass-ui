@@ -18,9 +18,7 @@ export const getAvatarOverrides = (_palette: JivicoPalette, isDark: boolean): Co
           color: isDark ? "#F6F5F2" : "#111111",
           backdropFilter: "blur(16px) saturate(180%)",
           WebkitBackdropFilter: "blur(16px) saturate(180%)",
-          boxShadow: isDark
-            ? "0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.18)"
-            : "0 4px 16px rgba(17, 17, 17, 0.06), inset 0 1px 1.5px rgba(255, 255, 255, 0.95)",
+          boxShadow: isDark ? "0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.18)" : "0 4px 16px rgba(17, 17, 17, 0.06), inset 0 1px 1.5px rgba(255, 255, 255, 0.95)",
           transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
 
           ...(isRounded && { borderRadius: "28%" }),

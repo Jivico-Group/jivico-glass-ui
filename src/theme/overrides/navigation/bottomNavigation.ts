@@ -24,13 +24,7 @@ export const getBottomNavigationOverrides = (_palette: JivicoPalette, isDark: bo
         /**
          * Borders
          */
-        const borderColor = glass
-          ? isDark
-            ? "rgba(255, 255, 255, 0.12)"
-            : "rgba(255, 255, 255, 0.60)"
-          : isDark
-            ? "rgba(255, 255, 255, 0.08)"
-            : "rgba(0, 0, 0, 0.08)";
+        const borderColor = glass ? (isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.60)") : isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)";
 
         /**
          * Shadow

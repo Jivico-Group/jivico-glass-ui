@@ -87,11 +87,7 @@ export const BackdropLoader = React.forwardRef<HTMLDivElement, BackdropLoaderPro
         sx={sx}
       />
       {message && (
-        <Typography
-          variant="body2"
-          {...messageProps}
-          sx={{ color: "inherit", fontWeight: 500, letterSpacing: "0.01em", textAlign: "center", maxWidth: 380, px: 2, ...messageProps?.sx }}
-        >
+        <Typography variant="body2" {...messageProps} sx={{ color: "inherit", fontWeight: 500, letterSpacing: "0.01em", textAlign: "center", maxWidth: 380, px: 2, ...messageProps?.sx }}>
           {message}
         </Typography>
       )}

@@ -33,83 +33,24 @@ interface BlobConfig {
  * Legacy variants (pink, purple, amber) are aliased to brand colours
  * so existing consumers don't break.
  */
-export const AmbientBlob = styled(Box, { shouldForwardProp: (p) => p !== "variant" && p !== "isDark" })<{ variant: BlobVariant; isDark: boolean }>(({
-  isDark,
-  variant,
-}) => {
+export const AmbientBlob = styled(Box, { shouldForwardProp: (p) => p !== "variant" && p !== "isDark" })<{ variant: BlobVariant; isDark: boolean }>(({ isDark, variant }) => {
   const configs: Record<BlobVariant, BlobConfig> = {
     // Charcoal/Cream (brand primary)
-    primary: {
-      top: "5%",
-      left: "10%",
-      width: "45vw",
-      height: "45vw",
-      color: isDark ? "rgba(246, 245, 242, 0.09)" : "rgba(17, 17, 17, 0.055)",
-      duration: "18s",
-    },
+    primary: { top: "5%", left: "10%", width: "45vw", height: "45vw", color: isDark ? "rgba(246, 245, 242, 0.09)" : "rgba(17, 17, 17, 0.055)", duration: "18s" },
     // Stone (brand secondary tone)
-    secondary: {
-      top: "35%",
-      right: "5%",
-      width: "40vw",
-      height: "40vw",
-      color: isDark ? "rgba(217, 217, 207, 0.1)" : "rgba(104, 104, 104, 0.06)",
-      duration: "22s",
-    },
+    secondary: { top: "35%", right: "5%", width: "40vw", height: "40vw", color: isDark ? "rgba(217, 217, 207, 0.1)" : "rgba(104, 104, 104, 0.06)", duration: "22s" },
     // Warm Sand/Cream — editorial softness
-    warm: {
-      top: "60%",
-      left: "5%",
-      width: "45vw",
-      height: "45vw",
-      color: isDark ? "rgba(217, 217, 207, 0.08)" : "rgba(246, 245, 242, 0.6)",
-      duration: "20s",
-    },
+    warm: { top: "60%", left: "5%", width: "45vw", height: "45vw", color: isDark ? "rgba(217, 217, 207, 0.08)" : "rgba(246, 245, 242, 0.6)", duration: "20s" },
     // Legacy alias → primary monochrome
-    pink: {
-      top: "5%",
-      left: "10%",
-      width: "45vw",
-      height: "45vw",
-      color: isDark ? "rgba(246, 245, 242, 0.09)" : "rgba(17, 17, 17, 0.055)",
-      duration: "18s",
-    },
+    pink: { top: "5%", left: "10%", width: "45vw", height: "45vw", color: isDark ? "rgba(246, 245, 242, 0.09)" : "rgba(17, 17, 17, 0.055)", duration: "18s" },
     // Legacy alias → secondary monochrome
-    purple: {
-      top: "35%",
-      right: "5%",
-      width: "40vw",
-      height: "40vw",
-      color: isDark ? "rgba(217, 217, 207, 0.1)" : "rgba(104, 104, 104, 0.06)",
-      duration: "22s",
-    },
+    purple: { top: "35%", right: "5%", width: "40vw", height: "40vw", color: isDark ? "rgba(217, 217, 207, 0.1)" : "rgba(104, 104, 104, 0.06)", duration: "22s" },
     // Legacy alias → warm
-    amber: {
-      top: "75%",
-      right: "15%",
-      width: "35vw",
-      height: "35vw",
-      color: isDark ? "rgba(217, 217, 207, 0.08)" : "rgba(246, 245, 242, 0.6)",
-      duration: "25s",
-    },
+    amber: { top: "75%", right: "15%", width: "35vw", height: "35vw", color: isDark ? "rgba(217, 217, 207, 0.08)" : "rgba(246, 245, 242, 0.6)", duration: "25s" },
     // Info blue — retained for depth contrast
-    blue: {
-      top: "35%",
-      right: "5%",
-      width: "40vw",
-      height: "40vw",
-      color: isDark ? "rgba(59, 130, 246, 0.1)" : "rgba(59, 130, 246, 0.05)",
-      duration: "22s",
-    },
+    blue: { top: "35%", right: "5%", width: "40vw", height: "40vw", color: isDark ? "rgba(59, 130, 246, 0.1)" : "rgba(59, 130, 246, 0.05)", duration: "22s" },
     // Teal/Cyan — very subtle
-    cyan: {
-      top: "20%",
-      left: "50%",
-      width: "35vw",
-      height: "35vw",
-      color: isDark ? "rgba(104, 104, 104, 0.1)" : "rgba(6, 182, 212, 0.04)",
-      duration: "19s",
-    },
+    cyan: { top: "20%", left: "50%", width: "35vw", height: "35vw", color: isDark ? "rgba(104, 104, 104, 0.1)" : "rgba(6, 182, 212, 0.04)", duration: "19s" },
   };
 
   const config = configs[variant] ?? configs.primary;

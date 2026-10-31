@@ -2,23 +2,7 @@
 
 import React, { useState } from "react";
 import { CheckCircle2, Orbit, Play, RotateCcw, Sparkles } from "lucide-react";
-import {
-  Box,
-  Button,
-  Chip,
-  FormControlLabel,
-  Paper,
-  Stack,
-  Switch,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Chip, FormControlLabel, Paper, Stack, Switch, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from "@mui/material";
 import "../../../src/theme/augmentations.d.ts";
 import { LoadingShowcase } from "../../../src/components/loading/LoadingShowcase.js";
 import { useGlassMode } from "../../../src/context/ThemeContext.js";
@@ -38,34 +22,19 @@ const PRESETS: Record<string, LoadingPreset> = {
     label: "Originals Drop",
     title: "Preparing your exclusive drop experience...",
     loadingLabel: "CURATING ARCHIVAL PIECES",
-    image: {
-      src: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
-      alt: "Apparel Collection",
-      width: 540,
-      height: 540,
-    },
+    image: { src: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80", alt: "Apparel Collection", width: 540, height: 540 },
   },
   freestyle: {
     label: "3D Freestyle Studio",
     title: "Compiling 3D materials & lighting...",
     loadingLabel: "INITIALIZING MULTIVERSE ENGINE",
-    image: {
-      src: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
-      alt: "3D Garment Model",
-      width: 540,
-      height: 540,
-    },
+    image: { src: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80", alt: "3D Garment Model", width: 540, height: 540 },
   },
   footwear: {
     label: "Footwear Archive",
     title: "Synchronizing limited editions...",
     loadingLabel: "VERIFYING BLOCKCHAIN CERTIFICATES",
-    image: {
-      src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
-      alt: "Limited Sneaker",
-      width: 540,
-      height: 540,
-    },
+    image: { src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80", alt: "Limited Sneaker", width: 540, height: 540 },
   },
   minimal: { label: "Minimal (No Image)", title: "Connecting to Jivico Studio...", loadingLabel: "ESTABLISHING SECURE SESSION" },
 };
@@ -181,13 +150,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                     }
                   />
 
-                  <Button
-                    variant="outlined"
-                    size="small"
-                    startIcon={<RotateCcw size={14} />}
-                    onClick={handleRestart}
-                    sx={{ borderRadius: "9999px", textTransform: "none", fontWeight: 600 }}
-                  >
+                  <Button variant="outlined" size="small" startIcon={<RotateCcw size={14} />} onClick={handleRestart} sx={{ borderRadius: "9999px", textTransform: "none", fontWeight: 600 }}>
                     Restart from 0%
                   </Button>
                 </Stack>
@@ -213,13 +176,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
               {/* Text Inputs */}
               <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
                 <TextField size="small" label="Title Message" value={title} onChange={(e) => setTitle(e.target.value)} sx={{ flex: 2 }} />
-                <TextField
-                  size="small"
-                  label="Loading Label"
-                  value={loadingLabel}
-                  onChange={(e) => setLoadingLabel(e.target.value)}
-                  sx={{ flex: 1 }}
-                />
+                <TextField size="small" label="Loading Label" value={loadingLabel} onChange={(e) => setLoadingLabel(e.target.value)} sx={{ flex: 1 }} />
               </Stack>
             </Stack>
           </Box>
@@ -249,9 +206,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                 width: 380,
                 height: 380,
                 borderRadius: "50%",
-                background: isDark
-                  ? "radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(0,0,0,0) 70%)"
-                  : "radial-gradient(circle, rgba(139,92,246,0.08) 0%, rgba(255,255,255,0) 70%)",
+                background: isDark ? "radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(0,0,0,0) 70%)" : "radial-gradient(circle, rgba(139,92,246,0.08) 0%, rgba(255,255,255,0) 70%)",
                 filter: "blur(60px)",
                 pointerEvents: "none",
               }}
@@ -264,9 +219,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
                 width: 320,
                 height: 320,
                 borderRadius: "50%",
-                background: isDark
-                  ? "radial-gradient(circle, rgba(59,130,246,0.12) 0%, rgba(0,0,0,0) 70%)"
-                  : "radial-gradient(circle, rgba(59,130,246,0.06) 0%, rgba(255,255,255,0) 70%)",
+                background: isDark ? "radial-gradient(circle, rgba(59,130,246,0.12) 0%, rgba(0,0,0,0) 70%)" : "radial-gradient(circle, rgba(59,130,246,0.06) 0%, rgba(255,255,255,0) 70%)",
                 filter: "blur(50px)",
                 pointerEvents: "none",
               }}
@@ -318,12 +271,7 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
           }}
         >
           <LoadingShowcase
-            image={{
-              src: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
-              alt: "Jivico Heavyweight Tee",
-              width: 540,
-              height: 540,
-            }}
+            image={{ src: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80", alt: "Jivico Heavyweight Tee", width: 540, height: 540 }}
             loading={true}
             title="Preparing your exclusive drop experience..."
             loadingLabel="CURATING ARCHIVAL PIECES"
@@ -371,23 +319,10 @@ ${!showSignature ? `  signature={null}\n` : ""}/>`;
           }}
         >
           <LoadingShowcase
-            image={{
-              src: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
-              alt: "3D Garment Mesh",
-              width: 540,
-              height: 540,
-            }}
+            image={{ src: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80", alt: "3D Garment Mesh", width: 540, height: 540 }}
             title="Compiling 3D materials & lighting..."
             loadingLabel="INITIALIZING FREESTYLE ENGINE"
-            signature={
-              <Chip
-                icon={<Orbit size={14} />}
-                label="WEBGL 2.0 PROTOCOL"
-                size="small"
-                variant="outlined"
-                sx={{ fontWeight: 700, fontSize: "0.68rem", letterSpacing: "0.08em" }}
-              />
-            }
+            signature={<Chip icon={<Orbit size={14} />} label="WEBGL 2.0 PROTOCOL" size="small" variant="outlined" sx={{ fontWeight: 700, fontSize: "0.68rem", letterSpacing: "0.08em" }} />}
           />
         </Box>
       </DemoBlock>
@@ -459,12 +394,7 @@ setLoading(false); // smoothly rushes to 100% and finishes
           >
             <LoadingShowcase
               key={controlledKey}
-              image={{
-                src: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80",
-                alt: "Originals Tee",
-                width: 540,
-                height: 540,
-              }}
+              image={{ src: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80", alt: "Originals Tee", width: 540, height: 540 }}
               loading={controlledLoading}
               title={controlledLoading ? "Fetching inventory data..." : "Ready to enter Studio."}
               loadingLabel={controlledLoading ? "SYNCING REAL-TIME STOCK" : "LOAD COMPLETE"}
@@ -512,12 +442,7 @@ setLoading(false); // smoothly rushes to 100% and finishes
           }}
         >
           <LoadingShowcase
-            image={{
-              src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
-              alt: "Custom Render Image",
-              width: 540,
-              height: 540,
-            }}
+            image={{ src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80", alt: "Custom Render Image", width: 540, height: 540 }}
             renderImage={(img) => (
               <Box
                 component="img"
@@ -541,11 +466,7 @@ setLoading(false); // smoothly rushes to 100% and finishes
       {/* ============================================================
           6. Props Reference
       ============================================================ */}
-      <DemoBlock
-        id="props-reference"
-        title="5. Props Reference"
-        description="Comprehensive type definitions and documentation for LoadingShowcaseProps."
-      >
+      <DemoBlock id="props-reference" title="5. Props Reference" description="Comprehensive type definitions and documentation for LoadingShowcaseProps.">
         <TableContainer component={Paper} variant="outlined" sx={{ borderRadius: "16px", bgcolor: "transparent", borderColor: "divider" }}>
           <Table size="small">
             <TableHead>
@@ -564,36 +485,11 @@ setLoading(false); // smoothly rushes to 100% and finishes
                   default: "undefined",
                   desc: "Optional product or visual illustration ({ src, alt, width, height }) floating inside the orbital rings.",
                 },
-                {
-                  prop: "renderImage",
-                  type: "(image: LoadingShowcaseImage) => ReactNode",
-                  default: "undefined",
-                  desc: "Custom image renderer for Next.js Image or custom picture tags.",
-                },
-                {
-                  prop: "loading",
-                  type: "boolean",
-                  default: "true",
-                  desc: "When true, progress auto-advances with deceleration. When false, progress smoothly completes to 100%.",
-                },
-                {
-                  prop: "title",
-                  type: "ReactNode",
-                  default: "We’re getting things ready...",
-                  desc: "Main primary heading message shown below the visual orbits.",
-                },
-                {
-                  prop: "loadingLabel",
-                  type: "ReactNode",
-                  default: "'LOADING YOUR EXPERIENCE'",
-                  desc: "Uppercase letterspaced status text displayed next to the animated percentage.",
-                },
-                {
-                  prop: "signature",
-                  type: "ReactNode",
-                  default: "Jivico Studio cursive + caption",
-                  desc: "Custom footer signature branding. Pass null to hide.",
-                },
+                { prop: "renderImage", type: "(image: LoadingShowcaseImage) => ReactNode", default: "undefined", desc: "Custom image renderer for Next.js Image or custom picture tags." },
+                { prop: "loading", type: "boolean", default: "true", desc: "When true, progress auto-advances with deceleration. When false, progress smoothly completes to 100%." },
+                { prop: "title", type: "ReactNode", default: "We’re getting things ready...", desc: "Main primary heading message shown below the visual orbits." },
+                { prop: "loadingLabel", type: "ReactNode", default: "'LOADING YOUR EXPERIENCE'", desc: "Uppercase letterspaced status text displayed next to the animated percentage." },
+                { prop: "signature", type: "ReactNode", default: "Jivico Studio cursive + caption", desc: "Custom footer signature branding. Pass null to hide." },
                 { prop: "className", type: "string", default: "undefined", desc: "Optional class name for custom CSS overrides." },
               ].map((row) => (
                 <TableRow key={row.prop}>

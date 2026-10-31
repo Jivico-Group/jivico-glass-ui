@@ -37,15 +37,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
     const src = isMobile && item.mobileCoverImage ? item.mobileCoverImage : item.coverImage;
     const displayName = item.title || item.name || "";
     if (ImageComponent) {
-      return (
-        <ImageComponent
-          src={src}
-          alt={displayName}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          style={{ objectFit: "cover" }}
-        />
-      );
+      return <ImageComponent src={src} alt={displayName} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" style={{ objectFit: "cover" }} />;
     }
     return <Box component="img" src={src} alt={displayName} sx={{ width: "100%", height: "100%", objectFit: "cover" }} />;
   };
@@ -82,27 +74,10 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
       >
         <Box sx={{ position: "absolute", inset: 0, zIndex: 1 }}>
           <RenderImage item={item} />
-          <Box
-            sx={{
-              position: "absolute",
-              inset: 0,
-              background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.85) 100%)",
-            }}
-          />
+          <Box sx={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.85) 100%)" }} />
         </Box>
 
-        <Box
-          sx={{
-            position: "absolute",
-            inset: 0,
-            zIndex: 2,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            p: { xs: 3, md: featured ? 5 : 4 },
-            color: "#ffffff",
-          }}
-        >
+        <Box sx={{ position: "absolute", inset: 0, zIndex: 2, display: "flex", flexDirection: "column", justifyContent: "flex-end", p: { xs: 3, md: featured ? 5 : 4 }, color: "#ffffff" }}>
           {item.badgeText && (
             <Typography
               sx={{
@@ -153,14 +128,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
               {item.description}
             </Typography>
           )}
-          <Button
-            component="span"
-            size="large"
-            variant="outlined"
-            color="dark-glass"
-            sx={{ alignSelf: "flex-start", width: "fit-content", mt: 2.5 }}
-            endIcon={<ArrowRight />}
-          >
+          <Button component="span" size="large" variant="outlined" color="dark-glass" sx={{ alignSelf: "flex-start", width: "fit-content", mt: 2.5 }} endIcon={<ArrowRight />}>
             Explore {displayName}
           </Button>
         </Box>
@@ -168,8 +136,7 @@ export const ExpanseGrid = ({ items, ImageComponent, radius = "rounded", gap = 2
     );
   };
 
-  const getItemKey = (item: ExpanseItem, index: number) =>
-    item.id || item.value || item.href || item.path || item.name || item.title || `item-${index}`;
+  const getItemKey = (item: ExpanseItem, index: number) => item.id || item.value || item.href || item.path || item.name || item.title || `item-${index}`;
   return (
     <Box className={className} sx={{ width: "100%", mx: "auto", ...sx }}>
       {layout === "single" && <Card item={featured} featured />}

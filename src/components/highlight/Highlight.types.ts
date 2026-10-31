@@ -8,8 +8,7 @@ export type HighlightSize = "small" | "medium" | "large";
 
 export type HighlightImagePosition = "top" | "center" | "bottom" | "left" | "right" | string;
 
-export type HighlightDimension =
-  number | string | { xs?: number | string; sm?: number | string; md?: number | string; lg?: number | string; xl?: number | string };
+export type HighlightDimension = number | string | { xs?: number | string; sm?: number | string; md?: number | string; lg?: number | string; xl?: number | string };
 
 export interface HighlightAction {
   label: string;

@@ -33,8 +33,7 @@ export type ShowcaseButtonSize = "small" | "medium" | "large";
 
 export type ShowcaseButtonColor = "primary" | "secondary" | "accent" | "success" | "warning" | "error" | "info" | "glass";
 
-export type ShowcaseDimension =
-  number | string | { xs?: number | string; sm?: number | string; md?: number | string; lg?: number | string; xl?: number | string };
+export type ShowcaseDimension = number | string | { xs?: number | string; sm?: number | string; md?: number | string; lg?: number | string; xl?: number | string };
 
 export interface ShowcaseImageComponentProps {
   src: string;

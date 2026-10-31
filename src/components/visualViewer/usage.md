@@ -90,9 +90,7 @@ import { VisualViewer } from "jivico-glass-ui";
 
 <VisualViewer
   items={images}
-  renderImage={({ item, index }) => (
-    <Image src={item.src} alt={item.alt ?? ""} fill sizes="(max-width: 768px) 100vw, 70vw" priority={index === 0} style={{ objectFit: "contain" }} />
-  )}
+  renderImage={({ item, index }) => <Image src={item.src} alt={item.alt ?? ""} fill sizes="(max-width: 768px) 100vw, 70vw" priority={index === 0} style={{ objectFit: "contain" }} />}
 />;
 ```
 
@@ -107,9 +105,7 @@ You can separately control the thumbnail renderer.
 ```tsx
 <VisualViewer
   items={images}
-  renderImage={({ item, index }) => (
-    <Image src={item.src} alt={item.alt ?? ""} fill sizes="(max-width: 768px) 100vw, 70vw" priority={index === 0} style={{ objectFit: "contain" }} />
-  )}
+  renderImage={({ item, index }) => <Image src={item.src} alt={item.alt ?? ""} fill sizes="(max-width: 768px) 100vw, 70vw" priority={index === 0} style={{ objectFit: "contain" }} />}
   renderThumbnail={({ item }) => <Image src={item.thumbnailSrc ?? item.src} alt={item.alt ?? ""} fill sizes="112px" style={{ objectFit: "cover" }} />}
 />
 ```
@@ -517,9 +513,7 @@ export function ProductVisuals() {
           style={{ objectFit: "contain" }}
         />
       )}
-      renderThumbnail={({ item }) => (
-        <Image src={item.thumbnailSrc ?? item.src} alt={item.alt ?? ""} fill sizes="112px" style={{ objectFit: "cover" }} />
-      )}
+      renderThumbnail={({ item }) => <Image src={item.thumbnailSrc ?? item.src} alt={item.alt ?? ""} fill sizes="112px" style={{ objectFit: "cover" }} />}
     />
   );
 }
