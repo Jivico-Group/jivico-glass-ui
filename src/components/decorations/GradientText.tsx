@@ -1,3 +1,4 @@
+// NOTE: NO NEED TO CONSIDER WE WILL NOT US THIS COMPONENT - IN FUTURE WE WILL REMOVE THISimport { Typography } from "@mui/material";
 import { Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 

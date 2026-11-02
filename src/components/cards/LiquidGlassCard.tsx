@@ -1,3 +1,5 @@
+// NOTE: NO NEED TO CONSIDER WE WILL NOT US THIS COMPONENT - IN FUTURE WE WILL REMOVE THIS
+
 import { Box, IconButton, styled, Typography } from "@mui/material";
 
 export interface LiquidGlassCardRootProps {

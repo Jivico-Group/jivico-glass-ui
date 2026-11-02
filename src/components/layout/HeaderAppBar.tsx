@@ -1,3 +1,4 @@
+// NOTE: NO NEED TO CONSIDER WE WILL NOT US THIS COMPONENT - IN FUTURE WE WILL REMOVE THIS
 import { AppBar, styled } from "@mui/material";
 
 export interface HeaderAppBarProps {

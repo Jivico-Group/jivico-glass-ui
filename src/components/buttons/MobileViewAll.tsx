@@ -1,3 +1,5 @@
+// NOTE: NO NEED TO CONSIDER WE WILL NOT US THIS COMPONENT - IN FUTURE WE WILL REMOVE THIS
+
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Box, Button, styled } from "@mui/material";

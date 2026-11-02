@@ -1,3 +1,4 @@
+// NOTE: NO NEED TO CONSIDER WE WILL NOT US THIS COMPONENT - IN FUTURE WE WILL REMOVE THIS
 import { Box, styled } from "@mui/material";
 import { keyframes } from "@mui/material/styles";
 

@@ -1,3 +1,4 @@
+// NOTE: NO NEED TO CONSIDER WE WILL NOT US THIS COMPONENT - IN FUTURE WE WILL REMOVE THIS
 import { Container, styled } from "@mui/material";
 
 export const SectionContainer = styled(Container, { shouldForwardProp: (p) => p !== "largeBottom" && p !== "smallBottom" })<{ largeBottom?: boolean; smallBottom?: boolean }>(
