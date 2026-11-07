@@ -16,7 +16,7 @@ export const getDrawerOverrides = (isDark: boolean): Components<Theme> => ({
          * Glass surface
          */
         const glassBackground = isDark ? "rgba(24, 24, 27, 0.72)" : "rgba(255, 255, 255, 0.72)";
-        const glassColor = isDark ? "#F5F5F7" : "#111111";
+        const glassColor = normalColor;
 
         /**
          * Border
@@ -29,7 +29,13 @@ export const getDrawerOverrides = (isDark: boolean): Components<Theme> => ({
         const shadow = isDark ? "0 24px 70px rgba(0, 0, 0, 0.45)" : "0 24px 70px rgba(0, 0, 0, 0.14)";
 
         return {
-          position: "relative",
+          /**
+           * IMPORTANT:
+           * Do not override position.
+           *
+           * MUI controls fixed positioning and anchor coordinates.
+           * Setting position: relative breaks right/top/bottom anchors.
+           */
           overflowY: "auto",
 
           backgroundColor: glass ? glassBackground : normalBackground,
@@ -76,10 +82,14 @@ export const getDrawerOverrides = (isDark: boolean): Components<Theme> => ({
               background: isDark ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.95)",
               zIndex: 2,
             },
+
+            "& > *": { position: "relative", zIndex: 1 },
           }),
 
-          "& > *": { position: "relative", zIndex: 1 },
-
+          /**
+           * Anchor-specific appearance only.
+           * Leave positioning and transforms to MUI.
+           */
           ...(ownerState.anchor === "bottom" && {
             borderBottom: "none",
             borderLeft: "none",
