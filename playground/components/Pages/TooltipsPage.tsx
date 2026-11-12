@@ -125,7 +125,7 @@ export const TooltipsPage: React.FC = () => {
     <Box sx={{ p: 0.5, display: 'flex', gap: 1.5, alignItems: 'center' }}>
       <Avatar>RN</Avatar>
       <Box>
-        <Typography variant="caption" sx={{ fontWeight: 700 }}>Rahul Nayak</Typography>
+        <Typography variant="caption" sx={{ fontWeight: 700 }}>John Doe</Typography>
         <Typography variant="caption" display="block">Design Engineer</Typography>
       </Box>
     </Box>
@@ -154,7 +154,7 @@ export const TooltipsPage: React.FC = () => {
                 </Avatar>
                 <Box>
                   <Typography variant="caption" sx={{ fontWeight: 700, display: "block" }}>
-                    Rahul Nayak
+                    John Doe
                   </Typography>
                   <Typography variant="caption" sx={{ opacity: 0.8, fontSize: "0.7rem" }}>
                     Design Engineer • Jivico Studio
